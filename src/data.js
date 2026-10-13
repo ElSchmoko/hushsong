@@ -770,6 +770,8 @@
   // (a third pet, evolving, stars, equipment), so that floor 2000 pushes back about as hard as floor 20. Tuned by simulation: [enemy level, HP multiplier].
   H.DIN_CURVE = [[1, 1], [5, 1.35], [9, 1.52], [18, 2.05], [45, 2.4], [89, 3.3], [177, 4.05], [440, 5.2]];
   H.BOSS_K = [0.8, 1.0]; H.PLAIN_K = [1.08, 1.04];
+  // the first two adventure bosses are a little softer (HP and Power); rehearsals use the full boss
+  H.EARLY_BOSS_K = { 10: 0.9, 20: 0.88 };
   H.dinMult = (L) => { const C = H.DIN_CURVE, x = Math.log(L); let i = 0; while (i < C.length - 2 && L > C[i + 1][0]) i++; const x0 = Math.log(C[i][0]), x1 = Math.log(C[i + 1][0]); return Math.max(1, C[i][1] + ((C[i + 1][1] - C[i][1]) * (x - x0)) / (x1 - x0)); };
   H.dinScale = (L) => { const lin = 1 + 0.10 * (L - 1), m = H.dinMult(L); return { hp: lin * m, vol: lin * (1 + (m - 1) * 0.45) }; };
   H.petScale = (L, tier) => (1 + 0.10 * (L - 1)) * H.TIER_MUL[tier];
@@ -818,7 +820,7 @@
     const idx = ((n - 1) % 10) + 1, region = H.REGION_ORDER[Math.floor((n - 1) / 10) % H.REGION_ORDER.length], R = H.REGIONS[region], rnd = H.rng(n * 7919 + 13);
     const boss = idx === 10, elite = idx === 5, L = H.stageLevel(n);
     let list;
-    if (boss) list = [{ id: R.boss, lvl: L }].concat((n === 10 ? [] : R.adds).map((a) => ({ id: a, lvl: Math.max(1, L - 1) })));
+    if (boss) list = [{ id: R.boss, lvl: L, k: H.EARLY_BOSS_K[n] }].concat((n === 10 ? [] : R.adds).map((a) => ({ id: a, lvl: Math.max(1, L - 1) })));
     else {
       const count = H.ENEMY_COUNT[n - 1] || 3; const ids = [];
       for (let i = 0; i < count; i++) ids.push(R.din[Math.floor(rnd() * R.din.length)]);

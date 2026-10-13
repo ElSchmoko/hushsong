@@ -27,11 +27,11 @@
     return { name: 'Rival ' + f.n, form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
       base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
   };
-  H.buildDinUnit = (id, level, loud, extra) => {
-    const d = H.DIN[id], sc = H.dinScale(level), perks = [];
+  H.buildDinUnit = (id, level, loud, extra, k) => {
+    const d = H.DIN[id], sc = H.dinScale(level), perks = []; k = k || 1;
     if (d.passive) perks.push(d.passive); if (d.boss) perks.push(H.SWELL); if (loud) perks.push(H.LOUD); if (extra) perks.push(extra);
     return { name: (loud ? 'Loud ' : '') + d.n, form: id, sprite: id, family: d.family, role: d.boss ? 'boss' : 'din', lvl: level, boss: !!d.boss, loud: !!loud,
-      base: { hp: d.base.hp * sc.hp * (d.boss ? H.BOSS_K[0] : H.PLAIN_K[0]), vol: d.base.vol * sc.vol * (d.boss ? H.BOSS_K[1] : H.PLAIN_K[1]), poise: d.base.poise, tempo: d.base.tempo }, perks, kit: { beat: d.beat, phrase: d.phrase, finale: d.finale } };
+      base: { hp: d.base.hp * sc.hp * k * (d.boss ? H.BOSS_K[0] : H.PLAIN_K[0]), vol: d.base.vol * sc.vol * k * (d.boss ? H.BOSS_K[1] : H.PLAIN_K[1]), poise: d.base.poise, tempo: d.base.tempo }, perks, kit: { beat: d.beat, phrase: d.phrase, finale: d.finale } };
   };
 
   class Battle {

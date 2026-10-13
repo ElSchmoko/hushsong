@@ -1175,6 +1175,8 @@ window.H = {};
   // (a third pet, evolving, stars, equipment), so that floor 2000 pushes back about as hard as floor 20. Tuned by simulation: [enemy level, HP multiplier].
   H.DIN_CURVE = [[1, 1], [5, 1.35], [9, 1.52], [18, 2.05], [45, 2.4], [89, 3.3], [177, 4.05], [440, 5.2]];
   H.BOSS_K = [0.8, 1.0]; H.PLAIN_K = [1.08, 1.04];
+  // the first two adventure bosses are a little softer (HP and Power); rehearsals use the full boss
+  H.EARLY_BOSS_K = { 10: 0.9, 20: 0.88 };
   H.dinMult = (L) => { const C = H.DIN_CURVE, x = Math.log(L); let i = 0; while (i < C.length - 2 && L > C[i + 1][0]) i++; const x0 = Math.log(C[i][0]), x1 = Math.log(C[i + 1][0]); return Math.max(1, C[i][1] + ((C[i + 1][1] - C[i][1]) * (x - x0)) / (x1 - x0)); };
   H.dinScale = (L) => { const lin = 1 + 0.10 * (L - 1), m = H.dinMult(L); return { hp: lin * m, vol: lin * (1 + (m - 1) * 0.45) }; };
   H.petScale = (L, tier) => (1 + 0.10 * (L - 1)) * H.TIER_MUL[tier];
@@ -1223,7 +1225,7 @@ window.H = {};
     const idx = ((n - 1) % 10) + 1, region = H.REGION_ORDER[Math.floor((n - 1) / 10) % H.REGION_ORDER.length], R = H.REGIONS[region], rnd = H.rng(n * 7919 + 13);
     const boss = idx === 10, elite = idx === 5, L = H.stageLevel(n);
     let list;
-    if (boss) list = [{ id: R.boss, lvl: L }].concat((n === 10 ? [] : R.adds).map((a) => ({ id: a, lvl: Math.max(1, L - 1) })));
+    if (boss) list = [{ id: R.boss, lvl: L, k: H.EARLY_BOSS_K[n] }].concat((n === 10 ? [] : R.adds).map((a) => ({ id: a, lvl: Math.max(1, L - 1) })));
     else {
       const count = H.ENEMY_COUNT[n - 1] || 3; const ids = [];
       for (let i = 0; i < count; i++) ids.push(R.din[Math.floor(rnd() * R.din.length)]);
@@ -1356,11 +1358,11 @@ window.H = {};
     return { name: 'Rival ' + f.n, form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
       base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
   };
-  H.buildDinUnit = (id, level, loud, extra) => {
-    const d = H.DIN[id], sc = H.dinScale(level), perks = [];
+  H.buildDinUnit = (id, level, loud, extra, k) => {
+    const d = H.DIN[id], sc = H.dinScale(level), perks = []; k = k || 1;
     if (d.passive) perks.push(d.passive); if (d.boss) perks.push(H.SWELL); if (loud) perks.push(H.LOUD); if (extra) perks.push(extra);
     return { name: (loud ? 'Loud ' : '') + d.n, form: id, sprite: id, family: d.family, role: d.boss ? 'boss' : 'din', lvl: level, boss: !!d.boss, loud: !!loud,
-      base: { hp: d.base.hp * sc.hp * (d.boss ? H.BOSS_K[0] : H.PLAIN_K[0]), vol: d.base.vol * sc.vol * (d.boss ? H.BOSS_K[1] : H.PLAIN_K[1]), poise: d.base.poise, tempo: d.base.tempo }, perks, kit: { beat: d.beat, phrase: d.phrase, finale: d.finale } };
+      base: { hp: d.base.hp * sc.hp * k * (d.boss ? H.BOSS_K[0] : H.PLAIN_K[0]), vol: d.base.vol * sc.vol * k * (d.boss ? H.BOSS_K[1] : H.PLAIN_K[1]), poise: d.base.poise, tempo: d.base.tempo }, perks, kit: { beat: d.beat, phrase: d.phrase, finale: d.finale } };
   };
 
   class Battle {
@@ -1893,11 +1895,11 @@ window.H = {};
 
   H.gainXp = (S, n) => { let ups = 0; S.xp += n; while (S.level < H.MAX_LEVEL && S.xp >= H.xpNeed(S.level)) { S.xp -= H.xpNeed(S.level); S.level++; ups++; } if (S.level >= H.MAX_LEVEL) S.xp = 0; return ups; };
 
-  const foeUnit = (e) => (e.pet ? H.buildRivalUnit(e.id, e.lvl) : H.buildDinUnit(e.id, e.lvl, e.loud));
+  const foeUnit = (e) => (e.pet ? H.buildRivalUnit(e.id, e.lvl) : H.buildDinUnit(e.id, e.lvl, e.loud, null, e.k));
   // A rehearsal replays a boss you have beaten at your own level. Its two helpers stand one level lower, as on the boss floors.
   H.foeUnit = foeUnit;
   H.rehearsalStage = (S, n) => { const st = H.stage(n), R = H.REGIONS[st.region], L = Math.max(1, S.level); return Object.assign({}, st, { level: L, reh: true, enemies: [{ id: R.boss, lvl: L }].concat(R.adds.map((a) => ({ id: a, lvl: Math.max(1, L - 1) }))) }); };
-  H.rehearsals = (S) => { const out = []; for (let n = 10; n < S.stage; n += 10) out.push(n); return out; };
+  H.rehearsals = (S) => { const out = []; for (let n = 10; n < S.stage && n <= 100; n += 10) out.push(n); return out; };   // the ten bosses of the first world
   H.startStage = (S, n, rnd, reh) => {
     const st = reh ? H.rehearsalStage(S, n) : H.stage(n), enemies = st.enemies.map(foeUnit);
     for (const e of st.enemies) if (!e.pet) S.dinSeen[e.id] = 1;
@@ -3727,7 +3729,7 @@ window.H = {};
       ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
       ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'Beaten bosses return at your level. Each pays an echo once a week; they all come back on Monday.'),
+      ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
