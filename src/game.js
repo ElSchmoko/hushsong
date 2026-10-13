@@ -77,7 +77,8 @@
   H.canEvolveAny = (S) => H.teamPets(S).filter((p) => p && H.canGrow(S, p)).sort((a, b) => H.petTier(a) - H.petTier(b) || (a.rank || 0) - (b.rank || 0))[0] || null;
 
   /* equipment */
-  const ODDS = { win: [60, 28, 10, 2], elite: [30, 40, 22, 8], boss: [0, 45, 35, 20], gift: [0, 100, 0, 0] };
+  // rarity odds in % (Common, Rare, Epic, Legendary) for a piece that drops
+  const ODDS = { win: [60, 28, 10.5, 1.5], elite: [30, 40, 24, 6], boss: [0, 45, 40, 15], gift: [0, 100, 0, 0] };
   // Each Legendary exists once. When you hold them all, a Legendary roll gives an Epic instead.
   H.freeLegends = (S, type) => Object.keys(H.LEGENDS).filter((k) => (!type || H.LEGENDS[k].type === type) && !S.items.some((x) => x.leg === k));
   H.rollItem = (S, rnd, src) => {
