@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><style>body{background:#fff;margin:8px;font:11px monospace}canvas{margin:3px;vertical-align:top}</style><div id="o"></div>
+<script>window.H={};</script><script src="../src/data.js"></script><script src="../src/engine.js"></script><script src="../src/art-core.js"></script><script src="../src/art-pets.js"></script><script src="../src/art-pets2.js"></script><script src="../src/art-din.js"></script><script src="../src/art-ui.js"></script>
+<script>const A=H.Art;A.k=2;const o=document.getElementById('o');
+for(const f of ['thud','twang','hum','blare','yelp'])for(const k of ['beat','phrase','finale']){const kit=H.kitOf(Object.keys(H.FORMS).filter(x=>H.FORMS[x].sp===f&&H.FORMS[x].tier===2)[0]);A.moveIcon(kit[k],k,H.SPECIES[f].family);}
+for(const key of Object.keys(A.defs)){const d=A.defs[key];continue;const px=d.size*5;const c=document.createElement('canvas');c.width=c.height=px;c.getContext('2d').drawImage(A.sprite(key,'',px),0,0);c.title=key;o.appendChild(c);}
+o.appendChild(document.createElement('br'));
+for(const key of ['buzz','clatter','drip','rustle','creak','tick']){const px=200;const c=document.createElement('canvas');c.width=c.height=px;c.style.background='#c8ee9a';c.getContext('2d').drawImage(A.sprite(key,'',px),0,0);o.appendChild(c);}o.appendChild(document.createElement('br'));
+for(const key of Object.keys(A.defs)){if(!/^item_|ic_record|ic_baton|ic_pets|ic_keep/.test(key))continue;const px=A.defs[key].size*4;const c=document.createElement('canvas');c.width=c.height=px;c.getContext('2d').drawImage(A.sprite(key,'',px),0,0);o.appendChild(c);}o.appendChild(document.createElement('br'));
+for(const k of ['night','dusk','gold','aurora','spot']){const b=A.bg(k,195,150,0.46);b.style.width='195px';b.style.height='150px';o.appendChild(b);}
+</script>

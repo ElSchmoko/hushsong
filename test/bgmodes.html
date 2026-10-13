@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><style>body{background:#222;margin:6px;font:10px monospace;color:#ccc}.g{display:grid;grid-template-columns:repeat(3,auto);gap:6px;justify-content:start}canvas{display:block}</style>
+<div class="g" id="o"></div>
+<script>window.H={};</script>
+<script src="../src/data.js"></script><script src="../src/engine.js"></script><script src="../src/game.js"></script><script src="../src/art-core.js"></script><script src="../src/art-ui.js"></script>
+<script>H.Art.k=2;const o=document.getElementById('o');const keys=(new URLSearchParams(location.search).get('k')||'fen,works,orchard,ridge,road').split(',');
+for(const k of keys)for(const m of ['', 'hush','sing']){const c=H.Art.bgMode(k,190,110,0.45,m);c.style.width='190px';c.style.height='110px';const d=document.createElement('div');d.appendChild(c);d.appendChild(document.createTextNode(k+' '+m));o.appendChild(d);}document.title='ready';</script>

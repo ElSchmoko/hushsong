@@ -1,0 +1,26 @@
+{
+  "name": "hushsong",
+  "version": "1.0.0",
+  "description": "Hushsong: a cosy music creature battler, built as one HTML page and an installable web app.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "icons": "node tools/icons.js",
+    "pwa": "node build.js && node tools/pwa.js",
+    "sim": "node test/sim.js fuzz"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/baloo-2": "^5.3.0",
+    "@fontsource/jersey-10": "^5.3.0",
+    "@fontsource/nunito": "^5.3.0",
+    "@fontsource/pixelify-sans": "^5.3.0",
+    "@fontsource/silkscreen": "^5.3.0"
+  },
+  "private": true
+}

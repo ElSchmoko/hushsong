@@ -1,0 +1,6 @@
+<!doctype html><meta charset="utf-8"><style>body{background:#000;margin:8px;color:#ccc;font:11px monospace}canvas{image-rendering:pixelated;margin:4px}</style><div id="o"></div>
+<script>window.H={};</script><script src="../src/data.js"></script><script src="../src/engine.js"></script><script src="../src/art-core.js"></script><script src="../src/art-pets.js"></script><script src="../src/art-pets2.js"></script><script src="../src/art-din.js"></script><script src="../src/art-ui.js"></script>
+<script>const o=document.getElementById('o');for(const k of ['fen','works','ridge','hall','camp'])for(const m of [0,1]){const s=H.Art.bg(k,180,140,m);const c=document.createElement('canvas');c.width=360;c.height=280;const x=c.getContext('2d');x.imageSmoothingEnabled=false;x.drawImage(s,0,0,360,280);
+if(!m){const p=H.Art.sprite(k==='fen'?'thud':k==='works'?'click':k==='ridge'?'hum':k==='hall'?'aria':'yelp',0);x.drawImage(p,0,0,48,48,60,150,96,96);const e=H.Art.sprite(k==='fen'?'muffle':k==='works'?'shush':k==='ridge'?'static':k==='hall'?'tacet':'wagon',0);x.save();x.translate(360,0);x.scale(-1,1);x.drawImage(e,0,0,e.width,e.height,10,100,e.width*2,e.height*2);x.restore();
+H.Art.text(x,'128',100,140,'#fff8ea',true);H.Art.text(x,'MISS',200,120,'#a8e6ff',false);}
+o.appendChild(c);}</script>

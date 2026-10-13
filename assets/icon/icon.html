@@ -1,0 +1,35 @@
+<!doctype html>
+<!-- The Hushsong app icon (option B, "Hum up close"), drawn at 360×360. tools/icons.js renders it to PNGs.
+     ?round=1 gives rounded corners on a transparent ground; otherwise it is a full-bleed square for masks. -->
+<html><head><meta charset="utf-8"><style>
+html, body { margin: 0; background: transparent; }
+#icon { width: 360px; height: 360px; position: relative; overflow: hidden; }
+#icon.round { border-radius: 81px; }
+#icon > * { position: absolute; left: 0; top: 0; }
+</style></head><body>
+<div id="icon">
+<svg width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
+<rect width="360" height="360" fill="#ff6b5e"/>
+<path d="M180 200 L596 145 L596 255 Z M180 200 L568 361 L513 456 Z M180 200 L436 533 L341 588 Z M180 200 L235 616 L125 616 Z M180 200 L19 588 L-76 533 Z M180 200 L-153 456 L-208 361 Z M180 200 L-236 255 L-236 145 Z M180 200 L-208 39 L-153 -56 Z M180 200 L-76 -133 L19 -188 Z M180 200 L125 -216 L235 -216 Z M180 200 L341 -188 L436 -133 Z M180 200 L513 -56 L568 39 Z" fill="#ff8a7c"/>
+</svg>
+<img src="hum.png" alt="" style="left: -14px; top: 64px; width: 400px; height: auto">
+<svg width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
+<defs>
+<g id="note">
+<path d="M38 76 V30 M84 64 V18" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round"/>
+<path d="M38 22 L84 10 L84 26 L38 38 Z" fill="#ffffff" stroke="#ffffff" stroke-width="24" stroke-linejoin="round"/>
+<ellipse cx="26" cy="78" rx="23" ry="20" fill="#ffffff"/><ellipse cx="72" cy="66" rx="23" ry="20" fill="#ffffff"/>
+<path d="M38 76 V30 M84 64 V18" fill="none" stroke="#2b2140" stroke-width="18" stroke-linecap="round"/>
+<path d="M38 22 L84 10 L84 26 L38 38 Z" fill="#2b2140" stroke="#2b2140" stroke-width="12" stroke-linejoin="round"/>
+<ellipse cx="26" cy="78" rx="17" ry="14" fill="#2b2140"/><ellipse cx="72" cy="66" rx="17" ry="14" fill="#2b2140"/>
+<path d="M38 76 V32 M84 64 V20" fill="none" stroke="#ffc928" stroke-width="7" stroke-linecap="round"/>
+<path d="M40 25 L82 14 L82 23 L40 34 Z" fill="#ffc928"/>
+<ellipse cx="26" cy="78" rx="11" ry="8.5" fill="#ffc928"/><ellipse cx="72" cy="66" rx="11" ry="8.5" fill="#ffc928"/>
+</g>
+</defs>
+<use href="#note" transform="translate(16 14) scale(0.54)"/>
+<use href="#note" transform="translate(292 26) scale(0.4)"/>
+</svg>
+</div>
+<script>if (/round=1/.test(location.search)) document.getElementById('icon').classList.add('round');</script>
+</body></html>

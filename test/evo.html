@@ -1,0 +1,17 @@
+<!doctype html><meta charset="utf-8">
+<style>body{background:#fff6dc;color:#2b2140;font:12px monospace;margin:6px}
+.row{display:flex;gap:3px;margin-bottom:3px}.cell{background:#c8ee9a;padding:1px;text-align:center}.cell.t1{background:#bfe2fb}.cell.t2{background:#ffe58f}canvas{display:block}</style>
+<div id="out"></div>
+<script>window.H={};</script>
+<script src="../src/data.js"></script><script src="../src/engine.js"></script><script src="../src/art-core.js"></script><script src="../src/art-pets.js"></script><script src="../src/art-pets2.js"></script><script src="../src/art-din.js"></script><script src="../src/art-ui.js"></script>
+<script>
+const q=new URLSearchParams(location.search), from=+(q.get('from')||0), cnt=+(q.get('n')||5), S=+(q.get('s')||3); H.Art.k=1;
+const out=document.getElementById('out'), F=H.FORMS;
+const cell=(key,cls)=>{const d=H.Art.defs[key],px=d.size*S,src=H.Art.sprite(key,'',px),c=document.createElement('canvas');c.width=c.height=px;c.getContext('2d').drawImage(src,0,0);const e=document.createElement('div');e.className='cell '+cls;e.appendChild(c);e.appendChild(document.createTextNode(key));return e;};
+for(const sp of H.SPECIES_ORDER.slice(from,from+cnt)){const row=document.createElement('div');row.className='row';row.appendChild(cell(sp,''));
+  const kids=(k)=>Object.keys(F).filter((x)=>F[x].from===k||F[x].parent===k);
+  const t1=Object.keys(F).filter((x)=>F[x].sp===sp&&F[x].tier===1);
+  for(const a of t1){row.appendChild(cell(a,'t1'));const t2=H.nextForms?[]:[];Object.keys(F).filter((x)=>F[x].sp===sp&&F[x].tier===2&&F[x].parent===a).forEach((b)=>row.appendChild(cell(b,'t2')));}
+  out.appendChild(row);}
+document.title='ready';
+</script>

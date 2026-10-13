@@ -1,0 +1,61 @@
+/* Hushsong — battle music, one theme for each of the ten regions. Eight bars of sixteen steps.
+   ch: one chord per bar. mel: the tune, ctr: a second line under it ("D5:2" is note:steps, "-" a rest).
+   bass: chord-relative steps in one bar (1 root, 3 third, 5 fifth, 6 sixth, b7 flat seventh, 8 octave).
+   arp: one bar of picked chord tones (0-5 up the chord, c a strummed chord, . nothing). stab: when the brass hit a chord.
+   drums: k kick, s snare, h hat, one bar each; fill replaces the last bar (t/T low and high tom too).
+   The band plays what it has: drums the beat, strings the picking, brass the bass, breath the tune, voice the second line.
+   With no breath, the voice takes the tune; with neither, the brass, then the strings. */
+(function (H) {
+  H.THEMES = {
+    fen: { n: 'Reed Marsh', bpm: 104, key: 'D', ch: 'Dm G Dm C Dm G F Am',
+      mel: 'A4:2 D5:2 E5:2 F5:4 E5:2 D5:4 | B4:2 D5:2 G5:4 F5:2 E5:2 D5:4 | A5:4 G5:2 F5:2 E5:2 D5:2 E5:4 | C5:2 E5:2 G5:2 E5:2 C5:8 | A4:2 D5:2 E5:2 F5:4 G5:2 A5:4 | B5:4 A5:2 G5:2 F5:2 E5:2 D5:4 | C5:2 F5:2 A5:2 G5:2 F5:2 E5:2 C5:4 | E5:6 D5:2 C5:2 E5:2 A4:4',
+      ctr: 'F4:8 E4:8 | D4:8 B3:8 | F4:8 A4:8 | G4:8 E4:8 | F4:8 E4:8 | D4:8 G4:8 | A4:8 F4:8 | E4:12 -:4',
+      bass: '1:3 1:1 5:4 8:3 5:1 3:4', arp: '0..2..3.1..2..3.', stab: '....x.......x...',
+      k: 'k.....k.k.......', s: '....s.......s...', h: 'h.h.h.h.h.h.h.h.', fill: 'k.....k.s..ss.ss' },
+    works: { n: 'Bell Foundry', bpm: 120, key: 'E', ch: 'Em Em C D Em Em Am B',
+      mel: 'E5:2 E5:1 E5:1 G5:2 E5:2 B5:4 A5:2 G5:2 | F#5:2 G5:2 F#5:2 E5:2 D5:4 B4:4 | C5:2 E5:2 G5:2 C6:4 B5:2 G5:4 | A5:4 F#5:2 D5:2 A5:4 F#5:4 | E5:2 E5:1 E5:1 G5:2 E5:2 B5:4 C6:2 B5:2 | A5:2 G5:2 F#5:2 G5:2 E5:8 | A5:2 C6:2 E6:4 D6:2 C6:2 A5:4 | B5:4 A5:2 G5:2 F#5:4 D#5:4',
+      ctr: 'B4:8 G4:8 | A4:8 B4:8 | G4:8 E4:8 | F#4:16 | B4:8 G4:8 | C5:8 B4:8 | C5:8 E4:8 | D#4:8 F#4:8',
+      bass: '1:2 1:2 8:2 1:2 1:2 1:2 8:2 5:2', arp: '0.2.3.2.0.2.3.2.', stab: 'x.....x.....x...',
+      k: 'k.k...k.k.k...k.', s: '....s.......s...', h: 'hhhhhhhhhhhhhhhh', fill: 'k.k.s.s.ssssTTtt' },
+    orchard: { n: 'Buzzing Orchard', bpm: 112, key: 'G', ch: 'G C G D Em C Am D',
+      mel: 'D5:2 G5:2 B5:2 A5:2 G5:2 D5:2 E5:2 G5:2 | E5:2 G5:2 C6:4 B5:2 A5:2 G5:4 | B5:2 A5:2 G5:2 B5:2 D6:4 B5:4 | A5:2 B5:2 A5:2 F#5:2 D5:8 | E5:2 G5:2 B5:2 E6:2 D6:2 B5:2 G5:4 | C6:2 B5:2 A5:2 G5:2 E5:4 G5:4 | A5:2 C6:2 B5:2 A5:2 G5:2 E5:2 D5:4 | F#5:4 A5:4 D6:2 C6:2 A5:4',
+      ctr: 'B4:8 D5:8 | C5:8 E5:8 | D5:8 B4:8 | A4:8 F#4:8 | G4:8 B4:8 | A4:8 C5:8 | E5:8 C5:8 | D5:8 F#4:8',
+      bass: '1:4 5:2 5:2 8:4 5:4', arp: '..c...c...c...c.', stab: 'x.......x.x.....',
+      k: 'k.......k.k.....', s: '....s.......s...', h: '..h...h...h...h.', fill: 'k...s...s.s.sss.' },
+    ridge: { n: 'Snowy Ridge', bpm: 96, key: 'A', ch: 'Am F C G Am F Dm E',
+      mel: 'E5:6 A5:2 C6:4 B5:4 | A5:6 F5:2 C5:8 | G5:6 E5:2 C6:4 D6:4 | B5:12 G5:4 | E5:6 A5:2 C6:4 E6:4 | D6:6 C6:2 A5:8 | F5:4 A5:4 D6:4 C6:4 | B5:8 G#5:4 E5:4',
+      ctr: 'C5:16 | C5:16 | E5:16 | D5:16 | C5:16 | A4:16 | A4:16 | G#4:16',
+      bass: '1:6 1:2 5:8', arp: '0.2.4.3.5.3.4.2.', stab: 'x...............',
+      k: 'k.........k.....', s: '........s.......', h: 'h...h...h...h...', fill: 'k.......s...s.s.' },
+    road: { n: 'Rattle Road', bpm: 126, key: 'C', ch: 'C C F C G F C G',
+      mel: 'C5:2 E5:2 G5:2 A5:2 A#5:2 A5:2 G5:4 | E5:2 G5:2 E5:2 C5:2 D5:4 E5:4 | F5:2 A5:2 C6:2 D6:2 D#6:2 D6:2 C6:4 | A#5:2 G5:2 E5:2 C5:2 G5:8 | D6:2 B5:2 G5:2 B5:2 D6:4 F6:4 | C6:2 A5:2 F5:2 A5:2 C6:8 | E6:2 D6:2 C6:2 A#5:2 A5:2 G5:2 E5:4 | G5:4 B5:4 D6:4 B5:4',
+      ctr: 'E4:8 G4:8 | E4:16 | A4:8 C5:8 | A#4:16 | B4:8 D5:8 | A4:16 | G4:8 E4:8 | D4:8 F4:8',
+      bass: '1:2 3:2 5:2 6:2 b7:2 6:2 5:2 3:2', arp: 'c.c.c.c.c.c.c.c.', stab: 'x.......x.....x.',
+      k: 'k.....k.k.k.....', s: '....s.......s...', h: 'h.h.h.h.h.h.h.h.', fill: 'k.s.k.s.ssssTTtt' },
+    caves: { n: 'Drip Caves', bpm: 92, key: 'B', ch: 'Bm Bm G F# Bm Em G F#',
+      mel: 'F#5:4 -:2 B5:2 D6:4 C#6:4 | B5:2 -:2 F#5:4 -:4 D5:4 | G5:4 -:2 B5:2 D6:4 E6:4 | C#6:8 A#5:4 F#5:4 | F#5:4 -:2 B5:2 F#6:4 E6:4 | D6:2 -:2 B5:4 G5:4 E5:4 | D5:4 G5:4 B5:4 D6:4 | C#6:4 A#5:4 C#6:4 F#5:4',
+      ctr: 'D5:16 | D5:8 F#4:8 | B4:16 | A#4:16 | D5:16 | G4:8 B4:8 | B4:16 | A#4:16',
+      bass: '1:8 5:4 1:4', arp: '0...3...2...4...', stab: 'x...............',
+      k: 'k.......k.......', s: '........s.......', h: '..h...h...h..h.h', fill: 'k...t...T...s.s.' },
+    dunes: { n: 'Windy Dunes', bpm: 108, key: 'E', ch: 'E F E Am Dm F E E',
+      mel: 'E5:2 F5:2 G#5:4 A5:2 G#5:2 F5:2 E5:2 | F5:2 A5:2 C6:4 B5:2 A5:2 G#5:4 | G#5:2 A5:2 B5:4 C6:2 B5:2 A5:2 G#5:2 | A5:4 C6:2 B5:2 A5:8 | D6:2 C6:2 B5:2 A5:2 F5:4 A5:4 | C6:4 B5:2 A5:2 G#5:4 F5:4 | E5:2 F5:2 G#5:2 B5:2 E6:4 D6:2 C6:2 | B5:2 A5:2 G#5:2 F5:2 E5:8',
+      ctr: 'G#4:8 B4:8 | A4:8 C5:8 | B4:16 | C5:8 E5:8 | F4:8 A4:8 | A4:8 C5:8 | G#4:16 | E4:16',
+      bass: '1:3 1:3 5:2 1:2 3:2 5:4', arp: '0.1.2.1.0.1.2.1.', stab: 'x..x..x.........',
+      k: 'k..k..k...k.k...', s: '....s.......s...', h: 'h.hhh.hhh.hhh.hh', fill: 'k..s..s.s.ssssss' },
+    harbor: { n: 'Tin Harbor', bpm: 116, key: 'F', ch: 'F C F A# F Dm Gm C',
+      mel: 'C5:3 C5:1 F5:4 F5:3 G5:1 A5:4 | G5:3 F5:1 E5:4 C5:8 | A5:3 G5:1 F5:4 A5:3 C6:1 D6:4 | D6:3 C6:1 A#5:4 A5:4 G5:4 | C5:3 C5:1 F5:4 F5:3 G5:1 A5:4 | A5:3 G5:1 F5:4 D5:8 | G5:3 A5:1 A#5:4 D6:3 C6:1 A#5:4 | A5:4 G5:4 E5:4 C5:4',
+      ctr: 'A4:16 | G4:8 E4:8 | C5:16 | D5:8 F4:8 | A4:16 | F4:8 A4:8 | A#4:16 | G4:8 E4:8',
+      bass: '1:4 5:4 1:4 5:4', arp: '..c...c...c...c.', stab: '....x.......x...',
+      k: 'k.......k.......', s: '....s.......s...', h: '..h...h...h...h.', fill: 'k...k...s.s.sss.' },
+    tower: { n: 'Ticking Tower', bpm: 132, key: 'C', ch: 'Cm Cm G# A# Cm Fm G G',
+      mel: 'G5:1 -:1 C6:1 -:1 D#6:1 -:1 D6:1 -:1 C6:2 G5:2 D#5:4 | D5:2 D#5:2 F5:2 G5:2 G#5:2 G5:2 F5:4 | D#6:1 -:1 C6:1 -:1 G#5:1 -:1 C6:1 -:1 D#6:4 G#6:4 | G6:2 F6:2 D6:4 A#5:8 | G5:1 -:1 C6:1 -:1 D#6:1 -:1 G6:1 -:1 F6:2 D#6:2 D6:4 | C6:2 G#5:2 F5:2 G#5:2 C6:4 F6:4 | D6:2 B5:2 G5:2 B5:2 D6:2 F6:2 D#6:2 D6:2 | B5:4 D6:4 G6:8',
+      ctr: 'D#5:8 G4:8 | F4:8 G#4:8 | C5:16 | D5:16 | D#5:8 C5:8 | G#4:16 | B4:8 D5:8 | B4:16',
+      bass: '1:2 8:2 1:2 8:2 1:2 8:2 5:2 8:2', arp: '0.3.0.3.2.3.2.3.', stab: 'x.x.....x.x.....',
+      k: 'k...k...k...k...', s: '....s.......s...', h: 'h.h.h.h.h.h.h.h.', fill: 'k.k.k.k.ssssssss' },
+    hall: { n: 'Concert Hall', bpm: 120, key: 'A#', ch: 'A# Gm D# F A# Gm Cm F',
+      mel: 'F5:4 A#5:4 D6:4 C6:2 A#5:2 | D6:4 C6:2 A#5:2 G5:8 | D#6:4 D6:2 C6:2 A#5:4 G5:4 | A5:4 C6:4 F6:8 | F5:4 A#5:4 D6:4 F6:4 | G6:4 F6:2 D#6:2 D6:8 | D#6:4 D6:2 C6:2 G5:4 C6:4 | A5:2 A#5:2 C6:4 F5:8',
+      ctr: 'D5:8 F5:8 | A#4:16 | G4:8 A#4:8 | C5:16 | D5:8 F5:8 | A#4:8 D5:8 | G4:8 D#5:8 | C5:8 A4:8',
+      bass: '1:4 5:4 1:4 5:2 3:2', arp: '0.2.3.2.4.2.3.2.', stab: 'x.....x.x.......',
+      k: 'k.......k.......', s: '....s.......s.s.', h: 'h.h.h.h.h.h.h.h.', fill: 'k.s.s.ssk.s.ssss' },
+  };
+})(window.H);

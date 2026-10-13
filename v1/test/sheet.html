@@ -1,0 +1,16 @@
+<!doctype html><meta charset="utf-8">
+<style>body{background:#16132b;color:#cfc8ee;font:11px monospace;margin:8px}
+.grid{display:flex;flex-wrap:wrap;gap:6px}.cell{background:#221d42;padding:4px;text-align:center}
+.cell.alt{background:#0d0b1a}canvas{image-rendering:pixelated;display:block}</style>
+<div id="out" class="grid"></div>
+<script>window.H={};</script>
+<script src="../src/data.js"></script><script src="../src/engine.js"></script><script src="../src/art-core.js"></script><script src="../src/art-pets.js"></script><script src="../src/art-pets2.js"></script>
+<script src="../src/art-din.js"></script><script src="../src/art-ui.js"></script>
+<script>
+const q=new URLSearchParams(location.search); const filter=q.get('f'); const S=+(q.get('s')||4);
+const out=document.getElementById('out');
+for(const key of Object.keys(H.Art.defs)){ if(filter && !new RegExp(filter).test(key)) continue;
+  for(const fr of (q.get('frames')==='1'?[0,1]:q.get('frames')==='b'?[1]:[0])){ const src=H.Art.sprite(key,fr); const c=document.createElement('canvas'); c.width=src.width*S; c.height=src.height*S; const x=c.getContext('2d'); x.imageSmoothingEnabled=false; x.drawImage(src,0,0,c.width,c.height);
+  const d=document.createElement('div'); d.className='cell'+(fr?' alt':''); d.appendChild(c); d.appendChild(document.createTextNode(key)); out.appendChild(d);} }
+document.title='ready';
+</script>

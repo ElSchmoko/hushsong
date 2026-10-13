@@ -1,0 +1,7 @@
+const { chromium } = require('/opt/npm-tools/node_modules/playwright'); const path = require('path');
+(async () => { const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--autoplay-policy=no-user-gesture-required'] });
+  for (const [w, h, name] of [[900, 1000, 'd'], [390, 800, 'm']]) { const p = await (await b.newContext({ viewport: { width: w, height: h } })).newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message)); p.on('console', (m) => { if (m.type() === 'error') errs.push(m.text()); });
+    await p.setContent('<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;font:14px system-ui}</style></head><body>' + require('fs').readFileSync(path.join(__dirname, 'ensembles.html'), 'utf8') + '</body></html>'); await p.waitForTimeout(600);
+    if (name === 'd') { for (const id of await p.$$eval('.play', (els) => els.map((e) => e.id))) { await p.click('#' + id); await p.waitForTimeout(60); } await p.click('#pick-rock-C'); await p.click('#pick-drumline-D'); await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(200); }
+    await p.screenshot({ path: path.join(process.argv[2], 'aud-' + name + '.png') }); console.log(name, 'errors', errs.length, errs.slice(0, 3).join(' | '), 'overflow', await p.evaluate(() => document.documentElement.scrollWidth > innerWidth)); }
+  await b.close(); })();
