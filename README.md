@@ -7,7 +7,7 @@ Everything (art, music, sound) is drawn and played by code in one HTML page.
 
 - **On your phone:** open the GitHub Pages site, then "Add to Home Screen" (iPhone: Share → Add to Home Screen; Android: menu → Install app).
   It runs full screen and works offline. Progress lives on the device; use **Menu → Save code** to move a game between devices.
-- **Android app:** download `hushsong.apk` from the latest GitHub release and open it (allow "install unknown apps" for your browser once).
+- **Android app:** download https://elschmoko.github.io/hushsong/hushsong.apk on the phone and open it (allow "install unknown apps" for your browser once).
   The whole game is inside the app, so it needs no internet at all.
 
 ## Build
