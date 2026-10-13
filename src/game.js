@@ -122,7 +122,7 @@
 
   H.gainXp = (S, n) => { let ups = 0; S.xp += n; while (S.level < H.MAX_LEVEL && S.xp >= H.xpNeed(S.level)) { S.xp -= H.xpNeed(S.level); S.level++; ups++; } if (S.level >= H.MAX_LEVEL) S.xp = 0; return ups; };
 
-  const foeUnit = (e) => (e.pet ? H.buildRivalUnit(e.id, e.lvl) : H.buildDinUnit(e.id, e.lvl, e.loud, null, e.k));
+  const foeUnit = (e) => (e.pet ? H.buildRivalUnit(e.id, e.lvl, e.k) : H.buildDinUnit(e.id, e.lvl, e.loud, null, e.k));
   // A rehearsal replays a boss you have beaten at your own level. Its two helpers stand one level lower, as on the boss floors.
   H.foeUnit = foeUnit;
   H.rehearsalStage = (S, n) => { const st = H.stage(n), R = H.REGIONS[st.region], L = Math.max(1, S.level); return Object.assign({}, st, { level: L, reh: true, enemies: [{ id: R.boss, lvl: L }].concat(R.adds.map((a) => ({ id: a, lvl: Math.max(1, L - 1) }))) }); };

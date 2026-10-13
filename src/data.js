@@ -772,6 +772,11 @@
   H.BOSS_K = [0.8, 1.0]; H.PLAIN_K = [1.08, 1.04];
   // the first two adventure bosses are a little softer (HP and Power); rehearsals use the full boss
   H.EARLY_BOSS_K = { 10: 0.9, 20: 0.88 };
+  // From floor 21 the band has evolved pets, so enemies get tougher (HP and Power), bosses more so.
+  // The extra grows over `ramp` floors and then holds: +8% for every enemy, +15% for bosses.
+  H.LATE_K = { from: 20, ramp: 3, plain: 0.08, boss: 0.15 };
+  // the finale boss on every 100th floor is already the toughest wall, so it keeps its strength
+  H.lateK = (n, boss) => { const L = H.LATE_K, t = Math.max(0, Math.min(1, (n - L.from) / L.ramp)); return boss && n % 100 === 0 ? 1 : 1 + t * (boss ? L.boss : L.plain); };
   H.dinMult = (L) => { const C = H.DIN_CURVE, x = Math.log(L); let i = 0; while (i < C.length - 2 && L > C[i + 1][0]) i++; const x0 = Math.log(C[i][0]), x1 = Math.log(C[i + 1][0]); return Math.max(1, C[i][1] + ((C[i + 1][1] - C[i][1]) * (x - x0)) / (x1 - x0)); };
   H.dinScale = (L) => { const lin = 1 + 0.10 * (L - 1), m = H.dinMult(L); return { hp: lin * m, vol: lin * (1 + (m - 1) * 0.45) }; };
   H.petScale = (L, tier) => (1 + 0.10 * (L - 1)) * H.TIER_MUL[tier];
@@ -828,7 +833,8 @@
       ids.sort((a, b) => FRONT[a] - FRONT[b]);
       list = ids.map((id, i) => ({ id, lvl: L, loud: elite && i === 0 }));
     }
-    if (n > H.RIVAL_FROM) list = list.map((e) => (!H.DIN[e.id].boss && !e.loud && rnd() < H.RIVAL_CHANCE ? { id: rivalForm(n, rnd), lvl: e.lvl, pet: true } : e));
+    list = list.map((e) => Object.assign({}, e, { k: (e.k || 1) * H.lateK(n, !!(H.DIN[e.id] && H.DIN[e.id].boss)) }));
+    if (n > H.RIVAL_FROM) list = list.map((e) => (!H.DIN[e.id].boss && !e.loud && rnd() < H.RIVAL_CHANCE ? { id: rivalForm(n, rnd), lvl: e.lvl, pet: true, k: e.k } : e));
     return { n, idx, region, boss, elite, level: L, enemies: list, name: boss ? 'Boss: ' + H.DIN[R.boss].n : elite ? 'Loud floor' : 'Floor ' + n };
   };
 

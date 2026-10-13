@@ -22,10 +22,10 @@
     return { name: form.n, form: pet.form, sprite: pet.form, family: sp.family, role: kit.role, lvl: level, base: H.petStats(pet, level), perks: H.petPerks(pet, S), kit, petId: pet.id };
   };
   // After floor 100 other bands turn up: evolved pets on the enemy side, cut down to enemy size.
-  H.buildRivalUnit = (form, level) => {
-    const f = H.FORMS[form], sp = H.SPECIES[f.sp], kit = H.kitOf(form), role = H.ROLES[kit.role], sc = H.dinScale(level);
+  H.buildRivalUnit = (form, level, k) => {
+    const f = H.FORMS[form], sp = H.SPECIES[f.sp], kit = H.kitOf(form), role = H.ROLES[kit.role], sc = H.dinScale(level); k = k || 1;
     return { name: 'Rival ' + f.n, form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
-      base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
+      base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * k * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * k * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
   };
   H.buildDinUnit = (id, level, loud, extra, k) => {
     const d = H.DIN[id], sc = H.dinScale(level), perks = []; k = k || 1;
