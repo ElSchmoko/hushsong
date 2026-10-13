@@ -141,7 +141,7 @@
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
     const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); UI.go(go, {}); }); return b; };
-    const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
+    if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
     add(modes, box('mrow', small('reh', 'ic_baton', 'Rehearsal', S.stage <= 10 ? 'After floor 10' : open ? open + ' open' : 'Boss replays', 'rehearsal', open), small('rec', 'ic_record', 'Records', `${Object.keys(S.records).length} of ${H.RECORDS.length}`, 'records', ready)));
     root.appendChild(modes); root.appendChild(UI.nav('home'));
   };
@@ -436,14 +436,18 @@
 
   /* ================= rehearsal: a beaten boss again, at your own level, for an echo ================= */
   UI.screens.rehearsal = (root) => {
-    const S = UI.S; UI.music('camp', regionOf(S.stage));
+    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshRehearsals(S)) UI.save();
     root.appendChild(UI.topbar('Rehearsal', () => UI.go('home'), UI.wallet()));
     const body = el('div', 'scroll'), pad = el('div', 'pad'); pad.style.paddingTop = '0';
     const list = H.rehearsals(S).reverse();
     if (!list.length) add(pad, box('row center', UI.icon('ic_baton', 3)), txt('dim center', 'Opens after the boss on floor 10.'));
-    else pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. First win: <b>1 echo</b>.`));
+    else {
+      const left = list.filter((m) => !S.reh[m]).length, days = H.daysToReset(Date.now());
+      pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. Each pays <b>1 echo</b> a week.`));
+      pad.appendChild(txt('small dim center', (left ? `${left} of ${list.length} left this week` : 'All won this week') + ` · new echoes ${days === 1 ? '<b>tomorrow</b>' : `in <b>${days} days</b>`}`));
+    }
     list.sort((a, b) => (S.reh[a] ? 1 : 0) - (S.reh[b] ? 1 : 0)).forEach((n) => {
-      const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won' : ', reward 1 echo'));
+      const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won this week' : ', reward 1 echo'));
       add(b, UI.sp(R.boss, 0.42, { flip: true, anim: false }), el('div', 'grow', `<div class="rar">${R.n}</div><b>${d.n}</b>`), done ? UI.icon('ic_check', 1.3) : UI.purse('ic_echo', '+' + H.ECHO_REH));
       b.addEventListener('click', () => { Au.sfx('tap'); S.settings.auto = 0; UI.go('battle', { n, reh: 1 }); }); pad.appendChild(b);
     });

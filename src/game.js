@@ -158,8 +158,15 @@
     else if (rnd() < drop) out.item = H.rollItem(S, rnd, st.boss ? 'boss' : st.elite ? 'elite' : 'win');
     return out;
   };
-  // The first win against each rehearsal boss pays an echo. Winning with an ensemble is noted for its record.
+  // Rehearsal echoes come back every week: each boss pays one echo per week, and they all reset on Monday (local time).
+  const DAY = 86400000;
+  H.dayOf = (ms) => { const d = new Date(ms); return Math.floor((ms - d.getTimezoneOffset() * 60000) / DAY); };
+  H.weekOf = (ms) => Math.floor((H.dayOf(ms) + 3) / 7);              // day 0 (1 Jan 1970) was a Thursday, so weeks start on Monday
+  H.daysToReset = (ms) => 7 - ((H.dayOf(ms) + 3) % 7);               // 1 = tomorrow, 7 = a full week
+  H.refreshRehearsals = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms); if (S.rehWeek === w) return false; S.rehWeek = w; S.reh = {}; return true; };
+  // A win against a rehearsal boss pays an echo once a week. Winning with an ensemble is noted for its record.
   H.finishRehearsal = (S, n, win, rnd, battle) => {
+    H.refreshRehearsals(S);
     const out = { win, n, reh: true, boss: true, region: H.stage(n).region, notes: 0, xp: 0, ups: 0, first: false, echo: 0, ens: null };
     out.xp = Math.round((8 + 3 * S.stage) * (win ? 0.5 : 0.2) * teamXp(S)); out.ups = H.gainXp(S, out.xp);
     if (win && !S.reh[n]) { S.reh[n] = 1; out.first = true; S.stats.reh = (S.stats.reh || 0) + 1; out.echo = H.addEchoes(S, H.ECHO_REH); }

@@ -1951,8 +1951,15 @@ window.H = {};
     else if (rnd() < drop) out.item = H.rollItem(S, rnd, st.boss ? 'boss' : st.elite ? 'elite' : 'win');
     return out;
   };
-  // The first win against each rehearsal boss pays an echo. Winning with an ensemble is noted for its record.
+  // Rehearsal echoes come back every week: each boss pays one echo per week, and they all reset on Monday (local time).
+  const DAY = 86400000;
+  H.dayOf = (ms) => { const d = new Date(ms); return Math.floor((ms - d.getTimezoneOffset() * 60000) / DAY); };
+  H.weekOf = (ms) => Math.floor((H.dayOf(ms) + 3) / 7);              // day 0 (1 Jan 1970) was a Thursday, so weeks start on Monday
+  H.daysToReset = (ms) => 7 - ((H.dayOf(ms) + 3) % 7);               // 1 = tomorrow, 7 = a full week
+  H.refreshRehearsals = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms); if (S.rehWeek === w) return false; S.rehWeek = w; S.reh = {}; return true; };
+  // A win against a rehearsal boss pays an echo once a week. Winning with an ensemble is noted for its record.
   H.finishRehearsal = (S, n, win, rnd, battle) => {
+    H.refreshRehearsals(S);
     const out = { win, n, reh: true, boss: true, region: H.stage(n).region, notes: 0, xp: 0, ups: 0, first: false, echo: 0, ens: null };
     out.xp = Math.round((8 + 3 * S.stage) * (win ? 0.5 : 0.2) * teamXp(S)); out.ups = H.gainXp(S, out.xp);
     if (win && !S.reh[n]) { S.reh[n] = 1; out.first = true; S.stats.reh = (S.stats.reh || 0) + 1; out.echo = H.addEchoes(S, H.ECHO_REH); }
@@ -3742,7 +3749,7 @@ window.H = {};
       ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
       ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'Beaten bosses return at your level. The first win against each pays an echo.'),
+      ...sec('Rehearsal', 'Beaten bosses return at your level. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
@@ -3930,7 +3937,7 @@ window.H = {};
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
     const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); UI.go(go, {}); }); return b; };
-    const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
+    if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
     add(modes, box('mrow', small('reh', 'ic_baton', 'Rehearsal', S.stage <= 10 ? 'After floor 10' : open ? open + ' open' : 'Boss replays', 'rehearsal', open), small('rec', 'ic_record', 'Records', `${Object.keys(S.records).length} of ${H.RECORDS.length}`, 'records', ready)));
     root.appendChild(modes); root.appendChild(UI.nav('home'));
   };
@@ -4225,14 +4232,18 @@ window.H = {};
 
   /* ================= rehearsal: a beaten boss again, at your own level, for an echo ================= */
   UI.screens.rehearsal = (root) => {
-    const S = UI.S; UI.music('camp', regionOf(S.stage));
+    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshRehearsals(S)) UI.save();
     root.appendChild(UI.topbar('Rehearsal', () => UI.go('home'), UI.wallet()));
     const body = el('div', 'scroll'), pad = el('div', 'pad'); pad.style.paddingTop = '0';
     const list = H.rehearsals(S).reverse();
     if (!list.length) add(pad, box('row center', UI.icon('ic_baton', 3)), txt('dim center', 'Opens after the boss on floor 10.'));
-    else pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. First win: <b>1 echo</b>.`));
+    else {
+      const left = list.filter((m) => !S.reh[m]).length, days = H.daysToReset(Date.now());
+      pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. Each pays <b>1 echo</b> a week.`));
+      pad.appendChild(txt('small dim center', (left ? `${left} of ${list.length} left this week` : 'All won this week') + ` · new echoes ${days === 1 ? '<b>tomorrow</b>' : `in <b>${days} days</b>`}`));
+    }
     list.sort((a, b) => (S.reh[a] ? 1 : 0) - (S.reh[b] ? 1 : 0)).forEach((n) => {
-      const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won' : ', reward 1 echo'));
+      const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won this week' : ', reward 1 echo'));
       add(b, UI.sp(R.boss, 0.42, { flip: true, anim: false }), el('div', 'grow', `<div class="rar">${R.n}</div><b>${d.n}</b>`), done ? UI.icon('ic_check', 1.3) : UI.purse('ic_echo', '+' + H.ECHO_REH));
       b.addEventListener('click', () => { Au.sfx('tap'); S.settings.auto = 0; UI.go('battle', { n, reh: 1 }); }); pad.appendChild(b);
     });

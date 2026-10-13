@@ -137,7 +137,7 @@
       ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
       ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'Beaten bosses return at your level. The first win against each pays an echo.'),
+      ...sec('Rehearsal', 'Beaten bosses return at your level. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
