@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Hushsong</string>
+    <color name="ink">#2B2140</color>
+    <color name="coral">#FF6B5E</color>
+    <!-- a coral launch screen while the game loads, ink bars around it -->
+    <style name="Hushsong" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/coral</item>
+        <item name="android:statusBarColor">@color/ink</item>
+        <item name="android:navigationBarColor">@color/ink</item>
+    </style>
+</resources>

@@ -5,6 +5,7 @@ const root = path.join(__dirname, '..'), out = path.join(root, 'docs'), icons = 
 const page = fs.readFileSync(path.join(root, 'dist/hushsong.html'), 'utf8').replace('<title>Hushsong</title>\n', '');
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 fs.mkdirSync(path.join(out, 'icons'), { recursive: true });
+const pngs = fs.readdirSync(icons).filter((f) => f.endsWith('.png'));
 
 const INK = '#2b2140', CORAL = '#ff6b5e';
 const html = `<!doctype html>
@@ -56,7 +57,7 @@ const manifest = {
 
 // The whole game is one page, so the cache is small: the page, the manifest and the icons.
 // Opening the app online fetches the newest page first (so updates arrive on the next launch); offline it plays from the cache.
-const files = ['./', 'index.html', 'manifest.webmanifest', ...fs.readdirSync(icons).map((f) => 'icons/' + f)];
+const files = ['./', 'index.html', 'manifest.webmanifest', ...pngs.map((f) => 'icons/' + f)];
 const sw = `// Hushsong offline cache, version ${version}
 const CACHE = 'hushsong-${version}', FILES = ${JSON.stringify(files)};
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
@@ -75,5 +76,5 @@ fs.writeFileSync(path.join(out, 'index.html'), html);
 fs.writeFileSync(path.join(out, 'manifest.webmanifest'), JSON.stringify(manifest, null, 2) + '\n');
 fs.writeFileSync(path.join(out, 'sw.js'), sw);
 fs.writeFileSync(path.join(out, '.nojekyll'), '');
-for (const f of fs.readdirSync(icons)) fs.copyFileSync(path.join(icons, f), path.join(out, 'icons', f));
+for (const f of pngs) fs.copyFileSync(path.join(icons, f), path.join(out, 'icons', f));
 console.log('pwa', version, 'v' + pkg.version, (html.length / 1024).toFixed(0) + ' KB', files.length + ' cached files');

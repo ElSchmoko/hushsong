@@ -1,19 +1,22 @@
 <!doctype html>
 <!-- The Hushsong app icon (option B, "Hum up close"), drawn at 360×360. tools/icons.js renders it to PNGs.
-     ?round=1 gives rounded corners on a transparent ground; otherwise it is a full-bleed square for masks. -->
+     ?round=1 gives rounded corners on a transparent ground; otherwise it is a full-bleed square for masks.
+     For Android's adaptive icon: ?layer=bg draws only the coral rays, ?layer=fg only Hum and the notes,
+     and ?scale=0.8 shrinks the art toward the middle so the launcher's mask never cuts into the face. -->
 <html><head><meta charset="utf-8"><style>
 html, body { margin: 0; background: transparent; }
 #icon { width: 360px; height: 360px; position: relative; overflow: hidden; }
 #icon.round { border-radius: 81px; }
-#icon > * { position: absolute; left: 0; top: 0; }
+#art { position: absolute; inset: 0; transform-origin: 180px 180px; }
+#art > * { position: absolute; left: 0; top: 0; } #art svg { overflow: visible; }
 </style></head><body>
-<div id="icon">
-<svg width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
+<div id="icon"><div id="art">
+<svg id="bg" width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
 <rect width="360" height="360" fill="#ff6b5e"/>
 <path d="M180 200 L596 145 L596 255 Z M180 200 L568 361 L513 456 Z M180 200 L436 533 L341 588 Z M180 200 L235 616 L125 616 Z M180 200 L19 588 L-76 533 Z M180 200 L-153 456 L-208 361 Z M180 200 L-236 255 L-236 145 Z M180 200 L-208 39 L-153 -56 Z M180 200 L-76 -133 L19 -188 Z M180 200 L125 -216 L235 -216 Z M180 200 L341 -188 L436 -133 Z M180 200 L513 -56 L568 39 Z" fill="#ff8a7c"/>
 </svg>
-<img src="hum.png" alt="" style="left: -14px; top: 64px; width: 400px; height: auto">
-<svg width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
+<img id="hum" src="hum.png" alt="" style="left: -14px; top: 64px; width: 400px; height: auto">
+<svg id="notes" width="360" height="360" viewBox="0 0 360 360" aria-hidden="true">
 <defs>
 <g id="note">
 <path d="M38 76 V30 M84 64 V18" fill="none" stroke="#ffffff" stroke-width="30" stroke-linecap="round"/>
@@ -30,6 +33,14 @@ html, body { margin: 0; background: transparent; }
 <use href="#note" transform="translate(16 14) scale(0.54)"/>
 <use href="#note" transform="translate(292 26) scale(0.4)"/>
 </svg>
-</div>
-<script>if (/round=1/.test(location.search)) document.getElementById('icon').classList.add('round');</script>
+</div></div>
+<script>
+const q = new URLSearchParams(location.search), $ = (id) => document.getElementById(id);
+if (q.get('round') === '1') $('icon').classList.add('round');
+if (q.get('circle') === '1') $('icon').style.borderRadius = '50%';
+if (q.get('layer') === 'bg') $('icon').style.background = '#ff6b5e';
+if (q.get('scale')) $('art').style.transform = 'scale(' + q.get('scale') + ')';
+if (q.get('layer') === 'bg') { $('hum').remove(); $('notes').remove(); }
+if (q.get('layer') === 'fg') $('bg').remove();
+</script>
 </body></html>
