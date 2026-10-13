@@ -12,6 +12,14 @@
   UI.icon = (key, scale) => A.el(key, scale || 1);
   UI.sp = (key, scale, opts) => { const c = A.el(key, scale || 1, Object.assign({ anim: true }, opts || {})); c.classList.add('spr'); return c; };
   UI.key = (label, fn, cls, note) => { const b = el('button', 'key ' + (cls || ''), label); b.type = 'button'; b.addEventListener('click', (e) => { if (b.disabled) return; Au.sfx('tap', note); fn(e); }); return b; };
+  // An onboarding pointer: a pulsing ring, a bouncing arrow and a short label saying what to do there.
+  UI.coach = (b, on, text) => {
+    if (!on) return b; b.classList.add('coach'); const t = el('span', 'coachtip', text); b.appendChild(t);
+    // keep the label on screen when the thing it points at sits near an edge
+    requestAnimationFrame(() => { const g = document.getElementById('game'); if (!g || !t.isConnected) return; const G = g.getBoundingClientRect(), R = t.getBoundingClientRect(), pad = UI.u * 4;
+      const dx = R.left < G.left + pad ? G.left + pad - R.left : R.right > G.right - pad ? G.right - pad - R.right : 0; if (dx) t.style.marginLeft = dx + 'px'; });
+    return b;
+  };
   UI.gearKey = (fn) => { const b = UI.key('', fn, 'sm menuk'); b.appendChild(UI.icon('ic_gear')); b.setAttribute('aria-label', 'Menu'); return b; };
   UI.bgEl = (k, w, h, hf, mode) => { const src = A.bgMode(k, w, h, hf, mode), c = A.make(src.width, src.height); c.getContext('2d').drawImage(src, 0, 0); c.className = 'bgc'; c.style.width = `calc(var(--u) * ${w})`; c.style.height = `calc(var(--u) * ${h})`; return c; };
 
@@ -40,7 +48,7 @@
   UI.nav = (cur) => {
     const S = UI.S, n = el('div', 'nav');
     for (const [id, icon, name, pip] of [['home', 'ic_home', 'Home', H.recordsReady(S) ? '!' : 0], ['team', 'ic_team', 'Band', 0], ['pets', 'ic_pets', 'Pets', H.canEvolveAny(S) ? '!' : 0], ['shells', 'ic_shell', 'Shells', S.shells], ['bag', 'ic_bag', 'Bag', H.mergeGroups(S).length ? '!' : 0]]) {
-      const b = el('button', 'tab' + (id === cur ? ' on' : '') + (id === 'shells' && S.flags.coach === 'shell' && cur !== 'shells' ? ' coach' : '')); b.type = 'button'; if (id === cur) b.setAttribute('aria-current', 'page'); UI.add(b, UI.icon(icon, icon === 'ic_shell' ? 1.16 : 1), el('span', '', name)); if (pip) b.appendChild(el('span', 'pip', String(pip)));
+      const b = el('button', 'tab' + (id === cur ? ' on' : '')); b.type = 'button'; if (id === cur) b.setAttribute('aria-current', 'page'); UI.add(b, UI.icon(icon, icon === 'ic_shell' ? 1.16 : 1), el('span', '', name)); if (pip) b.appendChild(el('span', 'pip', String(pip))); UI.coach(b, id === 'shells' && S.flags.coach === 'shell' && cur !== 'shells', 'Open your shell here');
       b.addEventListener('click', () => { if (id === cur) return; Au.sfx('tap'); UI.go(id, {}); }); n.appendChild(b);
     }
     return n;

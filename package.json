@@ -11,7 +11,7 @@
     "icons": "node tools/icons.js",
     "pwa": "node build.js && node tools/pwa.js",
     "sim": "node test/sim.js fuzz",
-    "apk": "node build.js && bash tools/apk.sh"
+    "apk": "node build.js && node tools/pwa.js && bash tools/apk.sh && node tools/pwa.js"
   },
   "keywords": [],
   "author": "",

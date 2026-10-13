@@ -138,7 +138,7 @@
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
     trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio); root.appendChild(hero);
     const modes = el('div', 'modes');
-    const adv = el('button', 'mode' + (S.flags.coach === 'go' ? ' coach' : '')); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
+    const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
     const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); UI.go(go, {}); }); return b; };
     const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
@@ -177,7 +177,7 @@
       const foot = el('div', 'gofoot'), ready = H.teamPets(S).some(Boolean);
       if (gapL >= 2 && n >= S.stage) foot.appendChild(txt('warn', `Foes are ${gapL} levels above you`));
       const keep = key('', () => { S.settings.keep = S.settings.keep ? 0 : 1; UI.save(); draw(); }, 'sm wide ' + (S.settings.keep ? 'gold' : 'soft')); add(keep, UI.icon('ic_keep'), S.settings.keep ? 'Keep going: on' : 'Keep going: off'); keep.setAttribute('aria-pressed', S.settings.keep ? 'true' : 'false');
-      const a = key('Auto battle', () => { S.settings.auto = 1; UI.go('battle', { n }); }, 'blue grow'), b = key('Battle', () => { S.settings.auto = 0; UI.go('battle', { n }); }, 'coral grow big' + (S.flags.coach === 'go' ? ' coach' : '')); a.disabled = b.disabled = !ready; a.style.flex = '0.8'; b.style.minHeight = 'calc(var(--u) * 28)';
+      const a = key('Auto battle', () => { S.settings.auto = 1; UI.go('battle', { n }); }, 'blue grow'), b = UI.coach(key('Battle', () => { S.settings.auto = 0; UI.go('battle', { n }); }, 'coral grow big'), S.flags.coach === 'go', 'Fight the foes above'); a.disabled = b.disabled = !ready; a.style.flex = '0.8'; b.style.minHeight = 'calc(var(--u) * 28)';
       add(foot, S.stage > 5 || S.settings.keep ? keep : null, box('row', a, b)); root.appendChild(foot); root.appendChild(UI.nav(''));
     };
     draw();
@@ -223,7 +223,7 @@
       H.teamPets(S).forEach((p, slot) => {
         const cell = el('div', 'lucell');
         if (!p) { const b = el('button', 'lu empty'); b.type = 'button'; b.innerHTML = '<b>+</b><span>free spot</span>'; b.addEventListener('click', () => { Au.sfx('tap'); pick(slot); }); cell.appendChild(b); row.appendChild(cell); return; }
-        const b = el('button', 'lu' + (S.flags.coach === 'gear' && !row.querySelector('.coach') ? ' coach' : '')); b.type = 'button'; b.setAttribute('aria-label', 'About ' + H.FORMS[p.form].n); b.addEventListener('click', () => { Au.sfx('noise', H.petSpecies(p)); UI.go('pet', { id: p.id, n: pr.n, back: 'team' }); });
+        const b = UI.coach(el('button', 'lu'), S.flags.coach === 'gear' && !row.querySelector('.coach'), 'Tap your pet'); b.type = 'button'; b.setAttribute('aria-label', 'About ' + H.FORMS[p.form].n); b.addEventListener('click', () => { Au.sfx('noise', H.petSpecies(p)); UI.go('pet', { id: p.id, n: pr.n, back: 'team' }); });
         add(b, UI.sp(p.form, lh > 112 ? 1.25 : 1.05), add(el('div', 'lunm'), UI.icon('fam_' + H.petFamily(p)), el('span', '', H.FORMS[p.form].n)));
         if (H.canGrow(S, p)) b.appendChild(add(el('span', 'dot'), UI.icon('ic_bang', 1.3)));
         add(cell, b, key('Swap', () => pick(slot), 'sm soft swap')); row.appendChild(cell);
@@ -240,7 +240,7 @@
       }
       panel.appendChild(key('All ensembles', () => UI.go('pets', { tab: 'ens' }), 'wide soft sm'));
       pad.appendChild(panel); body.appendChild(pad); root.appendChild(body);
-      const foot = el('div', 'gofoot'); foot.appendChild(key('To the adventure', () => UI.go('adventure', { n: pr.n }), 'go wide big' + (S.flags.coach === 'go' ? ' coach' : ''))); root.appendChild(foot);
+      const foot = el('div', 'gofoot'); foot.appendChild(UI.coach(key('To the adventure', () => UI.go('adventure', { n: pr.n }), 'go wide big'), S.flags.coach === 'go', 'Ready? Head out')); root.appendChild(foot);
       root.appendChild(UI.nav('team'));
     };
     // choose who stands in one spot
@@ -294,9 +294,11 @@
     const fresh = () => { bar.innerHTML = ''; add(bar, txt('disp', 'Shells'), ...UI.wallet()); if (navEl) { const n2 = UI.nav('shells'); navEl.replaceWith(n2); navEl = n2; } };
     const idle = () => {
       fresh(); boxEl.innerHTML = ''; foot.innerHTML = '';
-      const sh = UI.sp('shell', 2, { anim: S.shells > 0 }); if (!S.shells) sh.style.opacity = '0.45';
+      // an unopened shell wiggles now and then, and tapping it opens it
+      let sh = UI.sp('shell', 2, { anim: false }); if (!S.shells) sh.style.opacity = '0.45';
+      else { const t = el('button', 'shelltap'); t.type = 'button'; t.setAttribute('aria-label', 'Open the shell'); t.appendChild(sh); t.addEventListener('click', crack); sh = t; }
       add(boxEl, sh, txt('disp big', S.shells ? plural(S.shells, 'shell') + ' to open' : 'No shells right now'),
-        txt('', pr.first ? 'Your first pet is waiting inside.' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
+        txt('', pr.first ? 'Your first pet is waiting inside. <b>Tap the shell</b> to open it.' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
         pr.first || S.shells ? null : txt('small dim', 'Bosses leave shells. Notes buy more.'));
       const open = key(S.shells > 1 ? 'Open a shell' : 'Open the shell', crack, 'go big wide'); open.disabled = !S.shells; foot.appendChild(open);
       if (!pr.first) { const price = H.shellPrice(S), buy = key('', () => { if (H.buyShell(S)) { Au.sfx('coin'); UI.save(); idle(); } }, 'gold wide'); add(buy, 'Buy a shell · ', UI.icon('ic_note'), String(price)); buy.disabled = S.notes < price; foot.appendChild(buy); }
@@ -364,7 +366,7 @@
       }
       const gear = el('div', 'gear');
       [0, 1].forEach((slot) => {
-        const it = pet.gear[slot] && H.itemById(S, pet.gear[slot]), b = el('button', 'slot' + (it ? ' full r-' + it.rar : '') + (!it && S.flags.coach === 'gear' && !gear.querySelector('.coach') ? ' coach' : '')); b.type = 'button';
+        const it = pet.gear[slot] && H.itemById(S, pet.gear[slot]), b = UI.coach(el('button', 'slot' + (it ? ' full r-' + it.rar : '')), !it && S.flags.coach === 'gear' && !gear.querySelector('.coach'), 'Put your equipment on here'); b.type = 'button';
         if (it) add(b, UI.icon(A.itemIcon(it), 1.1), el('div', 'grow', `<b>${H.itemName(it)}</b>${H.itemStatText(it)}`)); else add(b, UI.icon('ic_plus'), el('div', 'grow', 'Empty slot'));
         b.addEventListener('click', () => { Au.sfx('tap'); gearSheet(slot); }); gear.appendChild(b);
       });

@@ -381,3 +381,11 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .advkey > span { display: inline-flex; align-items: center; gap: calc(var(--u) * 1.5); }
 .advkey canvas { width: calc(var(--u) * 6.4) !important; height: calc(var(--u) * 6.4) !important; }
 .foebar .key.sm::after { content: ''; position: absolute; inset: calc(var(--u) * -3.5); } /* 27 units to tap, 20 to see */
+/* v37: onboarding labels and the wiggling shell */
+.coachtip { position: absolute; left: 50%; bottom: calc(100% + var(--u) * 17); translate: -50% 0; z-index: 4; pointer-events: none; white-space: nowrap;
+  background: var(--paper); color: var(--ink); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 6); padding: calc(var(--u) * 1.5) calc(var(--u) * 4);
+  box-shadow: 0 var(--u) 0 var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 7); line-height: 1.1; text-transform: none; letter-spacing: 0; animation: coachb 0.55s ease-in-out infinite alternate; }
+.tab .coachtip { bottom: calc(100% + var(--u) * 19); }
+.shelltap { display: block; border-radius: 50%; animation: shellwig 2.4s ease-in-out infinite; transform-origin: 50% 85%; cursor: pointer; }
+.shelltap:active { transform: scale(0.94); animation: none; }
+@keyframes shellwig { 0%, 58%, 100% { transform: rotate(0); } 64% { transform: rotate(-9deg); } 70% { transform: rotate(8deg); } 76% { transform: rotate(-6deg); } 82% { transform: rotate(4deg); } 88% { transform: rotate(-2deg); } }

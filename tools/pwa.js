@@ -80,3 +80,19 @@ for (const f of pngs) fs.copyFileSync(path.join(icons, f), path.join(out, 'icons
 // the Android app, when built (tools/apk.sh), is offered for download from the same site
 const apk = path.join(root, 'build/android/hushsong.apk'); if (fs.existsSync(apk)) fs.copyFileSync(apk, path.join(out, 'hushsong.apk'));
 console.log('pwa', version, 'v' + pkg.version, (html.length / 1024).toFixed(0) + ' KB', files.length + ' cached files');
+
+// The game as the Android app runs it (docs/app/): the same page without the web-app manifest or offline cache.
+// The app checks app/version.json on launch and downloads app/index.html when `build` is higher than its own.
+// `build` only goes up when the page changes, so rebuilding the same game never makes phones download it again.
+const appHtml = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hushsong</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<style>html{background:${INK};color-scheme:light;height:100%;overscroll-behavior:none}body{margin:0;height:100%;font:14px system-ui}[hidden]{display:none!important}</style>
+</head><body>${page}</body></html>`;
+const appDir = path.join(out, 'app'), verFile = path.join(appDir, 'version.json');
+fs.mkdirSync(appDir, { recursive: true });
+const sha256 = crypto.createHash('sha256').update(appHtml).digest('hex');
+let prev = { build: 0, sha256: '' }; try { prev = JSON.parse(fs.readFileSync(verFile, 'utf8')); } catch (e) { /* first build */ }
+const ver = { build: prev.sha256 === sha256 ? prev.build : prev.build + 1, sha256, bytes: Buffer.byteLength(appHtml) };
+fs.writeFileSync(path.join(appDir, 'index.html'), appHtml);
+fs.writeFileSync(verFile, JSON.stringify(ver) + '\n');
+console.log('app build', ver.build, (ver.bytes / 1024).toFixed(0) + ' KB');
