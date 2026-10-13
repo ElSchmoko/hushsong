@@ -177,6 +177,13 @@
   };
   const maxed = (S) => S.pets.filter((p) => H.petTier(p) === 2);
   H.RECORDS = [
+    // early milestones on the way to floor 100
+    { id: 'lv10', cat: 'adv', n: 'Warming Up', d: 'Reach level 10.', prog: (S) => [S.level, 10], echo: 1 },
+    { id: 'half', cat: 'adv', n: 'Halfway There', d: 'Clear floor 50.', prog: (S) => [S.stage - 1, 50], shells: 1 },
+    { id: 'lv30', cat: 'adv', n: 'Rising Star', d: 'Reach level 30.', prog: (S) => [S.level, 30], shells: 1 },
+    { id: 'evo1', cat: 'col', n: 'First Encore', d: 'Evolve a pet for the first time.', prog: (S) => [S.pets.some((p) => H.petTier(p) > 0) ? 1 : 0, 1], echo: 1 },
+    { id: 'dressed', cat: 'col', n: 'Dressed Up', d: 'Give all three pets in your band two pieces of equipment each.', prog: (S) => [H.teamPets(S).filter(Boolean).reduce((a, p) => a + p.gear.filter(Boolean).length, 0), 6], echo: 1 },
+    { id: 'ten', cat: 'col', n: 'Growing Band', d: 'Find 10 different pets.', prog: (S) => [new Set(S.pets.map(H.petSpecies)).size, 10], echo: 1 },
     { id: 'tour1', cat: 'adv', n: 'World Tour', d: 'Clear floor 100.', prog: (S) => [S.stage - 1, 100], shells: 1, bg: 'night' },
     { id: 'tour2', cat: 'adv', n: 'Second Leg', d: 'Clear floor 200.', prog: (S) => [S.stage - 1, 200], shells: 2 },
     { id: 'tour3', cat: 'adv', n: 'Long Player', d: 'Clear floor 300.', prog: (S) => [S.stage - 1, 300], shells: 2, bg: 'dusk' },

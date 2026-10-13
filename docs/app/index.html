@@ -267,7 +267,7 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .cine.s1 { animation: shake 0.35s 1.2s 4; } @keyframes shake { 25% { transform: translate(calc(var(--u) * -2), calc(var(--u) * 1)); } 75% { transform: translate(calc(var(--u) * 2), calc(var(--u) * -1)); } }
 .cnoise { position: absolute; left: 0; top: 0; opacity: 0; transition: opacity 0.8s; pointer-events: none; } .cine.s1 .cnoise { opacity: 1; } .cine.s2 .cnoise { opacity: 0.35; }
 .chero { position: absolute !important; left: 50%; top: 58%; display: flex; align-items: center; justify-content: center; transform: translate(-50%, -50%) scale(0.3); opacity: 0; transition: transform 1.4s cubic-bezier(0.2, 1.3, 0.4, 1) 0.4s, opacity 1s 0.4s; }
-.cine.s3 .chero { transform: translate(-50%, -50%) scale(1); opacity: 1; } .chero canvas { position: relative; animation: wob 1.2s ease-in-out infinite; }
+.cine.s3 .chero { transform: translate(-50%, -50%) scale(1); opacity: 1; } .chero canvas { position: relative; animation: shellwig 2.4s ease-in-out infinite; transform-origin: 50% 85%; } .cine.s3 .chero { cursor: pointer; }
 .cring { position: absolute; width: calc(var(--u) * 90); height: calc(var(--u) * 90); border-radius: 50%; background: radial-gradient(circle, rgba(255, 246, 200, 0.95) 0, rgba(255, 220, 120, 0.45) 40%, rgba(255, 220, 120, 0) 70%); animation: glowp 1.6s ease-in-out infinite; } @keyframes glowp { 50% { transform: scale(1.18); opacity: 0.75; } }
 .ccap { position: relative; margin: calc(var(--u) * 6); padding: calc(var(--u) * 5) calc(var(--u) * 6); background: var(--paper); border: var(--b) solid var(--ink); border-radius: calc(var(--u) * 9); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); text-align: center; display: flex; flex-direction: column; gap: calc(var(--u) * 3); }
 .ccap .key { display: none; } .cine.s3 .ccap .key { display: flex; animation: reveal 0.5s 1.4s both; }
@@ -1948,6 +1948,13 @@ window.H = {};
   };
   const maxed = (S) => S.pets.filter((p) => H.petTier(p) === 2);
   H.RECORDS = [
+    // early milestones on the way to floor 100
+    { id: 'lv10', cat: 'adv', n: 'Warming Up', d: 'Reach level 10.', prog: (S) => [S.level, 10], echo: 1 },
+    { id: 'half', cat: 'adv', n: 'Halfway There', d: 'Clear floor 50.', prog: (S) => [S.stage - 1, 50], shells: 1 },
+    { id: 'lv30', cat: 'adv', n: 'Rising Star', d: 'Reach level 30.', prog: (S) => [S.level, 30], shells: 1 },
+    { id: 'evo1', cat: 'col', n: 'First Encore', d: 'Evolve a pet for the first time.', prog: (S) => [S.pets.some((p) => H.petTier(p) > 0) ? 1 : 0, 1], echo: 1 },
+    { id: 'dressed', cat: 'col', n: 'Dressed Up', d: 'Give all three pets in your band two pieces of equipment each.', prog: (S) => [H.teamPets(S).filter(Boolean).reduce((a, p) => a + p.gear.filter(Boolean).length, 0), 6], echo: 1 },
+    { id: 'ten', cat: 'col', n: 'Growing Band', d: 'Find 10 different pets.', prog: (S) => [new Set(S.pets.map(H.petSpecies)).size, 10], echo: 1 },
     { id: 'tour1', cat: 'adv', n: 'World Tour', d: 'Clear floor 100.', prog: (S) => [S.stage - 1, 100], shells: 1, bg: 'night' },
     { id: 'tour2', cat: 'adv', n: 'Second Leg', d: 'Clear floor 200.', prog: (S) => [S.stage - 1, 200], shells: 2 },
     { id: 'tour3', cat: 'adv', n: 'Long Player', d: 'Clear floor 300.', prog: (S) => [S.stage - 1, 300], shells: 2, bg: 'dusk' },
@@ -3883,7 +3890,7 @@ window.H = {};
       since = performance.now(); more.textContent = i < 3 ? 'Tap to continue' : ''; more.classList.remove('on'); void more.offsetWidth; if (i < 3) more.classList.add('on');
     };
     const finish = () => { if (done) return; done = true; clearTimeout(timer); cancelAnimationFrame(raf); Au.music.din(0); S.flags.intro = 1; UI.go('shells', { first: true }); };
-    w.addEventListener('click', (e) => { if (e.target.closest('button')) return; Au.init(); if (scene < 3 && performance.now() - since > (window.__hsSpeed ? 0 : 450)) show(scene + 1); });
+    w.addEventListener('click', (e) => { if (e.target.closest('button')) return; Au.init(); if (scene === 3 && e.target.closest('.chero')) return finish(); if (scene < 3 && performance.now() - since > (window.__hsSpeed ? 0 : 450)) show(scene + 1); });
     show(0);
     return { leave: () => { done = true; clearTimeout(timer); cancelAnimationFrame(raf); Au.music.din(0); } };
   };

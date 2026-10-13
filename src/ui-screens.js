@@ -123,7 +123,7 @@
       since = performance.now(); more.textContent = i < 3 ? 'Tap to continue' : ''; more.classList.remove('on'); void more.offsetWidth; if (i < 3) more.classList.add('on');
     };
     const finish = () => { if (done) return; done = true; clearTimeout(timer); cancelAnimationFrame(raf); Au.music.din(0); S.flags.intro = 1; UI.go('shells', { first: true }); };
-    w.addEventListener('click', (e) => { if (e.target.closest('button')) return; Au.init(); if (scene < 3 && performance.now() - since > (window.__hsSpeed ? 0 : 450)) show(scene + 1); });
+    w.addEventListener('click', (e) => { if (e.target.closest('button')) return; Au.init(); if (scene === 3 && e.target.closest('.chero')) return finish(); if (scene < 3 && performance.now() - since > (window.__hsSpeed ? 0 : 450)) show(scene + 1); });
     show(0);
     return { leave: () => { done = true; clearTimeout(timer); cancelAnimationFrame(raf); Au.music.din(0); } };
   };
