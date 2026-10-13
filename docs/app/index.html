@@ -1180,8 +1180,14 @@ window.H = {};
   // From floor 21 the band has evolved pets, so enemies get tougher (HP and Power), bosses more so.
   // The extra grows over `ramp` floors and then holds: +8% for every enemy, +15% for bosses.
   H.LATE_K = { from: 20, ramp: 3, plain: 0.08, boss: 0.15 };
+  // Floors 21-40 get an extra push on top: that is where first evolutions make the band jump in power.
+  // It comes in with the ramp above and fades out again over floors 41-50.
+  H.MID_K = { to: 40, fade: 10, plain: 0.1, boss: 0.1 };
   // the finale boss on every 100th floor is already the toughest wall, so it keeps its strength
-  H.lateK = (n, boss) => { const L = H.LATE_K, t = Math.max(0, Math.min(1, (n - L.from) / L.ramp)); return boss && n % 100 === 0 ? 1 : 1 + t * (boss ? L.boss : L.plain); };
+  H.lateK = (n, boss) => {
+    const L = H.LATE_K, M = H.MID_K, t = Math.max(0, Math.min(1, (n - L.from) / L.ramp)), m = t * Math.max(0, Math.min(1, 1 - (n - M.to) / M.fade));
+    return boss && n % 100 === 0 ? 1 : 1 + t * (boss ? L.boss : L.plain) + m * (boss ? M.boss : M.plain);
+  };
   H.dinMult = (L) => { const C = H.DIN_CURVE, x = Math.log(L); let i = 0; while (i < C.length - 2 && L > C[i + 1][0]) i++; const x0 = Math.log(C[i][0]), x1 = Math.log(C[i + 1][0]); return Math.max(1, C[i][1] + ((C[i + 1][1] - C[i][1]) * (x - x0)) / (x1 - x0)); };
   H.dinScale = (L) => { const lin = 1 + 0.10 * (L - 1), m = H.dinMult(L); return { hp: lin * m, vol: lin * (1 + (m - 1) * 0.45) }; };
   H.petScale = (L, tier) => (1 + 0.10 * (L - 1)) * H.TIER_MUL[tier];
