@@ -4106,7 +4106,8 @@ window.H = {};
         Au.sfx('good');
         add(boxEl, txt('chip', f.n === base ? `Another ${base}` : `Another ${base} (your ${f.n})`), add(el('div', 'row center disp big'), UI.icon('ic_echo', 1.4), el('span', '', `+${r.echo} ${base} echo${r.echo === 1 ? '' : 'es'}`)), UI.echoIntro(pet));
       }
-      const grow = H.canEvolveAny(S); if (grow) foot.appendChild(key((H.nextForms(grow).length ? 'Evolve ' : 'Add a star to ') + H.FORMS[grow.form].n, () => UI.go('pet', { id: grow.id, back: 'shells' }), 'gold wide'));
+      // only when this shell's own echo is what lets the pet grow, so a new pet never points at someone else
+      if (!r.isNew && H.canGrow(S, pet)) foot.appendChild(key((H.nextForms(pet).length ? 'Evolve ' : 'Add a star to ') + f.n, () => UI.go('pet', { id: pet.id, back: 'shells' }), 'gold wide'));
       if (S.shells) foot.appendChild(key(`Open another (${S.shells} left)`, crack, 'go big wide'));
       foot.appendChild(key(pr.first ? 'Let\'s go' : 'Done', () => { if (pr.first || (wasCoach && !S.shells)) { S.flags.coach = 'go'; UI.go('home'); } else idle(); }, S.shells ? 'soft wide' : 'go big wide'));
     };
