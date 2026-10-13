@@ -824,6 +824,7 @@
   H.NOTES = 14;   // per new floor, the same on every floor; a Loud enemy pays 1.5x and a boss 3x. Replays pay none.
   H.ENEMY_COUNT = [1, 2, 2, 2, 2, 2, 2, 2, 2];   // the first ten floors are for a team of two; three enemies from then on
   const FRONT = { clank: 0, creak: 0, bash: 0, racket: 1, clatter: 1, croak: 1, beep: 1, hiss: 2, drip: 2, whoosh: 2, squawk: 2, gibber: 3, tick: 3, cuckoo: 3, ringtone: 3, whine: 4, rustle: 4, buzz: 4, peck: 4, crackle: 4, squeal: 4 };
+  H.DIN_FRONT = FRONT;
   // Past floor 100 the music is back, and so are other bands: some enemies are evolved pets.
   H.RIVAL_FROM = 100; H.RIVAL_CHANCE = 0.3;
   const rivalForm = (n, rnd) => { const tier = n > 200 ? 2 : 1, list = Object.keys(H.FORMS).filter((k) => H.FORMS[k].tier === tier); return list[Math.floor(rnd() * list.length)]; };

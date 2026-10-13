@@ -175,6 +175,43 @@
     return out;
   };
 
+  /* ---------- Encore: endless waves for a band that has grown up (level 20+) ----------
+     Each wave is three Din a little below your level (2 levels and a tenth), 4% tougher every wave; every fifth wave is led by a boss.
+     The band is set when the run starts. HP carries over (a quarter of it comes back between waves) and fallen pets stay down.
+     Reaching wave 5, 10, 15 and 20 pays once a week; the week starts on Monday, as for rehearsals. */
+  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.1, step: 0.04, heal: 0.25, bossK: 0.85, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
+  H.encoreOpen = (S) => S.level >= H.ENCORE.unlock;
+  H.refreshEncore = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms), E = (S.encore = S.encore || { week: w, paid: 0, best: 0, weekBest: 0 }); if (E.week === w) return false; E.week = w; E.paid = 0; E.weekBest = 0; return true; };
+  H.encoreStage = (S, wave) => {
+    const run = S.encoreRun, rnd = H.rng((run ? run.seed : 1) * 31 + wave * 7919), regs = H.REGION_ORDER, region = regs[Math.floor(rnd() * regs.length)], R = H.REGIONS[region];
+    const L = Math.max(1, S.level - H.ENCORE.gap - Math.round(S.level * H.ENCORE.gapPct)), k = 1 + H.ENCORE.step * (wave - 1), boss = wave % H.ENCORE.bossEvery === 0;
+    const enemies = boss ? [{ id: R.boss, lvl: L, k: k * H.ENCORE.bossK }].concat(R.adds.map((a) => ({ id: a, lvl: Math.max(1, L - 1), k })))
+      : [0, 1, 2].map(() => ({ id: R.din[Math.floor(rnd() * R.din.length)], lvl: L, k })).sort((a, b) => (H.DIN_FRONT[a.id] || 0) - (H.DIN_FRONT[b.id] || 0));
+    return { n: wave, wave, region, boss, elite: false, level: L, enemies, encore: true, name: 'Encore · wave ' + wave };
+  };
+  H.encoreTeam = (S) => (S.encoreRun ? S.encoreRun.team.map((id) => (id != null ? S.pets.find((p) => p.id === id) || null : null)) : H.teamPets(S));
+  H.startEncoreRun = (S, rnd) => { const team = H.teamPets(S).map((p) => (p ? p.id : null)); S.encoreRun = { seed: 1 + Math.floor(rnd() * 1e9), wave: 1, team, hp: {} }; for (const id of team) if (id != null) S.encoreRun.hp[id] = 1; H.refreshEncore(S); return S.encoreRun; };
+  H.encoreAlive = (S) => (S.encoreRun ? S.encoreRun.team.filter((id) => id != null && S.encoreRun.hp[id] > 0).length : 0);
+  H.startEncore = (S, rnd) => {
+    const run = S.encoreRun, st = H.encoreStage(S, run.wave), enemies = st.enemies.map(foeUnit);
+    const pets = H.encoreTeam(S).map((p) => (p && run.hp[p.id] > 0 ? p : null)), ens = H.teamEnsemble(S);
+    const b = new H.Battle({ allies: pets.map((p) => (p ? H.buildPetUnit(p, S.level, S) : null)), enemies, rng: rnd, ensemble: ens && pets.every((p, i) => (p ? p.id : null) === (H.teamPets(S)[i] ? H.teamPets(S)[i].id : null)) ? ens.id : null });
+    for (const u of b.units) if (u.side === 0 && u.petId != null) u.hp = Math.max(1, Math.round(u.max * run.hp[u.petId]));
+    return b;
+  };
+  // After each wave: HP is noted, a quarter of it comes back, milestones pay out (once a week). A loss ends the run.
+  H.finishEncore = (S, win, battle) => {
+    H.refreshEncore(S); const run = S.encoreRun, E = S.encore, wave = run.wave, out = { encore: true, win, wave, paid: [], xp: 0, ups: 0, echo: 0, shells: 0 };
+    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? 0.35 : 0.15) * teamXp(S)); out.ups = H.gainXp(S, out.xp);
+    if (!win) { out.reached = wave - 1; out.best = E.best; S.encoreRun = null; return out; }
+    if (battle) for (const u of battle.units) if (u.side === 0 && u.petId != null) run.hp[u.petId] = u.alive ? Math.min(1, u.hp / u.max + H.ENCORE.heal) : 0;
+    E.best = Math.max(E.best, wave); E.weekBest = Math.max(E.weekBest, wave); out.best = E.best; S.stats.encore = Math.max(S.stats.encore || 0, wave);
+    H.ENCORE.miles.forEach(([m, r], i) => { if (wave >= m && E.paid <= i) { E.paid = i + 1; out.paid.push(m); if (r.echo) out.echo += H.addEchoes(S, r.echo); if (r.shells) { S.shells += r.shells; out.shells += r.shells; } } });
+    run.wave = wave + 1; out.alive = H.encoreAlive(S);
+    return out;
+  };
+  H.endEncore = (S) => { S.encoreRun = null; };
+
   /* records: hard goals for the long run. Each pays out once, in shells, echoes and stage sets for the home screen. */
   H.noteBossWin = (S, n, battle) => {
     const T = H.teamPets(S).filter(Boolean), st = S.stats, fams = new Set(T.map(H.petFamily));
@@ -208,11 +245,13 @@
     { id: 'gold', cat: 'col', n: 'Gold Collection', d: 'Own 3 Legendary pieces of equipment.', prog: (S) => [S.items.filter((it) => it.rar === 'l').length, 3], shells: 1 },
     { id: 'songbook', cat: 'reh', n: 'Complete Songbook', d: 'Win a rehearsal with each of the 15 ensembles.', prog: (S) => [H.ENSEMBLES.filter((e) => S.ens[e.id] && S.ens[e.id].reh).length, H.ENSEMBLES.length], shells: 3 },
     { id: 'shells', cat: 'col', n: 'Shell Shock', d: 'Open 100 shells.', prog: (S) => [S.opened, 100], shells: 2 },
+    { id: 'enc10', cat: 'enc', n: 'Curtain Call', d: 'Clear wave 10 in Encore.', prog: (S) => [S.stats.encore || 0, 10], shells: 1 },
+    { id: 'enc20', cat: 'enc', n: 'Standing Ovation', d: 'Clear wave 20 in Encore.', prog: (S) => [S.stats.encore || 0, 20], shells: 2, bg: 'neon' },
   ];
   // one record per ensemble: win a rehearsal with it. These pay an echo each.
   for (const e of H.ENSEMBLES) H.RECORDS.push({ id: 'ens_' + e.id, cat: 'reh', ens: e.id, n: e.n, d: 'Win a rehearsal with the ' + e.n + '.', prog: (S) => [S.ens[e.id] && S.ens[e.id].reh ? 1 : 0, 1], echo: 1 });
-  H.RECORD_CATS = [['adv', 'Adventure'], ['reh', 'Rehearsal'], ['col', 'Collection']];
-  H.SETS = { night: 'Night Concert', dusk: 'Sunset Stage', gold: 'Golden Hall', aurora: 'Northern Lights', spot: 'Spotlight' };
+  H.RECORD_CATS = [['adv', 'Adventure'], ['reh', 'Rehearsal'], ['enc', 'Encore'], ['col', 'Collection']];
+  H.SETS = { night: 'Night Concert', dusk: 'Sunset Stage', gold: 'Golden Hall', aurora: 'Northern Lights', spot: 'Spotlight', neon: 'Neon Encore' };
   H.recordState = (S, r) => { const [a, b] = r.prog(S); return S.records[r.id] ? 'claimed' : a >= b ? 'ready' : 'open'; };
   H.recordsReady = (S) => H.RECORDS.filter((r) => H.recordState(S, r) === 'ready').length;
   H.claimRecord = (S, id) => { const r = H.RECORDS.find((x) => x.id === id); if (!r || H.recordState(S, r) !== 'ready') return null; S.records[id] = 1; S.shells += r.shells || 0; H.addEchoes(S, r.echo || 0); return r; };

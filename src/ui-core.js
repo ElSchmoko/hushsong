@@ -139,6 +139,7 @@
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
       ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
+      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves near your level, a little tougher each time. HP carries over and fallen pets sit out. Waves 5, 10, 15 and 20 pay echoes and a shell, once a week.`),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
     UI.modal(...kids);

@@ -389,3 +389,20 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .shelltap { display: block; border-radius: 50%; animation: shellwig 2.4s ease-in-out infinite; transform-origin: 50% 85%; cursor: pointer; }
 .shelltap:active { transform: scale(0.94); animation: none; }
 @keyframes shellwig { 0%, 58%, 100% { transform: rotate(0); } 64% { transform: rotate(-9deg); } 70% { transform: rotate(8deg); } 76% { transform: rotate(-6deg); } 82% { transform: rotate(4deg); } 88% { transform: rotate(-2deg); } }
+/* v46: the home grid of side modes, the Records button over the home scene, Encore */
+.mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--u) * 3.5); }
+.mgrid .mode.side { min-height: calc(var(--u) * 25); }
+.mode.day { background: #ffd95a !important; } .mode.solo { background: #b8e88a !important; } .mode.enc { background: #d8b8ff !important; }
+.mode.locked { background: #eeeaf5 !important; border-style: dashed !important; box-shadow: none; color: var(--dim) !important; }
+.mode.locked canvas { opacity: 0.55; }
+.hero > .recbtn { position: absolute; top: calc(var(--u) * 4); right: calc(var(--u) * 4); z-index: 2; width: calc(var(--u) * 24); height: calc(var(--u) * 24); display: flex; align-items: center; justify-content: center;
+  background: var(--paper); border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); }
+.hero > .recbtn:active { transform: translateY(var(--u)); box-shadow: 0 calc(var(--u) * 0.5) 0 var(--ink); }
+.recbtn .pip { position: absolute; top: calc(var(--u) * -4); right: calc(var(--u) * -4); min-width: calc(var(--u) * 11); height: calc(var(--u) * 11); padding: 0 calc(var(--u) * 2); border-radius: calc(var(--u) * 6); background: var(--coral); border: calc(var(--u) * 1) solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 6.4); display: flex; align-items: center; justify-content: center; line-height: 1; }
+.miles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u) * 2); }
+.mile { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1); padding: calc(var(--u) * 2) 0; background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5); }
+.mile b { font-family: var(--f-display); font-size: calc(var(--u) * 8); line-height: 1; } .mile.got { background: #e6f7ea; }
+.mile .purse { height: calc(var(--u) * 10); font-size: calc(var(--u) * 6.4); }
+.encband { display: flex; justify-content: center; gap: calc(var(--u) * 3); }
+.encpet { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1); width: calc(var(--u) * 44); }
+.encpet.down canvas { filter: grayscale(1); opacity: 0.45; } .encpet .meter { width: 100%; height: calc(var(--u) * 4); } .encpet .meter i { background: var(--go); }

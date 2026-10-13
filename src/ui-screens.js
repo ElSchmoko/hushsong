@@ -132,7 +132,7 @@
   UI.screens.home = (root) => {
     const S = UI.S, st = H.stage(S.stage), R = H.REGIONS[st.region]; UI.music('camp', st.region);
     root.appendChild(statusBar());
-    const hh = Math.max(110, UI.Hh - 140), hero = el('div', 'hero'); const set = homeSet(S), mode = H.SETS[set] ? null : hereMode(S); add(hero, UI.bgEl(set, UI.W, hh + 14, 0.46, mode), ambience(mode === 'hush' ? 'hush' : 'sing', 5));
+    const hh = Math.max(100, UI.Hh - 172), hero = el('div', 'hero'); const set = homeSet(S), mode = H.SETS[set] ? null : hereMode(S); add(hero, UI.bgEl(set, UI.W, hh + 14, 0.46, mode), ambience(mode === 'hush' ? 'hush' : 'sing', 5));
     add(hero, add(el('div', 'zone'), txt('chip', R.n), txt('disp', (st.boss ? 'Boss floor ' : 'Floor ') + S.stage), songChip(S)));
     const trio = el('button', 'trio'); trio.type = 'button'; trio.setAttribute('aria-label', 'Your band'); const big = hh > 200 ? 1.75 : hh > 150 ? 1.5 : 1.25;
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
@@ -140,9 +140,17 @@
     const modes = el('div', 'modes');
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
-    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); UI.go(go, {}); }); return b; };
+    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
     if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
-    add(modes, box('mrow', small('reh', 'ic_baton', 'Rehearsal', S.stage <= 10 ? 'After floor 10' : open ? open + ' open' : 'Boss replays', 'rehearsal', open), small('rec', 'ic_record', 'Records', `${Object.keys(S.records).length} of ${H.RECORDS.length}`, 'records', ready)));
+    // a mode you cannot play yet says when it opens
+    const later = (cls, icon, name, sub, text) => { const b = small(cls + ' locked', icon, name, sub, () => UI.toast(text)); return b; };
+    H.refreshEncore(S); const E = S.encore, eSub = S.encoreRun ? `Wave ${S.encoreRun.wave} next` : E.weekBest ? `Best this week: ${E.weekBest}` : 'Endless waves';
+    const enc = H.encoreOpen(S) ? small('enc', 'ic_mic', 'Encore', eSub, 'encore') : later('enc', 'ic_lock', 'Encore', 'From level ' + H.ENCORE.unlock, `Encore opens at level ${H.ENCORE.unlock}.`);
+    const soon = (cls, icon, name) => later(cls, icon, name, 'Coming soon', name + ' is on its way.');
+    add(modes, box('mgrid', small('reh', 'ic_baton', 'Rehearsal', S.stage <= 10 ? 'After floor 10' : open ? open + ' open' : 'Boss replays', 'rehearsal', open), soon('day', 'ic_ticket', 'Daily Gig'), soon('solo', 'ic_solo', 'Solo'), enc));
+    // records are goals, not a mode: they live on a small button over the home scene
+    const rec = el('button', 'recbtn'); rec.type = 'button'; rec.setAttribute('aria-label', 'Records' + (ready ? `, ${ready} ready` : '')); add(rec, UI.icon('ic_record', 1.15)); if (ready) rec.appendChild(el('span', 'pip', String(ready)));
+    rec.addEventListener('click', () => { Au.sfx('tap'); UI.go('records'); }); hero.appendChild(rec);
     root.appendChild(modes); root.appendChild(UI.nav('home'));
   };
 
@@ -453,6 +461,35 @@
       b.addEventListener('click', () => { Au.sfx('tap'); S.settings.auto = 0; UI.go('battle', { n, reh: 1 }); }); pad.appendChild(b);
     });
     body.appendChild(pad); root.appendChild(body);
+  };
+
+  /* ================= encore: endless waves, the same band all the way, weekly milestone rewards ================= */
+  UI.screens.encore = (root) => {
+    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshEncore(S)) UI.save();
+    const E = S.encore, run = S.encoreRun, M = H.ENCORE.miles;
+    root.appendChild(UI.topbar('Encore', () => UI.go('home'), UI.wallet()));
+    const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot'); pad.style.paddingTop = '0';
+    if (!H.encoreOpen(S)) {
+      add(pad, box('row center', UI.icon('ic_lock', 3)), txt('dim center', `Encore opens at level ${H.ENCORE.unlock}.`));
+      body.appendChild(pad); root.append(body); return;
+    }
+    pad.appendChild(txt('small center', 'Endless waves near <b>your level</b>, a little tougher each time. HP carries over, a quarter comes back after each wave, and fallen pets sit out.'));
+    // this week's milestones
+    const days = H.daysToReset(Date.now()), miles = el('div', 'miles');
+    M.forEach(([m, r], i) => { const got = E.paid > i, c = el('div', 'mile' + (got ? ' got' : '')); add(c, txt('label', 'Wave'), el('b', '', String(m)), got ? UI.icon('ic_check', 1.1) : r.echo ? UI.purse('ic_echo', '+' + r.echo, 'Echoes') : UI.purse('ic_shell', '+' + r.shells, 'Shells')); miles.appendChild(c); });
+    add(pad, txt('label', 'This week'), miles, txt('small dim center', `Best this week: <b>${E.weekBest}</b> · all time: <b>${E.best}</b> · new rewards ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
+    // the band: in a run, how it is holding up; otherwise the band that would go in
+    const band = el('div', 'encband'), team = H.encoreTeam(S);
+    team.forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.8, { anim: false }), UI.meter(hp), txt('small', hp > 0 ? Math.round(hp * 100) + '%' : 'Out')); band.appendChild(c); });
+    add(pad, txt('label', run ? `Your run · wave ${run.wave} next` : 'Your band goes in as it is'), band);
+    if (run) {
+      foot.appendChild(key(`Play wave ${run.wave}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
+      foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+    } else {
+      const ready = H.teamPets(S).some(Boolean), start = key('Start Encore', () => { H.startEncoreRun(S, Math.random); UI.save(); UI.go('battle', { enc: 1 }); }, 'go wide big'); start.disabled = !ready;
+      foot.appendChild(start); foot.appendChild(key('Change the band', () => UI.go('team', {}), 'wide soft'));
+    }
+    body.appendChild(pad); add(root, body, foot);
   };
 
   /* ================= records: hard goals by game mode, paid in shells, echoes and stage sets ================= */

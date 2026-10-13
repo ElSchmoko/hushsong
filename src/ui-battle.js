@@ -25,10 +25,11 @@
   };
 
   UI.screens.battle = (root, pr) => {
-    const S = UI.S, W = UI.W, rnd = Math.random, n = pr.n || S.stage, reh = !!pr.reh, st = reh ? H.rehearsalStage(S, n) : H.stage(n), GMAX = H.GMAX;
+    const S = UI.S, W = UI.W, rnd = Math.random, enc = !!pr.enc && !!S.encoreRun, n = enc ? S.encoreRun.wave : pr.n || S.stage, reh = !!pr.reh, st = enc ? H.encoreStage(S, n) : reh ? H.rehearsalStage(S, n) : H.stage(n), GMAX = H.GMAX;
+    if (pr.enc && !enc) return UI.go('encore');
     if (!H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = H.startStage(S, n, rnd, reh);
+    const battle = enc ? H.startEncore(S, rnd) : H.startStage(S, n, rnd, reh);
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
     UI.music(st.boss ? 'boss' : 'battle', st.region, !!battle.ensemble && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
 
@@ -65,11 +66,12 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n })));
+    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your Encore run ends here. Rewards you have reached stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
     const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
     const panel = el('div', 'bpanel'), title = el('div', 'ptitle'), meta = el('div', 'pmeta'), desc = el('div', 'pdesc'), icons = el('div', 'picons'), hint = el('div', 'phint');
     // Auto and speed are switches: latched down and gold while on
@@ -132,7 +134,7 @@
     let hintHold = false;
 
     /* ----- drawing (all in layout units; the canvas is scaled up to the screen's real pixels) ----- */
-    const singing = reh || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
+    const singing = enc || reh || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
@@ -261,10 +263,10 @@
     // the boss's entrance is a screen of its own: the region dims, the boss stamps down under its name, then the battle opens
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
-      const name = boss.name, mode = !reh && H.floorHushed(S, n) ? 'hush' : 'sing';
+      const name = boss.name, mode = !enc && !reh && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
-        add(el('div', 'bossban'), el('div', 'bosskick', reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
+        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
       bossOv.addEventListener('click', () => { skipOpening = true; });
       wrap.appendChild(bossOv);
     }
@@ -305,13 +307,33 @@
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
-      const out = reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle); UI.save(); UI.result(out);
+      const out = enc ? H.finishEncore(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle); UI.save(); UI.result(out);
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
   };
 
+  // Encore: after a won wave, go on or stop; after a lost one, the run is over
+  UI.encoreResult = (out) => {
+    const S = UI.S, kids = [], loot = box('loot');
+    if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
+    if (out.win) {
+      kids.push(txt('disp big center', `Wave ${out.wave} cleared!`));
+      if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
+      kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
+      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`));
+      const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
+      kids.push(txt('small dim center', next ? `Next weekly reward at wave ${next[0]}.` : 'All weekly rewards won. Go for a new best!'));
+      kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
+      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+    } else {
+      kids.push(txt('disp big center', 'Encore over'), txt('center', `You cleared <b>${out.reached}</b> ${out.reached === 1 ? 'wave' : 'waves'}. Best: <b>${out.best}</b>.`), loot);
+      kids.push(UI.key('Back to Encore', () => UI.go('encore'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
+    }
+    UI.save(); UI.modal(...kids);
+  };
   UI.result = (out) => {
+    if (out.encore) return UI.encoreResult(out);
     const S = UI.S, kids = [], nx = out.first ? S.stage : out.n;
     const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); return r; };
     const evo = H.canEvolveAny(S), evoKey = () => UI.key((H.nextForms(evo).length ? 'Evolve ' : 'Add a star to ') + H.FORMS[evo.form].n, () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');

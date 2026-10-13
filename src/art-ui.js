@@ -58,6 +58,10 @@
   // a gold record in its frame, and the empty frame it waits for
   I('ic_record', 14, (g) => { g.o('M8 8 H92 V92 H8 Z', '#6b4a8c', 6); g.o('M16 16 H84 V84 H16 Z', '#2b2140', 0); g.oc(50, 50, 30, '#ffc928', 5); g.s('M50 50 m-20 0 a20 20 0 1 0 40 0 a20 20 0 1 0 -40 0', '#d99a12', 3); g.oc(50, 50, 10, '#ff6b5e', 4); g.c(50, 50, 3, INK); g.s('M30 36 Q36 26 48 24', WHITE, 4); });
   I('ic_recordoff', 14, (g) => { g.o('M8 8 H92 V92 H8 Z', '#d9d2ea', 6); g.o('M16 16 H84 V84 H16 Z', '#f4f1fa', 0); g.oc(50, 50, 30, '#e6e0f0', 5); g.s('M50 50 m-20 0 a20 20 0 1 0 40 0 a20 20 0 1 0 -40 0', '#c9c3da', 3); g.oc(50, 50, 10, '#d9d2ea', 4); g.c(50, 50, 3, INK); });
+  // the three side modes: a gig ticket (Daily Gig), a lone spotlight (Solo) and a microphone (Encore)
+  I('ic_ticket', 14, (g) => { g.push(50, 50, 1, -12); g.o('M-42 -24 H42 V-8 A9 9 0 0 0 42 8 V24 H-42 V8 A9 9 0 0 0 -42 -8 Z', '#ff9a8a', 6); for (let y = -18; y <= 18; y += 9) g.c(18, y, 2.6, INK); g.p(star(-12, 0, 15, 6, 5), '#ffd95a'); g.s(star(-12, 0, 15, 6, 5), INK, 4); g.pop(); });
+  I('ic_solo', 14, (g) => { g.p('M42 6 H58 L88 88 H12 Z', '#fff3a8'); g.s('M42 6 L12 88 M58 6 L88 88', INK, 4); g.o('M30 80 Q50 70 70 80 Q50 92 30 80 Z', '#ffd95a', 5); g.p(star(50, 52, 16, 6.5, 5), '#ffc928'); g.s(star(50, 52, 16, 6.5, 5), INK, 4); });
+  I('ic_mic', 14, (g) => { g.push(50, 50, 1, 18); g.o('M-6 10 H6 L4 44 H-4 Z', '#6b4a8c', 6); g.o('M-15 2 H15 V12 H-15 Z', '#ffc928', 6); g.o('M-15 -26 Q0 -48 15 -26 V2 H-15 Z', '#d9dde8', 6); g.s('M-15 -18 H15 M-15 -8 H15 M0 -40 V2', '#8a90a8', 3); g.pop(); g.p(star(80, 22, 12, 5, 4), '#ffd95a'); g.s(star(80, 22, 12, 5, 4), INK, 3.5); });
   I('ic_baton', 14, (g) => { g.push(50, 50, 1, 40); g.o('M-4 -46 H4 V26 H-4 Z', '#fff1d0', 6); g.o('M-9 24 Q0 16 9 24 V44 Q0 52 -9 44 Z', '#8a4420', 6); g.pop(); g.p(star(22, 24, 13, 5, 4), '#ffd95a'); g.s(star(22, 24, 13, 5, 4), INK, 4); });
   I('ic_pets', 14, (g) => { g.oc(26, 30, 14, '#8a4420', 6); g.oc(74, 30, 14, '#8a4420', 6); g.oc(50, 56, 36, FC.drum, 6); g.c(50, 58, 26, '#fff1d0'); g.c(40, 54, 4.5, INK); g.c(60, 54, 4.5, INK); g.s('M43 66 Q50 72 57 66', INK, 4); });
   I('ic_play', 9, (g) => g.o('M24 14 L84 50 L24 86 Z', '#2b2140', 4));
@@ -148,6 +152,7 @@
     gold: { sky: '#fff0b8', sun: '#ffffff', far: '#f2c040', mid: '#e0a020', g1: '#ffd870', g2: '#f2c050' },
     aurora: { sky: '#2f4a7a', sun: '#eaf6ff', far: '#5a7ab0', mid: '#eef5ff', g1: '#dcecfb', g2: '#c6dcf4', cloud: '#4a6aa0', stars: 1 },
     spot: { sky: '#5a3f8a', sun: '#fff6dc', far: '#4a3274', mid: '#3a2660', g1: '#e8b070', g2: '#d99c5c' },
+    neon: { sky: '#2c2366', sun: '#ff9ad8', far: '#5a2f9a', mid: '#3a6aa8', g1: '#7fe0d8', g2: '#5fc8c0', cloud: '#4a3a8a', stars: 1 },
     tower: { sky: '#f3e6cf', sun: '#fff6dc', far: '#e3cfa8', mid: '#d4bb8c', g1: '#e9dcc0', g2: '#dccdaa' },
   };
   A.bg = (key, w, h, hf) => {
