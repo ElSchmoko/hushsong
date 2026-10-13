@@ -46,6 +46,13 @@
       x.globalAlpha = 0.22; x.drawImage(tint(white, A.INK), 0, 4.5 * sc); x.globalAlpha = 1;
       x.drawImage(white, 0, 0); x.drawImage(ink, 0, 0); x.drawImage(raw, 0, 0);
       if (variant === 'flash') { x.globalAlpha = 0.8; x.drawImage(tint(raw, '#ffffff'), 0, 0); x.globalAlpha = 1; }
+      // a mirror copy (Daily Gig): a cool tint and two glassy streaks
+      if (variant === 'mirror' || variant === 'mirrorflash') {
+        x.globalAlpha = 0.42; x.drawImage(tint(raw, '#8fc8ff'), 0, 0); x.globalAlpha = 1;
+        const sh = tint(raw, '#ffffff'), sx = sh.getContext('2d'), gr = sx.createLinearGradient(0, 0, sh.width, sh.height); sx.globalCompositeOperation = 'destination-in';
+        [[0.3, 0], [0.4, 0.8], [0.48, 0], [0.54, 0.55], [0.6, 0]].forEach(([o, a]) => gr.addColorStop(o, `rgba(255,255,255,${a})`)); sx.fillStyle = gr; sx.fillRect(0, 0, sh.width, sh.height); x.drawImage(sh, 0, 0);
+        if (variant === 'mirrorflash') { x.globalAlpha = 0.8; x.drawImage(tint(raw, '#ffffff'), 0, 0); x.globalAlpha = 1; }
+      }
     }
     cache.set(ck, out); return out;
   };

@@ -401,8 +401,11 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .mgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--u) * 3.5); }
 .mgrid .mode.side { min-height: calc(var(--u) * 25); }
 .mode.day { background: #ffd95a !important; } .mode.solo { background: #b8e88a !important; } .mode.enc { background: #d8b8ff !important; }
-.mode.locked { background: #eeeaf5 !important; border-style: dashed !important; box-shadow: none; color: var(--dim) !important; }
-.mode.locked canvas { opacity: 0.55; }
+.mode .micon { position: relative; flex: none; display: flex; }
+.mode.locked { background: #e9e5f0 !important; color: #6a6384 !important; border-color: #6f6890 !important; box-shadow: 0 calc(var(--u) * 2) 0 #6f6890; }
+.mode.locked .micon > canvas:first-child { filter: grayscale(1) contrast(0.85) brightness(1.08); opacity: 0.7; }
+.mode.locked .micon > canvas + canvas { position: absolute; right: calc(var(--u) * -2.5); bottom: calc(var(--u) * -2.5); }
+.mode.locked .sub { white-space: nowrap; font-size: calc(var(--u) * 6); }
 .hero > .recbtn { position: absolute; top: calc(var(--u) * 4); right: calc(var(--u) * 4); z-index: 2; width: calc(var(--u) * 24); height: calc(var(--u) * 24); display: flex; align-items: center; justify-content: center;
   background: var(--paper); border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); }
 .hero > .recbtn:active { transform: translateY(var(--u)); box-shadow: 0 calc(var(--u) * 0.5) 0 var(--ink); }
@@ -414,6 +417,133 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .encband { display: flex; justify-content: center; gap: calc(var(--u) * 3); }
 .encpet { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1); width: calc(var(--u) * 44); }
 .encpet.down canvas { filter: grayscale(1); opacity: 0.45; } .encpet .meter { width: 100%; height: calc(var(--u) * 4); } .encpet .meter i { background: var(--go); }
+
+/* ===== Daily Gig: tonight's poster on a night stage ===== */
+.gigscene { position: relative; flex: 1; min-height: 0; overflow: hidden; border-block: var(--b) solid var(--ink); display: flex; align-items: center; justify-content: center; }
+.gigscene > canvas.bgc { position: absolute; left: 0; bottom: 0; }
+.nightwash { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(36, 26, 82, 0.78), rgba(58, 40, 110, 0.45) 55%, rgba(40, 24, 70, 0.35)); }
+.lights { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--u) * 16); border-top: calc(var(--u) * 0.6) solid rgba(0, 0, 0, 0); }
+.lights::before { content: ''; position: absolute; left: -2%; right: -2%; top: calc(var(--u) * -10); height: calc(var(--u) * 22); border-bottom: calc(var(--u) * 0.8) solid #1c1230; border-radius: 0 0 50% 50%; }
+.lights i { position: absolute; width: calc(var(--u) * 4); height: calc(var(--u) * 5.4); margin-left: calc(var(--u) * -2); border-radius: 50% 50% 45% 45%; border: calc(var(--u) * 0.7) solid #1c1230; box-shadow: 0 0 calc(var(--u) * 5) currentColor; color: #fff6c8; animation: twinkle 2.2s ease-in-out infinite; }
+@keyframes twinkle { 50% { filter: brightness(1.35); box-shadow: 0 0 calc(var(--u) * 9) #fff6c8; } }
+.poster { position: relative; width: calc(var(--u) * 150); max-width: 88%; margin-top: calc(var(--u) * 10); padding: calc(var(--u) * 6) calc(var(--u) * 7) 0; background: #fff6dc; background-image: radial-gradient(rgba(255, 107, 94, 0.12) 18%, transparent 20%); background-size: calc(var(--u) * 6) calc(var(--u) * 6);
+  border: var(--b) solid var(--ink); border-radius: calc(var(--u) * 3); box-shadow: 0 calc(var(--u) * 3) 0 var(--ink), 0 calc(var(--u) * 8) calc(var(--u) * 16) rgba(10, 4, 30, 0.45); transform: rotate(-2deg); display: flex; flex-direction: column; gap: calc(var(--u) * 2.5); animation: postin 0.5s cubic-bezier(0.2, 1.5, 0.4, 1); }
+@keyframes postin { from { transform: rotate(-9deg) translateY(calc(var(--u) * -30)); opacity: 0; } }
+.ptape { position: absolute; top: calc(var(--u) * -5); width: calc(var(--u) * 26); height: calc(var(--u) * 9); background: rgba(255, 233, 168, 0.85); border: calc(var(--u) * 0.6) solid rgba(43, 33, 64, 0.25); }
+.ptape.l { left: calc(var(--u) * -6); transform: rotate(-24deg); } .ptape.r { right: calc(var(--u) * -6); transform: rotate(20deg); }
+.pkick { font-weight: 800; font-size: calc(var(--u) * 6); letter-spacing: 0.14em; text-transform: uppercase; color: var(--coral-d); text-align: center; }
+.pvenue { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 15); line-height: 0.95; text-align: center; color: var(--ink); margin-top: calc(var(--u) * -1); }
+.pregion { text-align: center; font-size: calc(var(--u) * 6); color: var(--dim); margin-top: calc(var(--u) * -2); }
+.ptw { display: flex; align-items: center; gap: calc(var(--u) * 3); padding: calc(var(--u) * 2) calc(var(--u) * 3); background: var(--ink); border-radius: calc(var(--u) * 6); color: #fff; }
+.ptw .label { color: #cfc6ea; font-size: calc(var(--u) * 5.6); } .ptwn { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 12.5); line-height: 1; color: #ffe58a; }
+.ptw canvas { margin: calc(var(--u) * -2) 0; filter: drop-shadow(0 0 calc(var(--u) * 3) rgba(255, 229, 138, 0.6)); animation: twbob 1.8s ease-in-out infinite; } @keyframes twbob { 50% { transform: rotate(-6deg) scale(1.05); } }
+.prule { font-size: calc(var(--u) * 6.4); line-height: 1.3; text-align: center; }
+.pline { display: flex; flex-direction: column; align-items: center; gap: 0; } .pline .label { font-size: calc(var(--u) * 5.6); }
+.plineup { display: flex; justify-content: center; align-items: flex-end; gap: 0; min-height: calc(var(--u) * 22); } .plineup canvas { margin: calc(var(--u) * -4) calc(var(--u) * -3) calc(var(--u) * -3); }
+.pstub { display: flex; align-items: center; justify-content: space-between; margin: 0 calc(var(--u) * -7); padding: calc(var(--u) * 2.5) calc(var(--u) * 6); border-top: calc(var(--u) * 1) dashed var(--ink); background: #ffd95a; border-radius: 0 0 calc(var(--u) * 2) calc(var(--u) * 2); }
+.pstub b { font-family: var(--f-display); font-size: calc(var(--u) * 7.4); letter-spacing: 0.1em; text-transform: uppercase; } .pstub .purse { height: calc(var(--u) * 11); }
+.pstub .paid { display: inline-flex; align-items: center; gap: calc(var(--u) * 1.5); font-weight: 800; font-size: calc(var(--u) * 6.6); }
+.poster.won .pstub { background: #bdf3d2; }
+.gigscene + .gofoot .tstrip { margin: 0; }
+.ticket { display: flex; align-items: center; gap: calc(var(--u) * 3); padding: calc(var(--u) * 2.5) calc(var(--u) * 5); background: #ffd95a; border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 4); box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); position: relative; }
+.ticket::before, .ticket::after { content: ''; position: absolute; top: 50%; width: calc(var(--u) * 8); height: calc(var(--u) * 8); margin-top: calc(var(--u) * -4); border-radius: 50%; background: var(--paper); border: calc(var(--u) * 1.2) solid var(--ink); }
+.ticket::before { left: calc(var(--u) * -5); clip-path: inset(0 0 0 50%); } .ticket::after { right: calc(var(--u) * -5); clip-path: inset(0 50% 0 0); }
+.ticket b { font-family: var(--f-display); font-size: calc(var(--u) * 10); line-height: 1; } .ticket.lost { background: #eeeaf5; }
+
+/* the house rule on the battle field */
+.rulechip { position: absolute; left: 50%; bottom: calc(var(--u) * 3); transform: translateX(-50%); z-index: 1; display: flex !important; align-items: center; gap: calc(var(--u) * 1); height: calc(var(--u) * 15); padding: 0 calc(var(--u) * 3) 0 calc(var(--u) * 1) !important; background: #2b2140 !important; color: #ffe58a !important; border: calc(var(--u) * 1) solid #fff6dc !important; border-radius: calc(var(--u) * 8); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 7); }
+.rulechip span:empty { display: none; } .rulechip.hot { background: #c8213a !important; color: #fff !important; }
+.twistin .twbadge { position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%); width: calc(var(--u) * 80); height: calc(var(--u) * 80); display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #fff6dc; border: calc(var(--u) * 2) solid var(--ink); box-shadow: 0 0 0 calc(var(--u) * 4) #ffc928, 0 0 calc(var(--u) * 30) rgba(255, 201, 40, 0.7); animation: twstamp calc(var(--k) * 0.7s) cubic-bezier(0.5, 0, 0.75, 0.4) both; }
+@keyframes twstamp { from { transform: translate(-50%, -50%) scale(2.4) rotate(-30deg); opacity: 0; } }
+.bossin.full.twistin .bossban { bottom: 18%; background: linear-gradient(90deg, rgba(43, 33, 64, 0), #4a3d6a 18%, #4a3d6a 82%, rgba(43, 33, 64, 0)); }
+.twrule { max-width: 86%; margin: calc(var(--u) * 2) auto 0; color: #fff6dc; font-size: calc(var(--u) * 6.6); line-height: 1.3; }
+.bosstint.night { background: rgba(28, 18, 70, 0.66); }
+.cdn.lk { background: rgba(255, 255, 255, 0.55); border-radius: 50%; }
+
+/* ===== Solo: a spotlight, a soloist, a road ===== */
+.solohero { position: relative; flex: none; overflow: hidden; border-block: var(--b) solid var(--ink); display: flex; align-items: flex-end; justify-content: center; }
+.solohero > canvas.bgc { position: absolute; left: 0; bottom: 0; }
+.solohero .cone { position: absolute; top: 0; width: 60%; height: 140%; background: linear-gradient(180deg, rgba(255, 246, 200, 0.55), rgba(255, 246, 200, 0)); clip-path: polygon(45% 0, 55% 0, 100% 100%, 0 100%); animation: sweep 5s ease-in-out infinite alternate; transform-origin: 50% 0; }
+.solohero .cone.l { left: -6%; } .solohero .cone.r { right: -6%; animation-delay: -2.5s; } @keyframes sweep { from { transform: rotate(-12deg); } to { transform: rotate(12deg); } }
+.stitle { position: relative; display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 2); margin-bottom: calc(var(--u) * 6); }
+.paytrack { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)) 1.6fr; gap: calc(var(--u) * 1.5); }
+.payt { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; min-height: calc(var(--u) * 22); background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 3); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 6.4); line-height: 1; }
+.payt.got { background: #e6f7ea; color: var(--good); } .payt.boss { background: #fff3c2; } .payt.boss.got { background: #e6f7ea; }
+.tourcard { display: flex; align-items: center; gap: calc(var(--u) * 3); padding: calc(var(--u) * 3) calc(var(--u) * 4) calc(var(--u) * 3) calc(var(--u) * 1); background: var(--paper); border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 8); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); }
+.tourcard .col { gap: calc(var(--u) * 1.5); } .tourcard .meter { flex: 1; } .tourcard .meter i { background: var(--go); }
+.soloinfo { display: flex; flex-direction: column; gap: calc(var(--u) * 2); min-height: calc(var(--u) * 26); }
+
+.shud { flex: none; display: flex; align-items: center; gap: calc(var(--u) * 3); padding: calc(var(--u) * 2) calc(var(--u) * 5) calc(var(--u) * 3); background: var(--ink); color: #fff; }
+.shud .col { gap: calc(var(--u) * 1.5); } .shud b { font-family: var(--f-display); font-size: calc(var(--u) * 8.4); line-height: 1; }
+.sface { flex: none; width: calc(var(--u) * 30); height: calc(var(--u) * 30); border-radius: 50%; border: calc(var(--u) * 1.4) solid #fff6dc; background: #f1eef6; overflow: hidden; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 calc(var(--u) * 1) var(--ink); }
+.sface canvas { margin-top: calc(var(--u) * 4); } .sface.drum { background: #ffd9b3; } .sface.string { background: #bdf3d2; } .sface.breath { background: #c4e4fb; } .sface.brass { background: #ffeaa0; } .sface.voice { background: #ffcfe0; }
+.chip.gigc { background: #ffc928; color: var(--ink); font-size: calc(var(--u) * 6); }
+.hprow { gap: calc(var(--u) * 1.5); } .hpm { flex: 1; height: calc(var(--u) * 6); border-color: #fff6dc; background: #4a3d6a; } .hpm i { background: var(--go) !important; } .hpm.low i { background: #ff3d5a !important; }
+.hpn { white-space: nowrap; color: #e8e2f6; font-weight: 800; font-size: calc(var(--u) * 6); }
+.sboons { display: flex !important; align-items: center; gap: calc(var(--u) * 1); min-height: calc(var(--u) * 12); color: #e8e2f6; } .sboons .dim { color: #b8b0d0; }
+.bchip { display: inline-flex; width: calc(var(--u) * 11.5); height: calc(var(--u) * 11.5); align-items: center; justify-content: center; border-radius: calc(var(--u) * 3); background: #fff6dc; border: calc(var(--u) * 0.8) solid var(--ink); }
+.bchip.r-r { background: linear-gradient(135deg, #e7d4ff, #ffe58a); }
+.sboons .combo { margin-left: auto; padding: 0 calc(var(--u) * 2); border-radius: calc(var(--u) * 4); background: #ff6aa0; color: #fff; font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 6); }
+
+.smap { flex: 1; min-height: 0; overflow-y: auto; scrollbar-width: none; position: relative; background: #2b2140; } .smap::-webkit-scrollbar { display: none; }
+.smapin { position: relative; width: 100%; } .smapin > canvas.bgc { position: absolute; left: 0; top: 0; }
+.snode { position: absolute; display: flex !important; align-items: center; justify-content: center; border-radius: 50%; background: #fff6dc !important; border: calc(var(--u) * 1.2) solid var(--ink) !important; box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); z-index: 1; }
+.snode.t-gig { background: #ffe0dc !important; } .snode.t-loud { background: #ffd0d8 !important; } .snode.t-rest { background: #ffe9c0 !important; } .snode.t-jam { background: #fff1b8 !important; } .snode.t-mystery { background: #ecdcff !important; } .snode.t-boss { background: #ff9a8a !important; overflow: hidden; } .snode.t-start { background: #d6ffe4 !important; }
+.snode.t-boss canvas { margin-top: calc(var(--u) * 2); }
+.snode:not(.can):not(.done):not(.here) { filter: saturate(0.55) brightness(0.92); }
+.snode.done { filter: grayscale(0.6); opacity: 0.75; box-shadow: none; }
+.snode.can { z-index: 2; animation: nodep 1.1s ease-in-out infinite; } @keyframes nodep { 50% { box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink), 0 0 0 calc(var(--u) * 3) #ffe58a, 0 0 calc(var(--u) * 10) #ffe58a; transform: translateY(calc(var(--u) * -1)); } }
+.snode.can:active { transform: translateY(calc(var(--u) * 1)); }
+.slabel { position: absolute; width: calc(var(--u) * 48); text-align: center; z-index: 2; pointer-events: none; font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 6); line-height: 1; color: #fff; -webkit-text-stroke: calc(var(--u) * 1.6) var(--ink); paint-order: stroke fill; }
+.stoken { position: absolute; z-index: 3; width: calc(var(--u) * 20); pointer-events: none; transition: left 0.7s ease-in-out, top 0.7s ease-in-out; filter: drop-shadow(0 calc(var(--u) * 1) 0 rgba(43, 33, 64, 0.3)); }
+.stoken canvas { animation: bob 1.4s ease-in-out infinite; transform-origin: 50% 100%; } .stoken.walk canvas { animation: hop 0.24s ease-in-out infinite; } @keyframes hop { 50% { transform: translateY(calc(var(--u) * -3)); } }
+.sribbon { position: absolute; left: 50%; top: calc(var(--u) * 2); transform: translateX(-50%); padding: calc(var(--u) * 1) calc(var(--u) * 8); background: #c8304a; color: #fff6dc; border: calc(var(--u) * 1) solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 6.4); white-space: nowrap; clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%); z-index: 1; }
+.shint { flex: none; display: flex; align-items: center; justify-content: space-between; gap: calc(var(--u) * 3); padding: calc(var(--u) * 3) calc(var(--u) * 5); background: var(--cream); border-top: var(--b) solid var(--ink); font-size: calc(var(--u) * 6.6); }
+.shint .key.sm { min-width: calc(var(--u) * 20); min-height: calc(var(--u) * 20); }
+.nbadge { flex: none; width: calc(var(--u) * 38); height: calc(var(--u) * 38); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: calc(var(--u) * 1.2) solid var(--ink); background: #fff6dc; overflow: hidden; }
+.nbadge.sm { width: calc(var(--u) * 24); height: calc(var(--u) * 24); } .nbadge.t-gig { background: #ffe0dc; } .nbadge.t-loud { background: #ffd0d8; } .nbadge.t-rest { background: #ffe9c0; } .nbadge.t-jam { background: #fff1b8; } .nbadge.t-mystery { background: #ecdcff; } .nbadge.t-boss { background: #ff9a8a; }
+.plinebox { display: flex; flex-direction: column; align-items: center; padding: calc(var(--u) * 2) 0 calc(var(--u) * 3); background: #3a2f58; border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 6); } .plinebox .label { color: #d9d2ea; }
+
+.sscene { position: relative; flex: none; overflow: hidden; border-bottom: var(--b) solid var(--ink); display: flex; align-items: center; justify-content: center; }
+.sscene > canvas.bgc { position: absolute; left: 0; top: 0; } .sscene .rays { position: absolute; left: 50%; top: 45%; width: calc(var(--u) * 300); height: calc(var(--u) * 300); margin: calc(var(--u) * -150); background: repeating-conic-gradient(rgba(255, 255, 255, 0.45) 0 12deg, transparent 12deg 24deg); animation: spin 18s linear infinite; }
+.sscene .night { position: absolute; inset: 0; background: radial-gradient(circle at 50% 70%, rgba(255, 170, 60, 0.35), rgba(30, 20, 70, 0.75) 60%); }
+.sart { position: relative; display: flex; align-items: flex-end; gap: calc(var(--u) * 2); margin-bottom: calc(var(--u) * 10); }
+.sart.camp .fire { animation: flick 0.5s ease-in-out infinite alternate; transform-origin: 50% 100%; filter: drop-shadow(0 0 calc(var(--u) * 8) #ffb050); } @keyframes flick { to { transform: scale(1.06, 0.95); } }
+.evart { padding: calc(var(--u) * 2); background: #fff6dc; border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 8); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); transform: rotate(-4deg); }
+.sbanner { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: baseline; justify-content: center; gap: calc(var(--u) * 3); padding: calc(var(--u) * 1.5) 0 calc(var(--u) * 2); background: rgba(43, 33, 64, 0.82); color: #fff; }
+.sbanner b { font-family: var(--f-display); font-size: calc(var(--u) * 10); line-height: 1; color: #ffe58a; } .sbanner span { font-size: calc(var(--u) * 6.2); color: #d9d2ea; }
+.boon { display: flex !important; align-items: flex-start; gap: calc(var(--u) * 3); width: 100%; padding: calc(var(--u) * 3) calc(var(--u) * 4) calc(var(--u) * 3) calc(var(--u) * 2.5) !important; background: var(--paper) !important; border: calc(var(--u) * 1.2) solid var(--ink) !important; border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); text-align: left; }
+.boon.r-r { background: linear-gradient(135deg, #f6eeff, #fff3c2) !important; border-color: #6b4a8c !important; box-shadow: 0 calc(var(--u) * 2) 0 #6b4a8c; }
+.boon .col { gap: calc(var(--u) * 1); } .bname { font-family: var(--f-display); font-size: calc(var(--u) * 9); line-height: 1.05; } .boon .rar { font-size: calc(var(--u) * 5.6); letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); } .boon.r-r .rar { color: #6b4a8c; font-weight: 800; }
+.bart { flex: none; display: flex; align-items: center; justify-content: center; width: calc(var(--u) * 32); height: calc(var(--u) * 32); border-radius: calc(var(--u) * 6); background: #fff6dc; border: calc(var(--u) * 1) solid var(--ink); }
+.boon.r-r .bart { background: radial-gradient(circle, #fff6c8 30%, #e7d4ff 80%); }
+button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 calc(var(--u) * 0.5) 0 var(--ink); }
+.boon.on { outline: calc(var(--u) * 1.6) solid var(--go); outline-offset: calc(var(--u) * 1); background: #eafff0 !important; transform: translateY(calc(var(--u) * -1)); }
+.bcombo { display: flex; align-items: center; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 1) calc(var(--u) * 2); background: #ffe4f0; border: calc(var(--u) * 0.8) solid #ff6aa0; border-radius: calc(var(--u) * 4); font-size: calc(var(--u) * 5.8); font-weight: 800; color: #9a1a5a; line-height: 1.2; }
+.bcombo.big { font-size: calc(var(--u) * 6.4); padding: calc(var(--u) * 2) calc(var(--u) * 3); }
+.choice { display: flex !important; align-items: center; gap: calc(var(--u) * 3); width: 100%; min-height: calc(var(--u) * 34); padding: calc(var(--u) * 3) calc(var(--u) * 4) !important; background: var(--paper) !important; border: calc(var(--u) * 1.2) solid var(--ink) !important; border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); text-align: left; }
+.choice b { font-family: var(--f-display); font-size: calc(var(--u) * 9.5); line-height: 1; } .choice .col { gap: calc(var(--u) * 1); } .choice:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 calc(var(--u) * 0.5) 0 var(--ink); }
+.soloend { justify-content: center; } .soloend.won .rays { position: absolute; left: 50%; top: 40%; width: calc(var(--u) * 300); height: calc(var(--u) * 300); margin: calc(var(--u) * -150); background: repeating-conic-gradient(rgba(255, 246, 200, 0.4) 0 12deg, transparent 12deg 24deg); animation: spin 18s linear infinite; }
+.endp { width: 100%; align-items: center; gap: calc(var(--u) * 3); } .boonrow { display: flex; flex-wrap: wrap; justify-content: center; gap: calc(var(--u) * 1.5); }
+.soloend:not(.won) > canvas.bgc { filter: saturate(0.5) brightness(0.85); }
+
+.bossin.twistin .bossban { animation-delay: calc(var(--k) * 0.3s); }
+.rulechip[hidden] { display: none !important; }
+
+/* ===== Encore: a neon stage ===== */
+.enchero { position: relative; flex: none; overflow: hidden; border-block: var(--b) solid var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: space-between; }
+.enchero > canvas.bgc { position: absolute; left: 0; bottom: 0; }
+.neonsign { position: relative; margin-top: calc(var(--u) * 6); padding: 0 calc(var(--u) * 6); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 22); line-height: 1.1; letter-spacing: 0.06em; color: #fff0fb;
+  border: calc(var(--u) * 1.2) solid #ff9ad8; border-radius: calc(var(--u) * 8); text-shadow: 0 0 calc(var(--u) * 3) #ff5ac8, 0 0 calc(var(--u) * 9) #ff5ac8; box-shadow: 0 0 calc(var(--u) * 6) #ff5ac8, inset 0 0 calc(var(--u) * 6) #ff5ac8; animation: neon 3.2s steps(1) infinite; }
+@keyframes neon { 0%, 100% { opacity: 1; } 91% { opacity: 1; } 92% { opacity: 0.55; } 94% { opacity: 1; } 96% { opacity: 0.7; } }
+.encstage { position: relative; display: flex; align-items: flex-end; justify-content: center; margin-bottom: calc(var(--u) * 3); } .encstage canvas { margin: 0 calc(var(--u) * -3); } .encstage canvas.out { filter: grayscale(1); opacity: 0.45; }
+.mile { background: #2c2366 !important; color: #fff; border-color: var(--ink); box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); } .mile .label { color: #d8b8ff; } .mile b { color: #7fe0d8; text-shadow: 0 0 calc(var(--u) * 3) #2fd0d0; }
+.mile.got { background: #3a6aa8 !important; } .mile.got b { color: #fff; }
+.encstage .encpet { width: calc(var(--u) * 40); gap: 0; } .encstage .encpet .meter { width: 80%; margin-top: calc(var(--u) * -2); border-color: #fff6dc; }
+.encstage .encpet b { color: #fff; font-family: var(--f-display); font-size: calc(var(--u) * 6.4); line-height: 1.2; text-shadow: 0 0 calc(var(--u) * 2) #2b2140; }
+.mile .purse { color: var(--ink); }
+.unlocked { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 2); padding: calc(var(--u) * 2) calc(var(--u) * 3); background: #fff3c2; border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5); font-size: calc(var(--u) * 6.6); }
+.smapin.busy .snode { pointer-events: none; }
 
 </style>
 <div id="app"><div id="game"><div id="screen"></div><div id="modal" hidden></div><div id="toast" hidden></div></div></div>
@@ -460,6 +590,8 @@ window.H = {};
 
   const A = (n, cd, fx, o) => Object.assign({ n, cd, fx }, o || {});
   const D = (tgt, pow, o) => ['dmg', tgt, pow, o || {}];
+  // what every Basic move turns into when a Daily Gig unplugs them
+  H.FEEDBACK = A('Feedback', 0, [D('one', 1.3), ['recoil', 0.08]], { d: 'Hits one enemy for 130%. The screech costs the user 8% of its max HP.' });
 
   H.SPECIES = {
     thud:    { family: 'drum',   base: { hp: 150, vol: 20, poise: 30, tempo: 90 },  animal: 'drum', lore: 'A round drum with ears, feet and a mallet for a tail. Sturdy, and its heavy beat slows enemies down.' },
@@ -1397,7 +1529,7 @@ window.H = {};
 
   class Battle {
     constructor(o) {
-      this.rnd = o.rng || Math.random; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null;
+      this.rnd = o.rng || Math.random; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null; this.rules = o.rules || {};
       o.allies.forEach((s, i) => s && this._add(s, 0, i)); o.enemies.forEach((s, i) => s && this._add(s, 1, i));
       for (const u of this.units) {
         u.max = Math.round(u.base.hp * (1 + this.mod(u, 'hp'))); u.hp = u.max;
@@ -1405,7 +1537,7 @@ window.H = {};
         u.gauge = Math.min(GMAX - 1, g * GMAX);
         if (u.shift) u.family = H.FAMILY_ORDER[Math.floor(this.rnd() * 5)];
       }
-      this.acting = '__start__'; this.ensemble = null; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble); for (const u of this.units) this.fire(u, 'start'); this.acting = null;
+      this.acting = '__start__'; this.ensemble = null; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble); for (const u of this.units) this.fire(u, 'start'); this.setupRules(); this.acting = null;
       this.startEvents = this.ev; this.ev = [];
     }
     // The team's ensemble plays its opening: one boon, set before anyone moves.
@@ -1429,11 +1561,11 @@ window.H = {};
       else if (id === 'hymn') this.ensRevive = K.hymn;
     }
     _add(spec, side, slot) {
-      const ab = [];
-      if (spec.kit.beat) ab.push({ kind: 'beat', def: spec.kit.beat, cd: 0 });
+      const ab = [], nb = this.rules.noBasics;
+      if (spec.kit.beat) ab.push({ kind: 'beat', def: nb ? H.FEEDBACK : spec.kit.beat, cd: 0 });
       if (spec.kit.phrase) ab.push({ kind: 'phrase', def: spec.kit.phrase, cd: 0 });
       if (spec.kit.finale) ab.push({ kind: 'finale', def: spec.kit.finale, cd: 2 });
-      const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0 };
+      const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0, giant: spec.giant || null };
       const sh = spec.perks.find((p) => p.shift); if (sh) { u.shift = sh.shift; u.enrageAt = sh.enrage; }
       this.units.push(u);
     }
@@ -1444,9 +1576,46 @@ window.H = {};
     bump(u, on) { u.perks.forEach((p, i) => { if (p.ramp && p.ramp.on === on) u.ramp[i] = Math.min(p.ramp.max, (u.ramp[i] || 0) + p.ramp.per); }); }
     low(u) { const lh = this.has(u, 'lowHp'); return lh && u.hp / u.max < lh.below ? lh : null; }
     vol(u) { const lh = this.low(u); return u.base.vol * (1 + this.mod(u, 'vol') + this.rampTotal(u) + (lh ? lh.vol : 0)) * (u.st.pup ? 1.25 : 1) * (u.st.pdown ? 0.75 : 1); }
-    tempo(u) { return Math.max(20, u.base.tempo * (1 + this.mod(u, 'tempo')) * (u.tail || 1) * (u.st.sup ? 1.3 : 1) * (u.st.sdown ? 0.7 : 1)); }
+    tempo(u) { const t = Math.max(20, u.base.tempo * (1 + this.mod(u, 'tempo')) * (u.tail || 1) * (u.st.sup ? 1.3 : 1) * (u.st.sdown ? 0.7 : 1)) * (this.mic && this.micHolder(u) ? this.rules.mic.tempo : 1); return this.rules.backwards ? Math.max(20, 10000 / t) : t; }
     poise(u) { return Math.max(0, u.base.poise + this.mod(u, 'poise')); }
     has(u, flag) { for (const p of u.perks) if (p[flag]) return p[flag]; return null; }
+    sum(u, flag) { let s = 0; for (const p of u.perks) if (p[flag]) s += p[flag]; return s; }
+
+    /* ----- house rules: the Daily Gig's twists and the Solo crowd. All of them are visible on the field. ----- */
+    setupRules() {
+      const R = this.rules;
+      if (R.potato) { const foes = this.alive(1); if (foes.length) this.potato = { uid: foes[Math.floor(this.rnd() * foes.length)].uid, left: R.potato.every }; }
+      if (R.mic) this.mic = [0, 1].map((side) => { const a = this.alive(side).sort((x, y) => x.slot - y.slot)[0]; return a ? a.uid : -1; });
+    }
+    // all damage from hits is scaled by the volume knob and, late in a long fight, by a restless crowd
+    dmgMul() {
+      const R = this.rules; let m = 1;
+      if (R.volume) m *= Math.min(R.volume.max, R.volume.start + R.volume.per * Math.floor(this.turn / R.volume.every));
+      if (R.restless && this.turn > R.restless.from) m *= 1 + R.restless.per * (this.turn - R.restless.from);
+      return m;
+    }
+    micHolder(u) { return !!this.mic && this.mic[u.side] === u.uid; }
+    // a move that is there but may not be used now: under Pass the Mic only the holder plays Skills and Specials
+    locked(u, a) { return !!this.mic && a.kind !== 'beat' && !this.micHolder(u); }
+    ready(u, a) { return a.cd === 0 && !this.locked(u, a); }
+    echoK(u) { return this.rules.echo || this.sum(u, 'echoPedal'); }
+    passMic(side) {
+      if (!this.mic) return; const list = this.units.filter((v) => v.side === side).sort((x, y) => x.slot - y.slot), cur = list.findIndex((v) => v.uid === this.mic[side]);
+      for (let i = 1; i <= list.length; i++) { const v = list[(cur + i + list.length) % list.length]; if (v.alive) { if (v.uid !== this.mic[side]) { this.mic[side] = v.uid; this.emit({ t: 'mark', u: v.uid, m: 'mic' }); } return; } }
+      this.mic[side] = -1;
+    }
+    // what the field shows for the rules in play
+    twState() { const R = this.rules; return { potato: this.potato ? Object.assign({}, this.potato) : null, mic: this.mic ? this.mic.slice() : null, vol: R.volume ? this.dmgMul() : 0, left: R.lastCall ? Math.max(0, R.lastCall - this.turn) : null, key: R.keyChange ? R.keyChange - (this.turn % R.keyChange) : null, restless: !!R.restless && this.turn > R.restless.from }; }
+    // at the start of every turn: the potato's fuse, the key change
+    tickRules() {
+      const R = this.rules;
+      if (R.keyChange && this.turn > 1 && (this.turn - 1) % R.keyChange === 0) { for (const u of this.alive(0).concat(this.alive(1))) u.family = H.FAMILY_ORDER[(H.FAMILY_ORDER.indexOf(u.family) + 1) % 5]; this.emit({ t: 'keychange', fams: this.units.map((u) => u.family) }); }
+      if (this.potato && --this.potato.left <= 0) {
+        const h = this.units[this.potato.uid], side = h ? h.side : 1; this.emit({ t: 'note', u: this.potato.uid, txt: 'Boom!' });
+        if (h && h.alive) this.applyDamage(h, h.max * R.potato.pct, { kind: 'burst' });
+        const other = this.alive(1 - side); if (!this.over && other.length) { this.potato = { uid: other[Math.floor(this.rnd() * other.length)].uid, left: R.potato.every }; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); }
+      }
+    }
 
     /* ----- turn order ----- */
     // Who acts in what order from here, assuming nothing changes.
@@ -1465,17 +1634,23 @@ window.H = {};
     next(auto) {
       if (this.over || this.waiting != null) return { events: [], wait: this.waiting };
       this.ev = [];
+      if (this.rules.lastCall && this.turn >= this.rules.lastCall) { this.over = 'lose'; this.emit({ t: 'note', u: this.alive(0)[0] ? this.alive(0)[0].uid : 0, txt: 'Lights out!' }); this.emit({ t: 'end', win: false, why: 'time' }); return { events: this.ev, wait: null }; }
       let actor = null, bt = Infinity;
       for (const u of this.units) if (u.alive) { const t = (GMAX - u.gauge) / this.tempo(u); if (t < bt - 1e-9) { bt = t; actor = u; } }
       for (const u of this.units) if (u.alive) u.gauge = Math.min(GMAX, u.gauge + this.tempo(u) * bt);
       actor.gauge = 0; this.turn++; actor.turns++; this.acting = actor;
       this.emit({ t: 'turn', u: actor.uid });
+      this.tickRules(); if (this.over) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; }
       if (actor.shift && actor.turns > 1 && (actor.turns - 1) % actor.shift === 0) { const i = H.FAMILY_ORDER.indexOf(actor.family); actor.family = H.FAMILY_ORDER[(i + 1 + Math.floor(this.rnd() * 3)) % 5]; this.emit({ t: 'shift', u: actor.uid, family: actor.family }); }
       if (actor.st.poison) this.applyDamage(actor, actor.st.poison.val, { kind: 'poison' });
       if (actor.alive && actor.st.regen) this.heal(null, actor, actor.st.regen.val);
       if (actor.alive) { this.bump(actor, 'turn'); this.fire(actor, 'turn'); }
       if (!actor.alive || this.over) { this.acting = null; this.checkOver(); this.emit(this.sync()); return { events: this.ev, wait: null }; }
       if (actor.st.stun) { this.emit({ t: 'skip', u: actor.uid }); this.endTurn(actor, null); this.emit(this.sync()); return { events: this.ev, wait: null }; }
+      // the mic: everything is ready for whoever holds it
+      if (this.mic && this.micHolder(actor)) actor.ab.forEach((a) => (a.cd = 0));
+      // last turn's Skill or Special plays again, softer
+      if (actor.echoNext) { const e = actor.echoNext; actor.echoNext = null; this.emit({ t: 'note', u: actor.uid, txt: 'Echo!' }); this.useAbility(actor, { kind: e.kind, def: e.def }, { powMul: e.k, reactive: true, target: e.target && e.target.alive ? e.target : null }); this.checkOver(); if (this.over || !actor.alive) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; } }
       if (actor.side === 0 && !auto) { this.waiting = actor.uid; this.emit(this.sync()); return { events: this.ev, wait: actor.uid }; }
       const pick = this.autoPick(actor); this.perform(actor, pick.ab, pick.target);
       this.emit(this.sync()); return { events: this.ev, wait: null };
@@ -1483,7 +1658,7 @@ window.H = {};
     // The player's order for the waiting pet.
     act(abIndex, targetUid) {
       const u = this.units[this.waiting]; if (!u) return null;
-      const a = u.ab[abIndex]; if (!a || a.cd > 0) return null;
+      const a = u.ab[abIndex]; if (!a || !this.ready(u, a)) return null;
       this.ev = []; this.waiting = null; this.acting = u;
       // no enemy picked: the move goes where it does the most good
       this.perform(u, a, targetUid == null ? (H.needsTarget(a.def) ? this.bestTarget(u, a.def) : null) : this.units[targetUid]);
@@ -1492,18 +1667,22 @@ window.H = {};
     autoAct() { const u = this.units[this.waiting]; if (!u) return null; const p = this.autoPick(u); return this.act(u.ab.indexOf(p.ab), p.target ? p.target.uid : null); }
     perform(u, a, target) {
       this.useAbility(u, a, { target });
+      const ek = a.kind !== 'beat' && u.alive ? this.echoK(u) : 0; if (ek) u.echoNext = { def: a.def, kind: a.kind, target, k: ek };
+      // Duet: the partner joins in with its Basic move
+      if (this.rules.duet && u.side === 0 && !this.over) { const p = this.alive(0).find((x) => x !== u); if (p && p.ab[0]) { const t = target && target.alive && target.side !== p.side ? target : this.bestTarget(p, p.ab[0].def); this.useAbility(p, p.ab[0], { powMul: this.rules.duet, reactive: true, target: t }); } }
       this.endTurn(u, a);
       if (!this.over && this.turn > 500) { this.over = 'lose'; this.emit({ t: 'end', win: false }); }
     }
     endTurn(u, used) {
       if (u.alive) {
-        for (const a of u.ab) { if (a === used) a.cd = a.def.cd; else if (a.cd > 0) a.cd--; }
+        const cut = this.sum(u, 'cdCut'); for (const a of u.ab) { if (a === used) a.cd = a.def.cd ? Math.max(1, a.def.cd - cut) : 0; else if (a.cd > 0) a.cd--; }
         if (u.cdReset) { u.ab.forEach((a) => (a.cd = 0)); u.cdReset = false; }
         if (used && u.rockEncore === used.kind) { used.cd = 0; u.rockEncore = null; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
         if (u.bonusTurn && !this.over) { u.bonusTurn = 0; u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Again!' }); }
         const en = this.has(u, 'encore'); if (en && used && u.turns % en === 0 && !this.over) { u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
         for (const k of Object.keys(u.st)) { const s = u.st[k]; if (s.fresh) s.fresh = false; else if (--s.dur <= 0) { delete u.st[k]; this.emit({ t: 'stoff', u: u.uid, s: k }); } }
       }
+      if (this.mic && this.micHolder(u) && used) this.passMic(u.side);
       this.acting = null; this.checkOver();
     }
     // enemies a single hit from this unit may land on
@@ -1515,7 +1694,7 @@ window.H = {};
     autoPick(u) {
       let best = null;
       for (const a of u.ab) {
-        if (a.cd > 0 || !this.usable(u, a.def)) continue;
+        if (!this.ready(u, a) || !this.usable(u, a.def)) continue;
         const cands = H.needsTarget(a.def) ? this.validTargets(u) : [null];
         for (const t of cands) { const sc = this.aiValue(u, a.def, t) * (0.96 + this.rnd() * 0.08) + (a.kind === 'beat' ? 0 : 0.01); if (!best || sc > best.sc) best = { ab: a, target: t, sc }; }
       }
@@ -1537,7 +1716,7 @@ window.H = {};
       if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh; if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max);
       if (o.vs) for (const k in o.vs) if (tgt.st[k]) b += o.vs[k]; if (o.ifSelf) for (const k in o.ifSelf) if (src.st[k]) b += o.ifSelf[k];
       for (const p of src.perks) if (p.vs) for (const k in p.vs) if (tgt.st[k]) b += p.vs[k];
-      const lt = this.low(tgt); return m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1);
+      const lt = this.low(tgt); return m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul();
     }
     aiValue(u, def, chosen) {
       const foes = this.alive(1 - u.side), pals = this.alive(u.side); if (!foes.length) return 0;
@@ -1599,6 +1778,7 @@ window.H = {};
           else if (k === 'detonate') { for (const t of groupOf(fx[1])) if (t.st.poison) v += dmgV(t, t.st.poison.val * t.st.poison.dur, { shatter: true }); }
           else if (k === 'spread') v += 0.15;
           else if (k === 'cdr') v += 0.25;
+          else if (k === 'recoil') v -= fx[1] * 1.6 * (0.5 + (1 - u.hp / u.max));
         }
         return v;
       };
@@ -1653,7 +1833,7 @@ window.H = {};
     }
     checkOver() { if (this.over) return; const a = this.alive(0).length, b = this.alive(1).length; if (!b) { this.over = 'win'; this.emit({ t: 'end', win: true }); } else if (!a) { this.over = 'lose'; this.emit({ t: 'end', win: false }); } }
     sideDead(side) { return !this.units.some((u) => u.side === side && u.alive); }
-    sync() { return { t: 'sync', units: this.units.map((u) => ({ hp: u.hp, max: u.max, shield: u.shield, gauge: u.gauge, alive: u.alive, family: u.family, st: Object.fromEntries(Object.entries(u.st).map(([k, v]) => [k, v.dur])), cds: u.ab.map((a) => a.cd) })) }; }
+    sync() { return { t: 'sync', units: this.units.map((u) => ({ hp: u.hp, max: u.max, shield: u.shield, gauge: u.gauge, alive: u.alive, family: u.family, st: Object.fromEntries(Object.entries(u.st).map(([k, v]) => [k, v.dur])), cds: u.ab.map((a) => a.cd), lock: u.ab.map((a) => (this.locked(u, a) ? 1 : 0)) })), tw: this.twState() }; }
 
     /* ----- moves ----- */
     useAbility(u, a, ctx) {
@@ -1697,6 +1877,7 @@ window.H = {};
         else if (k === 'detonate') { for (const t of this.targets(c, fx[1])) if (t.st.poison) { const d = t.st.poison.val * t.st.poison.dur; delete t.st.poison; this.emit({ t: 'stoff', u: t.uid, s: 'poison' }); this.applyDamage(t, d, { kind: 'poison', src: c.src }); } }
         else if (k === 'spread') { const from = c.last[0]; if (from && from.alive) for (const t of this.alive(1 - c.src.side)) if (t !== from) for (const s of ['sdown', 'poison', 'stun', 'pdown', 'offkey']) if (from.st[s]) this.applySt(null, t, s, from.st[s].dur, { rawVal: from.st[s].val }); }
         else if (k === 'cdr') c.src.cdReset = true;
+        else if (k === 'recoil') { if (c.src.alive) this.applyDamage(c.src, c.src.max * fx[1], { kind: 'burst' }); }
       }
     }
     fxDmg(fx, c) {
@@ -1728,13 +1909,14 @@ window.H = {};
       if (o.vs) for (const s in o.vs) if (tgt.st[s]) b += o.vs[s];
       if (o.ifSelf) for (const s in o.ifSelf) if (src.st[s]) b += o.ifSelf[s];
       for (const p of src.perks) if (p.vs) for (const s in p.vs) if (tgt.st[s]) b += p.vs[s];
-      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * (0.95 + this.rnd() * 0.1);
+      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * (0.95 + this.rnd() * 0.1);
       m = Math.max(1, Math.round(m));
       let abs = 0; if (tgt.shield > 0 && !o.shatter) { abs = Math.min(tgt.shield, m); tgt.shield -= abs; }
       const dealt = m - abs;
       this.applyDamage(tgt, dealt, { src, abs, crit, adv, kind: 'hit' });
       if (tgt.alive) {
         if (o.st) for (const s of o.st) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
+        if (!c.reactive) for (const p of src.perks) if (p.hitSt) for (const s of p.hitSt) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
         if (o.randSt && (o.randCh == null || this.rnd() < o.randCh)) this.applySt(src, tgt, ['pdown', 'sdown', 'poison', 'offkey'][Math.floor(this.rnd() * 4)], o.randSt, {});
         if (o.push) this.pushGauge(tgt, -o.push);
         const dp = this.has(src, 'debuffPush'); if (dp && Object.keys(tgt.st).some((s) => !H.STATUS[s].buff)) this.pushGauge(tgt, -dp, true);
@@ -1751,6 +1933,8 @@ window.H = {};
         if (tgt.alive && src.alive) { this.fire(tgt, 'hurt', { attacker: src }); const ct = this.has(tgt, 'counter'); if (ct && src.alive && tgt.alive && this.rnd() < ct.ch) this.react(tgt, src, ct.pow, 'Hit Back'); }
         for (const g of this.alive(tgt.side)) if (g !== tgt && src.alive) { const gd = this.has(g, 'guard'); if (gd && this.rnd() < gd.ch) this.react(g, src, gd.pow, 'Pack Leader'); }
       }
+      // Hot Potato: whoever holds it passes it on with a single hit
+      if (this.potato && this.potato.uid === src.uid && !aoe && !c.reactive && tgt.side !== src.side && tgt.alive) { this.potato.uid = tgt.uid; this.emit({ t: 'mark', u: tgt.uid, m: 'potato' }); }
       if (!tgt.alive && o.onKill && src.alive) this.runFx(o.onKill, c);
       if (!tgt.alive && src.alive && !c.reactive) this.fire(src, 'kill');
       if (!aoe && !c.reactive && src.alive && !this.over) { const sp = this.has(src, 'splash'); if (sp) for (const f of this.alive(1 - src.side)) if (f !== tgt) this.hit(src, f, pow * sp, {}, Object.assign({}, c, { reactive: true }), true); }
@@ -1759,11 +1943,25 @@ window.H = {};
     react(u, at, pow, name) { this.emit({ t: 'ability', u: u.uid, n: name, kind: 'counter', follow: true, tgt: at.uid }); this.hit(u, at, pow, {}, { src: u, kind: 'counter', powMul: 1, last: [], reactive: true }, false); }
     applyDamage(tgt, amt, info) {
       if (!tgt.alive) return; amt = Math.max(0, Math.round(amt));
+      // Shared Stage: a hit is split evenly over the whole side
+      if (this.rules.share && info.kind === 'hit' && !info.split) { const side = this.alive(tgt.side); if (side.length > 1) { for (const v of side) this.applyDamage(v, amt / side.length, Object.assign({}, info, { split: true, abs: v === tgt ? info.abs : 0 })); return; } }
       if (info.kind === 'poison' && tgt.shield > 0) { const a = Math.min(tgt.shield, amt); tgt.shield -= a; info.abs = a; amt -= a; }
-      if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: 'Hangs on!' }); }
-      tgt.hp = Math.max(0, tgt.hp - amt);
+      let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: 'Hangs on!' }); }
+      const was = tgt.hp / tgt.max; tgt.hp = Math.max(0, tgt.hp - amt);
       this.emit({ t: 'dmg', src: info.src ? info.src.uid : -1, tgt: tgt.uid, amt, abs: info.abs || 0, crit: !!info.crit, adv: info.adv || 0, kind: info.kind, hp: tgt.hp, shield: tgt.shield });
-      if (tgt.hp <= 0) { tgt.alive = false; tgt.st = {}; tgt.gauge = 0; tgt.shield = 0; this.emit({ t: 'fall', u: tgt.uid }); if (tgt.side === 0 && this.ensRevive) { const p = this.ensRevive; this.ensRevive = 0; this.revive(tgt, p); return; } if (this.sideDead(0) || this.sideDead(1)) this.checkOver(); else for (const g of this.alive(tgt.side)) this.fire(g, 'allyFall'); return; }
+      if (stood) this.fire(tgt, 'stand');
+      if (tgt.hp <= 0) {
+        tgt.alive = false; tgt.st = {}; tgt.gauge = 0; tgt.shield = 0; this.emit({ t: 'fall', u: tgt.uid });
+        if (tgt.side === 0 && this.ensRevive) { const p = this.ensRevive; this.ensRevive = 0; this.revive(tgt, p); return; }
+        if (this.potato && this.potato.uid === tgt.uid) { const same = this.alive(tgt.side), pool = same.length ? same : this.alive(1 - tgt.side); if (pool.length) { this.potato.uid = pool[Math.floor(this.rnd() * pool.length)].uid; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); } }
+        if (this.mic && this.mic[tgt.side] === tgt.uid) this.passMic(tgt.side);
+        if (this.sideDead(0) || this.sideDead(1)) { this.checkOver(); return; }
+        // Chain Reaction: the fallen bursts and hits its own side
+        if (this.rules.chain) { this.emit({ t: 'note', u: tgt.uid, txt: 'Chain!' }); for (const v of this.alive(tgt.side)) this.applyDamage(v, tgt.max * this.rules.chain, { kind: 'burst' }); if (this.over) return; }
+        for (const g of this.alive(tgt.side)) this.fire(g, 'allyFall'); return;
+      }
+      // a giant staggers each time it loses another quarter of its HP
+      if (tgt.giant) for (const step of tgt.giant) if (was > step && tgt.hp / tgt.max <= step) { this.emit({ t: 'note', u: tgt.uid, txt: 'Staggered!' }); this.applySt(null, tgt, 'stun', 1, { force: true }); this.applySt(null, tgt, 'offkey', 2, { force: true }); }
       if (tgt.enrageAt && !tgt.once.enrage && tgt.hp / tgt.max < tgt.enrageAt) { tgt.once.enrage = true; tgt.st.sup = { dur: 99, fresh: false }; this.emit({ t: 'st', u: tgt.uid, s: 'sup', dur: 99 }); this.emit({ t: 'note', u: tgt.uid, txt: 'Faster!' }); }
     }
     revive(u, pct) { u.alive = true; u.revived = true; u.hp = Math.max(1, Math.round(u.max * pct)); u.gauge = 0; u.st = {}; this.emit({ t: 'revive', u: u.uid, hp: u.hp }); }
@@ -1781,8 +1979,8 @@ window.H = {};
     applySt(src, tgt, s, dur, o) {
       o = o || {}; if (!tgt.alive) return false; if (o.ch != null && this.rnd() >= o.ch) return false;
       const def = H.STATUS[s];
-      const im = this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
-      if (!def.buff && tgt.ward) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
+      const im = !o.force && this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
+      if (!def.buff && tgt.ward && !o.force) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
       if (!def.buff) {
         if (src && (s === 'sdown' || s === 'pdown' || s === 'offkey')) dur += this.mod(src, 'statusDur');
       }
@@ -2061,6 +2259,280 @@ window.H = {};
   H.ownedSets = (S) => H.RECORDS.filter((r) => r.bg && S.records[r.id]).map((r) => r.bg);
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
 
+/* ---- modes.js ---- */
+/* Hushsong — two more ways to play. No DOM.
+   Daily Gig: one battle a day with a house rule that changes how battles work; the date picks it, so it is the same for everyone.
+   Solo: a short tour with a single pet along a branching road: five gigs, stops in between, a boss at the end, and boons that stack up. */
+(function (H) {
+  'use strict';
+  const DAY = 86400000, now = () => Date.now();
+
+  /* ================= Daily Gig ================= */
+  // k: how tough the Din are for that rule (tuned by test/modes.js so every rule is about as winnable as the others)
+  H.DAILY = { unlock: 5, notes: 50, k: 1, loud: true };
+  H.TWISTS = {
+    mirror: { n: 'Mirror Match', d: 'The Din copy your band. You face your own pets, move for move.', k: 1.12 },
+    potato: { n: 'Hot Potato', d: 'A potato is ticking on the stage. Hit someone with a single hit to pass it on. When the fuse runs out, whoever holds it loses 30% of their HP.', rules: { potato: { every: 5, pct: 0.3 } }, k: 1.0 },
+    key: { n: 'Key Change', d: 'Every 6 turns everyone moves one step round the family loop, so who is strong against whom keeps changing.', rules: { keyChange: 6 }, k: 1.0 },
+    volume: { n: 'Volume Knob', d: 'Hits start at half strength and get louder every 2 turns, up to two and a half times.', rules: { volume: { start: 0.5, per: 0.1, every: 2, max: 2.5 } }, k: 1.0 },
+    backwards: { n: 'Backwards Tempo', d: 'Slow is fast: the lowest Speed acts most often. Speed Up and Slow work the other way round too.', rules: { backwards: true }, k: 1.0 },
+    shared: { n: 'Shared Stage', d: 'A hit on one fighter is split evenly over its whole side. Area moves hit everyone at full strength.', rules: { share: true }, k: 1.05 },
+    chain: { n: 'Chain Reaction', d: 'Whoever falls bursts: everyone left on its side loses 20% of their max HP.', rules: { chain: 0.2 }, k: 1.0 },
+    giant: { n: 'Giant Slayer', d: 'One giant boss and nothing else. Every quarter of its HP you knock off staggers it: it misses a turn and goes Off-Key.', k: 1.0 },
+    duet: { n: 'Duet', d: 'Only the first two pets of your band play. Every move one makes is joined by the other\'s Basic move at 60%.', rules: { duet: 0.6 }, k: 0.8 },
+    swap: { n: 'Swapped Kits', d: 'Each pet plays with the moves of the pet beside it. Stats stay the same.', k: 1.0 },
+    mic: { n: 'Pass the Mic', d: 'Only the one holding the mic can use Skills and Specials. They are all ready for it, and it acts faster. The mic moves on after each turn.', rules: { mic: { tempo: 1.4 } }, k: 1.0 },
+    echo: { n: 'Echo Chamber', d: 'Every Skill and Special plays again at half strength at the start of the user\'s next turn.', rules: { echo: 0.5 }, k: 1.0 },
+    lastcall: { n: 'Last Call', d: 'The lights go out after 45 turns, counting everyone\'s. Win before then.', rules: { lastCall: 45 }, k: 0.85 },
+    nobasics: { n: 'No Basics', d: 'Basic moves are unplugged. In their place everyone has Feedback: a 130% hit that costs the user 8% of its max HP.', rules: { noBasics: true }, k: 1.0 },
+  };
+  H.TWIST_ORDER = Object.keys(H.TWISTS);
+  // one venue per region
+  H.VENUES = { fen: 'The Lily Pad', works: 'The Anvil Room', orchard: 'Hive Bandstand', ridge: 'Summit Lodge', road: 'The Crossroads', caves: 'The Echo Pit', dunes: 'Oasis Stage', harbor: 'Pier Nine', tower: 'The Clock Loft', hall: 'The Velvet Box' };
+  const order14 = (cyc) => H.shuffle(H.TWIST_ORDER, H.rng(cyc * 977 + 5));
+  // The twist for a day: every rule once in each fortnight, never the same two days running.
+  H.twistOf = (day) => { const cyc = Math.floor(day / 14), o = order14(cyc); if (o[0] === order14(cyc - 1)[13]) [o[0], o[1]] = [o[1], o[0]]; return o[day - cyc * 14]; };
+  H.gigOf = (day) => { const rnd = H.rng(day * 131 + 17), region = H.REGION_ORDER[Math.floor(rnd() * 10)]; return { day, twist: H.twistOf(day), region, venue: H.VENUES[region], seed: Math.floor(rnd() * 1e9) }; };
+  H.dailyOpen = (S) => S.level >= H.DAILY.unlock;
+  H.refreshDaily = (S, ms) => { const d = H.dayOf(ms == null ? now() : ms); if (S.daily && S.daily.day === d) return false; S.daily = { day: d, won: 0, tries: 0 }; return true; };
+  H.dailyStatus = (S, ms) => { H.refreshDaily(S, ms); return Object.assign(H.gigOf(S.daily.day), { won: !!S.daily.won, tries: S.daily.tries }); };
+  // the band that plays: the whole band, or its first two for a Duet
+  H.dailyBand = (S, twist) => { const T = H.teamPets(S).filter(Boolean); return twist === 'duet' ? T.slice(0, 2) : T; };
+  // Who plays tonight. Enemies stand at your level; the lead one is Loud.
+  H.dailyStage = (S, ms) => {
+    const g = H.dailyStatus(S, ms), T = H.TWISTS[g.twist], R = H.REGIONS[g.region], rnd = H.rng(g.seed), L = Math.max(1, S.level), k = H.DAILY.k * (T.k || 1);
+    let enemies;
+    if (g.twist === 'mirror') enemies = H.dailyBand(S, g.twist).map((p) => ({ id: p.form, lvl: L, pet: true, k }));
+    else if (g.twist === 'giant') enemies = [{ id: R.boss, lvl: L, k, giant: true }];
+    else { const ids = [0, 1, 2].map(() => R.din[Math.floor(rnd() * R.din.length)]).sort((a, b) => (H.DIN_FRONT[a] || 0) - (H.DIN_FRONT[b] || 0)); enemies = ids.map((id, i) => ({ id, lvl: L, k, loud: H.DAILY.loud && i === 0, hp: T.hp, vol: T.vol })); }
+    return Object.assign(g, { level: L, enemies, rules: T.rules || {}, boss: g.twist === 'giant', name: g.venue });
+  };
+  // Swapped Kits: each pet takes the moves (and passive) of the pet to its right
+  const swapKits = (specs) => {
+    const live = specs.filter(Boolean); if (live.length < 2) return specs;
+    const kits = live.map((s) => ({ kit: s.kit, passive: s.kit.passive || null }));
+    live.forEach((s, i) => { const o = kits[(i + 1) % live.length], own = s.kit.passive; s.perks = s.perks.filter((p) => p !== own); if (o.passive) s.perks.unshift(o.passive); s.kit = o.kit; s.swapped = true; });
+    return specs;
+  };
+  H.MIRROR = { hp: 0.9, vol: 0.85 };
+  H.GIANT = { hp: 2.0, vol: 1.15, steps: [0.75, 0.5, 0.25] };
+  H.dailyFoe = (e) => {
+    // a mirror is your own pet at your level without its equipment or stars, a little softer
+    if (e.pet) { const u = H.buildPetUnit({ form: e.id, rank: 0, gear: [] }, e.lvl), m = H.MIRROR; u.base = Object.assign({}, u.base, { hp: u.base.hp * m.hp * e.k, vol: u.base.vol * m.vol * e.k }); u.name = 'Mirror ' + H.FORMS[e.id].n; u.mirror = true; u.role = 'din'; return u; }
+    const u = H.buildDinUnit(e.id, e.lvl, e.loud, null, e.k); if (e.hp || e.vol) u.base = Object.assign({}, u.base, { hp: u.base.hp * (e.hp || 1), vol: u.base.vol * (e.vol || 1) });
+    if (e.giant) { u.base = Object.assign({}, u.base, { hp: u.base.hp * H.GIANT.hp, vol: u.base.vol * H.GIANT.vol }); u.giant = H.GIANT.steps; u.name = 'Giant ' + H.DIN[e.id].n; u.perks = u.perks.filter((p) => p !== H.SWELL); }
+    return u;
+  };
+  H.startDaily = (S, rnd, ms) => {
+    const st = H.dailyStage(S, ms), band = H.dailyBand(S, st.twist); S.daily.tries++;
+    let allies = band.map((p) => H.buildPetUnit(p, S.level, S)); if (st.twist === 'swap') allies = swapKits(allies);
+    for (const e of st.enemies) if (!e.pet) S.dinSeen[e.id] = 1;
+    const ens = band.length === 3 ? H.teamEnsemble(S) : null;
+    return new H.Battle({ allies, enemies: st.enemies.map(H.dailyFoe), rng: rnd, ensemble: ens ? ens.id : null, rules: st.rules });
+  };
+  // A win pays 50 notes the first time each day. Every try gives some experience.
+  H.finishDaily = (S, win, battle) => {
+    H.refreshDaily(S); const g = H.gigOf(S.daily.day), out = { daily: true, win, twist: g.twist, venue: g.venue, region: g.region, notes: 0, xp: 0, ups: 0, first: false };
+    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? 0.5 : 0.2)); out.ups = H.gainXp(S, out.xp);
+    if (win && !S.daily.won) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
+    return out;
+  };
+  H.msToTomorrow = (ms) => { ms = ms == null ? now() : ms; return (H.dayOf(ms) + 1) * DAY + new Date(ms).getTimezoneOffset() * 60000 - ms; };
+
+  /* ================= Solo ================= */
+  // rows: what each step of the road offers. g: a gig (or a Loud gig), s: a stop (rest, jam session or mystery), b: the boss.
+  H.SOLO = {
+    unlock: 10, refLv: 14, gigNotes: 15, bossNotes: 25, rows: ['g', 's', 'g', 's', 'g', 's', 'g', 's', 'g', 'b'], loudCh: 0.4,
+    rest: 0.4, practise: 0.1, restless: { from: 30, per: 0.06 },
+    // how tough the Din are: per gig (the first to the fifth), for a Loud gig, the boss, and by how grown the pet is
+    k: 0.33, ramp: 0.12, loudK: 1.15, bossK: 0.92, count: [2, 2, 2, 2, 2], tierK: [1, 1.36, 1.65], roleK: { stray: 1, rhythm: 1, lead: 1.05, harmony: 1, bass: 0.92 },
+  };
+  H.soloOpen = (S) => S.level >= H.SOLO.unlock;
+  // Each pet's own fine-tuning on top of its growth and role, so that every pet makes about as good a soloist (fitted by test/modes.js fit)
+  H.SOLO_FORM = { thud: 1, stomp: 1.04, march: 0.98, cadence: 1.03, patter: 0.82, jig: 0.86, roll: 0.98, clack: 1.1, click: 1.06, flamenco: 1.11, tango: 1.1, rattle: 0.9, rumba: 0.88, samba: 1.02, twang: 1.09, pluck: 1.14, riff: 1.12, shred: 1.14, strum: 1.3, ballad: 1.11, waltz: 1.13, screech: 0.93, saw: 1.15, reel: 1.15, lament: 1.03, quaver: 1.1, nocturne: 1.01, caprice: 1.09, hum: 1.11, drone: 1.12, dirge: 1.1, chorale: 1.03, whistle: 1.06, carol: 0.93, lullaby: 1.08, squeak: 1.06, wheeze: 1.23, polka: 1.74, shanty: 1.23, trill: 1.24, scherzo: 1.26, cadenza: 1.42, blare: 0.86, bellow: 0.68, fanfare: 0.66, anthem: 0.64, toot: 1.01, swing: 1.24, reveille: 0.95, clang: 0.96, toll: 0.75, knell: 0.85, peal: 0.66, jingle: 0.98, carillon: 0.95, gamelan: 0.84, yelp: 0.88, croon: 0.76, serenade: 0.76, hymn: 0.8, shout: 0.93, chant: 0.85, aria: 0.93, howl: 0.94, growl: 1.28, blues: 1.78, grunge: 1.58, bay: 0.9, round: 0.89, requiem: 0.97, bong: 1.1, clash: 1.12, tamtam: 1.23, thunder: 0.95, ripple: 1.03, shimmer: 0.98, quake: 0.91, tock: 1.11, marimba: 0.94, vibes: 1.07, kalimba: 1.02, chime: 1.01, celesta: 1, glock: 1.1, tink: 1.17, carousel: 0.99, gavotte: 0.98, reverie: 1.16, windup: 1.29, toccata: 1.7, ostinato: 1.19, wah: 0.84, plunger: 0.83, ska: 0.85, dixie: 0.88, cornet: 0.9, mariachi: 0.92, mambo: 1.01, thrum: 1.11, upright: 1.11, slap: 1.02, basso: 1.01, arco: 1.07, sostenuto: 0.93, fugue: 1.06, doo: 0.95, chorus: 0.94, cantata: 0.9, madrigal: 1.02, doowop: 1.02, gospel: 1.06, plainsong: 1.06, huff: 0.99, busker: 1, delta: 1.07, juke: 1.1, chromatic: 0.96, mistral: 0.89, sirocco: 0.92, jangle: 1.04, bluegrass: 1.19, picker: 1.23, duel: 1.19, folk: 1.14, jamboree: 1.1, lonesome: 1.12, plink: 0.97, ragtime: 0.95, boogie: 1.11, stride: 0.98, sonata: 1.18, concerto: 1.16, minuet: 1.33, peep: 0.89, piper: 0.95, pied: 0.91, syrinx: 0.92, fife: 0.95, piccolo: 1.08, zephyr: 0.95, skirl: 0.95, highland: 1.05, pibroch: 1.06, tattoo: 0.97, bellows: 0.92, clan: 0.92, keening: 0.99, oompah: 0.86, sousa: 0.95, helicon: 1.19, bombard: 0.88, baritone: 0.96, subsonic: 0.99, tubby: 1.08, bop: 1.03, bebop: 1.15, hardbop: 1.22, cool: 1.23, smooth: 1.3, soul: 1.19, lounge: 1.25, warble: 1.02, shellac: 0.96, vinyl: 1.01, jukebox: 0.92, diva: 0.79, opera: 0.86, cabaret: 0.87, chatter: 0.97, shortwave: 0.91, longwave: 0.86, pirate: 0.91, deejay: 0.74, mixtape: 0.83, broadcast: 0.95 };
+
+  /* boons: picked along the road, kept for the tour. Common ones can be taken twice; rare ones once. */
+  const B = (n, r, d, perk) => ({ n, r, d, perk: Object.assign({ n, d }, perk) });
+  H.BOONS = {
+    amp: B('Bigger Amp', 'c', '+20% Power.', { mod: { vol: 0.2 } }),
+    case: B('Padded Case', 'c', '+25% HP.', { mod: { hp: 0.25 } }),
+    quick: B('Quick Fingers', 'c', '+15% Speed.', { mod: { tempo: 0.15 } }),
+    pitch: B('Perfect Pitch', 'c', '+12% critical hit chance, and critical hits deal 25% more.', { mod: { crit: 0.12, critDmg: 0.25 } }),
+    shell: B('Hard Shell', 'c', '+12 Guard, and every gig starts with a Shield of 20% of its HP.', { mod: { poise: 12 }, on: { start: [['shield', 'self', 0, { pct: 0.2 }]] } }),
+    soul: B('Soul Song', 'c', 'Heals for 15% of the damage it deals.', { leech: 0.15 }),
+    sour: B('Sour Notes', 'c', 'Its hits Poison for 2 turns.', { hitSt: [['poison', 2, 1, 0.25]] }),
+    wrong: B('Wrong Chord', 'c', 'Its hits have a 50% chance to make the target Off-Key for 2 turns.', { hitSt: [['offkey', 2, 0.5]] }),
+    opener: B('Opening Act', 'c', 'Goes first in every gig, and its first hit deals 40% more.', { startGauge: 0.99, firstStrike: 0.4 }),
+    spiky: B('Spiky Riff', 'c', 'Enemies that hit it take 25% of that damage back.', { thorns: 0.25 }),
+    hype: B('Hype Man', 'c', 'Starts every gig with Power Up and Speed Up for 2 turns.', { on: { start: [['st', 'self', 'pup', 2], ['st', 'self', 'sup', 2]] } }),
+    hush: B('Quiet Please', 'c', 'Enemies start every gig Slow for 2 turns.', { on: { start: [['st', 'all', 'sdown', 2]] } }),
+    cresc: B('Crescendo', 'c', '+4% Power every turn of a gig, up to +40%.', { ramp: { on: 'turn', per: 0.04, max: 0.4 } }),
+    overflow: B('Overflow', 'r', 'Healing past full HP turns into Shield.', { overheal: true }),
+    lifeloop: B('Lifesong Loop', 'r', 'Starts every gig with Lifesong for 3 turns. Every knockout gives 2 more.', { on: { start: [['st', 'self', 'lifesong', 3]], kill: [['st', 'self', 'lifesong', 2]] } }),
+    click: B('Click Track', 'r', 'Skills and Specials rest 1 turn less (never less than 1).', { cdCut: 1 }),
+    double: B('Double Time', 'r', 'Every third turn it acts again straight away.', { encore: 3 }),
+    maestro: B('Venom Maestro', 'r', 'Deals 40% more damage to Poisoned targets and 30% more to Off-Key ones.', { vs: { poison: 0.4, offkey: 0.3 } }),
+    critfb: B('Crit Feedback', 'r', 'Critical hits fill 35% of its turn bar.', { critGauge: 0.35 }),
+    glass: B('Glass Cannon', 'r', '+45% Power, but 30% less HP.', { mod: { vol: 0.45, hp: -0.3 } }),
+    second: B('Second Wind', 'r', 'Once per gig, a knockout leaves it at 1 HP instead, and it heals 30%.', { lastStand: true, on: { stand: [['heal', 'self', 0, { pct: 0.3 }]] } }),
+    finish: B('Big Finish', 'r', 'Deals 60% more damage to enemies under 35% HP.', { execute: { below: 0.35, bonus: 0.6 } }),
+    pedal: B('Echo Pedal', 'r', 'Its Skills and Specials play again at 40% at the start of its next turn.', { echoPedal: 0.4 }),
+    mosh: B('Mosh Pit', 'r', 'Single hits splash 30% onto the other enemies.', { splash: 0.3 }),
+    dive: B('Stage Dive', 'r', 'Every knockout heals 20% and fills half its turn bar.', { on: { kill: [['heal', 'self', 0, { pct: 0.2 }], ['gauge', 'self', 0.5]] } }),
+  };
+  H.BOON_ORDER = Object.keys(H.BOONS);
+  // pairs that are better together; the boon cards point them out
+  H.COMBOS = [
+    ['overflow', 'soul', 'every hit tops up a Shield'], ['overflow', 'lifeloop', 'every hit tops up a Shield'], ['overflow', 'dive', 'knockouts top up a Shield'],
+    ['click', 'double', 'Skills come round very fast'], ['click', 'pedal', 'more echoes, more often'], ['pedal', 'sour', 'echoes poison again'], ['pedal', 'wrong', 'echoes put Off-Key back on'],
+    ['sour', 'maestro', 'hits on Poisoned foes land 40% harder'], ['wrong', 'maestro', 'Off-Key foes take a lot more'], ['pitch', 'critfb', 'crits bring the next turn closer'],
+    ['glass', 'second', 'big hits with a safety net'], ['glass', 'shell', 'big hits behind a Shield'], ['spiky', 'shell', 'hard to hit, painful to hit'], ['cresc', 'double', 'grows louder twice as fast'], ['finish', 'dive', 'finish them off, heal up'], ['opener', 'hype', 'a flying start'],
+  ];
+  H.combosOf = (id, have) => H.COMBOS.filter((c) => (c[0] === id && have.includes(c[1])) || (c[1] === id && have.includes(c[0]))).map((c) => ({ with: c[0] === id ? c[1] : c[0], d: c[2] }));
+  H.activeCombos = (have) => H.COMBOS.filter((c) => have.includes(c[0]) && have.includes(c[1]));
+
+  /* mystery stops: two choices, each a trade */
+  H.EVENTS = {
+    busker: { n: 'A street busker', d: 'A busker with a battered guitar offers to swap songs.', opts: [{ n: 'Swap songs', d: 'Lose 20% HP. Take a random rare boon.', fx: { hurt: 0.2, rare: 1 } }, { n: 'Clap along', d: 'Heal 10%.', fx: { heal: 0.1 } }] },
+    shrine: { n: 'An old tuning shrine', d: 'A ring of humming stones. The air feels in tune.', opts: [{ n: 'Rest a while', d: 'Heal 50%.', fx: { heal: 0.5 } }, { n: 'Tune up', d: '+12% Power for this tour. Lose 10% HP.', fx: { vol: 0.12, hurt: 0.1 } }] },
+    fan: { n: 'A fan with a gift', d: 'Someone in a homemade T-shirt waves you over.', opts: [{ n: 'Take the scarf', d: '+20% HP for this tour.', fx: { hp: 0.2 } }, { n: 'Take the snack', d: 'Heal 35%.', fx: { heal: 0.35 } }] },
+    amp: { n: 'A humming amp', d: 'An amp sits in the grass, plugged into nothing, buzzing anyway.', opts: [{ n: 'Plug in', d: '+25% Power, but 15% less HP for this tour.', fx: { vol: 0.25, hp: -0.15 } }, { n: 'Leave it', d: 'Nothing happens.', fx: {} }] },
+    crate: { n: 'A crate of old records', d: 'Dusty sleeves, some of them still sealed.', opts: [{ n: 'Dig through', d: 'Pick 1 of 3 common boons. Lose 10% HP.', fx: { hurt: 0.1, pick: 'c' } }, { n: 'Grab one blind', d: 'A random common boon.', fx: { common: 1 } }] },
+    crowd: { n: 'A crowd wants a song', d: 'A little crowd has gathered and starts to chant.', opts: [{ n: 'Play for them', d: '+8% Power for this tour. Heal 15%.', fx: { vol: 0.08, heal: 0.15 } }, { n: 'Take a bow', d: 'Heal 25%.', fx: { heal: 0.25 } }] },
+  };
+  H.EVENT_ORDER = Object.keys(H.EVENTS);
+
+  /* the road: ten rows of up to three lanes; each stop links to the ones ahead of it in the same or a next-door lane */
+  H.soloMap = (seed) => {
+    const rnd = H.rng(seed * 7 + 3), nodes = [], rows = [];
+    H.SOLO.rows.forEach((kind, r) => {
+      if (kind === 'b') { const b = { id: nodes.length, r, l: 1, type: 'boss', x: 0.5, dy: 0 }; nodes.push(b); rows.push([b]); return; }
+      // stop rows sometimes have only two stops, so the road narrows and widens
+      const lanes = kind === 's' && rnd() < 0.35 ? H.shuffle([0, 1, 2], rnd).slice(0, 2).sort() : [0, 1, 2];
+      let types;
+      if (kind === 'g') { types = lanes.map(() => (r > 0 && rnd() < H.SOLO.loudCh ? 'loud' : 'gig')); if (!types.includes('gig')) types[Math.floor(rnd() * types.length)] = 'gig'; }
+      else { types = H.shuffle(['rest', 'jam', 'mystery'], rnd).slice(0, lanes.length); if (r === 7 && !types.includes('rest')) types[Math.floor(rnd() * types.length)] = 'rest'; }   // a chance to rest before the last gig
+      rows.push(lanes.map((l, i) => { const n = { id: nodes.length, r, l, type: types[i], x: 0.18 + l * 0.32 + (rnd() - 0.5) * 0.1, dy: Math.round((rnd() - 0.5) * 10) }; nodes.push(n); return n; }));
+    });
+    // roads: each stop leads on to one or two of the stops ahead in the same or a next-door lane; every stop can be reached; roads never cross
+    for (let r = 0; r < rows.length - 1; r++) {
+      const A = rows[r], B = rows[r + 1], at = (row, l) => row.find((n) => n.l === l), link = (a, b) => { if (!a.next.includes(b.id)) a.next.push(b.id); };
+      A.forEach((a) => (a.next = []));
+      if (B[0].type === 'boss') { A.forEach((a) => link(a, B[0])); continue; }
+      const crosses = (a, b) => { const c = at(A, b.l); return b.l !== a.l && c && c.next.some((k) => nodes[k].l === a.l); };
+      for (const a of A) { const v = at(B, a.l); if (v && rnd() < 0.7) link(a, v); const d = at(B, a.l + (rnd() < 0.5 ? -1 : 1)); if (d && rnd() < 0.55 && !crosses(a, d)) link(a, d); }
+      const tryLink = (a, b) => { if (!crosses(a, b)) { link(a, b); return true; } return false; };
+      for (const a of A) if (!a.next.length) { const v = at(B, a.l); if (v) link(a, v); else B.filter((b) => Math.abs(b.l - a.l) === 1).some((b) => tryLink(a, b)); }
+      for (const b of B) if (!A.some((a) => a.next.includes(b.id))) { const v = at(A, b.l); if (v) link(v, b); else A.filter((a) => Math.abs(a.l - b.l) === 1).some((a) => tryLink(a, b)); }
+    }
+    rows[rows.length - 1][0].next = [];
+    return nodes;
+  };
+  const runOf = (S) => S.soloRun;
+  H.soloNode = (run, id) => run.map[id];
+  H.soloReach = (run) => (run.at == null ? run.map.filter((n) => n.r === 0) : run.map[run.at].next.map((id) => run.map[id]));
+  H.soloGigsWon = (run) => run.gigs;
+  H.soloPet = (S) => (S.soloRun ? H.petById(S, S.soloRun.pet) : null);
+  H.refreshSolo = (S, ms) => { const d = H.dayOf(ms == null ? now() : ms), P = (S.solo = S.solo || { day: d, gigs: 0, boss: 0, best: 0, tours: 0, wins: 0 }); if (P.day === d) return false; P.day = d; P.gigs = 0; P.boss = 0; return true; };
+  // what is still to be earned today: the first five gig wins and the first boss win of the day pay
+  H.soloPaidLeft = (S) => { H.refreshSolo(S); return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
+  H.startSolo = (S, petId, rnd) => {
+    const seed = 1 + Math.floor(rnd() * 1e9), r2 = H.rng(seed), region = H.REGION_ORDER[Math.floor(r2() * 10)];
+    S.soloRun = { seed, pet: petId, region, map: H.soloMap(seed), at: null, done: [], hp: 1, boons: [], extra: { vol: 0, hp: 0 }, gigs: 0, pending: null, log: [] };
+    H.refreshSolo(S); S.solo.tours++; return S.soloRun;
+  };
+  H.endSolo = (S) => { S.soloRun = null; };
+  // the pet as it plays this tour: its usual self, plus boons and the tour's extras
+  H.soloUnit = (S) => {
+    const run = runOf(S), pet = H.petById(S, run.pet), u = H.buildPetUnit(pet, S.level, S);
+    u.perks = u.perks.concat(run.boons.map((id) => H.BOONS[id].perk)); if (run.extra.vol || run.extra.hp) u.perks.push({ mod: { vol: run.extra.vol, hp: run.extra.hp } });
+    return u;
+  };
+  H.soloMaxHp = (S) => { const b = new H.Battle({ allies: [H.soloUnit(S)], enemies: [] }); return b.units[0].max; };
+  // enemies on the road scale with the pet: its level, how far it has evolved, and its role
+  H.soloK = (S, pet) => { const f = H.FORMS[pet.form], role = H.kitOf(pet.form).role; return H.SOLO.k * H.SOLO.tierK[f.tier] * (H.SOLO.roleK[role] || 1) * (H.SOLO_FORM[pet.form] || 1); };
+  H.soloStage = (S, node) => {
+    const run = runOf(S), pet = H.petById(S, run.pet), R = H.REGIONS[run.region], L = Math.max(1, S.level), rnd = H.rng(run.seed * 13 + node.id * 101), g = run.gigs + 1;
+    const k = H.soloK(S, pet) * (1 + H.SOLO.ramp * (g - 1));
+    let enemies;
+    if (node.type === 'boss') enemies = [{ id: R.boss, lvl: L, k: k * H.SOLO.bossK }];
+    else {
+      const n = H.SOLO.count[Math.min(4, g - 1)], ids = [];
+      for (let i = 0; i < n; i++) ids.push(R.din[Math.floor(rnd() * R.din.length)]);
+      ids.sort((a, b) => (H.DIN_FRONT[a] || 0) - (H.DIN_FRONT[b] || 0));
+      enemies = ids.map((id, i) => ({ id, lvl: L, k: node.type === 'loud' ? k * H.SOLO.loudK : k, loud: node.type === 'loud' && i === 0 }));
+    }
+    return { n: g, region: run.region, boss: node.type === 'boss', elite: node.type === 'loud', level: L, enemies, solo: true, name: node.type === 'boss' ? 'Solo · boss' : 'Solo · gig ' + g };
+  };
+  // The Din's extra growth curve stands in for a whole band's gear, stars and third pet. One pet alone does not get that,
+  // so on the road it is taken out again (measured from level 14, where the numbers were tuned).
+  const curve = (L) => { const m = H.dinMult(L); return { hp: m, vol: 1 + (m - 1) * 0.45 }; };
+  H.soloFoe = (e) => { const u = H.foeUnit(e), c = curve(e.lvl), c0 = curve(H.SOLO.refLv); u.base = Object.assign({}, u.base, { hp: (u.base.hp * c0.hp) / c.hp, vol: (u.base.vol * c0.vol) / c.vol }); return u; };
+  H.startSoloBattle = (S, rnd) => {
+    const run = runOf(S), node = run.map[run.at], st = H.soloStage(S, node);
+    for (const e of st.enemies) S.dinSeen[e.id] = 1;
+    const b = new H.Battle({ allies: [H.soloUnit(S)], enemies: st.enemies.map(H.soloFoe), rng: rnd, rules: { restless: H.SOLO.restless } });
+    const u = b.units[0]; u.hp = Math.max(1, Math.round(u.max * run.hp)); return b;
+  };
+  // three boons to choose from. src: 'gig' (mostly common), 'loud' (rare), 'jam' (one rare among them), or a rarity
+  H.boonOffer = (run, src, rnd) => {
+    const can = H.BOON_ORDER.filter((id) => H.BOONS[id].r === 'c' || !run.boons.includes(id)), commons = can.filter((id) => H.BOONS[id].r === 'c'), rares = can.filter((id) => H.BOONS[id].r === 'r');
+    const pick = (pool, taken) => { const p = pool.filter((x) => !taken.includes(x)); return p.length ? p[Math.floor(rnd() * p.length)] : null; };
+    const out = [];
+    for (let i = 0; i < 3; i++) {
+      const rare = src === 'loud' || src === 'r' ? true : src === 'c' ? false : src === 'jam' ? i === 0 : rnd() < 0.22;
+      const id = pick(rare ? rares : commons, out) || pick(can, out); if (id) out.push(id);
+    }
+    return H.shuffle(out, rnd);
+  };
+  // stepping onto a stop: what it asks of you next
+  H.soloEnter = (S, id, rnd) => {
+    const run = runOf(S), node = run.map[id]; if (!node || !H.soloReach(run).some((n) => n.id === id) || run.pending) return null;
+    run.at = id; run.done.push(id);
+    if (node.type === 'gig' || node.type === 'loud' || node.type === 'boss') run.pending = { type: 'battle' };
+    else if (node.type === 'rest') run.pending = { type: 'rest' };
+    else if (node.type === 'jam') run.pending = { type: 'boon', src: 'jam', opts: H.boonOffer(run, 'jam', rnd) };
+    else { const r2 = H.rng(run.seed * 31 + id), seen = run.log.filter((x) => x.ev).map((x) => x.ev), pool = H.EVENT_ORDER.filter((e) => !seen.includes(e)); run.pending = { type: 'event', ev: pool[Math.floor(r2() * pool.length)] || 'crowd' }; }
+    return run.pending;
+  };
+  // after a gig: HP carries on, the day's notes are paid, and a boon is offered. A loss ends the tour.
+  H.finishSolo = (S, win, battle, rnd) => {
+    H.refreshSolo(S); const run = runOf(S), node = run.map[run.at], P = S.solo, out = { solo: true, win, boss: node.type === 'boss', loud: node.type === 'loud', gig: run.gigs + (win && node.type !== 'boss' ? 1 : 0), notes: 0, xp: 0, ups: 0, item: null, pet: run.pet, boons: run.boons.slice(), region: run.region };
+    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? (out.boss ? 0.6 : 0.3) : 0.12)); out.ups = H.gainXp(S, out.xp);
+    if (!win) { out.reached = run.gigs; out.total = run.earned || 0; P.best = Math.max(P.best, run.gigs); S.soloRun = null; return out; }
+    if (battle) { const u = battle.units.find((v) => v.side === 0); run.hp = u && u.alive ? Math.max(0.01, u.hp / u.max) : 0.01; }
+    if (out.boss) {
+      if (!P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
+      P.best = Math.max(P.best, 6); P.wins++; S.stats.soloWins = (S.stats.soloWins || 0) + 1; out.done = true; out.total = (run.earned || 0) + out.notes; S.soloRun = null;
+    } else {
+      run.gigs++; if (P.gigs < 5) { P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
+      P.best = Math.max(P.best, run.gigs);
+      run.pending = { type: 'boon', src: node.type === 'loud' ? 'loud' : 'gig', opts: H.boonOffer(run, node.type === 'loud' ? 'loud' : 'gig', rnd) };
+    }
+    S.notes += out.notes; return out;
+  };
+  H.soloPick = (S, id) => { const run = runOf(S); if (!run || !run.pending || run.pending.type !== 'boon') return false; if (id && run.pending.opts.includes(id)) { const f0 = H.soloMaxHp(S); run.boons.push(id); keepHp(S, f0); run.log.push({ boon: id }); } run.pending = null; return true; };
+  // HP is kept as a share of max; when max changes the HP itself stays put (as far as it fits)
+  const keepHp = (S, before) => { const run = runOf(S), after = H.soloMaxHp(S); run.hp = Math.max(0.01, Math.min(1, (run.hp * before) / after)); };
+  H.soloRest = (S, choice) => {
+    const run = runOf(S); if (!run || !run.pending || run.pending.type !== 'rest') return false;
+    if (choice === 'nap') run.hp = Math.min(1, run.hp + H.SOLO.rest); else { const f0 = H.soloMaxHp(S); run.extra.vol += H.SOLO.practise; keepHp(S, f0); }
+    run.log.push({ rest: choice }); run.pending = null; return true;
+  };
+  // a mystery's choice; returns what happened so the screen can say it (and a boon pick, if the choice leads to one)
+  H.soloEvent = (S, i, rnd) => {
+    const run = runOf(S); if (!run || !run.pending || run.pending.type !== 'event') return null;
+    const ev = run.pending.ev, o = H.EVENTS[ev].opts[i]; if (!o) return null; const fx = o.fx, f0 = H.soloMaxHp(S), got = { ev, opt: i };
+    if (fx.vol) run.extra.vol += fx.vol; if (fx.hp) run.extra.hp += fx.hp; if (fx.vol || fx.hp) keepHp(S, f0);
+    if (fx.hurt) run.hp = Math.max(0.01, run.hp - fx.hurt); if (fx.heal) run.hp = Math.min(1, run.hp + fx.heal);
+    run.log.push({ ev, opt: i }); run.pending = null;
+    const add = (rar) => { const o2 = H.boonOffer(run, rar, rnd); if (o2[0]) { const f1 = H.soloMaxHp(S); run.boons.push(o2[0]); keepHp(S, f1); got.boon = o2[0]; } };
+    if (fx.rare) add('r'); if (fx.common) add('c');
+    if (fx.pick) { run.pending = { type: 'boon', src: fx.pick, opts: H.boonOffer(run, fx.pick, rnd) }; got.pick = true; }
+    return got;
+  };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
 /* ---- art-core.js ---- */
 /* Hushsong — art engine. Everything is drawn in code as flat vector shapes, then given a dark ink outline and a white sticker edge. */
 (function (H) {
@@ -2110,6 +2582,13 @@ window.H = {};
       x.globalAlpha = 0.22; x.drawImage(tint(white, A.INK), 0, 4.5 * sc); x.globalAlpha = 1;
       x.drawImage(white, 0, 0); x.drawImage(ink, 0, 0); x.drawImage(raw, 0, 0);
       if (variant === 'flash') { x.globalAlpha = 0.8; x.drawImage(tint(raw, '#ffffff'), 0, 0); x.globalAlpha = 1; }
+      // a mirror copy (Daily Gig): a cool tint and two glassy streaks
+      if (variant === 'mirror' || variant === 'mirrorflash') {
+        x.globalAlpha = 0.42; x.drawImage(tint(raw, '#8fc8ff'), 0, 0); x.globalAlpha = 1;
+        const sh = tint(raw, '#ffffff'), sx = sh.getContext('2d'), gr = sx.createLinearGradient(0, 0, sh.width, sh.height); sx.globalCompositeOperation = 'destination-in';
+        [[0.3, 0], [0.4, 0.8], [0.48, 0], [0.54, 0.55], [0.6, 0]].forEach(([o, a]) => gr.addColorStop(o, `rgba(255,255,255,${a})`)); sx.fillStyle = gr; sx.fillRect(0, 0, sh.width, sh.height); x.drawImage(sh, 0, 0);
+        if (variant === 'mirrorflash') { x.globalAlpha = 0.8; x.drawImage(tint(raw, '#ffffff'), 0, 0); x.globalAlpha = 1; }
+      }
     }
     cache.set(ck, out); return out;
   };
@@ -3135,6 +3614,7 @@ window.H = {};
     neon: { sky: '#2c2366', sun: '#ff9ad8', far: '#5a2f9a', mid: '#3a6aa8', g1: '#7fe0d8', g2: '#5fc8c0', cloud: '#4a3a8a', stars: 1 },
     tower: { sky: '#f3e6cf', sun: '#fff6dc', far: '#e3cfa8', mid: '#d4bb8c', g1: '#e9dcc0', g2: '#dccdaa' },
   };
+  A.SCN = SCN;
   A.bg = (key, w, h, hf) => {
     const k = A.k, ck = [key, w, h, hf || '', k].join(); if (bgc.has(ck)) return bgc.get(ck);
     const c = A.make(w * k, h * k), x = c.getContext('2d'); x.scale(k, k); const g = new A.G(x), p = SCN[key] || SCN.camp, hz = Math.round(h * (hf || 0.4)), rnd = H.rng(key.length * 131 + 7);
@@ -3243,6 +3723,128 @@ window.H = {};
     (D[r] || D.fen)();
     x.restore(); g.s('M29 15 A14 14 0 1 1 1 15 A14 14 0 1 1 29 15Z', INK, 1.6);
     bdc.set(ck, c); return c;
+  };
+})(window.H);
+
+/* ---- art-modes.js ---- */
+/* Hushsong — art for the Daily Gig and Solo: house-rule badges, boon badges, road stops, mystery scenes, and the Solo map's ground. Same ink and sticker style as the rest. */
+(function (H) {
+  'use strict';
+  const A = H.Art, INK = A.INK, WHITE = '#ffffff', star = A.starPath;
+  const I = (key, size, fn) => A.def(key, { size, box: 100, off: 0, sticker: false }, fn);
+  const heart = 'M50 88 C18 66 10 44 18 30 C28 14 46 20 50 32 C54 20 72 14 82 30 C90 44 82 66 50 88 Z';
+  const note = (g, x, y, s, col) => { g.push(x, y, s); g.s('M0 10 V-14 L16 -18 V6', INK, 9); g.s('M0 10 V-14 L16 -18 V6', col, 4); g.oc(-4, 11, 6, col, 4); g.oc(12, 7, 6, col, 4); g.pop(); };
+
+  /* ---------- house rules (Daily Gig) ---------- */
+  I('tw_mirror', 14, (g) => { g.s('M50 70 V94', INK, 18); g.s('M50 70 V94', '#c98a4a', 9); g.o('M18 40 A32 34 0 1 0 82 40 A32 34 0 1 0 18 40 Z', '#ffc928'); g.o('M28 40 A22 24 0 1 0 72 40 A22 24 0 1 0 28 40 Z', '#bfe9ff', 5); g.s('M38 30 L48 22 M38 46 L60 26', WHITE, 5); });
+  I('tw_potato', 14, (g) => { g.s('M72 30 Q78 14 90 12', INK, 10); g.s('M72 30 Q78 14 90 12', '#8a5a3a', 4); g.o('M18 60 Q10 34 38 28 Q66 20 80 42 Q92 68 64 82 Q32 92 18 60 Z', '#e0a466'); g.c(38, 52, 3.4, '#a8703a'); g.c(58, 66, 3.4, '#a8703a'); g.c(66, 46, 2.8, '#a8703a'); g.c(32, 68, 2.6, '#a8703a'); g.o(star(90, 12, 11, 4.5, 6), '#ffc928', 4); });
+  I('tw_key', 14, (g) => { g.push(50, 50, 1, -30); g.o('M-6 -6 H44 V6 H38 V20 H28 V6 H20 V16 H10 V6 H-6 Z', '#ffc928'); g.oc(-24, 0, 22, '#ffc928'); g.oc(-24, 0, 8, '#fff6dc', 5); g.pop(); });
+  I('tw_volume', 14, (g) => { for (let i = 0; i < 7; i++) { const a = 2.356 + (i / 6) * 4.712, x = 50 + Math.cos(a) * 42, y = 54 + Math.sin(a) * 42, x2 = 50 + Math.cos(a) * 34, y2 = 54 + Math.sin(a) * 34; g.s(`M${x2} ${y2} L${x} ${y}`, INK, 8); g.s(`M${x2} ${y2} L${x} ${y}`, i > 4 ? '#ff3d5a' : '#ffc928', 4); } g.oc(50, 54, 26, '#4a3d6a'); g.s('M50 54 L64 38', WHITE, 7); });
+  I('tw_backwards', 14, (g) => { g.oc(50, 50, 42, '#5aa8e0'); g.o('M50 28 L20 50 L50 72 Z', WHITE, 5); g.o('M80 28 L50 50 L80 72 Z', WHITE, 5); });
+  I('tw_shared', 14, (g) => { g.o(heart, '#ff5a8a'); g.s('M37 24 V84 M63 24 V84', WHITE, 5); g.s(heart, INK, 7); });
+  I('tw_chain', 14, (g) => { const link = (x, y, r, c) => { g.push(x, y, 1, r); const d = 'M-14 -9 H14 A9 9 0 0 1 14 9 H-14 A9 9 0 0 1 -14 -9 Z'; g.s(d, INK, 14); g.s(d, c, 6); g.pop(); }; link(24, 74, -40, '#c9c3da'); link(46, 52, -40, '#c9c3da'); link(66, 34, -40, '#c9c3da'); g.o(star(84, 16, 14, 6, 7), '#ff9234', 4); });
+  I('tw_giant', 14, (g) => { g.o('M28 58 Q24 30 50 28 Q78 28 74 60 Q72 92 50 94 Q30 94 28 58 Z', '#8a84b0'); g.oc(24, 22, 8, '#8a84b0', 5); g.oc(40, 12, 8.5, '#8a84b0', 5); g.oc(58, 10, 8.5, '#8a84b0', 5); g.oc(74, 16, 7.5, '#8a84b0', 5); g.oc(84, 30, 6, '#8a84b0', 5); });
+  I('tw_duet', 14, (g) => { g.s('M32 76 V26 L74 16 V66', INK, 14); g.s('M32 40 L74 30', INK, 14); g.s('M32 76 V26 L74 16 V66', '#ffc928', 6); g.s('M32 40 L74 30', '#ffc928', 6); g.oc(24, 78, 13, '#ff6aa0'); g.oc(66, 68, 13, '#2fd0d0'); });
+  I('tw_swap', 14, (g) => { g.s('M20 42 Q50 12 80 40', INK, 15); g.s('M20 42 Q50 12 80 40', '#ffc928', 7); g.o('M90 24 L86 52 L64 40 Z', '#ffc928', 5); g.s('M80 60 Q50 90 20 62', INK, 15); g.s('M80 60 Q50 90 20 62', '#2fd0d0', 7); g.o('M10 78 L14 50 L36 62 Z', '#2fd0d0', 5); });
+  I('tw_echo', 14, (g) => { for (const r of [52, 38, 24]) { const a = 0.8, d = `M${22 + r * Math.cos(-a)} ${50 + r * Math.sin(-a)} A${r} ${r} 0 0 1 ${22 + r * Math.cos(a)} ${50 + r * Math.sin(a)}`; g.s(d, INK, 12); g.s(d, r === 52 ? '#d8b0ff' : r === 38 ? '#c88af8' : '#a35ce0', 6); } g.oc(22, 50, 10, '#a35ce0'); });
+  I('tw_lastcall', 14, (g) => { g.s('M28 84 L20 94 M72 84 L80 94', INK, 8); g.oc(22, 20, 11, '#ffc928'); g.oc(78, 20, 11, '#ffc928'); g.oc(50, 54, 36, WHITE); for (let i = 0; i < 12; i++) { const a = (i / 12) * 6.283; g.c(50 + Math.cos(a) * 28, 54 + Math.sin(a) * 28, i % 3 ? 1.6 : 3, INK); } g.s('M50 54 V30 M50 54 L64 62', INK, 7); g.c(50, 54, 4, '#ff3d5a'); });
+  I('tw_nobasics', 14, (g) => { g.s('M50 80 Q50 94 70 94', INK, 13); g.s('M50 80 Q50 94 70 94', '#5a5270', 6); g.o('M38 20 H46 V40 H38 Z', '#ffc928', 5); g.o('M54 20 H62 V40 H54 Z', '#ffc928', 5); g.o('M28 38 H72 V62 Q72 82 50 82 Q28 82 28 62 Z', '#e8ecf5'); g.o(star(82, 22, 13, 5, 5), '#ff6b5e', 4); g.o(star(18, 22, 9, 3.6, 5), '#ffc928', 4); });
+  A.twistIcon = (id) => (id === 'mic' ? 'ic_mic' : 'tw_' + id);
+
+  /* ---------- the road (Solo map) ---------- */
+  I('nd_gig', 12, (g) => { g.o('M50 94 Q12 52 16 28 Q20 8 50 8 Q80 8 84 28 Q88 52 50 94 Z', '#ff6b5e'); g.s('M44 58 V30 L64 25 V50', WHITE, 6); g.c(40, 60, 6.5, WHITE); g.c(60, 52, 6.5, WHITE); });
+  I('nd_loud', 12, (g) => { g.o('M16 8 H84 V92 H16 Z', '#4a3d6a'); g.oc(50, 62, 22, '#ff3d5a', 6); g.oc(50, 62, 8, INK, 4); g.oc(50, 26, 9, '#ffc928', 5); });
+  I('nd_rest', 12, (g) => { g.o('M14 78 L84 62 L88 74 L18 90 Z', '#8a5a3a'); g.o('M86 78 L16 62 L12 74 L82 90 Z', '#a8703a'); g.o('M50 6 Q74 32 70 52 Q66 72 50 72 Q34 72 30 52 Q28 34 50 6 Z', '#ff9a3a'); g.p('M50 32 Q61 46 59 57 Q57 67 50 67 Q43 67 41 57 Q41 46 50 32 Z', '#ffe06a'); });
+  I('nd_jam', 12, (g) => { g.push(50, 50, 1, 40); g.o('M-6 -48 H6 V8 H-6 Z', '#8a5a3a'); g.o('M-9 -54 H9 V-40 H-9 Z', '#5a3a26', 5); g.pop(); g.o('M26 56 Q8 58 12 76 Q16 94 36 92 Q52 92 54 78 Q66 76 66 62 Q64 46 50 46 Q38 46 26 56 Z', '#ffb020'); g.c(36, 72, 7, INK); });
+  I('nd_mystery', 12, (g) => { g.oc(50, 48, 40, '#c88af8'); g.s('M37 38 Q37 22 52 22 Q67 22 65 37 Q63 48 50 52 V60', INK, 16); g.s('M37 38 Q37 22 52 22 Q67 22 65 37 Q63 48 50 52 V60', WHITE, 8); g.oc(50, 76, 6.5, WHITE, 4); });
+  I('nd_start', 12, (g) => { g.s('M28 94 V8', INK, 10); g.s('M28 94 V8', '#c98a4a', 4); g.o('M30 10 H84 L72 28 L84 46 H30 Z', '#2ecb6e'); });
+  A.nodeIcon = (type) => (type === 'boss' ? 'ic_boss' : 'nd_' + type);
+
+  /* ---------- mystery stops ---------- */
+  I('ev_busker', 20, (g) => { g.o('M30 26 H70 V64 H30 Z', '#4a3d6a'); g.r(30, 52, 40, 9, 0, '#ff6b5e'); g.s('M30 52 H70 M30 61 H70', INK, 3); g.o('M10 64 H90 Q92 76 50 78 Q8 76 10 64 Z', '#4a3d6a'); g.oc(28, 88, 8, '#ffc928', 5); g.oc(46, 90, 7, '#ffc928', 5); g.oc(70, 88, 8, '#ffc928', 5); note(g, 78, 18, 0.7, '#ffc928'); });
+  I('ev_shrine', 20, (g) => { g.e(50, 88, 44, 8, '#9fdcc4'); g.o('M10 88 V44 Q10 32 22 32 Q34 32 34 44 V88 Z', '#a9b7d6'); g.o('M38 88 V28 Q38 14 50 14 Q62 14 62 28 V88 Z', '#c9d4ea'); g.o('M66 88 V44 Q66 32 78 32 Q90 32 90 44 V88 Z', '#a9b7d6'); g.p(star(50, 44, 10, 4, 4), '#ffc928'); g.p(star(22, 54, 6, 2.4, 4), '#ffffff'); g.p(star(78, 54, 6, 2.4, 4), '#ffffff'); });
+  I('ev_fan', 20, (g) => { g.o('M58 50 L70 94 L84 90 L74 46 Z', '#ff6b5e'); g.o('M10 28 Q50 46 90 28 L90 46 Q50 64 10 46 Z', '#ff6b5e'); g.s('M24 38 L22 52 M40 42 L38 56 M60 42 L62 56 M76 38 L78 52', WHITE, 4); g.s('M66 66 L78 64 M70 80 L82 78', WHITE, 4); g.push(4, 56, 0.34); g.o(heart, '#ff5a8a', 16); g.pop(); });
+  I('ev_amp', 20, (g) => { g.e(50, 92, 46, 7, '#7fd69c'); g.o('M12 24 H88 V88 H12 Z', '#8a5a3a'); g.r(20, 38, 60, 42, 5, INK); g.oc(50, 59, 15, '#5a5270', 4); g.c(50, 59, 5, '#ffc928'); for (const x of [24, 36, 48]) g.c(x, 31, 3.4, '#ffc928'); g.o(star(84, 14, 11, 4.4, 5), '#ffe06a', 4); g.s('M6 60 L2 70 M94 60 L98 70', '#ffc928', 4); });
+  I('ev_crate', 20, (g) => { g.oc(52, 32, 24, INK); g.c(52, 32, 9, '#ff6b5e'); g.c(52, 32, 2.5, INK); g.o('M10 40 H90 V92 H10 Z', '#c98a4a'); g.s('M10 57 H90 M10 74 H90', INK, 4); g.s('M18 40 V92 M82 40 V92', '#a8703a', 5); });
+  I('ev_crowd', 20, (g) => { g.s('M14 52 L6 30 M86 52 L94 30', INK, 8); g.oc(24, 66, 17, '#ffd9b3'); g.oc(76, 66, 17, '#ffcfe0'); g.oc(50, 54, 19, '#bdf3d2'); for (const [x, y] of [[24, 64], [50, 52], [76, 64]]) { g.c(x - 5, y - 2, 2.4, INK); g.c(x + 5, y - 2, 2.4, INK); g.s(`M${x - 5} ${y + 6} Q${x} ${y + 11} ${x + 5} ${y + 6}`, INK, 3); } g.e(50, 94, 46, 6, '#4a3d6a'); note(g, 84, 18, 0.6, '#ffc928'); });
+
+  /* ---------- boons ---------- */
+  I('bn_amp', 14, (g) => { g.o('M14 20 H86 V88 H14 Z', '#ff6b5e'); g.oc(50, 60, 21, INK, 2); g.oc(50, 60, 15, '#5a5270', 4); g.c(50, 60, 6, '#ffc928'); g.c(26, 31, 4, WHITE); g.c(39, 31, 4, WHITE); });
+  I('bn_case', 14, (g) => { g.s('M42 28 V20 H58 V28', INK, 7); g.o('M12 52 Q12 28 38 28 Q54 28 60 38 L82 38 Q92 38 92 48 V58 Q92 68 82 68 L60 68 Q54 78 38 78 Q12 78 12 52 Z', '#8a5a3a'); g.r(22, 46, 8, 12, 2, '#ffc928'); g.r(50, 48, 8, 10, 2, '#ffc928'); });
+  I('bn_quick', 14, (g) => { g.o('M58 6 L20 54 H46 L38 94 L80 40 H54 Z', '#ffc928'); });
+  I('bn_pitch', 14, (g) => { g.oc(50, 50, 42, WHITE); g.oc(50, 50, 29, '#ff6b5e', 5); g.oc(50, 50, 16, WHITE, 5); g.c(50, 50, 6, '#ff6b5e'); g.s('M74 26 L92 8', INK, 8); g.o('M88 4 L96 4 L96 12 Z', '#ffc928', 3); });
+  I('bn_shell', 14, (g) => { g.o('M16 14 H84 V48 Q84 78 50 92 Q16 78 16 48 Z', '#4a8ae0'); g.s('M50 52 m-6 0 a6 6 0 1 1 6 6 a14 14 0 1 1 -14 -14 a22 22 0 0 1 26 -2', WHITE, 5); });
+  I('bn_soul', 14, (g) => { g.o(heart, '#ff5a8a'); g.s('M44 66 V38 L60 34 V58', WHITE, 6); g.c(40, 67, 6, WHITE); g.c(56, 59, 6, WHITE); });
+  I('bn_sour', 14, (g) => { g.o('M10 48 Q16 18 48 16 Q80 18 86 48 Q80 80 48 82 Q16 80 10 48 Z', '#f6e04a'); g.s('M30 34 Q40 28 50 30', '#fff9c0', 5); g.o('M74 52 Q90 72 84 82 A12 12 0 0 1 64 82 Q58 72 74 52 Z', '#a35ce0', 5); });
+  I('bn_wrong', 14, (g) => { g.s('M34 10 V86', INK, 15); g.s('M34 84 Q76 76 76 56 Q76 40 34 50', INK, 15); g.s('M34 10 V86', '#d0603a', 7); g.s('M34 84 Q76 76 76 56 Q76 40 34 50', '#d0603a', 7); g.o(star(80, 18, 11, 4.4, 5), '#ffc928', 4); });
+  I('bn_opener', 14, (g) => { g.o('M8 8 H48 Q40 52 22 92 H8 Z', '#e0445a'); g.o('M92 8 H52 Q60 52 78 92 H92 Z', '#e0445a'); g.o('M4 4 H96 V18 Q50 30 4 18 Z', '#c8304a'); g.o(star(50, 62, 17, 7, 5), '#ffc928', 5); });
+  I('bn_spiky', 14, (g) => { g.o(star(50, 50, 44, 28, 10), '#9a94b8'); g.oc(50, 50, 18, '#c9c3da', 5); });
+  I('bn_hype', 14, (g) => { g.o('M12 40 H32 L78 14 V86 L32 60 H12 Z', '#ffc928'); g.s('M86 34 L96 26 M88 50 H98 M86 66 L96 74', INK, 7); g.o('M20 60 H32 L36 84 H26 Z', '#ffc928', 5); });
+  I('bn_hush', 14, (g) => { g.o('M10 36 H28 L54 14 V86 L28 64 H10 Z', '#8fd4ff'); g.s('M66 36 L90 64 M90 36 L66 64', INK, 14); g.s('M66 36 L90 64 M90 36 L66 64', '#ff6b5e', 6); });
+  I('bn_cresc', 14, (g) => { g.s('M10 50 L90 18 M10 50 L90 82', INK, 15); g.s('M10 50 L90 18 M10 50 L90 82', '#2ecb6e', 7); });
+  I('bn_overflow', 14, (g) => { g.o('M12 52 Q20 62 12 70 Q4 62 12 52 Z', '#4a8ae0', 4); g.o('M88 46 Q96 56 88 64 Q80 56 88 46 Z', '#4a8ae0', 4); g.o('M22 30 H78 L70 90 H30 Z', '#bfe9ff'); g.o('M16 32 Q28 14 40 28 Q50 12 60 28 Q72 14 84 32 Z', '#4a8ae0', 5); g.s('M36 46 V76', WHITE, 5); });
+  I('bn_lifeloop', 14, (g) => { const d = 'M80 50 A30 30 0 1 1 64 24'; g.s(d, INK, 15); g.s(d, '#ff5a8a', 7); g.o('M58 8 L80 24 L56 36 Z', '#ff5a8a', 5); g.push(50, 54, 0.42); g.o('M50 88 C18 66 10 44 18 30 C28 14 46 20 50 32 C54 20 72 14 82 30 C90 44 82 66 50 88 Z', '#ff5a8a', 14); g.pop(); });
+  I('bn_click', 14, (g) => { g.o('M34 8 H66 L86 92 H14 Z', '#8a5a3a'); g.p('M40 18 H60 L74 78 H26 Z', '#fff1d0'); g.s('M50 78 L66 24', INK, 6); g.oc(61, 40, 7, '#ffc928', 4); });
+  I('bn_double', 14, (g) => { g.oc(50, 50, 42, '#2fd0d0'); g.s('M28 28 L50 50 L28 72 M52 28 L74 50 L52 72', INK, 15); g.s('M28 28 L50 50 L28 72 M52 28 L74 50 L52 72', WHITE, 8); });
+  I('bn_maestro', 14, (g) => { g.s('M14 86 L72 22', INK, 12); g.s('M14 86 L72 22', '#fff1d0', 5); g.oc(20, 80, 9, '#8a5a3a', 5); g.o('M76 40 Q94 64 86 76 A14 14 0 0 1 64 76 Q58 64 76 40 Z', '#a35ce0', 5); g.p(star(70, 14, 9, 3.6, 4), '#ffc928'); });
+  I('bn_critfb', 14, (g) => { g.o(star(50, 50, 44, 22, 8), '#ffc928'); g.s('M50 30 A20 20 0 1 1 30 50', INK, 11); g.s('M50 30 A20 20 0 1 1 30 50', WHITE, 5); g.o('M22 44 L30 58 L40 46 Z', WHITE, 4); });
+  I('bn_glass', 14, (g) => { g.push(50, 50, 1, -28); g.o('M-36 -14 H34 Q44 -14 44 0 Q44 14 34 14 H-36 Z', '#5a5270'); g.r(30, -18, 10, 36, 3, '#4a3d6a'); g.s('M-14 -14 L-6 -2 L-16 6 L-8 14', WHITE, 4); g.pop(); g.oc(34, 70, 16, '#8a5a3a'); g.c(34, 70, 5, INK); });
+  I('bn_second', 14, (g) => { g.o('M16 90 Q24 40 84 10 Q76 62 16 90 Z', WHITE); g.s('M16 90 Q44 56 80 16', INK, 4); g.s('M40 60 L30 50 M52 48 L42 36 M62 36 L56 24', '#c9c3da', 3); });
+  I('bn_finish', 14, (g) => { const cols = ['#ff6b5e', '#ffc928', '#2fd0d0', '#6fd46a', '#c88af8']; for (let i = 0; i < 10; i++) { const a = (i / 10) * 6.283, x1 = 50 + Math.cos(a) * 18, y1 = 50 + Math.sin(a) * 18, x2 = 50 + Math.cos(a) * 42, y2 = 50 + Math.sin(a) * 42; g.s(`M${x1} ${y1} L${x2} ${y2}`, INK, 9); g.s(`M${x1} ${y1} L${x2} ${y2}`, cols[i % 5], 4); } g.o(star(50, 50, 16, 7, 5), '#ffc928', 5); });
+  I('bn_pedal', 14, (g) => { g.o('M14 28 H86 V90 H14 Z', '#2fd0d0'); g.oc(30, 42, 6, WHITE, 4); g.oc(50, 42, 6, WHITE, 4); g.oc(70, 42, 6, WHITE, 4); g.oc(50, 72, 10, '#c9c3da', 5); g.s('M30 14 Q50 2 70 14', INK, 9); g.s('M30 14 Q50 2 70 14', '#c88af8', 4); });
+  I('bn_mosh', 14, (g) => { g.o('M50 8 Q80 46 74 66 A26 26 0 0 1 26 66 Q20 46 50 8 Z', '#4a8ae0'); g.o('M14 30 Q22 42 14 48 Q6 42 14 30 Z', '#8fd4ff', 4); g.o('M86 30 Q94 42 86 48 Q78 42 86 30 Z', '#8fd4ff', 4); g.s('M38 56 Q40 70 52 72', WHITE, 5); });
+  I('bn_dive', 14, (g) => { g.o('M40 6 H60 V36 H76 L50 64 L24 36 H40 Z', '#ff6b5e'); g.oc(20, 84, 10, '#ffd9b3', 5); g.oc(50, 88, 10, '#ffcfe0', 5); g.oc(80, 84, 10, '#bdf3d2', 5); });
+  A.boonIcon = (id) => 'bn_' + id;
+
+  /* ---------- the Solo map: the region seen from above. Ground first, then a few things that belong there. ---------- */
+  const mc = new Map();
+  // keep: places to leave clear (the stops), as [x, y] in layout units
+  A.mapGround = (region, w, h, seed, keep) => {
+    const k = A.k, ck = [region, w, h, seed, k].join(); if (mc.has(ck)) return mc.get(ck);
+    const clear = (X, Y) => !(keep || []).some(([kx, ky]) => Math.abs(kx - X) < 17 && Math.abs(ky - Y) < 17);
+    const c = A.make(w * k, h * k), x = c.getContext('2d'); x.scale(k, k); const g = new A.G(x), P = A.SCN[region] || A.SCN.camp, rnd = H.rng(seed);
+    const R = (a, b) => a + rnd() * (b - a);
+    const ground = { caves: '#cdbfdf', ridge: '#eef5ff', dunes: '#f6dca0', hall: '#e9c48e', tower: '#e9dcc0', works: '#efcf9e', road: '#dfe3ec' }[region] || P.g1;
+    g.r(0, 0, w, h, 0, ground);
+    g.al(0.55); for (let i = 0; i < w * h / 700; i++) g.e(R(0, w), R(0, h), R(10, 26), R(3, 7), i % 2 ? P.g2 : A.light(ground, 0.3), R(-15, 15)); g.al(1);
+    // small props, each with an ink edge and a soft shadow, so they sit on the ground like the stickers do
+    const sh = (X, Y, rx) => g.e(X + 1.5, Y + 2, rx, rx * 0.45, 'rgba(43,33,64,0.16)');
+    const tree = (X, Y, s, col) => { col = col || '#5fc46a'; sh(X, Y + 4 * s, 9 * s); g.c(X, Y, 9 * s, INK); g.c(X, Y, 7.8 * s, col); g.c(X - 3 * s, Y - 3 * s, 3.4 * s, A.light(col, 0.35)); };
+    const fruit = (X, Y, s) => { tree(X, Y, s, '#4fb85a'); for (const [dx, dy] of [[-3, 2], [3, -1], [1, 4]]) { g.c(X + dx * s, Y + dy * s, 1.8 * s, INK); g.c(X + dx * s, Y + dy * s, 1.3 * s, '#ff5a5a'); } };
+    const pine = (X, Y, s) => { sh(X, Y + 5 * s, 8 * s); g.c(X, Y, 8.4 * s, INK); g.p(star(X, Y, 7.8 * s, 4.2 * s, 7), '#4fa88a'); g.p(star(X, Y, 4.6 * s, 2.4 * s, 7), '#6fc8a8'); g.c(X, Y, 1.4 * s, '#ffffff'); };
+    const rock = (X, Y, s, c) => { sh(X, Y + 2 * s, 6 * s); g.e(X, Y, 6.4 * s, 4.8 * s, INK); g.e(X, Y - 0.5, 5.3 * s, 3.8 * s, c || '#b9b4cc'); g.e(X - 1.6 * s, Y - 1.6 * s, 2.2 * s, 1.3 * s, A.light(c || '#b9b4cc', 0.5)); };
+    const pond = (X, Y, rx, ry, col) => { g.e(X, Y, rx + 1.4, ry + 1.4, INK); g.e(X, Y, rx, ry, col); g.e(X - rx * 0.3, Y - ry * 0.3, rx * 0.35, ry * 0.2, A.light(col, 0.4)); g.e(X + rx * 0.4, Y + ry * 0.2, 3, 2, '#6fcf5a'); };
+    const reeds = (X, Y, s) => { for (let j = 0; j < 4; j++) { const xx = X + (j - 1.5) * 2.6 * s; g.s(`M${xx} ${Y} v${-9 * s}`, INK, 2.2); g.s(`M${xx} ${Y} v${-9 * s}`, '#4f8a3c', 1.1); g.e(xx, Y - 10 * s, 1.4 * s, 2.8 * s, '#8a5a36'); } };
+    const flowers = (X, Y, s) => { const cols = ['#ff6b5e', '#ffc928', '#ff9ad8', '#ffffff']; for (let j = 0; j < 4; j++) { const xx = X + (j % 2) * 5 * s - 2.5 * s, yy = Y + Math.floor(j / 2) * 4 * s; for (let a = 0; a < 5; a++) g.c(xx + Math.cos(a * 1.257) * 1.6 * s, yy + Math.sin(a * 1.257) * 1.6 * s, 1.3 * s, cols[(j + Math.floor(X)) % 4]); g.c(xx, yy, 0.9 * s, '#fff6c8'); } };
+    const cactus = (X, Y, s) => { sh(X, Y + 1, 5 * s); const d = `M${X} ${Y} V${Y - 12 * s} M${X} ${Y - 5 * s} H${X - 4 * s} V${Y - 9 * s} M${X} ${Y - 7 * s} H${X + 4 * s} V${Y - 11 * s}`; g.s(d, INK, 5 * s); g.s(d, '#5fb878', 2.8 * s); };
+    const crystals = (X, Y, s) => { sh(X, Y + 1, 6 * s); for (let j = 0; j < 3; j++) { const xx = X + (j - 1) * 3.4 * s, hh = (7 + j * 2) * s, d = `M${xx - 2.2 * s} ${Y} L${xx} ${Y - hh} L${xx + 2.2 * s} ${Y} Z`; g.p(d, INK); g.s(d, INK, 1.4); g.p(d, j % 2 ? '#8ff0f0' : '#d6b0ff'); } };
+    const crate = (X, Y, s) => { sh(X, Y + 4 * s, 6 * s); g.r(X - 5 * s, Y - 5 * s, 10 * s, 10 * s, 1, INK); g.r(X - 4 * s, Y - 4 * s, 8 * s, 8 * s, 0.6, '#c98a4a'); g.s(`M${X - 4 * s} ${Y - 4 * s} L${X + 4 * s} ${Y + 4 * s}`, '#8a5a3a', 1.2); };
+    const barrel = (X, Y, s) => { sh(X, Y + 3 * s, 5 * s); g.c(X, Y, 5 * s, INK); g.c(X, Y, 4 * s, '#a8703a'); g.c(X, Y, 2.4 * s, '#8a5a3a'); };
+    const gear = (X, Y, s, c) => { sh(X, Y + 3 * s, 7 * s); g.c(X, Y, 7.4 * s, INK); g.p(star(X, Y, 6.6 * s, 4.8 * s, 8), c || '#cbb8dc'); g.c(X, Y, 2 * s, INK); };
+    const house = (X, Y, s) => { sh(X, Y + 5 * s, 9 * s); g.r(X - 8 * s, Y - 6 * s, 16 * s, 12 * s, 1.5, INK); g.r(X - 7 * s, Y - 5 * s, 14 * s, 10 * s, 1, ['#ff8a6a', '#8fd4ff', '#ffd95a'][Math.floor(rnd() * 3)]); g.r(X - 0.6 * s, Y - 5 * s, 1.2 * s, 10 * s, 0, 'rgba(43,33,64,0.35)'); };
+    const chairs = (X, Y, s) => { for (let j = 0; j < 3; j++) { g.r(X - 8 * s + j * 6 * s, Y - 2 * s, 4.6 * s, 4.6 * s, 1, INK); g.r(X - 7.4 * s + j * 6 * s, Y - 1.4 * s, 3.4 * s, 3.4 * s, 0.6, '#c8304a'); } };
+    const notes = (X, Y) => { g.al(0.5); g.push(X, Y, 0.45); g.s('M0 6 V-6 L7 -8 V4', INK, 3); g.c(-2.5, 6.5, 2.8, INK); g.c(4.5, 4.5, 2.8, INK); g.pop(); g.al(1); };
+    const n = Math.round((w * h) / 1100);
+    for (let i = 0; i < n; i++) {
+      const X = R(6, w - 6), Y = R(8, h - 6); if (!clear(X, Y)) continue; const s = R(0.9, 1.3), pick = rnd();
+      if (pick < 0.08) { notes(X, Y); continue; }
+      if (region === 'fen') { if (pick < 0.22) pond(X, Y, R(10, 16), R(5, 8), '#8fd8e8'); else if (pick < 0.6) reeds(X, Y, s); else if (pick < 0.8) flowers(X, Y, s * 0.8); else tree(X, Y, s * 0.9, '#6fc890'); }
+      else if (region === 'orchard') { if (pick < 0.65) fruit(X, Y, s); else flowers(X, Y, s * 0.8); }
+      else if (region === 'ridge') { if (pick < 0.6) pine(X, Y, s); else rock(X, Y, s, '#c9d4ea'); }
+      else if (region === 'dunes') { if (pick < 0.4) cactus(X, Y, s); else if (pick < 0.6) rock(X, Y, s * 0.8, '#d8b080'); else g.s(`M${X - 10} ${Y} q5 -3 10 0 t10 0`, '#e0b060', 1.6); }
+      else if (region === 'caves') { if (pick < 0.55) crystals(X, Y, s); else rock(X, Y, s, '#a894c8'); }
+      else if (region === 'harbor') { if (X > w * 0.8) continue; if (pick < 0.4) crate(X, Y, s); else if (pick < 0.7) barrel(X, Y, s); else rock(X, Y, s * 0.8); }
+      else if (region === 'works') { if (pick < 0.35) crate(X, Y, s); else if (pick < 0.65) gear(X, Y, s, '#e09a6a'); else { g.al(0.7); g.c(X, Y, 1.4, '#ffb050'); g.al(1); } }
+      else if (region === 'road') { if (pick < 0.45) house(X, Y, s); else if (pick < 0.75) tree(X, Y, s * 0.85); else rock(X, Y, s * 0.8); }
+      else if (region === 'tower') { if (pick < 0.55) gear(X, Y, s); else g.r(X - 4, Y - 4, 8, 8, 0, A.light(ground, 0.25)); }
+      else if (region === 'hall') { if (X > w * 0.36 && X < w * 0.64) continue; if (pick < 0.55) chairs(X, Y, s); else g.p(star(X, Y, 2.4, 1, 4), '#ffd27a'); }
+      else tree(X, Y, s);
+    }
+    if (region === 'harbor') { g.r(w * 0.84, 0, w * 0.16, h, 0, INK); g.r(w * 0.84 + 1.4, 0, w * 0.16, h, 0, '#7fc4e4'); for (let y = 6; y < h; y += 14) g.s(`M${w * 0.88} ${y} q3 -2 6 0 t6 0`, '#ffffff', 1.2); }
+    if (region === 'hall') { g.r(w * 0.42, 0, w * 0.16, h, 0, '#c8304a'); g.r(w * 0.42, 0, 1.2, h, 0, '#ffd27a'); g.r(w * 0.58 - 1.2, 0, 1.2, h, 0, '#ffd27a'); }
+    // a soft vignette, so the edges read as the edge of a map
+    const gr = x.createRadialGradient(w / 2, h / 2, Math.min(w, h) * 0.3, w / 2, h / 2, Math.max(w, h) * 0.75); gr.addColorStop(0, 'rgba(43,33,64,0)'); gr.addColorStop(1, 'rgba(43,33,64,0.22)'); x.fillStyle = gr; x.fillRect(0, 0, w, h);
+    mc.set(ck, c); return c;
   };
 })(window.H);
 
@@ -3708,6 +4310,8 @@ window.H = {};
     const S = UI.S, k = pet ? 'petEchoIntro' : 'echoIntro'; if (S.flags[k]) return null; S.flags[k] = 1; const n = pet && H.FORMS[H.petSpecies(pet)].n;
     return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? `You found ${n} echoes!` : 'You found an echo!'),
       el('div', 'small', pet ? `They help ${n} evolve. A fully evolved pet turns its echoes into stars.` : 'Plain echoes help any pet evolve, on top of its own echoes. Spend them on a pet\'s page.'))); };
+  // after a level up: the modes that just opened
+  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
   UI.stars = (rank) => (rank ? UI.add(el('span', 'chip'), UI.icon('ic_star'), String(rank)) : null);
   // an equipment row: icon, name, rarity, what it does
   UI.itemRow = (it, tag, right) => { const b = el(tag || 'div', 'item r-' + it.rar); if (tag === 'button') b.type = 'button'; UI.add(b, UI.icon(A.itemIcon(it), 1.25), el('div', 'grow', `<div class="rar">${H.RARITY[it.rar].n}</div><b>${H.itemName(it)}</b><div>${H.itemText(it)}</div>`)); if (right) { right.classList.add('who'); b.appendChild(right); } return b; };
@@ -3806,6 +4410,8 @@ window.H = {};
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
       ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
+      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day at your level, with a house rule that changes how battles work. The rule is the same for everyone that day. The first win pays ${H.DAILY.notes} notes; try as often as you like.`),
+      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet goes on tour. Pick roads on a map: five gigs, stops to rest, jam or take a chance, and a boss at the end. Boons collected on the way last the whole tour and some work together. Each day the first five gig wins pay ${H.SOLO.gigNotes} notes and the first boss win ${H.SOLO.bossNotes} notes and a piece of equipment.`),
       ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves near your level, a little tougher each time. HP carries over and fallen pets sit out. Waves 5, 10, 15 and 20 pay echoes and a shell, once a week.`),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
@@ -3992,14 +4598,16 @@ window.H = {};
     const modes = el('div', 'modes');
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
-    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, UI.icon(icon, 1.25), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
+    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, add(el('span', 'micon'), UI.icon(icon, 1.25)), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
     if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
-    // a mode you cannot play yet says when it opens
-    const later = (cls, icon, name, sub, text) => { const b = small(cls + ' locked', icon, name, sub, () => UI.toast(text)); return b; };
+    // a mode you cannot play yet looks like the others, greyed, with a small lock and when it opens
+    const later = (cls, icon, name, sub, text) => { const b = small(cls + ' locked', icon, name, sub, () => UI.toast(text)); b.querySelector('.micon').appendChild(UI.icon('ic_lock', 0.62)); b.setAttribute('aria-label', name + ', locked. ' + sub); return b; };
+    const atLv = (cls, icon, name, lv, go, sub, pip) => (S.level >= lv ? small(cls, icon, name, sub, go, pip) : later(cls, icon, name, 'Unlocks at Level ' + lv, `${name} unlocks at level ${lv}.`));
     H.refreshEncore(S); const E = S.encore, eSub = S.encoreRun ? `Wave ${S.encoreRun.wave} next` : E.weekBest ? `Best this week: ${E.weekBest}` : 'Endless waves';
-    const enc = H.encoreOpen(S) ? small('enc', 'ic_mic', 'Encore', eSub, 'encore') : later('enc', 'ic_lock', 'Encore', 'From level ' + H.ENCORE.unlock, `Encore opens at level ${H.ENCORE.unlock}.`);
-    const soon = (cls, icon, name) => later(cls, icon, name, 'Coming soon', name + ' is on its way.');
-    add(modes, box('mgrid', small('reh', 'ic_baton', 'Rehearsal', S.stage <= 10 ? 'After floor 10' : open ? open + ' open' : 'Boss replays', 'rehearsal', open), soon('day', 'ic_ticket', 'Daily Gig'), soon('solo', 'ic_solo', 'Solo'), enc));
+    const D = H.dailyStatus(S), soloSub = S.soloRun ? `Gig ${Math.min(5, H.soloGigsWon(S.soloRun) + 1)} of 5 next` : H.soloPaidLeft(S) ? 'Rewards today' : 'Play for fun';
+    const reh = S.stage > 10 ? small('reh', 'ic_baton', 'Rehearsal', open ? open + ' open' : 'Boss replays', 'rehearsal', open) : later('reh', 'ic_baton', 'Rehearsal', 'Unlocks after floor 10', 'Rehearsal unlocks after the boss on floor 10.');
+    add(modes, box('mgrid', reh, atLv('day', 'ic_ticket', 'Daily Gig', H.DAILY.unlock, 'daily', D.won ? 'Won today' : H.TWISTS[D.twist].n, D.won ? 0 : '!'),
+      atLv('solo', 'ic_solo', 'Solo', H.SOLO.unlock, 'solo', soloSub, S.flags.seenSolo ? 0 : '!'), atLv('enc', 'ic_mic', 'Encore', H.ENCORE.unlock, 'encore', eSub, S.flags.seenEnc ? 0 : '!')));
     // records are goals, not a mode: they live on a small button over the home scene
     const rec = el('button', 'recbtn'); rec.type = 'button'; rec.setAttribute('aria-label', 'Records' + (ready ? `, ${ready} ready` : '')); add(rec, UI.icon('ic_record', 1.15)); if (ready) rec.appendChild(el('span', 'pip', String(ready)));
     rec.addEventListener('click', () => { Au.sfx('tap'); UI.go('records'); }); hero.appendChild(rec);
@@ -4317,23 +4925,25 @@ window.H = {};
 
   /* ================= encore: endless waves, the same band all the way, weekly milestone rewards ================= */
   UI.screens.encore = (root) => {
-    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshEncore(S)) UI.save();
+    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshEncore(S)) UI.save(); S.flags.seenEnc = 1;
     const E = S.encore, run = S.encoreRun, M = H.ENCORE.miles;
     root.appendChild(UI.topbar('Encore', () => UI.go('home'), UI.wallet()));
-    const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot'); pad.style.paddingTop = '0';
+    const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot'); pad.style.paddingTop = 'calc(var(--u) * 4)';
     if (!H.encoreOpen(S)) {
       add(pad, box('row center', UI.icon('ic_lock', 3)), txt('dim center', `Encore opens at level ${H.ENCORE.unlock}.`));
       body.appendChild(pad); root.append(body); return;
     }
+    // a neon-lit stage with the band on it, waiting for the crowd to call them back
+    const hh = Math.max(100, Math.min(130, UI.Hh - 240)) + (run ? 8 : 0), hero = el('div', 'enchero'); hero.style.height = `calc(var(--u) * ${hh})`;
+    // the band on stage; in a run, each pet's HP under it
+    const stage = el('div', 'encstage'); H.encoreTeam(S).forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] || 0 : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.9, { anim: hp > 0 }), run ? UI.meter(hp) : null, run ? el('b', '', hp > 0 ? Math.round(hp * 100) + '%' : 'Out') : null); stage.appendChild(c); });
+    add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign', 'Encore'), stage); root.appendChild(hero);
     pad.appendChild(txt('small center', 'Endless waves near <b>your level</b>, a little tougher each time. HP carries over, a quarter comes back after each wave, and fallen pets sit out.'));
     // this week's milestones
     const days = H.daysToReset(Date.now()), miles = el('div', 'miles');
     M.forEach(([m, r], i) => { const got = E.paid > i, c = el('div', 'mile' + (got ? ' got' : '')); add(c, txt('label', 'Wave'), el('b', '', String(m)), got ? UI.icon('ic_check', 1.1) : r.echo ? UI.purse('ic_echo', '+' + r.echo, 'Echoes') : UI.purse('ic_shell', '+' + r.shells, 'Shells')); miles.appendChild(c); });
     add(pad, txt('label', 'This week'), miles, txt('small dim center', `Best this week: <b>${E.weekBest}</b> · all time: <b>${E.best}</b> · new rewards ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
-    // the band: in a run, how it is holding up; otherwise the band that would go in
-    const band = el('div', 'encband'), team = H.encoreTeam(S);
-    team.forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.8, { anim: false }), UI.meter(hp), txt('small', hp > 0 ? Math.round(hp * 100) + '%' : 'Out')); band.appendChild(c); });
-    add(pad, txt('label', run ? `Your run · wave ${run.wave} next` : 'Your band goes in as it is'), band);
+    pad.appendChild(txt('small dim center', run ? `<b>Your run:</b> wave ${run.wave} is next.` : 'Your band goes in as it is now.'));
     if (run) {
       foot.appendChild(key(`Play wave ${run.wave}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
       foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
@@ -4386,6 +4996,245 @@ window.H = {};
   };
 })(window.H);
 
+/* ---- ui-modes.js ---- */
+/* Hushsong — screens for the Daily Gig (tonight's poster, the result) and Solo (pick a soloist, the road map, stops, the end of a tour). */
+(function (H) {
+  'use strict';
+  const A = H.Art, Au = H.Audio, UI = H.UI, el = UI.el, add = UI.add, box = UI.box, txt = UI.txt, key = UI.key;
+  const rnd = Math.random;
+  const plural = (n, w) => n + ' ' + w + (n === 1 ? '' : 's');
+  const at = (x, y) => `left: calc(var(--u) * ${x}); top: calc(var(--u) * ${y});`;
+  const countdown = (ms) => { const m = Math.max(1, Math.round(ms / 60000)), h = Math.floor(m / 60); return h ? `${h} h ${m % 60} min` : `${m} min`; };
+  const dateLine = () => { try { return new Date().toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }); } catch (e) { return 'Today'; } };
+  // a string of party lights across the top of a scene
+  const lights = (n) => { const l = el('div', 'lights'); const cols = ['#ff6b5e', '#ffc928', '#7fe0d8', '#b8e88a', '#d8b0ff']; for (let i = 0; i < n; i++) { const b = el('i'); b.style.left = (i + 0.5) * (100 / n) + '%'; b.style.top = 'calc(var(--u) * ' + (5 + 7 * Math.sin((i / (n - 1)) * Math.PI)).toFixed(1) + ')'; b.style.background = cols[i % 5]; b.style.animationDelay = -i * 0.37 + 's'; l.appendChild(b); } return l; };
+  // the faces of a band, small, in a row
+  const faces = (pets, s) => { const f = el('div', 'tfaces'); pets.forEach((p) => f.appendChild(UI.sp(p.form, s || 0.5, { anim: false }))); return f; };
+
+  /* ================= Daily Gig: tonight's poster ================= */
+  UI.screens.daily = (root) => {
+    const S = UI.S; if (!H.dailyOpen(S)) return UI.go('home');
+    if (H.refreshDaily(S)) UI.save(); S.flags.seenDaily = 1;
+    const st = H.dailyStage(S), T = H.TWISTS[st.twist], R = H.REGIONS[st.region], won = S.daily.won; UI.music('camp', st.region);
+    root.appendChild(UI.topbar('Daily Gig', () => UI.go('home'), UI.wallet()));
+    const sh = UI.Hh - 30 - 86, scene = el('div', 'gigscene');
+    add(scene, UI.bgEl(st.region, UI.W, sh, 0.55, 'sing'), el('div', 'nightwash'), lights(9));
+    const poster = el('div', 'poster' + (won ? ' won' : ''));
+    const line = el('div', 'plineup'); st.enemies.forEach((e) => line.appendChild(UI.sp(e.id, e.giant ? 0.62 : e.pet ? 0.62 : 0.56, { flip: true, anim: false, variant: e.pet ? 'mirror' : '' })));
+    const stub = el('div', 'pstub'); add(stub, el('b', '', 'Admit one'), won ? add(el('span', 'paid'), UI.icon('ic_check', 0.8), 'Paid today') : UI.purse('ic_note', '+' + H.DAILY.notes, 'Notes for tonight\'s win'));
+    add(poster, el('i', 'ptape l'), el('i', 'ptape r'), txt('pkick', 'Tonight · ' + dateLine()), txt('pvenue', st.venue), txt('pregion', R.n),
+      add(el('div', 'ptw'), UI.icon(A.twistIcon(st.twist), 2.4), add(el('div', 'grow'), txt('label', 'House rule'), txt('ptwn', T.n))), txt('prule', T.d),
+      add(el('div', 'pline'), txt('label', 'On stage · Lv ' + st.level), line), stub);
+    scene.appendChild(poster); root.appendChild(scene);
+    const foot = el('div', 'gofoot'), band = H.dailyBand(S, st.twist);
+    const strip = el('button', 'tstrip'); strip.type = 'button'; strip.setAttribute('aria-label', 'Change your band');
+    add(strip, faces(band), add(el('div', 'grow'), el('b', '', st.twist === 'duet' ? 'Your first two pets' : 'Your band'), el('div', 'small dim', won ? `New gig in ${countdown(H.msToTomorrow())}` : S.daily.tries ? `${plural(S.daily.tries, 'try')} so far · try as often as you like` : 'Try as often as you like')), el('span', 'chip', 'Band'));
+    strip.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); });
+    const play = key(won ? 'Play it again' : 'Play the gig', () => UI.go('battle', { daily: 1 }), (won ? 'blue' : 'go') + ' wide big'); play.disabled = !band.length;
+    add(foot, strip, play); root.appendChild(foot);
+  };
+
+  UI.dailyResult = (out) => {
+    const S = UI.S, T = H.TWISTS[out.twist], kids = [], loot = box('loot');
+    if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
+    const ticket = add(el('div', 'ticket' + (out.win ? '' : ' lost')), UI.icon(A.twistIcon(out.twist), 2), add(el('div', 'grow'), txt('label', out.venue), el('b', '', T.n)));
+    if (out.win) {
+      kids.push(txt('disp big center', out.first ? 'Gig won!' : 'Another great show!'), ticket, loot);
+      kids.push(txt('small dim center', out.first ? `Tomorrow brings a new house rule. New gig in ${countdown(H.msToTomorrow())}.` : 'Today\'s notes are already yours. Play again any time for fun.'));
+    } else {
+      kids.push(txt('disp big center', out.why === 'time' ? 'Lights out!' : 'Not this time'), ticket, txt('center dim', out.why === 'time' ? 'The venue closed before the Din were done. Hit harder, faster.' : 'Try again as often as you like. Today\'s notes are still waiting.'), loot);
+    }
+    if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
+    kids.push(UI.key(out.win ? 'Home' : 'Try again', () => (out.win ? UI.go('home') : UI.go('battle', { daily: 1 })), 'go wide big'), UI.key(out.win ? 'Back to the poster' : 'Change the band', () => (out.win ? UI.go('daily') : UI.go('team', {})), 'wide soft'));
+    if (out.win) Au.sfx('coin');
+    UI.modal(...kids);
+  };
+
+  /* ================= Solo: pick a soloist, or carry on the tour ================= */
+  UI.screens.solo = (root, pr) => {
+    const S = UI.S; if (!H.soloOpen(S)) return UI.go('home');
+    if (H.refreshSolo(S)) UI.save(); S.flags.seenSolo = 1; UI.music('camp', 'hall');
+    const P = S.solo, run = S.soloRun;
+    root.appendChild(UI.topbar('Solo', () => UI.go('home'), UI.wallet()));
+    const hh = Math.max(84, Math.min(118, UI.Hh - 260)), hero = el('div', 'solohero'); hero.style.height = `calc(var(--u) * ${hh})`;
+    add(hero, UI.bgEl('spot', UI.W, hh, 0.62), el('div', 'cone l'), el('div', 'cone r'), add(el('div', 'stitle'), el('div', 'logo small', 'Solo Tour'), txt('tag', 'One pet · five gigs · one boss')));
+    root.appendChild(hero);
+    const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot');
+    // what today still pays: the first five gig wins and the first boss win
+    const pay = el('div', 'paytrack'); for (let i = 0; i < 5; i++) pay.appendChild(add(el('div', 'payt' + (i < P.gigs ? ' got' : '')), i < P.gigs ? UI.icon('ic_check', 0.8) : UI.icon('ic_note', 0.7), el('span', '', '15')));
+    pay.appendChild(add(el('div', 'payt boss' + (P.boss ? ' got' : '')), P.boss ? UI.icon('ic_check', 0.8) : UI.icon('ic_boss', 0.9), el('span', '', P.boss ? '25' : '25 + gear')));
+    add(pad, box('row between', txt('label', 'Today\'s pay'), txt('small dim', H.soloPaidLeft(S) ? `resets in ${countdown(H.msToTomorrow())}` : 'all paid · play on for fun')), pay);
+    if (run) {
+      const pet = H.petById(S, run.pet), card = el('div', 'tourcard'); if (!pet) { H.endSolo(S); return UI.go('solo'); }
+      add(card, UI.sp(pet.form, 1.1), add(el('div', 'grow col'), txt('label', 'On tour · ' + H.REGIONS[run.region].n), el('b', 'disp', H.FORMS[pet.form].n), add(el('div', 'row'), UI.meter(run.hp), txt('small', Math.round(run.hp * 100) + '%')), txt('small dim', `${run.gigs} of 5 gigs won · ${plural(run.boons.length, 'boon')}`)));
+      pad.appendChild(card); body.appendChild(pad); root.appendChild(body);
+      add(foot, key('Back on the road', () => UI.go(run.pending && run.pending.type !== 'battle' ? 'solostop' : 'solomap'), 'go wide big'), key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes you have won stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'));
+      root.appendChild(foot); return;
+    }
+    // choose who goes: every pet you own, the band first
+    let pick = pr.pet && H.petById(S, pr.pet) ? pr.pet : (H.teamPets(S).filter(Boolean)[0] || S.pets[0] || {}).id;
+    const info = el('div', 'soloinfo'), grid = el('div', 'cards'), start = key('', () => { if (!pick) return; H.startSolo(S, pick, rnd); UI.save(); UI.go('solomap', { fresh: 1 }); }, 'go wide big');
+    const sel = () => {
+      grid.querySelectorAll('.card').forEach((c) => c.classList.toggle('on', +c.dataset.id === pick));
+      const p = H.petById(S, pick); info.innerHTML = ''; if (!p) return; const kit = H.kitOf(p.form);
+      add(info, box('row', UI.famChip(H.petFamily(p)), UI.roleChip(kit.role), UI.stars(p.rank)), txt('small dim', 'The road scales to your soloist: its level, how far it has evolved, and its role.'));
+      start.textContent = 'Start the tour with ' + H.FORMS[p.form].n;
+    };
+    S.pets.slice().sort((a, b) => (S.team.includes(b.id) ? 1 : 0) - (S.team.includes(a.id) ? 1 : 0) || H.petTier(b) - H.petTier(a)).forEach((p) => {
+      const c = el('div', 'card ' + H.petFamily(p)); c.dataset.id = p.id; const m = el('button', 'cmain'); m.type = 'button'; m.setAttribute('aria-label', H.FORMS[p.form].n);
+      add(m, UI.sp(p.form, 1, { anim: false }), add(el('div', 'cnm'), UI.icon('fam_' + H.petFamily(p), 0.8), el('span', '', H.FORMS[p.form].n))); m.addEventListener('click', () => { pick = p.id; Au.sfx('noise', H.petSpecies(p)); sel(); }); c.appendChild(m); grid.appendChild(c);
+    });
+    add(pad, txt('label', 'Pick your soloist'), info, grid); body.appendChild(pad); root.appendChild(body);
+    foot.appendChild(start); root.appendChild(foot); sel();
+  };
+
+  /* ----- the run's header: the soloist, its HP, its boons, how far along it is ----- */
+  const hud = (S, onBoons) => {
+    const run = S.soloRun, pet = H.petById(S, run.pet), max = H.soloMaxHp(S), hp = Math.max(1, Math.round(max * run.hp)), h = el('div', 'shud');
+    const face = add(el('div', 'sface ' + H.petFamily(pet)), UI.sp(pet.form, 0.62, { anim: false })), hpm = UI.meter(run.hp); hpm.classList.add('hpm'); if (run.hp < 0.3) hpm.classList.add('low');
+    const bn = el('button', 'sboons'); bn.type = 'button'; bn.setAttribute('aria-label', plural(run.boons.length, 'boon') + '. Show them');
+    if (!run.boons.length) bn.appendChild(txt('small dim', 'No boons yet')); else run.boons.slice(-6).forEach((id) => bn.appendChild(add(el('span', 'bchip r-' + H.BOONS[id].r), UI.icon(A.boonIcon(id), 0.62))));
+    if (run.boons.length > 6) bn.appendChild(el('span', 'small', '+' + (run.boons.length - 6))); if (H.activeCombos(run.boons).length) bn.appendChild(el('span', 'combo', 'Combo'));
+    bn.addEventListener('click', () => { Au.sfx('tap'); (onBoons || boonSheet)(S); });
+    add(h, face, add(el('div', 'grow col'), box('row between', el('b', '', H.FORMS[pet.form].n + ' · Lv ' + S.level), txt('chip gigc', run.gigs >= 5 ? 'Boss next' : `Gig ${run.gigs + 1} of 5`)), add(el('div', 'row hprow'), UI.icon('st_regen', 0.7), hpm, txt('small hpn', `${UI.fmt(hp)} / ${UI.fmt(max)}`)), bn));
+    return h;
+  };
+  const boonCard = (id, have, tag) => {
+    const b = H.BOONS[id], combos = H.combosOf(id, have.filter((x) => x !== id)), c = el(tag || 'div', 'boon r-' + b.r); if (tag === 'button') c.type = 'button';
+    add(c, add(el('div', 'bart'), UI.icon(A.boonIcon(id), 1.9)), add(el('div', 'grow col'), box('row between', el('b', 'bname', b.n), txt('rar', b.r === 'r' ? 'Rare' : 'Common')), txt('small', b.d), ...combos.map((x) => add(el('div', 'bcombo'), UI.icon(A.boonIcon(x.with), 0.55), el('span', '', `Combo with ${H.BOONS[x.with].n}: ${x.d}`)))));
+    return c;
+  };
+  const boonSheet = (S) => {
+    const run = S.soloRun, kids = [txt('disp', 'Boons on this tour')], cs = H.activeCombos(run.boons);
+    if (cs.length) kids.push(txt('label', 'Combos'), ...cs.map((c) => add(el('div', 'bcombo big'), UI.icon(A.boonIcon(c[0]), 0.7), UI.icon(A.boonIcon(c[1]), 0.7), el('span', '', `<b>${H.BOONS[c[0]].n} + ${H.BOONS[c[1]].n}</b>: ${c[2]}`))));
+    if (!run.boons.length) kids.push(txt('dim center', 'Win gigs and visit jam sessions to collect boons. They last for the whole tour.'));
+    const cnt = {}; run.boons.forEach((id) => (cnt[id] = (cnt[id] || 0) + 1));
+    Object.keys(cnt).forEach((id) => { const c = boonCard(id, run.boons); if (cnt[id] > 1) c.querySelector('.bname').textContent += ' ×' + cnt[id]; kids.push(c); });
+    if (run.extra.vol || run.extra.hp) kids.push(txt('small dim center', 'From the road: ' + [run.extra.vol ? `${run.extra.vol > 0 ? '+' : ''}${Math.round(run.extra.vol * 100)}% Power` : '', run.extra.hp ? `${run.extra.hp > 0 ? '+' : ''}${Math.round(run.extra.hp * 100)}% HP` : ''].filter(Boolean).join(', ')));
+    kids.push(key('Close', UI.closeModal, 'wide')); UI.modal(...kids);
+  };
+  UI.soloBoonSheet = boonSheet;
+
+  /* ================= the road: a map of the region, the soloist walking it stop by stop ================= */
+  const NODE = { gig: 'Gig', loud: 'Loud gig', rest: 'Campfire', jam: 'Jam session', mystery: 'Mystery', boss: 'Boss', start: 'Start' };
+  const GAP = 44, TOP = 42, BOT = 34;
+  UI.screens.solomap = (root, pr) => {
+    const S = UI.S, run = S.soloRun; if (!run) return UI.go('solo');
+    if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', { solo: 1 }) : UI.go('solostop');
+    const pet = H.petById(S, run.pet); if (!pet) { H.endSolo(S); return UI.go('solo'); }
+    UI.music('camp', run.region);
+    const bar = el('div', 'bar'); add(bar, UI.key('‹ Home', () => { Au.sfx('back'); UI.go('home'); }, 'soft sm'), el('div', 'disp', H.REGIONS[run.region].n + ' tour'), UI.gearKey(() => UI.settings(key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes you have won stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
+    root.appendChild(bar); root.appendChild(hud(S));
+    const W = UI.W, rows = H.SOLO.rows.length, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
+    const pos = (n) => (n ? { x: xOf(n), y: yOf(n.r) + (n.dy || 0) } : { x: W / 2, y: MH - BOT + 4 });
+    const scroller = el('div', 'smap'), inner = el('div', 'smapin'); inner.style.height = `calc(var(--u) * ${MH})`;
+    // the ground, then the roads between stops: travelled ones in gold, the rest as sandy tracks
+    const gnd = A.mapGround(run.region, W, MH, run.seed % 997, [null].concat(run.map).map((n) => { const p = pos(n); return [p.x, p.y]; })), cv = A.make(gnd.width, gnd.height), x = cv.getContext('2d'); x.drawImage(gnd, 0, 0); x.scale(A.k, A.k); cv.className = 'bgc'; cv.style.width = `calc(var(--u) * ${W})`; cv.style.height = `calc(var(--u) * ${MH})`;
+    const path = [null].concat(run.done.map((id) => run.map[id])), walked = new Set(); for (let i = 1; i < path.length; i++) walked.add((path[i - 1] ? path[i - 1].id : 's') + '>' + path[i].id);
+    const road = (a, b, on) => { const p = pos(a), q = pos(b), mx = (p.x + q.x) / 2 + (p.y % 7 - 3), my = (p.y + q.y) / 2; const d = new Path2D(`M${p.x} ${p.y} Q${mx} ${my} ${q.x} ${q.y}`); x.lineCap = 'round'; x.strokeStyle = A.INK; x.lineWidth = on ? 6.4 : 5; x.stroke(d); x.strokeStyle = on ? '#ffc928' : '#efe2c2'; x.lineWidth = on ? 4 : 3; x.stroke(d); if (!on) { x.setLineDash([1.5, 4]); x.strokeStyle = 'rgba(138,90,58,0.45)'; x.lineWidth = 1.2; x.stroke(d); x.setLineDash([]); } };
+    const firsts = run.map.filter((n) => n.r === 0);
+    for (const n of run.map) for (const id of n.next) if (!walked.has(n.id + '>' + id)) road(n, run.map[id], false);
+    for (const n of firsts) if (!walked.has('s>' + n.id)) road(null, n, false);
+    for (let i = 1; i < path.length; i++) road(path[i - 1], path[i], true);
+    inner.appendChild(cv);
+    // the region's name on a ribbon at the top, by the boss
+    inner.appendChild(add(el('div', 'sribbon'), el('span', '', H.DIN[H.REGIONS[run.region].boss].n + '\'s stage')));
+    const reach = new Set(H.soloReach(run).map((n) => n.id)), here = run.at == null ? null : run.map[run.at];
+    const stop = (n, type) => {
+      const p = pos(n), big = type === 'boss', sz = big ? 34 : type === 'start' ? 20 : 25, can = n && reach.has(n.id), done = n && run.done.includes(n.id);
+      const b = el('button', 'snode t-' + type + (can ? ' can' : '') + (done ? ' done' : '') + (n === here ? ' here' : '')); b.type = 'button'; b.style.cssText = at(p.x - sz / 2, p.y - sz / 2) + `width: calc(var(--u) * ${sz}); height: calc(var(--u) * ${sz});`;
+      b.appendChild(big ? UI.sp(H.REGIONS[run.region].boss, 0.5, { flip: true, anim: false }) : UI.icon(type === 'start' ? 'nd_start' : A.nodeIcon(type), type === 'start' ? 1.1 : 1.45));
+      b.setAttribute('aria-label', NODE[type] + (can ? ', you can go here' : done ? ', visited' : ''));
+      if (can) inner.appendChild(add(el('div', 'slabel'), NODE[type])).style.cssText = at(p.x - 24, p.y + sz / 2 + 1);
+      b.addEventListener('click', () => { if (!n || walking) return; if (can) preview(n); else if (!done) { Au.sfx('tap'); UI.toast('Not on your road from here. Glowing stops are next.'); } });
+      inner.appendChild(b); return b;
+    };
+    stop(null, 'start'); for (const n of run.map) stop(n, n.type);
+    // the soloist stands where it got to
+    const tok = el('div', 'stoken'), tp = pos(here); tok.appendChild(UI.sp(pet.form, 0.42, { anim: false })); tok.style.cssText = at(tp.x - 10, tp.y - 22); inner.appendChild(tok);
+    scroller.appendChild(inner); root.appendChild(scroller);
+    const foot = el('div', 'shint'); add(foot, el('span', '', run.at == null ? 'Your tour starts here. Pick a road.' : 'Pick the next stop. Tap one to see it.'), key('?', legend, 'soft sm')); root.appendChild(foot);
+    requestAnimationFrame(() => { scroller.scrollTop = Math.max(0, tp.y * UI.u - scroller.clientHeight * 0.68); });
+    // a look at a stop before going: who plays there, what it gives
+    function preview(n) {
+      Au.sfx('tap'); const kids = [], bat = n.type === 'gig' || n.type === 'loud' || n.type === 'boss';
+      kids.push(box('row', add(el('div', 'nbadge t-' + n.type), n.type === 'boss' ? UI.sp(H.REGIONS[run.region].boss, 0.6, { flip: true, anim: false }) : UI.icon(A.nodeIcon(n.type), 2)), add(el('div', 'grow col'), txt('disp', n.type === 'boss' ? H.DIN[H.REGIONS[run.region].boss].n : NODE[n.type]), txt('small dim', {
+        gig: 'A gig. Win it for a boon.', loud: 'A rowdy crowd: tougher Din, a Loud one in front. Win it for a rare boon.', boss: 'The last stop of the tour.', rest: 'Sleep, or practise.', jam: 'Play along with a band for a boon.', mystery: 'Something is going on here.' }[n.type]))));
+      if (bat) {
+        const stg = H.soloStage(S, n), line = el('div', 'plineup'); stg.enemies.forEach((e) => line.appendChild(UI.sp(e.id, H.DIN[e.id].boss ? 0.62 : 0.52, { flip: true, anim: false })));
+        const P = S.solo, pays = n.type === 'boss' ? (!P.boss ? `+${H.SOLO.bossNotes} notes and a piece of equipment` : 'today\'s boss pay is already yours') : P.gigs < 5 ? `+${H.SOLO.gigNotes} notes` : 'today\'s gig pay is already yours';
+        kids.push(add(el('div', 'plinebox'), txt('label', 'On stage · Lv ' + stg.level), line), add(el('div', 'row small'), UI.icon('ic_note', 0.8), el('span', '', 'Win: ' + (n.type === 'boss' ? 'the tour' : n.type === 'loud' ? 'a rare boon' : 'a boon') + ' · ' + pays)));
+      }
+      kids.push(key(bat ? (n.type === 'boss' ? 'Face the boss' : 'Play this gig') : 'Go there', () => { UI.closeModal(); walk(n); }, (n.type === 'boss' ? 'coral' : 'go') + ' wide big'), key('Not yet', UI.closeModal, 'wide soft'));
+      UI.modal(...kids);
+    }
+    let walking = false;
+    function walk(n) {
+      if (walking) return; walking = true; inner.classList.add('busy');
+      const p = pos(n); tok.classList.add('walk'); tok.style.cssText = at(p.x - 10, p.y - 22); Au.sfx('tap', 3);
+      scroller.scrollTo({ top: Math.max(0, p.y * UI.u - scroller.clientHeight * 0.6), behavior: 'smooth' });
+      setTimeout(() => { if (UI.cur.name !== 'solomap') return; const got = H.soloEnter(S, n.id, rnd); UI.save(); if (!got) return UI.go('solomap'); UI.go(got.type === 'battle' ? 'battle' : 'solostop', { solo: 1 }); }, window.__hsSpeed ? 40 : 760);
+    }
+    function legend() { UI.modal(txt('disp', 'The road'), ...['gig', 'loud', 'rest', 'jam', 'mystery', 'boss'].map((t) => box('row', add(el('div', 'nbadge sm t-' + t), UI.icon(A.nodeIcon(t), 1.2)), txt('grow small', `<b>${NODE[t]}.</b> <span class="dim">${{ gig: 'Two Din. Win for a boon.', loud: 'Tougher Din. Win for a rare boon.', rest: 'Heal 40%, or practise for +10% Power.', jam: 'Pick a boon.', mystery: 'A choice, good or risky.', boss: 'The end of the tour.' }[t]}</span>`))),
+      txt('small dim', 'HP carries on from gig to gig. The crowd gets restless if a gig drags on: every hit lands harder.'), key('Got it', UI.closeModal, 'wide go')); }
+  };
+
+  /* ================= a stop on the road: boons, the campfire, a mystery ================= */
+  UI.screens.solostop = (root) => {
+    const S = UI.S, run = S.soloRun; if (!run) return UI.go('solo'); const p = run.pending; if (!p) return UI.go('solomap'); if (p.type === 'battle') return UI.go('battle', { solo: 1 });
+    const pet = H.petById(S, run.pet); UI.music('camp', run.region);
+    root.appendChild(hud(S));
+    const sh = Math.max(92, Math.min(130, UI.Hh - 290)), scene = el('div', 'sscene'); scene.style.height = `calc(var(--u) * ${sh})`; scene.appendChild(UI.bgEl(run.region, UI.W, sh, 0.55, 'sing'));
+    const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot');
+    const done = () => { UI.save(); UI.go(S.soloRun && S.soloRun.pending ? 'solostop' : 'solomap'); };
+    if (p.type === 'boon') {
+      const title = p.src === 'jam' ? 'Jam session' : p.src === 'loud' ? 'The crowd goes wild' : p.src === 'c' ? 'Dig through the crate' : 'Gig won!';
+      add(scene, el('div', 'rays'), add(el('div', 'sart'), UI.sp(pet.form, 1.2), p.src === 'jam' ? UI.icon('nd_jam', 2.2) : UI.icon('ic_note', 2)), add(el('div', 'sbanner'), el('b', '', title), el('span', '', p.src === 'loud' || p.src === 'r' ? 'Pick a rare boon' : 'Pick a boon for the tour')));
+      let chosen = null; const take = key('Pick one', () => { if (!chosen) return; H.soloPick(S, chosen); Au.sfx('evolve'); done(); }, 'go wide big'); take.disabled = true;
+      p.opts.forEach((id) => { const c = boonCard(id, run.boons, 'button'); c.addEventListener('click', () => { chosen = id; Au.sfx('good'); pad.querySelectorAll('.boon').forEach((x) => x.classList.toggle('on', x === c)); take.disabled = false; take.textContent = 'Take ' + H.BOONS[id].n; }); pad.appendChild(c); });
+      add(foot, take, key('Skip', () => UI.confirm('Skip this boon?', 'You will not get another one from this stop.', 'Skip', () => { H.soloPick(S, null); done(); }), 'wide soft sm'));
+    } else if (p.type === 'rest') {
+      add(scene, el('div', 'night'), add(el('div', 'sart camp'), UI.sp(pet.form, 1.1), add(el('div', 'fire'), UI.icon('nd_rest', 2.4))), add(el('div', 'sbanner'), el('b', '', 'Campfire'), el('span', '', 'A quiet night on the road')));
+      const max = H.soloMaxHp(S), now = Math.round(max * run.hp), heal = Math.min(max, Math.round(max * (run.hp + H.SOLO.rest)));
+      const opt = (icon, name, d, fn) => { const b = el('button', 'choice'); b.type = 'button'; add(b, UI.icon(icon, 1.6), add(el('div', 'grow col'), el('b', '', name), txt('small', d))); b.addEventListener('click', fn); return b; };
+      add(pad, opt('st_regen', 'Sleep', `Heal ${Math.round(H.SOLO.rest * 100)}% · HP ${UI.fmt(now)} → ${UI.fmt(heal)}`, () => { H.soloRest(S, 'nap'); Au.sfx('heal'); done(); }),
+        opt('st_pup', 'Practise', `+${Math.round(H.SOLO.practise * 100)}% Power for the rest of the tour`, () => { H.soloRest(S, 'practise'); Au.sfx('level'); done(); }));
+    } else if (p.type === 'event') {
+      const E = H.EVENTS[p.ev];
+      add(scene, add(el('div', 'sart'), add(el('div', 'evart'), UI.icon('ev_' + p.ev, 2.3)), UI.sp(pet.form, 1)), add(el('div', 'sbanner'), el('b', '', E.n), el('span', '', 'Mystery')));
+      pad.appendChild(txt('center', E.d));
+      E.opts.forEach((o, i) => { const b = el('button', 'choice'); b.type = 'button'; add(b, add(el('div', 'grow col'), el('b', '', o.n), txt('small', o.d))); b.addEventListener('click', () => {
+        const got = H.soloEvent(S, i, rnd); Au.sfx('good'); UI.save();
+        if (got && got.boon) { UI.modal(txt('label center', 'You got'), boonCard(got.boon, S.soloRun.boons), key('Onwards', () => { UI.closeModal(); done(); }, 'go wide big')); return; }
+        done(); }); pad.appendChild(b); });
+    }
+    root.appendChild(scene); body.appendChild(pad); root.appendChild(body); if (foot.children.length) root.appendChild(foot);
+  };
+
+  /* ================= after a Solo gig ================= */
+  UI.soloResult = (out) => {
+    const S = UI.S;
+    if (!out.win || out.done) return UI.go('soloend', { out });
+    const kids = [], loot = box('loot'); if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
+    kids.push(txt('disp big center', out.loud ? 'Loud gig won!' : 'Gig won!'), txt('center dim', `${out.gig} of 5 gigs · HP ${Math.round(S.soloRun.hp * 100)}%`), loot);
+    if (!out.notes) kids.push(txt('small dim center', 'Today\'s gig pay is already yours.'));
+    if (out.ups) kids.push(txt('center good', '<b>Level up!</b> Your pets got stronger.'), UI.unlockNote(out.ups));
+    kids.push(UI.key(out.loud ? 'Pick a rare boon' : 'Pick a boon', () => UI.go('solostop'), 'gold wide big'));
+    UI.modal(...kids);
+  };
+  UI.screens.soloend = (root, pr) => {
+    const S = UI.S, out = pr.out || {}, pet = H.petById(S, out.pet) || H.teamPets(S).filter(Boolean)[0], won = !!out.done; UI.music('camp', won ? 'hall' : out.region || 'fen'); Au.sfx(won ? 'win' : 'lose');
+    const w = el('div', 'title soloend' + (won ? ' won' : ''));
+    add(w, UI.bgEl(won ? 'spot' : out.region || 'fen', UI.W, UI.Hh, 0.5, won ? null : 'hush'), won ? el('div', 'rays') : null);
+    const it = out.item && H.itemById(S, out.item.id), boons = el('div', 'boonrow'); (out.boons || []).forEach((id) => boons.appendChild(add(el('span', 'bchip r-' + H.BOONS[id].r), UI.icon(A.boonIcon(id), 0.8))));
+    const loot = box('loot'), tot = out.total != null ? out.total : out.notes; if (tot) loot.appendChild(UI.purse('ic_note', '+' + tot, 'Notes this tour')); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
+    add(w, el('div', 'logo small', won ? 'Tour complete!' : 'Tour over'), pet ? UI.sp(pet.form, won ? 2 : 1.5, { anim: won }) : null,
+      add(el('div', 'panel col center endp'), txt('center', won ? `<b>${pet ? H.FORMS[pet.form].n : 'Your soloist'}</b> beat all five gigs and the boss.` : `Reached <b>${out.reached || 0} of 5</b> gigs. Every tour is a new road.`), (out.boons || []).length ? boons : null, loot, it ? txt('label center', 'And the boss dropped') : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', '<b>Level up!</b>') : null),
+      key(won ? 'Home' : 'Try another tour', () => (won ? UI.go('home') : UI.go('solo', { pet: out.pet })), 'go wide big'), key(won ? 'Another tour' : 'Home', () => (won ? UI.go('solo', { pet: out.pet }) : UI.go('home')), 'wide soft'));
+    root.appendChild(w);
+  };
+})(window.H);
+
 /* ---- ui-battle.js ---- */
 /* Hushsong — the battle screen. You pick a move on each of your pets' turns; auto is optional. */
 (function (H) {
@@ -4414,11 +5263,17 @@ window.H = {};
   };
 
   UI.screens.battle = (root, pr) => {
-    const S = UI.S, W = UI.W, rnd = Math.random, enc = !!pr.enc && !!S.encoreRun, n = enc ? S.encoreRun.wave : pr.n || S.stage, reh = !!pr.reh, st = enc ? H.encoreStage(S, n) : reh ? H.rehearsalStage(S, n) : H.stage(n), GMAX = H.GMAX;
+    const S = UI.S, W = UI.W, rnd = Math.random, GMAX = H.GMAX;
+    // which kind of battle: an Encore wave, a Daily Gig, a Solo gig, a rehearsal, or a floor
+    const srun = S.soloRun, solo = !!pr.solo && !!srun && !!srun.pending && srun.pending.type === 'battle', daily = !!pr.daily && H.dailyOpen(S), enc = !!pr.enc && !!S.encoreRun;
+    if (pr.solo && !solo) return UI.go(srun ? 'solomap' : 'solo');
+    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : daily ? 0 : pr.n || S.stage, reh = !!pr.reh;
+    const st = enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
     if (pr.enc && !enc) return UI.go('encore');
-    if (!H.teamPets(S).some(Boolean)) return UI.go('home');
+    if (!solo && !H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = enc ? H.startEncore(S, rnd) : H.startStage(S, n, rnd, reh);
+    const battle = enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
+    if (daily) UI.save();
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
     UI.music(st.boss ? 'boss' : 'battle', st.region, !!battle.ensemble && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
 
@@ -4456,12 +5311,20 @@ window.H = {};
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
     const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your Encore run ends here. Rewards you have reached stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes you have won stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
+      : daily ? UI.confirm('Leave the gig?', 'You can try again as often as you like.', 'Leave', () => UI.go('daily'))
       : UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
     const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : solo ? (st.boss ? 'Solo · boss' : 'Solo · gig ' + n) : daily ? twist.n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
+    // the house rule in play, with what it is doing right now; a tap says it again
+    let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
+    const ruleText = () => { if (twist) { const r = st.twist; return r === 'potato' && tw.potato ? String(tw.potato.left) : r === 'volume' ? Math.round(tw.vol * 100) + '%' : r === 'lastcall' ? tw.left + ' left' : r === 'key' ? 'in ' + tw.key : ''; } return tw.restless ? 'Restless!' : ''; };
+    const drawRule = () => { if (!twist && !tw.restless) { rule.hidden = true; return; } rule.hidden = false; rule.innerHTML = ''; add(rule, UI.icon(twist ? A.twistIcon(st.twist) : 'ev_crowd', twist ? 0.78 : 0.55), el('span', '', ruleText())); rule.classList.toggle('hot', (st.twist === 'lastcall' && tw.left <= 8) || (st.twist === 'potato' && tw.potato && tw.potato.left <= 2) || (!twist && tw.restless)); };
+    rule.setAttribute('aria-label', twist ? 'House rule: ' + twist.n : 'The crowd'); rule.addEventListener('click', () => { Au.sfx('tap'); UI.toast(twist ? twist.n + ': ' + twist.d : 'The crowd is restless: every hit lands harder each turn.'); });
+    drawRule(); fwrap.appendChild(rule);
     const panel = el('div', 'bpanel'), title = el('div', 'ptitle'), meta = el('div', 'pmeta'), desc = el('div', 'pdesc'), icons = el('div', 'picons'), hint = el('div', 'phint');
     // Auto and speed are switches: latched down and gold while on
     const autoB = key('Auto', () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
@@ -4479,23 +5342,23 @@ window.H = {};
       const u = shown.u, a = u.ab[shown.idx], fam = V[u.uid].family;
       title.innerHTML = ''; add(title, UI.icon('fam_' + (fam || 'none')), el('span', '', a ? (a.def.n === u.name ? a.def.n : `${u.name} · ${a.def.n}`) : `${u.name}: ${shown.name}`));
       if (a) {
-        const ready = a.cd === 0;
-        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${KN[a.kind]}</b>` + (mine && !ready ? ` <span class="bad">ready in ${turns(a.cd)}</span>` : a.def.cd ? ` <span>rests ${turns(a.def.cd)} after use</span>` : ' <span>always ready</span>');
+        const ready = a.cd === 0, lockd = battle.locked(u, a);
+        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${KN[a.kind]}</b>` + (mine && lockd ? ' <span class="bad">needs the mic</span>' : mine && !ready ? ` <span class="bad">ready in ${turns(a.cd)}</span>` : a.def.cd ? ` <span>rests ${turns(a.def.cd)} after use</span>` : ' <span>always ready</span>');
         desc.innerHTML = UI.rich(H.describe(a.def));
       } else { meta.className = 'pmeta'; meta.textContent = 'Extra move'; desc.textContent = ''; }
       icons.innerHTML = '';
       u.ab.forEach((m, i) => {
-        const b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', m.def.n);
-        b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
-        b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && m.cd === 0) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
+        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', m.def.n + (lk ? ', needs the mic' : ''));
+        b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (lk) b.appendChild(add(el('span', 'cdn lk'), UI.icon('ic_lock', 0.85))); else if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
+        b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && battle.ready(u, m)) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
         icons.appendChild(b);
       });
-      useB.disabled = !(mine && a && a.cd === 0); useB.textContent = mine ? 'Use' : '· · ·';
+      useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? 'Use' : '· · ·';
       hint.className = 'phint' + (mine && tipText ? ' tipc' : '');
-      hint.textContent = !mine ? (u.side === 1 ? 'Enemy turn' : auto ? 'Auto battle is on' : '') : tipText || (a && a.cd > 0 ? 'Not ready yet. Pick another move.' : a && H.needsTarget(a.def) ? 'Tap an enemy to use it, or press Use.' : 'Press Use.');
+      hint.textContent = !mine ? (u.side === 1 ? 'Enemy turn' : auto ? 'Auto battle is on' : '') : tipText || (a && battle.locked(u, a) ? 'Only the pet with the mic can use this.' : a && a.cd > 0 ? 'Not ready yet. Pick another move.' : a && H.needsTarget(a.def) ? 'Tap an enemy to use it, or press Use.' : 'Press Use.');
     };
     let tipText = '';
-    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (a.cd > 0) { UI.toast('That move is not ready yet.'); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
+    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
 
     const unitAt = (px, py) => { let best = null; for (const v of V) { if (!v.alive) continue; if (px >= v.x + 1 && px <= v.x + v.sz - 1 && py >= v.hy && py <= v.y + v.bb.b + 3) if (!best || v.y + v.sz > best.y + best.sz) best = v; } return best; };
     let opening = false, skipOpening = false; fwrap.addEventListener('click', () => { if (opening) skipOpening = true; }, true); panel.addEventListener('click', () => { if (opening) skipOpening = true; }, true);
@@ -4514,7 +5377,7 @@ window.H = {};
         const u = battle.units[battle.waiting], a = u.ab[sel];
         if (H.needsTarget(a.def)) {
           if (!battle.validTargets(u).includes(v.u)) { UI.toast('It has to hit the one with Taunt.'); return; }
-          target = v.u.uid; if (a.cd > 0) { UI.toast('That move is not ready yet.'); return; } fire(); return;
+          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } fire(); return;
         }
       }
       // a tap is only for aiming; the first stray tap of a battle says how to look closer
@@ -4523,7 +5386,7 @@ window.H = {};
     let hintHold = false;
 
     /* ----- drawing (all in layout units; the canvas is scaled up to the screen's real pixels) ----- */
-    const singing = enc || reh || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
+    const singing = enc || reh || daily || solo || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
@@ -4531,7 +5394,7 @@ window.H = {};
     const rr = (x, y, w, h, r, col) => { fctx.fillStyle = col; fctx.beginPath(); fctx.moveTo(x + r, y); fctx.arcTo(x + w, y, x + w, y + h, r); fctx.arcTo(x + w, y + h, x, y + h, r); fctx.arcTo(x, y + h, x, y, r); fctx.arcTo(x, y, x + w, y, r); fctx.closePath(); fctx.fill(); };
     const drawUnit = (v) => {
       if (v.alpha <= 0.02) return;
-      const img = A.sprite(v.u.spec.sprite, v.flash > 0 ? 'flash' : '', v.sz * k);
+      const img = A.sprite(v.u.spec.sprite, v.u.spec.mirror ? (v.flash > 0 ? 'mirrorflash' : 'mirror') : v.flash > 0 ? 'flash' : '', v.sz * k);
       const sx = v.x + v.ox + (v.shake > 0 ? (Math.random() < 0.5 ? -1 : 1) : 0), sy = v.y + v.oy, cx = sx + (v.bb.l + v.bb.r) / 2, fy = sy + v.bb.b - 1.5, sw = Math.min(v.sz > 48 ? 60 : 34, v.bb.r - v.bb.l);
       fctx.globalAlpha = v.alpha * 0.2; fctx.fillStyle = INK; fctx.beginPath(); fctx.ellipse(cx, fy, sw / 2, 3.2, 0, 0, 6.2832); fctx.fill();
       fctx.globalAlpha = v.alpha;
@@ -4572,6 +5435,9 @@ window.H = {};
         const bx = ix + 9.4, by2 = y + 9; fctx.fillStyle = INK; fctx.beginPath(); fctx.arc(bx, by2, 3.3, 0, 6.2832); fctx.fill();
         fctx.font = "800 5.6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(d), bx, by2 + 0.4);
       });
+      // house-rule tokens on the one who has them: the potato with its fuse, the mic
+      const pot = tw.potato && tw.potato.uid === v.u.uid, mic = tw.mic && tw.mic[v.u.side] === v.u.uid;
+      if (pot || mic) { const mx = v.u.side === 0 ? hx + bw + 1 : hx - 15, my = hy + 9 + Math.sin(clock * 5) * 1.2; A.draw(fctx, pot ? 'tw_potato' : 'ic_mic', mx, my, '', pot ? 0.95 : 0.85); if (pot) { const bx = mx + 12, by2 = my + 11; fctx.fillStyle = tw.potato.left <= 2 ? '#ff3d5a' : INK; fctx.beginPath(); fctx.arc(bx, by2, 4, 0, 6.2832); fctx.fill(); fctx.font = "800 6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(tw.potato.left), bx, by2 + 0.4); } }
       // while you choose: who is targeted, and which enemies your pet is strong or weak against
       if (waiting != null && mine && v.u.side === 1) {
         const me = battle.units[battle.waiting], adv = H.advantage(me.family, v.family);
@@ -4610,7 +5476,7 @@ window.H = {};
     /* ----- your turn ----- */
     const askPlayer = (u) => new Promise((res) => {
       const vt = battle.validTargets(u); if (!vt.some((x) => x.uid === target)) { const best = vt.reduce((b, x) => { const sc = (y) => H.advantage(u.family, y.family) * 0.35 - y.hp / y.max; return sc(x) > sc(b) ? x : b; }, vt[0]); target = best ? best.uid : -1; }
-      tipText = ''; if (n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = ['Your turn! Tap the enemy to attack it.', 'Tap a round icon to pick another move.', 'Green arrow: your pet is strong against that enemy.', 'The yellow line shows whose turn is coming.'][n - 1]; }
+      tipText = ''; if (!daily && !solo && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = ['Your turn! Tap the enemy to attack it.', 'Tap a round icon to pick another move.', 'Green arrow: your pet is strong against that enemy.', 'The yellow line shows whose turn is coming.'][n - 1]; }
       sel = 0; shown = { u, idx: 0 }; mine = true; waiting = res; render();
     });
     const idle = (text) => { mine = false; if (text != null) { shown = null; note = text; } render(); };
@@ -4642,7 +5508,9 @@ window.H = {};
           case 'note': float(V[e.u], e.txt, '#ffe58a'); await wait(220); break;
           case 'gauge': { const v = V[e.u]; if (Math.abs(e.d) >= 0.1) float(v, e.d > 0 ? 'Sooner' : 'Later', e.d > 0 ? '#ffe58a' : '#ff9a9a'); break; }
           case 'shift': { const v = V[e.u]; v.family = e.family; float(v, 'Changes!', FCOL[e.family]); burst(v, FCOL[e.family], 12); Au.sfx('bad'); await wait(420); break; }
-          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); break;
+          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); if (e.tw) { const was = tw.restless; tw = e.tw; drawRule(); if (!was && tw.restless) say('The crowd is restless!', 'foe'); } break;
+          case 'keychange': { e.fams.forEach((f, k) => { const v = V[k]; if (v.alive && v.family !== f) { v.family = f; burst(v, FCOL[f], 6); } }); say('Key change!', 'ens'); Au.sfx('cue'); for (const v of V) if (v.alive) float(v, H.FAMILIES[v.family].n, FCOL[v.family]); await wait(700); break; }
+          case 'mark': { const v = V[e.u]; if (e.m === 'potato') { tw.potato = Object.assign({}, tw.potato || { left: 0 }, { uid: e.u }); float(v, 'Hot potato!', '#ffb050'); Au.sfx('tap', 6); } else { if (tw.mic) tw.mic[v.u.side] = e.u; float(v, 'Mic!', '#ffe58a'); } await wait(180); break; }
           case 'ensemble': break;
           case 'end': active = -1; await wait(500); break;
         }
@@ -4652,12 +5520,25 @@ window.H = {};
     // the boss's entrance is a screen of its own: the region dims, the boss stamps down under its name, then the battle opens
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
-      const name = boss.name, mode = !enc && !reh && H.floorHushed(S, n) ? 'hush' : 'sing';
+      const name = boss.name, mode = !enc && !reh && !daily && !solo && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
-        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
+        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : solo ? 'Solo tour · the last stop' : daily ? 'Daily Gig · ' + twist.n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
       bossOv.addEventListener('click', () => { skipOpening = true; });
       wrap.appendChild(bossOv);
+    }
+    // the Daily Gig's house rule gets its own entrance: the poster's badge stamps down with the rule under it
+    let twistOv = null;
+    if (twist && !st.boss && !window.__hsSpeed) {
+      twistOv = el('div', 'bossin twistin full' + (speed >= 2 ? ' fast' : ''));
+      add(twistOv, UI.bgEl(st.region, W, UI.Hh, 0.5, 'sing'), el('div', 'bosstint night'), el('div', 'bossray'), add(el('div', 'twbadge'), UI.icon(A.twistIcon(st.twist), 4.2)),
+        add(el('div', 'bossban'), el('div', 'bosskick', 'Daily Gig · ' + st.venue), el('div', 'bossnm', twist.n), el('div', 'twrule', twist.d)), el('div', 'bossskip', 'Tap to start'));
+      twistOv.addEventListener('click', () => { skipOpening = true; }); wrap.appendChild(twistOv);
+    }
+    async function twistIn() {
+      if (!twistOv) return; opening = true; skipOpening = false; const t0 = performance.now(); let stamped = false;
+      while (!dead && !skipOpening && performance.now() - t0 < 4200 / (speed >= 2 ? 1.5 : 1)) { if (!stamped && performance.now() - t0 >= 450) { stamped = true; Au.sfx('stamp'); twistOv.classList.add('quake'); } await new Promise((res) => setTimeout(res, 30)); }
+      opening = false; if (dead) return; twistOv.classList.add('out'); await new Promise((res) => setTimeout(res, 380)); twistOv.remove(); twistOv = null;
     }
     async function bossIn() {
       if (!bossOv) { if (st.boss) { say(boss ? boss.name : H.DIN[H.REGIONS[st.region].boss].n, 'foe'); await wait(900); } return; }
@@ -4671,8 +5552,8 @@ window.H = {};
       bossOv.classList.add('out'); await new Promise((res) => setTimeout(res, 380)); bossOv.remove(); bossOv = null;
     }
     async function run() {
-      if (st.boss) await bossIn();
-      if (dead) return; idle('Get ready'); await wait(450);
+      if (st.boss) await bossIn(); else await twistIn();
+      if (dead) return; idle(twist ? twist.n : 'Get ready'); await wait(450);
       // the team's ensemble plays its opening; a tap skips it
       const ens = battle.ensemble && H.ENS[battle.ensemble];
       if (ens && !window.__hsSpeed) {
@@ -4696,7 +5577,9 @@ window.H = {};
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
-      const out = enc ? H.finishEncore(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle); UI.save(); UI.result(out);
+      const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
+      if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
+      UI.save(); UI.result(out);
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
@@ -4710,7 +5593,7 @@ window.H = {};
       kids.push(txt('disp big center', `Wave ${out.wave} cleared!`));
       if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
-      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`));
+      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
       kids.push(txt('small dim center', next ? `Next weekly reward at wave ${next[0]}.` : 'All weekly rewards won. Go for a new best!'));
       kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
@@ -4723,6 +5606,8 @@ window.H = {};
   };
   UI.result = (out) => {
     if (out.encore) return UI.encoreResult(out);
+    if (out.daily) return UI.dailyResult(out);
+    if (out.solo) return UI.soloResult(out);
     const S = UI.S, kids = [], nx = out.first ? S.stage : out.n;
     const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); return r; };
     const evo = H.canEvolveAny(S), evoKey = () => UI.key((H.nextForms(evo).length ? 'Evolve ' : 'Add a star to ') + H.FORMS[evo.form].n, () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');
@@ -4733,6 +5618,7 @@ window.H = {};
         add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', 'Level up'), el('b', '', String(S.level))));
         for (let i = 0; i < 14; i++) { const s = el('i', 'spark'), a = (i / 14) * 6.283; s.style.left = '50%'; s.style.top = '34%'; s.style.setProperty('--x', Math.cos(a) * (60 + (i % 3) * 22) + '%'); s.style.setProperty('--y', Math.sin(a) * (110 + (i % 2) * 40) + '%'); s.style.animationDelay = 0.15 + (i % 4) * 0.05 + 's'; lv.appendChild(s); }
         kids.push(lv, txt('center good', out.ups > 1 ? `<b>+${out.ups} levels!</b> Your pets got stronger.` : 'Your pets got stronger.'));
+        const un = UI.unlockNote(out.ups); if (un) kids.push(un);
         if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 850);
       }
       kids.push(box('row', txt('small dim', 'Next level'), add(el('div', 'grow'), UI.meter(S.xp / H.xpNeed(S.level))))); };

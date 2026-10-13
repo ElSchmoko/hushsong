@@ -38,6 +38,8 @@
 
   const A = (n, cd, fx, o) => Object.assign({ n, cd, fx }, o || {});
   const D = (tgt, pow, o) => ['dmg', tgt, pow, o || {}];
+  // what every Basic move turns into when a Daily Gig unplugs them
+  H.FEEDBACK = A('Feedback', 0, [D('one', 1.3), ['recoil', 0.08]], { d: 'Hits one enemy for 130%. The screech costs the user 8% of its max HP.' });
 
   H.SPECIES = {
     thud:    { family: 'drum',   base: { hp: 150, vol: 20, poise: 30, tempo: 90 },  animal: 'drum', lore: 'A round drum with ears, feet and a mallet for a tail. Sturdy, and its heavy beat slows enemies down.' },

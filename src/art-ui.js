@@ -155,6 +155,7 @@
     neon: { sky: '#2c2366', sun: '#ff9ad8', far: '#5a2f9a', mid: '#3a6aa8', g1: '#7fe0d8', g2: '#5fc8c0', cloud: '#4a3a8a', stars: 1 },
     tower: { sky: '#f3e6cf', sun: '#fff6dc', far: '#e3cfa8', mid: '#d4bb8c', g1: '#e9dcc0', g2: '#dccdaa' },
   };
+  A.SCN = SCN;
   A.bg = (key, w, h, hf) => {
     const k = A.k, ck = [key, w, h, hf || '', k].join(); if (bgc.has(ck)) return bgc.get(ck);
     const c = A.make(w * k, h * k), x = c.getContext('2d'); x.scale(k, k); const g = new A.G(x), p = SCN[key] || SCN.camp, hz = Math.round(h * (hf || 0.4)), rnd = H.rng(key.length * 131 + 7);

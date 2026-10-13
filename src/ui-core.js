@@ -41,6 +41,8 @@
     const S = UI.S, k = pet ? 'petEchoIntro' : 'echoIntro'; if (S.flags[k]) return null; S.flags[k] = 1; const n = pet && H.FORMS[H.petSpecies(pet)].n;
     return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? `You found ${n} echoes!` : 'You found an echo!'),
       el('div', 'small', pet ? `They help ${n} evolve. A fully evolved pet turns its echoes into stars.` : 'Plain echoes help any pet evolve, on top of its own echoes. Spend them on a pet\'s page.'))); };
+  // after a level up: the modes that just opened
+  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
   UI.stars = (rank) => (rank ? UI.add(el('span', 'chip'), UI.icon('ic_star'), String(rank)) : null);
   // an equipment row: icon, name, rarity, what it does
   UI.itemRow = (it, tag, right) => { const b = el(tag || 'div', 'item r-' + it.rar); if (tag === 'button') b.type = 'button'; UI.add(b, UI.icon(A.itemIcon(it), 1.25), el('div', 'grow', `<div class="rar">${H.RARITY[it.rar].n}</div><b>${H.itemName(it)}</b><div>${H.itemText(it)}</div>`)); if (right) { right.classList.add('who'); b.appendChild(right); } return b; };
@@ -139,6 +141,8 @@
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
       ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
+      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day at your level, with a house rule that changes how battles work. The rule is the same for everyone that day. The first win pays ${H.DAILY.notes} notes; try as often as you like.`),
+      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet goes on tour. Pick roads on a map: five gigs, stops to rest, jam or take a chance, and a boss at the end. Boons collected on the way last the whole tour and some work together. Each day the first five gig wins pay ${H.SOLO.gigNotes} notes and the first boss win ${H.SOLO.bossNotes} notes and a piece of equipment.`),
       ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves near your level, a little tougher each time. HP carries over and fallen pets sit out. Waves 5, 10, 15 and 20 pay echoes and a shell, once a week.`),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));

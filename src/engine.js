@@ -36,7 +36,7 @@
 
   class Battle {
     constructor(o) {
-      this.rnd = o.rng || Math.random; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null;
+      this.rnd = o.rng || Math.random; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null; this.rules = o.rules || {};
       o.allies.forEach((s, i) => s && this._add(s, 0, i)); o.enemies.forEach((s, i) => s && this._add(s, 1, i));
       for (const u of this.units) {
         u.max = Math.round(u.base.hp * (1 + this.mod(u, 'hp'))); u.hp = u.max;
@@ -44,7 +44,7 @@
         u.gauge = Math.min(GMAX - 1, g * GMAX);
         if (u.shift) u.family = H.FAMILY_ORDER[Math.floor(this.rnd() * 5)];
       }
-      this.acting = '__start__'; this.ensemble = null; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble); for (const u of this.units) this.fire(u, 'start'); this.acting = null;
+      this.acting = '__start__'; this.ensemble = null; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble); for (const u of this.units) this.fire(u, 'start'); this.setupRules(); this.acting = null;
       this.startEvents = this.ev; this.ev = [];
     }
     // The team's ensemble plays its opening: one boon, set before anyone moves.
@@ -68,11 +68,11 @@
       else if (id === 'hymn') this.ensRevive = K.hymn;
     }
     _add(spec, side, slot) {
-      const ab = [];
-      if (spec.kit.beat) ab.push({ kind: 'beat', def: spec.kit.beat, cd: 0 });
+      const ab = [], nb = this.rules.noBasics;
+      if (spec.kit.beat) ab.push({ kind: 'beat', def: nb ? H.FEEDBACK : spec.kit.beat, cd: 0 });
       if (spec.kit.phrase) ab.push({ kind: 'phrase', def: spec.kit.phrase, cd: 0 });
       if (spec.kit.finale) ab.push({ kind: 'finale', def: spec.kit.finale, cd: 2 });
-      const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0 };
+      const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0, giant: spec.giant || null };
       const sh = spec.perks.find((p) => p.shift); if (sh) { u.shift = sh.shift; u.enrageAt = sh.enrage; }
       this.units.push(u);
     }
@@ -83,9 +83,46 @@
     bump(u, on) { u.perks.forEach((p, i) => { if (p.ramp && p.ramp.on === on) u.ramp[i] = Math.min(p.ramp.max, (u.ramp[i] || 0) + p.ramp.per); }); }
     low(u) { const lh = this.has(u, 'lowHp'); return lh && u.hp / u.max < lh.below ? lh : null; }
     vol(u) { const lh = this.low(u); return u.base.vol * (1 + this.mod(u, 'vol') + this.rampTotal(u) + (lh ? lh.vol : 0)) * (u.st.pup ? 1.25 : 1) * (u.st.pdown ? 0.75 : 1); }
-    tempo(u) { return Math.max(20, u.base.tempo * (1 + this.mod(u, 'tempo')) * (u.tail || 1) * (u.st.sup ? 1.3 : 1) * (u.st.sdown ? 0.7 : 1)); }
+    tempo(u) { const t = Math.max(20, u.base.tempo * (1 + this.mod(u, 'tempo')) * (u.tail || 1) * (u.st.sup ? 1.3 : 1) * (u.st.sdown ? 0.7 : 1)) * (this.mic && this.micHolder(u) ? this.rules.mic.tempo : 1); return this.rules.backwards ? Math.max(20, 10000 / t) : t; }
     poise(u) { return Math.max(0, u.base.poise + this.mod(u, 'poise')); }
     has(u, flag) { for (const p of u.perks) if (p[flag]) return p[flag]; return null; }
+    sum(u, flag) { let s = 0; for (const p of u.perks) if (p[flag]) s += p[flag]; return s; }
+
+    /* ----- house rules: the Daily Gig's twists and the Solo crowd. All of them are visible on the field. ----- */
+    setupRules() {
+      const R = this.rules;
+      if (R.potato) { const foes = this.alive(1); if (foes.length) this.potato = { uid: foes[Math.floor(this.rnd() * foes.length)].uid, left: R.potato.every }; }
+      if (R.mic) this.mic = [0, 1].map((side) => { const a = this.alive(side).sort((x, y) => x.slot - y.slot)[0]; return a ? a.uid : -1; });
+    }
+    // all damage from hits is scaled by the volume knob and, late in a long fight, by a restless crowd
+    dmgMul() {
+      const R = this.rules; let m = 1;
+      if (R.volume) m *= Math.min(R.volume.max, R.volume.start + R.volume.per * Math.floor(this.turn / R.volume.every));
+      if (R.restless && this.turn > R.restless.from) m *= 1 + R.restless.per * (this.turn - R.restless.from);
+      return m;
+    }
+    micHolder(u) { return !!this.mic && this.mic[u.side] === u.uid; }
+    // a move that is there but may not be used now: under Pass the Mic only the holder plays Skills and Specials
+    locked(u, a) { return !!this.mic && a.kind !== 'beat' && !this.micHolder(u); }
+    ready(u, a) { return a.cd === 0 && !this.locked(u, a); }
+    echoK(u) { return this.rules.echo || this.sum(u, 'echoPedal'); }
+    passMic(side) {
+      if (!this.mic) return; const list = this.units.filter((v) => v.side === side).sort((x, y) => x.slot - y.slot), cur = list.findIndex((v) => v.uid === this.mic[side]);
+      for (let i = 1; i <= list.length; i++) { const v = list[(cur + i + list.length) % list.length]; if (v.alive) { if (v.uid !== this.mic[side]) { this.mic[side] = v.uid; this.emit({ t: 'mark', u: v.uid, m: 'mic' }); } return; } }
+      this.mic[side] = -1;
+    }
+    // what the field shows for the rules in play
+    twState() { const R = this.rules; return { potato: this.potato ? Object.assign({}, this.potato) : null, mic: this.mic ? this.mic.slice() : null, vol: R.volume ? this.dmgMul() : 0, left: R.lastCall ? Math.max(0, R.lastCall - this.turn) : null, key: R.keyChange ? R.keyChange - (this.turn % R.keyChange) : null, restless: !!R.restless && this.turn > R.restless.from }; }
+    // at the start of every turn: the potato's fuse, the key change
+    tickRules() {
+      const R = this.rules;
+      if (R.keyChange && this.turn > 1 && (this.turn - 1) % R.keyChange === 0) { for (const u of this.alive(0).concat(this.alive(1))) u.family = H.FAMILY_ORDER[(H.FAMILY_ORDER.indexOf(u.family) + 1) % 5]; this.emit({ t: 'keychange', fams: this.units.map((u) => u.family) }); }
+      if (this.potato && --this.potato.left <= 0) {
+        const h = this.units[this.potato.uid], side = h ? h.side : 1; this.emit({ t: 'note', u: this.potato.uid, txt: 'Boom!' });
+        if (h && h.alive) this.applyDamage(h, h.max * R.potato.pct, { kind: 'burst' });
+        const other = this.alive(1 - side); if (!this.over && other.length) { this.potato = { uid: other[Math.floor(this.rnd() * other.length)].uid, left: R.potato.every }; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); }
+      }
+    }
 
     /* ----- turn order ----- */
     // Who acts in what order from here, assuming nothing changes.
@@ -104,17 +141,23 @@
     next(auto) {
       if (this.over || this.waiting != null) return { events: [], wait: this.waiting };
       this.ev = [];
+      if (this.rules.lastCall && this.turn >= this.rules.lastCall) { this.over = 'lose'; this.emit({ t: 'note', u: this.alive(0)[0] ? this.alive(0)[0].uid : 0, txt: 'Lights out!' }); this.emit({ t: 'end', win: false, why: 'time' }); return { events: this.ev, wait: null }; }
       let actor = null, bt = Infinity;
       for (const u of this.units) if (u.alive) { const t = (GMAX - u.gauge) / this.tempo(u); if (t < bt - 1e-9) { bt = t; actor = u; } }
       for (const u of this.units) if (u.alive) u.gauge = Math.min(GMAX, u.gauge + this.tempo(u) * bt);
       actor.gauge = 0; this.turn++; actor.turns++; this.acting = actor;
       this.emit({ t: 'turn', u: actor.uid });
+      this.tickRules(); if (this.over) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; }
       if (actor.shift && actor.turns > 1 && (actor.turns - 1) % actor.shift === 0) { const i = H.FAMILY_ORDER.indexOf(actor.family); actor.family = H.FAMILY_ORDER[(i + 1 + Math.floor(this.rnd() * 3)) % 5]; this.emit({ t: 'shift', u: actor.uid, family: actor.family }); }
       if (actor.st.poison) this.applyDamage(actor, actor.st.poison.val, { kind: 'poison' });
       if (actor.alive && actor.st.regen) this.heal(null, actor, actor.st.regen.val);
       if (actor.alive) { this.bump(actor, 'turn'); this.fire(actor, 'turn'); }
       if (!actor.alive || this.over) { this.acting = null; this.checkOver(); this.emit(this.sync()); return { events: this.ev, wait: null }; }
       if (actor.st.stun) { this.emit({ t: 'skip', u: actor.uid }); this.endTurn(actor, null); this.emit(this.sync()); return { events: this.ev, wait: null }; }
+      // the mic: everything is ready for whoever holds it
+      if (this.mic && this.micHolder(actor)) actor.ab.forEach((a) => (a.cd = 0));
+      // last turn's Skill or Special plays again, softer
+      if (actor.echoNext) { const e = actor.echoNext; actor.echoNext = null; this.emit({ t: 'note', u: actor.uid, txt: 'Echo!' }); this.useAbility(actor, { kind: e.kind, def: e.def }, { powMul: e.k, reactive: true, target: e.target && e.target.alive ? e.target : null }); this.checkOver(); if (this.over || !actor.alive) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; } }
       if (actor.side === 0 && !auto) { this.waiting = actor.uid; this.emit(this.sync()); return { events: this.ev, wait: actor.uid }; }
       const pick = this.autoPick(actor); this.perform(actor, pick.ab, pick.target);
       this.emit(this.sync()); return { events: this.ev, wait: null };
@@ -122,7 +165,7 @@
     // The player's order for the waiting pet.
     act(abIndex, targetUid) {
       const u = this.units[this.waiting]; if (!u) return null;
-      const a = u.ab[abIndex]; if (!a || a.cd > 0) return null;
+      const a = u.ab[abIndex]; if (!a || !this.ready(u, a)) return null;
       this.ev = []; this.waiting = null; this.acting = u;
       // no enemy picked: the move goes where it does the most good
       this.perform(u, a, targetUid == null ? (H.needsTarget(a.def) ? this.bestTarget(u, a.def) : null) : this.units[targetUid]);
@@ -131,18 +174,22 @@
     autoAct() { const u = this.units[this.waiting]; if (!u) return null; const p = this.autoPick(u); return this.act(u.ab.indexOf(p.ab), p.target ? p.target.uid : null); }
     perform(u, a, target) {
       this.useAbility(u, a, { target });
+      const ek = a.kind !== 'beat' && u.alive ? this.echoK(u) : 0; if (ek) u.echoNext = { def: a.def, kind: a.kind, target, k: ek };
+      // Duet: the partner joins in with its Basic move
+      if (this.rules.duet && u.side === 0 && !this.over) { const p = this.alive(0).find((x) => x !== u); if (p && p.ab[0]) { const t = target && target.alive && target.side !== p.side ? target : this.bestTarget(p, p.ab[0].def); this.useAbility(p, p.ab[0], { powMul: this.rules.duet, reactive: true, target: t }); } }
       this.endTurn(u, a);
       if (!this.over && this.turn > 500) { this.over = 'lose'; this.emit({ t: 'end', win: false }); }
     }
     endTurn(u, used) {
       if (u.alive) {
-        for (const a of u.ab) { if (a === used) a.cd = a.def.cd; else if (a.cd > 0) a.cd--; }
+        const cut = this.sum(u, 'cdCut'); for (const a of u.ab) { if (a === used) a.cd = a.def.cd ? Math.max(1, a.def.cd - cut) : 0; else if (a.cd > 0) a.cd--; }
         if (u.cdReset) { u.ab.forEach((a) => (a.cd = 0)); u.cdReset = false; }
         if (used && u.rockEncore === used.kind) { used.cd = 0; u.rockEncore = null; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
         if (u.bonusTurn && !this.over) { u.bonusTurn = 0; u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Again!' }); }
         const en = this.has(u, 'encore'); if (en && used && u.turns % en === 0 && !this.over) { u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
         for (const k of Object.keys(u.st)) { const s = u.st[k]; if (s.fresh) s.fresh = false; else if (--s.dur <= 0) { delete u.st[k]; this.emit({ t: 'stoff', u: u.uid, s: k }); } }
       }
+      if (this.mic && this.micHolder(u) && used) this.passMic(u.side);
       this.acting = null; this.checkOver();
     }
     // enemies a single hit from this unit may land on
@@ -154,7 +201,7 @@
     autoPick(u) {
       let best = null;
       for (const a of u.ab) {
-        if (a.cd > 0 || !this.usable(u, a.def)) continue;
+        if (!this.ready(u, a) || !this.usable(u, a.def)) continue;
         const cands = H.needsTarget(a.def) ? this.validTargets(u) : [null];
         for (const t of cands) { const sc = this.aiValue(u, a.def, t) * (0.96 + this.rnd() * 0.08) + (a.kind === 'beat' ? 0 : 0.01); if (!best || sc > best.sc) best = { ab: a, target: t, sc }; }
       }
@@ -176,7 +223,7 @@
       if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh; if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max);
       if (o.vs) for (const k in o.vs) if (tgt.st[k]) b += o.vs[k]; if (o.ifSelf) for (const k in o.ifSelf) if (src.st[k]) b += o.ifSelf[k];
       for (const p of src.perks) if (p.vs) for (const k in p.vs) if (tgt.st[k]) b += p.vs[k];
-      const lt = this.low(tgt); return m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1);
+      const lt = this.low(tgt); return m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul();
     }
     aiValue(u, def, chosen) {
       const foes = this.alive(1 - u.side), pals = this.alive(u.side); if (!foes.length) return 0;
@@ -238,6 +285,7 @@
           else if (k === 'detonate') { for (const t of groupOf(fx[1])) if (t.st.poison) v += dmgV(t, t.st.poison.val * t.st.poison.dur, { shatter: true }); }
           else if (k === 'spread') v += 0.15;
           else if (k === 'cdr') v += 0.25;
+          else if (k === 'recoil') v -= fx[1] * 1.6 * (0.5 + (1 - u.hp / u.max));
         }
         return v;
       };
@@ -292,7 +340,7 @@
     }
     checkOver() { if (this.over) return; const a = this.alive(0).length, b = this.alive(1).length; if (!b) { this.over = 'win'; this.emit({ t: 'end', win: true }); } else if (!a) { this.over = 'lose'; this.emit({ t: 'end', win: false }); } }
     sideDead(side) { return !this.units.some((u) => u.side === side && u.alive); }
-    sync() { return { t: 'sync', units: this.units.map((u) => ({ hp: u.hp, max: u.max, shield: u.shield, gauge: u.gauge, alive: u.alive, family: u.family, st: Object.fromEntries(Object.entries(u.st).map(([k, v]) => [k, v.dur])), cds: u.ab.map((a) => a.cd) })) }; }
+    sync() { return { t: 'sync', units: this.units.map((u) => ({ hp: u.hp, max: u.max, shield: u.shield, gauge: u.gauge, alive: u.alive, family: u.family, st: Object.fromEntries(Object.entries(u.st).map(([k, v]) => [k, v.dur])), cds: u.ab.map((a) => a.cd), lock: u.ab.map((a) => (this.locked(u, a) ? 1 : 0)) })), tw: this.twState() }; }
 
     /* ----- moves ----- */
     useAbility(u, a, ctx) {
@@ -336,6 +384,7 @@
         else if (k === 'detonate') { for (const t of this.targets(c, fx[1])) if (t.st.poison) { const d = t.st.poison.val * t.st.poison.dur; delete t.st.poison; this.emit({ t: 'stoff', u: t.uid, s: 'poison' }); this.applyDamage(t, d, { kind: 'poison', src: c.src }); } }
         else if (k === 'spread') { const from = c.last[0]; if (from && from.alive) for (const t of this.alive(1 - c.src.side)) if (t !== from) for (const s of ['sdown', 'poison', 'stun', 'pdown', 'offkey']) if (from.st[s]) this.applySt(null, t, s, from.st[s].dur, { rawVal: from.st[s].val }); }
         else if (k === 'cdr') c.src.cdReset = true;
+        else if (k === 'recoil') { if (c.src.alive) this.applyDamage(c.src, c.src.max * fx[1], { kind: 'burst' }); }
       }
     }
     fxDmg(fx, c) {
@@ -367,13 +416,14 @@
       if (o.vs) for (const s in o.vs) if (tgt.st[s]) b += o.vs[s];
       if (o.ifSelf) for (const s in o.ifSelf) if (src.st[s]) b += o.ifSelf[s];
       for (const p of src.perks) if (p.vs) for (const s in p.vs) if (tgt.st[s]) b += p.vs[s];
-      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * (0.95 + this.rnd() * 0.1);
+      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * (0.95 + this.rnd() * 0.1);
       m = Math.max(1, Math.round(m));
       let abs = 0; if (tgt.shield > 0 && !o.shatter) { abs = Math.min(tgt.shield, m); tgt.shield -= abs; }
       const dealt = m - abs;
       this.applyDamage(tgt, dealt, { src, abs, crit, adv, kind: 'hit' });
       if (tgt.alive) {
         if (o.st) for (const s of o.st) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
+        if (!c.reactive) for (const p of src.perks) if (p.hitSt) for (const s of p.hitSt) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
         if (o.randSt && (o.randCh == null || this.rnd() < o.randCh)) this.applySt(src, tgt, ['pdown', 'sdown', 'poison', 'offkey'][Math.floor(this.rnd() * 4)], o.randSt, {});
         if (o.push) this.pushGauge(tgt, -o.push);
         const dp = this.has(src, 'debuffPush'); if (dp && Object.keys(tgt.st).some((s) => !H.STATUS[s].buff)) this.pushGauge(tgt, -dp, true);
@@ -390,6 +440,8 @@
         if (tgt.alive && src.alive) { this.fire(tgt, 'hurt', { attacker: src }); const ct = this.has(tgt, 'counter'); if (ct && src.alive && tgt.alive && this.rnd() < ct.ch) this.react(tgt, src, ct.pow, 'Hit Back'); }
         for (const g of this.alive(tgt.side)) if (g !== tgt && src.alive) { const gd = this.has(g, 'guard'); if (gd && this.rnd() < gd.ch) this.react(g, src, gd.pow, 'Pack Leader'); }
       }
+      // Hot Potato: whoever holds it passes it on with a single hit
+      if (this.potato && this.potato.uid === src.uid && !aoe && !c.reactive && tgt.side !== src.side && tgt.alive) { this.potato.uid = tgt.uid; this.emit({ t: 'mark', u: tgt.uid, m: 'potato' }); }
       if (!tgt.alive && o.onKill && src.alive) this.runFx(o.onKill, c);
       if (!tgt.alive && src.alive && !c.reactive) this.fire(src, 'kill');
       if (!aoe && !c.reactive && src.alive && !this.over) { const sp = this.has(src, 'splash'); if (sp) for (const f of this.alive(1 - src.side)) if (f !== tgt) this.hit(src, f, pow * sp, {}, Object.assign({}, c, { reactive: true }), true); }
@@ -398,11 +450,25 @@
     react(u, at, pow, name) { this.emit({ t: 'ability', u: u.uid, n: name, kind: 'counter', follow: true, tgt: at.uid }); this.hit(u, at, pow, {}, { src: u, kind: 'counter', powMul: 1, last: [], reactive: true }, false); }
     applyDamage(tgt, amt, info) {
       if (!tgt.alive) return; amt = Math.max(0, Math.round(amt));
+      // Shared Stage: a hit is split evenly over the whole side
+      if (this.rules.share && info.kind === 'hit' && !info.split) { const side = this.alive(tgt.side); if (side.length > 1) { for (const v of side) this.applyDamage(v, amt / side.length, Object.assign({}, info, { split: true, abs: v === tgt ? info.abs : 0 })); return; } }
       if (info.kind === 'poison' && tgt.shield > 0) { const a = Math.min(tgt.shield, amt); tgt.shield -= a; info.abs = a; amt -= a; }
-      if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: 'Hangs on!' }); }
-      tgt.hp = Math.max(0, tgt.hp - amt);
+      let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: 'Hangs on!' }); }
+      const was = tgt.hp / tgt.max; tgt.hp = Math.max(0, tgt.hp - amt);
       this.emit({ t: 'dmg', src: info.src ? info.src.uid : -1, tgt: tgt.uid, amt, abs: info.abs || 0, crit: !!info.crit, adv: info.adv || 0, kind: info.kind, hp: tgt.hp, shield: tgt.shield });
-      if (tgt.hp <= 0) { tgt.alive = false; tgt.st = {}; tgt.gauge = 0; tgt.shield = 0; this.emit({ t: 'fall', u: tgt.uid }); if (tgt.side === 0 && this.ensRevive) { const p = this.ensRevive; this.ensRevive = 0; this.revive(tgt, p); return; } if (this.sideDead(0) || this.sideDead(1)) this.checkOver(); else for (const g of this.alive(tgt.side)) this.fire(g, 'allyFall'); return; }
+      if (stood) this.fire(tgt, 'stand');
+      if (tgt.hp <= 0) {
+        tgt.alive = false; tgt.st = {}; tgt.gauge = 0; tgt.shield = 0; this.emit({ t: 'fall', u: tgt.uid });
+        if (tgt.side === 0 && this.ensRevive) { const p = this.ensRevive; this.ensRevive = 0; this.revive(tgt, p); return; }
+        if (this.potato && this.potato.uid === tgt.uid) { const same = this.alive(tgt.side), pool = same.length ? same : this.alive(1 - tgt.side); if (pool.length) { this.potato.uid = pool[Math.floor(this.rnd() * pool.length)].uid; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); } }
+        if (this.mic && this.mic[tgt.side] === tgt.uid) this.passMic(tgt.side);
+        if (this.sideDead(0) || this.sideDead(1)) { this.checkOver(); return; }
+        // Chain Reaction: the fallen bursts and hits its own side
+        if (this.rules.chain) { this.emit({ t: 'note', u: tgt.uid, txt: 'Chain!' }); for (const v of this.alive(tgt.side)) this.applyDamage(v, tgt.max * this.rules.chain, { kind: 'burst' }); if (this.over) return; }
+        for (const g of this.alive(tgt.side)) this.fire(g, 'allyFall'); return;
+      }
+      // a giant staggers each time it loses another quarter of its HP
+      if (tgt.giant) for (const step of tgt.giant) if (was > step && tgt.hp / tgt.max <= step) { this.emit({ t: 'note', u: tgt.uid, txt: 'Staggered!' }); this.applySt(null, tgt, 'stun', 1, { force: true }); this.applySt(null, tgt, 'offkey', 2, { force: true }); }
       if (tgt.enrageAt && !tgt.once.enrage && tgt.hp / tgt.max < tgt.enrageAt) { tgt.once.enrage = true; tgt.st.sup = { dur: 99, fresh: false }; this.emit({ t: 'st', u: tgt.uid, s: 'sup', dur: 99 }); this.emit({ t: 'note', u: tgt.uid, txt: 'Faster!' }); }
     }
     revive(u, pct) { u.alive = true; u.revived = true; u.hp = Math.max(1, Math.round(u.max * pct)); u.gauge = 0; u.st = {}; this.emit({ t: 'revive', u: u.uid, hp: u.hp }); }
@@ -420,8 +486,8 @@
     applySt(src, tgt, s, dur, o) {
       o = o || {}; if (!tgt.alive) return false; if (o.ch != null && this.rnd() >= o.ch) return false;
       const def = H.STATUS[s];
-      const im = this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
-      if (!def.buff && tgt.ward) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
+      const im = !o.force && this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
+      if (!def.buff && tgt.ward && !o.force) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
       if (!def.buff) {
         if (src && (s === 'sdown' || s === 'pdown' || s === 'offkey')) dur += this.mod(src, 'statusDur');
       }

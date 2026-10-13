@@ -1,5 +1,5 @@
 // Headless checks: node test/sim.js [fuzz|run] [upto]
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js');
 const H = globalThis.H; if (process.env.RL) H.REH_LEVEL = +process.env.RL; if (process.env.RK) H.REH_GROW = +process.env.RK; if (process.env.PRICE) H.SHELL_PRICE = +process.env.PRICE; if (process.env.SLOPE) H.STAGE_SLOPE = +process.env.SLOPE; if (process.env.CURVE) H.DIN_CURVE = JSON.parse(process.env.CURVE); if (process.env.MK) { const [a, b] = process.env.MK.split(',').map(Number); H.MID_K.plain = a; H.MID_K.boss = b; } if (process.env.LK) { const [a, b, r] = process.env.LK.split(',').map(Number); H.LATE_K.plain = a; H.LATE_K.boss = b; if (r) H.LATE_K.ramp = r; } if (process.env.BK) H.BOSS_K = process.env.BK.split(',').map(Number); if (process.env.PK) H.PLAIN_K = process.env.PK.split(',').map(Number); if (process.env.SW) { H.SWELL.ramp.per = +process.env.SW.split(',')[0]; H.SWELL.ramp.max = +process.env.SW.split(',')[1]; } if (process.env.EC) H.ENEMY_COUNT = process.env.EC.split(',').map(Number); const mode = process.argv[2] || 'run';
 function fuzz(n) {
   const forms = Object.keys(H.FORMS), din = Object.keys(H.DIN), rnd = H.rng(7); let errs = 0, turns = 0;
@@ -7,7 +7,10 @@ function fuzz(n) {
     const lvl = 1 + Math.floor(rnd() * 30), S = H.newState();
     const allies = [0, 1, 2].map((k) => { const pet = { id: k + 1, form: forms[Math.floor(rnd() * forms.length)], rank: Math.floor(rnd() * 4), gear: [null, null] }; for (let g = 0; g < 2; g++) if (rnd() < 0.7) pet.gear[g] = H.rollItem(S, rnd, rnd() < 0.5 ? 'boss' : 'win').id; return H.buildPetUnit(pet, lvl, S); });
     const enemies = [0, 1, 2].map((j) => H.buildDinUnit(din[Math.floor(rnd() * din.length)], lvl, j === 0 && rnd() < 0.3));
-    try { const b = new H.Battle({ allies, enemies, rng: rnd, ensemble: rnd() < 0.6 ? H.ENSEMBLES[Math.floor(rnd() * H.ENSEMBLES.length)].id : null });
+    // house rules from the Daily Gig and Solo, mixed in at random (several at once, too)
+    const rules = {}; if (H.TWISTS && rnd() < 0.6) for (const id of H.TWIST_ORDER) if (rnd() < 0.25) Object.assign(rules, H.TWISTS[id].rules || {}); if (H.SOLO && rnd() < 0.2) rules.restless = H.SOLO.restless;
+    if (rnd() < 0.15) for (const e of enemies) e.giant = [0.75, 0.5, 0.25];
+    try { const b = new H.Battle({ allies, enemies, rng: rnd, rules, ensemble: rnd() < 0.6 ? H.ENSEMBLES[Math.floor(rnd() * H.ENSEMBLES.length)].id : null });
       let g = 0; while (!b.over && g++ < 3000) { const r = b.next(rnd() < 0.5); if (r.wait != null) { const u = b.units[r.wait]; const ready = u.ab.map((a, k) => k).filter((k) => u.ab[k].cd === 0); const vt = b.validTargets(u); b.order(7); b.act(ready[Math.floor(rnd() * ready.length)], vt.length ? vt[Math.floor(rnd() * vt.length)].uid : null); } }
       turns += b.turn; for (const u of b.units) if (!isFinite(u.hp) || !isFinite(u.gauge)) throw new Error('NaN ' + u.name);
       if (!b.over) throw new Error('no end');

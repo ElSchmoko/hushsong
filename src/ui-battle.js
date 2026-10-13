@@ -25,11 +25,17 @@
   };
 
   UI.screens.battle = (root, pr) => {
-    const S = UI.S, W = UI.W, rnd = Math.random, enc = !!pr.enc && !!S.encoreRun, n = enc ? S.encoreRun.wave : pr.n || S.stage, reh = !!pr.reh, st = enc ? H.encoreStage(S, n) : reh ? H.rehearsalStage(S, n) : H.stage(n), GMAX = H.GMAX;
+    const S = UI.S, W = UI.W, rnd = Math.random, GMAX = H.GMAX;
+    // which kind of battle: an Encore wave, a Daily Gig, a Solo gig, a rehearsal, or a floor
+    const srun = S.soloRun, solo = !!pr.solo && !!srun && !!srun.pending && srun.pending.type === 'battle', daily = !!pr.daily && H.dailyOpen(S), enc = !!pr.enc && !!S.encoreRun;
+    if (pr.solo && !solo) return UI.go(srun ? 'solomap' : 'solo');
+    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : daily ? 0 : pr.n || S.stage, reh = !!pr.reh;
+    const st = enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
     if (pr.enc && !enc) return UI.go('encore');
-    if (!H.teamPets(S).some(Boolean)) return UI.go('home');
+    if (!solo && !H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = enc ? H.startEncore(S, rnd) : H.startStage(S, n, rnd, reh);
+    const battle = enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
+    if (daily) UI.save();
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
     UI.music(st.boss ? 'boss' : 'battle', st.region, !!battle.ensemble && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
 
@@ -67,12 +73,20 @@
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
     const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your Encore run ends here. Rewards you have reached stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes you have won stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
+      : daily ? UI.confirm('Leave the gig?', 'You can try again as often as you like.', 'Leave', () => UI.go('daily'))
       : UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
     const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : solo ? (st.boss ? 'Solo · boss' : 'Solo · gig ' + n) : daily ? twist.n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
+    // the house rule in play, with what it is doing right now; a tap says it again
+    let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
+    const ruleText = () => { if (twist) { const r = st.twist; return r === 'potato' && tw.potato ? String(tw.potato.left) : r === 'volume' ? Math.round(tw.vol * 100) + '%' : r === 'lastcall' ? tw.left + ' left' : r === 'key' ? 'in ' + tw.key : ''; } return tw.restless ? 'Restless!' : ''; };
+    const drawRule = () => { if (!twist && !tw.restless) { rule.hidden = true; return; } rule.hidden = false; rule.innerHTML = ''; add(rule, UI.icon(twist ? A.twistIcon(st.twist) : 'ev_crowd', twist ? 0.78 : 0.55), el('span', '', ruleText())); rule.classList.toggle('hot', (st.twist === 'lastcall' && tw.left <= 8) || (st.twist === 'potato' && tw.potato && tw.potato.left <= 2) || (!twist && tw.restless)); };
+    rule.setAttribute('aria-label', twist ? 'House rule: ' + twist.n : 'The crowd'); rule.addEventListener('click', () => { Au.sfx('tap'); UI.toast(twist ? twist.n + ': ' + twist.d : 'The crowd is restless: every hit lands harder each turn.'); });
+    drawRule(); fwrap.appendChild(rule);
     const panel = el('div', 'bpanel'), title = el('div', 'ptitle'), meta = el('div', 'pmeta'), desc = el('div', 'pdesc'), icons = el('div', 'picons'), hint = el('div', 'phint');
     // Auto and speed are switches: latched down and gold while on
     const autoB = key('Auto', () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
@@ -90,23 +104,23 @@
       const u = shown.u, a = u.ab[shown.idx], fam = V[u.uid].family;
       title.innerHTML = ''; add(title, UI.icon('fam_' + (fam || 'none')), el('span', '', a ? (a.def.n === u.name ? a.def.n : `${u.name} · ${a.def.n}`) : `${u.name}: ${shown.name}`));
       if (a) {
-        const ready = a.cd === 0;
-        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${KN[a.kind]}</b>` + (mine && !ready ? ` <span class="bad">ready in ${turns(a.cd)}</span>` : a.def.cd ? ` <span>rests ${turns(a.def.cd)} after use</span>` : ' <span>always ready</span>');
+        const ready = a.cd === 0, lockd = battle.locked(u, a);
+        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${KN[a.kind]}</b>` + (mine && lockd ? ' <span class="bad">needs the mic</span>' : mine && !ready ? ` <span class="bad">ready in ${turns(a.cd)}</span>` : a.def.cd ? ` <span>rests ${turns(a.def.cd)} after use</span>` : ' <span>always ready</span>');
         desc.innerHTML = UI.rich(H.describe(a.def));
       } else { meta.className = 'pmeta'; meta.textContent = 'Extra move'; desc.textContent = ''; }
       icons.innerHTML = '';
       u.ab.forEach((m, i) => {
-        const b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', m.def.n);
-        b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
-        b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && m.cd === 0) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
+        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', m.def.n + (lk ? ', needs the mic' : ''));
+        b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (lk) b.appendChild(add(el('span', 'cdn lk'), UI.icon('ic_lock', 0.85))); else if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
+        b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && battle.ready(u, m)) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
         icons.appendChild(b);
       });
-      useB.disabled = !(mine && a && a.cd === 0); useB.textContent = mine ? 'Use' : '· · ·';
+      useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? 'Use' : '· · ·';
       hint.className = 'phint' + (mine && tipText ? ' tipc' : '');
-      hint.textContent = !mine ? (u.side === 1 ? 'Enemy turn' : auto ? 'Auto battle is on' : '') : tipText || (a && a.cd > 0 ? 'Not ready yet. Pick another move.' : a && H.needsTarget(a.def) ? 'Tap an enemy to use it, or press Use.' : 'Press Use.');
+      hint.textContent = !mine ? (u.side === 1 ? 'Enemy turn' : auto ? 'Auto battle is on' : '') : tipText || (a && battle.locked(u, a) ? 'Only the pet with the mic can use this.' : a && a.cd > 0 ? 'Not ready yet. Pick another move.' : a && H.needsTarget(a.def) ? 'Tap an enemy to use it, or press Use.' : 'Press Use.');
     };
     let tipText = '';
-    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (a.cd > 0) { UI.toast('That move is not ready yet.'); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
+    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
 
     const unitAt = (px, py) => { let best = null; for (const v of V) { if (!v.alive) continue; if (px >= v.x + 1 && px <= v.x + v.sz - 1 && py >= v.hy && py <= v.y + v.bb.b + 3) if (!best || v.y + v.sz > best.y + best.sz) best = v; } return best; };
     let opening = false, skipOpening = false; fwrap.addEventListener('click', () => { if (opening) skipOpening = true; }, true); panel.addEventListener('click', () => { if (opening) skipOpening = true; }, true);
@@ -125,7 +139,7 @@
         const u = battle.units[battle.waiting], a = u.ab[sel];
         if (H.needsTarget(a.def)) {
           if (!battle.validTargets(u).includes(v.u)) { UI.toast('It has to hit the one with Taunt.'); return; }
-          target = v.u.uid; if (a.cd > 0) { UI.toast('That move is not ready yet.'); return; } fire(); return;
+          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } fire(); return;
         }
       }
       // a tap is only for aiming; the first stray tap of a battle says how to look closer
@@ -134,7 +148,7 @@
     let hintHold = false;
 
     /* ----- drawing (all in layout units; the canvas is scaled up to the screen's real pixels) ----- */
-    const singing = enc || reh || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
+    const singing = enc || reh || daily || solo || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
@@ -142,7 +156,7 @@
     const rr = (x, y, w, h, r, col) => { fctx.fillStyle = col; fctx.beginPath(); fctx.moveTo(x + r, y); fctx.arcTo(x + w, y, x + w, y + h, r); fctx.arcTo(x + w, y + h, x, y + h, r); fctx.arcTo(x, y + h, x, y, r); fctx.arcTo(x, y, x + w, y, r); fctx.closePath(); fctx.fill(); };
     const drawUnit = (v) => {
       if (v.alpha <= 0.02) return;
-      const img = A.sprite(v.u.spec.sprite, v.flash > 0 ? 'flash' : '', v.sz * k);
+      const img = A.sprite(v.u.spec.sprite, v.u.spec.mirror ? (v.flash > 0 ? 'mirrorflash' : 'mirror') : v.flash > 0 ? 'flash' : '', v.sz * k);
       const sx = v.x + v.ox + (v.shake > 0 ? (Math.random() < 0.5 ? -1 : 1) : 0), sy = v.y + v.oy, cx = sx + (v.bb.l + v.bb.r) / 2, fy = sy + v.bb.b - 1.5, sw = Math.min(v.sz > 48 ? 60 : 34, v.bb.r - v.bb.l);
       fctx.globalAlpha = v.alpha * 0.2; fctx.fillStyle = INK; fctx.beginPath(); fctx.ellipse(cx, fy, sw / 2, 3.2, 0, 0, 6.2832); fctx.fill();
       fctx.globalAlpha = v.alpha;
@@ -183,6 +197,9 @@
         const bx = ix + 9.4, by2 = y + 9; fctx.fillStyle = INK; fctx.beginPath(); fctx.arc(bx, by2, 3.3, 0, 6.2832); fctx.fill();
         fctx.font = "800 5.6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(d), bx, by2 + 0.4);
       });
+      // house-rule tokens on the one who has them: the potato with its fuse, the mic
+      const pot = tw.potato && tw.potato.uid === v.u.uid, mic = tw.mic && tw.mic[v.u.side] === v.u.uid;
+      if (pot || mic) { const mx = v.u.side === 0 ? hx + bw + 1 : hx - 15, my = hy + 9 + Math.sin(clock * 5) * 1.2; A.draw(fctx, pot ? 'tw_potato' : 'ic_mic', mx, my, '', pot ? 0.95 : 0.85); if (pot) { const bx = mx + 12, by2 = my + 11; fctx.fillStyle = tw.potato.left <= 2 ? '#ff3d5a' : INK; fctx.beginPath(); fctx.arc(bx, by2, 4, 0, 6.2832); fctx.fill(); fctx.font = "800 6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(tw.potato.left), bx, by2 + 0.4); } }
       // while you choose: who is targeted, and which enemies your pet is strong or weak against
       if (waiting != null && mine && v.u.side === 1) {
         const me = battle.units[battle.waiting], adv = H.advantage(me.family, v.family);
@@ -221,7 +238,7 @@
     /* ----- your turn ----- */
     const askPlayer = (u) => new Promise((res) => {
       const vt = battle.validTargets(u); if (!vt.some((x) => x.uid === target)) { const best = vt.reduce((b, x) => { const sc = (y) => H.advantage(u.family, y.family) * 0.35 - y.hp / y.max; return sc(x) > sc(b) ? x : b; }, vt[0]); target = best ? best.uid : -1; }
-      tipText = ''; if (n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = ['Your turn! Tap the enemy to attack it.', 'Tap a round icon to pick another move.', 'Green arrow: your pet is strong against that enemy.', 'The yellow line shows whose turn is coming.'][n - 1]; }
+      tipText = ''; if (!daily && !solo && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = ['Your turn! Tap the enemy to attack it.', 'Tap a round icon to pick another move.', 'Green arrow: your pet is strong against that enemy.', 'The yellow line shows whose turn is coming.'][n - 1]; }
       sel = 0; shown = { u, idx: 0 }; mine = true; waiting = res; render();
     });
     const idle = (text) => { mine = false; if (text != null) { shown = null; note = text; } render(); };
@@ -253,7 +270,9 @@
           case 'note': float(V[e.u], e.txt, '#ffe58a'); await wait(220); break;
           case 'gauge': { const v = V[e.u]; if (Math.abs(e.d) >= 0.1) float(v, e.d > 0 ? 'Sooner' : 'Later', e.d > 0 ? '#ffe58a' : '#ff9a9a'); break; }
           case 'shift': { const v = V[e.u]; v.family = e.family; float(v, 'Changes!', FCOL[e.family]); burst(v, FCOL[e.family], 12); Au.sfx('bad'); await wait(420); break; }
-          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); break;
+          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); if (e.tw) { const was = tw.restless; tw = e.tw; drawRule(); if (!was && tw.restless) say('The crowd is restless!', 'foe'); } break;
+          case 'keychange': { e.fams.forEach((f, k) => { const v = V[k]; if (v.alive && v.family !== f) { v.family = f; burst(v, FCOL[f], 6); } }); say('Key change!', 'ens'); Au.sfx('cue'); for (const v of V) if (v.alive) float(v, H.FAMILIES[v.family].n, FCOL[v.family]); await wait(700); break; }
+          case 'mark': { const v = V[e.u]; if (e.m === 'potato') { tw.potato = Object.assign({}, tw.potato || { left: 0 }, { uid: e.u }); float(v, 'Hot potato!', '#ffb050'); Au.sfx('tap', 6); } else { if (tw.mic) tw.mic[v.u.side] = e.u; float(v, 'Mic!', '#ffe58a'); } await wait(180); break; }
           case 'ensemble': break;
           case 'end': active = -1; await wait(500); break;
         }
@@ -263,12 +282,25 @@
     // the boss's entrance is a screen of its own: the region dims, the boss stamps down under its name, then the battle opens
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
-      const name = boss.name, mode = !enc && !reh && H.floorHushed(S, n) ? 'hush' : 'sing';
+      const name = boss.name, mode = !enc && !reh && !daily && !solo && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
-        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
+        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : solo ? 'Solo tour · the last stop' : daily ? 'Daily Gig · ' + twist.n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
       bossOv.addEventListener('click', () => { skipOpening = true; });
       wrap.appendChild(bossOv);
+    }
+    // the Daily Gig's house rule gets its own entrance: the poster's badge stamps down with the rule under it
+    let twistOv = null;
+    if (twist && !st.boss && !window.__hsSpeed) {
+      twistOv = el('div', 'bossin twistin full' + (speed >= 2 ? ' fast' : ''));
+      add(twistOv, UI.bgEl(st.region, W, UI.Hh, 0.5, 'sing'), el('div', 'bosstint night'), el('div', 'bossray'), add(el('div', 'twbadge'), UI.icon(A.twistIcon(st.twist), 4.2)),
+        add(el('div', 'bossban'), el('div', 'bosskick', 'Daily Gig · ' + st.venue), el('div', 'bossnm', twist.n), el('div', 'twrule', twist.d)), el('div', 'bossskip', 'Tap to start'));
+      twistOv.addEventListener('click', () => { skipOpening = true; }); wrap.appendChild(twistOv);
+    }
+    async function twistIn() {
+      if (!twistOv) return; opening = true; skipOpening = false; const t0 = performance.now(); let stamped = false;
+      while (!dead && !skipOpening && performance.now() - t0 < 4200 / (speed >= 2 ? 1.5 : 1)) { if (!stamped && performance.now() - t0 >= 450) { stamped = true; Au.sfx('stamp'); twistOv.classList.add('quake'); } await new Promise((res) => setTimeout(res, 30)); }
+      opening = false; if (dead) return; twistOv.classList.add('out'); await new Promise((res) => setTimeout(res, 380)); twistOv.remove(); twistOv = null;
     }
     async function bossIn() {
       if (!bossOv) { if (st.boss) { say(boss ? boss.name : H.DIN[H.REGIONS[st.region].boss].n, 'foe'); await wait(900); } return; }
@@ -282,8 +314,8 @@
       bossOv.classList.add('out'); await new Promise((res) => setTimeout(res, 380)); bossOv.remove(); bossOv = null;
     }
     async function run() {
-      if (st.boss) await bossIn();
-      if (dead) return; idle('Get ready'); await wait(450);
+      if (st.boss) await bossIn(); else await twistIn();
+      if (dead) return; idle(twist ? twist.n : 'Get ready'); await wait(450);
       // the team's ensemble plays its opening; a tap skips it
       const ens = battle.ensemble && H.ENS[battle.ensemble];
       if (ens && !window.__hsSpeed) {
@@ -307,7 +339,9 @@
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
-      const out = enc ? H.finishEncore(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle); UI.save(); UI.result(out);
+      const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
+      if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
+      UI.save(); UI.result(out);
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
@@ -321,7 +355,7 @@
       kids.push(txt('disp big center', `Wave ${out.wave} cleared!`));
       if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
-      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`));
+      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
       kids.push(txt('small dim center', next ? `Next weekly reward at wave ${next[0]}.` : 'All weekly rewards won. Go for a new best!'));
       kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
@@ -334,6 +368,8 @@
   };
   UI.result = (out) => {
     if (out.encore) return UI.encoreResult(out);
+    if (out.daily) return UI.dailyResult(out);
+    if (out.solo) return UI.soloResult(out);
     const S = UI.S, kids = [], nx = out.first ? S.stage : out.n;
     const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); return r; };
     const evo = H.canEvolveAny(S), evoKey = () => UI.key((H.nextForms(evo).length ? 'Evolve ' : 'Add a star to ') + H.FORMS[evo.form].n, () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');
@@ -344,6 +380,7 @@
         add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', 'Level up'), el('b', '', String(S.level))));
         for (let i = 0; i < 14; i++) { const s = el('i', 'spark'), a = (i / 14) * 6.283; s.style.left = '50%'; s.style.top = '34%'; s.style.setProperty('--x', Math.cos(a) * (60 + (i % 3) * 22) + '%'); s.style.setProperty('--y', Math.sin(a) * (110 + (i % 2) * 40) + '%'); s.style.animationDelay = 0.15 + (i % 4) * 0.05 + 's'; lv.appendChild(s); }
         kids.push(lv, txt('center good', out.ups > 1 ? `<b>+${out.ups} levels!</b> Your pets got stronger.` : 'Your pets got stronger.'));
+        const un = UI.unlockNote(out.ups); if (un) kids.push(un);
         if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 850);
       }
       kids.push(box('row', txt('small dim', 'Next level'), add(el('div', 'grow'), UI.meter(S.xp / H.xpNeed(S.level))))); };
