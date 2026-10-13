@@ -283,9 +283,11 @@
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
       const name = boss.name, mode = !enc && !reh && !daily && !solo && H.floorHushed(S, n) ? 'hush' : 'sing';
-      bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : ''));
+      bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : '') + (solo ? ' vs' : '') + (daily ? ' giant' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
         add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : solo ? 'Solo tour · the last stop' : daily ? 'Daily Gig · ' + twist.n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
+      // Solo: a face-off, the soloist on one side, the boss on the other
+      if (solo) { const me = allies[0]; bossOv.insertBefore(add(el('div', 'vspet'), UI.sp(me.spec.sprite, 1.9, { anim: false })), bossOv.querySelector('.bossban')); bossOv.insertBefore(el('div', 'vsbadge', 'VS'), bossOv.querySelector('.bossban')); }
       bossOv.addEventListener('click', () => { skipOpening = true; });
       wrap.appendChild(bossOv);
     }
@@ -307,7 +309,7 @@
       opening = true; skipOpening = false;
       const T = (ms) => ms / (speed >= 2 ? 1.6 : 1), t0 = performance.now(); let stamped = false;
       while (!dead && !skipOpening && performance.now() - t0 < T(2500)) {
-        if (!stamped && performance.now() - t0 >= T(620)) { stamped = true; Au.sfx('stamp'); bossOv.classList.add('quake'); }
+        if (!stamped && performance.now() - t0 >= T(620)) { stamped = true; Au.sfx('stamp'); bossOv.classList.add('quake'); if (solo) setTimeout(() => Au.sfx('crack'), T(420)); if (daily) setTimeout(() => { Au.sfx('stamp'); bossOv.classList.remove('quake'); void bossOv.offsetWidth; bossOv.classList.add('quake'); }, T(260)); }
         await new Promise((res) => setTimeout(res, 30));
       }
       opening = false; if (dead) return;
@@ -354,6 +356,7 @@
     if (out.win) {
       kids.push(txt('disp big center', `Wave ${out.wave} cleared!`));
       if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
+      UI.confetti(out.paid.length ? 50 : 16); if (out.paid.length) Au.sfx('coin');
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
       if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);

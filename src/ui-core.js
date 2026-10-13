@@ -43,6 +43,17 @@
       el('div', 'small', pet ? `They help ${n} evolve. A fully evolved pet turns its echoes into stars.` : 'Plain echoes help any pet evolve, on top of its own echoes. Spend them on a pet\'s page.'))); };
   // after a level up: the modes that just opened
   UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
+  // a slim row of rewards along a line: [{ k: what it is for, icon, n: how much, got }]. A paid one shows a tick.
+  UI.track = (steps, cls) => { const t = el('div', 'rtrack ' + (cls || '')); steps.forEach((x) => { const p = el('span', 'rt' + (x.got ? ' got' : '') + (x.wide ? ' wide' : '')); if (x.k != null) p.appendChild(el('i', '', String(x.k))); p.appendChild(UI.icon(x.got ? 'ic_check' : x.icon, x.got ? 0.62 : 0.6)); if (x.n != null) p.appendChild(el('b', '', String(x.n))); p.setAttribute('aria-label', (x.label || '') + (x.got ? ', paid' : '')); t.appendChild(p); }); return t; };
+  // celebrations: confetti bursting from the middle, or raining from the top; a rubber stamp that lands with a thump
+  UI.confetti = (n, rain) => {
+    const g = document.getElementById('game'); if (!g || window.__hsSpeed) return; const c = el('div', 'confetti' + (rain ? ' rain' : '')), cols = ['#ff6b5e', '#ffc928', '#2fd0d0', '#6fd46a', '#c88af8', '#ff9ad8', '#ffffff'];
+    for (let i = 0; i < n; i++) { const b = el('i'), a = Math.random() * 6.283, r = 40 + Math.random() * 70; b.style.background = cols[i % cols.length]; b.style.setProperty('--dx', (rain ? (Math.random() - 0.5) * 60 : Math.cos(a) * r) + 'px'); b.style.setProperty('--dy', (rain ? 0 : Math.sin(a) * r * 0.8 - 40) + 'px'); b.style.setProperty('--r', Math.round((Math.random() - 0.5) * 1080) + 'deg');
+      if (rain) { b.style.left = Math.random() * 100 + '%'; b.style.animationDelay = Math.random() * 2.2 + 's'; b.style.animationDuration = 2.4 + Math.random() * 1.6 + 's'; } else b.style.animationDelay = Math.random() * 0.12 + 's';
+      if (i % 3 === 0) b.style.borderRadius = '50%'; c.appendChild(b); }
+    g.appendChild(c); setTimeout(() => c.remove(), rain ? 6500 : 2400);
+  };
+  UI.stamp = (text, cls) => { const s = el('div', 'stampmark ' + (cls || ''), text); if (!window.__hsSpeed) setTimeout(() => Au.sfx('stamp'), 260); return s; };
   UI.stars = (rank) => (rank ? UI.add(el('span', 'chip'), UI.icon('ic_star'), String(rank)) : null);
   // an equipment row: icon, name, rarity, what it does
   UI.itemRow = (it, tag, right) => { const b = el(tag || 'div', 'item r-' + it.rar); if (tag === 'button') b.type = 'button'; UI.add(b, UI.icon(A.itemIcon(it), 1.25), el('div', 'grow', `<div class="rar">${H.RARITY[it.rar].n}</div><b>${H.itemName(it)}</b><div>${H.itemText(it)}</div>`)); if (right) { right.classList.add('who'); b.appendChild(right); } return b; };
@@ -110,7 +121,7 @@
 
   UI.go = (name, params) => {
     const scr = document.getElementById('screen'); if (UI.cur && UI.cur.leave) UI.cur.leave();
-    scr.innerHTML = ''; UI.closeModal(); UI.cur = { name, params: params || {} };
+    scr.innerHTML = ''; UI.closeModal(); UI.cur = { name, params: params || {} }; if (name === 'battle') document.querySelectorAll('.confetti').forEach((c) => c.remove());
     const out = UI.screens[name](scr, params || {}) || {}; UI.cur.leave = out.leave;
     A.tick(UI.frame); UI.save();
   };

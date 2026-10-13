@@ -19,13 +19,14 @@
     const st = H.dailyStage(S), T = H.TWISTS[st.twist], R = H.REGIONS[st.region], won = S.daily.won; UI.music('camp', st.region);
     root.appendChild(UI.topbar('Daily Gig', () => UI.go('home'), UI.wallet()));
     const sh = UI.Hh - 30 - 86, scene = el('div', 'gigscene');
-    add(scene, UI.bgEl(st.region, UI.W, sh, 0.55, 'sing'), el('div', 'nightwash'), lights(9));
+    add(scene, UI.bgEl(st.region, UI.W, sh, 0.55, 'sing'), el('div', 'nightwash'), el('div', 'beam l'), el('div', 'beam r'), lights(9));
     const poster = el('div', 'poster' + (won ? ' won' : ''));
     const line = el('div', 'plineup'); st.enemies.forEach((e) => line.appendChild(UI.sp(e.id, e.giant ? 0.62 : e.pet ? 0.62 : 0.56, { flip: true, anim: false, variant: e.pet ? 'mirror' : '' })));
     const stub = el('div', 'pstub'); add(stub, el('b', '', 'Admit one'), won ? add(el('span', 'paid'), UI.icon('ic_check', 0.8), 'Paid today') : UI.purse('ic_note', '+' + H.DAILY.notes, 'Notes for tonight\'s win'));
     add(poster, el('i', 'ptape l'), el('i', 'ptape r'), txt('pkick', 'Tonight · ' + dateLine()), txt('pvenue', st.venue), txt('pregion', R.n),
       add(el('div', 'ptw'), UI.icon(A.twistIcon(st.twist), 2.4), add(el('div', 'grow'), txt('label', 'House rule'), txt('ptwn', T.n))), txt('prule', T.d),
       add(el('div', 'pline'), txt('label', 'On stage · Lv ' + st.level), line), stub);
+    if (won) poster.appendChild(UI.stamp('Won tonight', 'green still'));
     scene.appendChild(poster); root.appendChild(scene);
     const foot = el('div', 'gofoot'), band = H.dailyBand(S, st.twist);
     const strip = el('button', 'tstrip'); strip.type = 'button'; strip.setAttribute('aria-label', 'Change your band');
@@ -40,6 +41,7 @@
     if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
     const ticket = add(el('div', 'ticket' + (out.win ? '' : ' lost')), UI.icon(A.twistIcon(out.twist), 2), add(el('div', 'grow'), txt('label', out.venue), el('b', '', T.n)));
     if (out.win) {
+      ticket.appendChild(UI.stamp(out.first ? 'Encore!' : 'Again!')); UI.confetti(out.first ? 46 : 20);
       kids.push(txt('disp big center', out.first ? 'Gig won!' : 'Another great show!'), ticket, loot);
       kids.push(txt('small dim center', out.first ? `Tomorrow brings a new house rule. New gig in ${countdown(H.msToTomorrow())}.` : 'Today\'s notes are already yours. Play again any time for fun.'));
     } else {
@@ -62,9 +64,10 @@
     root.appendChild(hero);
     const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot');
     // what today still pays: the first five gig wins and the first boss win
-    const pay = el('div', 'paytrack'); for (let i = 0; i < 5; i++) pay.appendChild(add(el('div', 'payt' + (i < P.gigs ? ' got' : '')), i < P.gigs ? UI.icon('ic_check', 0.8) : UI.icon('ic_note', 0.7), el('span', '', '15')));
-    pay.appendChild(add(el('div', 'payt boss' + (P.boss ? ' got' : '')), P.boss ? UI.icon('ic_check', 0.8) : UI.icon('ic_boss', 0.9), el('span', '', P.boss ? '25' : '25 + gear')));
-    add(pad, box('row between', txt('label', 'Today\'s pay'), txt('small dim', H.soloPaidLeft(S) ? `resets in ${countdown(H.msToTomorrow())}` : 'all paid · play on for fun')), pay);
+    const steps = [0, 1, 2, 3, 4].map((i) => ({ icon: 'ic_note', n: H.SOLO.gigNotes, got: i < P.gigs, label: 'Gig ' + (i + 1) })).concat([{ icon: 'ic_boss', n: H.SOLO.bossNotes + ' + gear', got: !!P.boss, wide: true, label: 'Boss' }]);
+    const pay = add(el('button', 'payline'), txt('label', 'Today'), UI.track(steps)); pay.type = 'button';
+    pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(H.soloPaidLeft(S) ? `The first 5 gig wins and the first boss win each day pay. New pay in ${countdown(H.msToTomorrow())}.` : 'All paid today. Tours still count for fun and experience.'); });
+    pad.appendChild(pay);
     if (run) {
       const pet = H.petById(S, run.pet), card = el('div', 'tourcard'); if (!pet) { H.endSolo(S); return UI.go('solo'); }
       add(card, UI.sp(pet.form, 1.1), add(el('div', 'grow col'), txt('label', 'On tour · ' + H.REGIONS[run.region].n), el('b', 'disp', H.FORMS[pet.form].n), add(el('div', 'row'), UI.meter(run.hp), txt('small', Math.round(run.hp * 100) + '%')), txt('small dim', `${run.gigs} of 5 gigs won · ${plural(run.boons.length, 'boon')}`)));
@@ -89,6 +92,8 @@
     foot.appendChild(start); root.appendChild(foot); sel();
   };
 
+  // the tour so far: five gig pips and the boss; `fresh` marks the one just won
+  const tourTrack = (won, fresh) => { const t = el('div', 'tourtrack'); for (let i = 0; i < 5; i++) t.appendChild(add(el('span', 'tp' + (i < won ? ' got' : '') + (i === fresh ? ' fresh' : '')), i < won ? UI.icon('ic_check', 0.6) : el('b', '', String(i + 1)))); t.appendChild(add(el('span', 'tp boss'), UI.icon('ic_boss', 0.62))); return t; };
   /* ----- the run's header: the soloist, its HP, its boons, how far along it is ----- */
   const hud = (S, onBoons) => {
     const run = S.soloRun, pet = H.petById(S, run.pet), max = H.soloMaxHp(S), hp = Math.max(1, Math.round(max * run.hp)), h = el('div', 'shud');
@@ -132,30 +137,45 @@
     // the ground, then the roads between stops: travelled ones in gold, the rest as sandy tracks
     const gnd = A.mapGround(run.region, W, MH, run.seed % 997, [null].concat(run.map).map((n) => { const p = pos(n); return [p.x, p.y]; })), cv = A.make(gnd.width, gnd.height), x = cv.getContext('2d'); x.drawImage(gnd, 0, 0); x.scale(A.k, A.k); cv.className = 'bgc'; cv.style.width = `calc(var(--u) * ${W})`; cv.style.height = `calc(var(--u) * ${MH})`;
     const path = [null].concat(run.done.map((id) => run.map[id])), walked = new Set(); for (let i = 1; i < path.length; i++) walked.add((path[i - 1] ? path[i - 1].id : 's') + '>' + path[i].id);
-    const road = (a, b, on) => { const p = pos(a), q = pos(b), mx = (p.x + q.x) / 2 + (p.y % 7 - 3), my = (p.y + q.y) / 2; const d = new Path2D(`M${p.x} ${p.y} Q${mx} ${my} ${q.x} ${q.y}`); x.lineCap = 'round'; x.strokeStyle = A.INK; x.lineWidth = on ? 6.4 : 5; x.stroke(d); x.strokeStyle = on ? '#ffc928' : '#efe2c2'; x.lineWidth = on ? 4 : 3; x.stroke(d); if (!on) { x.setLineDash([1.5, 4]); x.strokeStyle = 'rgba(138,90,58,0.45)'; x.lineWidth = 1.2; x.stroke(d); x.setLineDash([]); } };
+    const bend = (a, b) => { const p = pos(a), q = pos(b); return { p, q, m: { x: (p.x + q.x) / 2 + (p.y % 7 - 3), y: (p.y + q.y) / 2 } }; };
+    const along = (c, t) => ({ x: (1 - t) * (1 - t) * c.p.x + 2 * (1 - t) * t * c.m.x + t * t * c.q.x, y: (1 - t) * (1 - t) * c.p.y + 2 * (1 - t) * t * c.m.y + t * t * c.q.y });
+    const road = (a, b, on) => { const { p, q, m } = bend(a, b), mx = m.x, my = m.y; const d = new Path2D(`M${p.x} ${p.y} Q${mx} ${my} ${q.x} ${q.y}`); x.lineCap = 'round'; x.strokeStyle = A.INK; x.lineWidth = on ? 6.4 : 5; x.stroke(d); x.strokeStyle = on ? '#ffc928' : '#efe2c2'; x.lineWidth = on ? 4 : 3; x.stroke(d); if (!on) { x.setLineDash([1.5, 4]); x.strokeStyle = 'rgba(138,90,58,0.45)'; x.lineWidth = 1.2; x.stroke(d); x.setLineDash([]); } };
     const firsts = run.map.filter((n) => n.r === 0);
     for (const n of run.map) for (const id of n.next) if (!walked.has(n.id + '>' + id)) road(n, run.map[id], false);
     for (const n of firsts) if (!walked.has('s>' + n.id)) road(null, n, false);
     for (let i = 1; i < path.length; i++) road(path[i - 1], path[i], true);
     inner.appendChild(cv);
+    const trail = A.make(gnd.width, gnd.height), tx = trail.getContext('2d'); tx.scale(A.k, A.k); trail.className = 'bgc trail'; trail.style.width = cv.style.width; trail.style.height = cv.style.height; inner.appendChild(trail);
+    for (let i = 0; i < 3; i++) { const c = el('div', 'cloudsh'); c.style.top = `calc(var(--u) * ${40 + i * (MH / 3)})`; c.style.animationDelay = -i * 11 + 's'; c.style.animationDuration = 34 + i * 6 + 's'; inner.appendChild(c); }
     // the region's name on a ribbon at the top, by the boss
     inner.appendChild(add(el('div', 'sribbon'), el('span', '', H.DIN[H.REGIONS[run.region].boss].n + '\'s stage')));
     const reach = new Set(H.soloReach(run).map((n) => n.id)), here = run.at == null ? null : run.map[run.at];
     const stop = (n, type) => {
       const p = pos(n), big = type === 'boss', sz = big ? 34 : type === 'start' ? 20 : 25, can = n && reach.has(n.id), done = n && run.done.includes(n.id);
       const b = el('button', 'snode t-' + type + (can ? ' can' : '') + (done ? ' done' : '') + (n === here ? ' here' : '')); b.type = 'button'; b.style.cssText = at(p.x - sz / 2, p.y - sz / 2) + `width: calc(var(--u) * ${sz}); height: calc(var(--u) * ${sz});`;
-      b.appendChild(big ? UI.sp(H.REGIONS[run.region].boss, 0.5, { flip: true, anim: false }) : UI.icon(type === 'start' ? 'nd_start' : A.nodeIcon(type), type === 'start' ? 1.1 : 1.45));
+      b.appendChild(big ? UI.sp(H.REGIONS[run.region].boss, 0.5, { flip: true, anim: true }) : UI.icon(type === 'start' ? 'nd_start' : A.nodeIcon(type), type === 'start' ? 1.1 : 1.45));
+      if (done && n !== here) b.appendChild(add(el('span', 'ndone'), UI.icon('ic_check', 0.5)));
+      if (can) { b.classList.add('appear'); b.style.animationDelay = (intro ? 2.3 : 0.15) + [...reach].indexOf(n.id) * 0.1 + 's, 0s'; }
       b.setAttribute('aria-label', NODE[type] + (can ? ', you can go here' : done ? ', visited' : ''));
-      if (can) inner.appendChild(add(el('div', 'slabel'), NODE[type])).style.cssText = at(p.x - 24, p.y + sz / 2 + 1);
+      if (can) { const lb = add(el('div', 'slabel'), NODE[type]); lb.style.cssText = at(p.x - 24, p.y + sz / 2 + 1); inner.appendChild(lb); }
       b.addEventListener('click', () => { if (!n || walking) return; if (can) preview(n); else if (!done) { Au.sfx('tap'); UI.toast('Not on your road from here. Glowing stops are next.'); } });
       inner.appendChild(b); return b;
     };
+    const intro = !!pr.fresh && !window.__hsSpeed;
     stop(null, 'start'); for (const n of run.map) stop(n, n.type);
     // the soloist stands where it got to
     const tok = el('div', 'stoken'), tp = pos(here); tok.appendChild(UI.sp(pet.form, 0.42, { anim: false })); tok.style.cssText = at(tp.x - 10, tp.y - 22); inner.appendChild(tok);
     scroller.appendChild(inner); root.appendChild(scroller);
     const foot = el('div', 'shint'); add(foot, el('span', '', run.at == null ? 'Your tour starts here. Pick a road.' : 'Pick the next stop. Tap one to see it.'), key('?', legend, 'soft sm')); root.appendChild(foot);
-    requestAnimationFrame(() => { scroller.scrollTop = Math.max(0, tp.y * UI.u - scroller.clientHeight * 0.68); });
+    const target = () => Math.max(0, tp.y * UI.u - scroller.clientHeight * 0.68);
+    // a new tour: the view starts at the boss and sweeps down the road to the start, under a title card; then the soloist drops in
+    if (intro) {
+      const card = add(el('div', 'tourcard2'), txt('label', 'Solo tour'), el('b', '', H.REGIONS[run.region].n), txt('small', `5 gigs, then ${H.DIN[H.REGIONS[run.region].boss].n}`));
+      root.appendChild(card); tok.style.opacity = '0'; inner.classList.add('busy');
+      let skip = false, t0 = 0; const end = () => { skip = true; scroller.scrollTop = target(); card.classList.add('out'); setTimeout(() => card.remove(), 500); tok.style.opacity = ''; tok.classList.add('dropin'); Au.sfx('stamp'); inner.classList.remove('busy'); };
+      root.addEventListener('pointerdown', () => { if (!skip) end(); }, { once: true, capture: true });
+      requestAnimationFrame(() => { scroller.scrollTop = 0; Au.sfx('cue'); const from = 0, to = target(); const step = (now) => { if (skip) return; if (!t0) t0 = now; const k = Math.min(1, (now - t0 - 700) / 1700); if (k > 0) scroller.scrollTop = from + (to - from) * (k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2); if (k >= 1) end(); else requestAnimationFrame(step); }; requestAnimationFrame(step); });
+    } else requestAnimationFrame(() => { scroller.scrollTop = target(); });
     // a look at a stop before going: who plays there, what it gives
     function preview(n) {
       Au.sfx('tap'); const kids = [], bat = n.type === 'gig' || n.type === 'loud' || n.type === 'boss';
@@ -172,9 +192,17 @@
     let walking = false;
     function walk(n) {
       if (walking) return; walking = true; inner.classList.add('busy');
-      const p = pos(n); tok.classList.add('walk'); tok.style.cssText = at(p.x - 10, p.y - 22); Au.sfx('tap', 3);
-      scroller.scrollTo({ top: Math.max(0, p.y * UI.u - scroller.clientHeight * 0.6), behavior: 'smooth' });
-      setTimeout(() => { if (UI.cur.name !== 'solomap') return; const got = H.soloEnter(S, n.id, rnd); UI.save(); if (!got) return UI.go('solomap'); UI.go(got.type === 'battle' ? 'battle' : 'solostop', { solo: 1 }); }, window.__hsSpeed ? 40 : 760);
+      const c = bend(here, n), dur = window.__hsSpeed ? 40 : 900, s0 = scroller.scrollTop; let t0 = 0, lastPuff = 0, last = c.p; tok.classList.add('walk'); tok.style.transition = 'none';
+      const arrive = () => { if (UI.cur.name !== 'solomap') return; Au.sfx('tap', 5); const got = H.soloEnter(S, n.id, rnd); UI.save(); if (!got) return UI.go('solomap'); setTimeout(() => UI.go(got.type === 'battle' ? 'battle' : 'solostop', { solo: 1 }), window.__hsSpeed ? 0 : 220); };
+      const step = (now) => {
+        if (UI.cur.name !== 'solomap') return; if (!t0) t0 = now; const k = Math.min(1, (now - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, q = along(c, e);
+        tok.style.left = `calc(var(--u) * ${q.x - 10})`; tok.style.top = `calc(var(--u) * ${q.y - 22})`;
+        tx.lineCap = 'round'; tx.strokeStyle = A.INK; tx.lineWidth = 6.4; tx.beginPath(); tx.moveTo(last.x, last.y); tx.lineTo(q.x, q.y); tx.stroke(); tx.strokeStyle = '#ffc928'; tx.lineWidth = 4; tx.stroke(); last = q;
+        if (now - lastPuff > 110) { lastPuff = now; const pf = el('i', 'puff'); pf.style.cssText = at(q.x - 3, q.y - 2); inner.appendChild(pf); setTimeout(() => pf.remove(), 600); Au.sfx('tap', 1); }
+        scroller.scrollTop = s0 + (Math.max(0, q.y * UI.u - scroller.clientHeight * 0.6) - s0) * e;
+        if (k < 1) requestAnimationFrame(step); else { tok.classList.remove('walk'); tok.classList.add('land'); arrive(); }
+      };
+      if (window.__hsSpeed) { arrive(); return; } requestAnimationFrame(step);
     }
     function legend() { UI.modal(txt('disp', 'The road'), ...['gig', 'loud', 'rest', 'jam', 'mystery', 'boss'].map((t) => box('row', add(el('div', 'nbadge sm t-' + t), UI.icon(A.nodeIcon(t), 1.2)), txt('grow small', `<b>${NODE[t]}.</b> <span class="dim">${{ gig: 'Two Din. Win for a boon.', loud: 'Tougher Din. Win for a rare boon.', rest: 'Heal 40%, or practise for +10% Power.', jam: 'Pick a boon.', mystery: 'A choice, good or risky.', boss: 'The end of the tour.' }[t]}</span>`))),
       txt('small dim', 'HP carries on from gig to gig. The crowd gets restless if a gig drags on: every hit lands harder.'), key('Got it', UI.closeModal, 'wide go')); }
@@ -191,15 +219,20 @@
     if (p.type === 'boon') {
       const title = p.src === 'jam' ? 'Jam session' : p.src === 'loud' ? 'The crowd goes wild' : p.src === 'c' ? 'Dig through the crate' : 'Gig won!';
       add(scene, el('div', 'rays'), add(el('div', 'sart'), UI.sp(pet.form, 1.2), p.src === 'jam' ? UI.icon('nd_jam', 2.2) : UI.icon('ic_note', 2)), add(el('div', 'sbanner'), el('b', '', title), el('span', '', p.src === 'loud' || p.src === 'r' ? 'Pick a rare boon' : 'Pick a boon for the tour')));
-      let chosen = null; const take = key('Pick one', () => { if (!chosen) return; H.soloPick(S, chosen); Au.sfx('evolve'); done(); }, 'go wide big'); take.disabled = true;
-      p.opts.forEach((id) => { const c = boonCard(id, run.boons, 'button'); c.addEventListener('click', () => { chosen = id; Au.sfx('good'); pad.querySelectorAll('.boon').forEach((x) => x.classList.toggle('on', x === c)); take.disabled = false; take.textContent = 'Take ' + H.BOONS[id].n; }); pad.appendChild(c); });
+      let chosen = null, chosenEl = null; const take = key('Pick one', () => { if (!chosen || take.dataset.busy) return; take.dataset.busy = 1; H.soloPick(S, chosen); Au.sfx('evolve'); UI.save();
+        // the card glows and flies up into the boons on the header
+        chosenEl.classList.add('taken'); pad.querySelectorAll('.boon').forEach((x) => { if (x !== chosenEl) x.classList.add('gone'); }); setTimeout(done, window.__hsSpeed ? 0 : 650); }, 'go wide big'); take.disabled = true;
+      p.opts.forEach((id, i) => { const c = boonCard(id, run.boons, 'button'); c.classList.add('dealt'); c.style.animationDelay = 0.12 + i * 0.12 + 's'; c.addEventListener('click', () => { chosen = id; chosenEl = c; Au.sfx('good'); pad.querySelectorAll('.boon').forEach((x) => x.classList.toggle('on', x === c)); take.disabled = false; take.textContent = 'Take ' + H.BOONS[id].n; }); pad.appendChild(c); });
       add(foot, take, key('Skip', () => UI.confirm('Skip this boon?', 'You will not get another one from this stop.', 'Skip', () => { H.soloPick(S, null); done(); }), 'wide soft sm'));
     } else if (p.type === 'rest') {
-      add(scene, el('div', 'night'), add(el('div', 'sart camp'), UI.sp(pet.form, 1.1), add(el('div', 'fire'), UI.icon('nd_rest', 2.4))), add(el('div', 'sbanner'), el('b', '', 'Campfire'), el('span', '', 'A quiet night on the road')));
+      const embers = el('div', 'embers'); for (let i = 0; i < 7; i++) { const e = el('i'); e.style.left = 44 + Math.random() * 12 + '%'; e.style.animationDelay = -i * 0.4 + 's'; embers.appendChild(e); }
+      const zzz = el('div', 'zzz'); ['z', 'z', 'Z'].forEach((t, i) => { const z = el('i', '', t); z.style.animationDelay = i * 0.7 + 's'; zzz.appendChild(z); });
+      const petEl = UI.sp(pet.form, 1.1); add(scene, el('div', 'night'), embers, add(el('div', 'sart camp'), add(el('div', 'restpet'), petEl, zzz), add(el('div', 'fire'), UI.icon('nd_rest', 2.4))), add(el('div', 'sbanner'), el('b', '', 'Campfire'), el('span', '', 'A quiet night on the road')));
+      const after = (cls, text) => { scene.classList.add(cls); scene.appendChild(add(el('div', 'restfx'), el('b', '', text))); pad.querySelectorAll('.choice').forEach((b) => (b.disabled = true)); setTimeout(done, window.__hsSpeed ? 0 : 900); };
       const max = H.soloMaxHp(S), now = Math.round(max * run.hp), heal = Math.min(max, Math.round(max * (run.hp + H.SOLO.rest)));
       const opt = (icon, name, d, fn) => { const b = el('button', 'choice'); b.type = 'button'; add(b, UI.icon(icon, 1.6), add(el('div', 'grow col'), el('b', '', name), txt('small', d))); b.addEventListener('click', fn); return b; };
-      add(pad, opt('st_regen', 'Sleep', `Heal ${Math.round(H.SOLO.rest * 100)}% · HP ${UI.fmt(now)} → ${UI.fmt(heal)}`, () => { H.soloRest(S, 'nap'); Au.sfx('heal'); done(); }),
-        opt('st_pup', 'Practise', `+${Math.round(H.SOLO.practise * 100)}% Power for the rest of the tour`, () => { H.soloRest(S, 'practise'); Au.sfx('level'); done(); }));
+      add(pad, opt('st_regen', 'Sleep', `Heal ${Math.round(H.SOLO.rest * 100)}% · HP ${UI.fmt(now)} → ${UI.fmt(heal)}`, () => { H.soloRest(S, 'nap'); UI.save(); Au.sfx('heal'); after('slept', '+' + UI.fmt(heal - now) + ' HP'); }),
+        opt('st_pup', 'Practise', `+${Math.round(H.SOLO.practise * 100)}% Power for the rest of the tour`, () => { H.soloRest(S, 'practise'); UI.save(); Au.sfx('level'); after('practised', `+${Math.round(H.SOLO.practise * 100)}% Power`); }));
     } else if (p.type === 'event') {
       const E = H.EVENTS[p.ev];
       add(scene, add(el('div', 'sart'), add(el('div', 'evart'), UI.icon('ev_' + p.ev, 2.3)), UI.sp(pet.form, 1)), add(el('div', 'sbanner'), el('b', '', E.n), el('span', '', 'Mystery')));
@@ -207,7 +240,7 @@
       E.opts.forEach((o, i) => { const b = el('button', 'choice'); b.type = 'button'; add(b, add(el('div', 'grow col'), el('b', '', o.n), txt('small', o.d))); b.addEventListener('click', () => {
         const got = H.soloEvent(S, i, rnd); Au.sfx('good'); UI.save();
         if (got && got.boon) { UI.modal(txt('label center', 'You got'), boonCard(got.boon, S.soloRun.boons), key('Onwards', () => { UI.closeModal(); done(); }, 'go wide big')); return; }
-        done(); }); pad.appendChild(b); });
+        UI.toast(o.n + ': ' + o.d.replace(/\.$/, '') + '.'); done(); }); pad.appendChild(b); });
     }
     root.appendChild(scene); body.appendChild(pad); root.appendChild(body); if (foot.children.length) root.appendChild(foot);
   };
@@ -217,7 +250,8 @@
     const S = UI.S;
     if (!out.win || out.done) return UI.go('soloend', { out });
     const kids = [], loot = box('loot'); if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
-    kids.push(txt('disp big center', out.loud ? 'Loud gig won!' : 'Gig won!'), txt('center dim', `${out.gig} of 5 gigs · HP ${Math.round(S.soloRun.hp * 100)}%`), loot);
+    kids.push(add(el('div', 'wonhead'), txt('disp big center', out.loud ? 'Loud gig won!' : 'Gig won!'), UI.stamp(out.loud ? 'Rowdy!' : 'Encore!')), tourTrack(out.gig, out.gig - 1), txt('center dim small', `HP ${Math.round(S.soloRun.hp * 100)}% · ${out.gig < 5 ? 5 - out.gig + ' more to the boss' : 'the boss is next'}`), loot);
+    UI.confetti(out.loud ? 44 : 30); Au.sfx('coin');
     if (!out.notes) kids.push(txt('small dim center', 'Today\'s gig pay is already yours.'));
     if (out.ups) kids.push(txt('center good', '<b>Level up!</b> Your pets got stronger.'), UI.unlockNote(out.ups));
     kids.push(UI.key(out.loud ? 'Pick a rare boon' : 'Pick a boon', () => UI.go('solostop'), 'gold wide big'));
@@ -229,8 +263,10 @@
     add(w, UI.bgEl(won ? 'spot' : out.region || 'fen', UI.W, UI.Hh, 0.5, won ? null : 'hush'), won ? el('div', 'rays') : null);
     const it = out.item && H.itemById(S, out.item.id), boons = el('div', 'boonrow'); (out.boons || []).forEach((id) => boons.appendChild(add(el('span', 'bchip r-' + H.BOONS[id].r), UI.icon(A.boonIcon(id), 0.8))));
     const loot = box('loot'), tot = out.total != null ? out.total : out.notes; if (tot) loot.appendChild(UI.purse('ic_note', '+' + tot, 'Notes this tour')); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
-    add(w, el('div', 'logo small', won ? 'Tour complete!' : 'Tour over'), pet ? UI.sp(pet.form, won ? 2 : 1.5, { anim: won }) : null,
-      add(el('div', 'panel col center endp'), txt('center', won ? `<b>${pet ? H.FORMS[pet.form].n : 'Your soloist'}</b> beat all five gigs and the boss.` : `Reached <b>${out.reached || 0} of 5</b> gigs. Every tour is a new road.`), (out.boons || []).length ? boons : null, loot, it ? txt('label center', 'And the boss dropped') : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', '<b>Level up!</b>') : null),
+    if (won) UI.confetti(70, true);
+    const hero = pet ? UI.sp(pet.form, won ? 2 : 1.5, { anim: false }) : null; if (hero) hero.classList.add(won ? 'cheer' : 'slump');
+    add(w, add(el('div', 'logo small dropin'), won ? 'Tour complete!' : 'Tour over'), hero,
+      add(el('div', 'panel col center endp risein'), txt('center', won ? `<b>${pet ? H.FORMS[pet.form].n : 'Your soloist'}</b> beat all five gigs and the boss.` : `Reached <b>${out.reached || 0} of 5</b> gigs. Every tour is a new road.`), (out.boons || []).length ? boons : null, loot, it ? txt('label center', 'And the boss dropped') : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', '<b>Level up!</b>') : null),
       key(won ? 'Home' : 'Try another tour', () => (won ? UI.go('home') : UI.go('solo', { pet: out.pet })), 'go wide big'), key(won ? 'Another tour' : 'Home', () => (won ? UI.go('solo', { pet: out.pet }) : UI.go('home')), 'wide soft'));
     root.appendChild(w);
   };
