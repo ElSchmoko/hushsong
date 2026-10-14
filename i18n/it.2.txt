@@ -1,0 +1,551 @@
+0f55hyc	Colpisce un nemico al {p}.
+1pnhot0	Scudo per sé.
+15drddl	{st} su di sé per {t}.
+1nd99m8	Scudo per tutta la band.
+1qwd7ml	{st} su tutta la band per {t}.
+1uwsay5	Colpisce tutti i nemici al {p}.
+1q8cjc9	Colpisce un nemico {n} volte al {p} ciascuna.
+1076p36	Colpisce tutti i nemici {n} volte al {p} ciascuna.
+1q2u71s	Cura il compagno più ferito del {p}.
+0ompy9w	Cura tutta la band del {p}.
+0u3dj57	Rimuove tutti gli effetti negativi da tutta la band.
+0onaigk	Il compagno più lento gioca prima il prossimo turno.
+0khc9zz	Rimuove tutti gli effetti negativi dal compagno più ferito.
+190xcnu	{st} su un nemico per {t}.
+0e7f6lw	{st} sul compagno più forte per {t}.
+1bdc500	Scudo per il compagno più ferito.
+106aayv	{st} su tutti i nemici per {t}.
+17snu6e	{st} su un nemico a caso per {t}.
+15vipv3	{st} sul bersaglio per {t}.
+0cnywq4	I compagni giocano prima il prossimo turno.
+13j8tn6	Scudo per il bersaglio.
+16clkzn	Gli toglie tutti gli effetti positivi e lo Scudo.
+1o2z45w	Spinge tutti i nemici indietro nell'ordine dei turni.
+0amfle1	Toglie a tutti i nemici gli effetti positivi e lo Scudo.
+1kxpnpz	Si cura del {p} dei PS massimi.
+117au04	I compagni giocano il turno successivo.
+0ebcfe0	Colpisce un nemico a caso al {p}.
+0dye84z	+{v} di Potenza
+1i3vqsq	+{v} di PS
+1tt83ij	+{v} di Guardia
+1ub8ovp	+{v} di Velocità
+0s1jrr2	+{v} di probabilità di colpo critico
+1bmhzw0	Ignora il {v} della Guardia nemica
+00bjksl	Subisce il {v} di danni in meno
+0pcq1bs	Le sue cure sono più forti del {v}
+0fdv6n1	+{v} di esperienza per la band
+1h4s45e	{pet} rivale
+0eujuva	{din} rumoroso
+03alka9	Bum!
+0kui9jn	Luci spente!
+0c1w867	Eco!
+0mq77hg	Bis!
+1qm2xxm	Ancora!
+0k2fpcm	Resiste!
+0rd3yt1	Catena!
+0belrl0	Barcolla!
+1xob2db	Più veloce!
+1lwo7a3	Se lo scrolla di dosso
+0hn3zaj	Avventura
+03gtdjg	Prova
+13u5rhp	Bis
+0siy9wx	Collezione
+03bpwir	{pet} specchio
+0htre55	{din} gigante
+1jamndy	Potenza
+1m575se	Guardia
+02w2xwg	Velocità
+06xig19	Critico
+1l0xxoj	Chiudi
+007q5wa	Menu
+0v0wv6e	Abilità
+1q4pntc	Speciale
+0n0mxf2	Home
+04f76ga	Note
+0wto1r4	Echi
+04zpoy4	{"one":"Hai trovato {n} eco!","other":"Hai trovato {n} echi!"}
+1oo9ppz	Hai trovato un eco!
+1we7hk3	Aiutano {n} a evolversi, e più avanti comprano stelle.
+0sxhh51	Gli echi semplici aiutano qualsiasi cucciolo a evolversi. Spendili nella pagina di un cucciolo.
+1msq7av	Concerto del giorno
+1mwx410	<b>Novità nella Home:</b> {modes}
+0fkew5h	{label}, pagato
+160umau	Band
+0excb6f	Cuccioli
+1jht0nq	Conchiglie
+1jp3e8h	Borsa
+17o19ow	Apri qui la tua conchiglia
+1npfg7x	Base
+0t4uqph	Sempre attiva
+0x2jl9c	attesa {n}
+1cjrhja	sempre
+0b9jhu9	nuova
+0ew9em3	Annulla
+166o4fr	‹ Indietro
+1id7d20	Come si gioca
+1602nqr	Vinci i piani per avanzare. Ogni 10° piano c'è un <b>boss</b>. Le conchiglie contengono cuccioli a caso.
+119v05d	Cuccioli e nemici agiscono quando la loro barra gialla è piena. <b>Tocca un nemico</b> per usare su di lui la mossa scelta, tocca un'icona rotonda per cambiare mossa e <b>tieni premuto</b> su chiunque per vederne le statistiche. Mentre miri, la parte lampeggiante di una barra della vita è ciò che la mossa toglierà.
+04f26x8	Statistiche
+0vbx2p1	PS
+1va0zku	I danni che può subire prima di cadere.
+1rtj1g9	Quanto colpiscono, curano e proteggono le sue mosse.
+0t35lk6	Riduce i danni subiti. 50 di Guardia toglie un terzo.
+1sqimv3	Quanto spesso tocca a lui.
+08j0mei	Probabilità che un colpo faccia il 50% in più. Ogni cucciolo parte dal 5%.
+11rzah1	Famiglie
+19nc0fc	Ognuna batte la successiva nel cerchio: 30% di danni inflitti in più, 20% di subiti in meno.
+0oqv3et	Effetti
+1a4ajy7	Il numero su un effetto indica i turni rimasti.
+0dekir8	<b>{n}.</b>
+114mnho	Echi e stelle
+1x1u4jp	I cuccioli si evolvono due volte con gli echi, poi aggiungono stelle: fino a 10, ognuna +3% di PS e Potenza. Una conchiglia con un cucciolo che hai già dà un eco che solo quel cucciolo può usare. Gli echi semplici, in alto, vanno bene per tutti.
+0a8e6q1	Note ed esperienza
+047ok7c	I piani nuovi pagano note, che comprano conchiglie. Ogni battaglia dà esperienza, meno sui piani molto sotto il tuo livello.
+02k1r1n	Ensemble
+1ethk2v	Tre cuccioli di tre famiglie, o tutti della stessa, formano un ensemble: una melodia d'apertura e un vantaggio per la band.
+1c0bob4	I boss sconfitti dei piani 10–100 tornano al tuo livello. Ognuno paga un eco una volta a settimana, e si azzera il lunedì.
+1xtq0ev	Equipaggiamento
+1eepakt	Ogni cucciolo porta due pezzi. Le vittorie possono darne altri: la schermata Avventura mostra la probabilità. 3 pezzi in più dello stesso tipo si fondono nella rarità successiva, fino a Epico.
+0baj6qd	Dal livello {unlock}: una battaglia al giorno con una regola della casa che cambia come funzionano le battaglie, uguale per tutti. La prima vittoria del giorno paga; riprova quanto vuoi.
+0h1kfu0	Dal livello {unlock}: un cucciolo percorre una strada a bivi con cinque concerti, tappe e un boss. I doni durano tutto il tour, e alcuni si combinano. Le prime vittorie del giorno pagano.
+07zgmz9	Dal livello {unlock}: ondate infinite, ognuna un po' più dura. I PS restano e i cuccioli caduti stanno fuori. Le ondate traguardo pagano una volta a settimana.
+0orgbil	Traguardi
+08hfti8	Obiettivi difficili che pagano conchiglie, echi e sfondi per la Home.
+0l8hqi2	Capito
+0zmnv1z	Audio: sì
+1j3s0cb	Audio: no
+0ohwdis	Musica
+0u4bbh9	Codice di salvataggio
+0a17t5z	Ricomincia
+0ah2vw0	Cancellare questa partita?
+07v407v	{"one":"{n} cucciolo","other":"{n} cuccioli"}
+1h0aetd	Tutti i {pets}, il tuo cammino fino al piano {stage} e ogni nota, conchiglia ed eco spariranno per sempre. Un codice di salvataggio fatto prima può riportarli indietro.
+13p56d7	Contiene {pets} al piano {stage}. Sostituisce la partita su questo dispositivo.
+1yiqur6	Cancella tutto
+1u9zao8	Il tuo codice di salvataggio
+0oqbnyd	Incolla qui un codice di salvataggio
+1kt4ziu	Codice di salvataggio da caricare
+13h0r7b	Copia il mio codice
+0iim041	Copiato. Conservalo in un posto sicuro.
+0wqainm	Seleziona il testo e copialo a mano.
+0zcg70w	Carica questo codice
+04nf0s1	Questo non è un codice di salvataggio di Hushsong.
+0wazdu1	Caricare questo salvataggio?
+1ughagm	Carica
+0ribzan	La partita si salva da sola su questo dispositivo. Questo codice è una copia da tenere, o per continuare altrove.
+1i3udnb	Carica un codice
+0xptzj8	Ondata {n}
+0opsnl8	Boss {n}
+1dxyp09	Rumoroso {n}
+192xyh5	Piano {n}
+1wsths9	Più tardi
+1vkg66p	Il tuo ensemble
+0oes1nf	{"one":"+{n} eco","other":"+{n} echi"}
+0tyfhvo	Terminare questa partita?
+10yh3fa	Le ricompense restano tue.
+179chx3	Termina
+1xqrqh9	Fai evolvere {pet}
+007flrr	Una stella a {pet}
+1bipuuc	Continua
+0kayn18	Apri la conchiglia
+1hzmxtu	Indietro
+1o2o6dp	Cambia la band
+03kusfv	Cambia la tua band
+0ovvjp1	La tua band
+1yikd80	Tour solista
+1g2tab0	Concerto {n} di 5
+0n3ydks	Scegline uno
+0x4nga3	Avanti
+00fxhu9	Non evoluto
+18kfar1	Evoluto una volta
+1fvnaj8	Evoluzione completa
+0h2yt8f	Liv {level}
+114caoa	Livello massimo
+1ys28bo	{xp} / {level} XP
+051r543	{n} regioni su 10 cantano
+0osohmo	{pet}, nella band
+0qrjb0u	Suona l'apertura di {n}
+1wnoi3m	{region} · piano {n}
+11dqdbh	Premio finale
+1dfllbn	Premio del boss
+1mw0j2l	{"one":"+{n} conchiglia","other":"+{n} conchiglie"}
+1l232k4	Hushsong
+0skq8vk	Colleziona cuccioli musicali. Riporta la musica.
+0bk85tv	Gioca
+1y45tsh	Apri la mia prima conchiglia
+1yi0f7c	Un tempo tutto cantava
+0lomxls	Ogni collina, porto e sala aveva la sua melodia, e i cuccioli musicali la suonavano tutto il giorno.
+0i6vi28	Poi arrivarono i Din
+1jeck9n	Creature rumorose che non sopportano le melodie. Hanno fatto irruzione e annegato ogni canzone nel frastuono.
+1pzwbfm	Il mondo tacque
+0cv90j1	I colori sbiadirono. I cuccioli si nascosero nelle conchiglie, e da allora nessuno ha più sentito una canzone.
+0p1upin	Ma una conchiglia canticchia ancora
+0niwiss	Aprila, forma una band e riconquista la musica, piano dopo piano.
+1vufmm8	Tocca per continuare
+1kpwk02	Piano del boss {n}
+0x7pfo0	Inizia qui la tua avventura
+0s60a9m	Boss · Nemici Liv {n}
+1j7pu5k	Nemici Liv {n}
+08rseiv	Concerti
+03n17d7	{ready} pronti
+1vgexli	{done} di {length}
+02zyyv8	Concerto del giorno pronto
+1reuah4	Tour solista in corso
+0u73zav	Prossima: ondata {n} del Bis
+1xxqbrb	{"one":"{n} prova aperta","other":"{n} prove aperte"}
+1vzcv0c	Il solista paga oggi
+1i8e16b	Primo concerto al livello {n}
+1skvt3i	Tutto giocato oggi
+0azt7u3	Si sblocca al livello {unlock}
+0mbqao6	Vinto oggi
+1m0zof0	Prossima: ondata {wave}
+0sssj9z	Record della settimana: {weekBest}
+0bv6gmn	Si sblocca dopo il piano 10
+09hmetg	{"one":"{n} boss disponibile","other":"{n} boss disponibili"}
+1qt0ibb	Tutto giocato
+1w35moz	{"one":"Si azzera domani","other":"Si azzera tra {n} giorni"}
+1mf63c1	Nessun ensemble
+1s9gkj5	Piano precedente
+06lywvr	Piano successivo
+127oer9	Superato · Nemici Liv {n}
+1byxumh	Esperienza
+1lr0g08	+1 Leggendario
+1lafnle	Probabilità di equipaggiamento
+0dr6vfq	{name}, livello {lvl}, la tua band è forte contro di lui. Mostra le sue mosse
+0k11ss3	{name}, livello {lvl}, forte contro la tua band. Mostra le sue mosse
+1twb6b1	{name}, livello {lvl}. Mostra le sue mosse
+1i8jmgf	Liv {n} · boss
+03c3p2r	Liv {n}
+02k9jns	Lo colpisci più forte
+0af1lm1	Ti colpisce più forte
+1eenfp5	{"one":"Nemici {n} livello sopra di te","other":"Nemici {n} livelli sopra di te"}
+0d8gyft	Continua da solo: sì
+0jkleb9	Continua da solo: no
+0y8m6so	Battaglia automatica
+15hb32v	Combatti
+10tx3xo	Affronta i nemici qui sopra
+0sh945i	Mappa: {n}, piano {n2}. Mostra tutte le regioni
+19rtxhg	Il mondo, bis {n}
+1f41oeh	La strada verso il piano 100
+1ki85pn	Piani {a}–{b} · canta di nuovo
+1grm6vy	Piani {a}–{b} · zittito da {din}
+18s8a97	Qui
+0mxtf0p	posto libero
+1whegdc	Tocca il tuo cucciolo
+1tmmxpq	Su {n}
+1rkfalq	Scambia
+1ybtjd0	Riempi tutti e tre i posti.
+1rlp9ke	Servono <b>3 famiglie diverse</b>, o <b>3 della stessa</b>.
+1q7gv3d	Possibili: <b>{list}</b>
+10ubeg8	Tutti gli ensemble
+1c5mvf7	All'avventura
+02u5zbh	Pronti? Si parte
+05o74q3	Chi va qui?
+18z83m5	Lascia vuoto questo posto
+19xt0al	3 famiglie diverse, o 3 della stessa.
+0jtpxy5	In uso
+1g5f5vb	Mancano cuccioli
+0dzuldu	Suonato
+12mrurj	Non ancora suonato
+1p633z1	{"one":"{n} conchiglia da aprire","other":"{n} conchiglie da aprire"}
+0ost8of	Nessuna conchiglia per ora
+1stb3ay	Il tuo primo cucciolo è dentro. <b>Tocca la conchiglia.</b>
+0fi2qkf	Un <b>cucciolo a caso</b>. Se ce l'hai già, diventa un <b>eco</b>.
+1r45u9w	I boss lasciano conchiglie. Le note ne comprano altre.
+0zvrdho	Apri una conchiglia
+1mhuvb6	Compra una conchiglia
+0hv9zs9	Scelgo {n}
+0oe9ixr	Dentro c'erano tre cuccioli!
+0mecjw0	Scegline uno. Gli altri arriveranno più avanti.
+0tlq0tf	Nuovo cucciolo!
+1sy6y67	Un altro {base}
+0i0wqsf	Un altro {base} (il tuo {n})
+0say7eo	{"one":"+{n} eco di {pet}","other":"+{n} echi di {pet}"}
+1mw6eu2	{"one":"Aprine un'altra (ne resta {n})","other":"Aprine un'altra (ne restano {n})"}
+1taelf6	Andiamo
+13cn9g1	Fatto
+0to0bon	{have} / {need} echi
+0ow97sa	Evolvi in
+0ay0li2	Nuova Speciale
+1jxgm35	Scegline una. Cambiarla dopo è gratis.
+1yylcbd	Gli echi vengono da conchiglie, boss, prove e traguardi.
+1128a0z	Stelle {n} / {max}
+1i6zzkz	Aggiungi stella · +3% PS e Potenza
+1n5ofxj	Questo cucciolo è al massimo.
+1hgwrl8	Metti qui l'equipaggiamento
+051r6dq	Slot vuoto
+0xpvvet	Mosse
+083gk8g	Cambia ramo
+19b2u1a	Grande
+1eq65tc	Evolvi
+1mntkmf	{have} / {n} echi
+0we11jd	Gratis, tutte le volte che vuoi.
+0v7hfzm	Toglilo
+0hpqcmx	Scambia con
+12sm7bj	Nella tua borsa
+08kj2qr	Fatto! Torna a combattere.
+19ky8vr	Nient'altro nella borsa.
+0ggizsd	La tua borsa è vuota.
+1j0zoai	Ancora niente qui
+0musznz	A volte le battaglie danno equipaggiamento.
+0am4v1q	3 pezzi in più dello stesso tipo si fondono in uno migliore.
+10ttus6	Fondi 3 {item} → {rarity}
+1fkec2w	Fuso!
+0h4pk9n	Lo indossa <b>{n}</b>.
+0rrnf75	Non lo indossa nessuno.
+0xide7m	Toglilo a {n}
+03295io	Vai a {n}
+0ngmxng	Fondi 3 → {n}
+0br649q	Fusione: {length} / 3 in più
+1pquyhx	Vendi
+0ix7gem	Si apre dopo il boss del piano 10.
+067l7h2	I boss sconfitti tornano al <b>tuo livello</b>.
+12rgeuk	Tutto vinto questa settimana
+1vgwehg	{din}, {region}, vinto questa settimana
+0qjjz61	{din}, {region}, premio 1 eco
+1fqbflp	Il Bis si apre al livello {unlock}.
+03scfen	Fuori
+08gv74u	Ondate infinite, ognuna un po' più dura. I PS restano, e un quarto torna dopo ogni ondata.
+1nvt7jn	Questa settimana
+15kcesy	Record della settimana <b>{week}</b> · assoluto <b>{best}</b>
+15jnq83	{"one":"si azzera domani","other":"si azzera tra {n} giorni"}
+04pp0j3	Gioca l'ondata {wave}
+1ywcpar	Termina questa partita
+0asw5g5	Inizia il Bis
+03839q1	Nuovo palco: {set}
+1078zjl	Palco: {set}
+0f8duxs	Piano attuale
+03yitl0	Palco della Home
+00n1act	Fatto.
+19cqi1l	Riscuoti 1 eco.
+1c6dls2	Premio: 1 eco.
+0rfmv4f	Riscuoti
+1cnat5z	Vinci una prova con ogni ensemble
+0l8z7n2	<b>Livello su!</b>
+15eua8j	Non stavolta
+0982hh6	Riprova
+0xuoasm	{h} h {m} min
+0z7rxr8	{m} min
+1sawk0u	Oggi
+1yetfcu	Ingresso singolo
+0i43ri6	Pagato oggi
+0wv5s44	Note per la vittoria di stasera
+0cfkl9x	Stasera · {date}
+0l3ql07	Regola della casa
+0ohh9of	Sul palco · Liv {level}
+1d8xe0i	Vinto stasera
+16gyw2s	I tuoi primi due cuccioli
+1ginijz	Nuovo concerto tra {msToTomorrow}
+1izp7up	Riprova quanto vuoi
+1vy1lnc	Suonalo di nuovo
+1dt0t41	Suona il concerto
+16jnn15	Concerto vinto!
+0hqkd91	Un altro grande show!
+0t1b6a6	Già pagato oggi
+18imhfd	Le luci si sono spente prima dei Din.
+0d1n3lp	Riprova quanto vuoi.
+1lzfam5	Torna alla locandina
+0yjpaj1	Un cucciolo · cinque concerti · un boss
+1yve732	Concerto {n}
+1ol94ul	{n} + equipaggiamento
+0fnhp9o	Boss
+0xl0w5y	Le prime 5 vittorie in concerto e la prima contro il boss pagano ogni giorno. Nuova paga tra {msToTomorrow}.
+1611szw	Tutto pagato oggi. I tour contano comunque per divertimento ed esperienza.
+1iiozi7	In tour · {n}
+1ge46m3	{gigs} concerti su 5 vinti
+0eo55r4	{"one":"{n} dono","other":"{n} doni"}
+0s77dwq	Di nuovo in strada
+0vcj9z8	Abbandona il tour
+0nydgv5	Abbandonare il tour?
+0gcqlob	Le note restano tue.
+1jqit4p	Abbandona
+07pfpca	La strada si adatta al tuo solista.
+1jomgr2	Inizia il tour con {n}
+0wqg5d6	Scegli il tuo solista
+0mtitlv	{boons}. Mostrali
+0pk5huj	Ancora nessun dono
+10kjgrl	Combo
+0azrw18	{n} · Liv {level}
+0jndyot	Ora il boss
+02zvux1	Combo con {n}: {d}
+0d1xs4z	Doni di questo tour
+0ls4fiu	Combo
+00u5kof	Vinci concerti e jam per raccogliere doni. Durano tutto il tour.
+1ivwi98	{p} di Potenza
+1czrh23	{p} di PS
+18dqeg6	Dalla strada: {list}
+1jeu1u6	Concerto
+0yik53o	Concerto rumoroso
+1no7203	Jam session
+1f5g7va	Mistero
+030xvgf	Partenza
+0rcomre	‹ Concerti
+1nz9721	Tour: {region}
+1y1z148	Il palco di {din}
+0suqviq	{stop}, puoi andarci
+10yi615	{stop}, visitato
+0bloln1	{stop}
+0y4qqu7	Non è sulla tua strada. Le tappe che brillano sono le prossime.
+17lnddt	Il tuo tour inizia qui. Scegli una strada.
+0nbrgm6	Scegli la prossima tappa. Toccane una per vederla.
+0zqhp1s	Tour solista
+1p7xg55	5 concerti, poi {n}
+0acptz9	Un palco piccolo.
+1idq6xu	Un pubblico scatenato e Din più tosti.
+0mkdcb6	L'ultima tappa del tour.
+0wsnj4k	Dormi o fai pratica.
+1g00h8i	Suona con loro per un dono.
+1bqe9lc	Qui succede qualcosa.
+0cbomgp	Dono raro
+0cm0w8n	Dono
+0unuhh5	Vittoria
+18w23xo	Affronta il boss
+0z0syb8	Suona questo concerto
+1lkop6h	Vai lì
+0jar724	Non ancora
+0pv5mv6	La strada
+1qd1crm	Due Din. Vinci per un dono.
+05me9k8	Din più tosti. Vinci per un dono raro.
+0fqmz7h	Cura del 40%, o fai pratica per +10% di Potenza.
+18gfynz	Scegli un dono.
+0m8hcnl	Una scelta, buona o rischiosa.
+14v8vbh	La fine del tour.
+0vozr6z	I PS passano da un concerto all'altro. Il pubblico si spazientisce se un concerto si trascina: ogni colpo fa più male.
+0i9n2t3	Il pubblico impazzisce
+0e67mga	Fruga nella cassa
+17cajel	Scegli un dono raro
+0crwowb	Scegli un dono
+14mzec6	Prendi {n}
+00dbte5	Saltare questo dono?
+19b6o8k	Questa tappa non ne dà altri.
+0rhzcma	Una notte tranquilla in viaggio
+0d7yc2w	Dormi
+0yis9fp	PS {now} → {heal}
+1ko57eo	Fai pratica
+0iibvtx	+{n}% di Potenza per questo tour
+1vj67te	Hai ottenuto
+0qvo2av	Concerto rumoroso vinto!
+04ymvaf	Che caciara!
+1eea2cs	PS {n}%
+0wc81n0	Note di questo tour
+0cc3ko5	Tour completato!
+0x5rhez	Tour finito
+1vcaw9j	Il tuo solista
+11w4s05	<b>{pet}</b> ha vinto tutti e cinque i concerti e il boss.
+1rb3v2o	<b>{n} su 5</b> concerti vinti.
+1t4vb48	E il boss ha lasciato
+17kf24l	Prova un altro tour
+1k3jeja	Un altro tour
+02dv84d	<b>{pets}</b> <span class="dim">sono forti contro di lui.</span>
+06u84tt	<b>{pets}</b> <span class="dim">è forte contro di lui.</span>
+1jh7dyr	<span class="dim">È forte contro</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Liv {lvl}
+0j8axo0	su {max}
+0xw1kwq	<b>Scudo.</b> <span class="dim">Assorbe i prossimi {shield} danni.</span>
+0fuwg7s	Per {t}.
+03ojm4e	Lasciare questa ondata?
+104x6pe	La tua partita finisce qui. Le ricompense restano tue.
+1xf0sbk	Esci
+0l14tjq	Lasciare questo concerto?
+17mnxxq	Il tuo tour finisce qui. Le note restano tue.
+113qxrx	Termina il tour
+0ax5053	Lasciare il concerto?
+1ymwhol	Riprova quando vuoi.
+0iou6h7	Lasciare questa battaglia?
+0b3qhh2	Non perdi nulla.
+0ssgire	Lascia la battaglia
+1jmvu80	Solista · boss
+0lrhoo2	Solista · concerto {n}
+1olfrt8	Prova {n}
+0bigcx0	{"one":"ne resta {n}","other":"ne restano {n}"}
+05trtda	tra {n}
+0qn7msh	Spazientito!
+0ujdg0z	Regola della casa: {n}
+1epghlp	Il pubblico
+13qzva8	Il pubblico si spazientisce: ogni colpo fa più male a ogni turno.
+0540b06	Auto
+1fn0bdg	Usa
+07t8f32	Mossa base
+0wv4sck	Preparati
+1gig116	serve il microfono
+1dafg0x	pronta tra {t}
+12udzhb	riposa {t} dopo l'uso
+0eoacl7	sempre pronta
+09mc5ki	Mossa extra
+1mzzz6r	{move}, serve il microfono
+1cbobby	Turno nemico
+1s58kd5	La battaglia automatica è attiva
+0o9tv84	Solo il cucciolo con il microfono può usarla.
+1yv3h7m	Non ancora pronta. Scegli un'altra mossa.
+0xt3jlr	Tocca un nemico per usarla, o premi Usa.
+0bbedtn	Premi Usa.
+1i1wq4v	Solo il cucciolo con il microfono può usarla.
+1o29ocf	Quella mossa non è ancora pronta.
+1k3jdut	Deve colpire chi ha Provocazione.
+0amsa7g	Tieni premuto per vedere statistiche e mosse.
+19s7xp8	Tocca a te! Tocca il nemico per attaccarlo.
+1xkyhxm	Tocca un'icona rotonda per scegliere un'altra mossa.
+1xatr8w	Freccia verde: il tuo cucciolo è forte contro quel nemico.
+1fo7mmm	La linea gialla mostra a chi tocca dopo.
+1gg5fya	Parato
+0nz7kx7	Critico!
+03sm2ze	Forte
+0uhuaqx	Debole
+001d664	Schivato
+169g4lg	Stordito
+13qsw78	{name} è stordito e salta un turno
+0b538j2	Di nuovo in piedi!
+0kaw7l1	Prima
+0pb3b0x	Cambio!
+1o2e5hh	Il pubblico si spazientisce!
+0h1zwxb	Cambio di tonalità!
+1rzr4qi	Patata bollente!
+0yrhd9v	Microfono!
+167szal	Bis · ondata {n}
+1ryq1vy	Tour solista · l'ultima tappa
+0wdzx1i	Concerto del giorno · {n}
+0ncefmr	Boss · piano {n}
+0vh77hq	Tocca per saltare
+0wqg7ri	VS
+01lmez5	Concerto del giorno · {venue}
+0d68t5f	Tocca per iniziare
+0jleco1	Hai vinto!
+1jc3an7	La tua band è fuori gioco
+13ssvg2	Ondata {wave} superata!
+1mh43qm	Premio settimanale: ondata {n}
+0catbos	Prossimo premio: ondata {n}
+0kbukl4	Tutti i premi vinti questa settimana
+1cprp2x	Fermati qui
+0nzp3il	Bis finito
+1ut9ian	{"one":"Hai superato <b>{n}</b> ondata.","other":"Hai superato <b>{n}</b> ondate."}
+0ty85y2	Record: <b>{n}</b>.
+0sxepax	Torna al Bis
+1mbtrrm	Livello su
+1t44dyo	{"one":"Livello su!","other":"+{n} livelli!"}
+0jgpwku	Livello successivo
+1upuqw4	Un traguardo è pronto
+1oyw1a7	Prova superata!
+1p1n9oo	Altre prove
+0tmft7x	Prove
+1olud0e	Boss sconfitto!
+0hcfevc	Piano superato!
+1lol7z1	Rigiocare non paga note.
+0rbs9h4	Hai trovato
+1j1b8hw	Al boss
+0to2fym	Piano successivo
+1pob5wr	Gioca ancora
+1h119dp	<b>Ora c'è un boss.</b> Controlla prima la band.
+08xkpxs	Piano successivo tra {left}
+1ft5bxw	Consiglio: <b>{n}</b> può crescere.
+1y4qsj9	Consiglio: hai una conchiglia da aprire.
+0ee4m6n	Consiglio: nella borsa c'è equipaggiamento che nessuno indossa.
+17h3lmh	Consiglio: vincere una prova paga un eco.
+1yxlsvo	Consiglio: i tuoi cuccioli potrebbero formare un ensemble.
+11jmiib	Consiglio: prova un'altra band, o rigioca un piano precedente per salire di livello.
+03eg7mm	Consiglio: rigioca un piano precedente per salire di livello, poi torna.
+1uopv4k	Hai trovato una conchiglia!
+16ub219	Dentro c'è un cucciolo. Aprila in <b>Conchiglie</b>.
+03ywr4q	Fammi vedere
+07hdxv7	Hai trovato equipaggiamento!
+15xrlrb	Ogni cucciolo porta due pezzi. Equipaggiali dalla sua pagina.
+16us7mj	Lingua

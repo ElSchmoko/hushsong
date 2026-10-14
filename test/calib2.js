@@ -1,4 +1,4 @@
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H;
 function run(sc, tier, lvl, gear) {
   H.dinScale = sc;

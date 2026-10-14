@@ -1,6 +1,6 @@
 // Fit a small per-form factor (HP and Power) so that every form adds about the same to a team.
 // node test/fit.js <tier> <rounds> <fights> [in.json] -> writes test/movek.json
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const fs = require('fs'), H = globalThis.H, tier = +process.argv[2], R = +(process.argv[3] || 8), N = +(process.argv[4] || 40000), file = __dirname + '/movek.json';
 if (fs.existsSync(file)) Object.assign(H.MOVE_K, JSON.parse(fs.readFileSync(file, 'utf8')));
 H.applyMoveK();

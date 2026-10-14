@@ -1,5 +1,5 @@
 // What each Legendary piece adds: a fully evolved band, one pet wearing it, against a boss floor. node test/legs.js [N] [lvl]
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H, N = +(process.argv[2] || 400), L = +(process.argv[3] || 60), rnd = H.rng(3);
 const forms = Object.keys(H.FORMS).filter((f) => H.FORMS[f].tier === 2), st = H.stage(130);
 const run = (make) => { let w = 0; for (let i = 0; i < N; i++) { const S = H.newState(); const pets = [0, 1, 2].map((k) => ({ id: k + 1, form: forms[Math.floor(rnd() * forms.length)], rank: 0, t1: true, t2: true, gear: [null, null] })); const it = make(S); if (it) { S.items.push(it); pets[Math.floor(rnd() * 3)].gear[0] = it.id; }

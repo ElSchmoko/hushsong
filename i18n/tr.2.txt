@@ -1,0 +1,551 @@
+0f55hyc	Bir düşmana {p} vurur.
+1pnhot0	Kendine Kalkan.
+15drddl	{t} boyunca kendine {st}.
+1nd99m8	Tüm gruba Kalkan.
+1qwd7ml	{t} boyunca tüm gruba {st}.
+1uwsay5	Tüm düşmanlara {p} vurur.
+1q8cjc9	Bir düşmana her biri {p} olan {n} vuruş yapar.
+1076p36	Tüm düşmanlara her biri {p} olan {n} vuruş yapar.
+1q2u71s	En yaralı grup arkadaşını {p} iyileştirir.
+0ompy9w	Tüm grubu {p} iyileştirir.
+0u3dj57	Tüm gruptaki kötü etkileri kaldırır.
+0onaigk	En yavaş grup arkadaşının sıradaki turu daha erken gelir.
+0khc9zz	En yaralı grup arkadaşındaki tüm kötü etkileri kaldırır.
+190xcnu	{t} boyunca bir düşmana {st}.
+0e7f6lw	{t} boyunca en güçlü grup arkadaşına {st}.
+1bdc500	En yaralı grup arkadaşına Kalkan.
+106aayv	{t} boyunca tüm düşmanlara {st}.
+17snu6e	{t} boyunca rastgele bir düşmana {st}.
+15vipv3	{t} boyunca hedefe {st}.
+0cnywq4	Grup arkadaşlarının sıradaki turu daha erken gelir.
+13j8tn6	Hedefe Kalkan.
+16clkzn	Hedefin tüm iyi etkilerini ve Kalkanını kaldırır.
+1o2z45w	Tüm düşmanları tur sırasında geriye iter.
+0amfle1	Tüm düşmanların iyi etkilerini ve Kalkanını kaldırır.
+1kxpnpz	Maksimum CP'sinin {p} kadarı kadar iyileşir.
+117au04	Sıradaki turu grup arkadaşları oynar.
+0ebcfe0	Rastgele bir düşmana {p} vurur.
+0dye84z	+{v} Güç
+1i3vqsq	+{v} CP
+1tt83ij	+{v} Koruma
+1ub8ovp	+{v} Hız
+0s1jrr2	+{v} kritik vuruş ihtimali
+1bmhzw0	Düşman Korumasının {v} kadarını yok sayar
+00bjksl	{v} daha az hasar alır
+0pcq1bs	İyileştirmeleri {v} daha güçlü
+0fdv6n1	Gruba +{v} deneyim
+1h4s45e	Rakip {pet}
+0eujuva	Gürültücü {din}
+03alka9	Bum!
+0kui9jn	Işıklar söndü!
+0c1w867	Yankı!
+0mq77hg	Bis!
+1qm2xxm	Yine!
+0k2fpcm	Dayanıyor!
+0rd3yt1	Zincir!
+0belrl0	Sendeledi!
+1xob2db	Daha hızlı!
+1lwo7a3	Umursamadı
+0hn3zaj	Macera
+03gtdjg	Prova
+13u5rhp	Bis
+0siy9wx	Koleksiyon
+03bpwir	Ayna {pet}
+0htre55	Dev {din}
+1jamndy	Güç
+1m575se	Koruma
+02w2xwg	Hız
+06xig19	Kritik
+1l0xxoj	Kapat
+007q5wa	Menü
+0v0wv6e	Yetenek
+1q4pntc	Özel
+0n0mxf2	Ana sayfa
+04f76ga	Notalar
+0wto1r4	Yankılar
+04zpoy4	{n} yankı buldun!
+1oo9ppz	Bir yankı buldun!
+1we7hk3	Bunlar {n} dostunun evrimleşmesine yardım eder, sonra yıldız alır.
+0sxhh51	Düz yankılar herhangi bir dostun evrimleşmesine yardım eder. Onları bir dostun sayfasında harca.
+1msq7av	Günlük konser
+1mwx410	<b>Ana sayfada yeni:</b> {modes}
+0fkew5h	{label}, ödendi
+160umau	Grup
+0excb6f	Dostlar
+1jht0nq	Kabuklar
+1jp3e8h	Çanta
+17o19ow	Kabuğunu burada aç
+1npfg7x	Temel
+0t4uqph	Hep açık
+0x2jl9c	bekle {n}
+1cjrhja	her zaman
+0b9jhu9	yeni
+0ew9em3	İptal
+166o4fr	‹ Geri
+1id7d20	Nasıl oynanır
+1602nqr	İlerlemek için katları kazan. Her 10. katta bir <b>patron</b> var. Kabuklarda rastgele dostlar çıkar.
+119v05d	Dostlar ve düşmanlar sarı çubukları dolunca hareket eder. Seçili hamleyi kullanmak için <b>bir düşmana dokun</b>, hamle değiştirmek için yuvarlak bir simgeye dokun, değerleri görmek için herhangi birine <b>basılı tut</b>. Nişan alırken can çubuğunun yanıp sönen kısmı hamlenin götüreceği kısımdır.
+04f26x8	Değerler
+0vbx2p1	CP
+1va0zku	Düşmeden önce alabileceği hasar.
+1rtj1g9	Hamlelerinin ne kadar sert vurduğu, iyileştirdiği ve koruduğu.
+0t35lk6	Aldığı hasarı azaltır. 50 Koruma üçte birini keser.
+1sqimv3	Ne sıklıkla sıra ona gelir.
+08j0mei	Bir vuruşun %50 fazla hasar verme ihtimali. Her dost %5 ile başlar.
+11rzah1	Aileler
+19nc0fc	Her biri çemberdeki bir sonrakini yener: %30 daha fazla hasar verir, %20 daha az alır.
+0oqv3et	Etkiler
+1a4ajy7	Bir etkinin üstündeki sayı kalan tur sayısıdır.
+0dekir8	<b>{n}.</b>
+114mnho	Yankılar ve yıldızlar
+1x1u4jp	Dostlar yankılarla iki kez evrimleşir, sonra yıldız ekler: en fazla 10, her biri +%3 CP ve Güç. Zaten sahip olduğun bir dostu çıkaran kabuk, yalnızca o dostun kullanabileceği bir yankı verir. Üstte gösterilen düz yankılar her dosta uyar.
+0a8e6q1	Notalar ve deneyim
+047ok7c	Yeni katlar nota öder; notalarla kabuk alınır. Her savaş deneyim verir, seviyenin çok altındaki katlarda daha az.
+02k1r1n	Topluluklar
+1ethk2v	Üç farklı aileden üç dost ya da hepsi aynı aileden bir topluluk oluşturur: bir açılış ezgisi ve gruba bir avantaj.
+1c0bob4	10–100. katların yenilen patronları senin seviyende geri gelir. Her biri haftada bir kez bir yankı öder, pazartesi sıfırlanır.
+1xtq0ev	Ekipman
+1eepakt	Her dost iki parça takar. Zaferler daha fazlasını düşürebilir: Macera ekranı ihtimali gösterir. Aynı türden 3 fazla parça bir sonraki nadirliğe birleşir, Destansı'ya kadar.
+0baj6qd	{unlock}. seviyeden itibaren: günde bir savaş, savaşların işleyişini değiştiren ve herkes için aynı olan bir ev kuralıyla. Her günün ilk zaferi öder; dilediğin kadar dene.
+0h1kfu0	{unlock}. seviyeden itibaren: bir dost beş konser, duraklar ve bir patrondan oluşan çatallı bir yolda turneye çıkar. Lütuflar turne boyunca sürer, bazıları birlikte çalışır. Her günün ilk zaferleri öder.
+07zgmz9	{unlock}. seviyeden itibaren: her biri biraz daha zor sonsuz dalgalar. CP aktarılır, düşen dostlar dışarıda kalır. Kilometre taşı dalgalar haftada bir öder.
+0orgbil	Başarılar
+08hfti8	Kabuk, yankı ve Ana sayfa arka planı veren zor hedefler.
+0l8hqi2	Anladım
+0zmnv1z	Ses: açık
+1j3s0cb	Ses: kapalı
+0ohwdis	Müzik
+0u4bbh9	Kayıt kodu
+0a17t5z	Baştan başla
+0ah2vw0	Bu oyun silinsin mi?
+07v407v	{n} dost
+1h0aetd	{pets}, {stage}. kata kadar ilerlemen ve tüm nota, kabuk ve yankıların sonsuza dek gider. Önceden alınmış bir kayıt kodu onları geri getirebilir.
+13p56d7	İçinde {stage}. katta {pets} var. Bu cihazdaki oyunun yerini alır.
+1yiqur6	Her şeyi sil
+1u9zao8	Kayıt kodun
+0oqbnyd	Kayıt kodunu buraya yapıştır
+1kt4ziu	Yüklenecek kayıt kodu
+13h0r7b	Kodumu kopyala
+0iim041	Kopyalandı. Güvenli bir yerde sakla.
+0wqainm	Metni seç ve elle kopyala.
+0zcg70w	Bu kodu yükle
+04nf0s1	Bu bir Hushsong kayıt kodu değil.
+0wazdu1	Bu kayıt yüklensin mi?
+1ughagm	Yükle
+0ribzan	Oyunun bu cihaza kendiliğinden kaydedilir. Bu kod saklaman ya da başka yerde devam etmen için bir kopyadır.
+1i3udnb	Kod yükle
+0xptzj8	Dalga {n}
+0opsnl8	Patron {n}
+1dxyp09	Gürültücü {n}
+192xyh5	Kat {n}
+1wsths9	Sonra
+1vkg66p	Topluluğun
+0oes1nf	+{n} yankı
+0tyfhvo	Bu oyun bitirilsin mi?
+10yh3fa	Ödüller sende kalır.
+179chx3	Bitir
+1xqrqh9	Evrimleştir: {pet}
+007flrr	Yıldız ekle: {pet}
+1bipuuc	Devam
+0kayn18	Kabuğu aç
+1hzmxtu	Geri
+1o2o6dp	Grubu değiştir
+03kusfv	Grubunu değiştir
+0ovvjp1	Grubun
+1yikd80	Solo turne
+1g2tab0	Konser {n} / 5
+0n3ydks	Birini seç
+0x4nga3	İleri
+00fxhu9	Evrimleşmedi
+18kfar1	Bir kez evrimleşti
+1fvnaj8	Tam evrimleşti
+0h2yt8f	Sv {level}
+114caoa	En üst seviye
+1ys28bo	{xp} / {level} DP
+051r543	10 bölgeden {n} tanesi şarkı söylüyor
+0osohmo	{pet}, grupta
+0qrjb0u	{n} açılışını çal
+1wnoi3m	{region} · kat {n}
+11dqdbh	Final ödülü
+1dfllbn	Patron ödülü
+1mw0j2l	+{n} kabuk
+1l232k4	Hushsong
+0skq8vk	Müzikal dostlar topla. Müziği geri getir.
+0bk85tv	Oyna
+1y45tsh	İlk kabuğumu aç
+1yi0f7c	Bir zamanlar her şey şarkı söylerdi
+0lomxls	Her tepenin, limanın ve salonun kendi ezgisi vardı ve müzikal dostlar onu bütün gün çalardı.
+0i6vi28	Sonra Din geldi
+1jeck9n	Ezgiye katlanamayan gürültücü yaratıklar. Daldılar ve her şarkıyı takırtıda boğdular.
+1pzwbfm	Dünya sustu
+0cv90j1	Renkler soldu. Dostlar kabuklarına saklandı ve o günden beri kimse bir şarkı duymadı.
+0p1upin	Ama bir kabuk hâlâ mırıldanıyor
+0niwiss	Onu aç, bir grup kur ve müziği kat kat geri kazan.
+1vufmm8	Devam etmek için dokun
+1kpwk02	Patron katı {n}
+0x7pfo0	Maceran burada başlıyor
+0s60a9m	Patron · Düşmanlar Sv {n}
+1j7pu5k	Düşmanlar Sv {n}
+08rseiv	Konserler
+03n17d7	{ready} hazır
+1vgexli	{done} / {length}
+02zyyv8	Günlük konser hazır
+1reuah4	Solo turne yolda
+0u73zav	Sırada: Bis dalgası {n}
+1xxqbrb	{n} prova açık
+1vzcv0c	Solo bugün ödüyor
+1i8e16b	İlk konser {n}. seviyede
+1skvt3i	Bugün hepsi oynandı
+0azt7u3	{unlock}. seviyede açılır
+0mbqao6	Bugün kazanıldı
+1m0zof0	Sırada: dalga {wave}
+0sssj9z	Haftanın en iyisi: {weekBest}
+0bv6gmn	10. kattan sonra açılır
+09hmetg	{n} patron açık
+1qt0ibb	Hepsi oynandı
+1w35moz	{"one":"Yarın sıfırlanır","other":"{n} gün içinde sıfırlanır"}
+1mf63c1	Topluluk yok
+1s9gkj5	Önceki kat
+06lywvr	Sonraki kat
+127oer9	Geçildi · Düşmanlar Sv {n}
+1byxumh	Deneyim
+1lr0g08	+1 Efsanevi
+1lafnle	Ekipman ihtimali
+0dr6vfq	{name}, seviye {lvl}, grubun ona karşı güçlü. Hamlelerini göster
+0k11ss3	{name}, seviye {lvl}, grubuna karşı güçlü. Hamlelerini göster
+1twb6b1	{name}, seviye {lvl}. Hamlelerini göster
+1i8jmgf	Sv {n} · patron
+03c3p2r	Sv {n}
+02k9jns	Ona daha sert vurursun
+0af1lm1	Sana daha sert vurur
+1eenfp5	Düşmanlar senden {n} seviye yukarıda
+0d8gyft	Devam et: açık
+0jkleb9	Devam et: kapalı
+0y8m6so	Otomatik savaş
+15hb32v	Savaş
+10tx3xo	Yukarıdaki düşmanlarla savaş
+0sh945i	Harita: {n}, kat {n2}. Tüm bölgeleri göster
+19rtxhg	Dünya, bis {n}
+1f41oeh	100. kata giden yol
+1ki85pn	Katlar {a}–{b} · yeniden şarkı söylüyor
+1grm6vy	Katlar {a}–{b} · {din} susturdu
+18s8a97	Burası
+0mxtf0p	boş yer
+1whegdc	Dostuna dokun
+1tmmxpq	Hakkında: {n}
+1rkfalq	Değiştir
+1ybtjd0	Üç yeri de doldur.
+1rlp9ke	Bunun için <b>3 farklı aile</b> ya da <b>3 aynı aile</b> gerekir.
+1q7gv3d	Olası: <b>{list}</b>
+10ubeg8	Tüm topluluklar
+1c5mvf7	Maceraya
+02u5zbh	Hazır mısın? Yola çık
+05o74q3	Burada kim duracak?
+18z83m5	Bu yeri boş bırak
+19xt0al	3 farklı aile ya da 3 aynı aile.
+0jtpxy5	Kullanımda
+1g5f5vb	Dost eksik
+0dzuldu	Çalındı
+12mrurj	Henüz çalınmadı
+1p633z1	Açılacak {n} kabuk
+0ost8of	Şu an kabuk yok
+1stb3ay	İlk dostun içeride. <b>Kabuğa dokun.</b>
+0fi2qkf	<b>Rastgele bir dost</b>. Zaten sahip olduğun bir dost <b>yankıya</b> dönüşür.
+1r45u9w	Patronlar kabuk bırakır. Notalarla daha fazlasını alırsın.
+0zvrdho	Bir kabuk aç
+1mhuvb6	Kabuk satın al
+0hv9zs9	{n} seçiyorum
+0oe9ixr	İçeride üç dost vardı!
+0mecjw0	Birini seç. Diğerleri sonra ortaya çıkar.
+0tlq0tf	Yeni dost!
+1sy6y67	Bir {base} daha
+0i0wqsf	Bir {base} daha ({n} dostun)
+0say7eo	+{n} {pet} yankısı
+1mw6eu2	Bir tane daha aç ({n} kaldı)
+1taelf6	Hadi
+13cn9g1	Tamam
+0to0bon	{have} / {need} yankı
+0ow97sa	Şuna evrimleş
+0ay0li2	Yeni Özel
+1jxgm35	Birini seç. Sonra değiştirmek ücretsiz.
+1yylcbd	Yankılar kabuklardan, patronlardan, provalardan ve başarılardan gelir.
+1128a0z	Yıldızlar {n} / {max}
+1i6zzkz	Yıldız ekle · +%3 CP ve Güç
+1n5ofxj	Bu dost olabileceği kadar güçlü.
+1hgwrl8	Ekipmanını buraya tak
+051r6dq	Boş yuva
+0xpvvet	Hamleler
+083gk8g	Yolu değiştir
+19b2u1a	Harika
+1eq65tc	Evrimleş
+1mntkmf	{have} / {n} yankı
+0we11jd	Ücretsiz, dilediğin kadar.
+0v7hfzm	Çıkar
+0hpqcmx	Şununla değiştir
+12sm7bj	Çantanda
+08kj2qr	Tamam! Dön ve savaşmaya devam et.
+19ky8vr	Çantanda başka bir şey yok.
+0ggizsd	Çantan boş.
+1j0zoai	Henüz burada bir şey yok
+0musznz	Savaşlar bazen ekipman düşürür.
+0am4v1q	Aynı türden 3 fazla parça daha iyi bir parçaya birleşir.
+10ttus6	3 {item} birleştir → {rarity}
+1fkec2w	Birleşti!
+0h4pk9n	Bunu <b>{n}</b> takıyor.
+0rrnf75	Bunu kimse takmıyor.
+0xide7m	Çıkar: {n}
+03295io	Git: {n}
+0ngmxng	3 birleştir → {n}
+0br649q	Birleştirme: {length} / 3 fazla
+1pquyhx	Sat
+0ix7gem	10. kattaki patrondan sonra açılır.
+067l7h2	Yenilen patronlar <b>senin seviyende</b> geri gelir.
+12rgeuk	Bu hafta hepsi kazanıldı
+1vgwehg	{din}, {region}, bu hafta kazanıldı
+0qjjz61	{din}, {region}, ödül 1 yankı
+1fqbflp	Bis {unlock}. seviyede açılır.
+03scfen	Dışarıda
+08gv74u	Her biri biraz daha zor sonsuz dalgalar. CP aktarılır ve her dalgadan sonra dörtte biri geri gelir.
+1nvt7jn	Bu hafta
+15kcesy	Haftanın en iyisi <b>{week}</b> · rekor <b>{best}</b>
+15jnq83	{"one":"yarın sıfırlanır","other":"{n} gün içinde sıfırlanır"}
+04pp0j3	{wave}. dalgayı oyna
+1ywcpar	Bu oyunu bitir
+0asw5g5	Bis'i başlat
+03839q1	Yeni sahne: {set}
+1078zjl	Sahne: {set}
+0f8duxs	Şu anki kat
+03yitl0	Ana sayfa sahnesi
+00n1act	Tamam.
+19cqi1l	1 yankı al.
+1c6dls2	Ödül: 1 yankı.
+0rfmv4f	Al
+1cnat5z	Her toplulukla bir prova kazan
+0l8z7n2	<b>Seviye atladın!</b>
+15eua8j	Bu sefer olmadı
+0982hh6	Tekrar dene
+0xuoasm	{h} sa {m} dk
+0z7rxr8	{m} dk
+1sawk0u	Bugün
+1yetfcu	Tek kişilik giriş
+0i43ri6	Bugün ödendi
+0wv5s44	Bu gecenin zaferi için notalar
+0cfkl9x	Bu gece · {date}
+0l3ql07	Ev kuralı
+0ohh9of	Sahnede · Sv {level}
+1d8xe0i	Bu gece kazanıldı
+16gyw2s	İlk iki dostun
+1ginijz	Yeni konser: {msToTomorrow}
+1izp7up	Dilediğin kadar tekrar dene
+1vy1lnc	Yeniden çal
+1dt0t41	Konseri çal
+16jnn15	Konser kazanıldı!
+0hqkd91	Yine harika bir şov!
+0t1b6a6	Bugün zaten ödendi
+18imhfd	Din düşmeden ışıklar söndü.
+0d1n3lp	Dilediğin kadar tekrar dene.
+1lzfam5	Afişe dön
+0yjpaj1	Bir dost · beş konser · bir patron
+1yve732	Konser {n}
+1ol94ul	{n} + ekipman
+0fnhp9o	Patron
+0xl0w5y	Her gün ilk 5 konser zaferi ve ilk patron zaferi öder. Yeni ödeme: {msToTomorrow}.
+1611szw	Bugün hepsi ödendi. Turneler yine de eğlence ve deneyim için sayılır.
+1iiozi7	Turnede · {n}
+1ge46m3	5 konserden {gigs} tanesi kazanıldı
+0eo55r4	{n} lütuf
+0s77dwq	Yeniden yola
+0vcj9z8	Turneyi bırak
+0nydgv5	Turne bırakılsın mı?
+0gcqlob	Notalar sende kalır.
+1jqit4p	Bırak
+07pfpca	Yol solistine göre ayarlanır.
+1jomgr2	Turneye başla: {n}
+0wqg5d6	Solistini seç
+0mtitlv	{boons}. Göster
+0pk5huj	Henüz lütuf yok
+10kjgrl	Kombo
+0azrw18	{n} · Sv {level}
+0jndyot	Sırada patron
+02zvux1	{n} ile kombo: {d}
+0d1xs4z	Bu turnenin lütufları
+0ls4fiu	Kombolar
+00u5kof	Lütuf toplamak için konser kazan ve jam yap. Turne boyunca sürerler.
+1ivwi98	{p} Güç
+1czrh23	{p} CP
+18dqeg6	Yoldan: {list}
+1jeu1u6	Konser
+0yik53o	Gürültülü konser
+1no7203	Jam
+1f5g7va	Gizem
+030xvgf	Başlangıç
+0rcomre	‹ Konserler
+1nz9721	{region} turnesi
+1y1z148	{din} sahnesi
+0suqviq	{stop}, buraya gidebilirsin
+10yi615	{stop}, ziyaret edildi
+0bloln1	{stop}
+0y4qqu7	Yolunun üstünde değil. Parlayan duraklar sıradakiler.
+17lnddt	Turnen burada başlıyor. Bir yol seç.
+0nbrgm6	Sıradaki durağı seç. Görmek için birine dokun.
+0zqhp1s	Solo turne
+1p7xg55	5 konser, sonra {n}
+0acptz9	Küçük bir sahne.
+1idq6xu	Coşkulu bir kalabalık ve daha zorlu Din.
+0mkdcb6	Turnenin son durağı.
+0wsnj4k	Uyu ya da çalış.
+1g00h8i	Lütuf için birlikte çal.
+1bqe9lc	Burada bir şeyler oluyor.
+0cbomgp	Nadir lütuf
+0cm0w8n	Lütuf
+0unuhh5	Zafer
+18w23xo	Patronla yüzleş
+0z0syb8	Bu konseri çal
+1lkop6h	Oraya git
+0jar724	Henüz değil
+0pv5mv6	Yol
+1qd1crm	İki Din. Bir lütuf için kazan.
+05me9k8	Daha zorlu Din. Nadir bir lütuf için kazan.
+0fqmz7h	%40 iyileş ya da +%10 Güç için çalış.
+18gfynz	Bir lütuf seç.
+0m8hcnl	İyi ya da riskli bir seçim.
+14v8vbh	Turnenin sonu.
+0vozr6z	CP konserden konsere aktarılır. Konser uzarsa seyirci sabırsızlanır: her vuruş daha sert gelir.
+0i9n2t3	Seyirci çılgına dönüyor
+0e67mga	Kasayı karıştır
+17cajel	Nadir bir lütuf seç
+0crwowb	Bir lütuf seç
+14mzec6	Al: {n}
+00dbte5	Bu lütuf geçilsin mi?
+19b6o8k	Bu durak başkasını vermez.
+0rhzcma	Yolda sakin bir gece
+0d7yc2w	Uyu
+0yis9fp	CP {now} → {heal}
+1ko57eo	Çalış
+0iibvtx	Bu turne için +%{n} Güç
+1vj67te	Kazandın
+0qvo2av	Gürültülü konser kazanıldı!
+04ymvaf	Ortalık karıştı!
+1eea2cs	CP %{n}
+0wc81n0	Bu turnenin notaları
+0cc3ko5	Turne tamamlandı!
+0x5rhez	Turne bitti
+1vcaw9j	Solistin
+11w4s05	<b>{pet}</b> beş konseri ve patronu kazandı.
+1rb3v2o	<b>5 konserden {n} tanesi</b> kazanıldı.
+1t4vb48	Ve patron şunu düşürdü
+17kf24l	Başka bir turne dene
+1k3jeja	Başka turne
+02dv84d	<b>{pets}</b> <span class="dim">ona karşı güçlü.</span>
+06u84tt	<b>{pets}</b> <span class="dim">ona karşı güçlü.</span>
+1jh7dyr	<span class="dim">Şunlara karşı güçlü:</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Sv {lvl}
+0j8axo0	/ {max}
+0xw1kwq	<b>Kalkan.</b> <span class="dim">Sıradaki {shield} hasarı emer.</span>
+0fuwg7s	{t} boyunca.
+03ojm4e	Bu dalgadan çıkılsın mı?
+104x6pe	Oyunun burada biter. Ödüller sende kalır.
+1xf0sbk	Çık
+0l14tjq	Bu konserden çıkılsın mı?
+17mnxxq	Turnen burada biter. Notalar sende kalır.
+113qxrx	Turneyi bitir
+0ax5053	Konserden çıkılsın mı?
+1ymwhol	İstediğin zaman tekrar dene.
+0iou6h7	Bu savaştan çıkılsın mı?
+0b3qhh2	Hiçbir şey kaybolmaz.
+0ssgire	Savaştan çık
+1jmvu80	Solo · patron
+0lrhoo2	Solo · konser {n}
+1olfrt8	Prova {n}
+0bigcx0	{n} kaldı
+05trtda	{n} sonra
+0qn7msh	Sabırsız!
+0ujdg0z	Ev kuralı: {n}
+1epghlp	Seyirci
+13qzva8	Seyirci sabırsızlanıyor: her turda her vuruş daha sert gelir.
+0540b06	Oto
+1fn0bdg	Kullan
+07t8f32	Temel hamle
+0wv4sck	Hazırlan
+1gig116	mikrofon gerekir
+1dafg0x	{t} sonra hazır
+12udzhb	kullanınca {t} dinlenir
+0eoacl7	hep hazır
+09mc5ki	Ek hamle
+1mzzz6r	{move}, mikrofon gerekir
+1cbobby	Düşmanın sırası
+1s58kd5	Otomatik savaş açık
+0o9tv84	Bunu yalnızca mikrofonu tutan dost kullanabilir.
+1yv3h7m	Henüz hazır değil. Başka bir hamle seç.
+0xt3jlr	Kullanmak için bir düşmana dokun ya da Kullan'a bas.
+0bbedtn	Kullan'a bas.
+1i1wq4v	Onu yalnızca mikrofonu tutan dost kullanabilir.
+1o29ocf	O hamle henüz hazır değil.
+1k3jdut	Kışkırtma'sı olana vurmak zorunda.
+0amsa7g	Değerlerini ve hamlelerini görmek için basılı tut.
+19s7xp8	Sıra sende! Saldırmak için düşmana dokun.
+1xkyhxm	Başka bir hamle seçmek için yuvarlak bir simgeye dokun.
+1xatr8w	Yeşil ok: dostun o düşmana karşı güçlü.
+1fo7mmm	Sarı çizgi sıranın kimde olacağını gösterir.
+1gg5fya	Blok
+0nz7kx7	Kritik!
+03sm2ze	Güçlü
+0uhuaqx	Zayıf
+001d664	Kaçındı
+169g4lg	Sersem
+13qsw78	{name} sersemledi ve bir tur kaçırıyor
+0b538j2	Yeniden ayakta!
+0kaw7l1	Daha erken
+0pb3b0x	Değişiyor!
+1o2e5hh	Seyirci sabırsızlanıyor!
+0h1zwxb	Ton değişimi!
+1rzr4qi	Sıcak patates!
+0yrhd9v	Mikrofon!
+167szal	Bis · dalga {n}
+1ryq1vy	Solo turne · son durak
+0wdzx1i	Günlük konser · {n}
+0ncefmr	Patron · kat {n}
+0vh77hq	Geçmek için dokun
+0wqg7ri	VS
+01lmez5	Günlük konser · {venue}
+0d68t5f	Başlamak için dokun
+0jleco1	Kazandın!
+1jc3an7	Grubun düştü
+13ssvg2	{wave}. dalga geçildi!
+1mh43qm	Haftalık ödül: dalga {n}
+0catbos	Sıradaki ödül: dalga {n}
+0kbukl4	Bu haftanın tüm ödülleri kazanıldı
+1cprp2x	Burada dur
+0nzp3il	Bis bitti
+1ut9ian	<b>{n}</b> dalga geçtin.
+0ty85y2	Rekor: <b>{n}</b>.
+0sxepax	Bis'e dön
+1mbtrrm	Seviye atla
+1t44dyo	{"one":"Seviye atladın!","other":"+{n} seviye!"}
+0jgpwku	Sonraki seviye
+1upuqw4	Bir başarı hazır
+1oyw1a7	Prova tamam!
+1p1n9oo	Daha fazla prova
+0tmft7x	Provalar
+1olud0e	Patron yenildi!
+0hcfevc	Kat geçildi!
+1lol7z1	Tekrarlar nota ödemez.
+0rbs9h4	Buldun
+1j1b8hw	Patrona
+0to2fym	Sonraki kat
+1pob5wr	Yeniden oyna
+1h119dp	<b>Sırada bir patron var.</b> Önce grubunu kontrol et.
+08xkpxs	Sonraki kat: {left}
+1ft5bxw	İpucu: <b>{n}</b> büyüyebilir.
+1y4qsj9	İpucu: açılacak bir kabuğun var.
+0ee4m6n	İpucu: çantanda kimsenin takmadığı ekipman var.
+17h3lmh	İpucu: prova zaferi bir yankı öder.
+1yxlsvo	İpucu: dostların bir topluluk oluşturabilir.
+11jmiib	İpucu: başka bir grup dene ya da seviye atlamak için önceki bir katı tekrar oyna.
+03eg7mm	İpucu: seviye atlamak için önceki bir katı tekrar oyna, sonra geri gel.
+1uopv4k	Bir kabuk buldun!
+16ub219	İçinde bir dost var. <b>Kabuklar</b> bölümünde aç.
+03ywr4q	Göster
+07hdxv7	Ekipman buldun!
+15xrlrb	Her dost iki parça takar. Sayfasından tak.
+16us7mj	Dil

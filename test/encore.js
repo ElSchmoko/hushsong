@@ -1,5 +1,5 @@
 // How far typical bands get in Encore. node test/encore.js [runs]
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H; if (process.env.EP) { const [g, st, h, bk, gp] = process.env.EP.split(',').map(Number); Object.assign(H.ENCORE, { gap: g, step: st, heal: h, bossK: bk }, gp != null && !isNaN(gp) ? { gapPct: gp } : {}); }
 const N = +(process.argv[2] || 40), rnd = H.rng(11);
 const forms = (tier) => Object.keys(H.FORMS).filter((f) => H.FORMS[f].tier === tier);

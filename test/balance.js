@@ -1,5 +1,5 @@
 // How much does each pet form add to a team? Random trios against fixed floors, win rate by form.
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 
 const H = globalThis.H, tier = +(process.argv[2] || 2), N = +(process.argv[3] || 30000);
 const floors = tier === 2 ? [64, 67, 70, 76, 80, 88, 90, 94, 100] : tier === 0 ? [4, 6, 8, 10, 12, 14, 16, 18, 20] : [24, 27, 30, 36, 40, 44, 50];

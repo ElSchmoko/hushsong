@@ -1,27 +1,28 @@
 /* Hushsong — the battle screen. You pick a move on each of your pets' turns; auto is optional. */
 (function (H) {
   'use strict';
+  const tr = (s, v) => H.T(s, v);
   const A = H.Art, Au = H.Audio, UI = H.UI, el = UI.el, add = UI.add, box = UI.box, txt = UI.txt, key = UI.key;
   const FCOL = A.FAMCOL, INK = A.INK;
 
   // An enemy seen before the battle: the same sheet, built from a battle that is never played.
   UI.foeSheet = (e, team) => {
-    const b = new H.Battle({ allies: [], enemies: [H.foeUnit(e)] }), u = b.units[0], names = (l) => l.map((p) => H.FORMS[p.form].n).join(', ');
+    const b = new H.Battle({ allies: [], enemies: [H.foeUnit(e)] }), u = b.units[0], names = (l) => H.T.list(l.map((p) => H.FORMS[p.form].n));
     const good = team.filter((p) => H.advantage(H.petFamily(p), u.family) > 0), bad = team.filter((p) => H.advantage(u.family, H.petFamily(p)) > 0), notes = [];
-    if (good.length) notes.push(box('row', UI.icon('ic_up'), txt('grow small', `<b>${names(good)}</b> <span class="dim">${good.length > 1 ? 'are' : 'is'} strong against it.</span>`)));
-    if (bad.length) notes.push(box('row', UI.icon('ic_down'), txt('grow small', `<span class="dim">It is strong against</span> <b>${names(bad)}</b><span class="dim">.</span>`)));
+    if (good.length) notes.push(box('row', UI.icon('ic_up'), txt('grow small', tr(good.length > 1 ? '<b>{pets}</b> <span class="dim">are strong against it.</span>' : '<b>{pets}</b> <span class="dim">is strong against it.</span>', { pets: names(good) }))));
+    if (bad.length) notes.push(box('row', UI.icon('ic_down'), txt('grow small', tr('<span class="dim">It is strong against</span> <b>{pets}</b><span class="dim">.</span>', { pets: names(bad) }))));
     UI.inspect(b, u, null, notes);
   };
   UI.inspect = (b, u, after, notes) => {
     const sp = u.spec, c = UI.sp(sp.sprite, u.boss ? 0.8 : 1.1, { flip: u.side === 1 }); c.style.margin = 'calc(var(--u) * -4)';
-    const kids = [box('row', c, add(el('div', 'col grow'), txt('disp', u.name), box('row wrap', UI.famChip(u.family), txt('chip', 'Lv ' + sp.lvl))))];
-    kids.push(el('div', 'stats five', `<div><b>${Math.max(0, Math.round(u.hp))}</b><span class="label">of ${u.max}</span></div><div><b>${Math.round(b.vol(u))}</b><span class="label">Power</span></div><div><b>${Math.round(b.poise(u))}</b><span class="label">Guard</span></div><div><b>${Math.round(b.tempo(u))}</b><span class="label">Speed</span></div><div><b>${Math.round(Math.min(1, 0.05 + b.mod(u, 'crit')) * 100)}%</b><span class="label">Crit</span></div>`));
+    const kids = [box('row', c, add(el('div', 'col grow'), txt('disp', u.name), box('row wrap', UI.famChip(u.family), txt('chip', tr('Lv {lvl}', { lvl: sp.lvl })))))];
+    kids.push(el('div', 'stats five', `<div><b>${Math.max(0, Math.round(u.hp))}</b><span class="label">${tr('of {max}', { max: u.max })}</span></div>` + UI.statsHTML([[Math.round(b.vol(u)), H.T.k('Power')], [Math.round(b.poise(u)), H.T.k('Guard')], [Math.round(b.tempo(u)), H.T.k('Speed')], [Math.round(Math.min(1, 0.05 + b.mod(u, 'crit')) * 100) + '%', H.T.k('Crit')]])));
     if (notes) kids.push(...notes);
-    if (u.shield > 0) kids.push(box('row', UI.icon('st_shield'), txt('grow small', `<b>Shield.</b> <span class="dim">Soaks the next ${u.shield} damage.</span>`)));
-    for (const s in u.st) kids.push(box('row', UI.icon('st_' + s), txt('grow small', `<b>${H.STATUS[s].n}</b> <span class="dim">${u.st[s].dur > 50 ? '' : 'for ' + u.st[s].dur + (u.st[s].dur === 1 ? ' turn. ' : ' turns. ')}${H.STATUS[s].d}</span>`)));
+    if (u.shield > 0) kids.push(box('row', UI.icon('st_shield'), txt('grow small', tr('<b>Shield.</b> <span class="dim">Soaks the next {shield} damage.</span>', { shield: u.shield }))));
+    for (const s in u.st) kids.push(box('row', UI.icon('st_' + s), txt('grow small', `<b>${H.STATUS[s].n}</b> <span class="dim">${u.st[s].dur > 50 ? '' : tr('For {t}.', { t: tr('{n} turns', { n: u.st[s].dur }) }) + H.T.sep()}${H.STATUS[s].d}</span>`)));
     u.ab.forEach((a) => kids.push(UI.moveCard(a.kind, a.def)));
     u.perks.filter((p) => p && p.n && p.d).forEach((p) => kids.push(UI.moveCard('passive', p)));
-    kids.push(key('Close', () => { UI.closeModal(); if (after) after(); }, 'wide')); UI.modal(...kids);
+    kids.push(key(tr('Close'), () => { UI.closeModal(); if (after) after(); }, 'wide')); UI.modal(...kids);
   };
 
   UI.screens.battle = (root, pr) => {
@@ -72,55 +73,55 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your run ends here. Rewards stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
-      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
-      : daily ? UI.confirm('Leave the gig?', 'Try again any time.', 'Leave', () => UI.go('daily'))
-      : UI.confirm('Leave this battle?', 'Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
-    const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
+    const leave = () => (enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
+      : daily ? UI.confirm(tr('Leave the gig?'), tr('Try again any time.'), tr('Leave'), () => UI.go('daily'))
+      : UI.confirm(tr('Leave this battle?'), tr('Nothing is lost.'), tr('Leave'), () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
+    const menu = () => { paused = true; UI.settings(key(tr('Leave battle'), leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', 'Menu'); add(pill, el('span', '', enc ? 'Wave ' + n : solo ? (st.boss ? 'Solo · boss' : 'Solo · gig ' + n) : daily ? twist.n : reh ? 'Rehearsal ' + n : st.boss ? 'Boss ' + n : st.elite ? 'Loud ' + n : 'Floor ' + n), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
     // the house rule in play, with what it is doing right now; a tap says it again
     let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
-    const ruleText = () => { if (twist) { const r = st.twist; return r === 'potato' && tw.potato ? String(tw.potato.left) : r === 'volume' ? Math.round(tw.vol * 100) + '%' : r === 'lastcall' ? tw.left + ' left' : r === 'key' ? 'in ' + tw.key : ''; } return tw.restless ? 'Restless!' : ''; };
+    const ruleText = () => { if (twist) { const r = st.twist; return r === 'potato' && tw.potato ? String(tw.potato.left) : r === 'volume' ? Math.round(tw.vol * 100) + '%' : r === 'lastcall' ? tr('{n} left', { n: tw.left }) : r === 'key' ? tr('in {n}', { n: tw.key }) : ''; } return tw.restless ? tr('Restless!') : ''; };
     const drawRule = () => { if (!twist && !tw.restless) { rule.hidden = true; return; } rule.hidden = false; rule.innerHTML = ''; add(rule, UI.icon(twist ? A.twistIcon(st.twist) : 'ev_crowd', twist ? 0.78 : 0.55), el('span', '', ruleText())); rule.classList.toggle('hot', (st.twist === 'lastcall' && tw.left <= 8) || (st.twist === 'potato' && tw.potato && tw.potato.left <= 2) || (!twist && tw.restless)); };
-    rule.setAttribute('aria-label', twist ? 'House rule: ' + twist.n : 'The crowd'); rule.addEventListener('click', () => { Au.sfx('tap'); UI.toast(twist ? twist.n + ': ' + twist.d : 'The crowd is restless: every hit lands harder each turn.'); });
+    rule.setAttribute('aria-label', twist ? tr('House rule: {n}', { n: twist.n }) : tr('The crowd')); rule.addEventListener('click', () => { Au.sfx('tap'); UI.toast(twist ? twist.n + ': ' + twist.d : tr('The crowd is restless: every hit lands harder each turn.')); });
     drawRule(); fwrap.appendChild(rule);
     const panel = el('div', 'bpanel'), title = el('div', 'ptitle'), meta = el('div', 'pmeta'), desc = el('div', 'pdesc'), icons = el('div', 'picons'), hint = el('div', 'phint');
     // Auto and speed are switches: latched down and gold while on
-    const autoB = key('Auto', () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
+    const autoB = key(tr('Auto'), () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
     const spd = key(speed + 'x', () => { speed = speed >= 2 ? 1 : 2; S.settings.speed = speed; spd.textContent = speed + 'x'; spd.setAttribute('aria-pressed', String(speed > 1)); UI.save(); }, 'tog sm');
-    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); spd.setAttribute('aria-label', 'Speed');
-    const useB = key('Use', () => fire(), 'go big');
+    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); spd.setAttribute('aria-label', tr('Speed'));
+    const useB = key(tr('Use'), () => fire(), 'go big');
     add(panel, box('phead', title, autoB, spd), meta, desc, box('prow', icons, useB), hint);
     add(wrap, fwrap, panel); root.appendChild(wrap);
     const say = (text, cls) => { callout.textContent = text; callout.className = 'callout on ' + (cls || ''); clearTimeout(say.t); say.t = setTimeout(() => callout.classList.remove('on'), 1000 / speed); };
 
     /* ----- the panel: one move at a time, with the pet's moves as round icons ----- */
-    const KN = { beat: 'Basic move', phrase: 'Skill', finale: 'Special' }, turns = (k) => k + (k === 1 ? ' turn' : ' turns');
+    const KN = { beat: H.T.k('Basic move'), phrase: H.T.k('Skill'), finale: H.T.k('Special') }, turns = (k) => tr('{n} turns', { n: k });
     const render = () => {
-      if (!shown) { title.textContent = note || 'Get ready'; meta.textContent = ''; desc.textContent = ''; icons.innerHTML = ''; useB.disabled = true; hint.textContent = ''; hint.className = 'phint'; return; }
+      if (!shown) { title.textContent = note || tr('Get ready'); meta.textContent = ''; desc.textContent = ''; icons.innerHTML = ''; useB.disabled = true; hint.textContent = ''; hint.className = 'phint'; return; }
       const u = shown.u, a = u.ab[shown.idx], fam = V[u.uid].family;
-      title.innerHTML = ''; add(title, UI.icon('fam_' + (fam || 'none')), el('span', '', a ? (a.def.n === u.name ? a.def.n : `${u.name} · ${a.def.n}`) : `${u.name}: ${shown.name}`));
+      title.innerHTML = ''; add(title, UI.icon('fam_' + (fam || 'none')), el('span', '', a ? a.def.n === u.name ? a.def.n : `${u.name} · ${a.def.n}` : `${u.name}: ${shown.name}`));
       if (a) {
         const ready = a.cd === 0, lockd = battle.locked(u, a);
-        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${KN[a.kind]}</b>` + (mine && lockd ? ' <span class="bad">needs the mic</span>' : mine && !ready ? ` <span class="bad">ready in ${turns(a.cd)}</span>` : a.def.cd ? ` <span>rests ${turns(a.def.cd)} after use</span>` : ' <span>always ready</span>');
+        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${tr(KN[a.kind])}</b> ` + (mine && lockd ? `<span class="bad">${tr('needs the mic')}</span>` : mine && !ready ? `<span class="bad">${tr('ready in {t}', { t: turns(a.cd) })}</span>` : a.def.cd ? `<span>${tr('rests {t} after use', { t: turns(a.def.cd) })}</span>` : `<span>${tr('always ready')}</span>`);
         desc.innerHTML = UI.rich(H.describe(a.def));
-      } else { meta.className = 'pmeta'; meta.textContent = 'Extra move'; desc.textContent = ''; }
+      } else { meta.className = 'pmeta'; meta.textContent = tr('Extra move'); desc.textContent = ''; }
       icons.innerHTML = '';
       u.ab.forEach((m, i) => {
-        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', m.def.n + (lk ? ', needs the mic' : ''));
+        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', (lk ? tr('{move}, needs the mic', { move: m.def.n }) : m.def.n));
         b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (lk) b.appendChild(add(el('span', 'cdn lk'), UI.icon('ic_lock', 0.85))); else if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
         b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && battle.ready(u, m)) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
         icons.appendChild(b);
       });
-      useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? 'Use' : '· · ·';
+      useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? tr('Use') : '· · ·';
       hint.className = 'phint' + (mine && tipText ? ' tipc' : '');
-      hint.textContent = !mine ? (u.side === 1 ? 'Enemy turn' : auto ? 'Auto battle is on' : '') : tipText || (a && battle.locked(u, a) ? 'Only the pet with the mic can use this.' : a && a.cd > 0 ? 'Not ready yet. Pick another move.' : a && H.needsTarget(a.def) ? 'Tap an enemy to use it, or press Use.' : 'Press Use.');
+      hint.textContent = !mine ? u.side === 1 ? tr('Enemy turn') : auto ? tr('Auto battle is on') : '' : tipText || a && battle.locked(u, a) ? tr('Only the pet with the mic can use this.') : a && a.cd > 0 ? tr('Not ready yet. Pick another move.') : a && H.needsTarget(a.def) ? tr('Tap an enemy to use it, or press Use.') : tr('Press Use.');
     };
     let tipText = '';
-    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
+    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? tr('Only the pet with the mic can use that.') : tr('That move is not ready yet.')); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
 
     const unitAt = (px, py) => { let best = null; for (const v of V) { if (!v.alive) continue; if (px >= v.x + 1 && px <= v.x + v.sz - 1 && py >= v.hy && py <= v.y + v.bb.b + 3) if (!best || v.y + v.sz > best.y + best.sz) best = v; } return best; };
     let opening = false, skipOpening = false; fwrap.addEventListener('click', () => { if (opening) skipOpening = true; }, true); panel.addEventListener('click', () => { if (opening) skipOpening = true; }, true);
@@ -138,12 +139,12 @@
       if (v.u.side === 1 && waiting != null && mine) {
         const u = battle.units[battle.waiting], a = u.ab[sel];
         if (H.needsTarget(a.def)) {
-          if (!battle.validTargets(u).includes(v.u)) { UI.toast('It has to hit the one with Taunt.'); return; }
-          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? 'Only the pet with the mic can use that.' : 'That move is not ready yet.'); return; } fire(); return;
+          if (!battle.validTargets(u).includes(v.u)) { UI.toast(tr('It has to hit the one with Taunt.')); return; }
+          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? tr('Only the pet with the mic can use that.') : tr('That move is not ready yet.')); return; } fire(); return;
         }
       }
       // a tap is only for aiming; the first stray tap of a battle says how to look closer
-      if (!hintHold) { hintHold = true; UI.toast('Press and hold to see its stats and moves.'); }
+      if (!hintHold) { hintHold = true; UI.toast(tr('Press and hold to see its stats and moves.')); }
     });
     let hintHold = false;
 
@@ -152,7 +153,7 @@
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
-    const label = (str, x, y, col, align, size) => { fctx.font = `800 ${size || 7.2}px 'Baloo 2', sans-serif`; fctx.textAlign = align || 'left'; fctx.textBaseline = 'top'; fctx.lineJoin = 'round'; fctx.strokeStyle = INK; fctx.lineWidth = 1.8; fctx.strokeText(str, x, y); fctx.fillStyle = col; fctx.fillText(str, x, y); };
+    const label = (str, x, y, col, align, size) => { fctx.font = `800 ${size || 7.2}px ${H.fontStack(true)}`; fctx.textAlign = align || 'left'; fctx.textBaseline = 'top'; fctx.lineJoin = 'round'; fctx.strokeStyle = INK; fctx.lineWidth = 1.8; fctx.strokeText(str, x, y); fctx.fillStyle = col; fctx.fillText(str, x, y); };
     const rr = (x, y, w, h, r, col) => { fctx.fillStyle = col; fctx.beginPath(); fctx.moveTo(x + r, y); fctx.arcTo(x + w, y, x + w, y + h, r); fctx.arcTo(x + w, y + h, x, y + h, r); fctx.arcTo(x, y + h, x, y, r); fctx.arcTo(x, y, x + w, y, r); fctx.closePath(); fctx.fill(); };
     const drawUnit = (v) => {
       if (v.alpha <= 0.02) return;
@@ -169,7 +170,7 @@
       if (!v.alive) return;
       const hx = v.hx, hy = v.hy, bw = v.bw, by = hy + 8.6;
       A.draw(fctx, 'fam_' + (v.family || 'none'), hx, hy - 0.6, '', 0.8);
-      label('Lv ' + v.u.spec.lvl, hx + 9.5, hy - 0.8, '#ffffff');
+      label(tr('Lv {lvl}', { lvl: v.u.spec.lvl }), hx + 9.5, hy - 0.8, '#ffffff');
       const fr = Math.max(0, v.hp / v.max), low = fr < 0.3; label(UI.fmt(Math.max(0, Math.round(v.hp))), hx + bw, hy - 0.8, low ? '#ffb8ae' : '#ffffff', 'right');
       rr(hx - 1, by - 1, bw + 2, 6.4, 3.2, INK); rr(hx, by, bw, 4.4, 2.2, '#ffffff');
       fctx.save(); fctx.beginPath(); fctx.rect(hx, by, bw, 4.4); fctx.clip();
@@ -195,11 +196,11 @@
         const y = v.y + v.bb.t + 2 + i * 11; A.draw(fctx, 'st_' + s, ix, y, '', 1.2);
         const d = s === 'shield' ? 0 : v.st[s]; if (!(d > 0 && d < 50)) return;
         const bx = ix + 9.4, by2 = y + 9; fctx.fillStyle = INK; fctx.beginPath(); fctx.arc(bx, by2, 3.3, 0, 6.2832); fctx.fill();
-        fctx.font = "800 5.6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(d), bx, by2 + 0.4);
+        fctx.font = `800 5.6px ${H.fontStack(true)}`; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(d), bx, by2 + 0.4);
       });
       // house-rule tokens on the one who has them: the potato with its fuse, the mic
       const pot = tw.potato && tw.potato.uid === v.u.uid, mic = tw.mic && tw.mic[v.u.side] === v.u.uid;
-      if (pot || mic) { const mx = v.u.side === 0 ? hx + bw + 1 : hx - 15, my = hy + 9 + Math.sin(clock * 5) * 1.2; A.draw(fctx, pot ? 'tw_potato' : 'ic_mic', mx, my, '', pot ? 0.95 : 0.85); if (pot) { const bx = mx + 12, by2 = my + 11; fctx.fillStyle = tw.potato.left <= 2 ? '#ff3d5a' : INK; fctx.beginPath(); fctx.arc(bx, by2, 4, 0, 6.2832); fctx.fill(); fctx.font = "800 6px 'Baloo 2', sans-serif"; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(tw.potato.left), bx, by2 + 0.4); } }
+      if (pot || mic) { const mx = v.u.side === 0 ? hx + bw + 1 : hx - 15, my = hy + 9 + Math.sin(clock * 5) * 1.2; A.draw(fctx, pot ? 'tw_potato' : 'ic_mic', mx, my, '', pot ? 0.95 : 0.85); if (pot) { const bx = mx + 12, by2 = my + 11; fctx.fillStyle = tw.potato.left <= 2 ? '#ff3d5a' : INK; fctx.beginPath(); fctx.arc(bx, by2, 4, 0, 6.2832); fctx.fill(); fctx.font = `800 6px ${H.fontStack(true)}`; fctx.textAlign = 'center'; fctx.textBaseline = 'middle'; fctx.fillStyle = '#ffffff'; fctx.fillText(String(tw.potato.left), bx, by2 + 0.4); } }
       // while you choose: who is targeted, and which enemies your pet is strong or weak against
       if (waiting != null && mine && v.u.side === 1) {
         const me = battle.units[battle.waiting], adv = H.advantage(me.family, v.family);
@@ -238,7 +239,7 @@
     /* ----- your turn ----- */
     const askPlayer = (u) => new Promise((res) => {
       const vt = battle.validTargets(u); if (!vt.some((x) => x.uid === target)) { const best = vt.reduce((b, x) => { const sc = (y) => H.advantage(u.family, y.family) * 0.35 - y.hp / y.max; return sc(x) > sc(b) ? x : b; }, vt[0]); target = best ? best.uid : -1; }
-      tipText = ''; if (!daily && !solo && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = ['Your turn! Tap the enemy to attack it.', 'Tap a round icon to pick another move.', 'Green arrow: your pet is strong against that enemy.', 'The yellow line shows whose turn is coming.'][n - 1]; }
+      tipText = ''; if (!daily && !solo && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = tr([H.T.k('Your turn! Tap the enemy to attack it.'), H.T.k('Tap a round icon to pick another move.'), H.T.k('Green arrow: your pet is strong against that enemy.'), H.T.k('The yellow line shows whose turn is coming.')][n - 1]); }
       sel = 0; shown = { u, idx: 0 }; mine = true; waiting = res; render();
     });
     const idle = (text) => { mine = false; if (text != null) { shown = null; note = text; } render(); };
@@ -255,24 +256,24 @@
             if (e.src >= 0 && e.kind === 'hit' && V[e.src].alpha > 0.5) { const a = V[e.src]; shots.push({ x0: a.x + a.sz / 2 + (a.u.side ? -8 : 8), y0: a.y + a.sz * 0.45, x1: v.x + v.sz / 2, y1: v.y + v.sz * 0.5, t: 0, dur: 0.14, col: a.u.side === 0 ? FCOL[a.family] : '#9a94b8', ally: a.u.side === 0 }); await wait(140); }
             v.hp = e.hp; v.shield = e.shield; v.flash = 0.12; v.shake = 0.18; const pz = e.kind === 'poison';
             if (e.src >= 0 && e.kind === 'hit') { const a = V[e.src]; hits.push({ x: v.x + v.sz / 2, y: v.y + v.sz * 0.55, t: 0, fam: a.u.side === 0 ? a.family : 'none', col: FCOL[a.family] || '#b8b4d0', dir: a.u.side === 0 ? 1 : -1 }); }
-            float(v, e.amt === 0 && e.abs ? 'Block' : String(e.amt), e.crit ? '#ffc928' : pz ? '#d8a0ff' : e.adv > 0 ? '#b8ffb0' : e.adv < 0 ? '#d9d2ea' : '#ffffff', !(e.amt === 0 && e.abs));
-            if (e.crit) float(v, 'Critical!', '#ffc928'); else if (e.adv > 0 && e.kind === 'hit') float(v, 'Strong', '#b8ffb0'); else if (e.adv < 0 && e.kind === 'hit') float(v, 'Weak', '#d9d2ea');
+            float(v, e.amt === 0 && e.abs ? tr('Block') : String(e.amt), e.crit ? '#ffc928' : pz ? '#d8a0ff' : e.adv > 0 ? '#b8ffb0' : e.adv < 0 ? '#d9d2ea' : '#ffffff', !(e.amt === 0 && e.abs));
+            if (e.crit) float(v, tr('Critical!'), '#ffc928'); else if (e.adv > 0 && e.kind === 'hit') float(v, tr('Strong'), '#b8ffb0'); else if (e.adv < 0 && e.kind === 'hit') float(v, tr('Weak'), '#d9d2ea');
             burst(v, pz ? '#b060e0' : FCOL[fam(e.src)] || '#fff', e.crit ? 9 : 5); Au.sfx(pz ? 'bad' : 'hit', { family: e.src >= 0 && V[e.src].u.side === 0 ? fam(e.src) : null, crit: e.crit, heavy: e.amt > v.max * 0.25 });
             await wait(nx && nx.t === 'dmg' ? 170 : 300); break; }
           case 'heal': { const v = V[e.tgt]; v.hp = e.hp; float(v, '+' + e.amt, '#7fe89a', true); Au.sfx('heal'); await wait(nx && nx.t === 'heal' ? 80 : 240); break; }
-          case 'shield': { const v = V[e.u]; v.shield = e.shield; if (e.amt) { float(v, 'Shield', '#a8d0ff'); Au.sfx('shield'); await wait(nx && nx.t === 'shield' ? 60 : 200); } break; }
+          case 'shield': { const v = V[e.u]; v.shield = e.shield; if (e.amt) { float(v, tr('Shield'), '#a8d0ff'); Au.sfx('shield'); await wait(nx && nx.t === 'shield' ? 60 : 200); } break; }
           case 'st': { const v = V[e.u]; v.st[e.s] = e.dur || 1; const d = H.STATUS[e.s]; float(v, H.STATUS[e.s].n, d.buff ? '#ffe58a' : '#ff9a9a'); Au.sfx(d.buff ? 'good' : 'bad'); await wait(nx && nx.t === 'st' ? 70 : 220); break; }
           case 'stoff': delete V[e.u].st[e.s]; break;
-          case 'miss': float(V[e.tgt], 'Dodged', '#a8e6ff'); Au.sfx('miss'); await wait(260); break;
-          case 'skip': { const v = V[e.u]; float(v, 'Stunned', '#ffe58a'); idle(`${v.u.name} is stunned and misses a turn`); Au.sfx('skip'); await wait(520); break; }
+          case 'miss': float(V[e.tgt], tr('Dodged'), '#a8e6ff'); Au.sfx('miss'); await wait(260); break;
+          case 'skip': { const v = V[e.u]; float(v, tr('Stunned'), '#ffe58a'); idle(tr('{name} is stunned and misses a turn', { name: v.u.name })); Au.sfx('skip'); await wait(520); break; }
           case 'fall': { const v = V[e.u]; v.alive = false; v.st = {}; tween(v, 'alpha', 0, 420); tween(v, 'oy', 6, 420); Au.sfx('fall'); if (active === e.u) active = -1; if (target === e.u) target = -1; Au.music.din(battle.alive(1).length / 3); await wait(420); break; }
-          case 'revive': { const v = V[e.u]; v.alive = true; v.hp = e.hp; v.alpha = 0; v.oy = 0; tween(v, 'alpha', 1, 250); float(v, 'Back up!', '#ffe58a'); Au.sfx('evolve'); await wait(420); break; }
+          case 'revive': { const v = V[e.u]; v.alive = true; v.hp = e.hp; v.alpha = 0; v.oy = 0; tween(v, 'alpha', 1, 250); float(v, tr('Back up!'), '#ffe58a'); Au.sfx('evolve'); await wait(420); break; }
           case 'note': float(V[e.u], e.txt, '#ffe58a'); await wait(220); break;
-          case 'gauge': { const v = V[e.u]; if (Math.abs(e.d) >= 0.1) float(v, e.d > 0 ? 'Sooner' : 'Later', e.d > 0 ? '#ffe58a' : '#ff9a9a'); break; }
-          case 'shift': { const v = V[e.u]; v.family = e.family; float(v, 'Changes!', FCOL[e.family]); burst(v, FCOL[e.family], 12); Au.sfx('bad'); await wait(420); break; }
-          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); if (e.tw) { const was = tw.restless; tw = e.tw; drawRule(); if (!was && tw.restless) say('The crowd is restless!', 'foe'); } break;
-          case 'keychange': { e.fams.forEach((f, k) => { const v = V[k]; if (v.alive && v.family !== f) { v.family = f; burst(v, FCOL[f], 6); } }); say('Key change!', 'ens'); Au.sfx('cue'); for (const v of V) if (v.alive) float(v, H.FAMILIES[v.family].n, FCOL[v.family]); await wait(700); break; }
-          case 'mark': { const v = V[e.u]; if (e.m === 'potato') { tw.potato = Object.assign({}, tw.potato || { left: 0 }, { uid: e.u }); float(v, 'Hot potato!', '#ffb050'); Au.sfx('tap', 6); } else { if (tw.mic) tw.mic[v.u.side] = e.u; float(v, 'Mic!', '#ffe58a'); } await wait(180); break; }
+          case 'gauge': { const v = V[e.u]; if (Math.abs(e.d) >= 0.1) float(v, e.d > 0 ? tr('Sooner') : tr('Later'), e.d > 0 ? '#ffe58a' : '#ff9a9a'); break; }
+          case 'shift': { const v = V[e.u]; v.family = e.family; float(v, tr('Changes!'), FCOL[e.family]); burst(v, FCOL[e.family], 12); Au.sfx('bad'); await wait(420); break; }
+          case 'sync': e.units.forEach((s, k) => { const v = V[k]; v.hp = s.hp; v.shield = s.shield; v.st = Object.assign({}, s.st); v.family = s.family; tween(v, 'gx', s.gauge, 240); if (s.alive && !v.alive) { v.alive = true; v.alpha = 1; v.oy = 0; } }); if (e.tw) { const was = tw.restless; tw = e.tw; drawRule(); if (!was && tw.restless) say(tr('The crowd is restless!'), 'foe'); } break;
+          case 'keychange': { e.fams.forEach((f, k) => { const v = V[k]; if (v.alive && v.family !== f) { v.family = f; burst(v, FCOL[f], 6); } }); say(tr('Key change!'), 'ens'); Au.sfx('cue'); for (const v of V) if (v.alive) float(v, H.FAMILIES[v.family].n, FCOL[v.family]); await wait(700); break; }
+          case 'mark': { const v = V[e.u]; if (e.m === 'potato') { tw.potato = Object.assign({}, tw.potato || { left: 0 }, { uid: e.u }); float(v, tr('Hot potato!'), '#ffb050'); Au.sfx('tap', 6); } else { if (tw.mic) tw.mic[v.u.side] = e.u; float(v, tr('Mic!'), '#ffe58a'); } await wait(180); break; }
           case 'ensemble': break;
           case 'end': active = -1; await wait(500); break;
         }
@@ -285,9 +286,9 @@
       const name = boss.name, mode = !enc && !reh && !daily && !solo && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : '') + (solo ? ' vs' : '') + (daily ? ' giant' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
-        add(el('div', 'bossban'), el('div', 'bosskick', enc ? 'Encore · wave ' + n : solo ? 'Solo tour · the last stop' : daily ? 'Daily Gig · ' + twist.n : reh ? 'Rehearsal' : 'Boss · floor ' + n), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', 'Tap to skip'));
+        add(el('div', 'bossban'), el('div', 'bosskick', enc ? tr('Encore · wave {n}', { n }) : solo ? tr('Solo tour · the last stop') : daily ? tr('Daily Gig · {n}', { n: twist.n }) : reh ? tr('Rehearsal') : tr('Boss · floor {n}', { n })), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', tr('Tap to skip')));
       // Solo: a face-off, the soloist on one side, the boss on the other
-      if (solo) { const me = allies[0]; bossOv.insertBefore(add(el('div', 'vspet'), UI.sp(me.spec.sprite, 1.9, { anim: false })), bossOv.querySelector('.bossban')); bossOv.insertBefore(el('div', 'vsbadge', 'VS'), bossOv.querySelector('.bossban')); }
+      if (solo) { const me = allies[0]; bossOv.insertBefore(add(el('div', 'vspet'), UI.sp(me.spec.sprite, 1.9, { anim: false })), bossOv.querySelector('.bossban')); bossOv.insertBefore(el('div', 'vsbadge', tr('VS')), bossOv.querySelector('.bossban')); }
       bossOv.addEventListener('click', () => { skipOpening = true; });
       wrap.appendChild(bossOv);
     }
@@ -296,7 +297,7 @@
     if (twist && !st.boss && !window.__hsSpeed) {
       twistOv = el('div', 'bossin twistin full' + (speed >= 2 ? ' fast' : ''));
       add(twistOv, UI.bgEl(st.region, W, UI.Hh, 0.5, 'sing'), el('div', 'bosstint night'), el('div', 'bossray'), add(el('div', 'twbadge'), UI.icon(A.twistIcon(st.twist), 4.2)),
-        add(el('div', 'bossban'), el('div', 'bosskick', 'Daily Gig · ' + st.venue), el('div', 'bossnm', twist.n), el('div', 'twrule', twist.d)), el('div', 'bossskip', 'Tap to start'));
+        add(el('div', 'bossban'), el('div', 'bosskick', tr('Daily Gig · {venue}', { venue: st.venue })), el('div', 'bossnm', twist.n), el('div', 'twrule', twist.d)), el('div', 'bossskip', tr('Tap to start')));
       twistOv.addEventListener('click', () => { skipOpening = true; }); wrap.appendChild(twistOv);
     }
     async function twistIn() {
@@ -317,12 +318,12 @@
     }
     async function run() {
       if (st.boss) await bossIn(); else await twistIn();
-      if (dead) return; idle(twist ? twist.n : 'Get ready'); await wait(450);
+      if (dead) return; idle(twist ? twist.n : tr('Get ready')); await wait(450);
       // the team's ensemble plays its opening; a tap skips it
       const ens = battle.ensemble && H.ENS[battle.ensemble];
       if (ens && !window.__hsSpeed) {
         const secs = Au.ensemble(ens.id, speed >= 2 ? 1.6 : 1, true); opening = true; skipOpening = false;
-        callout.textContent = ens.n; callout.className = 'callout on ens'; shown = null; note = ens.d(); title.textContent = ens.n; meta.textContent = 'Your ensemble'; desc.textContent = ens.d(); hint.textContent = 'Tap to skip';
+        callout.textContent = ens.n; callout.className = 'callout on ens'; shown = null; note = ens.d(); title.textContent = ens.n; meta.textContent = tr('Your ensemble'); desc.textContent = ens.d(); hint.textContent = tr('Tap to skip');
         const t0 = performance.now(); while (!dead && !skipOpening && performance.now() - t0 < secs * 1000) await new Promise((res) => setTimeout(res, 60));
         opening = false; callout.classList.remove('on'); if (skipOpening) Au.stopEnsemble(); if (dead) return; idle(ens.n);
       }
@@ -337,7 +338,7 @@
           if (out) await play(out.events);
         }
       }
-      if (dead) return; idle(battle.over === 'win' ? 'You win!' : 'Your band is out'); await wait(200); finish();
+      if (dead) return; idle(battle.over === 'win' ? tr('You win!') : tr('Your band is out')); await wait(200); finish();
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
@@ -352,20 +353,20 @@
   // Encore: after a won wave, go on or stop; after a lost one, the run is over
   UI.encoreResult = (out) => {
     const S = UI.S, kids = [], loot = box('loot');
-    if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
+    if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
     if (out.win) {
-      kids.push(txt('disp big center', `Wave ${out.wave} cleared!`));
-      if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
+      kids.push(txt('disp big center', tr('Wave {wave} cleared!', { wave: out.wave })));
+      if (out.paid.length) kids.push(txt('chip center', tr('Weekly reward: wave {n}', { n: out.paid.join(', ') })));
       UI.confetti(out.paid.length ? 50 : 16); if (out.paid.length) Au.sfx('coin');
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
-      if (out.ups) kids.push(txt('center good', `<b>Level up!</b>`), UI.unlockNote(out.ups));
+      if (out.ups) kids.push(txt('center good', tr('<b>Level up!</b>')), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
-      kids.push(txt('small dim center', next ? `Next reward: wave ${next[0]}` : 'All rewards won this week'));
-      kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
-      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+      kids.push(txt('small dim center', next ? tr('Next reward: wave {n}', { n: next[0] }) : tr('All rewards won this week')));
+      kids.push(UI.key(tr('Wave {n}', { n: out.wave + 1 }), () => UI.go('battle', { enc: 1 }), 'go wide big'));
+      kids.push(UI.key(tr('Stop here'), () => UI.confirm(tr('End this run?'), tr('Rewards stay yours.'), tr('End run'), () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
-      kids.push(txt('disp big center', 'Encore over'), txt('center', `You cleared <b>${out.reached}</b> ${out.reached === 1 ? 'wave' : 'waves'}. Best: <b>${out.best}</b>.`), loot);
-      kids.push(UI.key('Back to Encore', () => UI.go('encore'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
+      kids.push(txt('disp big center', tr('Encore over')), txt('center', tr('You cleared <b>{n}</b> waves.', { n: out.reached }) + H.T.sep() + tr('Best: <b>{n}</b>.', { n: out.best })), loot);
+      kids.push(UI.key(tr('Back to Encore'), () => UI.go('encore'), 'go wide big'), UI.key(tr('Home'), () => UI.go('home'), 'wide soft'));
     }
     UI.save(); UI.modal(...kids);
   };
@@ -374,70 +375,70 @@
     if (out.daily) return UI.dailyResult(out);
     if (out.solo) return UI.soloResult(out);
     const S = UI.S, kids = [], nx = out.first ? S.stage : out.n;
-    const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', '+' + out.echo + (out.echo === 1 ? ' echo' : ' echoes'))); return r; };
-    const evo = H.canEvolveAny(S), evoKey = () => UI.key((H.nextForms(evo).length ? 'Evolve ' : 'Add a star to ') + H.FORMS[evo.form].n, () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');
+    const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); return r; };
+    const evo = H.canEvolveAny(S), evoKey = () => UI.key(tr(H.nextForms(evo).length ? 'Evolve {pet}' : 'Add a star to {pet}', { pet: H.FORMS[evo.form].n }), () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');
     const levelUp = () => {
       if (out.ups) {
         const lv = el('div', 'lvup' + (window.__hsSpeed ? ' now' : '')), band = el('div', 'lvband'), team = H.teamPets(S).filter(Boolean);
         team.forEach((p, i) => { const c = UI.sp(p.form, team.length === 1 || i === 1 ? 1.05 : 0.9, { anim: false }); c.style.setProperty('--d', i * 0.09 + 's'); band.appendChild(c); });
-        add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', 'Level up'), el('b', '', String(S.level))));
+        add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', tr('Level up')), el('b', '', String(S.level))));
         for (let i = 0; i < 14; i++) { const s = el('i', 'spark'), a = (i / 14) * 6.283; s.style.left = '50%'; s.style.top = '34%'; s.style.setProperty('--x', Math.cos(a) * (60 + (i % 3) * 22) + '%'); s.style.setProperty('--y', Math.sin(a) * (110 + (i % 2) * 40) + '%'); s.style.animationDelay = 0.15 + (i % 4) * 0.05 + 's'; lv.appendChild(s); }
-        kids.push(lv); if (out.ups > 1) kids.push(txt('center good', `<b>+${out.ups} levels!</b>`));
+        kids.push(lv); if (out.ups > 1) kids.push(txt('center good', '<b>' + tr('+{n} levels!', { n: out.ups }) + '</b>'));
         const un = UI.unlockNote(out.ups); if (un) kids.push(un);
         if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 850);
       }
-      kids.push(box('row', txt('small dim', 'Next level'), add(el('div', 'grow'), UI.meter(S.xp / H.xpNeed(S.level))))); };
-    const gold = () => { if (!H.recordsReady(S)) return false; const b = UI.key('', () => UI.go('records'), 'gold wide'); add(b, UI.icon('ic_record'), 'A record is ready'); kids.push(b); return true; };
+      kids.push(box('row', txt('small dim', tr('Next level')), add(el('div', 'grow'), UI.meter(S.xp / H.xpNeed(S.level))))); };
+    const gold = () => { if (!H.recordsReady(S)) return false; const b = UI.key('', () => UI.go('records'), 'gold wide'); add(b, UI.icon('ic_record'), tr('A record is ready')); kids.push(b); return true; };
     if (out.reh) {
       // a rehearsal: an echo the first time, practice after that
       if (out.win) {
-        kids.push(txt('disp big center', 'Rehearsal done!'), loot());
+        kids.push(txt('disp big center', tr('Rehearsal done!')), loot());
         levelUp(); gold(); if (evo) kids.push(evoKey());
-        kids.push(UI.key('More rehearsals', () => UI.go('rehearsal'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
+        kids.push(UI.key(tr('More rehearsals'), () => UI.go('rehearsal'), 'go wide big'), UI.key(tr('Home'), () => UI.go('home'), 'wide soft'));
       } else {
-        kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost.'), loot());
-        kids.push(UI.key('Try again', () => UI.go('battle', { n: out.n, reh: 1 }), 'go wide big'), UI.key('Rehearsals', () => UI.go('rehearsal'), 'wide soft'));
+        kids.push(txt('disp big center', tr('Not this time')), txt('center dim', tr('Nothing is lost.')), loot());
+        kids.push(UI.key(tr('Try again'), () => UI.go('battle', { n: out.n, reh: 1 }), 'go wide big'), UI.key(tr('Rehearsals'), () => UI.go('rehearsal'), 'wide soft'));
       }
       UI.modal(...kids); return;
     }
     if (out.win) {
-      kids.push(txt('disp big center', out.boss ? 'Boss beaten!' : 'Floor cleared!'), loot());
+      kids.push(txt('disp big center', out.boss ? tr('Boss beaten!') : tr('Floor cleared!')), loot());
       levelUp();
-      if (!out.first) kids.push(txt('small dim center', 'Replays pay no notes.'));
-      if (out.item && !out.gift) kids.push(txt('label center', 'You found'), UI.itemRow(out.item));
+      if (!out.first) kids.push(txt('small dim center', tr('Replays pay no notes.')));
+      if (out.item && !out.gift) kids.push(txt('label center', tr('You found')), UI.itemRow(out.item));
       // some wins lead somewhere first: the story after a boss, or the first shell and first piece of equipment
-      if (out.story) kids.push(UI.key('Continue', () => UI.go('story', { region: out.region, n: out.n, shells: out.shells, echo: out.bossEcho || 0, legend: out.legend ? out.legend.id : 0 }), 'go wide big'));
-      else if (out.giftShell) kids.push(UI.key('Continue', () => UI.gift('shell'), 'go wide big'));
-      else if (out.gift) kids.push(UI.key('Continue', () => UI.gift('item', out.item), 'go wide big'));
+      if (out.story) kids.push(UI.key(tr('Continue'), () => UI.go('story', { region: out.region, n: out.n, shells: out.shells, echo: out.bossEcho || 0, legend: out.legend ? out.legend.id : 0 }), 'go wide big'));
+      else if (out.giftShell) kids.push(UI.key(tr('Continue'), () => UI.gift('shell'), 'go wide big'));
+      else if (out.gift) kids.push(UI.key(tr('Continue'), () => UI.gift('item', out.item), 'go wide big'));
       else {
         const rec = gold(), bossNext = out.first && H.stage(nx).boss;
-        if (out.shells) kids.push(UI.key('Open the shell', () => UI.go('shells', {}), 'gold wide big')); else if (evo) kids.push(evoKey());
+        if (out.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide big')); else if (evo) kids.push(evoKey());
         // a boss is never walked into by accident: the way there leads past the team screen
-        const go = bossNext ? UI.key('To the boss', () => UI.go('adventure', { n: nx }), 'coral wide big') : UI.key(out.first ? 'Next floor' : 'Play again', () => UI.go('battle', { n: nx }), (out.shells ? '' : 'big ') + 'go wide');
-        kids.push(go); if (!bossNext) kids.push(UI.key('Back', () => UI.go('adventure', { n: nx }), 'wide soft'));
-        if (bossNext) kids.splice(kids.indexOf(go), 0, txt('small center', '<b>A boss is next.</b> Check your band first.'));
+        const go = bossNext ? UI.key(tr('To the boss'), () => UI.go('adventure', { n: nx }), 'coral wide big') : UI.key(out.first ? tr('Next floor') : tr('Play again'), () => UI.go('battle', { n: nx }), (out.shells ? '' : 'big ') + 'go wide');
+        kids.push(go); if (!bossNext) kids.push(UI.key(tr('Back'), () => UI.go('adventure', { n: nx }), 'wide soft'));
+        if (bossNext) kids.splice(kids.indexOf(go), 0, txt('small center', tr('<b>A boss is next.</b> Check your band first.')));
         // keep going: the next floor starts by itself, unless something here needs a look
         if (S.settings.keep && out.first && !bossNext && !out.shells && !out.echo && !rec) {
-          let left = window.__hsSpeed ? 1 : 3; const label = () => { go.textContent = `Next floor in ${left}`; }; label();
-          const stop = UI.key('Stop here', () => { clearInterval(UI.chainT); go.textContent = 'Next floor'; stop.remove(); }, 'wide soft sm'); kids.push(stop);
+          let left = window.__hsSpeed ? 1 : 3; const label = () => { go.textContent = tr('Next floor in {left}', { left }); }; label();
+          const stop = UI.key(tr('Stop here'), () => { clearInterval(UI.chainT); go.textContent = tr('Next floor'); stop.remove(); }, 'wide soft sm'); kids.push(stop);
           clearInterval(UI.chainT); UI.chainT = setInterval(() => { if (--left <= 0) { clearInterval(UI.chainT); UI.go('battle', { n: nx }); } else label(); }, window.__hsSpeed ? 120 : 900);
         }
       }
     } else {
-      kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost.'), loot());
+      kids.push(txt('disp big center', tr('Not this time')), txt('center dim', tr('Nothing is lost.')), loot());
       const spare = H.spareItems(S).length && S.pets.some((p) => p.gear.includes(null)), reh = H.rehearsals(S).some((n) => !S.reh[n]);
-      kids.push(txt('small center', evo ? `Tip: <b>${H.FORMS[evo.form].n}</b> can grow.` : S.shells ? 'Tip: you have a shell to open.' : spare ? 'Tip: there is equipment in your bag that nobody is wearing.' : reh ? 'Tip: a rehearsal win pays an echo.' : !H.teamEnsemble(S) && H.possibleEnsembles(S).length ? 'Tip: your pets could form an ensemble.' : S.pets.length > 3 ? 'Tip: try a different band, or replay an earlier floor to level up.' : 'Tip: replay an earlier floor to level up, then come back.'));
-      if (evo) kids.push(evoKey()); else if (S.shells) kids.push(UI.key('Open the shell', () => UI.go('shells', {}), 'gold wide'));
-      kids.push(UI.key('Try again', () => UI.go('battle', { n: out.n }), 'go wide big'), UI.key('Change the band', () => UI.go('team', { n: out.n }), 'wide soft'));
+      kids.push(txt('small center', evo ? tr('Tip: <b>{n}</b> can grow.', { n: H.FORMS[evo.form].n }) : S.shells ? tr('Tip: you have a shell to open.') : spare ? tr('Tip: there is equipment in your bag that nobody is wearing.') : reh ? tr('Tip: a rehearsal win pays an echo.') : !H.teamEnsemble(S) && H.possibleEnsembles(S).length ? tr('Tip: your pets could form an ensemble.') : S.pets.length > 3 ? tr('Tip: try a different band, or replay an earlier floor to level up.') : tr('Tip: replay an earlier floor to level up, then come back.')));
+      if (evo) kids.push(evoKey()); else if (S.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide'));
+      kids.push(UI.key(tr('Try again'), () => UI.go('battle', { n: out.n }), 'go wide big'), UI.key(tr('Change the band'), () => UI.go('team', { n: out.n }), 'wide soft'));
     }
     UI.modal(...kids);
   };
   // The first shell and the first piece of equipment each get their own moment, then a pointer to where they are used.
   UI.gift = (kind, item) => {
     const S = UI.S; H.Audio.sfx('evolve');
-    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', 'You found a shell!'), txt('center', 'A pet is inside. Open it in <b>Shells</b>.'),
-      UI.key('Show me', () => { S.flags.coach = 'shell'; UI.go('home'); }, 'go wide big'));
-    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', 'You found equipment!'), UI.itemRow(item), txt('center', 'Each pet wears two pieces. Put them on from its page.'),
-      UI.key('Show me', () => { S.flags.coach = 'gear'; UI.go('team', {}); }, 'go wide big'));
+    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', tr('You found a shell!')), txt('center', tr('A pet is inside. Open it in <b>Shells</b>.')),
+      UI.key(tr('Show me'), () => { S.flags.coach = 'shell'; UI.go('home'); }, 'go wide big'));
+    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', tr('You found equipment!')), UI.itemRow(item), txt('center', tr('Each pet wears two pieces. Put them on from its page.')),
+      UI.key(tr('Show me'), () => { S.flags.coach = 'gear'; UI.go('team', {}); }, 'go wide big'));
   };
 })(window.H);

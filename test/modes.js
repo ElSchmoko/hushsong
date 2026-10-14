@@ -1,5 +1,5 @@
 // Balance for the Daily Gig and Solo. node test/modes.js daily [N] | solo [N] | roles [N]
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js');
 const H = globalThis.H, mode = process.argv[2] || 'daily', N = +(process.argv[3] || 30);
 if (process.env.SK) Object.assign(H.SOLO, JSON.parse(process.env.SK));
 if (process.env.TK) { const o = JSON.parse(process.env.TK); for (const k in o) H.TWISTS[k].k = o[k]; }

@@ -1,7 +1,7 @@
 /* Hushsong — sticker-ink look. Sizes are in layout units: --u is how many CSS pixels one unit is on this screen. */
 #app { --ink: #2b2140; --dim: #5a5270; --paper: #ffffff; --cream: #fff6dc; --sun: #ffe9a8; --line: #d9d2ea;
   --go: #2ecb6e; --go-d: #1f9c54; --gold: #ffc928; --gold-d: #d99a12; --coral: #ff6b5e; --coral-d: #d8433a; --sky: #8fd4ff; --sky-d: #5aa8e0; --bad: #c8213a; --good: #14803f; --blue: #2466c9;
-  --f-display: 'Baloo 2', 'Nunito', system-ui, sans-serif; --f-body: 'Nunito', system-ui, sans-serif;
+  --f-display: 'Baloo 2', 'Nunito', 'M PLUS Rounded 1c', 'ZCOOL KuaiLe', 'Jua', system-ui, sans-serif; --f-body: 'Nunito', system-ui, sans-serif;
   position: fixed; inset: 0; display: flex; justify-content: center; align-items: center; overflow: hidden; background: #ffd97a;
   background-image: radial-gradient(#ffe9a8 22%, transparent 24%); background-size: 28px 28px; color: var(--ink); font-family: var(--f-body); font-weight: 700; -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; touch-action: manipulation; }
 #game { --b: calc(var(--u) * 1.5); position: relative; width: calc(var(--u) * var(--w)); height: calc(var(--u) * var(--h)); background: var(--sun); overflow: hidden; font-size: calc(var(--u) * 7); line-height: 1.3; }
@@ -33,7 +33,7 @@ canvas.art { display: block; flex: none; } canvas.bob { animation: bob 1.6s ease
 .st { color: var(--good); font-weight: 800; } .st.bad { color: var(--bad); }
 .move { background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-left-width: calc(var(--u) * 4); border-radius: calc(var(--u) * 5); padding: calc(var(--u) * 2.5) calc(var(--u) * 4); } .move .hd { display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 3); } .move .hd b { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 8); }
 .move.phrase { border-left-color: var(--blue); } .move.finale { border-left-color: var(--gold-d); } .move.passive { border-left-color: var(--go-d); } .move.new { background: #f0fff5; }
-.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(var(--u) * 2); } .stats > div { background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5); text-align: center; padding: calc(var(--u) * 1.5) 0; display: flex; flex-direction: column; } .stats b { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 10); line-height: 1.1; } .stats .label { font-size: calc(var(--u) * 6.4); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u) * 2); } .stats > div { background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5); text-align: center; padding: calc(var(--u) * 1.5) 0; display: flex; flex-direction: column; } .stats b { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 10); line-height: 1.1; } .stats .label { font-size: calc(var(--u) * 6.4); }
 .loop { display: flex; flex-wrap: wrap; align-items: center; gap: calc(var(--u) * 1.5); } .switch { display: flex; align-items: center; gap: calc(var(--u) * 3); }
 
 /* top bar, bottom tabs, sheets */
@@ -353,8 +353,8 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .purse .pn { position: relative; top: 0.09em; }
 .rec .rew .purse canvas, .recm .purse canvas { max-width: calc(var(--u) * 8.4); max-height: calc(var(--u) * 8.4); }
 .field canvas.full { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; touch-action: manipulation; }
-.stats.five { grid-template-columns: repeat(5, 1fr); gap: calc(var(--u) * 1.5); } .stats.five b { font-size: calc(var(--u) * 8.6); }
-.stat-n { flex: none; width: calc(var(--u) * 22); font-family: var(--f-display); font-size: calc(var(--u) * 7); }
+.stats.five { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: calc(var(--u) * 1.5); } .stats.five b { font-size: calc(var(--u) * 8.6); }
+.stat-n { flex: none; min-width: calc(var(--u) * 22); padding-right: calc(var(--u) * 2); font-family: var(--f-display); font-size: calc(var(--u) * 7); }
 /* the boss entrance as its own screen, over the whole battle view */
 .battle { position: relative; }
 .bossin.full { z-index: 4; background: #1c1230; animation: none; }
@@ -660,3 +660,20 @@ button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 
 .flyers { min-height: 100%; align-content: start; }
 .flyer { min-height: calc(var(--u) * 76); } .flyer.daily { min-height: calc(var(--u) * 58); } .flyer.reh { min-height: calc(var(--u) * 54); }
 .flyers { row-gap: calc(var(--u) * 9); }
+
+/* ----- languages ----- */
+.title > .langat { position: absolute; top: calc(var(--u) * 4); right: calc(var(--u) * 4); z-index: 2; }
+.langat .key { gap: calc(var(--u) * 1.5); }
+.langs { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 2); }
+.langs .key { justify-content: flex-start; gap: calc(var(--u) * 2); padding-left: calc(var(--u) * 4); }
+.langs .key .grow { text-align: left; }
+.stats > div { min-width: 0; } .stats .label { display: block; max-width: 100%; white-space: nowrap; overflow: hidden; padding: 0 calc(var(--u) * 0.5); }
+
+/* the Chinese and Korean display fonts come in one weight: no fake bold on top */
+html[lang^="zh"], html[lang="ko"] { font-synthesis-weight: none; }
+/* Chinese, Japanese and Korean text breaks between any two characters, and reads better a touch taller */
+html[lang^="zh"] .small, html[lang="ja"] .small, html[lang="ko"] .small { line-height: 1.45; }
+html[lang="ko"] body { word-break: keep-all; }
+.ptw .grow { min-width: 0; } .ptwn { overflow-wrap: break-word; hyphens: auto; }
+/* long words in German, Russian and Turkish break at a hyphen rather than running out of their box */
+body { hyphens: auto; -webkit-hyphens: auto; } .key, .disp, .chip, .label, .logo { hyphens: manual; -webkit-hyphens: manual; }

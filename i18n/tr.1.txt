@@ -1,0 +1,839 @@
+1a4u7t2	{stats}.
+0q7birz	{n} tur
+14hthj2	Rastgele düşmanlara her biri {p} olan {n} vuruş yapar (iki farklı düşman).
+0byjh8c	Rastgele düşmanlara her biri {p} olan {n} vuruş yapar.
+07n71hn	Her vuruş bir öncekinden {p} daha güçlüdür.
+0m7nu51	{t} boyunca {c} ihtimalle {st}.
+1av7cih	{t} boyunca {st}.
+0rufu09	Verdiği hasarın {p} kadarı kadar iyileşir.
+0c2qpnw	Onu tur sırasında geriye iter.
+13becoz	Onları tur sırasında geriye iter.
+1tf8g37	Düşmanın CP'si %80'in üstündeyse {p} daha güçlü.
+0y0bald	Düşman ne kadar yaralıysa o kadar güçlü, en fazla {p}.
+0k522we	Sonra diğer tüm düşmanlara {p} vurur.
+1v1cx0m	+{p} kritik vuruş ihtimali.
+1klobiz	Kalkanı delip geçer.
+03a2a9p	Her kritik vuruş bir vuruş daha ekler (en fazla {n}).
+0vdxodq	Her vuruşun {t} boyunca Yavaş, Zehir, Güç düşüşü veya Detone verme ihtimali {c}.
+0cqxp7o	Her vuruş {t} boyunca Yavaş, Zehir, Güç düşüşü veya Detone verir.
+1m5emfp	{p} ihtimalle hemen bir tur daha oynar.
+0gtqyd5	Düşen her grup arkadaşı için {p} daha güçlü.
+1f7wvud	Düşen ya da CP'si yarının altındaki her grup arkadaşı için {p} daha güçlü.
+01otle1	{st} etkisindeki düşmanlara karşı {p} daha güçlü.
+1tbjmve	Üzerinde {st} varken {p} daha güçlü.
+0a8oif0	Bu düşmanı yenerse tüm hamleleri yeniden hazır olur.
+0os6g8v	Bu düşmanı yenerse hemen bir tur daha oynar.
+1lbrklu	{c} ihtimalle: {fx}
+1oa0nre	Sıradaki turu daha erken gelir.
+1jyhvo1	Hemen bir tur daha oynar.
+18w9g0n	Düşen bir grup arkadaşını {p} CP ile geri getirir.
+0xnfd5d	Her grup arkadaşı temel saldırısıyla {p} güçte katılır.
+04clvli	Sonra düşmanlardaki tüm Zehir kalan hasarını bir anda verir.
+00bdm66	Kullanana maksimum CP'sinin {p} kadarına mal olur.
+0eo8xqz	Tüm grubun her düşmandan önce hareket eder ve tüm düşmanlar {t} boyunca yavaşlar.
+13kjpwg	Grubunun ilk {n} vuruşu kritik vuruştur.
+0ohlr4q	Arka rüzgâr: Grubun tüm savaş boyunca turlarını {p} daha erken oynar.
+1vdaa7w	Kreşendo: Grubun her tur {p} Güç kazanır, en fazla {max}.
+0qlchvz	Uyum: Bir dost iyileşince diğer ikisi bunun yarısı kadar iyileşir.
+0z4jtn1	{t} boyunca grubuna Hız artışı.
+1el07f1	{t} boyunca tüm düşmanlara Güç düşüşü.
+0imqe8u	Bis: Her dostun ilk Özel hamlesi hemen yeniden hazır olur. Özel hamlesi olmayan dost bunu Yeteneğiyle yapar.
+1tii7s6	Grubuna her dostun CP'sinin {p} kadarı Kalkan.
+0i05xu4	Konfeti: Her düşman {t} boyunca rastgele bir etkiyle (Yavaş, Zehir veya Güç düşüşü) başlar.
+0kr4kqx	En hızlı dostun başta üst üste iki tur oynar.
+0skalmm	Her dost Yavaş, Sersem, Zehir veya Güç düşüşü alacağı ilk {n} seferi savuşturur.
+0x2th3i	{t} boyunca grubuna Yenilenme.
+1rw69zs	Tiz nota: En çok CP'si olan {n} düşman {t} boyunca sersemler.
+1m4ob43	İlk düşen dost {p} CP ile ayağa kalkar.
+0c5orbx	Karşılık
+0a7kf5t	Sürü lideri
+11j7o30	{ens} topluluğuyla bir prova kazan.
+0xq0xcg	Kalkan
+0taf2ay	Solo
+0578o3h	Nadir
+14wniqc	Sıradan
+1bwxzco	Kamp ateşi
+1hpqu3m	Geç
+13347be	Efsanevi
+0bgmlfx	Davul
+0qq0dw8	Tel
+1wnfmqv	Nefes
+0v3iwlm	Bakır
+0b1qn4p	Ses
+0wrl2jw	Sessizlik
+0bq1jab	Yavru
+13kzokd	Henüz bir rol seçmedi.
+13mh6zt	Tank
+04kb9mm	Dayanıklı. Grubu korur.
+1ms8i26	Saldırgan
+1s6iiyn	En çok hasarı verir.
+11vozmg	Şifacı
+0lt3nwi	Grubu iyileştirir ve güçlendirir.
+0txsyvc	Destek
+0urf652	Düşmanları yavaşlatır ve zayıflatır.
+1msji33	Güç artışı
+0erp7z0	%25 daha fazla hasar verir.
+0b8ve6i	Güç düşüşü
+043t7d0	%25 daha az hasar verir.
+1j5x8rx	Hız artışı
+0rp2o65	Turları %30 daha erken gelir.
+1tyvniw	Yavaş
+1rtwjtt	Turları %30 daha geç gelir.
+0pyxe0x	Sersem
+00adhon	Sıradaki turunu kaçırır.
+1g8baa9	Zehir
+1398ids	Her turun başında, zehirleyenin Gücünün yaklaşık %30'u kadar CP kaybeder. Daha fazla Zehir birikir, üç katına kadar. Korumayı yok sayar.
+1a9erp6	Yenilenme
+1lwdm4g	Her turun başında CP kazanır.
+0kydatf	Kışkırtma
+13fn23l	Düşmanlar tekli vuruşlarını ona yöneltmek zorundadır.
+1w0r2pc	Kaçınma
+09468f2	Sıradaki vuruş ıskalar.
+0o8p8v9	Hasarı CP'den önce emer.
+0mj9nr2	Can şarkısı
+0u9dw02	Verdiği hasarın %30'u kadar iyileşir.
+0yi27yk	Detone
+0uit45j	Vuruşlardan %25 daha fazla hasar alır.
+1s7324o	Destansı
+1lplimc	Bagetler
+0xngqp3	Keçe tokmak
+0hl254k	Sürdin
+0t0h0nv	Metronom
+1pmltzc	Diyapazon
+1xxzjnx	Pena
+0mnjw2v	Omuz askısı
+1qclhrl	Piston yağı
+1rduu0f	İğne
+1qrq5l4	Kulak tıkacı
+0qdt5kh	Kamış
+1gebtxn	Nota kâğıdı
+0wj9jiy	Altın baget
+1rtrb8v	Her tur %5 Güç kazanır (en fazla %30).
+0ybj8yk	Elmas bagetler
+0v76wmc	Kritik vuruşları 1,5 yerine 2,5 kat hasar verir.
+12kiexo	Birinci pult
+12q6xbm	Savaşın ilk turunu hep o oynar.
+1osjyep	Büyük metronom
+03lt9cb	Her beşinci turunda hemen yeniden hareket eder.
+0rk5hgb	Tempo tuzağı
+00nk1l9	Kötü etkisi olan bir düşmana vurmak onun turunu geriye iter.
+0s7dviz	Yankı odası
+095d12f	Her turun başında küçük bir Kalkan kazanır.
+0yaewc6	Eski plak
+0xroqxz	Tüm grup her savaşa küçük bir Kalkanla başlar.
+1yaft0f	Anka tokmağı
+1iwcp47	Bir grup arkadaşı düşünce grubu onun CP'sinin %20'si kadar iyileştirir.
+1q012vs	Mutlak kulak
+07zccg4	Kritik vuruş sıradaki turunu yarı yarıya yaklaştırır.
+1en3rt7	Çınlayan diyapazon
+1bes0ck	Bir düşmana vuruşları diğerlerine de %40 vurur.
+0uha798	Geri besleme döngüsü
+1mij54t	Vurulunca %30 ihtimalle saldırana %60 karşılık verir.
+0lqm3ph	Kadife perde
+0iv9n0e	Ayakta kaldıkça grup arkadaşları %15 daha az hasar alır.
+1rqad0h	Şanslı pena
+1bhy6r1	Her savaştaki ilk vuruşu iki kat hasar verir.
+0tyoa6z	Son akor
+0hhhh6j	CP'si %40'ın altındayken %40 daha fazla Gücü olur.
+0tcoh3o	Bis gülü
+0yf8ri3	+%15 CP. Savaş başına bir kez, onu nakavt edecek bir vuruş onu 1 CP'de bırakır.
+05qp0ud	Demir kutu
+0cpv7kz	Sersemletilemez ve yavaşlatılamaz.
+1o0tj45	Cıva
+0xkwte3	Aldığı her vuruş sıradaki turunu yaklaştırır.
+1k88bjf	Kreşendo pedalı
+1a8fi66	İsabet eden her vuruşla %5 Güç kazanır (en fazla %30).
+0jqmtzy	Lazer iğne
+1qsg3ll	CP'si yarının altındaki düşmanlara %50 daha fazla hasar verir.
+00n6suo	Zehirli iğne
+0h8bhjw	Hedefindeki her kötü etki için %50 daha fazla hasar verir.
+089dbpu	Dikenli tıkaçlar
+0sw1vf6	Ona vuran düşmanlar o hasarın %40'ını geri alır.
+0yid6us	Gürültü kapısı
+0wodx13	Her savaşa CP'sinin %25'i kadar bir Kalkanla başlar.
+1vb4l90	Altın kamış
+0w6jc56	Turunun başında en yaralı grup arkadaşını CP'sinin %3'ü kadar iyileştirir. Tam CP'nin üstündeki iyileştirme Kalkana dönüşür.
+06ejlsm	Siren kamışı
+0n3vio6	Verdiği hasarın %20'si kadar iyileşir.
+1gcy07d	Kayıp partisyon
+1fyohlw	+%15 Güç. Bir düşmanı nakavt edince hemen bir tur daha oynar.
+16r2ajv	Başyapıt
+1rwxckh	Grup her savaşa 3 tur Güç artışıyla başlar.
+1vm6jxe	Sazlık bataklık
+1lu8609	Çan dökümhanesi
+1aqnn33	Vızıldayan bahçe
+0qeq0q2	Karlı sırt
+1go8kfv	Takırtı yolu
+1tsmmag	Damlayan mağaralar
+0erieq9	Rüzgârlı kumullar
+089006i	Teneke liman
+0y8oub5	Tıkırdayan kule
+0prtznc	Konser salonu
+07cnyyp	Kulakları, ayakları ve kuyruk yerine tokmağı olan yuvarlak bir davul. Sağlamdır, ağır ritmi düşmanları yavaşlatır.
+0cb38pk	Yan yan koşturan ve iki kastanyet şaklatan bir tef. Hızlı, çift vuruşlar.
+1nypsb6	Kedi kulaklı ve kuyruklu bir lir. Notaları sert vurur ama kolay incinir.
+0bla1xc	İnce bacaklı, kendini yayıyla gıcırdatan bir keman. Hızlıdır, cızırtısı düşmanları zehirler.
+01ewlb7	Kanatlı ve gagalı bir okarina. Ne çalarsa çalsın arkadaşlarını iyileştirir.
+0vq3eyw	Tırtıl gibi sürünen bir akordeon. Isırırken kendini iyileştirir.
+0ip1aqa	Kıvrılarak ilerleyen uzun bir bakır boru. Üflemeleri grubu daha sert vurmaya coşturur.
+0hgjl3j	Başı ve ayakları dışarı çıkan ağır bir çan. Çok dayanıklıdır, çınlaması arkadaşlarını korur.
+0yfvbp8	Yaylı kurbağa bacakları olan yuvarlak bir mikrofon. Şarkısı tüm düşmanlara aynı anda vurur.
+0quz911	Kurt kulaklı ve kuyruklu bir megafon. Uluması düşmanları zayıflatır.
+0yagm31	Kendi çerçevesini sırtında taşıyan bir gong. Yavaştır ama iyi bir gong sersemletir.
+0thkqwo	Tırtıl gibi sürünen bir ksilofon. Gittikçe güçlenen bir sürü küçük vuruş.
+1ncgrg2	Upuzun saplı bir banjo. Hızlı, şanslı ve kritik vuruş meraklısı.
+1tu5eb4	Tüm tuşlarıyla gülümseyen küçük bir piyano. Akorları tüm düşmanlara sıçrar.
+0z9n8pn	İbiği pan flütü olan bir civciv. En hızlı dost, arkadaşlarını da acele ettirir.
+0pjb82g	Kafasına göre takılan bir gayda. Ekşi notaları zehirler ve zayıflatır.
+0z3v4rf	Kabuğu bir tuba olan bir salyangoz. En dayanıklı dost, düşmanları sıranın sonuna iter.
+16ocv01	Denizatı gibi kıvrılan bir saksafon. Yumuşak ve hızlı, hemencecik yeni bir solo için döner.
+0moyagl	Kuş ayaklı eski bir gramofon. Cızırtılı şarkıları tüm düşmanları yıpratır.
+04o4dyo	Hiç susmayan küçük bir radyo. Düşmanların kafasını karıştırır, grubu coşturur.
+1warb8t	Kurma anahtarının üstünde paytak paytak yürüyen bir müzik kutusu. Ezgisi grup arkadaşlarını iyileştirir ve vuruşlarına da iyileştirmeyi öğretir.
+1p4j4fd	Sallanan bir sapın ucunda kauçuk bir trompet sürdini. Ekşi vah-vahı düşmanları detone eder, böylece her vuruş daha sert gelir.
+0ulqhj0	Ucundaki çubukla yürüyen bir kontrbas. Pes notaları hattı tutar ve etrafındaki her şeyi yavaşlatır.
+0qwhhhy	Sayfaları uyum içinde şarkı söyleyen küçük bir şarkı kitabı. Kapaklarıyla grubu korur ve üstündeki yükü atar.
+09u3bzj	Üfleyip çeken bir mızıka. Bocalayanı bitirir, düşmanları ayakta tutanı uçurur.
+01x3s9q	Bataklık kendini duyuyor
+1ojydxp	Muffle buradaki her sesi boğuyordu. O gidince sazlar yeniden hışırdıyor, kurbağalar bir ezgi deniyor.
+01t2fwo	Çanlar yeniden çalıyor
+0l2q3ef	Shush dökümhaneyi yıllarca sessiz tuttu. Bu sabah ilk çan çaldı ve kimse ona durmasını söylemedi.
+0sm94v5	Vızıltı değil, mırıltı
+0n432ha	Swarm dağıldı. Arılar işinin başında ve vızıltılarında artık bir ezgi var.
+08pq5pm	Cızırtı bitti
+0o961ya	Static olmadan dağ havası berrak. Karın yağışı duyuluyor, uzakta biri yodel yapıyor.
+050rbw1	Yarı yol
+0bie91b	Honk'ın kornası bitti. Kavşağa bir sokak müzisyeni kuruldu. Dünyanın yarısı artık şarkı söylüyor. Öbür yarısı hâlâ gürültü.
+0wfscp4	Mağaralar karşılık veriyor
+03yysnx	Rumble artık moloz. Karanlığa tek bir nota söyle, mağaralar sana koca bir akor geri versin.
+0zb5ixc	Rüzgâr ıslık çalmayı öğrendi
+1azpzws	Gale kendini tüketti. Ondan kalan, kumulların üstünde neredeyse bir şarkı ıslıklayarak geziniyor.
+1f6bdh0	İskelede denizci şarkıları
+1tgx1fo	Foghorn sonunda sustu. Denizciler iskeleye döndü ve bildikleri her kıtayı getirdiler.
+05puppg	Nefes alma zamanı
+0ndwonj	Alarm son kez çaldı. Sessiz tek bir yer kaldı: Din'in şefinin beklediği Konser salonu.
+1srx7zk	Müzik geri döndü
+1w3fx2b	Tacet'in batonu kırıldı ve salon dolu. Din kıyılardan sızmaya devam edecek, o yüzden katlar sürüyor. Ama dünyanın artık karşılık verecek bir şarkısı var.
+0p5gla7	Davul bandosu
+09rkysq	Yaylı üçlü
+0uymolf	Nefesli üçlü
+1bw6h1x	Bando
+04kfc8k	Koro
+1dmx33u	Folk grubu
+1qefubr	Ragtime grubu
+1ec98d7	Rock grubu
+1c3dj47	Mızıka takımı
+03htgfn	Karnaval
+1wlcqos	Swing grubu
+1ifvqcu	Oda orkestrası
+0h4v89a	Serenat
+0ee95mc	Opera
+1sz7gr5	İlahi
+1d82w65	Isınma
+16exdhj	10. seviyeye ulaş.
+1f07moh	Yarı yol
+1gv1hup	50. katı geç.
+1xdsyc5	Yükselen yıldız
+08vjn4t	30. seviyeye ulaş.
+0ttac5j	Kostüm değişimi
+0wpbvxt	Bir dostu ilk kez evrimleştir.
+08tp2nq	Şık giyimli
+0cibbx3	Grubundaki altı ekipman yuvasını da doldur.
+0qu08qx	Büyüyen grup
+1s7jpui	10 farklı dost bul.
+15m6zkv	Dünya turnesi
+0p6isfb	100. katı geç.
+18sngox	İkinci etap
+0t97xxs	200. katı geç.
+0xyy5v8	Uzunçalar
+1ko6msl	300. katı geç.
+0p2uvqz	Bitmeyen turne
+077abr7	500. katı geç.
+0kttfj7	Tam orkestra
+1ftdlwm	Tüm dostları bul.
+1uei586	Afişin yıldızları
+0co2oyg	Üç dostu tamamen evrimleştir.
+1u76xcj	Beş sesli uyum
+1sd4tuz	Beş ailenin her birinden bir dostu tamamen evrimleştir.
+17o4t10	Virtüöz
+1s586d8	Bir dosta 10 yıldızın hepsini ver.
+1o7uwii	Tek kişilik gösteri
+0twods9	30. kat veya üstünde bir patronu tek dostla yen.
+0xwplmu	Fişsiz
+131dj0h	50. kat veya üstünde bir patronu grubunda ekipman olmadan yen.
+0ziqytr	Bölüm provası
+1l05r7p	30. kat veya üstünde bir patronu aynı aileden üç dostla yen.
+0tq62qo	Kusursuz nota
+1u1qfsk	50. kat veya üstünde 10 patronu hiçbir dost düşmeden yen.
+0daw3ej	Genel prova
+0q7582o	10 prova kazan.
+0yev4ot	Altın koleksiyon
+0ths2r3	3 efsanevi ekipmana sahip ol.
+18j4xs2	Tam şarkı kitabı
+12lew62	15 topluluğun her biriyle bir prova kazan.
+0bsk9ij	Kabuk yağmuru
+0amgn09	100 kabuk aç.
+04ow5gr	Perde selamı
+1hzejfp	Bis'te 10. dalgayı geç.
+0kw590z	Ayakta alkış
+1dkx4s4	Bis'te 20. dalgayı geç.
+1do6rpz	Gece konseri
+0xygpvx	Gün batımı sahnesi
+1ptwv93	Altın salon
+03pncfo	Kuzey ışıkları
+0ul31af	Spot ışığı
+1cpl67j	Neon bis
+1s5oon2	Gittikçe yükselen
+1lbmtjt	Patron oynadığı her turda %2 güçlenir.
+0xim5vx	Gürültücü
+092waxc	Daha büyük, daha zorlu bir düşman. Her beşinci katta bir tane var.
+0detaua	Geri besleme
+0g6vhsb	Bir düşmana %130 vurur. Kullanana maksimum CP'sinin %8'ine mal olur.
+13d8q61	Güm
+053ta2h	Göbek atma
+0dnj979	İlk vuruş
+1f34o5f	Hattı tut
+06dokpr	Vurulunca saldırana %25 karşılık verir.
+0tkh80d	İleri marş
+0off7vu	Tık-tık
+0uzjydt	Sağanak
+1ktqn6d	Isınma
+1w1qopz	İsabet eden her vuruş bu savaş için %3 Güç ekler (en fazla %30).
+05gb6aq	Tepinme jigi
+0gho9na	Trampet
+038yh51	Kırp
+1gsd4k6	Şak-şak
+0grptg6	Tık-tık
+10gnhwk	Kastanyet şaklaması
+0d5rai9	Tam vuruşta
+15trs8b	+%20 kritik vuruş ihtimali.
+0eepwoa	Zapateado
+07uac25	Öne geç
+0rjnqfp	Sarsıntı
+047l8xc	Sinir bozma
+09ye9dh	Huzursuz et
+0lowabh	Vuruşları kötü etkisi olan düşmanları tur sırasında geriye iter.
+0aod8j9	Ağır ateş
+1n8nf0k	Tıng
+1njs3ln	Kopan tel
+0rmyty0	Çekme
+0zetxk0	Pizzicato
+1ixfsur	Keskin kulak
+13r6jhf	Vuruşları düşmanın Korumasının yarısını yok sayar.
+190f7pf	Güçlü riff
+0lsw47p	Shred
+1tcc1q9	Yumuşak tıngırtı
+1r8efu3	Açık akor
+0gwozuz	Taşma
+1bi0r1i	Tam CP'nin üstündeki iyileştirme Kalkana dönüşür.
+19tfqi5	Ağır kıta
+02z2n2x	Bir-iki-üç
+0046r2t	Kazıma
+1d60evi	Çığlık
+1vlk8s6	Testere
+1oaglvk	Çift tel
+1mezlbl	Çıplak sinir
+0x6ypis	Zehirli düşmanlara %30 daha fazla hasar verir.
+1nlh6h7	Dönen reel
+0grbtku	Ağıt
+1e5kf37	Tremolo
+1sar8nm	Ürperti
+0y60q2o	Sahne korkusu
+1872r7h	Her düşman savaşa 2 tur Zehirle başlar.
+1d3oejo	Akşam karanlığı
+1yr6ulo	Kapris
+0kpiauz	Rastgele iki şey olur: %110 vuruş, tüm düşmanlara Zehir, iyileştirme, gruba Güç artışı, tüm düşmanlara Güç düşüşü ya da gruba Kalkan.
+04loohm	Üfürük
+1gip12f	Hafif mırıltı
+05rb9v7	Pes nota
+1jwqcvd	Alt ton
+08pwtpf	Sürükleme
+1d37j2m	Turunun başında her düşman tur sırasında biraz geriye kayar.
+0n9p0kk	Yas şarkısı
+1mrb7u9	Koral
+0137tax	Islık
+1jm256h	Neşeli ezgi
+08saj29	Moral
+12r52vs	İyileştirdiği grup arkadaşlarının sıradaki turu daha erken gelir.
+0489ktu	Kutlama şarkısı
+031a0vk	Ninni
+10obzew	Çimdik
+1nncv0n	Sıkma
+1x3i0of	Körük
+0lztsun	Derin nefes
+0ucjz7n	Şişinme
+1p6naxy	Um-pa
+0ffym9e	Hey yapa
+10x93ym	Tril
+1lziham	Süs notaları
+1jlfytj	Da capo
+11v7pdr	Her üçüncü turunda hemen bir tur daha oynar.
+145ygjx	Şaka
+1xdqyxh	Kadans
+0j4vn7f	Düt
+0du2tax	Patlama
+1q199jr	Toplanma
+0p1cq54	Hazırlan
+1ize82t	Ses duvarı
+1ghjany	Fanfar
+1oqpjfk	Marş
+1fi7bq7	Tuu
+0egkrm1	Çağrı
+1bs2pyw	Parlak bakır
+1xrch8d	Swing'e dal
+171camj	Kalk borusu
+0u8765q	Çang
+0x5xpcb	Çınlama
+12so223	Dong
+1nzb8p5	Sokağa çıkma yasağı
+0qp1h57	Çınlayan kabuk
+0g1ih39	Ona vuran düşmanlar o hasarın %30'unu geri alır.
+0zz0vag	Son çan
+1frl26u	Tam çan
+02g7rrc	Çıngırak
+1jcu2sd	Kızak çanları
+0ly2anh	Neşe
+0253kh0	Tüm grup her savaşa bir Kalkanla başlar.
+0hbl061	Karyon
+0yaiaoq	Gamelan
+1gxfv6d	Havlama
+0llfocq	Miyavlama
+1ho4s88	Mırıldanma
+0zoqbb6	Tatlı sözler
+0fmm7ac	Gümüş dil
+14zv8di	Ona vuran düşmanlar 1 tur Güç düşüşü alır.
+18kz9uo	Düşen bir grup arkadaşını %40 CP ile geri getirir. Kimse düşmediyse grubu %80 iyileştirir ve 2 tur Yenilenme verir.
+0q23ubm	Bağırış
+0gplas9	Avazı çıktığı kadar
+11jbqjr	Her tur %8 Güç kazanır (en fazla %40).
+1suzhoz	Soru ve cevap
+1mf5fhz	Tiz nota
+1ft5tz7	Hav
+0b5mtzn	Uluma
+0nm4tup	Hırlama
+1uasau4	Pes hırıltı
+060y87e	Suda kan
+0uiaph2	Verdiği tüm hasarın %25'i kadar iyileşir.
+1plccmp	Blues
+0n5padm	Distorsiyon
+0hkfdb4	Bekçi havlaması
+089p2ow	Sürü çağrısı
+1rcckl9	Bir grup arkadaşı vurulunca saldıranı %15 ile ısırır.
+1tw4u3u	Kanon söyle
+0c4884z	Rekviyem
+0k3n0gx	Bonk
+17s5l5v	Büyük bong
+0ulcui7	Darbe
+0285t0s	Gong duvarı
+18pn1sd	Ağır çerçeve
+1cd2qde	%15 daha az hasar alır.
+0oijiii	Tam-tam
+0fntgyk	Gürleyen gök
+175bu1x	Reverb
+1bi05dj	Dalgacık
+0v5ox0l	Artçı sarsıntı
+1tobm5k	Turunun başında rastgele bir düşman küçük bir vuruş alır.
+0bijhqs	Işıltı
+1syafku	Deprem
+03qzdj6	Tık
+0b6rpxt	Gam
+1g2l3gx	Tokmak trampeti
+0mdaju9	Glissando
+0sjrqyn	Gösterişli
+0dm89q6	+%10 kritik vuruş ihtimali; kritik vuruşları iki kat hasar verir.
+1h2jl76	Vibrato
+0qmpvvu	Başparmak trampeti
+192ngsl	Ding
+1wo4w1o	Rüzgâr çanları
+1wk49em	Berrak ton
+16zpp23	Turunun başında en yaralı grup arkadaşı küçük bir Kalkan kazanır.
+1v808cb	Yıldız ışığı
+013ez5c	Çan ağacı
+1v3w591	Tin
+13ghs0j	Kurma
+0sqdz4h	Fırıldak
+1y8bun6	Atlıkarınca
+1ey26u4	Hatıra
+03876pu	Tüm grup her savaşa 2 tur Can şarkısıyla başlar.
+1fm2p05	Gavot
+13c01uc	Hayal
+1de4oh0	Kol
+0ulk3i1	Fazla kurulmuş
+0xqe02d	Ana yay
+16o0zud	Her turun başında CP'sinin %4'ü kadar iyileşir.
+1eltb1u	Tokata
+0pc6z0g	Ostinato
+142pjgn	Vah
+15u0adm	Bükülmüş nota
+1w0u0b4	Du-vah
+1c9a2xa	Ekşi akor
+1nd0o6b	Wah pedalı
+13v1pyf	Turunun başında rastgele bir düşman 1 tur Detone olur.
+1m85wqp	Skank
+1p63sus	Tailgate
+0fzbi2a	Boru sesi
+1cb3e8r	Kaydırma
+18snyl1	Kalkık kalak
+1c0cjbg	Detone düşmanlara %30 daha fazla hasar verir.
+1n9ab9m	Grito
+0d3w5x9	Mambo
+064rxuz	Tıngırdama
+1w8hi7m	Yürüyen bas
+1o5p4k3	Slap
+149cpa8	Bas
+1ayqna0	Tınlayan teller
+0eqy5uj	Ona vuran düşmanlar 1 tur yavaşlar.
+12k0kna	Karşı slap
+1cv8o1m	Basso continuo
+1o5i5xn	Yay
+0nxg2if	Uzun yay
+0bn4xiv	Derin rezonans
+07xsmwg	Verdiği Yavaş, Güç düşüşü ve Detone 1 tur daha uzun sürer.
+1cf17bj	Sostenuto
+1oijyxf	Füg
+0n5cim9	Du
+0bqam4h	Kenetlenme
+01l0qgh	Uuh
+0xhzqh1	Sıkı uyum
+06kkvvg	Birlikten kuvvet doğar
+0it613x	Ayakta kaldıkça grup arkadaşlarının +10 Koruması olur.
+1798q1h	Kantat
+1vvj5n8	Madrigal
+0qlmoj8	Şu-bop
+0bieu0o	Vokal desteği
+1lsbfmx	Söylemeye devam
+1gnqofp	Bir grup arkadaşı düşünce grubun kalanı onun CP'sinin %20'si kadar iyileşir.
+1mnxtq9	Gospel
+1600uw6	Düz ezgi
+1ikzkcy	Püf
+19736uu	Çekme bend
+0i6ws0l	Riff düellosu
+0w9oj4m	Şapka dolaştır
+1atvc33	Bahşiş kavanozu
+01lvqlq	Yendiği her düşman grubu CP'sinin %10'u kadar iyileştirir.
+0v021qm	Dört yol ağzı
+1weecg8	Juke joint
+1yyx1mu	Kaydırak
+1szi2dg	Kromatik koşu
+1lzzbce	Esinti
+0wy3h7a	Turunun başında rastgele bir düşman iyi etkilerini ve Kalkanını kaybeder.
+1wmvbsn	Karayel
+05qm91p	Keşişleme
+1yyjzys	Fiyonk
+0horseb	Hoedown
+0s5x4gp	Sıcak lick
+1tepclg	Breakdown
+1itkjsg	Açılış numarası
+0565xbc	Her savaştaki ilk vuruşu üç kat hasar verir.
+136slnp	Çevik parmaklar
+1ewltag	Hesaplaşma
+0iht9iv	Birlikte tıngırdat
+1fpt46k	Uğur tılsımı
+067ey8x	Grup arkadaşlarının +%10 kritik vuruş ihtimali olur.
+13xisjs	Şenlik
+1kzmbnb	High lonesome
+070t5e1	Tuş
+04hzoc5	Akor
+1t9dizn	Sol-sağ
+1enbm4h	Rag
+0d7yg7m	Ters vuruş
+0wxfzr7	Boogie-woogie
+0qrseta	Büyük stride
+076qa28	Pes do
+1taqerg	Fortissimo
+1xya3ki	Son bölüm
+1ly1frj	CP'si yarının altındayken %30 daha fazla hasar verir ve %30 daha az alır.
+0dau8k8	Büyük final
+09qr6d3	Menuet
+08bgdtw	Gagalama
+1fz8y39	Arka rüzgâr
+1niikg4	Düdük
+1kh1kgu	Marş ezgisi
+16ik1sb	Yolu aç
+0q04ctl	Turunun başında en yavaş grup arkadaşı tur sırasında öne geçer.
+112a04m	Beni izleyin
+09lgj6i	Tüm grubu %80 iyileştirir. İki grup arkadaşı da hemen turunu oynar.
+1auvt6u	Rüzgâr şarkısı
+11j6mia	Herkes sıradaki vuruştan kaçar. Grup arkadaşlarının sıradaki turu daha erken gelir.
+1rhp193	Cırtlak
+12i0tva	Delici nota
+17r7bwl	Bitirici
+04lfs3w	Tiz do
+014y2uz	Meltem
+0u1bt4z	Tüm düşmanlara %95 vurur, sonra hemen bir tur daha oynar.
+1y4ituh	Gıdaklama
+0txyels	Skirl
+0ub5jus	Kamış notası
+09xx760	Feryat
+1593f7k	Ekşi nota
+1s8g04q	Ona vuran düşmanlar 1 tur zehirlenir.
+0xrv5m8	Pibroch
+0hqctvw	Yat borusu
+1f9no5x	Büyük nefes
+1o740zk	Rüzgâr torbası
+1vq6ps1	Hava dolu
+0fnpt4v	Savaş başına bir kez, onu nakavt edecek bir vuruş onu 1 CP'de bırakır.
+0b9p1g6	Toplanış
+1wq7opa	Yakınma
+02ezjje	Um
+03d6thh	Pa!
+1j7ua0j	Kemerin altı
+1lgrf66	Bakır duvar
+1h65juz	Ayakta kalan son kişi
+0bkmu8k	Bir grup arkadaşı düşünce CP'sinin %30'u kadar iyileşir ve 3 tur Güç artışı kazanır.
+1swv50y	Diren
+0yd6exr	Bombardon
+1o492e6	Pırt
+1tztmpf	Bas düşüşü
+1dmoz3o	Ağır hava
+12a1zk4	Her düşman savaşa tur sırasında daha geride başlar.
+1grgl3z	Ses altı
+0kzafyq	Kahkaha
+12irlv3	Düt
+12v24qq	Akıcı koşu
+1i4i61e	Bip-bap
+1rejxdw	Bulutların üstünde
+10542q1	Bir düşmanı nakavt edince hemen bir tur daha oynar.
+1ba51d5	Ses perdeleri
+103fmui	Take Five
+1158c3h	Yumuşak
+1n8sgyg	Ağır parça
+1v0rywu	Hafif müzik
+0s3lxnj	İyileştirmeleri %20 daha güçlüdür.
+0thz03i	Soul
+0p9c45r	Son kadeh
+04x3i68	Cıvıltı
+1jth8jr	Eski plak
+1wofsfp	Scratch
+07o26sh	Çizik plak
+0s8sb10	Yavaşlatılamaz ve sersemletilemez.
+04w3idr	Eğrilme
+0h4z7yy	Seyircinin gözdesi
+0a06dpc	Zirve notası
+06114a7	Vibrato koşusu
+12617m3	Tekli vuruşları diğer tüm düşmanlara da %30 sıçrar.
+05q1aub	Cam kıran
+15e19ob	Gösteri durduran
+1krmegy	Blip
+0jdw2g7	Son dakika
+0uhcr28	Fuzz
+1oh86fx	Parazit sinyali
+0dasz8l	Kötü çekim
+0hpinqo	Turunun başında rastgele bir düşman 1 tur yavaşlar.
+070e6on	Ölü yayın
+0syrtcz	Korsan radyo
+1dgv55j	Selam gönderme
+0y7fncs	Top 40
+1viyfap	Coşku
+0sgn6pd	Grup her savaşa Güç artışıyla başlar.
+06ioqpd	Karışık kaset
+0t2h378	Yayın
+18vix4v	Hamle
+1a9gry0	Gümbürtü
+1m23wf6	İğne
+18vi9jv	Tükürük
+0aws48u	Haşlama
+1mm9ky0	Klonk
+0rnljou	Paslı koruma
+11v1m3f	Gevezelik
+1jvhh7j	Yuhalama
+1dmpqsv	En yaralı arkadaşını %140 iyileştirir. Kimse yaralı değilse bir düşmana %60 vurur ve onu zayıflatır.
+0pbjb31	Boğma
+1dckffs	Battaniye
+0s5yoff	Islatma
+0jmesgy	Şşş
+1ocf601	Parmak dudakta
+1vovvjr	Sessizlik!
+0re2x9y	Çıtırtı
+199ocsc	Beyaz gürültü
+0ymjbq5	Parazit
+03y74hh	Silme
+0lhig2f	Büyük es
+0te3ooz	Fermata
+0mbf94q	Değişen ton
+0ho4woa	Her 2 turda bir aile değiştirir. CP'si %40'ın altındayken hızlanır.
+0vud5dq	İğne
+0suiob1	Vızıltı bulutu
+1xqxmn5	Dağılma
+1p2yjim	Sıradaki 2 vuruştan kaçar ve 2 tur hızlanır.
+0348nnh	Bip
+014ong2	Trafik sıkışıklığı
+0twh2hk	Trafik öfkesi
+0lm7olu	Kaya
+1wyvn1w	Göçük
+1lpefml	Ana kaya
+1m0m7p0	Kum fırtınası
+1g02785	Fırtınanın gözü
+1p1dny7	Sis kümesi
+16fafs5	Uzun düdük
+0cfa1iz	Tik tak
+1k71mcf	Şekerleme
+145jl5l	Uyan!
+1whanfo	Tüm düşmanlara %75 vurur, sonra sıradaki turu daha erken gelir.
+03wcmz8	Vızz
+1d0s7av	Pike
+08ydjo4	Bir düşmana %100 vurur ve sıradaki vuruştan kaçar.
+0adtvon	Takırtı
+0mje0od	Dökülme
+091kazk	Şıp
+10fizix	Su birikintisi
+0ku1wmm	Kanat çırpma
+0vlq75j	Girdap
+0dsitjv	Sıradaki vuruştan kaçar ve 2 tur hızlanır.
+07kb9qa	İnilti
+1pldi2s	Tik
+0jd6glc	Kurma
+0t91r2l	Vrak
+0qfmpg7	Geğirme
+01o2zzp	Dövme
+0diq20m	Örs düşüşü
+1xq6gzj	Tık tık
+1tlu3pa	Matkap
+1yiehgc	Zap
+17k1p4r	Elektrik arkı
+1lfz91z	Dalış
+0hoak0x	Çakıl
+1s9fv30	Ters rüzgâr
+0u0gbsk	Kargaşa
+1ohbysp	Guguk
+0n5mp84	Fırlayış
+1rk256n	Bir düşmana %130 vurur ve sıradaki vuruştan kaçar.
+1q05kvf	Zırr zırr zırr
+1k5sntb	Ayna maçı
+12eqhw1	Din grubunu hamle hamle taklit eder.
+002004f	Sıcak patates
+0ctam6o	Fitilli bir patates her tekli vuruşta el değiştirir. Fitili bitince elinde tutan CP'sinin %30'unu kaybeder.
+1pkoab8	Ton değişimi
+1cfq8ai	Her 6 turda bir herkes aile çemberinde bir adım ilerler.
+1yxenyh	Ses düğmesi
+0zlkzru	Vuruşlar yarım güçle başlar ve her 2 turda yükselir, %250'ye kadar.
+0s0fk5e	Ters tempo
+1pjw2si	Yavaş hızlıdır: en düşük Hız en sık hareket eder.
+0s2p00q	Ortak sahne
+1wmdz40	Her vuruş hedefin tüm tarafına eşit bölünür.
+0ahnj2t	Zincirleme tepki
+18m6nsh	Düşen patlar: tarafının kalanı maksimum CP'sinin %20'sini kaybeder.
+0lqtb84	Dev avcısı
+0ide5cc	Dev bir patron. CP'sinin her çeyreği gidince sersemler ve Detone olur.
+0d7j2pf	Düet
+1yhp35s	Yalnızca ilk iki dostun oynar. Her hamleye diğerinin temel hamlesi %60 güçle eşlik eder.
+1g3255c	Değişen setler
+1wxliqd	Her dost yanındakinin hamleleriyle oynar.
+1gj42n8	Mikrofonu uzat
+1suqz2y	Yetenekleri ve Özel hamleleri yalnızca mikrofonu tutan kullanabilir; hep hazır ve daha hızlı. Mikrofon her tur el değiştirir.
+0qtmljq	Yankı odası
+02g9xpm	Yetenekler ve Özel hamleler kullananın sıradaki turunda yarım güçle tekrar çalar.
+0fo10iz	Son çağrı
+0f4c821	Herkesinkiyle birlikte 45 tur içinde kazan.
+15jnqbh	Temel yok
+0otfaz7	Temel hamleler Geri beslemeye dönüşür: kullanana maksimum CP'sinin %8'ine mal olan %130 vuruş.
+0sahm09	Nilüfer Yaprağı
+0k0njhx	Örs Odası
+18dezam	Kovan Çalgı Köşkü
+06g7ffd	Zirve Kulübesi
+0qq75ff	Kavşak
+1q752zs	Yankı Çukuru
+1r6b410	Vaha Sahnesi
+0k61u7j	Dokuz Numaralı İskele
+0co005d	Saat Tavan Arası
+1ptzihn	Kadife Kutu
+1okadjr	Daha büyük amfi
+13erzoo	+%20 Güç.
+0zkl7hh	Yastıklı kutu
+0j69l3w	+%25 CP.
+1fwjw4a	Hızlı parmaklar
+0n3fqeu	+%15 Hız.
+01esu05	Tam isabet
+0gd36kj	+%12 kritik vuruş ihtimali; kritik vuruşlar %25 daha fazla hasar verir.
+0lby3om	Sert kabuk
+1ebxeoo	+12 Koruma. Her konsere CP'sinin %20'si kadar bir Kalkanla başlar.
+0775ytv	Ruh şarkısı
+0zr669t	Verdiği hasarın %15'i kadar iyileşir.
+1h8xmtl	Ekşi notalar
+0zh5dqc	Vuruşları 2 tur zehirler.
+13h5hic	Yanlış akor
+1osujrv	Vuruşlarının hedefi 2 tur Detone yapma ihtimali %50.
+0jx2cpn	Açılış grubu
+1oin4ol	Her konserde ilk o oynar ve ilk vuruşu %40 daha fazla hasar verir.
+0x53ene	Dikenli riff
+1sps3gb	Ona vuran düşmanlar o hasarın %25'ini geri alır.
+1iavafh	Coşturucu
+00rkxb6	Her konsere 2 tur Güç artışı ve Hız artışıyla başlar.
+1ttntdf	Sessizlik lütfen
+16d9zln	Düşmanlar her konsere 2 tur Yavaş başlar.
+1qxqqjj	Kreşendo
+0yvpkv3	Konserin her turunda +%4 Güç, en fazla +%40.
+0we7ixn	Tam CP'nin üstündeki iyileştirme Kalkana dönüşür.
+1dvzvpk	Can döngüsü
+0wtrnwu	Her konsere 3 tur Can şarkısıyla başlar. Her nakavt 2 tur ekler.
+1p30ql0	Klik izi
+17kd3zj	Yetenekler ve Özel hamleler 1 tur daha az dinlenir (asla 1'in altına inmez).
+0n2c1w1	Çift tempo
+0ppnxok	Her üçüncü turunda hemen yeniden hareket eder.
+09xfsf7	Zehir ustası
+0h3c4te	Zehirli hedeflere %40, Detone olanlara %30 daha fazla hasar verir.
+06oj68c	Kritik geri besleme
+0rtev9z	Kritik vuruşlar tur çubuğunun %35'ini doldurur.
+1phtf1k	Cam top
+09uxb6d	+%45 Güç ama %30 daha az CP.
+1jqu99t	İkinci nefes
+0fcws9q	Konser başına bir kez, bir nakavttan 1 CP ile kurtulur ve %30 iyileşir.
+0lir46c	Büyük kapanış
+0iorug3	CP'si %35'in altındaki düşmanlara %60 daha fazla hasar verir.
+0x3dm2o	Yankı pedalı
+11qru8z	Yetenekleri ve Özel hamleleri sıradaki turunda %40 güçle tekrar çalar.
+1rd7chv	Pogo alanı
+1nswr2b	Tekli vuruşlar diğer düşmanlara %30 sıçrar.
+0b0n679	Sahneden atlama
+1bytrrw	Her nakavt %20 iyileştirir ve tur çubuğunun yarısını doldurur.
+1vvq1dc	her vuruş bir Kalkanı tazeler
+1g75ypi	nakavtlar bir Kalkanı tazeler
+05zgsrj	Yetenekler çok hızlı geri gelir
+1g6a7f8	daha çok yankı, daha sık
+0tydj6s	yankılar yeniden zehirler
+0l5gh4m	yankılar yeniden Detone yapar
+1jq6u3o	zehirli düşmanlara vuruşlar %40 daha sert
+0q3fcpj	Detone düşmanlar çok daha fazla hasar alır
+1243pgd	kritikler sıradaki turu yaklaştırır
+0lnuiy9	güvenlik ağıyla sert vuruşlar
+0jl2xy1	Kalkan ardından sert vuruşlar
+1aj2zep	vurması zor, vurması acı
+0q14mqo	iki kat hızlı yükselir
+07pt0rk	bitir onları, iyileş
+0smkptf	uçan başlangıç
+1ohz4qd	Bir sokak müzisyeni
+1h8j3n9	Hırpalanmış gitarlı bir sokak müzisyeni şarkı takası öneriyor.
+0u6vqnk	Şarkı takası
+0p8btdk	%20 CP kaybet. Rastgele nadir bir lütuf al.
+0snxryu	El çırp
+1izkrj7	%10 iyileş.
+1ogo5bn	Eski bir akort tapınağı
+01hfnq9	Mırıldanan taşlardan bir halka. Hava akortlu gibi.
+1t547k9	Biraz dinlen
+0d5lodj	%50 iyileş.
+0g5iyjw	Akort et
+03q4xnl	Bu turne için +%12 Güç. %10 CP kaybet.
+0fj3xl2	Hediyeli bir hayran
+0t0aywx	Ev yapımı tişörtlü biri seni çağırıyor.
+1r5p1i0	Atkıyı al
+032f49i	Bu turne için +%20 CP.
+05oc9pj	Atıştırmalığı al
+1f37te6	%35 iyileş.
+1jb1g85	Vızıldayan bir amfi
+0xxly2g	Çimenlerde hiçbir yere takılı olmayan bir amfi duruyor, yine de vızıldıyor.
+0bqr3ag	Fişe tak
+0zbafn5	Bu turne için +%25 Güç ama %15 daha az CP.
+1xplfql	Bırak
+0f5386r	Hiçbir şey olmuyor.
+1mc7zav	Bir kasa eski plak
+17qilb0	Tozlu kılıflar, bazıları hâlâ ambalajında.
+0o8ngf2	Karıştır
+1483ux0	3 sıradan lütuftan 1'ini seç. %10 CP kaybet.
+1xz3u50	Körlemesine birini al
+0zz4zxc	Rastgele sıradan bir lütuf.
+1cy74sa	Seyirci bir şarkı istiyor
+0edgn6c	Küçük bir seyirci toplandı ve tempo tutmaya başladı.
+0rpo8v2	Onlar için çal
+12e9pna	Bu turne için +%8 Güç. %15 iyileş.
+1jsvac1	Selam ver
+0fl07dj	%25 iyileş.

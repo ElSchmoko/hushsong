@@ -1,5 +1,5 @@
 // How dangerous is each plain Din? A few typical teams fight three of the same kind at the same level. node test/dinpow.js [level] [N]
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H, L = +(process.argv[2] || 14), N = +(process.argv[3] || 300), rnd = H.rng(11);
 const forms = Object.keys(H.FORMS).filter((f) => H.FORMS[f].tier === (L >= 30 ? 2 : L >= 10 ? 1 : 0));
 const res = {};

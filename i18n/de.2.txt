@@ -1,0 +1,551 @@
+0f55hyc	Trifft einen Gegner mit {p}.
+1pnhot0	Schild für sich selbst.
+15drddl	{st} für sich selbst für {t}.
+1nd99m8	Schild für die ganze Band.
+1qwd7ml	{st} für die ganze Band für {t}.
+1uwsay5	Trifft alle Gegner mit {p}.
+1q8cjc9	Trifft einen Gegner {n}-mal mit je {p}.
+1076p36	Trifft alle Gegner {n}-mal mit je {p}.
+1q2u71s	Heilt das am stärksten verletzte Bandmitglied um {p}.
+0ompy9w	Heilt die ganze Band um {p}.
+0u3dj57	Entfernt alle schlechten Effekte von der ganzen Band.
+0onaigk	Das langsamste Bandmitglied ist früher wieder am Zug.
+0khc9zz	Entfernt alle schlechten Effekte vom am stärksten verletzten Bandmitglied.
+190xcnu	{st} auf einen Gegner für {t}.
+0e7f6lw	{st} auf das stärkste Bandmitglied für {t}.
+1bdc500	Schild für das am stärksten verletzte Bandmitglied.
+106aayv	{st} auf alle Gegner für {t}.
+17snu6e	{st} auf einen zufälligen Gegner für {t}.
+15vipv3	{st} auf das Ziel für {t}.
+0cnywq4	Seine Bandmitglieder sind früher wieder am Zug.
+13j8tn6	Schild für das Ziel.
+16clkzn	Entfernt ihm alle guten Effekte und den Schild.
+1o2z45w	Schiebt alle Gegner in der Zugreihenfolge zurück.
+0amfle1	Entfernt allen Gegnern die guten Effekte und den Schild.
+1kxpnpz	Heilt sich um {p} seiner maximalen LP.
+117au04	Seine Bandmitglieder machen den nächsten Zug.
+0ebcfe0	Trifft einen zufälligen Gegner mit {p}.
+0dye84z	+{v} Kraft
+1i3vqsq	+{v} LP
+1tt83ij	+{v} Abwehr
+1ub8ovp	+{v} Tempo
+0s1jrr2	+{v} Chance auf kritische Treffer
+1bmhzw0	Ignoriert {v} der gegnerischen Abwehr
+00bjksl	Erleidet {v} weniger Schaden
+0pcq1bs	Seine Heilungen sind {v} stärker
+0fdv6n1	+{v} Erfahrung für die Band
+1h4s45e	Rivale {pet}
+0eujuva	Lauter {din}
+03alka9	Bumm!
+0kui9jn	Licht aus!
+0c1w867	Echo!
+0mq77hg	Zugabe!
+1qm2xxm	Nochmal!
+0k2fpcm	Hält durch!
+0rd3yt1	Kette!
+0belrl0	Taumelt!
+1xob2db	Schneller!
+1lwo7a3	Schüttelt es ab
+0hn3zaj	Abenteuer
+03gtdjg	Probe
+13u5rhp	Zugabe
+0siy9wx	Sammlung
+03bpwir	Spiegel-{pet}
+0htre55	Riesen-{din}
+1jamndy	Kraft
+1m575se	Abwehr
+02w2xwg	Tempo
+06xig19	Krit
+1l0xxoj	Schließen
+007q5wa	Menü
+0v0wv6e	Fähigkeit
+1q4pntc	Spezial
+0n0mxf2	Start
+04f76ga	Noten
+0wto1r4	Echos
+04zpoy4	{"one":"Du hast {n} Echo gefunden!","other":"Du hast {n} Echos gefunden!"}
+1oo9ppz	Du hast ein Echo gefunden!
+1we7hk3	Sie helfen {n} beim Entwickeln und kaufen später Sterne.
+0sxhh51	Einfache Echos helfen jedem Tier beim Entwickeln. Gib sie auf der Seite eines Tiers aus.
+1msq7av	Tagesauftritt
+1mwx410	<b>Neu auf Start:</b> {modes}
+0fkew5h	{label}, bezahlt
+160umau	Band
+0excb6f	Tiere
+1jht0nq	Muscheln
+1jp3e8h	Tasche
+17o19ow	Öffne deine Muschel hier
+1npfg7x	Grundzug
+0t4uqph	Immer aktiv
+0x2jl9c	warte {n}
+1cjrhja	jederzeit
+0b9jhu9	neu
+0ew9em3	Abbrechen
+166o4fr	‹ Zurück
+1id7d20	So wird gespielt
+1602nqr	Gewinne Ebenen, um weiterzukommen. Jede 10. Ebene hat einen <b>Boss</b>. Muscheln enthalten zufällige Tiere.
+119v05d	Tiere und Gegner sind am Zug, wenn ihre gelbe Leiste voll ist. <b>Tippe auf einen Gegner</b>, um den gewählten Zug auf ihn anzuwenden, tippe auf ein rundes Symbol, um den Zug zu wechseln, und <b>halte</b> jemanden gedrückt, um seine Werte zu sehen. Beim Zielen zeigt der blinkende Teil einer Lebensleiste, was der Zug abzieht.
+04f26x8	Werte
+0vbx2p1	LP
+1va0zku	Schaden, den es einstecken kann, bevor es fällt.
+1rtj1g9	Wie stark seine Züge treffen, heilen und schützen.
+0t35lk6	Verringert erlittenen Schaden. 50 Abwehr zieht ein Drittel ab.
+1sqimv3	Wie oft es am Zug ist.
+08j0mei	Chance, dass ein Treffer 50 % mehr macht. Jedes Tier beginnt mit 5 %.
+11rzah1	Familien
+19nc0fc	Jede schlägt die nächste im Kreis: 30 % mehr Schaden ausgeteilt, 20 % weniger eingesteckt.
+0oqv3et	Effekte
+1a4ajy7	Die Zahl auf einem Effekt sind seine verbleibenden Runden.
+0dekir8	<b>{n}.</b>
+114mnho	Echos und Sterne
+1x1u4jp	Tiere entwickeln sich zweimal mit Echos und sammeln dann Sterne: bis zu 10, jeder +3 % LP und Kraft. Eine Muschel mit einem Tier, das du schon hast, gibt ein Echo, das nur dieses Tier nutzen kann. Einfache Echos, oben angezeigt, passen zu jedem Tier.
+0a8e6q1	Noten und Erfahrung
+047ok7c	Neue Ebenen bringen Noten, mit denen du Muscheln kaufst. Jeder Kampf gibt Erfahrung, weniger auf Ebenen weit unter deinem Level.
+02k1r1n	Ensembles
+1ethk2v	Drei Tiere aus drei Familien oder alle aus einer bilden ein Ensemble: eine Eröffnungsmelodie und einen Vorteil für die Band.
+1c0bob4	Besiegte Bosse der Ebenen 10 bis 100 kehren auf deinem Level zurück. Jeder bringt einmal pro Woche ein Echo, zurückgesetzt am Montag.
+1xtq0ev	Ausrüstung
+1eepakt	Jedes Tier trägt zwei Teile. Siege können mehr bringen: Der Abenteuer-Bildschirm zeigt die Chance. 3 übrige Teile einer Art verschmelzen zur nächsten Seltenheit, bis Episch.
+0baj6qd	Ab Level {unlock}: ein Kampf pro Tag mit einer Hausregel, die verändert, wie Kämpfe laufen, für alle gleich. Der erste Sieg jedes Tages zahlt; versuch es beliebig oft.
+0h1kfu0	Ab Level {unlock}: Ein Tier tourt über eine verzweigte Straße mit fünf Auftritten, Stationen und einem Boss. Segen halten die ganze Tour, und manche wirken zusammen. Die ersten Siege jedes Tages zahlen.
+07zgmz9	Ab Level {unlock}: endlose Wellen, jede etwas härter. LP bleiben erhalten, und gefallene Tiere setzen aus. Meilenstein-Wellen zahlen einmal pro Woche.
+0orgbil	Erfolge
+08hfti8	Harte Ziele, die Muscheln, Echos und Start-Hintergründe bringen.
+0l8hqi2	Verstanden
+0zmnv1z	Ton: an
+1j3s0cb	Ton: aus
+0ohwdis	Musik
+0u4bbh9	Speichercode
+0a17t5z	Neu anfangen
+0ah2vw0	Dieses Spiel löschen?
+07v407v	{"one":"{n} Tier","other":"{n} Tiere"}
+1h0aetd	Alle {pets}, dein Weg bis Ebene {stage} und alle Noten, Muscheln und Echos sind für immer weg. Ein vorher erstellter Speichercode kann sie zurückholen.
+13p56d7	Er enthält {pets} auf Ebene {stage}. Er ersetzt das Spiel auf diesem Gerät.
+1yiqur6	Alles löschen
+1u9zao8	Dein Speichercode
+0oqbnyd	Speichercode hier einfügen
+1kt4ziu	Speichercode zum Laden
+13h0r7b	Meinen Code kopieren
+0iim041	Kopiert. Bewahre ihn sicher auf.
+0wqainm	Markiere den Text und kopiere ihn von Hand.
+0zcg70w	Diesen Code laden
+04nf0s1	Das ist kein Hushsong-Speichercode.
+0wazdu1	Diesen Spielstand laden?
+1ughagm	Laden
+0ribzan	Dein Spiel speichert sich auf diesem Gerät von selbst. Dieser Code ist eine Kopie zum Aufheben oder zum Weiterspielen woanders.
+1i3udnb	Code laden
+0xptzj8	Welle {n}
+0opsnl8	Boss {n}
+1dxyp09	Laut {n}
+192xyh5	Ebene {n}
+1wsths9	Später
+1vkg66p	Dein Ensemble
+0oes1nf	{"one":"+{n} Echo","other":"+{n} Echos"}
+0tyfhvo	Diesen Lauf beenden?
+10yh3fa	Belohnungen bleiben dir.
+179chx3	Beenden
+1xqrqh9	{pet} entwickeln
+007flrr	{pet} einen Stern geben
+1bipuuc	Weiter
+0kayn18	Muschel öffnen
+1hzmxtu	Zurück
+1o2o6dp	Band ändern
+03kusfv	Ändere deine Band
+0ovvjp1	Deine Band
+1yikd80	Solotour
+1g2tab0	Auftritt {n} von 5
+0n3ydks	Wähle eins
+0x4nga3	Weiter geht's
+00fxhu9	Nicht entwickelt
+18kfar1	Einmal entwickelt
+1fvnaj8	Voll entwickelt
+0h2yt8f	Lv {level}
+114caoa	Höchstlevel
+1ys28bo	{xp} / {level} EP
+051r543	{n} von 10 Regionen singen
+0osohmo	{pet}, in der Band
+0qrjb0u	Die Eröffnung von {n} spielen
+1wnoi3m	{region} · Ebene {n}
+11dqdbh	Finalbelohnung
+1dfllbn	Bossbelohnung
+1mw0j2l	{"one":"+{n} Muschel","other":"+{n} Muscheln"}
+1l232k4	Hushsong
+0skq8vk	Sammle musikalische Tiere. Bring die Musik zurück.
+0bk85tv	Spielen
+1y45tsh	Meine erste Muschel öffnen
+1yi0f7c	Einst sang alles
+0lomxls	Jeder Hügel, jeder Hafen und jede Halle hatte eine eigene Melodie, und musikalische Tiere spielten sie den ganzen Tag.
+0i6vi28	Dann kamen die Din
+1jeck9n	Laute Wesen, die keine Melodie ertragen. Sie stürmten herein und ertränkten jedes Lied in Getöse.
+1pzwbfm	Die Welt verstummte
+0cv90j1	Die Farben verblassten. Die Tiere versteckten sich in ihren Muscheln, und seitdem hat niemand mehr ein Lied gehört.
+0p1upin	Doch eine Muschel summt noch
+0niwiss	Öffne sie, stell eine Band zusammen und hol die Musik zurück, Ebene für Ebene.
+1vufmm8	Tippen zum Fortfahren
+1kpwk02	Bossebene {n}
+0x7pfo0	Beginne hier dein Abenteuer
+0s60a9m	Boss · Gegner Lv {n}
+1j7pu5k	Gegner Lv {n}
+08rseiv	Auftritte
+03n17d7	{ready} bereit
+1vgexli	{done} von {length}
+02zyyv8	Tagesauftritt bereit
+1reuah4	Solotour unterwegs
+0u73zav	Als Nächstes: Zugabe-Welle {n}
+1xxqbrb	{"one":"{n} Probe offen","other":"{n} Proben offen"}
+1vzcv0c	Solo zahlt heute
+1i8e16b	Erster Auftritt ab Level {n}
+1skvt3i	Heute alles gespielt
+0azt7u3	Frei ab Level {unlock}
+0mbqao6	Heute gewonnen
+1m0zof0	Als Nächstes: Welle {wave}
+0sssj9z	Wochenbestwert: {weekBest}
+0bv6gmn	Frei nach Ebene 10
+09hmetg	{"one":"{n} Boss offen","other":"{n} Bosse offen"}
+1qt0ibb	Alles gespielt
+1w35moz	{"one":"Neustart morgen","other":"Neustart in {n} Tagen"}
+1mf63c1	Kein Ensemble
+1s9gkj5	Vorige Ebene
+06lywvr	Nächste Ebene
+127oer9	Geschafft · Gegner Lv {n}
+1byxumh	Erfahrung
+1lr0g08	+1 Legendär
+1lafnle	Chance auf Ausrüstung
+0dr6vfq	{name}, Level {lvl}, deine Band ist stark dagegen. Seine Züge zeigen
+0k11ss3	{name}, Level {lvl}, stark gegen deine Band. Seine Züge zeigen
+1twb6b1	{name}, Level {lvl}. Seine Züge zeigen
+1i8jmgf	Lv {n} · Boss
+03c3p2r	Lv {n}
+02k9jns	Du triffst es härter
+0af1lm1	Es trifft dich härter
+1eenfp5	{"one":"Gegner sind {n} Level über dir","other":"Gegner sind {n} Level über dir"}
+0d8gyft	Weitermachen: an
+0jkleb9	Weitermachen: aus
+0y8m6so	Autokampf
+15hb32v	Kämpfen
+10tx3xo	Bekämpfe die Gegner oben
+0sh945i	Karte: {n}, Ebene {n2}. Alle Regionen zeigen
+19rtxhg	Die Welt, Zugabe {n}
+1f41oeh	Der Weg zu Ebene 100
+1ki85pn	Ebenen {a}–{b} · singt wieder
+1grm6vy	Ebenen {a}–{b} · verstummt durch {din}
+18s8a97	Hier
+0mxtf0p	freier Platz
+1whegdc	Tippe dein Tier an
+1tmmxpq	Über {n}
+1rkfalq	Tauschen
+1ybtjd0	Belege alle drei Plätze.
+1rlp9ke	Dafür brauchst du <b>3 verschiedene Familien</b> oder <b>3 derselben</b>.
+1q7gv3d	Möglich: <b>{list}</b>
+10ubeg8	Alle Ensembles
+1c5mvf7	Zum Abenteuer
+02u5zbh	Bereit? Los geht's
+05o74q3	Wer steht hier?
+18z83m5	Diesen Platz frei lassen
+19xt0al	3 verschiedene Familien oder 3 derselben.
+0jtpxy5	Aktiv
+1g5f5vb	Tiere fehlen
+0dzuldu	Gespielt
+12mrurj	Noch nicht gespielt
+1p633z1	{"one":"{n} Muschel zu öffnen","other":"{n} Muscheln zu öffnen"}
+0ost8of	Gerade keine Muscheln
+1stb3ay	Dein erstes Tier ist darin. <b>Tippe auf die Muschel.</b>
+0fi2qkf	Ein <b>zufälliges Tier</b>. Eines, das du schon hast, wird zu einem <b>Echo</b>.
+1r45u9w	Bosse hinterlassen Muscheln. Mit Noten kaufst du mehr.
+0zvrdho	Eine Muschel öffnen
+1mhuvb6	Muschel kaufen
+0hv9zs9	Ich wähle {n}
+0oe9ixr	Drei Tiere waren darin!
+0mecjw0	Wähle eins. Die anderen tauchen später auf.
+0tlq0tf	Neues Tier!
+1sy6y67	Noch ein {base}
+0i0wqsf	Noch ein {base} (dein {n})
+0say7eo	{"one":"+{n} {pet}-Echo","other":"+{n} {pet}-Echos"}
+1mw6eu2	{"one":"Noch eine öffnen ({n} übrig)","other":"Noch eine öffnen ({n} übrig)"}
+1taelf6	Los geht's
+13cn9g1	Fertig
+0to0bon	{have} / {need} Echos
+0ow97sa	Entwickeln zu
+0ay0li2	Neues Spezial
+1jxgm35	Wähle eins. Später tauschen ist gratis.
+1yylcbd	Echos gibt es aus Muscheln, von Bossen, Proben und Erfolgen.
+1128a0z	Sterne {n} / {max}
+1i6zzkz	Stern geben · +3 % LP und Kraft
+1n5ofxj	Dieses Tier ist so stark, wie es nur geht.
+1hgwrl8	Leg hier deine Ausrüstung an
+051r6dq	Leerer Platz
+0xpvvet	Züge
+083gk8g	Pfad wechseln
+19b2u1a	Super
+1eq65tc	Entwickeln
+1mntkmf	{have} / {n} Echos
+0we11jd	Gratis, so oft du willst.
+0v7hfzm	Ablegen
+0hpqcmx	Tauschen gegen
+12sm7bj	In deiner Tasche
+08kj2qr	Fertig! Zurück in den Kampf.
+19ky8vr	Sonst nichts in deiner Tasche.
+0ggizsd	Deine Tasche ist leer.
+1j0zoai	Noch nichts hier
+0musznz	Kämpfe bringen manchmal Ausrüstung.
+0am4v1q	3 übrige Teile einer Art verschmelzen zu einem besseren.
+10ttus6	3 {item} verschmelzen → {rarity}
+1fkec2w	Verschmolzen!
+0h4pk9n	<b>{n}</b> trägt das.
+0rrnf75	Niemand trägt das.
+0xide7m	{n} abnehmen
+03295io	Zu {n}
+0ngmxng	3 verschmelzen → {n}
+0br649q	Verschmelzen: {length} / 3 übrig
+1pquyhx	Verkaufen
+0ix7gem	Öffnet nach dem Boss auf Ebene 10.
+067l7h2	Besiegte Bosse kehren auf <b>deinem Level</b> zurück.
+12rgeuk	Diese Woche alles gewonnen
+1vgwehg	{din}, {region}, diese Woche gewonnen
+0qjjz61	{din}, {region}, Belohnung 1 Echo
+1fqbflp	Zugabe öffnet auf Level {unlock}.
+03scfen	Raus
+08gv74u	Endlose Wellen, jede etwas härter. LP bleiben erhalten, und ein Viertel kehrt nach jeder Welle zurück.
+1nvt7jn	Diese Woche
+15kcesy	Wochenbestwert <b>{week}</b> · Rekord <b>{best}</b>
+15jnq83	{"one":"Neustart morgen","other":"Neustart in {n} Tagen"}
+04pp0j3	Welle {wave} spielen
+1ywcpar	Diesen Lauf beenden
+0asw5g5	Zugabe starten
+03839q1	Neue Bühne: {set}
+1078zjl	Bühne: {set}
+0f8duxs	Aktuelle Ebene
+03yitl0	Start-Bühne
+00n1act	Fertig.
+19cqi1l	1 Echo abholen.
+1c6dls2	Belohnung: 1 Echo.
+0rfmv4f	Abholen
+1cnat5z	Gewinne eine Probe mit jedem Ensemble
+0l8z7n2	<b>Level aufgestiegen!</b>
+15eua8j	Diesmal nicht
+0982hh6	Nochmal versuchen
+0xuoasm	{h} Std. {m} Min.
+0z7rxr8	{m} Min.
+1sawk0u	Heute
+1yetfcu	Einzelticket
+0i43ri6	Heute bezahlt
+0wv5s44	Noten für den Sieg heute Abend
+0cfkl9x	Heute Abend · {date}
+0l3ql07	Hausregel
+0ohh9of	Auf der Bühne · Lv {level}
+1d8xe0i	Heute Abend gewonnen
+16gyw2s	Deine ersten zwei Tiere
+1ginijz	Neuer Auftritt in {msToTomorrow}
+1izp7up	Versuch es so oft du willst
+1vy1lnc	Nochmal spielen
+1dt0t41	Auftritt spielen
+16jnn15	Auftritt gewonnen!
+0hqkd91	Wieder eine tolle Show!
+0t1b6a6	Heute schon bezahlt
+18imhfd	Das Licht ging aus, bevor die Din fielen.
+0d1n3lp	Versuch es so oft du willst.
+1lzfam5	Zurück zum Plakat
+0yjpaj1	Ein Tier · fünf Auftritte · ein Boss
+1yve732	Auftritt {n}
+1ol94ul	{n} + Ausrüstung
+0fnhp9o	Boss
+0xl0w5y	Die ersten 5 Auftrittssiege und der erste Bosssieg jedes Tages zahlen. Neue Bezahlung in {msToTomorrow}.
+1611szw	Heute alles bezahlt. Touren zählen trotzdem für Spaß und Erfahrung.
+1iiozi7	Auf Tour · {n}
+1ge46m3	{gigs} von 5 Auftritten gewonnen
+0eo55r4	{"one":"{n} Segen","other":"{n} Segen"}
+0s77dwq	Zurück auf die Straße
+0vcj9z8	Tour abbrechen
+0nydgv5	Tour abbrechen?
+0gcqlob	Noten bleiben dir.
+1jqit4p	Abbrechen
+07pfpca	Die Straße passt sich deinem Solisten an.
+1jomgr2	Tour mit {n} starten
+0wqg5d6	Wähle deinen Solisten
+0mtitlv	{boons}. Zeigen
+0pk5huj	Noch keine Segen
+10kjgrl	Kombo
+0azrw18	{n} · Lv {level}
+0jndyot	Als Nächstes der Boss
+02zvux1	Kombo mit {n}: {d}
+0d1xs4z	Segen dieser Tour
+0ls4fiu	Kombos
+00u5kof	Gewinne Auftritte und jamme, um Segen zu sammeln. Sie halten die ganze Tour.
+1ivwi98	{p} Kraft
+1czrh23	{p} LP
+18dqeg6	Von der Straße: {list}
+1jeu1u6	Auftritt
+0yik53o	Lauter Auftritt
+1no7203	Jamsession
+1f5g7va	Rätsel
+030xvgf	Start
+0rcomre	‹ Auftritte
+1nz9721	Tour: {region}
+1y1z148	Die Bühne von {din}
+0suqviq	{stop}, du kannst hierhin
+10yi615	{stop}, besucht
+0bloln1	{stop}
+0y4qqu7	Nicht auf deiner Route. Leuchtende Stationen kommen als Nächstes.
+17lnddt	Deine Tour beginnt hier. Wähle eine Route.
+0nbrgm6	Wähle die nächste Station. Tippe eine an, um sie zu sehen.
+0zqhp1s	Solotour
+1p7xg55	5 Auftritte, dann {n}
+0acptz9	Eine kleine Bühne.
+1idq6xu	Ein wildes Publikum und härtere Din.
+0mkdcb6	Die letzte Station der Tour.
+0wsnj4k	Schlafen oder üben.
+1g00h8i	Spiel mit für einen Segen.
+1bqe9lc	Hier ist etwas los.
+0cbomgp	Seltener Segen
+0cm0w8n	Segen
+0unuhh5	Sieg
+18w23xo	Dem Boss stellen
+0z0syb8	Diesen Auftritt spielen
+1lkop6h	Hingehen
+0jar724	Noch nicht
+0pv5mv6	Die Straße
+1qd1crm	Zwei Din. Gewinne für einen Segen.
+05me9k8	Härtere Din. Gewinne für einen seltenen Segen.
+0fqmz7h	Heile 40 % oder übe für +10 % Kraft.
+18gfynz	Wähle einen Segen.
+0m8hcnl	Eine Wahl, gut oder riskant.
+14v8vbh	Das Ende der Tour.
+0vozr6z	LP bleiben von Auftritt zu Auftritt erhalten. Das Publikum wird unruhig, wenn ein Auftritt sich zieht: Jeder Treffer sitzt härter.
+0i9n2t3	Das Publikum tobt
+0e67mga	In der Kiste wühlen
+17cajel	Wähle einen seltenen Segen
+0crwowb	Wähle einen Segen
+14mzec6	{n} nehmen
+00dbte5	Diesen Segen auslassen?
+19b6o8k	Diese Station gibt keinen anderen.
+0rhzcma	Eine ruhige Nacht unterwegs
+0d7yc2w	Schlafen
+0yis9fp	LP {now} → {heal}
+1ko57eo	Üben
+0iibvtx	+{n} % Kraft für diese Tour
+1vj67te	Du hast bekommen
+0qvo2av	Lauter Auftritt gewonnen!
+04ymvaf	Wild!
+1eea2cs	LP {n} %
+0wc81n0	Noten dieser Tour
+0cc3ko5	Tour geschafft!
+0x5rhez	Tour vorbei
+1vcaw9j	Dein Solist
+11w4s05	<b>{pet}</b> hat alle fünf Auftritte und den Boss gewonnen.
+1rb3v2o	<b>{n} von 5</b> Auftritten gewonnen.
+1t4vb48	Und der Boss ließ fallen
+17kf24l	Eine andere Tour versuchen
+1k3jeja	Neue Tour
+02dv84d	<b>{pets}</b> <span class="dim">sind stark dagegen.</span>
+06u84tt	<b>{pets}</b> <span class="dim">ist stark dagegen.</span>
+1jh7dyr	<span class="dim">Es ist stark gegen</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Lv {lvl}
+0j8axo0	von {max}
+0xw1kwq	<b>Schild.</b> <span class="dim">Fängt die nächsten {shield} Schaden ab.</span>
+0fuwg7s	Für {t}.
+03ojm4e	Diese Welle verlassen?
+104x6pe	Dein Lauf endet hier. Belohnungen bleiben dir.
+1xf0sbk	Verlassen
+0l14tjq	Diesen Auftritt verlassen?
+17mnxxq	Deine Tour endet hier. Noten bleiben dir.
+113qxrx	Tour beenden
+0ax5053	Den Auftritt verlassen?
+1ymwhol	Versuch es jederzeit wieder.
+0iou6h7	Diesen Kampf verlassen?
+0b3qhh2	Nichts geht verloren.
+0ssgire	Kampf verlassen
+1jmvu80	Solo · Boss
+0lrhoo2	Solo · Auftritt {n}
+1olfrt8	Probe {n}
+0bigcx0	{n} übrig
+05trtda	in {n}
+0qn7msh	Unruhig!
+0ujdg0z	Hausregel: {n}
+1epghlp	Das Publikum
+13qzva8	Das Publikum wird unruhig: Jeder Treffer sitzt mit jeder Runde härter.
+0540b06	Auto
+1fn0bdg	Los
+07t8f32	Grundzug
+0wv4sck	Mach dich bereit
+1gig116	braucht das Mikro
+1dafg0x	bereit in {t}
+12udzhb	ruht {t} nach Einsatz
+0eoacl7	immer bereit
+09mc5ki	Extrazug
+1mzzz6r	{move}, braucht das Mikro
+1cbobby	Gegner am Zug
+1s58kd5	Autokampf ist an
+0o9tv84	Nur das Tier mit dem Mikro kann das einsetzen.
+1yv3h7m	Noch nicht bereit. Wähle einen anderen Zug.
+0xt3jlr	Tippe auf einen Gegner, um ihn einzusetzen, oder drücke Los.
+0bbedtn	Drücke Los.
+1i1wq4v	Nur das Tier mit dem Mikro kann das einsetzen.
+1o29ocf	Dieser Zug ist noch nicht bereit.
+1k3jdut	Es muss das Ziel mit Spott treffen.
+0amsa7g	Gedrückt halten, um Werte und Züge zu sehen.
+19s7xp8	Du bist dran! Tippe auf den Gegner, um ihn anzugreifen.
+1xkyhxm	Tippe auf ein rundes Symbol, um einen anderen Zug zu wählen.
+1xatr8w	Grüner Pfeil: Dein Tier ist stark gegen diesen Gegner.
+1fo7mmm	Die gelbe Linie zeigt, wer als Nächstes dran ist.
+1gg5fya	Block
+0nz7kx7	Kritisch!
+03sm2ze	Stark
+0uhuaqx	Schwach
+001d664	Ausgewichen
+169g4lg	Betäubt
+13qsw78	{name} ist betäubt und setzt einen Zug aus
+0b538j2	Wieder da!
+0kaw7l1	Früher
+0pb3b0x	Wechsel!
+1o2e5hh	Das Publikum wird unruhig!
+0h1zwxb	Tonartwechsel!
+1rzr4qi	Heiße Kartoffel!
+0yrhd9v	Mikro!
+167szal	Zugabe · Welle {n}
+1ryq1vy	Solotour · die letzte Station
+0wdzx1i	Tagesauftritt · {n}
+0ncefmr	Boss · Ebene {n}
+0vh77hq	Tippen zum Überspringen
+0wqg7ri	VS
+01lmez5	Tagesauftritt · {venue}
+0d68t5f	Tippen zum Starten
+0jleco1	Gewonnen!
+1jc3an7	Deine Band ist raus
+13ssvg2	Welle {wave} geschafft!
+1mh43qm	Wochenbelohnung: Welle {n}
+0catbos	Nächste Belohnung: Welle {n}
+0kbukl4	Diese Woche alle Belohnungen gewonnen
+1cprp2x	Hier aufhören
+0nzp3il	Zugabe vorbei
+1ut9ian	{"one":"Du hast <b>{n}</b> Welle geschafft.","other":"Du hast <b>{n}</b> Wellen geschafft."}
+0ty85y2	Rekord: <b>{n}</b>.
+0sxepax	Zurück zur Zugabe
+1mbtrrm	Level-Aufstieg
+1t44dyo	{"one":"Level aufgestiegen!","other":"+{n} Level!"}
+0jgpwku	Nächstes Level
+1upuqw4	Ein Erfolg ist bereit
+1oyw1a7	Probe geschafft!
+1p1n9oo	Weitere Proben
+0tmft7x	Proben
+1olud0e	Boss besiegt!
+0hcfevc	Ebene geschafft!
+1lol7z1	Wiederholungen bringen keine Noten.
+0rbs9h4	Du hast gefunden
+1j1b8hw	Zum Boss
+0to2fym	Nächste Ebene
+1pob5wr	Nochmal spielen
+1h119dp	<b>Als Nächstes kommt ein Boss.</b> Prüfe zuerst deine Band.
+08xkpxs	Nächste Ebene in {left}
+1ft5bxw	Tipp: <b>{n}</b> kann wachsen.
+1y4qsj9	Tipp: Du hast eine Muschel zum Öffnen.
+0ee4m6n	Tipp: In deiner Tasche ist Ausrüstung, die niemand trägt.
+17h3lmh	Tipp: Ein Probensieg bringt ein Echo.
+1yxlsvo	Tipp: Deine Tiere könnten ein Ensemble bilden.
+11jmiib	Tipp: Probier eine andere Band oder spiel eine frühere Ebene nochmal, um aufzusteigen.
+03eg7mm	Tipp: Spiel eine frühere Ebene nochmal, um aufzusteigen, und komm dann zurück.
+1uopv4k	Du hast eine Muschel gefunden!
+16ub219	Darin ist ein Tier. Öffne sie unter <b>Muscheln</b>.
+03ywr4q	Zeig her
+07hdxv7	Du hast Ausrüstung gefunden!
+15xrlrb	Jedes Tier trägt zwei Teile. Leg sie auf seiner Seite an.
+16us7mj	Sprache

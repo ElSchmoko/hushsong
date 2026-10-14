@@ -1,5 +1,5 @@
 // Fit the visible base HP and Power of each species (at most 10% either way) so no species is simply better. Writes test/spk.json.
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const fs = require('fs'), H = globalThis.H, R = +(process.argv[2] || 8), N = +(process.argv[3] || 40000), rnd = H.rng(4321), K = {}, base0 = {};
 for (const sp of H.SPECIES_ORDER) { K[sp] = 1; base0[sp] = Object.assign({}, H.SPECIES[sp].base); }
 const apply = () => { for (const sp of H.SPECIES_ORDER) { H.SPECIES[sp].base.hp = base0[sp].hp * K[sp]; H.SPECIES[sp].base.vol = base0[sp].vol * K[sp]; } };

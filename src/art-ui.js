@@ -50,6 +50,7 @@
   I('ic_down', 8, (g) => g.o('M50 88 L92 18 H8 Z', '#9a94b8', 9));
   I('ic_info', 8, (g) => { g.oc(50, 50, 42, WHITE, 9); g.c(50, 28, 8, INK); g.r(42, 42, 16, 38, 5, INK); });
   I('ic_bang', 8, (g) => { g.oc(50, 50, 42, '#ff3d5a', 9); g.r(42, 18, 16, 40, 6, WHITE); g.c(50, 74, 9, WHITE); });
+  I('ic_lang', 9, (g) => { g.oc(50, 50, 42, '#4fa8ff', 8); g.s('M50 9 A22 41 0 0 0 50 91 A22 41 0 0 0 50 9 M10 50 H90 M17 30 Q50 40 83 30 M17 70 Q50 60 83 70', WHITE, 5); });
   I('ic_plus', 10, (g) => { g.s('M50 16 V84 M16 50 H84', INK, 26); g.s('M50 16 V84 M16 50 H84', '#2ecb6e', 13); });
   I('ic_home', 14, (g) => { g.o('M8 50 L50 12 L92 50 V56 H82 V90 H18 V56 H8 Z', '#ff6b5e', 6); g.o('M40 60 H60 V90 H40 Z', '#fff1d0', 6); });
   I('ic_team', 14, (g) => { g.oc(28, 60, 18, FC.string, 6); g.oc(72, 60, 18, FC.breath, 6); g.oc(50, 44, 24, FC.drum, 6); g.c(42, 42, 4.5, INK); g.c(58, 42, 4.5, INK); g.s('M43 52 Q50 58 57 52', INK, 4); });
@@ -130,7 +131,7 @@
 
   /* lettering drawn straight onto the battlefield */
   A.text = (ctx, str, cx, y, col, big) => {
-    ctx.save(); ctx.font = `800 ${big ? 13 : 6.6}px 'Baloo 2', sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
+    ctx.save(); ctx.font = `800 ${big ? 13 : 6.6}px ${H.fontStack(true)}`; ctx.textAlign = 'center'; ctx.textBaseline = 'top'; ctx.lineJoin = 'round';
     ctx.strokeStyle = INK; ctx.lineWidth = big ? 3.2 : 2; ctx.strokeText(str, cx, y); ctx.fillStyle = col; ctx.fillText(str, cx, y); const w = ctx.measureText(str).width; ctx.restore(); return w;
   };
 

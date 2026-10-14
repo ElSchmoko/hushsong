@@ -1,5 +1,5 @@
 // What is each ensemble's boon worth? The same random teams of the right families, with the boon and without it.
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H, tier = +(process.argv[2] || 2), N = +(process.argv[3] || 3000), rnd = H.rng(99);
 if (process.env.K) Object.assign(H.ENS_K, JSON.parse(process.env.K));
 const floors = tier === 2 ? [64, 67, 70, 76, 80, 88, 90, 94, 100] : tier === 1 ? [24, 27, 30, 36, 40, 44, 50] : [11, 13, 15, 17, 19, 20];

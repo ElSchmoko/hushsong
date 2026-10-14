@@ -24,13 +24,13 @@
   // After floor 100 other bands turn up: evolved pets on the enemy side, cut down to enemy size.
   H.buildRivalUnit = (form, level, k) => {
     const f = H.FORMS[form], sp = H.SPECIES[f.sp], kit = H.kitOf(form), role = H.ROLES[kit.role], sc = H.dinScale(level); k = k || 1;
-    return { name: 'Rival ' + f.n, form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
+    return { name: H.T('Rival {pet}', { pet: f.n }), form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
       base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * k * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * k * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
   };
   H.buildDinUnit = (id, level, loud, extra, k) => {
     const d = H.DIN[id], sc = H.dinScale(level), perks = []; k = k || 1;
     if (d.passive) perks.push(d.passive); if (d.boss) perks.push(H.SWELL); if (loud) perks.push(H.LOUD); if (extra) perks.push(extra);
-    return { name: (loud ? 'Loud ' : '') + d.n, form: id, sprite: id, family: d.family, role: d.boss ? 'boss' : 'din', lvl: level, boss: !!d.boss, loud: !!loud,
+    return { name: loud ? H.T('Loud {din}', { din: d.n }) : d.n, form: id, sprite: id, family: d.family, role: d.boss ? 'boss' : 'din', lvl: level, boss: !!d.boss, loud: !!loud,
       base: { hp: d.base.hp * sc.hp * k * (d.boss ? H.BOSS_K[0] : H.PLAIN_K[0]), vol: d.base.vol * sc.vol * k * (d.boss ? H.BOSS_K[1] : H.PLAIN_K[1]), poise: d.base.poise, tempo: d.base.tempo }, perks, kit: { beat: d.beat, phrase: d.phrase, finale: d.finale } };
   };
 
@@ -118,7 +118,7 @@
       const R = this.rules;
       if (R.keyChange && this.turn > 1 && (this.turn - 1) % R.keyChange === 0) { for (const u of this.alive(0).concat(this.alive(1))) u.family = H.FAMILY_ORDER[(H.FAMILY_ORDER.indexOf(u.family) + 1) % 5]; this.emit({ t: 'keychange', fams: this.units.map((u) => u.family) }); }
       if (this.potato && --this.potato.left <= 0) {
-        const h = this.units[this.potato.uid], side = h ? h.side : 1; this.emit({ t: 'note', u: this.potato.uid, txt: 'Boom!' });
+        const h = this.units[this.potato.uid], side = h ? h.side : 1; this.emit({ t: 'note', u: this.potato.uid, txt: H.T('Boom!') });
         if (h && h.alive) this.applyDamage(h, h.max * R.potato.pct, { kind: 'burst' });
         const other = this.alive(1 - side); if (!this.over && other.length) { this.potato = { uid: other[Math.floor(this.rnd() * other.length)].uid, left: R.potato.every }; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); }
       }
@@ -141,7 +141,7 @@
     next(auto) {
       if (this.over || this.waiting != null) return { events: [], wait: this.waiting };
       this.ev = [];
-      if (this.rules.lastCall && this.turn >= this.rules.lastCall) { this.over = 'lose'; this.emit({ t: 'note', u: this.alive(0)[0] ? this.alive(0)[0].uid : 0, txt: 'Lights out!' }); this.emit({ t: 'end', win: false, why: 'time' }); return { events: this.ev, wait: null }; }
+      if (this.rules.lastCall && this.turn >= this.rules.lastCall) { this.over = 'lose'; this.emit({ t: 'note', u: this.alive(0)[0] ? this.alive(0)[0].uid : 0, txt: H.T('Lights out!') }); this.emit({ t: 'end', win: false, why: 'time' }); return { events: this.ev, wait: null }; }
       let actor = null, bt = Infinity;
       for (const u of this.units) if (u.alive) { const t = (GMAX - u.gauge) / this.tempo(u); if (t < bt - 1e-9) { bt = t; actor = u; } }
       for (const u of this.units) if (u.alive) u.gauge = Math.min(GMAX, u.gauge + this.tempo(u) * bt);
@@ -157,7 +157,7 @@
       // the mic: everything is ready for whoever holds it
       if (this.mic && this.micHolder(actor)) actor.ab.forEach((a) => (a.cd = 0));
       // last turn's Skill or Special plays again, softer
-      if (actor.echoNext) { const e = actor.echoNext; actor.echoNext = null; this.emit({ t: 'note', u: actor.uid, txt: 'Echo!' }); this.useAbility(actor, { kind: e.kind, def: e.def }, { powMul: e.k, reactive: true, target: e.target && e.target.alive ? e.target : null }); this.checkOver(); if (this.over || !actor.alive) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; } }
+      if (actor.echoNext) { const e = actor.echoNext; actor.echoNext = null; this.emit({ t: 'note', u: actor.uid, txt: H.T('Echo!') }); this.useAbility(actor, { kind: e.kind, def: e.def }, { powMul: e.k, reactive: true, target: e.target && e.target.alive ? e.target : null }); this.checkOver(); if (this.over || !actor.alive) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; } }
       if (actor.side === 0 && !auto) { this.waiting = actor.uid; this.emit(this.sync()); return { events: this.ev, wait: actor.uid }; }
       const pick = this.autoPick(actor); this.perform(actor, pick.ab, pick.target);
       this.emit(this.sync()); return { events: this.ev, wait: null };
@@ -184,9 +184,9 @@
       if (u.alive) {
         const cut = this.sum(u, 'cdCut'); for (const a of u.ab) { if (a === used) a.cd = a.def.cd ? Math.max(1, a.def.cd - cut) : 0; else if (a.cd > 0) a.cd--; }
         if (u.cdReset) { u.ab.forEach((a) => (a.cd = 0)); u.cdReset = false; }
-        if (used && u.rockEncore === used.kind) { used.cd = 0; u.rockEncore = null; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
-        if (u.bonusTurn && !this.over) { u.bonusTurn = 0; u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Again!' }); }
-        const en = this.has(u, 'encore'); if (en && used && u.turns % en === 0 && !this.over) { u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: 'Encore!' }); }
+        if (used && u.rockEncore === used.kind) { used.cd = 0; u.rockEncore = null; this.emit({ t: 'note', u: u.uid, txt: H.T('Encore!') }); }
+        if (u.bonusTurn && !this.over) { u.bonusTurn = 0; u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: H.T('Again!') }); }
+        const en = this.has(u, 'encore'); if (en && used && u.turns % en === 0 && !this.over) { u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: H.T('Encore!') }); }
         for (const k of Object.keys(u.st)) { const s = u.st[k]; if (s.fresh) s.fresh = false; else if (--s.dur <= 0) { delete u.st[k]; this.emit({ t: 'stoff', u: u.uid, s: k }); } }
       }
       if (this.mic && this.micHolder(u) && used) this.passMic(u.side);
@@ -396,7 +396,7 @@
         main = ts; c.last = ts;
       }
       if (o.chain && main.length && !this.over) for (const f of this.alive(1 - c.src.side)) if (!main.includes(f)) this.hit(c.src, f, pow * o.chain * c.powMul, {}, c, false);
-      if (o.again && c.src.alive && !c.reactive && this.rnd() < o.again) { c.src.gauge = GMAX; this.emit({ t: 'note', u: c.src.uid, txt: 'Again!' }); }
+      if (o.again && c.src.alive && !c.reactive && this.rnd() < o.again) { c.src.gauge = GMAX; this.emit({ t: 'note', u: c.src.uid, txt: H.T('Again!') }); }
     }
     hit(src, tgt, pow, o, c, aoe) {
       if (!tgt.alive || !src.alive) return null;
@@ -437,8 +437,8 @@
       }
       if (!c.reactive && src.alive) {
         const th = this.has(tgt, 'thorns'); if (th && dealt > 0) this.applyDamage(src, Math.max(1, dealt * th), { src: tgt, kind: 'thorn' });
-        if (tgt.alive && src.alive) { this.fire(tgt, 'hurt', { attacker: src }); const ct = this.has(tgt, 'counter'); if (ct && src.alive && tgt.alive && this.rnd() < ct.ch) this.react(tgt, src, ct.pow, 'Hit Back'); }
-        for (const g of this.alive(tgt.side)) if (g !== tgt && src.alive) { const gd = this.has(g, 'guard'); if (gd && this.rnd() < gd.ch) this.react(g, src, gd.pow, 'Pack Leader'); }
+        if (tgt.alive && src.alive) { this.fire(tgt, 'hurt', { attacker: src }); const ct = this.has(tgt, 'counter'); if (ct && src.alive && tgt.alive && this.rnd() < ct.ch) this.react(tgt, src, ct.pow, H.T('Hit Back')); }
+        for (const g of this.alive(tgt.side)) if (g !== tgt && src.alive) { const gd = this.has(g, 'guard'); if (gd && this.rnd() < gd.ch) this.react(g, src, gd.pow, H.T('Pack Leader')); }
       }
       // Hot Potato: whoever holds it passes it on with a single hit
       if (this.potato && this.potato.uid === src.uid && !aoe && !c.reactive && tgt.side !== src.side && tgt.alive) { this.potato.uid = tgt.uid; this.emit({ t: 'mark', u: tgt.uid, m: 'potato' }); }
@@ -453,7 +453,7 @@
       // Shared Stage: a hit is split evenly over the whole side
       if (this.rules.share && info.kind === 'hit' && !info.split) { const side = this.alive(tgt.side); if (side.length > 1) { for (const v of side) this.applyDamage(v, amt / side.length, Object.assign({}, info, { split: true, abs: v === tgt ? info.abs : 0 })); return; } }
       if (info.kind === 'poison' && tgt.shield > 0) { const a = Math.min(tgt.shield, amt); tgt.shield -= a; info.abs = a; amt -= a; }
-      let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: 'Hangs on!' }); }
+      let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: H.T('Hangs on!') }); }
       const was = tgt.hp / tgt.max; tgt.hp = Math.max(0, tgt.hp - amt);
       this.emit({ t: 'dmg', src: info.src ? info.src.uid : -1, tgt: tgt.uid, amt, abs: info.abs || 0, crit: !!info.crit, adv: info.adv || 0, kind: info.kind, hp: tgt.hp, shield: tgt.shield });
       if (stood) this.fire(tgt, 'stand');
@@ -464,12 +464,12 @@
         if (this.mic && this.mic[tgt.side] === tgt.uid) this.passMic(tgt.side);
         if (this.sideDead(0) || this.sideDead(1)) { this.checkOver(); return; }
         // Chain Reaction: the fallen bursts and hits its own side
-        if (this.rules.chain) { this.emit({ t: 'note', u: tgt.uid, txt: 'Chain!' }); for (const v of this.alive(tgt.side)) this.applyDamage(v, tgt.max * this.rules.chain, { kind: 'burst' }); if (this.over) return; }
+        if (this.rules.chain) { this.emit({ t: 'note', u: tgt.uid, txt: H.T('Chain!') }); for (const v of this.alive(tgt.side)) this.applyDamage(v, tgt.max * this.rules.chain, { kind: 'burst' }); if (this.over) return; }
         for (const g of this.alive(tgt.side)) this.fire(g, 'allyFall'); return;
       }
       // a giant staggers each time it loses another quarter of its HP
-      if (tgt.giant) for (const step of tgt.giant) if (was > step && tgt.hp / tgt.max <= step) { this.emit({ t: 'note', u: tgt.uid, txt: 'Staggered!' }); this.applySt(null, tgt, 'stun', 1, { force: true }); this.applySt(null, tgt, 'offkey', 2, { force: true }); }
-      if (tgt.enrageAt && !tgt.once.enrage && tgt.hp / tgt.max < tgt.enrageAt) { tgt.once.enrage = true; tgt.st.sup = { dur: 99, fresh: false }; this.emit({ t: 'st', u: tgt.uid, s: 'sup', dur: 99 }); this.emit({ t: 'note', u: tgt.uid, txt: 'Faster!' }); }
+      if (tgt.giant) for (const step of tgt.giant) if (was > step && tgt.hp / tgt.max <= step) { this.emit({ t: 'note', u: tgt.uid, txt: H.T('Staggered!') }); this.applySt(null, tgt, 'stun', 1, { force: true }); this.applySt(null, tgt, 'offkey', 2, { force: true }); }
+      if (tgt.enrageAt && !tgt.once.enrage && tgt.hp / tgt.max < tgt.enrageAt) { tgt.once.enrage = true; tgt.st.sup = { dur: 99, fresh: false }; this.emit({ t: 'st', u: tgt.uid, s: 'sup', dur: 99 }); this.emit({ t: 'note', u: tgt.uid, txt: H.T('Faster!') }); }
     }
     revive(u, pct) { u.alive = true; u.revived = true; u.hp = Math.max(1, Math.round(u.max * pct)); u.gauge = 0; u.st = {}; this.emit({ t: 'revive', u: u.uid, hp: u.hp }); }
     heal(src, tgt, amt, quiet, echo) {
@@ -486,8 +486,8 @@
     applySt(src, tgt, s, dur, o) {
       o = o || {}; if (!tgt.alive) return false; if (o.ch != null && this.rnd() >= o.ch) return false;
       const def = H.STATUS[s];
-      const im = !o.force && this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
-      if (!def.buff && tgt.ward && !o.force) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: 'Shrugs it off' }); return false; }
+      const im = !o.force && this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: H.T('Shrugs it off') }); return false; }
+      if (!def.buff && tgt.ward && !o.force) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: H.T('Shrugs it off') }); return false; }
       if (!def.buff) {
         if (src && (s === 'sdown' || s === 'pdown' || s === 'offkey')) dur += this.mod(src, 'statusDur');
       }

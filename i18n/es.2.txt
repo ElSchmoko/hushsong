@@ -1,0 +1,552 @@
+0f55hyc	Golpea a un enemigo con un {p}.
+1pnhot0	Escudo para sí mismo.
+15drddl	{st} para sí mismo durante {t}.
+1nd99m8	Escudo para toda la banda.
+1qwd7ml	{st} para toda la banda durante {t}.
+1uwsay5	Golpea a todos los enemigos con un {p}.
+1q8cjc9	Golpea a un enemigo {n} veces con un {p} cada vez.
+1076p36	Golpea a todos los enemigos {n} veces con un {p} cada vez.
+1q2u71s	Cura al compañero más herido un {p}.
+0ompy9w	Cura a toda la banda un {p}.
+0u3dj57	Quita todos los efectos negativos de toda la banda.
+0onaigk	El compañero más lento juega antes su siguiente turno.
+0khc9zz	Quita todos los efectos negativos del compañero más herido.
+190xcnu	{st} a un enemigo durante {t}.
+0e7f6lw	{st} al compañero más fuerte durante {t}.
+1bdc500	Escudo para el compañero más herido.
+106aayv	{st} a todos los enemigos durante {t}.
+17snu6e	{st} a un enemigo al azar durante {t}.
+15vipv3	{st} al objetivo durante {t}.
+0cnywq4	Sus compañeros juegan antes su siguiente turno.
+13j8tn6	Escudo para el objetivo.
+16clkzn	Le quita todos los efectos positivos y el Escudo.
+1o2z45w	Retrasa a todos los enemigos en el orden de turnos.
+0amfle1	Quita todos los efectos positivos y el Escudo a todos los enemigos.
+1kxpnpz	Se cura un {p} de sus PV máximos.
+117au04	Sus compañeros juegan el siguiente turno.
+0ebcfe0	Golpea a un enemigo al azar con un {p}.
+0dye84z	+{v} de Poder
+1i3vqsq	+{v} de PV
+1tt83ij	+{v} de Defensa
+1ub8ovp	+{v} de Velocidad
+0s1jrr2	+{v} de probabilidad de golpe crítico
+1bmhzw0	Ignora un {v} de la Defensa enemiga
+00bjksl	Recibe un {v} menos de daño
+0pcq1bs	Sus curaciones son un {v} más fuertes
+0fdv6n1	+{v} de experiencia para la banda
+1h4s45e	{pet} rival
+0eujuva	{din} ruidoso
+03alka9	¡Bum!
+0kui9jn	¡Se apagan las luces!
+0c1w867	¡Eco!
+0mq77hg	¡Otra!
+1qm2xxm	¡Otra vez!
+0k2fpcm	¡Aguanta!
+0rd3yt1	¡Cadena!
+0belrl0	¡Tambaleante!
+1xob2db	¡Más rápido!
+1lwo7a3	Ni se inmuta
+0hn3zaj	Aventura
+03gtdjg	Ensayo
+13u5rhp	Bis
+0siy9wx	Colección
+03bpwir	{pet} espejo
+0htre55	{din} gigante
+1jamndy	Poder
+1m575se	Defensa
+02w2xwg	Velocidad
+06xig19	Crítico
+1l0xxoj	Cerrar
+007q5wa	Menú
+0v0wv6e	Habilidad
+1q4pntc	Especial
+0n0mxf2	Inicio
+04f76ga	Notas
+0wto1r4	Ecos
+04zpoy4	{"one":"¡Has encontrado {n} eco!","other":"¡Has encontrado {n} ecos!"}
+1oo9ppz	¡Has encontrado un eco!
+1we7hk3	Ayudan a {n} a evolucionar y, más tarde, compran estrellas.
+0sxhh51	Los ecos simples ayudan a evolucionar a cualquier mascota. Gástalos en la página de una mascota.
+1msq7av	Concierto diario
+1mwx410	<b>Nuevo en Inicio:</b> {modes}
+0fkew5h	{label}, cobrado
+160umau	Banda
+0excb6f	Mascotas
+1jht0nq	Conchas
+1jp3e8h	Bolsa
+17o19ow	Abre aquí tu concha
+1npfg7x	Básico
+0t4uqph	Siempre activo
+0x2jl9c	espera {n}
+1cjrhja	cuando quieras
+0b9jhu9	nuevo
+0ew9em3	Cancelar
+166o4fr	‹ Atrás
+1id7d20	Cómo jugar
+1602nqr	Gana pisos para avanzar. Cada 10.º piso hay un <b>jefe</b>. Las conchas guardan mascotas al azar.
+119v05d	Mascotas y enemigos actúan cuando se llena su barra amarilla. <b>Toca a un enemigo</b> para usar en él el movimiento elegido, toca un icono redondo para cambiar de movimiento y <b>mantén pulsado</b> a cualquiera para ver sus estadísticas. Mientras apuntas, la parte que parpadea de una barra de vida es lo que quitará el movimiento.
+04f26x8	Estadísticas
+0vbx2p1	PV
+1va0zku	El daño que aguanta antes de caer.
+1rtj1g9	La fuerza con la que golpean, curan y protegen sus movimientos.
+0t35lk6	Reduce el daño que recibe. 50 de Defensa quita un tercio.
+1sqimv3	Con qué frecuencia le toca turno.
+08j0mei	Probabilidad de que un golpe haga un 50% más. Toda mascota empieza con un 5%.
+11rzah1	Familias
+19nc0fc	Cada una vence a la siguiente del círculo: un 30% más de daño infligido y un 20% menos recibido.
+0oqv3et	Efectos
+1a4ajy7	El número de un efecto son los turnos que le quedan.
+0dekir8	<b>{n}.</b>
+114mnho	Ecos y estrellas
+1x1u4jp	Las mascotas evolucionan dos veces con ecos y después suman estrellas: hasta 10, cada una +3% de PV y Poder. Una concha con una mascota que ya tienes da un eco que solo esa mascota puede usar. Los ecos simples, arriba, sirven para cualquiera.
+0a8e6q1	Notas y experiencia
+047ok7c	Los pisos nuevos pagan notas, que compran conchas. Toda batalla da experiencia, menos en pisos muy por debajo de tu nivel.
+02k1r1n	Conjuntos
+1ethk2v	Tres mascotas de tres familias, o las tres de una, forman un conjunto: una melodía de apertura y una ventaja para la banda.
+1c0bob4	Los jefes vencidos de los pisos 10 a 100 vuelven a tu nivel. Cada uno paga un eco una vez por semana, y se reinicia el lunes.
+1xtq0ev	Equipo
+1eepakt	Cada mascota lleva dos piezas. Las victorias pueden dar más: la pantalla de Aventura muestra la probabilidad. 3 piezas sobrantes de un tipo se fusionan en la rareza siguiente, hasta Épico.
+0baj6qd	Desde el nivel {unlock}: una batalla al día con una regla de la casa que cambia cómo funcionan las batallas, igual para todos. La primera victoria de cada día paga; reintenta cuanto quieras.
+0h1kfu0	Desde el nivel {unlock}: una mascota recorre un camino con desvíos de cinco conciertos, paradas y un jefe. Las bendiciones duran toda la gira y algunas se combinan. Las primeras victorias de cada día pagan.
+07zgmz9	Desde el nivel {unlock}: oleadas sin fin, cada una algo más dura. Los PV se mantienen y las mascotas caídas se quedan fuera. Las oleadas clave pagan una vez por semana.
+0orgbil	Logros
+08hfti8	Retos difíciles que pagan conchas, ecos y fondos para Inicio.
+0l8hqi2	Entendido
+0zmnv1z	Sonido: sí
+1j3s0cb	Sonido: no
+0ohwdis	Música
+0u4bbh9	Código de guardado
+0a17t5z	Empezar de nuevo
+0ah2vw0	¿Borrar esta partida?
+07v407v	{"one":"{n} mascota","other":"{n} mascotas"}
+1h0aetd	Se perderán para siempre {pets}, tu camino hasta el piso {stage} y todas las notas, conchas y ecos. Un código de guardado hecho antes puede recuperarlos.
+13p56d7	Tiene {pets} en el piso {stage}. Sustituye a la partida de este dispositivo.
+1yiqur6	Borrarlo todo
+1u9zao8	Tu código de guardado
+0oqbnyd	Pega aquí un código de guardado
+1kt4ziu	Código de guardado para cargar
+13h0r7b	Copiar mi código
+0iim041	Copiado. Guárdalo en un lugar seguro.
+0wqainm	Selecciona el texto y cópialo a mano.
+0zcg70w	Cargar este código
+04nf0s1	Eso no es un código de guardado de Hushsong.
+0wazdu1	¿Cargar esta partida?
+1ughagm	Cargarla
+0ribzan	Tu partida se guarda sola en este dispositivo. Este código es una copia para guardar o para seguir en otro lugar.
+1i3udnb	Cargar un código
+0xptzj8	Oleada {n}
+0opsnl8	Jefe {n}
+1dxyp09	Ruidoso {n}
+192xyh5	Piso {n}
+1wsths9	Luego
+1vkg66p	Tu conjunto
+0oes1nf	{"one":"+{n} eco","other":"+{n} ecos"}
+0tyfhvo	¿Terminar esta partida?
+10yh3fa	Las recompensas son tuyas.
+179chx3	Terminar
+1xqrqh9	Evolucionar a {pet}
+007flrr	Añadir estrella a {pet}
+1bipuuc	Continuar
+0kayn18	Abrir la concha
+1hzmxtu	Atrás
+1o2o6dp	Cambiar la banda
+03kusfv	Cambia tu banda
+0ovvjp1	Tu banda
+1yikd80	Gira en solitario
+1g2tab0	Concierto {n} de 5
+0n3ydks	Elige una
+0x4nga3	Adelante
+00fxhu9	Sin evolucionar
+18kfar1	Evolucionada una vez
+1fvnaj8	Evolución completa
+0h2yt8f	Nv {level}
+114caoa	Nivel máximo
+1ys28bo	{xp} / {level} EXP
+051r543	{n} de 10 regiones cantan
+0osohmo	{pet}, en la banda
+0qrjb0u	Tocar la apertura de {n}
+1wnoi3m	{region} · piso {n}
+11dqdbh	Premio final
+1dfllbn	Premio del jefe
+1mw0j2l	{"one":"+{n} concha","other":"+{n} conchas"}
+1l232k4	Hushsong
+0skq8vk	Colecciona mascotas musicales. Devuelve la música al mundo.
+0bk85tv	Jugar
+1y45tsh	Abrir mi primera concha
+1yi0f7c	Hubo un tiempo en que todo cantaba
+0lomxls	Cada colina, puerto y salón tenía su propia melodía, y las mascotas musicales la tocaban todo el día.
+0i6vi28	Entonces llegaron los Din
+1jeck9n	Criaturas ruidosas que no soportan una melodía. Irrumpieron y ahogaron cada canción en estrépito.
+1pzwbfm	El mundo se quedó en silencio
+0cv90j1	El color se apagó. Las mascotas se escondieron en sus conchas, y nadie ha vuelto a oír una canción.
+0p1upin	Pero una concha aún tararea
+0niwiss	Ábrela, reúne una banda y recupera la música, piso a piso.
+1vufmm8	Toca para continuar
+1kpwk02	Piso de jefe {n}
+0x7pfo0	Empieza aquí tu aventura
+0s60a9m	Jefe · Enemigos Nv {n}
+1j7pu5k	Enemigos Nv {n}
+08rseiv	Conciertos
+03n17d7	{ready} listos
+1vgexli	{done} de {length}
+02zyyv8	Concierto diario listo
+1reuah4	Gira en solitario en marcha
+0u73zav	Siguiente: oleada {n} de Bis
+1xxqbrb	{"one":"{n} ensayo abierto","other":"{n} ensayos abiertos"}
+1vzcv0c	La gira paga hoy
+1i8e16b	Primer concierto en el nivel {n}
+1skvt3i	Todo jugado hoy
+0azt7u3	Se desbloquea en el nivel {unlock}
+0mbqao6	Ganado hoy
+1m0zof0	Siguiente: oleada {wave}
+0sssj9z	Lo mejor de la semana: {weekBest}
+0bv6gmn	Se desbloquea tras el piso 10
+09hmetg	{"one":"{n} jefe disponible","other":"{n} jefes disponibles"}
+1qt0ibb	Todo jugado
+1w35moz	{"one":"Se reinicia mañana","other":"Se reinicia en {n} días"}
+1mf63c1	Sin conjunto
+1s9gkj5	Piso anterior
+06lywvr	Piso siguiente
+127oer9	Superado · Enemigos Nv {n}
+1byxumh	Experiencia
+1lr0g08	+1 Legendario
+1lafnle	Probabilidad de equipo
+0dr6vfq	{name}, nivel {lvl}, tu banda es fuerte contra él. Ver sus movimientos
+0k11ss3	{name}, nivel {lvl}, fuerte contra tu banda. Ver sus movimientos
+1twb6b1	{name}, nivel {lvl}. Ver sus movimientos
+1i8jmgf	Nv {n} · jefe
+03c3p2r	Nv {n}
+02k9jns	Le pegas más fuerte
+0af1lm1	Te pega más fuerte
+1eenfp5	{"one":"Los enemigos te sacan {n} nivel","other":"Los enemigos te sacan {n} niveles"}
+0d8gyft	Seguir avanzando: sí
+0jkleb9	Seguir avanzando: no
+0y8m6so	Batalla automática
+15hb32v	Luchar
+10tx3xo	Lucha contra los enemigos de arriba
+0sh945i	Mapa: {n}, piso {n2}. Ver todas las regiones
+19rtxhg	El mundo, bis {n}
+1f41oeh	El camino al piso 100
+1ki85pn	Pisos {a}–{b} · vuelve a cantar
+1grm6vy	Pisos {a}–{b} · silenciado por {din}
+18s8a97	Aquí
+0mxtf0p	hueco libre
+1whegdc	Toca tu mascota
+1tmmxpq	Sobre {n}
+1rkfalq	Cambiar
+1ybtjd0	Llena los tres huecos.
+1rlp9ke	Hacen falta <b>3 familias distintas</b> o <b>3 de la misma</b>.
+1q7gv3d	Posibles: <b>{list}</b>
+10ubeg8	Todos los conjuntos
+1c5mvf7	A la aventura
+02u5zbh	¿Listos? En marcha
+05o74q3	¿Quién va aquí?
+18z83m5	Dejar este hueco vacío
+19xt0al	3 familias distintas o 3 de la misma.
+0jtpxy5	En uso
+1g5f5vb	Faltan mascotas
+0dzuldu	Tocado
+12mrurj	Aún sin tocar
+1p633z1	{"one":"{n} concha por abrir","other":"{n} conchas por abrir"}
+0ost8of	No hay conchas ahora mismo
+1stb3ay	Tu primera mascota está dentro. <b>Toca la concha.</b>
+0fi2qkf	Una <b>mascota al azar</b>. Si ya la tienes, se convierte en un <b>eco</b>.
+1r45u9w	Los jefes dejan conchas. Las notas compran más.
+0zvrdho	Abrir una concha
+1mhuvb6	Comprar una concha
+0hv9zs9	Elijo a {n}
+0oe9ixr	¡Había tres mascotas dentro!
+0mecjw0	Elige una. Las otras aparecerán más tarde.
+0tlq0tf	¡Nueva mascota!
+1sy6y67	Otro {base}
+0i0wqsf	Otro {base} (tu {n})
+0say7eo	{"one":"+{n} eco de {pet}","other":"+{n} ecos de {pet}"}
+1mw6eu2	{"one":"Abrir otra (queda {n})","other":"Abrir otra (quedan {n})"}
+1taelf6	¡Vamos!
+13cn9g1	Hecho
+0to0bon	{have} / {need} ecos
+0ow97sa	Evolucionar a
+0ay0li2	Nuevo Especial
+1jxgm35	Elige uno. Cambiar luego es gratis.
+1yylcbd	Los ecos salen de conchas, jefes, ensayos y logros.
+1128a0z	Estrellas {n} / {max}
+1i6zzkz	Añadir estrella · +3% de PV y Poder
+1n5ofxj	Esta mascota está al máximo.
+1hgwrl8	Ponte aquí el equipo
+051r6dq	Hueco vacío
+0xpvvet	Movimientos
+083gk8g	Cambiar de rama
+19b2u1a	¡Genial!
+1eq65tc	Evolucionar
+1mntkmf	{have} / {n} ecos
+0we11jd	Gratis, todas las veces que quieras.
+0v7hfzm	Quitárselo
+0hpqcmx	Cambiar por
+12sm7bj	En tu bolsa
+08kj2qr	¡Listo! Vuelve y sigue luchando.
+19ky8vr	No hay nada más en tu bolsa.
+0ggizsd	Tu bolsa está vacía.
+1j0zoai	Aún no hay nada
+0musznz	Las batallas a veces dan equipo.
+0am4v1q	3 piezas sobrantes de un tipo se fusionan en una mejor.
+10ttus6	Fusionar 3 {item} → {rarity}
+1fkec2w	¡Fusionado!
+0h4pk9n	<b>{n}</b> lo lleva puesto.
+0rrnf75	Nadie lo lleva puesto.
+0xide7m	Quitárselo a {n}
+03295io	Ir a {n}
+0ngmxng	Fusionar 3 → {n}
+0br649q	Fusión: {length} / 3 sobrantes
+1pquyhx	Vender
+0ix7gem	Se abre tras el jefe del piso 10.
+067l7h2	Los jefes vencidos vuelven a <b>tu nivel</b>.
+12rgeuk	Todo ganado esta semana
+1vgwehg	{din}, {region}, ganado esta semana
+0qjjz61	{din}, {region}, premio: 1 eco
+1fqbflp	Bis se abre en el nivel {unlock}.
+03scfen	Fuera
+08gv74u	Oleadas sin fin, cada una algo más dura. Los PV se mantienen, y una cuarta parte vuelve tras cada oleada.
+1nvt7jn	Esta semana
+15kcesy	Lo mejor de la semana <b>{week}</b> · récord <b>{best}</b>
+15jnq83	{"one":"se reinicia mañana","other":"se reinicia en {n} días"}
+04pp0j3	Jugar la oleada {wave}
+1ywcpar	Terminar esta partida
+0asw5g5	Empezar Bis
+03839q1	Nuevo escenario: {set}
+1078zjl	Escenario: {set}
+0f8duxs	Piso actual
+03yitl0	Escenario de Inicio
+00n1act	Hecho.
+19cqi1l	Reclama 1 eco.
+1c6dls2	Premio: 1 eco.
+0rfmv4f	Reclamar
+1cnat5z	Gana un ensayo con cada conjunto
+0l8z7n2	<b>¡Subes de nivel!</b>
+15eua8j	Esta vez no
+0982hh6	Reintentar
+0xuoasm	{h} h {m} min
+0z7rxr8	{m} min
+1sawk0u	Hoy
+1yetfcu	Entrada individual
+0i43ri6	Cobrado hoy
+0wv5s44	Notas por la victoria de esta noche
+0cfkl9x	Esta noche · {date}
+0l3ql07	Regla de la casa
+0ohh9of	En el escenario · Nv {level}
+1d8xe0i	Ganado esta noche
+16gyw2s	Tus dos primeras mascotas
+1ginijz	Nuevo concierto en {msToTomorrow}
+1izp7up	Reintenta cuanto quieras
+1vy1lnc	Tocar otra vez
+1dt0t41	Tocar el concierto
+16jnn15	¡Concierto ganado!
+0hqkd91	¡Otro gran concierto!
+0t1b6a6	Ya cobrado hoy
+18imhfd	Las luces se apagaron antes que los Din.
+0d1n3lp	Reintenta cuanto quieras.
+1lzfam5	Volver al cartel
+0yjpaj1	Una mascota · cinco conciertos · un jefe
+1yve732	Concierto {n}
+1ol94ul	{n} + equipo
+0fnhp9o	Jefe
+0xl0w5y	Las 5 primeras victorias en conciertos y la primera contra el jefe pagan cada día. Nueva paga en {msToTomorrow}.
+1611szw	Todo cobrado hoy. Las giras siguen contando para divertirte y ganar experiencia.
+1iiozi7	De gira · {n}
+1ge46m3	{gigs} de 5 conciertos ganados
+0eo55r4	{"one":"{n} bendición","other":"{n} bendiciones"}
+0s77dwq	De vuelta a la carretera
+0vcj9z8	Abandonar la gira
+0nydgv5	¿Abandonar la gira?
+0gcqlob	Las notas son tuyas.
+1jqit4p	Abandonar
+07pfpca	El camino se adapta a tu solista.
+1jomgr2	Empezar la gira con {n}
+0wqg5d6	Elige a tu solista
+0mtitlv	{boons}. Verlas
+0pk5huj	Aún sin bendiciones
+10kjgrl	Combo
+0azrw18	{n} · Nv {level}
+0jndyot	Ahora el jefe
+02zvux1	Combo con {n}: {d}
+0d1xs4z	Bendiciones de esta gira
+0ls4fiu	Combos
+00u5kof	Gana conciertos y toca en jams para reunir bendiciones. Duran toda la gira.
+1ivwi98	{p} de Poder
+1czrh23	{p} de PV
+18dqeg6	De la carretera: {list}
+1jeu1u6	Concierto
+0yik53o	Concierto ruidoso
+1no7203	Jam
+1f5g7va	Misterio
+030xvgf	Salida
+0rcomre	‹ Conciertos
+1nz9721	Gira por {region}
+1y1z148	El escenario de {din}
+0suqviq	{stop}, puedes ir aquí
+10yi615	{stop}, visitado
+0bloln1	{stop}
+0y4qqu7	No está en tu camino. Las paradas que brillan son las siguientes.
+17lnddt	Tu gira empieza aquí. Elige un camino.
+0nbrgm6	Elige la siguiente parada. Toca una para verla.
+0zqhp1s	Gira en solitario
+1p7xg55	5 conciertos y luego {n}
+0acptz9	Un escenario pequeño.
+1idq6xu	Un público alborotado y Din más duros.
+0mkdcb6	La última parada de la gira.
+0wsnj4k	Dormir o ensayar.
+1g00h8i	Toca con ellos para ganar una bendición.
+1bqe9lc	Aquí pasa algo.
+0cbomgp	Bendición rara
+0cm0w8n	Bendición
+0unuhh5	Victoria
+18w23xo	Enfrentarse al jefe
+0z0syb8	Tocar este concierto
+1lkop6h	Ir allí
+0jar724	Todavía no
+0pv5mv6	El camino
+1qd1crm	Dos Din. Gana para conseguir una bendición.
+05me9k8	Din más duros. Gana para conseguir una bendición rara.
+0fqmz7h	Cúrate un 40% o ensaya para ganar +10% de Poder.
+18gfynz	Elige una bendición.
+0m8hcnl	Una elección, buena o arriesgada.
+14v8vbh	El final de la gira.
+0vozr6z	Los PV pasan de un concierto al siguiente. El público se impacienta si un concierto se alarga: cada golpe pega más fuerte.
+0i9n2t3	El público enloquece
+0e67mga	Rebuscar en la caja
+17cajel	Elige una bendición rara
+0crwowb	Elige una bendición
+14mzec6	Coger {n}
+00dbte5	¿Saltar esta bendición?
+19b6o8k	Esta parada no da otra.
+0rhzcma	Una noche tranquila en la carretera
+0d7yc2w	Dormir
+0yis9fp	PV {now} → {heal}
+1ko57eo	Ensayar
+0iibvtx	+{n}% de Poder en esta gira
+1vj67te	Has conseguido
+0qvo2av	¡Concierto ruidoso ganado!
+04ymvaf	¡Qué jaleo!
+1eea2cs	PV {n}%
+0wc81n0	Notas de esta gira
+0cc3ko5	¡Gira completada!
+0x5rhez	Fin de la gira
+1vcaw9j	Tu solista
+11w4s05	<b>{pet}</b> ganó los cinco conciertos y al jefe.
+1rb3v2o	<b>{n} de 5</b> conciertos ganados.
+1t4vb48	Y el jefe soltó
+17kf24l	Probar otra gira
+1k3jeja	Otra gira
+02dv84d	<b>{pets}</b> <span class="dim">son fuertes contra él.</span>
+06u84tt	<b>{pets}</b> <span class="dim">es fuerte contra él.</span>
+1jh7dyr	<span class="dim">Es fuerte contra</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Nv {lvl}
+0j8axo0	de {max}
+0xw1kwq	<b>Escudo.</b> <span class="dim">Absorbe los próximos {shield} de daño.</span>
+0fuwg7s	Durante {t}.
+03ojm4e	¿Dejar esta oleada?
+104x6pe	Tu partida termina aquí. Las recompensas son tuyas.
+1xf0sbk	Salir
+0l14tjq	¿Dejar este concierto?
+17mnxxq	Tu gira termina aquí. Las notas son tuyas.
+113qxrx	Terminar la gira
+0ax5053	¿Dejar el concierto?
+1ymwhol	Inténtalo cuando quieras.
+0iou6h7	¿Dejar esta batalla?
+0b3qhh2	No pierdes nada.
+0ssgire	Dejar la batalla
+1jmvu80	Gira · jefe
+0lrhoo2	Gira · concierto {n}
+1olfrt8	Ensayo {n}
+0bigcx0	{"one":"queda {n}","other":"quedan {n}"}
+05trtda	en {n}
+0qn7msh	¡Impaciente!
+0ujdg0z	Regla de la casa: {n}
+1epghlp	El público
+13qzva8	El público se impacienta: cada golpe pega más fuerte con cada turno.
+0540b06	Auto
+1fn0bdg	Usar
+07t8f32	Movimiento básico
+0wv4sck	Prepárate
+1gig116	necesita el micro
+1dafg0x	listo en {t}
+12udzhb	descansa {t} tras usarlo
+0eoacl7	siempre listo
+09mc5ki	Movimiento extra
+1mzzz6r	{move}, necesita el micro
+1cbobby	Turno enemigo
+1s58kd5	La batalla automática está activada
+0o9tv84	Solo la mascota con el micro puede usarlo.
+1yv3h7m	Aún no está listo. Elige otro movimiento.
+0xt3jlr	Toca a un enemigo para usarlo, o pulsa Usar.
+0bbedtn	Pulsa Usar.
+1i1wq4v	Solo la mascota con el micro puede usar eso.
+1o29ocf	Ese movimiento aún no está listo.
+1k3jdut	Tiene que golpear al que tiene Provocar.
+0amsa7g	Mantén pulsado para ver sus estadísticas y movimientos.
+19s7xp8	¡Tu turno! Toca al enemigo para atacarlo.
+1xkyhxm	Toca un icono redondo para elegir otro movimiento.
+1xatr8w	Flecha verde: tu mascota es fuerte contra ese enemigo.
+1fo7mmm	La línea amarilla muestra a quién le toca después.
+1gg5fya	Bloqueo
+0nz7kx7	¡Crítico!
+03sm2ze	Fuerte
+0uhuaqx	Débil
+001d664	Esquivado
+169g4lg	Aturdido
+13qsw78	{name} está aturdido y pierde un turno
+0b538j2	¡Se levanta!
+0kaw7l1	Antes
+0pb3b0x	¡Cambia!
+1o2e5hh	¡El público se impacienta!
+0h1zwxb	¡Cambio de tonalidad!
+1rzr4qi	¡Patata caliente!
+0yrhd9v	¡Micro!
+167szal	Bis · oleada {n}
+1ryq1vy	Gira en solitario · la última parada
+0wdzx1i	Concierto diario · {n}
+0ncefmr	Jefe · piso {n}
+0vh77hq	Toca para saltar
+0wqg7ri	VS
+01lmez5	Concierto diario · {venue}
+0d68t5f	Toca para empezar
+0jleco1	¡Has ganado!
+1jc3an7	Tu banda ha caído
+13ssvg2	¡Oleada {wave} superada!
+1mh43qm	Premio semanal: oleada {n}
+0catbos	Siguiente premio: oleada {n}
+0kbukl4	Todos los premios ganados esta semana
+1cprp2x	Parar aquí
+0nzp3il	Fin del Bis
+1ut9ian	{"one":"Has superado <b>{n}</b> oleada.","other":"Has superado <b>{n}</b> oleadas."}
+0ty85y2	Récord: <b>{n}</b>.
+0sxepax	Volver a Bis
+1mbtrrm	Subida de nivel
+1t44dyo	{"one":"¡Subes de nivel!","other":"¡+{n} niveles!"}
+0jgpwku	Siguiente nivel
+1upuqw4	Un logro está listo
+1oyw1a7	¡Ensayo completado!
+1p1n9oo	Más ensayos
+0tmft7x	Ensayos
+1olud0e	¡Jefe vencido!
+0hcfevc	¡Piso superado!
+1lol7z1	Repetir no paga notas.
+0rbs9h4	Has encontrado
+1j1b8hw	Al jefe
+0to2fym	Siguiente piso
+1pob5wr	Jugar otra vez
+1h119dp	<b>Ahora viene un jefe.</b> Revisa tu banda antes.
+08xkpxs	Siguiente piso en {left}
+1ft5bxw	Consejo: <b>{n}</b> puede crecer.
+1y4qsj9	Consejo: tienes una concha por abrir.
+0ee4m6n	Consejo: hay equipo en tu bolsa que nadie lleva puesto.
+17h3lmh	Consejo: ganar un ensayo paga un eco.
+1yxlsvo	Consejo: tus mascotas podrían formar un conjunto.
+11jmiib	Consejo: prueba otra banda o repite un piso anterior para subir de nivel.
+03eg7mm	Consejo: repite un piso anterior para subir de nivel y vuelve.
+1uopv4k	¡Has encontrado una concha!
+16ub219	Dentro hay una mascota. Ábrela en <b>Conchas</b>.
+03ywr4q	Enséñamela
+07hdxv7	¡Has encontrado equipo!
+15xrlrb	Cada mascota lleva dos piezas. Pónselas desde su página.
+
+16us7mj	Idioma

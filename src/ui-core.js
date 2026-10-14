@@ -1,6 +1,7 @@
 /* Hushsong — interface plumbing: sizing, saving, navigation, shared pieces. */
 (function (H) {
   'use strict';
+  const tr = (s, v) => H.T(s, v);
   const A = H.Art, Au = H.Audio;
   const UI = (H.UI = { screens: {}, cur: null, W: 180, Hh: 300, u: 2, frame: 0 });
   const SAVE_KEY = 'hushsong.save.v4', OLD_KEY = 'hushsong.save.v3';
@@ -20,31 +21,38 @@
       const dx = R.left < G.left + pad ? G.left + pad - R.left : R.right > G.right - pad ? G.right - pad - R.right : 0; if (dx) t.style.marginLeft = dx + 'px'; });
     return b;
   };
-  UI.gearKey = (fn) => { const b = UI.key('', fn, 'sm menuk'); b.appendChild(UI.icon('ic_gear')); b.setAttribute('aria-label', 'Menu'); return b; };
+  UI.gearKey = (fn) => { const b = UI.key('', fn, 'sm menuk'); b.appendChild(UI.icon('ic_gear')); b.setAttribute('aria-label', tr('Menu')); return b; };
   UI.bgEl = (k, w, h, hf, mode) => { const src = A.bgMode(k, w, h, hf, mode), c = A.make(src.width, src.height); c.getContext('2d').drawImage(src, 0, 0); c.className = 'bgc'; c.style.width = `calc(var(--u) * ${w})`; c.style.height = `calc(var(--u) * ${h})`; return c; };
 
-  const stNames = Object.values(H.STATUS).map((s) => s.n).sort((a, b) => b.length - a.length);
-  const stRe = new RegExp('\\b(' + stNames.join('|') + ')\\b', 'g');
-  const stBad = new Set(Object.values(H.STATUS).filter((s) => !s.buff).map((s) => s.n));
-  UI.rich = (s) => String(s).replace(stRe, (m) => `<b class="st ${stBad.has(m) ? 'bad' : ''}">${m}</b>`);
+  // status names in move text, picked out in bold; built again when the language changes
+  let stRe = null, stBad = null, stLang = '';
+  const stBuild = () => {
+    const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), names = Object.values(H.STATUS).map((s) => esc(s.n)).sort((a, b) => b.length - a.length).join('|');
+    const cjk = H.lang === 'ja' || H.lang === 'zh' || H.lang === 'ko';
+    stRe = new RegExp(cjk ? '(' + names + ')' : '(?<![\\p{L}])(' + names + ')(?![\\p{L}])', 'gu');
+    stBad = new Set(Object.values(H.STATUS).filter((s) => !s.buff).map((s) => s.n)); stLang = H.lang;
+  };
+  UI.rich = (s) => { if (stLang !== H.lang || !stRe) stBuild(); return String(s).replace(stRe, (m) => `<b class="st ${stBad.has(m) ? 'bad' : ''}">${m}</b>`); };
   UI.famChip = (fam) => UI.add(el('span', 'chip ' + fam), UI.icon('fam_' + fam), H.FAMILIES[fam].n);
   UI.roleChip = (role) => UI.add(el('span', 'chip'), UI.icon('role_' + role), H.ROLES[role].n);
+  // a row of stat cells: [[value, English label], …]
+  UI.statsHTML = (cells) => cells.map(([v, l]) => `<div><b>${v}</b><span class="label">${H.T(l)}</span></div>`).join('');
   UI.fmt = (n) => (n >= 1e6 ? (n / 1e6).toFixed(n >= 1e7 ? 0 : 1) + 'M' : n >= 1e4 ? (n / 1e3).toFixed(n >= 1e5 ? 0 : 1) + 'k' : String(n));
   UI.purse = (icon, n, label) => { const p = UI.add(el('span', 'purse'), UI.icon(icon), el('span', 'pn', typeof n === 'number' ? UI.fmt(n) : String(n))); if (label) p.setAttribute('aria-label', label + ': ' + n); return p; };
-  UI.notes = (n) => UI.purse('ic_note', n, 'Notes');
-  UI.echoes = (n) => UI.purse('ic_echo', n, 'Echoes');
+  UI.notes = (n) => UI.purse('ic_note', n, tr('Notes'));
+  UI.echoes = (n) => UI.purse('ic_echo', n, tr('Echoes'));
   // the two currencies, shown at the top of every menu
   UI.wallet = () => [UI.notes(UI.S.notes), UI.echoes(UI.S.echo || 0)];
   // The first time echoes turn up, a few words on what they are for.
   // The first time each kind of echo turns up, a few words on what it is for. pet: whose echoes they are (from a shell).
   UI.echoIntro = (pet) => {
     const S = UI.S, k = pet ? 'petEchoIntro' : 'echoIntro'; if (S.flags[k]) return null; S.flags[k] = 1; const n = pet && H.FORMS[H.petSpecies(pet)].n;
-    return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? `You found ${n} echoes!` : 'You found an echo!'),
-      el('div', 'small', pet ? `They help ${n} evolve, and later buy stars.` : 'Plain echoes help any pet evolve. Spend them on a pet\'s page.'))); };
+    return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? tr('You found {n} echoes!', { n }) : tr('You found an echo!')),
+      el('div', 'small', pet ? tr('They help {n} evolve, and later buy stars.', { n }) : tr('Plain echoes help any pet evolve. Spend them on a pet\'s page.')))); };
   // after a level up: the modes that just opened
-  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
+  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, H.T.k('Daily Gig')], [H.SOLO.unlock, H.T.k('Solo')], [H.ENCORE.unlock, H.T.k('Encore')]].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', tr('<b>New on Home:</b> {modes}', { modes: H.T.list(got.map((x) => tr(x[1]))) }))) : null; };
   // a slim row of rewards along a line: [{ k: what it is for, icon, n: how much, got }]. A paid one shows a tick.
-  UI.track = (steps, cls) => { const t = el('div', 'rtrack ' + (cls || '')); steps.forEach((x) => { const p = el('span', 'rt' + (x.got ? ' got' : '') + (x.wide ? ' wide' : '')); if (x.k != null) p.appendChild(el('i', '', String(x.k))); p.appendChild(UI.icon(x.got ? 'ic_check' : x.icon, x.got ? 0.62 : 0.6)); if (x.n != null) p.appendChild(el('b', '', String(x.n))); p.setAttribute('aria-label', (x.label || '') + (x.got ? ', paid' : '')); t.appendChild(p); }); return t; };
+  UI.track = (steps, cls) => { const t = el('div', 'rtrack ' + (cls || '')); steps.forEach((x) => { const p = el('span', 'rt' + (x.got ? ' got' : '') + (x.wide ? ' wide' : '')); if (x.k != null) p.appendChild(el('i', '', String(x.k))); p.appendChild(UI.icon(x.got ? 'ic_check' : x.icon, x.got ? 0.62 : 0.6)); if (x.n != null) p.appendChild(el('b', '', String(x.n))); p.setAttribute('aria-label', x.got ? tr('{label}, paid', { label: x.label || '' }) : x.label || ''); t.appendChild(p); }); return t; };
   // celebrations: confetti bursting from the middle, or raining from the top; a rubber stamp that lands with a thump
   UI.confetti = (n, rain) => {
     const g = document.getElementById('game'); if (!g || window.__hsSpeed) return; const c = el('div', 'confetti' + (rain ? ' rain' : '')), cols = ['#ff6b5e', '#ffc928', '#2fd0d0', '#6fd46a', '#c88af8', '#ff9ad8', '#ffffff'];
@@ -60,16 +68,16 @@
   // the tab bar under the main screens
   UI.nav = (cur) => {
     const S = UI.S, n = el('div', 'nav');
-    for (const [id, icon, name, pip] of [['home', 'ic_home', 'Home', H.recordsReady(S) ? '!' : 0], ['team', 'ic_team', 'Band', 0], ['pets', 'ic_pets', 'Pets', H.canEvolveAny(S) ? '!' : 0], ['shells', 'ic_shell', 'Shells', S.shells], ['bag', 'ic_bag', 'Bag', H.mergeGroups(S).length ? '!' : 0]]) {
-      const b = el('button', 'tab' + (id === cur ? ' on' : '')); b.type = 'button'; if (id === cur) b.setAttribute('aria-current', 'page'); UI.add(b, UI.icon(icon, icon === 'ic_shell' ? 1.16 : 1), el('span', '', name)); if (pip) b.appendChild(el('span', 'pip', String(pip))); UI.coach(b, id === 'shells' && S.flags.coach === 'shell' && cur !== 'shells', 'Open your shell here');
+    for (const [id, icon, name, pip] of [['home', 'ic_home', tr('Home'), H.recordsReady(S) ? '!' : 0], ['team', 'ic_team', tr('Band'), 0], ['pets', 'ic_pets', tr('Pets'), H.canEvolveAny(S) ? '!' : 0], ['shells', 'ic_shell', tr('Shells'), S.shells], ['bag', 'ic_bag', tr('Bag'), H.mergeGroups(S).length ? '!' : 0]]) {
+      const b = el('button', 'tab' + (id === cur ? ' on' : '')); b.type = 'button'; if (id === cur) b.setAttribute('aria-current', 'page'); UI.add(b, UI.icon(icon, icon === 'ic_shell' ? 1.16 : 1), el('span', '', name)); if (pip) b.appendChild(el('span', 'pip', String(pip))); UI.coach(b, id === 'shells' && S.flags.coach === 'shell' && cur !== 'shells', tr('Open your shell here'));
       b.addEventListener('click', () => { if (id === cur) return; Au.sfx('tap'); UI.go(id, {}); }); n.appendChild(b);
     }
     return n;
   };
   UI.moveCard = (kind, ab, isNew) => {
-    const names = { beat: 'Basic', phrase: 'Skill', finale: 'Special', passive: 'Always on' };
-    const cd = kind === 'passive' ? '' : ab.cd ? ` · wait ${ab.cd}` : ' · any time';
-    return el('div', 'move ' + kind + (isNew ? ' new' : ''), `<div class="hd"><b>${ab.n}</b><span class="label">${names[kind]}${cd}${isNew ? ' · new' : ''}</span></div><div class="dim small">${UI.rich(ab.fx ? H.describe(ab) : ab.d)}</div>`);
+    const names = { beat: tr('Basic'), phrase: tr('Skill'), finale: tr('Special'), passive: tr('Always on') };
+    const cd = kind === 'passive' ? '' : ' · ' + (ab.cd ? tr('wait {n}', { n: ab.cd }) : tr('any time'));
+    return el('div', 'move ' + kind + (isNew ? ' new' : ''), `<div class="hd"><b>${ab.n}</b><span class="label">${names[kind]}${cd}${isNew ? ' · ' + tr('new') : ''}</span></div><div class="dim small">${UI.rich(ab.fx ? H.describe(ab) : ab.d)}</div>`);
   };
   UI.formInfo = (formId, markNew) => {
     const f = H.FORMS[formId], kit = H.kitOf(formId), out = [], nw = (k) => markNew && !!f[k];
@@ -126,49 +134,75 @@
     A.tick(UI.frame); UI.save();
   };
   UI.redraw = () => UI.go(UI.cur.name, UI.cur.params);
+  /* text that does not fit its box (longer words in other languages) is set a little smaller, down to 70%, before it is cut */
+  const FIT = '.key, .disp, .ptwn, .ftitle, .pvenue, .label, .stats .label, .cnm, .ftitle, .fkick, .fsub, .sub, .tag, .lunm, .stagepill, .phint, .pkick, .pvenue, .pregion, .rn, .tabs .tab span, .seg button, .chip, .small';
+  const fitEl = (e) => {
+    if (!e.isConnected) return; if (e.dataset.fs0 == null) e.dataset.fs0 = e.style.fontSize || ''; e.style.fontSize = e.dataset.fs0;
+    const w = e.clientWidth; if (!w || e.scrollWidth <= w + 1) return;
+    const f = parseFloat(getComputedStyle(e).fontSize); e.style.fontSize = (f * Math.max(0.7, (w - 1) / e.scrollWidth)).toFixed(2) + 'px';
+  };
+  const fitQ = new Set(); let fitT = 0;
+  const fitRun = () => { fitT = 0; const roots = [...fitQ]; fitQ.clear(); for (const r of roots) { if (!r.isConnected) continue; if (r.matches && r.matches(FIT)) fitEl(r); if (r.querySelectorAll) r.querySelectorAll(FIT).forEach(fitEl); } };
+  UI.fit = (root) => { fitQ.add(root); if (!fitT) fitT = requestAnimationFrame(fitRun); };
+  UI.fitWatch = () => { const mo = new MutationObserver((ms) => { for (const m of ms) { if (m.type === 'characterData') { if (m.target.parentElement) UI.fit(m.target.parentElement); } else for (const n of m.addedNodes) if (n.nodeType === 1) UI.fit(n); else if (n.parentElement) UI.fit(n.parentElement); } }); for (const id of ['screen', 'modal']) mo.observe(document.getElementById(id), { childList: true, subtree: true, characterData: true }); };
   UI.modal = (...kids) => { const m = document.getElementById('modal'); m.innerHTML = ''; const s = UI.box('sheet', ...kids); m.appendChild(s); m.hidden = false; A.tick(UI.frame); return s; };
   UI.closeModal = () => { clearInterval(UI.chainT); const m = document.getElementById('modal'); m.hidden = true; m.innerHTML = ''; };
   let toastT = null;
   UI.toast = (msg) => { const t = document.getElementById('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => (t.hidden = true), 1800); };
-  UI.confirm = (title, body, yes, fn, cls) => UI.modal(UI.txt('disp', title), UI.txt('dim', body), UI.key(yes, () => { UI.closeModal(); fn(); }, 'wide ' + (cls || 'gold')), UI.key('Cancel', UI.closeModal, 'wide soft'));
-  UI.topbar = (title, back, right) => { const bar = el('div', 'bar'); if (back) bar.appendChild(UI.key('‹ Back', () => { Au.sfx('back'); back(); }, 'soft sm')); bar.appendChild(el('div', 'disp', title)); UI.add(bar, right); return bar; };
+  UI.confirm = (title, body, yes, fn, cls) => UI.modal(UI.txt('disp', title), UI.txt('dim', body), UI.key(yes, () => { UI.closeModal(); fn(); }, 'wide ' + (cls || 'gold')), UI.key(tr('Cancel'), UI.closeModal, 'wide soft'));
+  UI.topbar = (title, back, right) => { const bar = el('div', 'bar'); if (back) bar.appendChild(UI.key(tr('‹ Back'), () => { Au.sfx('back'); back(); }, 'soft sm')); bar.appendChild(el('div', 'disp', title)); UI.add(bar, right); return bar; };
   UI.music = (mode, prog, hold) => Au.music.set(mode, mode === 'silent' ? [] : Au.layersFor(H.teamPets(UI.S)), (H.REGIONS[prog] && H.REGIONS[prog].prog) || prog, prog, hold);
 
   /* how to play, in one sheet */
   UI.help = () => {
     const loop = el('div', 'loop'); H.FAMILY_ORDER.forEach((f) => UI.add(loop, UI.famChip(f), UI.txt('dim', '›'))); loop.appendChild(UI.famChip('drum'));
     const sec = (t, ...lines) => [UI.txt('label', t), ...lines.map((l) => UI.txt('dim', l))];
-    const kids = [UI.txt('disp', 'How to play'),
-      UI.txt('', 'Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.'),
-      UI.txt('', 'Pets and enemies act when their yellow bar fills. <b>Tap an enemy</b> to use the chosen move on it, tap a round icon to switch moves, and <b>press and hold</b> anyone to see their stats. While you aim, the blinking part of a health bar is what the move will take.'),
-      UI.txt('label', 'Stats')];
-    [['HP', 'Damage it can take before it falls.'], ['Power', 'How hard its moves hit, heal and shield.'], ['Guard', 'Cuts the damage it takes. 50 Guard takes a third off.'], ['Speed', 'How often it gets a turn.'], ['Crit', 'Chance that a hit deals 50% more. Every pet starts at 5%.']]
-      .forEach(([n, d]) => kids.push(UI.box('row', UI.txt('stat-n', `<b>${n}</b>`), UI.txt('grow small dim', d))));
-    kids.push(UI.txt('label', 'Families'), UI.txt('dim', 'Each beats the next in the loop: 30% more damage dealt, 20% less taken.'), loop, UI.txt('label', 'Effects'), UI.txt('dim', 'The number on an effect is the turns it has left.'));
-    Object.keys(H.STATUS).forEach((s) => kids.push(UI.box('row', UI.icon('st_' + s), UI.txt('grow small', `<b>${H.STATUS[s].n}.</b> <span class="dim">${H.STATUS[s].d}</span>`))));
+    const kids = [UI.txt('disp', tr('How to play')),
+      UI.txt('', tr('Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.')),
+      UI.txt('', tr('Pets and enemies act when their yellow bar fills. <b>Tap an enemy</b> to use the chosen move on it, tap a round icon to switch moves, and <b>press and hold</b> anyone to see their stats. While you aim, the blinking part of a health bar is what the move will take.')),
+      UI.txt('label', tr('Stats'))];
+    [[H.T.k('HP'), H.T.k('Damage it can take before it falls.')], [H.T.k('Power'), H.T.k('How hard its moves hit, heal and shield.')], [H.T.k('Guard'), H.T.k('Cuts the damage it takes. 50 Guard takes a third off.')], [H.T.k('Speed'), H.T.k('How often it gets a turn.')], [H.T.k('Crit'), H.T.k('Chance that a hit deals 50% more. Every pet starts at 5%.')]]
+      .forEach(([n, d]) => kids.push(UI.box('row', UI.txt('stat-n', `<b>${tr(n)}</b>`), UI.txt('grow small dim', tr(d)))));
+    kids.push(UI.txt('label', tr('Families')), UI.txt('dim', tr('Each beats the next in the loop: 30% more damage dealt, 20% less taken.')), loop, UI.txt('label', tr('Effects')), UI.txt('dim', tr('The number on an effect is the turns it has left.')));
+    Object.keys(H.STATUS).forEach((s) => kids.push(UI.box('row', UI.icon('st_' + s), UI.txt('grow small', tr('<b>{n}.</b>', { n: H.STATUS[s].n }) + H.T.sep() + `<span class="dim">${H.STATUS[s].d}</span>`))));
     kids.push(
-      ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
-      ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
-      ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'Beaten bosses of floors 10 to 100 return at your level. Each pays an echo once a week, resetting on Monday.'),
-      ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
-      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.`),
-      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.`),
-      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.`),
-      ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
-      UI.key('Got it', UI.closeModal, 'wide go'));
+      ...sec(tr('Echoes and stars'), tr('Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.')),
+      ...sec(tr('Notes and experience'), tr('New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.')),
+      ...sec(tr('Ensembles'), tr('Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.')),
+      ...sec(tr('Rehearsal'), tr('Beaten bosses of floors 10 to 100 return at your level. Each pays an echo once a week, resetting on Monday.')),
+      ...sec(tr('Equipment'), tr('Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.')),
+      ...sec(tr('Daily Gig'), tr('From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.', { unlock: H.DAILY.unlock })),
+      ...sec(tr('Solo'), tr('From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.', { unlock: H.SOLO.unlock })),
+      ...sec(tr('Encore'), tr('From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.', { unlock: H.ENCORE.unlock })),
+      ...sec(tr('Records'), tr('Hard goals that pay shells, echoes and Home backdrops.')),
+      UI.key(tr('Got it'), UI.closeModal, 'wide go'));
     UI.modal(...kids);
   };
+  // languages, each in its own name; the game redraws in the new one
+  UI.langName = () => (H.LANGS.find((l) => l[0] === H.lang) || H.LANGS[0])[1];
+  UI.langPicker = () => {
+    const S = UI.S, list = UI.box('langs');
+    for (const [code, name] of H.LANGS) {
+      if (!H.langReady(code)) continue;
+      const b = UI.key('', async () => {
+        if (list.dataset.busy) return; list.dataset.busy = 1;
+        S.settings.lang = await H.loadLang(code); UI.save(); UI.closeModal(); UI.redraw();
+      }, 'wide ' + (code === H.lang ? 'gold' : 'soft'));
+      b.lang = code; UI.add(b, UI.el('span', 'grow', name), code === H.lang ? UI.icon('ic_check', 0.8) : null); list.appendChild(b);
+    }
+    UI.modal(UI.box('row center', UI.icon('ic_lang', 1.4), UI.txt('disp', tr('Language'))), list);
+  };
+  UI.langKey = (cls) => { const b = UI.key('', () => UI.langPicker(), cls || 'soft sm'); UI.add(b, UI.icon('ic_lang', 0.9), UI.el('span', '', UI.langName())); b.setAttribute('aria-label', tr('Language') + ': ' + UI.langName()); return b; };
   UI.settings = (extra) => {
     const S = UI.S, st = S.settings, apply = () => { Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound; Au.applyVol(); UI.save(); };
     const pct = (x) => Math.round(x * 100) + '%', vols = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
     const stepper = (label, key) => { const v = el('b', '', pct(st[key])); const mv = (d) => { st[key] = vols[Math.max(0, Math.min(10, vols.indexOf(st[key]) + d))]; v.textContent = pct(st[key]); apply(); }; return UI.box('row between', UI.txt('', label), UI.box('switch', UI.key('−', () => mv(-1), 'soft sm'), v, UI.key('+', () => mv(1), 'soft sm'))); };
-    const snd = UI.key(st.sound ? 'Sound: on' : 'Sound: off', () => { st.sound = st.sound ? 0 : 1; snd.innerHTML = st.sound ? 'Sound: on' : 'Sound: off'; apply(); }, 'wide soft');
-    UI.modal(UI.txt('disp', 'Menu'), extra || null, UI.key('How to play', () => UI.help(), 'wide soft'), snd, stepper('Music', 'music'), stepper('Effects', 'sfx'),
-      extra ? null : UI.key('Save code', () => UI.saveCode(), 'wide soft'),
-      UI.key('Close', UI.closeModal, 'wide'),
+    const snd = UI.key(st.sound ? tr('Sound: on') : tr('Sound: off'), () => { st.sound = st.sound ? 0 : 1; snd.innerHTML = st.sound ? tr('Sound: on') : tr('Sound: off'); apply(); }, 'wide soft');
+    UI.modal(UI.txt('disp', tr('Menu')), extra || null, UI.key(tr('How to play'), () => UI.help(), 'wide soft'), extra ? null : UI.langKey('wide soft'), snd, stepper(tr('Music'), 'music'), stepper(tr('Effects'), 'sfx'),
+      extra ? null : UI.key(tr('Save code'), () => UI.saveCode(), 'wide soft'),
+      UI.key(tr('Close'), UI.closeModal, 'wide'),
       // the one key that loses things sits apart, in red, and its question names what goes
-      extra ? null : UI.box('dangerzone', UI.key('Start over', () => UI.confirm('Erase this game?', `All ${S.pets.length} ${S.pets.length === 1 ? 'pet' : 'pets'}, your way to floor ${S.stage}, and every note, shell and echo are gone for good. A save code made first can bring them back.`, 'Erase everything', () => { UI.wipe(); UI.go('title'); }, 'danger'), 'wide danger sm')));
+      extra ? null : UI.box('dangerzone', UI.key(tr('Start over'), () => UI.confirm(tr('Erase this game?'), tr('All {pets}, your way to floor {stage}, and every note, shell and echo are gone for good. A save code made first can bring them back.', { pets: tr('{n} pets', { n: S.pets.length }), stage: S.stage }), tr('Erase everything'), () => { UI.wipe(); UI.go('title'); }, 'danger'), 'wide danger sm')));
   };
 
   /* a save you can carry: the whole game as one line of text */
@@ -176,23 +210,26 @@
   UI.encode = (S) => PRE + btoa(unescape(encodeURIComponent(JSON.stringify(S))));
   UI.decode = (code) => { try { const t = String(code).replace(/\s+/g, ''); if (!t.startsWith(PRE)) return null; const S = JSON.parse(decodeURIComponent(escape(atob(t.slice(PRE.length))))); return S && Array.isArray(S.pets) && S.pets.length && S.v >= 3 ? S : null; } catch (e) { return null; } };
   UI.saveCode = () => {
-    const out = el('textarea', 'code'); out.readOnly = true; out.value = UI.encode(UI.S); out.setAttribute('aria-label', 'Your save code'); out.addEventListener('focus', () => out.select());
-    const inp = el('textarea', 'code'); inp.placeholder = 'Paste a save code here'; inp.setAttribute('aria-label', 'Save code to load');
-    const copy = UI.key('Copy my code', () => { const done = () => UI.toast('Copied. Keep it somewhere safe.'); out.focus(); out.select(); try { navigator.clipboard.writeText(out.value).then(done, () => { try { document.execCommand('copy'); done(); } catch (e) { UI.toast('Select the text and copy it by hand.'); } }); } catch (e) { try { document.execCommand('copy'); done(); } catch (e2) { UI.toast('Select the text and copy it by hand.'); } } }, 'wide gold');
-    const load = UI.key('Load this code', () => { const S = UI.decode(inp.value); if (!S) { UI.toast('That is not a Hushsong save code.'); return; } UI.confirm('Load this save?', `It holds ${S.pets.length} pets on floor ${S.stage}. It replaces the game on this device.`, 'Load it', () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch (e) { /* no storage */ } try { const hot = window.claude && window.claude.hot; if (hot && hot.data) hot.data.S = null; } catch (e) { /* no hot data */ } UI.adopt(S); UI.go('title'); }); }, 'wide soft');
-    UI.modal(UI.txt('disp', 'Save code'), UI.txt('dim small', 'Your game saves itself on this device. This code is a copy to keep, or to carry on elsewhere.'), out, copy, UI.txt('label', 'Load a code'), inp, load, UI.key('Close', UI.closeModal, 'wide'));
+    const out = el('textarea', 'code'); out.readOnly = true; out.value = UI.encode(UI.S); out.setAttribute('aria-label', tr('Your save code')); out.addEventListener('focus', () => out.select());
+    const inp = el('textarea', 'code'); inp.placeholder = tr('Paste a save code here'); inp.setAttribute('aria-label', tr('Save code to load'));
+    const copy = UI.key(tr('Copy my code'), () => { const done = () => UI.toast(tr('Copied. Keep it somewhere safe.')); out.focus(); out.select(); try { navigator.clipboard.writeText(out.value).then(done, () => { try { document.execCommand('copy'); done(); } catch (e) { UI.toast(tr('Select the text and copy it by hand.')); } }); } catch (e) { try { document.execCommand('copy'); done(); } catch (e2) { UI.toast(tr('Select the text and copy it by hand.')); } } }, 'wide gold');
+    const load = UI.key(tr('Load this code'), () => { const S = UI.decode(inp.value); if (!S) { UI.toast(tr('That is not a Hushsong save code.')); return; } UI.confirm(tr('Load this save?'), tr('It holds {pets} on floor {stage}. It replaces the game on this device.', { pets: tr('{n} pets', { n: S.pets.length }), stage: S.stage }), tr('Load it'), () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch (e) { /* no storage */ } try { const hot = window.claude && window.claude.hot; if (hot && hot.data) hot.data.S = null; } catch (e) { /* no hot data */ } UI.adopt(S); UI.go('title'); }); }, 'wide soft');
+    UI.modal(UI.txt('disp', tr('Save code')), UI.txt('dim small', tr('Your game saves itself on this device. This code is a copy to keep, or to carry on elsewhere.')), out, copy, UI.txt('label', tr('Load a code')), inp, load, UI.key(tr('Close'), UI.closeModal, 'wide'));
   };
 
   UI.boot = () => {
-    UI.load(); UI.resize();
+    UI.load(); UI.resize(); UI.fitWatch();
     const st = UI.S.settings; Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound;
-    let rsT = null; window.addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(() => { const was = [UI.u, UI.W, UI.Hh, A.k].join(); UI.resize(); if ([UI.u, UI.W, UI.Hh, A.k].join() === was) return; if (UI.cur && UI.cur.name !== 'battle' && document.getElementById('modal').hidden) UI.redraw(); }, 180); });
+    let rsT = null; window.addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(() => { const was = [UI.u, UI.W, UI.Hh, A.k].join(); UI.resize(); UI.fit(document.getElementById('screen')); if ([UI.u, UI.W, UI.Hh, A.k].join() === was) return; if (UI.cur && UI.cur.name !== 'battle' && document.getElementById('modal').hidden) UI.redraw(); }, 180); });
     const wake = () => { const fresh = !Au.ctx; if (Au.init()) { Au.applyVol(); if (fresh) Au.music.set(Au.music.mode, Au.music.layers, Au.music.prog); } };
     window.addEventListener('pointerdown', wake); window.addEventListener('keydown', wake);
     setInterval(() => { UI.frame ^= 1; A.tick(UI.frame); }, 520);
     document.addEventListener('visibilitychange', () => { if (Au.ctx) { if (document.hidden) Au.ctx.suspend(); else Au.ctx.resume(); } });
     try { if (window.claude && window.claude.hot && window.claude.hot.snapshot) window.claude.hot.snapshot(() => ({ S: UI.S })); } catch (e) { /* not in a viewer */ }
-    const start = () => UI.go('title'); let begun = false; const once = () => { if (!begun) { begun = true; start(); } };
+    // the language: the one chosen before, else the device's on a first run
+    if (st.lang == null) st.lang = UI.S.pets.length ? 'en' : H.guessLang();
+    const langP = H.loadLang(st.lang).then((c) => { st.lang = c; }, () => {});
+    const start = () => langP.then(() => UI.go('title')); let begun = false; const once = () => { if (!begun) { begun = true; start(); } };
     try { Promise.all([document.fonts.load("800 20px 'Baloo 2'"), document.fonts.load("700 14px 'Nunito'")]).then(once, once); setTimeout(once, 1200); } catch (e) { once(); }
   };
 })(window.H);

@@ -1,0 +1,551 @@
+0f55hyc	Acerta um inimigo com {p}.
+1pnhot0	Escudo para si.
+15drddl	{st} em si por {t}.
+1nd99m8	Escudo para a banda toda.
+1qwd7ml	{st} na banda toda por {t}.
+1uwsay5	Acerta todos os inimigos com {p}.
+1q8cjc9	Acerta um inimigo {n} vezes com {p} cada.
+1076p36	Acerta todos os inimigos {n} vezes com {p} cada.
+1q2u71s	Cura o colega mais ferido em {p}.
+0ompy9w	Cura a banda toda em {p}.
+0u3dj57	Remove todos os efeitos negativos da banda toda.
+0onaigk	O colega mais lento joga o próximo turno antes.
+0khc9zz	Remove todos os efeitos negativos do colega mais ferido.
+190xcnu	{st} em um inimigo por {t}.
+0e7f6lw	{st} no colega mais forte por {t}.
+1bdc500	Escudo para o colega mais ferido.
+106aayv	{st} em todos os inimigos por {t}.
+17snu6e	{st} em um inimigo aleatório por {t}.
+15vipv3	{st} no alvo por {t}.
+0cnywq4	Os colegas jogam o próximo turno antes.
+13j8tn6	Escudo para o alvo.
+16clkzn	Tira dele todos os efeitos positivos e o Escudo.
+1o2z45w	Empurra todos os inimigos para trás na ordem de turnos.
+0amfle1	Tira de todos os inimigos os efeitos positivos e o Escudo.
+1kxpnpz	Cura a si mesmo em {p} dos PV máximos.
+117au04	Os colegas jogam o próximo turno.
+0ebcfe0	Acerta um inimigo aleatório com {p}.
+0dye84z	+{v} de Poder
+1i3vqsq	+{v} de PV
+1tt83ij	+{v} de Defesa
+1ub8ovp	+{v} de Velocidade
+0s1jrr2	+{v} de chance de acerto crítico
+1bmhzw0	Ignora {v} da Defesa inimiga
+00bjksl	Recebe {v} menos dano
+0pcq1bs	Suas curas são {v} mais fortes
+0fdv6n1	+{v} de experiência para a banda
+1h4s45e	{pet} rival
+0eujuva	{din} barulhento
+03alka9	Bum!
+0kui9jn	Apagaram as luzes!
+0c1w867	Eco!
+0mq77hg	Bis!
+1qm2xxm	De novo!
+0k2fpcm	Aguenta firme!
+0rd3yt1	Corrente!
+0belrl0	Cambaleou!
+1xob2db	Mais rápido!
+1lwo7a3	Nem ligou
+0hn3zaj	Aventura
+03gtdjg	Ensaio
+13u5rhp	Bis
+0siy9wx	Coleção
+03bpwir	{pet} espelho
+0htre55	{din} gigante
+1jamndy	Poder
+1m575se	Defesa
+02w2xwg	Velocidade
+06xig19	Crítico
+1l0xxoj	Fechar
+007q5wa	Menu
+0v0wv6e	Habilidade
+1q4pntc	Especial
+0n0mxf2	Início
+04f76ga	Notas
+0wto1r4	Ecos
+04zpoy4	{"one":"Você achou {n} eco!","other":"Você achou {n} ecos!"}
+1oo9ppz	Você achou um eco!
+1we7hk3	Eles ajudam {n} a evoluir e, depois, compram estrelas.
+0sxhh51	Ecos simples ajudam qualquer bichinho a evoluir. Use-os na página de um bichinho.
+1msq7av	Show do dia
+1mwx410	<b>Novo no Início:</b> {modes}
+0fkew5h	{label}, pago
+160umau	Banda
+0excb6f	Bichinhos
+1jht0nq	Conchas
+1jp3e8h	Mochila
+17o19ow	Abra sua concha aqui
+1npfg7x	Básico
+0t4uqph	Sempre ativo
+0x2jl9c	espera {n}
+1cjrhja	a qualquer hora
+0b9jhu9	novo
+0ew9em3	Cancelar
+166o4fr	‹ Voltar
+1id7d20	Como jogar
+1602nqr	Vença andares para avançar. A cada 10 andares há um <b>chefe</b>. Conchas guardam bichinhos aleatórios.
+119v05d	Bichinhos e inimigos agem quando a barra amarela enche. <b>Toque num inimigo</b> para usar nele o golpe escolhido, toque num ícone redondo para trocar de golpe e <b>segure</b> qualquer um para ver os atributos. Enquanto você mira, a parte que pisca numa barra de vida é o que o golpe vai tirar.
+04f26x8	Atributos
+0vbx2p1	PV
+1va0zku	O dano que aguenta antes de cair.
+1rtj1g9	A força com que seus golpes acertam, curam e protegem.
+0t35lk6	Reduz o dano recebido. 50 de Defesa tira um terço.
+1sqimv3	Com que frequência é a vez dele.
+08j0mei	Chance de um golpe causar 50% a mais. Todo bichinho começa com 5%.
+11rzah1	Famílias
+19nc0fc	Cada uma vence a próxima do círculo: 30% mais dano causado, 20% menos recebido.
+0oqv3et	Efeitos
+1a4ajy7	O número num efeito são os turnos que faltam.
+0dekir8	<b>{n}.</b>
+114mnho	Ecos e estrelas
+1x1u4jp	Bichinhos evoluem duas vezes com ecos e depois ganham estrelas: até 10, cada uma +3% de PV e Poder. Uma concha com um bichinho que você já tem dá um eco que só ele pode usar. Ecos simples, mostrados no topo, servem para qualquer um.
+0a8e6q1	Notas e experiência
+047ok7c	Andares novos pagam notas, que compram conchas. Toda batalha dá experiência, menos em andares muito abaixo do seu nível.
+02k1r1n	Conjuntos
+1ethk2v	Três bichinhos de três famílias, ou todos de uma, formam um conjunto: uma abertura e uma vantagem para a banda.
+1c0bob4	Chefes vencidos dos andares 10 a 100 voltam no seu nível. Cada um paga um eco uma vez por semana, com reinício na segunda-feira.
+1xtq0ev	Equipamento
+1eepakt	Cada bichinho usa duas peças. Vitórias podem dar mais: a tela de Aventura mostra a chance. 3 peças sobrando de um tipo se fundem na raridade seguinte, até Épico.
+0baj6qd	A partir do nível {unlock}: uma batalha por dia com uma regra da casa que muda como as batalhas funcionam, igual para todos. A primeira vitória de cada dia paga; tente quantas vezes quiser.
+0h1kfu0	A partir do nível {unlock}: um bichinho percorre uma estrada com bifurcações de cinco shows, paradas e um chefe. Bênçãos duram a turnê toda, e algumas se combinam. As primeiras vitórias de cada dia pagam.
+07zgmz9	A partir do nível {unlock}: ondas sem fim, cada uma um pouco mais difícil. Os PV continuam e bichinhos caídos ficam de fora. Ondas-marco pagam uma vez por semana.
+0orgbil	Conquistas
+08hfti8	Metas difíceis que pagam conchas, ecos e fundos para o Início.
+0l8hqi2	Entendi
+0zmnv1z	Som: ligado
+1j3s0cb	Som: desligado
+0ohwdis	Música
+0u4bbh9	Código de salvamento
+0a17t5z	Recomeçar
+0ah2vw0	Apagar este jogo?
+07v407v	{"one":"{n} bichinho","other":"{n} bichinhos"}
+1h0aetd	Seus {pets}, seu caminho até o andar {stage} e todas as notas, conchas e ecos somem para sempre. Um código de salvamento feito antes pode trazê-los de volta.
+13p56d7	Ele tem {pets} no andar {stage}. Substitui o jogo neste aparelho.
+1yiqur6	Apagar tudo
+1u9zao8	Seu código de salvamento
+0oqbnyd	Cole um código de salvamento aqui
+1kt4ziu	Código de salvamento para carregar
+13h0r7b	Copiar meu código
+0iim041	Copiado. Guarde em lugar seguro.
+0wqainm	Selecione o texto e copie à mão.
+0zcg70w	Carregar este código
+04nf0s1	Isso não é um código de salvamento do Hushsong.
+0wazdu1	Carregar este jogo?
+1ughagm	Carregar
+0ribzan	Seu jogo se salva sozinho neste aparelho. Este código é uma cópia para guardar ou para continuar em outro lugar.
+1i3udnb	Carregar um código
+0xptzj8	Onda {n}
+0opsnl8	Chefe {n}
+1dxyp09	Barulhento {n}
+192xyh5	Andar {n}
+1wsths9	Depois
+1vkg66p	Seu conjunto
+0oes1nf	{"one":"+{n} eco","other":"+{n} ecos"}
+0tyfhvo	Encerrar esta partida?
+10yh3fa	As recompensas são suas.
+179chx3	Encerrar
+1xqrqh9	Evoluir {pet}
+007flrr	Dar estrela a {pet}
+1bipuuc	Continuar
+0kayn18	Abrir a concha
+1hzmxtu	Voltar
+1o2o6dp	Mudar a banda
+03kusfv	Mude sua banda
+0ovvjp1	Sua banda
+1yikd80	Turnê solo
+1g2tab0	Show {n} de 5
+0n3ydks	Escolha uma
+0x4nga3	Avante
+00fxhu9	Sem evolução
+18kfar1	Evoluiu uma vez
+1fvnaj8	Evolução completa
+0h2yt8f	Nv {level}
+114caoa	Nível máximo
+1ys28bo	{xp} / {level} XP
+051r543	{n} de 10 regiões cantam
+0osohmo	{pet}, na banda
+0qrjb0u	Tocar a abertura de {n}
+1wnoi3m	{region} · andar {n}
+11dqdbh	Prêmio final
+1dfllbn	Prêmio do chefe
+1mw0j2l	{"one":"+{n} concha","other":"+{n} conchas"}
+1l232k4	Hushsong
+0skq8vk	Colecione bichinhos musicais. Traga a música de volta.
+0bk85tv	Jogar
+1y45tsh	Abrir minha primeira concha
+1yi0f7c	Um dia, tudo cantava
+0lomxls	Cada colina, porto e salão tinha sua própria melodia, e bichinhos musicais a tocavam o dia todo.
+0i6vi28	Então vieram os Din
+1jeck9n	Criaturas barulhentas que não suportam melodia. Invadiram tudo e afogaram cada canção no barulho.
+1pzwbfm	O mundo ficou em silêncio
+0cv90j1	As cores sumiram. Os bichinhos se esconderam nas conchas, e ninguém nunca mais ouviu uma canção.
+0p1upin	Mas uma concha ainda cantarola
+0niwiss	Abra-a, monte uma banda e traga a música de volta, andar por andar.
+1vufmm8	Toque para continuar
+1kpwk02	Andar do chefe {n}
+0x7pfo0	Comece sua aventura aqui
+0s60a9m	Chefe · Inimigos Nv {n}
+1j7pu5k	Inimigos Nv {n}
+08rseiv	Shows
+03n17d7	{ready} prontas
+1vgexli	{done} de {length}
+02zyyv8	Show do dia pronto
+1reuah4	Turnê solo na estrada
+0u73zav	Próxima: onda {n} do Bis
+1xxqbrb	{"one":"{n} ensaio aberto","other":"{n} ensaios abertos"}
+1vzcv0c	O solo paga hoje
+1i8e16b	Primeiro show no nível {n}
+1skvt3i	Tudo jogado hoje
+0azt7u3	Libera no nível {unlock}
+0mbqao6	Vencido hoje
+1m0zof0	Próxima: onda {wave}
+0sssj9z	Melhor da semana: {weekBest}
+0bv6gmn	Libera depois do andar 10
+09hmetg	{"one":"{n} chefe disponível","other":"{n} chefes disponíveis"}
+1qt0ibb	Tudo jogado
+1w35moz	{"one":"Reinicia amanhã","other":"Reinicia em {n} dias"}
+1mf63c1	Sem conjunto
+1s9gkj5	Andar anterior
+06lywvr	Próximo andar
+127oer9	Concluído · Inimigos Nv {n}
+1byxumh	Experiência
+1lr0g08	+1 Lendário
+1lafnle	Chance de equipamento
+0dr6vfq	{name}, nível {lvl}, sua banda é forte contra ele. Ver os golpes
+0k11ss3	{name}, nível {lvl}, forte contra sua banda. Ver os golpes
+1twb6b1	{name}, nível {lvl}. Ver os golpes
+1i8jmgf	Nv {n} · chefe
+03c3p2r	Nv {n}
+02k9jns	Você bate mais forte nele
+0af1lm1	Ele bate mais forte em você
+1eenfp5	{"one":"Inimigos {n} nível acima de você","other":"Inimigos {n} níveis acima de você"}
+0d8gyft	Seguir em frente: sim
+0jkleb9	Seguir em frente: não
+0y8m6so	Batalha automática
+15hb32v	Lutar
+10tx3xo	Enfrente os inimigos acima
+0sh945i	Mapa: {n}, andar {n2}. Ver todas as regiões
+19rtxhg	O mundo, bis {n}
+1f41oeh	O caminho até o andar 100
+1ki85pn	Andares {a}–{b} · canta de novo
+1grm6vy	Andares {a}–{b} · silenciado por {din}
+18s8a97	Aqui
+0mxtf0p	vaga livre
+1whegdc	Toque no seu bichinho
+1tmmxpq	Sobre {n}
+1rkfalq	Trocar
+1ybtjd0	Preencha as três vagas.
+1rlp9ke	É preciso <b>3 famílias diferentes</b> ou <b>3 da mesma</b>.
+1q7gv3d	Possíveis: <b>{list}</b>
+10ubeg8	Todos os conjuntos
+1c5mvf7	Para a aventura
+02u5zbh	Prontos? Vamos lá
+05o74q3	Quem fica aqui?
+18z83m5	Deixar esta vaga vazia
+19xt0al	3 famílias diferentes ou 3 da mesma.
+0jtpxy5	Em uso
+1g5f5vb	Faltam bichinhos
+0dzuldu	Tocado
+12mrurj	Ainda não tocado
+1p633z1	{"one":"{n} concha para abrir","other":"{n} conchas para abrir"}
+0ost8of	Nenhuma concha agora
+1stb3ay	Seu primeiro bichinho está dentro. <b>Toque na concha.</b>
+0fi2qkf	Um <b>bichinho aleatório</b>. Se você já tiver, ele vira um <b>eco</b>.
+1r45u9w	Chefes deixam conchas. Notas compram mais.
+0zvrdho	Abrir uma concha
+1mhuvb6	Comprar uma concha
+0hv9zs9	Escolho {n}
+0oe9ixr	Havia três bichinhos dentro!
+0mecjw0	Escolha um. Os outros aparecem depois.
+0tlq0tf	Bichinho novo!
+1sy6y67	Outro {base}
+0i0wqsf	Outro {base} (seu {n})
+0say7eo	{"one":"+{n} eco de {pet}","other":"+{n} ecos de {pet}"}
+1mw6eu2	{"one":"Abrir outra (falta {n})","other":"Abrir outra (faltam {n})"}
+1taelf6	Vamos lá
+13cn9g1	Pronto
+0to0bon	{have} / {need} ecos
+0ow97sa	Evoluir para
+0ay0li2	Novo Especial
+1jxgm35	Escolha um. Trocar depois é grátis.
+1yylcbd	Ecos vêm de conchas, chefes, ensaios e conquistas.
+1128a0z	Estrelas {n} / {max}
+1i6zzkz	Dar estrela · +3% de PV e Poder
+1n5ofxj	Este bichinho está no máximo.
+1hgwrl8	Coloque o equipamento aqui
+051r6dq	Espaço vazio
+0xpvvet	Golpes
+083gk8g	Mudar caminho
+19b2u1a	Ótimo
+1eq65tc	Evoluir
+1mntkmf	{have} / {n} ecos
+0we11jd	Grátis, quantas vezes quiser.
+0v7hfzm	Tirar
+0hpqcmx	Trocar por
+12sm7bj	Na mochila
+08kj2qr	Pronto! Volte e continue lutando.
+19ky8vr	Nada mais na mochila.
+0ggizsd	Sua mochila está vazia.
+1j0zoai	Nada aqui ainda
+0musznz	Às vezes as batalhas dão equipamento.
+0am4v1q	3 peças sobrando de um tipo se fundem numa melhor.
+10ttus6	Fundir 3 {item} → {rarity}
+1fkec2w	Fundido!
+0h4pk9n	<b>{n}</b> está usando.
+0rrnf75	Ninguém está usando.
+0xide7m	Tirar de {n}
+03295io	Ir para {n}
+0ngmxng	Fundir 3 → {n}
+0br649q	Fusão: {length} / 3 sobrando
+1pquyhx	Vender
+0ix7gem	Abre depois do chefe do andar 10.
+067l7h2	Chefes vencidos voltam no <b>seu nível</b>.
+12rgeuk	Tudo vencido esta semana
+1vgwehg	{din}, {region}, vencido esta semana
+0qjjz61	{din}, {region}, prêmio de 1 eco
+1fqbflp	O Bis abre no nível {unlock}.
+03scfen	Fora
+08gv74u	Ondas sem fim, cada uma um pouco mais difícil. Os PV continuam, e um quarto volta depois de cada onda.
+1nvt7jn	Esta semana
+15kcesy	Melhor da semana <b>{week}</b> · recorde <b>{best}</b>
+15jnq83	{"one":"reinicia amanhã","other":"reinicia em {n} dias"}
+04pp0j3	Jogar onda {wave}
+1ywcpar	Encerrar esta partida
+0asw5g5	Começar o Bis
+03839q1	Novo cenário: {set}
+1078zjl	Cenário: {set}
+0f8duxs	Andar atual
+03yitl0	Cenário do Início
+00n1act	Feito.
+19cqi1l	Resgate 1 eco.
+1c6dls2	Prêmio: 1 eco.
+0rfmv4f	Resgatar
+1cnat5z	Vença um ensaio com cada conjunto
+0l8z7n2	<b>Subiu de nível!</b>
+15eua8j	Não foi dessa vez
+0982hh6	Tentar de novo
+0xuoasm	{h} h {m} min
+0z7rxr8	{m} min
+1sawk0u	Hoje
+1yetfcu	Entrada individual
+0i43ri6	Pago hoje
+0wv5s44	Notas pela vitória de hoje à noite
+0cfkl9x	Hoje à noite · {date}
+0l3ql07	Regra da casa
+0ohh9of	No palco · Nv {level}
+1d8xe0i	Vencido hoje à noite
+16gyw2s	Seus dois primeiros bichinhos
+1ginijz	Novo show em {msToTomorrow}
+1izp7up	Tente quantas vezes quiser
+1vy1lnc	Tocar de novo
+1dt0t41	Tocar o show
+16jnn15	Show vencido!
+0hqkd91	Mais um ótimo show!
+0t1b6a6	Já pago hoje
+18imhfd	As luzes apagaram antes dos Din.
+0d1n3lp	Tente quantas vezes quiser.
+1lzfam5	Voltar ao cartaz
+0yjpaj1	Um bichinho · cinco shows · um chefe
+1yve732	Show {n}
+1ol94ul	{n} + equipamento
+0fnhp9o	Chefe
+0xl0w5y	As 5 primeiras vitórias em shows e a primeira contra o chefe pagam todo dia. Novo pagamento em {msToTomorrow}.
+1611szw	Tudo pago hoje. Turnês ainda valem pela diversão e pela experiência.
+1iiozi7	Em turnê · {n}
+1ge46m3	{gigs} de 5 shows vencidos
+0eo55r4	{"one":"{n} bênção","other":"{n} bênçãos"}
+0s77dwq	De volta à estrada
+0vcj9z8	Desistir da turnê
+0nydgv5	Desistir da turnê?
+0gcqlob	As notas são suas.
+1jqit4p	Desistir
+07pfpca	A estrada se ajusta ao seu solista.
+1jomgr2	Começar a turnê com {n}
+0wqg5d6	Escolha seu solista
+0mtitlv	{boons}. Ver
+0pk5huj	Nenhuma bênção ainda
+10kjgrl	Combo
+0azrw18	{n} · Nv {level}
+0jndyot	Agora o chefe
+02zvux1	Combo com {n}: {d}
+0d1xs4z	Bênçãos desta turnê
+0ls4fiu	Combos
+00u5kof	Vença shows e jams para juntar bênçãos. Elas duram a turnê toda.
+1ivwi98	{p} de Poder
+1czrh23	{p} de PV
+18dqeg6	Da estrada: {list}
+1jeu1u6	Show
+0yik53o	Show barulhento
+1no7203	Jam
+1f5g7va	Mistério
+030xvgf	Largada
+0rcomre	‹ Shows
+1nz9721	Turnê: {region}
+1y1z148	O palco de {din}
+0suqviq	{stop}, você pode ir aqui
+10yi615	{stop}, visitado
+0bloln1	{stop}
+0y4qqu7	Fora do seu caminho. As paradas que brilham são as próximas.
+17lnddt	Sua turnê começa aqui. Escolha um caminho.
+0nbrgm6	Escolha a próxima parada. Toque numa para ver.
+0zqhp1s	Turnê solo
+1p7xg55	5 shows, depois {n}
+0acptz9	Um palco pequeno.
+1idq6xu	Uma plateia agitada e Din mais duros.
+0mkdcb6	A última parada da turnê.
+0wsnj4k	Dormir ou praticar.
+1g00h8i	Toque junto por uma bênção.
+1bqe9lc	Tem algo acontecendo aqui.
+0cbomgp	Bênção rara
+0cm0w8n	Bênção
+0unuhh5	Vitória
+18w23xo	Enfrentar o chefe
+0z0syb8	Tocar este show
+1lkop6h	Ir para lá
+0jar724	Ainda não
+0pv5mv6	A estrada
+1qd1crm	Dois Din. Vença por uma bênção.
+05me9k8	Din mais duros. Vença por uma bênção rara.
+0fqmz7h	Cure 40% ou pratique por +10% de Poder.
+18gfynz	Escolha uma bênção.
+0m8hcnl	Uma escolha, boa ou arriscada.
+14v8vbh	O fim da turnê.
+0vozr6z	Os PV passam de show em show. A plateia fica impaciente se um show se arrasta: cada golpe pega mais forte.
+0i9n2t3	A plateia vai à loucura
+0e67mga	Fuçar no caixote
+17cajel	Escolha uma bênção rara
+0crwowb	Escolha uma bênção
+14mzec6	Pegar {n}
+00dbte5	Pular esta bênção?
+19b6o8k	Esta parada não dá outra.
+0rhzcma	Uma noite tranquila na estrada
+0d7yc2w	Dormir
+0yis9fp	PV {now} → {heal}
+1ko57eo	Praticar
+0iibvtx	+{n}% de Poder nesta turnê
+1vj67te	Você ganhou
+0qvo2av	Show barulhento vencido!
+04ymvaf	Que bagunça!
+1eea2cs	PV {n}%
+0wc81n0	Notas desta turnê
+0cc3ko5	Turnê completa!
+0x5rhez	Fim da turnê
+1vcaw9j	Seu solista
+11w4s05	<b>{pet}</b> venceu os cinco shows e o chefe.
+1rb3v2o	<b>{n} de 5</b> shows vencidos.
+1t4vb48	E o chefe deixou cair
+17kf24l	Tentar outra turnê
+1k3jeja	Outra turnê
+02dv84d	<b>{pets}</b> <span class="dim">são fortes contra ele.</span>
+06u84tt	<b>{pets}</b> <span class="dim">é forte contra ele.</span>
+1jh7dyr	<span class="dim">Ele é forte contra</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Nv {lvl}
+0j8axo0	de {max}
+0xw1kwq	<b>Escudo.</b> <span class="dim">Absorve os próximos {shield} de dano.</span>
+0fuwg7s	Por {t}.
+03ojm4e	Sair desta onda?
+104x6pe	Sua partida termina aqui. As recompensas são suas.
+1xf0sbk	Sair
+0l14tjq	Sair deste show?
+17mnxxq	Sua turnê termina aqui. As notas são suas.
+113qxrx	Encerrar a turnê
+0ax5053	Sair do show?
+1ymwhol	Tente de novo quando quiser.
+0iou6h7	Sair desta batalha?
+0b3qhh2	Nada se perde.
+0ssgire	Sair da batalha
+1jmvu80	Solo · chefe
+0lrhoo2	Solo · show {n}
+1olfrt8	Ensaio {n}
+0bigcx0	{"one":"falta {n}","other":"faltam {n}"}
+05trtda	em {n}
+0qn7msh	Impaciente!
+0ujdg0z	Regra da casa: {n}
+1epghlp	A plateia
+13qzva8	A plateia está impaciente: cada golpe pega mais forte a cada turno.
+0540b06	Auto
+1fn0bdg	Usar
+07t8f32	Golpe básico
+0wv4sck	Prepare-se
+1gig116	precisa do microfone
+1dafg0x	pronto em {t}
+12udzhb	descansa {t} após o uso
+0eoacl7	sempre pronto
+09mc5ki	Golpe extra
+1mzzz6r	{move}, precisa do microfone
+1cbobby	Vez do inimigo
+1s58kd5	A batalha automática está ligada
+0o9tv84	Só o bichinho com o microfone pode usar isto.
+1yv3h7m	Ainda não está pronto. Escolha outro golpe.
+0xt3jlr	Toque num inimigo para usar, ou aperte Usar.
+0bbedtn	Aperte Usar.
+1i1wq4v	Só o bichinho com o microfone pode usar isso.
+1o29ocf	Esse golpe ainda não está pronto.
+1k3jdut	Precisa acertar quem está com Provocar.
+0amsa7g	Segure para ver atributos e golpes.
+19s7xp8	Sua vez! Toque no inimigo para atacar.
+1xkyhxm	Toque num ícone redondo para escolher outro golpe.
+1xatr8w	Seta verde: seu bichinho é forte contra esse inimigo.
+1fo7mmm	A linha amarela mostra de quem é a próxima vez.
+1gg5fya	Bloqueio
+0nz7kx7	Crítico!
+03sm2ze	Forte
+0uhuaqx	Fraco
+001d664	Esquivou
+169g4lg	Atordoado
+13qsw78	{name} está atordoado e perde um turno
+0b538j2	De pé de novo!
+0kaw7l1	Antes
+0pb3b0x	Mudou!
+1o2e5hh	A plateia está impaciente!
+0h1zwxb	Mudança de tom!
+1rzr4qi	Batata quente!
+0yrhd9v	Microfone!
+167szal	Bis · onda {n}
+1ryq1vy	Turnê solo · a última parada
+0wdzx1i	Show do dia · {n}
+0ncefmr	Chefe · andar {n}
+0vh77hq	Toque para pular
+0wqg7ri	VS
+01lmez5	Show do dia · {venue}
+0d68t5f	Toque para começar
+0jleco1	Você venceu!
+1jc3an7	Sua banda caiu
+13ssvg2	Onda {wave} concluída!
+1mh43qm	Prêmio semanal: onda {n}
+0catbos	Próximo prêmio: onda {n}
+0kbukl4	Todos os prêmios ganhos esta semana
+1cprp2x	Parar aqui
+0nzp3il	Fim do Bis
+1ut9ian	{"one":"Você concluiu <b>{n}</b> onda.","other":"Você concluiu <b>{n}</b> ondas."}
+0ty85y2	Recorde: <b>{n}</b>.
+0sxepax	Voltar ao Bis
+1mbtrrm	Subir de nível
+1t44dyo	{"one":"Subiu de nível!","other":"+{n} níveis!"}
+0jgpwku	Próximo nível
+1upuqw4	Uma conquista está pronta
+1oyw1a7	Ensaio concluído!
+1p1n9oo	Mais ensaios
+0tmft7x	Ensaios
+1olud0e	Chefe vencido!
+0hcfevc	Andar concluído!
+1lol7z1	Repetir não paga notas.
+0rbs9h4	Você achou
+1j1b8hw	Para o chefe
+0to2fym	Próximo andar
+1pob5wr	Jogar de novo
+1h119dp	<b>Vem aí um chefe.</b> Confira sua banda antes.
+08xkpxs	Próximo andar em {left}
+1ft5bxw	Dica: <b>{n}</b> pode crescer.
+1y4qsj9	Dica: você tem uma concha para abrir.
+0ee4m6n	Dica: há equipamento na mochila que ninguém está usando.
+17h3lmh	Dica: vencer um ensaio paga um eco.
+1yxlsvo	Dica: seus bichinhos podem formar um conjunto.
+11jmiib	Dica: tente outra banda ou repita um andar anterior para subir de nível.
+03eg7mm	Dica: repita um andar anterior para subir de nível e depois volte.
+1uopv4k	Você achou uma concha!
+16ub219	Tem um bichinho dentro. Abra em <b>Conchas</b>.
+03ywr4q	Mostre
+07hdxv7	Você achou equipamento!
+15xrlrb	Cada bichinho usa duas peças. Equipe pela página dele.
+16us7mj	Idioma

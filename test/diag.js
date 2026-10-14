@@ -1,4 +1,4 @@
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); const H = globalThis.H;
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); const H = globalThis.H;
 // boss fight win rates at given level for bands of final forms, fresh HP, 3 random ornaments
 const bands = { glass: ['aria', 'riff', 'swing'], classic: ['cadence', 'shred', 'carol'], control: ['anthem', 'dirge', 'serenade'], mixed: ['roll', 'hymn', 'fanfare'], noheal: ['march', 'chant', 'shred'] };
 const t1 = { glass: ['shout', 'pluck', 'toot'], classic: ['stomp', 'pluck', 'whistle'], control: ['bellow', 'drone', 'croon'], mixed: ['patter', 'croon', 'bellow'], noheal: ['stomp', 'shout', 'pluck'] };

@@ -1,0 +1,839 @@
+1a4u7t2	{stats}.
+0q7birz	{"one":"{n} tour","other":"{n} tours"}
+14hthj2	Frappe des ennemis au hasard {n} fois à {p} chaque fois (deux ennemis différents).
+0byjh8c	Frappe des ennemis au hasard {n} fois à {p} chaque fois.
+07n71hn	Chaque coup est {p} plus fort que le précédent.
+0m7nu51	{c} de chances d'infliger {st} pendant {t}.
+1av7cih	{st} pendant {t}.
+0rufu09	Se soigne de {p} des dégâts.
+0c2qpnw	Le repousse dans l'ordre des tours.
+13becoz	Les repousse dans l'ordre des tours.
+1tf8g37	{p} plus fort si l'ennemi a plus de 80 % de PV.
+0y0bald	Jusqu'à {p} plus fort selon les blessures de l'ennemi.
+0k522we	Puis frappe tous les autres ennemis à {p}.
+1v1cx0m	+{p} de chances de coup critique.
+1klobiz	Traverse le Bouclier.
+03a2a9p	Chaque coup critique ajoute un coup (jusqu'à {n}).
+0vdxodq	Chaque coup a {c} de chances d'infliger Lenteur, Poison, Puissance − ou Fausse note pendant {t}.
+0cqxp7o	Chaque coup inflige Lenteur, Poison, Puissance − ou Fausse note pendant {t}.
+1m5emfp	{p} de chances de rejouer aussitôt.
+0gtqyd5	{p} plus fort pour chaque coéquipier tombé.
+1f7wvud	{p} plus fort pour chaque coéquipier tombé ou sous la moitié de ses PV.
+01otle1	{p} plus fort contre les ennemis sous {st}.
+1tbjmve	{p} plus fort tant qu'il a {st}.
+0a8oif0	Si cela vainc l'ennemi, toutes ses attaques sont de nouveau prêtes.
+0os6g8v	Si cela vainc l'ennemi, il rejoue aussitôt.
+1lbrklu	{c} de chances : {fx}
+1oa0nre	Son prochain tour arrive plus tôt.
+1jyhvo1	Rejoue aussitôt.
+18w9g0n	Ranime un coéquipier tombé avec {p} de PV.
+0xnfd5d	Chaque coéquipier se joint avec son attaque de base à {p}.
+04clvli	Puis tout le Poison des ennemis inflige d'un coup ses dégâts restants.
+00bdm66	Coûte à l'utilisateur {p} de ses PV max.
+0eo8xqz	Tout ton groupe agit avant les ennemis, et tous les ennemis subissent Lenteur pendant {t}.
+13kjpwg	Les {n} premiers coups de ton groupe sont des coups critiques.
+0ohlr4q	Vent arrière : ton groupe joue ses tours {p} plus tôt pendant tout le combat.
+1vdaa7w	Crescendo : ton groupe gagne {p} de Puissance à chaque tour, jusqu'à {max}.
+0qlchvz	Harmonie : quand un compagnon est soigné, les deux autres sont soignés de moitié.
+0z4jtn1	Vitesse + pour ton groupe pendant {t}.
+1el07f1	Puissance − pour tous les ennemis pendant {t}.
+0imqe8u	Rappel : la première Spéciale de chaque compagnon est aussitôt prête à nouveau. Un compagnon sans Spéciale le fait avec sa Compétence.
+1tii7s6	Bouclier pour ton groupe, valant {p} des PV de chaque compagnon.
+0i05xu4	Confettis : chaque ennemi commence avec un effet au hasard (Lenteur, Poison ou Puissance −) pendant {t}.
+0kr4kqx	Ton compagnon le plus rapide joue deux tours d'affilée au début.
+0skalmm	{"one":"Chaque compagnon ignore la première Lenteur, Étourdi, Poison ou Puissance − qu'il subirait.","other":"Chaque compagnon ignore les {n} premières fois où il subirait Lenteur, Étourdi, Poison ou Puissance −."}
+0x2th3i	Régénération pour ton groupe pendant {t}.
+1rw69zs	Note aiguë : les {n} ennemis ayant le plus de PV sont étourdis pendant {t}.
+1m4ob43	Le premier compagnon à tomber se relève avec {p} de PV.
+0c5orbx	Riposte
+0a7kf5t	Chef de meute
+11j7o30	Gagne une répétition avec l'ensemble {ens}.
+0xq0xcg	Bouclier
+0taf2ay	Solo
+0578o3h	Rare
+14wniqc	Commun
+1bwxzco	Feu de camp
+1hpqu3m	Passer
+13347be	Légendaire
+0bgmlfx	Tambour
+0qq0dw8	Corde
+1wnfmqv	Souffle
+0v3iwlm	Cuivre
+0b1qn4p	Voix
+0wrl2jw	Silence
+0bq1jab	Jeune
+13kzokd	N'a pas encore choisi de rôle.
+13mh6zt	Tank
+04kb9mm	Solide. Protège le groupe.
+1ms8i26	Attaquant
+1s6iiyn	Inflige le plus de dégâts.
+11vozmg	Soigneur
+0lt3nwi	Soigne et renforce le groupe.
+0txsyvc	Soutien
+0urf652	Ralentit et affaiblit les ennemis.
+1msji33	Puissance +
+0erp7z0	Inflige 25 % de dégâts en plus.
+0b8ve6i	Puissance −
+043t7d0	Inflige 25 % de dégâts en moins.
+1j5x8rx	Vitesse +
+0rp2o65	Ses tours arrivent 30 % plus tôt.
+1tyvniw	Lenteur
+1rtwjtt	Ses tours arrivent 30 % plus tard.
+0pyxe0x	Étourdi
+00adhon	Saute son prochain tour.
+1g8baa9	Poison
+1398ids	Perd des PV au début de chaque tour, environ 30 % de la Puissance de l'empoisonneur. Le Poison se cumule, jusqu'au triple. Ignore la Garde.
+1a9erp6	Régénération
+1lwdm4g	Récupère des PV au début de chaque tour.
+0kydatf	Provocation
+13fn23l	Les ennemis doivent viser leurs coups simples sur lui.
+1w0r2pc	Esquive
+09468f2	Le prochain coup rate.
+0o8p8v9	Absorbe les dégâts avant les PV.
+0mj9nr2	Chant de vie
+0u9dw02	Se soigne de 30 % des dégâts infligés.
+0yi27yk	Fausse note
+0uit45j	Subit 25 % de dégâts en plus des coups.
+1s7324o	Épique
+1lplimc	Baguettes
+0xngqp3	Mailloche en feutre
+0hl254k	Sourdine
+0t0h0nv	Métronome
+1pmltzc	Diapason
+1xxzjnx	Médiator
+0mnjw2v	Sangle
+1qclhrl	Huile à pistons
+1rduu0f	Saphir
+1qrq5l4	Bouchons d'oreilles
+0qdt5kh	Anche
+1gebtxn	Partition
+0wj9jiy	Baguette dorée
+1rtrb8v	Gagne 5 % de Puissance à chaque tour (jusqu'à 30 %).
+0ybj8yk	Baguettes de diamant
+0v76wmc	Ses coups critiques infligent 2,5 fois les dégâts au lieu de 1,5.
+12kiexo	Premier pupitre
+12q6xbm	Joue toujours le premier tour du combat.
+1osjyep	Grand métronome
+03lt9cb	Tous les cinq tours, il rejoue aussitôt.
+0rk5hgb	Piège à tempo
+00nk1l9	Frapper un ennemi sous un effet négatif repousse son tour.
+0s7dviz	Chambre d'écho
+095d12f	Gagne un petit Bouclier au début de chaque tour.
+0yaewc6	Vieux vinyle
+0xroqxz	Tout le groupe commence chaque combat avec un petit Bouclier.
+1yaft0f	Mailloche phénix
+1iwcp47	Quand un coéquipier tombe, soigne le groupe de 20 % de ses PV.
+1q012vs	Oreille absolue
+07zccg4	Un coup critique rapproche son prochain tour de moitié.
+1en3rt7	Diapason vibrant
+1bes0ck	Ses coups sur un ennemi frappent aussi les autres à 40 %.
+0uha798	Boucle de larsen
+1mij54t	Quand il est frappé, 30 % de chances de riposter à 60 %.
+0lqm3ph	Rideau de velours
+0iv9n0e	Tant qu'il est debout, ses coéquipiers subissent 15 % de dégâts en moins.
+1rqad0h	Médiator porte-bonheur
+1bhy6r1	Son premier coup de chaque combat inflige le double de dégâts.
+0tyoa6z	Dernier accord
+0hhhh6j	Sous 40 % de PV, il a 40 % de Puissance en plus.
+0tcoh3o	Rose du rappel
+0yf8ri3	+15 % de PV. Une fois par combat, un coup qui le mettrait K.-O. le laisse à 1 PV.
+05qp0ud	Étui en fer
+0cpv7kz	Ne peut être ni étourdi ni ralenti.
+1o0tj45	Vif-argent
+0xkwte3	Chaque coup reçu rapproche son prochain tour.
+1k88bjf	Pédale crescendo
+1a8fi66	Gagne 5 % de Puissance à chaque coup porté (jusqu'à 30 %).
+0jqmtzy	Saphir laser
+1qsg3ll	Inflige 50 % de dégâts en plus aux ennemis sous la moitié de leurs PV.
+00n6suo	Saphir venimeux
+0h8bhjw	Inflige 50 % de dégâts en plus par effet négatif sur sa cible.
+089dbpu	Bouchons à pointes
+0sw1vf6	Les ennemis qui le frappent subissent 40 % de ces dégâts en retour.
+0yid6us	Noise gate
+0wodx13	Commence chaque combat avec un Bouclier de 25 % de ses PV.
+1vb4l90	Anche dorée
+0w6jc56	Au début de son tour, soigne le coéquipier le plus blessé de 3 % de ses PV. Les soins au-delà du maximum deviennent du Bouclier.
+06ejlsm	Anche de sirène
+0n3vio6	Se soigne de 20 % des dégâts infligés.
+1gcy07d	Partition perdue
+1fyohlw	+15 % de Puissance. Quand il met un ennemi K.-O., il rejoue aussitôt.
+16r2ajv	Magnum opus
+1rwxckh	Le groupe commence chaque combat avec Puissance + pendant 3 tours.
+1vm6jxe	Marais aux roseaux
+1lu8609	Fonderie de cloches
+1aqnn33	Verger bourdonnant
+0qeq0q2	Crête enneigée
+1go8kfv	Route cahotante
+1tsmmag	Grottes ruisselantes
+0erieq9	Dunes venteuses
+089006i	Port de fer-blanc
+0y8oub5	Tour tic-tac
+0prtznc	Salle de concert
+07cnyyp	Un tambour rond avec des oreilles, des pattes et une mailloche en guise de queue. Solide, et son rythme lourd ralentit les ennemis.
+0cb38pk	Un tambourin qui file de côté en claquant deux castagnettes. Rapide, avec des doubles coups secs.
+1nypsb6	Une lyre avec des oreilles et une queue de chat. Ses notes frappent fort, mais elle est fragile.
+0bla1xc	Un violon aux pattes fines qui se racle avec son archet. Rapide, et son grincement empoisonne.
+01ewlb7	Un ocarina avec des ailes et un bec. Quoi qu'il joue, il soigne ses amis.
+0vq3eyw	Un accordéon qui rampe comme une chenille. Il se soigne en mordant.
+0ip1aqa	Un long cor de cuivre qui ondule. Ses sonneries poussent le groupe à frapper plus fort.
+0hgjl3j	Une lourde cloche d'où sortent une tête et des pattes. Très solide, et son tintement protège ses amis.
+0yfvbp8	Un micro rond monté sur des pattes de grenouille. Son chant frappe tous les ennemis à la fois.
+0quz911	Un mégaphone avec des oreilles et une queue de loup. Son hurlement affaiblit les ennemis.
+0yagm31	Un gong qui transporte son propre cadre. Lent, mais un bon coup étourdit.
+0thkqwo	Un xylophone qui rampe comme une chenille. Plein de petits coups de plus en plus forts.
+1ncgrg2	Un banjo au très long manche. Rapide, chanceux et friand de coups critiques.
+1tu5eb4	Un petit piano qui sourit de toutes ses touches. Ses accords éclaboussent tous les ennemis.
+0z9n8pn	Un poussin avec une flûte de Pan en guise de crête. Le plus rapide de tous, il presse ses amis.
+0pjb82g	Une cornemuse qui n'en fait qu'à sa tête. Ses notes aigres empoisonnent et affaiblissent.
+0z3v4rf	Un escargot dont la coquille est un tuba. Le plus solide de tous, il repousse les ennemis en fin de file.
+16ocv01	Un saxophone enroulé comme un hippocampe. Doux et vif, il revient vite pour un autre solo.
+0moyagl	Un vieux gramophone aux pattes d'oiseau. Ses chansons grésillantes usent tous les ennemis.
+04o4dyo	Une petite radio qui n'arrête jamais de parler. Elle embrouille les ennemis et encourage le groupe.
+1warb8t	Une boîte à musique qui se dandine sur sa clé. Sa mélodie soigne ses coéquipiers et leur apprend à se soigner en frappant.
+1p4j4fd	Une sourdine de trompette en caoutchouc sur un manche branlant. Son wah-wah aigre fait chanter faux les ennemis, et chaque coup les touche plus fort.
+0ulqhj0	Une contrebasse qui marche sur sa pique. Ses notes graves tiennent la ligne et ralentissent tout autour d'elle.
+0qwhhhy	Un petit recueil de chansons dont les pages chantent en harmonie. Il protège le groupe de ses couvertures et le libère de ce qui le plombe.
+09u3bzj	Un harmonica qui souffle et aspire. Il achève ce qui faiblit et balaie ce qui soutient les ennemis.
+01x3s9q	Le marais s'entend de nouveau
+1ojydxp	Muffle étouffait chaque son ici. Maintenant qu'il est parti, les roseaux bruissent et les grenouilles essaient une mélodie.
+01t2fwo	Les cloches sonnent à nouveau
+0l2q3ef	Shush a gardé la fonderie muette pendant des années. Ce matin, la première cloche a sonné, et personne ne lui a dit d'arrêter.
+0sm94v5	Un fredonnement, pas un bourdonnement
+0n432ha	Le Swarm s'est dispersé. Les abeilles sont au travail, et leur bourdonnement a maintenant une mélodie.
+08pq5pm	Fini les grésillements
+0o961ya	Sans Static, l'air de la montagne est clair. On entend la neige tomber, et quelqu'un, au loin, fait des tyroliennes.
+050rbw1	À mi-chemin
+0bie91b	Honk n'a plus de klaxon. Un musicien de rue s'est installé au carrefour. La moitié du monde chante. L'autre moitié n'est encore que bruit.
+0wfscp4	Les grottes répondent en chantant
+03yysnx	Rumble n'est plus que gravats. Chante une note dans le noir et les grottes te renvoient un accord entier.
+0zb5ixc	Le vent a appris à siffler
+1azpzws	Gale s'est essoufflé. Ce qu'il en reste dérive sur les dunes en sifflant presque une chanson.
+1f6bdh0	Chants de marins sur la jetée
+1tgx1fo	Foghorn s'est enfin tu. Les marins sont revenus sur la jetée avec tous les couplets qu'ils connaissent.
+05puppg	Le temps de souffler
+0ndwonj	Alarm a sonné pour la dernière fois. Un seul lieu reste muet : la Salle de concert, où attend le chef d'orchestre des Din.
+1srx7zk	La musique est de retour
+1w3fx2b	La baguette de Tacet est brisée et la salle est pleine. Les Din continueront de s'infiltrer par les bords, alors les étages continuent. Mais le monde a désormais une chanson pour leur répondre.
+0p5gla7	Batterie
+09rkysq	Trio à cordes
+0uymolf	Trio à vent
+1bw6h1x	Fanfare de cuivres
+04kfc8k	Chœur
+1dmx33u	Groupe folk
+1qefubr	Groupe ragtime
+1ec98d7	Groupe de rock
+1c3dj47	Fanfare de rue
+03htgfn	Carnaval
+1wlcqos	Groupe de swing
+1ifvqcu	Orchestre de chambre
+0h4v89a	Sérénade
+0ee95mc	Opéra
+1sz7gr5	Hymne
+1d82w65	Échauffement
+16exdhj	Atteins le niveau 10.
+1f07moh	À mi-chemin
+1gv1hup	Termine l'étage 50.
+1xdsyc5	Étoile montante
+08vjn4t	Atteins le niveau 30.
+0ttac5j	Changement de costume
+0wpbvxt	Fais évoluer un compagnon pour la première fois.
+08tp2nq	Sur son trente-et-un
+0cibbx3	Remplis les six emplacements d'équipement de ton groupe.
+0qu08qx	Le groupe s'agrandit
+1s7jpui	Trouve 10 compagnons différents.
+15m6zkv	Tournée mondiale
+0p6isfb	Termine l'étage 100.
+18sngox	Deuxième étape
+0t97xxs	Termine l'étage 200.
+0xyy5v8	Long-play
+1ko6msl	Termine l'étage 300.
+0p2uvqz	Tournée sans fin
+077abr7	Termine l'étage 500.
+0kttfj7	Orchestre au complet
+1ftdlwm	Trouve tous les compagnons.
+1uei586	Têtes d'affiche
+0co2oyg	Fais évoluer complètement trois compagnons.
+1u76xcj	Harmonie à cinq voix
+1sd4tuz	Fais évoluer complètement un compagnon de chacune des cinq familles.
+17o4t10	Virtuose
+1s586d8	Donne les 10 étoiles à un compagnon.
+1o7uwii	Numéro solo
+0twods9	Bats un boss à l'étage 30 ou plus avec un seul compagnon.
+0xwplmu	Unplugged
+131dj0h	Bats un boss à l'étage 50 ou plus sans équipement dans ton groupe.
+0ziqytr	Répétition par pupitre
+1l05r7p	Bats un boss à l'étage 30 ou plus avec trois compagnons de la même famille.
+0tq62qo	Sans fausse note
+1u1qfsk	Bats 10 boss à l'étage 50 ou plus sans qu'aucun compagnon ne tombe.
+0daw3ej	Répétition générale
+0q7582o	Gagne 10 répétitions.
+0yev4ot	Collection dorée
+0ths2r3	Possède 3 pièces d'équipement légendaires.
+18j4xs2	Recueil complet
+12lew62	Gagne une répétition avec chacun des 15 ensembles.
+0bsk9ij	Pluie de coquillages
+0amgn09	Ouvre 100 coquillages.
+04ow5gr	Rappel sur scène
+1hzejfp	Termine la vague 10 en Rappel.
+0kw590z	Standing ovation
+1dkx4s4	Termine la vague 20 en Rappel.
+1do6rpz	Concert de nuit
+0xygpvx	Scène au couchant
+1ptwv93	Salle dorée
+03pncfo	Aurores boréales
+0ul31af	Projecteur
+1cpl67j	Rappel néon
+1s5oon2	De plus en plus fort
+1lbmtjt	Un boss devient 2 % plus fort à chaque tour qu'il joue.
+0xim5vx	Bruyant
+092waxc	Un ennemi plus gros et plus coriace. Il y en a un tous les cinq étages.
+0detaua	Larsen
+0g6vhsb	Frappe un ennemi à 130 %. Coûte à l'utilisateur 8 % de ses PV max.
+13d8q61	Boum
+053ta2h	Coup de bedaine
+0dnj979	Premier temps
+1f34o5f	Tenir la ligne
+06dokpr	Quand il est frappé, il riposte à 25 %.
+0tkh80d	En avant, marche
+0off7vu	Tap-tap
+0uzjydt	Rafale
+1ktqn6d	Échauffement
+1w1qopz	Chaque coup porté ajoute 3 % de Puissance pour ce combat (jusqu'à 30 %).
+05gb6aq	Gigue frappée
+0gho9na	Roulement
+038yh51	Snip
+1gsd4k6	Clac-clac
+0grptg6	Clic-clic
+10gnhwk	Claquement de castagnettes
+0d5rai9	Dans le temps
+15trs8b	+20 % de chances de coup critique.
+0eepwoa	Zapateado
+07uac25	Prendre la tête
+0rjnqfp	Secousse
+047l8xc	Taper sur les nerfs
+09ye9dh	Déstabiliser
+0lowabh	Ses coups repoussent dans l'ordre des tours les ennemis sous un effet négatif.
+0aod8j9	Feu lent
+1n8nf0k	Twang
+1njs3ln	Corde cassée
+0rmyty0	Pincement
+0zetxk0	Pizzicato
+1ixfsur	Oreille fine
+13r6jhf	Ses coups ignorent la moitié de la Garde de l'ennemi.
+190f7pf	Riff puissant
+0lsw47p	Shred
+1tcc1q9	Grattage doux
+1r8efu3	Accord ouvert
+0gwozuz	Débordement
+1bi0r1i	Les soins au-delà du maximum de PV deviennent du Bouclier.
+19tfqi5	Couplet lent
+02z2n2x	Un-deux-trois
+0046r2t	Raclement
+1d60evi	Crissement
+1vlk8s6	Sciage
+1oaglvk	Double corde
+1mezlbl	Nerf à vif
+0x6ypis	Inflige 30 % de dégâts en plus aux ennemis empoisonnés.
+1nlh6h7	Reel tourbillonnant
+0grbtku	Complainte
+1e5kf37	Trémolo
+1sar8nm	Frisson
+0y60q2o	Trac
+1872r7h	Chaque ennemi commence le combat avec Poison pendant 2 tours.
+1d3oejo	Tombée de la nuit
+1yr6ulo	Caprice
+0kpiauz	Deux choses au hasard : un coup à 110 %, Poison sur tous les ennemis, un soin, Puissance + pour le groupe, Puissance − pour tous les ennemis ou un Bouclier pour le groupe.
+04loohm	Souffle
+1gip12f	Fredonnement doux
+05rb9v7	Note grave
+1jwqcvd	Sous-ton
+08pwtpf	Traîne
+1d37j2m	Au début de son tour, chaque ennemi recule un peu dans l'ordre des tours.
+0n9p0kk	Chant funèbre
+1mrb7u9	Choral
+0137tax	Sifflet
+1jm256h	Air joyeux
+08saj29	Remontant
+12r52vs	Les coéquipiers qu'il soigne jouent leur prochain tour plus tôt.
+0489ktu	Noël
+031a0vk	Berceuse
+10obzew	Mordillement
+1nncv0n	Pression
+1x3i0of	Soufflet
+0lztsun	Grande inspiration
+0ucjz7n	Gonflement
+1p6naxy	Oum-pa
+0ffym9e	Oh hisse
+10x93ym	Trille
+1lziham	Fioritures
+1jlfytj	Da capo
+11v7pdr	Tous les trois tours, il rejoue aussitôt.
+145ygjx	Farce
+1xdqyxh	Cadence
+0j4vn7f	Pouet
+0du2tax	Fanfaronnade
+1q199jr	Ralliement
+0p1cq54	Se préparer
+1ize82t	Mur de son
+1ghjany	Fanfare
+1oqpjfk	Hymne
+1fi7bq7	Tut
+0egkrm1	Appel
+1bs2pyw	Cuivres éclatants
+1xrch8d	Plein swing
+171camj	Réveil
+0u8765q	Clang
+0x5xpcb	Tintement
+12so223	Dong
+1nzb8p5	Couvre-feu
+0qp1h57	Coque vibrante
+0g1ih39	Les ennemis qui le frappent subissent 30 % de ces dégâts en retour.
+0zz0vag	Dernière cloche
+1frl26u	Grande volée
+02g7rrc	Grelot
+1jcu2sd	Grelots de traîneau
+0ly2anh	Bonne humeur
+0253kh0	Tout le groupe commence chaque combat avec un Bouclier.
+0hbl061	Carillon
+0yaiaoq	Gamelan
+1gxfv6d	Jappement
+0llfocq	Miaulement
+1ho4s88	Chantonner
+0zoqbb6	Mots doux
+0fmm7ac	Langue d'argent
+14zv8di	Les ennemis qui le frappent subissent Puissance − pendant 1 tour.
+18kz9uo	Ranime un coéquipier tombé avec 40 % de PV. Si personne n'est tombé, soigne le groupe de 80 % et lui donne Régénération pendant 2 tours.
+0q23ubm	Cri
+0gplas9	À pleins poumons
+11jbqjr	Gagne 8 % de Puissance à chaque tour (jusqu'à 40 %).
+1suzhoz	Question-réponse
+1mf5fhz	Note aiguë
+1ft5tz7	Aboiement
+0b5mtzn	Hurlement
+0nm4tup	Grondement
+1uasau4	Grognement sourd
+060y87e	Du sang dans l'eau
+0uiaph2	Se soigne de 25 % de tous les dégâts infligés.
+1plccmp	Le blues
+0n5padm	Distorsion
+0hkfdb4	Aboiement de garde
+089p2ow	Appel de la meute
+1rcckl9	Quand un coéquipier est frappé, il mord l'attaquant à 15 %.
+1tw4u3u	Chanter en canon
+0c4884z	Requiem
+0k3n0gx	Bonk
+17s5l5v	Grand bong
+0ulcui7	Frappe
+0285t0s	Mur de gong
+18pn1sd	Cadre lourd
+1cd2qde	Subit 15 % de dégâts en moins.
+0oijiii	Tam-tam
+0fntgyk	Tonnerre roulant
+175bu1x	Réverbération
+1bi05dj	Ondulation
+0v5ox0l	Réplique
+1tobm5k	Au début de son tour, un ennemi au hasard subit un petit coup.
+0bijhqs	Scintillement
+1syafku	Séisme
+03qzdj6	Tape
+0b6rpxt	Gamme
+1g2l3gx	Roulement de mailloches
+0mdaju9	Glissando
+0sjrqyn	Frimeur
+0dm89q6	+10 % de chances de coup critique, et ses coups critiques infligent le double.
+1h2jl76	Vibrato
+0qmpvvu	Roulement du pouce
+192ngsl	Ding
+1wo4w1o	Carillon à vent
+1wk49em	Son pur
+16zpp23	Au début de son tour, le coéquipier le plus blessé gagne un petit Bouclier.
+1v808cb	Lueur d'étoile
+013ez5c	Arbre à cloches
+1v3w591	Ting
+13ghs0j	Remontage
+0sqdz4h	Pirouette
+1y8bun6	Manège
+1ey26u4	Souvenir
+03876pu	Tout le groupe commence chaque combat avec Chant de vie pendant 2 tours.
+1fm2p05	Gavotte
+13c01uc	Rêverie
+1de4oh0	Manivelle
+0ulk3i1	Trop remonté
+0xqe02d	Ressort
+16o0zud	Récupère 4 % de ses PV au début de chaque tour.
+1eltb1u	Toccata
+0pc6z0g	Ostinato
+142pjgn	Wah
+15u0adm	Note tordue
+1w0u0b4	Dou-wah
+1c9a2xa	Accord aigre
+1nd0o6b	Pédale wah
+13v1pyf	Au début de son tour, un ennemi au hasard subit Fausse note pendant 1 tour.
+1m85wqp	Skank
+1p63sus	Tailgate
+0fzbi2a	Sonnerie de clairon
+1cb3e8r	Bavure
+18snyl1	Pavillon levé
+1c0cjbg	Inflige 30 % de dégâts en plus aux ennemis sous Fausse note.
+1n9ab9m	Grito
+0d3w5x9	Mambo
+064rxuz	Vrombissement
+1w8hi7m	Walking bass
+1o5p4k3	Slap
+149cpa8	Basses
+1ayqna0	Cordes sympathiques
+0eqy5uj	Les ennemis qui le frappent subissent Lenteur pendant 1 tour.
+12k0kna	Retour de slap
+1cv8o1m	Basse continue
+1o5i5xn	Archet
+0nxg2if	Long archet
+0bn4xiv	Résonance profonde
+07xsmwg	Ses Lenteur, Puissance − et Fausse note durent 1 tour de plus.
+1cf17bj	Sostenuto
+1oijyxf	Fugue
+0n5cim9	Dou
+0bqam4h	Serrés
+01l0qgh	Ouh
+0xhzqh1	Harmonie serrée
+06kkvvg	L'union fait la force
+0it613x	Tant qu'il est debout, ses coéquipiers ont +10 de Garde.
+1798q1h	Cantate
+1vvj5n8	Madrigal
+0qlmoj8	Shoo-bop
+0bieu0o	Chœurs
+1lsbfmx	Continuer à chanter
+1gnqofp	Quand un coéquipier tombe, le reste du groupe récupère 20 % de ses PV.
+1mnxtq9	Gospel
+1600uw6	Plain-chant
+1ikzkcy	Souffle court
+19736uu	Bend aspiré
+0i6ws0l	Duel de riffs
+0w9oj4m	Faire la manche
+1atvc33	Pot à pourboires
+01lvqlq	Chaque ennemi qu'il vainc soigne le groupe de 10 % de ses PV.
+0v021qm	Carrefour
+1weecg8	Juke joint
+1yyx1mu	Glissé
+1szi2dg	Gamme chromatique
+1lzzbce	Bourrasque
+0wy3h7a	Au début de son tour, un ennemi au hasard perd ses effets positifs et son Bouclier.
+1wmvbsn	Mistral
+05qm91p	Sirocco
+1yyjzys	Fioriture
+0horseb	Hoedown
+0s5x4gp	Plan brûlant
+1tepclg	Breakdown
+1itkjsg	Numéro d'ouverture
+0565xbc	Son premier coup de chaque combat inflige le triple de dégâts.
+136slnp	Doigts agiles
+1ewltag	Duel final
+0iht9iv	Gratter ensemble
+1fpt46k	Porte-bonheur
+067ey8x	Ses coéquipiers ont +10 % de chances de coup critique.
+13xisjs	Grande fête
+1kzmbnb	High lonesome
+070t5e1	Touche
+04hzoc5	Accord
+1t9dizn	Gauche-droite
+1enbm4h	Rag
+0d7yg7m	Contretemps
+0wxfzr7	Boogie-woogie
+0qrseta	Grand stride
+076qa28	Do grave
+1taqerg	Fortissimo
+1xya3ki	Dernier mouvement
+1ly1frj	Sous la moitié de ses PV, il inflige 30 % de dégâts en plus et en subit 30 % de moins.
+0dau8k8	Grand final
+09qr6d3	Menuet
+08bgdtw	Coup de bec
+1fz8y39	Vent arrière
+1niikg4	Flûtiau
+1kh1kgu	Air de marche
+16ik1sb	Ouvrir la voie
+0q04ctl	Au début de son tour, le coéquipier le plus lent avance dans l'ordre des tours.
+112a04m	Suivez-moi
+09lgj6i	Soigne tout le groupe de 80 %. Ses deux coéquipiers jouent leur tour aussitôt.
+1auvt6u	Chant du vent
+11j6mia	Tout le monde esquive le prochain coup. Ses coéquipiers jouent leur prochain tour plus tôt.
+1rhp193	Strident
+12i0tva	Note perçante
+17r7bwl	Coup de grâce
+04lfs3w	Contre-ut
+014y2uz	Zéphyr
+0u1bt4z	Frappe tous les ennemis à 95 %, puis rejoue aussitôt.
+1y4ituh	Couac
+0txyels	Skirl
+0ub5jus	Note d'anche
+09xx760	Plainte
+1593f7k	Note aigre
+1s8g04q	Les ennemis qui le frappent sont empoisonnés pendant 1 tour.
+0xrv5m8	Pibroch
+0hqctvw	Tattoo
+1f9no5x	Grand souffle
+1o740zk	Sac à vent
+1vq6ps1	Plein d'air
+0fnpt4v	Une fois par combat, un coup qui le mettrait K.-O. le laisse à 1 PV.
+0b9p1g6	Rassemblement
+1wq7opa	Lamentation
+02ezjje	Oum
+03d6thh	Pa !
+1j7ua0j	Coup bas
+1lgrf66	Mur de cuivre
+1h65juz	Le dernier debout
+0bkmu8k	Quand un coéquipier tombe, il récupère 30 % de ses PV et gagne Puissance + pendant 3 tours.
+1swv50y	Tenir bon
+0yd6exr	Bombardon
+1o492e6	Prout
+1tztmpf	Drop de basse
+1dmoz3o	Air lourd
+12a1zk4	Chaque ennemi commence le combat plus loin dans l'ordre des tours.
+1grgl3z	Subsonique
+0kzafyq	Fou rire
+12irlv3	Dout
+12v24qq	Course fluide
+1i4i61e	Bip-bap
+1rejxdw	Sur un nuage
+10542q1	Quand il met un ennemi K.-O., il rejoue aussitôt.
+1ba51d5	Nappes de son
+103fmui	Take Five
+1158c3h	Velouté
+1n8sgyg	Slow
+1v0rywu	Easy listening
+0s3lxnj	Ses soins sont 20 % plus forts.
+0thz03i	Soul
+0p9c45r	Dernier verre
+04x3i68	Gazouillis
+1jth8jr	Vieux disque
+1wofsfp	Scratch
+07o26sh	Disque rayé
+0s8sb10	Ne peut être ni ralenti ni étourdi.
+04w3idr	Voilage
+0h4z7yy	Chouchou du public
+0a06dpc	Note de tête
+06114a7	Envolée vibrato
+12617m3	Ses coups simples éclaboussent aussi tous les autres ennemis à 30 %.
+05q1aub	Brise-verre
+15e19ob	Clou du spectacle
+1krmegy	Blip
+0jdw2g7	Flash spécial
+0uhcr28	Fuzz
+1oh86fx	Brouillage
+0dasz8l	Mauvaise réception
+0hpinqo	Au début de son tour, un ennemi au hasard subit Lenteur pendant 1 tour.
+070e6on	Silence radio
+0syrtcz	Radio pirate
+1dgv55j	Dédicace
+0y7fncs	Top 40
+1viyfap	Ambiance
+0sgn6pd	Le groupe commence chaque combat avec Puissance +.
+06ioqpd	Compil
+0t2h378	Diffusion
+18vix4v	Cogne
+1a9gry0	Fracas
+1m23wf6	Aiguille
+18vi9jv	Crachat
+0aws48u	Ébouillanter
+1mm9ky0	Clonk
+0rnljou	Garde rouillée
+11v1m3f	Babillage
+1jvhh7j	Huées
+1dmpqsv	Soigne son ami le plus blessé de 140 %. Si personne n'est blessé, frappe un ennemi à 60 % et l'affaiblit.
+0pbjb31	Étouffer
+1dckffs	Couverture
+0s5yoff	Tremper
+0jmesgy	Chut
+1ocf601	Doigt sur la bouche
+1vovvjr	Silence !
+0re2x9y	Grésillement
+199ocsc	Bruit blanc
+0ymjbq5	Interférence
+03y74hh	Effacer
+0lhig2f	Grande pause
+0te3ooz	Point d'orgue
+0mbf94q	Tonalité changeante
+0ho4woa	Change de famille tous les 2 tours. Accélère sous 40 % de PV.
+0vud5dq	Piqûre
+0suiob1	Nuage bourdonnant
+1xqxmn5	Dispersion
+1p2yjim	Esquive les 2 prochains coups et accélère pendant 2 tours.
+0348nnh	Bip
+014ong2	Embouteillage
+0twh2hk	Rage au volant
+0lm7olu	Rocher
+1wyvn1w	Éboulement
+1lpefml	Socle
+1m0m7p0	Tempête de sable
+1g02785	Œil du cyclone
+1p1dny7	Banc de brouillard
+16fafs5	Long coup de corne
+0cfa1iz	Tic-tac
+1k71mcf	Roupillon
+145jl5l	Debout !
+1whanfo	Frappe tous les ennemis à 75 %, puis son prochain tour arrive plus tôt.
+03wcmz8	Zip
+1d0s7av	Piqué
+08ydjo4	Frappe un ennemi à 100 % et esquive le prochain coup.
+0adtvon	Cliquetis
+0mje0od	Déversement
+091kazk	Plip
+10fizix	Flaque
+0ku1wmm	Battement d'ailes
+0vlq75j	Tourbillon
+0dsitjv	Esquive le prochain coup et accélère pendant 2 tours.
+07kb9qa	Gémissement
+1pldi2s	Tic
+0jd6glc	Remonter
+0t91r2l	Croâ
+0qfmpg7	Rot
+01o2zzp	Martèlement
+0diq20m	Chute d'enclume
+1xq6gzj	Toc toc
+1tlu3pa	Perceuse
+1yiehgc	Zap
+17k1p4r	Arc électrique
+1lfz91z	Plongeon
+0hoak0x	Gravier
+1s9fv30	Contre-souffle
+0u0gbsk	Tumulte
+1ohbysp	Coucou
+0n5mp84	Sortie surprise
+1rk256n	Frappe un ennemi à 130 % et esquive le prochain coup.
+1q05kvf	Dring dring dring
+1k5sntb	Combat miroir
+12eqhw1	Les Din copient ton groupe, coup pour coup.
+002004f	Patate chaude
+0ctam6o	Une patate à mèche passe à chaque coup simple. Quand la mèche s'éteint, celui qui la tient perd 30 % de ses PV.
+1pkoab8	Changement de tonalité
+1cfq8ai	Tous les 6 tours, tout le monde avance d'un cran dans le cercle des familles.
+1yxenyh	Bouton de volume
+0zlkzru	Les coups commencent à moitié puissance et montent tous les 2 tours, jusqu'à 250 %.
+0s0fk5e	Tempo inversé
+1pjw2si	Lent, c'est rapide : la Vitesse la plus basse agit le plus souvent.
+0s2p00q	Scène partagée
+1wmdz40	Chaque coup est réparti équitablement sur tout le camp de sa cible.
+0ahnj2t	Réaction en chaîne
+18m6nsh	Qui tombe explose : le reste de son camp perd 20 % de ses PV max.
+0lqtb84	Tueur de géant
+0ide5cc	Un boss géant. Chaque quart de PV qu'on lui retire l'étourdit et lui inflige Fausse note.
+0d7j2pf	Duo
+1yhp35s	Seuls tes deux premiers compagnons jouent. Chaque attaque est accompagnée de l'attaque de base de l'autre à 60 %.
+1g3255c	Kits échangés
+1wxliqd	Chaque compagnon joue avec les attaques de son voisin.
+1gj42n8	Passe le micro
+1suqz2y	Seul celui qui tient le micro peut utiliser Compétences et Spéciales, toujours prêtes et plus rapides. Le micro change de main à chaque tour.
+0qtmljq	Chambre d'écho
+02g9xpm	Compétences et Spéciales rejouent à moitié puissance au tour suivant de l'utilisateur.
+0fo10iz	Dernière tournée
+0f4c821	Gagne en 45 tours maximum, en comptant ceux de tout le monde.
+15jnqbh	Sans base
+0otfaz7	Les attaques de base deviennent Larsen : un coup à 130 % qui coûte 8 % des PV max.
+0sahm09	Le Nénuphar
+0k0njhx	La Salle de l'Enclume
+18dezam	Kiosque de la Ruche
+06g7ffd	Refuge du Sommet
+0qq75ff	Le Carrefour
+1q752zs	Le Puits de l'Écho
+1r6b410	Scène de l'Oasis
+0k61u7j	Jetée Neuf
+0co005d	Le Grenier de l'Horloge
+1ptzihn	La Boîte de Velours
+1okadjr	Ampli plus gros
+13erzoo	+20 % de Puissance.
+0zkl7hh	Étui rembourré
+0j69l3w	+25 % de PV.
+1fwjw4a	Doigts vifs
+0n3fqeu	+15 % de Vitesse.
+01esu05	Point idéal
+0gd36kj	+12 % de chances de coup critique, et les critiques infligent 25 % de plus.
+0lby3om	Carapace dure
+1ebxeoo	+12 de Garde. Commence chaque concert avec un Bouclier de 20 % de ses PV.
+0775ytv	Chant de l'âme
+0zr669t	Se soigne de 15 % des dégâts infligés.
+1h8xmtl	Notes aigres
+0zh5dqc	Ses coups empoisonnent pendant 2 tours.
+13h5hic	Mauvais accord
+1osujrv	Ses coups ont 50 % de chances d'infliger Fausse note à la cible pendant 2 tours.
+0jx2cpn	Première partie
+1oin4ol	Joue en premier à chaque concert, et son premier coup inflige 40 % de plus.
+0x53ene	Riff à pointes
+1sps3gb	Les ennemis qui le frappent subissent 25 % de ces dégâts en retour.
+1iavafh	Chauffeur de salle
+00rkxb6	Commence chaque concert avec Puissance + et Vitesse + pendant 2 tours.
+1ttntdf	Silence, s'il vous plaît
+16d9zln	Les ennemis commencent chaque concert sous Lenteur pendant 2 tours.
+1qxqqjj	Crescendo
+0yvpkv3	+4 % de Puissance à chaque tour d'un concert, jusqu'à +40 %.
+0we7ixn	Les soins au-delà du maximum de PV deviennent du Bouclier.
+1dvzvpk	Boucle de vie
+0wtrnwu	Commence chaque concert avec Chant de vie pendant 3 tours. Chaque K.-O. en ajoute 2.
+1p30ql0	Piste de clic
+17kd3zj	Compétences et Spéciales se reposent 1 tour de moins (jamais moins de 1).
+0n2c1w1	Double tempo
+0ppnxok	Tous les trois tours, il rejoue aussitôt.
+09xfsf7	Maestro du venin
+0h3c4te	Inflige 40 % de dégâts en plus aux cibles empoisonnées et 30 % de plus à celles sous Fausse note.
+06oj68c	Larsen critique
+0rtev9z	Les coups critiques remplissent 35 % de sa barre de tour.
+1phtf1k	Canon de verre
+09uxb6d	+45 % de Puissance, mais 30 % de PV en moins.
+1jqu99t	Second souffle
+0fcws9q	Une fois par concert, survit à un K.-O. avec 1 PV et récupère 30 %.
+0lir46c	Final en beauté
+0iorug3	Inflige 60 % de dégâts en plus aux ennemis sous 35 % de PV.
+0x3dm2o	Pédale d'écho
+11qru8z	Ses Compétences et Spéciales rejouent à 40 % à son tour suivant.
+1rd7chv	Pogo
+1nswr2b	Les coups simples éclaboussent les autres ennemis à 30 %.
+0b0n679	Slam dans la foule
+1bytrrw	Chaque K.-O. soigne de 20 % et remplit la moitié de sa barre de tour.
+1vvq1dc	chaque coup recharge un Bouclier
+1g75ypi	les K.-O. rechargent un Bouclier
+05zgsrj	les Compétences reviennent très vite
+1g6a7f8	plus d'échos, plus souvent
+0tydj6s	les échos empoisonnent à nouveau
+0l5gh4m	les échos remettent Fausse note
+1jq6u3o	les coups sur les ennemis empoisonnés frappent 40 % plus fort
+0q3fcpj	les ennemis sous Fausse note prennent bien plus
+1243pgd	les critiques rapprochent le prochain tour
+0lnuiy9	gros coups avec filet de sécurité
+0jl2xy1	gros coups derrière un Bouclier
+1aj2zep	dur à toucher, douloureux à toucher
+0q14mqo	le volume monte deux fois plus vite
+07pt0rk	achève-les, soigne-toi
+0smkptf	départ lancé
+1ohz4qd	Un musicien de rue
+1h8j3n9	Un musicien à la guitare cabossée propose d'échanger des chansons.
+0u6vqnk	Échanger des chansons
+0p8btdk	Perds 20 % de PV. Reçois une faveur rare au hasard.
+0snxryu	Taper dans les mains
+1izkrj7	Récupère 10 %.
+1ogo5bn	Un vieux sanctuaire d'accordage
+01hfnq9	Un cercle de pierres qui bourdonnent. L'air semble accordé.
+1t547k9	Se reposer un peu
+0d5lodj	Récupère 50 %.
+0g5iyjw	S'accorder
+03q4xnl	+12 % de Puissance pour cette tournée. Perds 10 % de PV.
+0fj3xl2	Un fan avec un cadeau
+0t0aywx	Quelqu'un en t-shirt fait maison te fait signe.
+1r5p1i0	Prendre l'écharpe
+032f49i	+20 % de PV pour cette tournée.
+05oc9pj	Prendre le goûter
+1f37te6	Récupère 35 %.
+1jb1g85	Un ampli qui bourdonne
+0xxly2g	Un ampli traîne dans l'herbe, branché à rien, et bourdonne quand même.
+0bqr3ag	Le brancher
+0zbafn5	+25 % de Puissance, mais 15 % de PV en moins pour cette tournée.
+1xplfql	Laisser tomber
+0f5386r	Il ne se passe rien.
+1mc7zav	Une caisse de vieux disques
+17qilb0	Des pochettes poussiéreuses, certaines encore scellées.
+0o8ngf2	Fouiller
+1483ux0	Choisis 1 faveur commune parmi 3. Perds 10 % de PV.
+1xz3u50	En prendre une au hasard
+0zz4zxc	Une faveur commune au hasard.
+1cy74sa	Le public veut une chanson
+0edgn6c	Un petit public s'est formé et se met à scander.
+0rpo8v2	Jouer pour eux
+12e9pna	+8 % de Puissance pour cette tournée. Récupère 15 %.
+1jsvac1	Saluer
+0fl07dj	Récupère 25 %.

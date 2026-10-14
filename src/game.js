@@ -250,7 +250,7 @@
   ];
   // one record per ensemble: win a rehearsal with it. These pay an echo each.
   for (const e of H.ENSEMBLES) H.RECORDS.push({ id: 'ens_' + e.id, cat: 'reh', ens: e.id, n: e.n, d: 'Win a rehearsal with the ' + e.n + '.', prog: (S) => [S.ens[e.id] && S.ens[e.id].reh ? 1 : 0, 1], echo: 1 });
-  H.RECORD_CATS = [['adv', 'Adventure'], ['reh', 'Rehearsal'], ['enc', 'Encore'], ['col', 'Collection']];
+  H.RECORD_CATS = [['adv', H.T.k('Adventure')], ['reh', H.T.k('Rehearsal')], ['enc', H.T.k('Encore')], ['col', H.T.k('Collection')]];
   H.SETS = { night: 'Night Concert', dusk: 'Sunset Stage', gold: 'Golden Hall', aurora: 'Northern Lights', spot: 'Spotlight', neon: 'Neon Encore' };
   H.recordState = (S, r) => { const [a, b] = r.prog(S); return S.records[r.id] ? 'claimed' : a >= b ? 'ready' : 'open'; };
   H.recordsReady = (S) => H.RECORDS.filter((r) => H.recordState(S, r) === 'ready').length;

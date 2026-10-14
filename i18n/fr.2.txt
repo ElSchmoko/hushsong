@@ -1,0 +1,551 @@
+0f55hyc	Frappe un ennemi à {p}.
+1pnhot0	Bouclier pour lui-même.
+15drddl	{st} sur lui-même pendant {t}.
+1nd99m8	Bouclier pour tout le groupe.
+1qwd7ml	{st} sur tout le groupe pendant {t}.
+1uwsay5	Frappe tous les ennemis à {p}.
+1q8cjc9	Frappe un ennemi {n} fois à {p} chaque fois.
+1076p36	Frappe tous les ennemis {n} fois à {p} chaque fois.
+1q2u71s	Soigne le coéquipier le plus blessé de {p}.
+0ompy9w	Soigne tout le groupe de {p}.
+0u3dj57	Retire tous les effets négatifs de tout le groupe.
+0onaigk	Le coéquipier le plus lent joue son prochain tour plus tôt.
+0khc9zz	Retire tous les effets négatifs du coéquipier le plus blessé.
+190xcnu	{st} sur un ennemi pendant {t}.
+0e7f6lw	{st} sur le coéquipier le plus fort pendant {t}.
+1bdc500	Bouclier pour le coéquipier le plus blessé.
+106aayv	{st} sur tous les ennemis pendant {t}.
+17snu6e	{st} sur un ennemi au hasard pendant {t}.
+15vipv3	{st} sur la cible pendant {t}.
+0cnywq4	Ses coéquipiers jouent leur prochain tour plus tôt.
+13j8tn6	Bouclier pour la cible.
+16clkzn	Lui retire tous ses effets positifs et son Bouclier.
+1o2z45w	Repousse tous les ennemis dans l'ordre des tours.
+0amfle1	Retire tous les effets positifs et le Bouclier de tous les ennemis.
+1kxpnpz	Se soigne de {p} de ses PV max.
+117au04	Ses coéquipiers jouent le tour suivant.
+0ebcfe0	Frappe un ennemi au hasard à {p}.
+0dye84z	+{v} de Puissance
+1i3vqsq	+{v} de PV
+1tt83ij	+{v} de Garde
+1ub8ovp	+{v} de Vitesse
+0s1jrr2	+{v} de chances de coup critique
+1bmhzw0	Ignore {v} de la Garde ennemie
+00bjksl	Subit {v} de dégâts en moins
+0pcq1bs	Ses soins sont {v} plus forts
+0fdv6n1	+{v} d'expérience pour le groupe
+1h4s45e	{pet} rival
+0eujuva	{din} bruyant
+03alka9	Boum !
+0kui9jn	Extinction des feux !
+0c1w867	Écho !
+0mq77hg	Bis !
+1qm2xxm	Encore !
+0k2fpcm	Tient bon !
+0rd3yt1	Chaîne !
+0belrl0	Vacille !
+1xob2db	Plus vite !
+1lwo7a3	Ça glisse
+0hn3zaj	Aventure
+03gtdjg	Répétition
+13u5rhp	Rappel
+0siy9wx	Collection
+03bpwir	{pet} miroir
+0htre55	{din} géant
+1jamndy	Puissance
+1m575se	Garde
+02w2xwg	Vitesse
+06xig19	Critique
+1l0xxoj	Fermer
+007q5wa	Menu
+0v0wv6e	Compétence
+1q4pntc	Spéciale
+0n0mxf2	Accueil
+04f76ga	Notes
+0wto1r4	Échos
+04zpoy4	{"one":"Tu as trouvé {n} écho !","other":"Tu as trouvé {n} échos !"}
+1oo9ppz	Tu as trouvé un écho !
+1we7hk3	Ils aident {n} à évoluer, puis achètent des étoiles.
+0sxhh51	Les échos simples aident n'importe quel compagnon à évoluer. Dépense-les sur la page d'un compagnon.
+1msq7av	Concert du jour
+1mwx410	<b>Nouveau à l'accueil :</b> {modes}
+0fkew5h	{label}, payé
+160umau	Groupe
+0excb6f	Compagnons
+1jht0nq	Coquillages
+1jp3e8h	Sac
+17o19ow	Ouvre ton coquillage ici
+1npfg7x	De base
+0t4uqph	Toujours actif
+0x2jl9c	attente {n}
+1cjrhja	à tout moment
+0b9jhu9	nouveau
+0ew9em3	Annuler
+166o4fr	‹ Retour
+1id7d20	Comment jouer
+1602nqr	Gagne des étages pour avancer. Tous les 10 étages, un <b>boss</b>. Les coquillages contiennent des compagnons au hasard.
+119v05d	Compagnons et ennemis agissent quand leur barre jaune est pleine. <b>Touche un ennemi</b> pour utiliser sur lui l'attaque choisie, touche une icône ronde pour changer d'attaque et <b>maintiens le doigt</b> sur quelqu'un pour voir ses stats. Pendant que tu vises, la partie qui clignote d'une barre de vie montre ce que l'attaque retirera.
+04f26x8	Stats
+0vbx2p1	PV
+1va0zku	Les dégâts qu'il encaisse avant de tomber.
+1rtj1g9	La force de ses attaques, soins et boucliers.
+0t35lk6	Réduit les dégâts subis. 50 de Garde retire un tiers.
+1sqimv3	La fréquence de ses tours.
+08j0mei	Chance qu'un coup inflige 50 % de plus. Chaque compagnon commence à 5 %.
+11rzah1	Familles
+19nc0fc	Chacune bat la suivante du cercle : 30 % de dégâts infligés en plus, 20 % de subis en moins.
+0oqv3et	Effets
+1a4ajy7	Le nombre sur un effet indique ses tours restants.
+0dekir8	<b>{n}.</b>
+114mnho	Échos et étoiles
+1x1u4jp	Les compagnons évoluent deux fois avec des échos, puis gagnent des étoiles : jusqu'à 10, chacune +3 % de PV et de Puissance. Un coquillage contenant un compagnon déjà possédé donne un écho que seul ce compagnon peut utiliser. Les échos simples, affichés en haut, conviennent à tous.
+0a8e6q1	Notes et expérience
+047ok7c	Les nouveaux étages rapportent des notes, qui achètent des coquillages. Chaque combat donne de l'expérience, moins sur les étages bien en dessous de ton niveau.
+02k1r1n	Ensembles
+1ethk2v	Trois compagnons de trois familles, ou tous de la même, forment un ensemble : un air d'ouverture et un bonus pour le groupe.
+1c0bob4	Les boss vaincus des étages 10 à 100 reviennent à ton niveau. Chacun rapporte un écho une fois par semaine, remis à zéro le lundi.
+1xtq0ev	Équipement
+1eepakt	Chaque compagnon porte deux pièces. Les victoires peuvent en donner d'autres : l'écran Aventure montre les chances. 3 pièces en trop d'un même type fusionnent dans la rareté suivante, jusqu'à Épique.
+0baj6qd	Dès le niveau {unlock} : un combat par jour avec une règle maison qui change le fonctionnement des combats, la même pour tous. La première victoire de chaque jour paie ; réessaie librement.
+0h1kfu0	Dès le niveau {unlock} : un compagnon parcourt une route à embranchements de cinq concerts, haltes et un boss. Les faveurs durent toute la tournée, et certaines se combinent. Les premières victoires de chaque jour paient.
+07zgmz9	Dès le niveau {unlock} : des vagues sans fin, chacune un peu plus dure. Les PV sont conservés et les compagnons tombés restent sur la touche. Les vagues clés paient une fois par semaine.
+0orgbil	Succès
+08hfti8	Des défis corsés qui rapportent coquillages, échos et décors d'accueil.
+0l8hqi2	Compris
+0zmnv1z	Son : oui
+1j3s0cb	Son : non
+0ohwdis	Musique
+0u4bbh9	Code de sauvegarde
+0a17t5z	Recommencer
+0ah2vw0	Effacer cette partie ?
+07v407v	{"one":"{n} compagnon","other":"{n} compagnons"}
+1h0aetd	Tes {pets}, ta progression jusqu'à l'étage {stage} et toutes tes notes, coquillages et échos disparaîtront pour de bon. Un code de sauvegarde fait avant peut les ramener.
+13p56d7	Elle contient {pets} à l'étage {stage}. Elle remplace la partie sur cet appareil.
+1yiqur6	Tout effacer
+1u9zao8	Ton code de sauvegarde
+0oqbnyd	Colle un code de sauvegarde ici
+1kt4ziu	Code de sauvegarde à charger
+13h0r7b	Copier mon code
+0iim041	Copié. Garde-le en lieu sûr.
+0wqainm	Sélectionne le texte et copie-le à la main.
+0zcg70w	Charger ce code
+04nf0s1	Ce n'est pas un code de sauvegarde Hushsong.
+0wazdu1	Charger cette sauvegarde ?
+1ughagm	Charger
+0ribzan	Ta partie se sauvegarde toute seule sur cet appareil. Ce code est une copie à garder, ou pour continuer ailleurs.
+1i3udnb	Charger un code
+0xptzj8	Vague {n}
+0opsnl8	Boss {n}
+1dxyp09	Bruyant {n}
+192xyh5	Étage {n}
+1wsths9	Plus tard
+1vkg66p	Ton ensemble
+0oes1nf	{"one":"+{n} écho","other":"+{n} échos"}
+0tyfhvo	Arrêter cette partie ?
+10yh3fa	Tu gardes tes récompenses.
+179chx3	Arrêter
+1xqrqh9	Faire évoluer {pet}
+007flrr	Une étoile pour {pet}
+1bipuuc	Continuer
+0kayn18	Ouvrir le coquillage
+1hzmxtu	Retour
+1o2o6dp	Changer le groupe
+03kusfv	Change ton groupe
+0ovvjp1	Ton groupe
+1yikd80	Tournée solo
+1g2tab0	Concert {n} sur 5
+0n3ydks	Choisis-en une
+0x4nga3	En route
+00fxhu9	Pas évolué
+18kfar1	Évolué une fois
+1fvnaj8	Évolution complète
+0h2yt8f	Niv {level}
+114caoa	Niveau max
+1ys28bo	{xp} / {level} XP
+051r543	{n} régions sur 10 chantent
+0osohmo	{pet}, dans le groupe
+0qrjb0u	Jouer l'ouverture de {n}
+1wnoi3m	{region} · étage {n}
+11dqdbh	Récompense finale
+1dfllbn	Récompense du boss
+1mw0j2l	{"one":"+{n} coquillage","other":"+{n} coquillages"}
+1l232k4	Hushsong
+0skq8vk	Collectionne des compagnons musicaux. Ramène la musique.
+0bk85tv	Jouer
+1y45tsh	Ouvrir mon premier coquillage
+1yi0f7c	Autrefois, tout chantait
+0lomxls	Chaque colline, port et salle avait son air, et des compagnons musicaux le jouaient toute la journée.
+0i6vi28	Puis vinrent les Din
+1jeck9n	Des créatures bruyantes qui ne supportent pas les mélodies. Elles ont tout envahi et noyé chaque chanson dans le vacarme.
+1pzwbfm	Le monde s'est tu
+0cv90j1	Les couleurs se sont effacées. Les compagnons se sont cachés dans leurs coquillages, et plus personne n'a entendu de chanson.
+0p1upin	Mais un coquillage fredonne encore
+0niwiss	Ouvre-le, forme un groupe et reconquiers la musique, étage par étage.
+1vufmm8	Touche pour continuer
+1kpwk02	Étage du boss {n}
+0x7pfo0	Commence ton aventure ici
+0s60a9m	Boss · Ennemis niv {n}
+1j7pu5k	Ennemis niv {n}
+08rseiv	Concerts
+03n17d7	{ready} prêts
+1vgexli	{done} sur {length}
+02zyyv8	Concert du jour prêt
+1reuah4	Tournée solo en cours
+0u73zav	Prochaine : vague {n} de Rappel
+1xxqbrb	{"one":"{n} répétition ouverte","other":"{n} répétitions ouvertes"}
+1vzcv0c	Le solo paie aujourd'hui
+1i8e16b	Premier concert au niveau {n}
+1skvt3i	Tout joué aujourd'hui
+0azt7u3	Débloqué au niveau {unlock}
+0mbqao6	Gagné aujourd'hui
+1m0zof0	Prochaine : vague {wave}
+0sssj9z	Record de la semaine : {weekBest}
+0bv6gmn	Débloqué après l'étage 10
+09hmetg	{"one":"{n} boss disponible","other":"{n} boss disponibles"}
+1qt0ibb	Tout joué
+1w35moz	{"one":"Remise à zéro demain","other":"Remise à zéro dans {n} jours"}
+1mf63c1	Pas d'ensemble
+1s9gkj5	Étage précédent
+06lywvr	Étage suivant
+127oer9	Terminé · Ennemis niv {n}
+1byxumh	Expérience
+1lr0g08	+1 Légendaire
+1lafnle	Chance d'équipement
+0dr6vfq	{name}, niveau {lvl}, ton groupe est fort contre lui. Voir ses attaques
+0k11ss3	{name}, niveau {lvl}, fort contre ton groupe. Voir ses attaques
+1twb6b1	{name}, niveau {lvl}. Voir ses attaques
+1i8jmgf	Niv {n} · boss
+03c3p2r	Niv {n}
+02k9jns	Tu le frappes plus fort
+0af1lm1	Il te frappe plus fort
+1eenfp5	{"one":"Ennemis : {n} niveau au-dessus de toi","other":"Ennemis : {n} niveaux au-dessus de toi"}
+0d8gyft	Continuer : oui
+0jkleb9	Continuer : non
+0y8m6so	Combat auto
+15hb32v	Combattre
+10tx3xo	Affronte les ennemis ci-dessus
+0sh945i	Carte : {n}, étage {n2}. Voir toutes les régions
+19rtxhg	Le monde, rappel {n}
+1f41oeh	La route vers l'étage 100
+1ki85pn	Étages {a}–{b} · chante à nouveau
+1grm6vy	Étages {a}–{b} · réduit au silence par {din}
+18s8a97	Ici
+0mxtf0p	place libre
+1whegdc	Touche ton compagnon
+1tmmxpq	À propos de {n}
+1rkfalq	Échanger
+1ybtjd0	Remplis les trois places.
+1rlp9ke	Il faut <b>3 familles différentes</b>, ou <b>3 de la même</b>.
+1q7gv3d	Possibles : <b>{list}</b>
+10ubeg8	Tous les ensembles
+1c5mvf7	Vers l'aventure
+02u5zbh	Prêts ? En route
+05o74q3	Qui se place ici ?
+18z83m5	Laisser cette place vide
+19xt0al	3 familles différentes, ou 3 de la même.
+0jtpxy5	Actif
+1g5f5vb	Compagnons manquants
+0dzuldu	Joué
+12mrurj	Pas encore joué
+1p633z1	{"one":"{n} coquillage à ouvrir","other":"{n} coquillages à ouvrir"}
+0ost8of	Aucun coquillage pour l'instant
+1stb3ay	Ton premier compagnon est à l'intérieur. <b>Touche le coquillage.</b>
+0fi2qkf	Un <b>compagnon au hasard</b>. Si tu l'as déjà, il devient un <b>écho</b>.
+1r45u9w	Les boss laissent des coquillages. Les notes en achètent d'autres.
+0zvrdho	Ouvrir un coquillage
+1mhuvb6	Acheter un coquillage
+0hv9zs9	Je choisis {n}
+0oe9ixr	Il y avait trois compagnons dedans !
+0mecjw0	Choisis-en un. Les autres reviendront plus tard.
+0tlq0tf	Nouveau compagnon !
+1sy6y67	Encore un {base}
+0i0wqsf	Encore un {base} (ton {n})
+0say7eo	{"one":"+{n} écho de {pet}","other":"+{n} échos de {pet}"}
+1mw6eu2	{"one":"En ouvrir un autre (encore {n})","other":"En ouvrir un autre (encore {n})"}
+1taelf6	C'est parti
+13cn9g1	Terminé
+0to0bon	{have} / {need} échos
+0ow97sa	Évoluer en
+0ay0li2	Nouvelle Spéciale
+1jxgm35	Choisis-en une. Changer plus tard est gratuit.
+1yylcbd	Les échos viennent des coquillages, des boss, des répétitions et des succès.
+1128a0z	Étoiles {n} / {max}
+1i6zzkz	Ajouter une étoile · +3 % de PV et de Puissance
+1n5ofxj	Ce compagnon est au maximum.
+1hgwrl8	Équipe-le ici
+051r6dq	Emplacement vide
+0xpvvet	Attaques
+083gk8g	Changer de voie
+19b2u1a	Super
+1eq65tc	Évoluer
+1mntkmf	{have} / {n} échos
+0we11jd	Gratuit, aussi souvent que tu veux.
+0v7hfzm	Le retirer
+0hpqcmx	Échanger contre
+12sm7bj	Dans ton sac
+08kj2qr	C'est fait ! Retourne au combat.
+19ky8vr	Plus rien dans ton sac.
+0ggizsd	Ton sac est vide.
+1j0zoai	Rien pour l'instant
+0musznz	Les combats donnent parfois de l'équipement.
+0am4v1q	3 pièces en trop d'un même type fusionnent en une meilleure.
+10ttus6	Fusionner 3 {item} → {rarity}
+1fkec2w	Fusionné !
+0h4pk9n	<b>{n}</b> le porte.
+0rrnf75	Personne ne le porte.
+0xide7m	Le retirer à {n}
+03295io	Aller à {n}
+0ngmxng	Fusionner 3 → {n}
+0br649q	Fusion : {length} / 3 en trop
+1pquyhx	Vendre
+0ix7gem	S'ouvre après le boss de l'étage 10.
+067l7h2	Les boss vaincus reviennent à <b>ton niveau</b>.
+12rgeuk	Tout gagné cette semaine
+1vgwehg	{din}, {region}, gagné cette semaine
+0qjjz61	{din}, {region}, récompense : 1 écho
+1fqbflp	Le Rappel s'ouvre au niveau {unlock}.
+03scfen	Hors jeu
+08gv74u	Des vagues sans fin, chacune un peu plus dure. Les PV sont conservés, et un quart revient après chaque vague.
+1nvt7jn	Cette semaine
+15kcesy	Record de la semaine <b>{week}</b> · absolu <b>{best}</b>
+15jnq83	{"one":"remise à zéro demain","other":"remise à zéro dans {n} jours"}
+04pp0j3	Jouer la vague {wave}
+1ywcpar	Arrêter cette partie
+0asw5g5	Lancer le Rappel
+03839q1	Nouveau décor : {set}
+1078zjl	Décor : {set}
+0f8duxs	Étage actuel
+03yitl0	Décor de l'accueil
+00n1act	Terminé.
+19cqi1l	Récupère 1 écho.
+1c6dls2	Récompense : 1 écho.
+0rfmv4f	Récupérer
+1cnat5z	Gagne une répétition avec chaque ensemble
+0l8z7n2	<b>Niveau supérieur !</b>
+15eua8j	Pas cette fois
+0982hh6	Réessayer
+0xuoasm	{h} h {m} min
+0z7rxr8	{m} min
+1sawk0u	Aujourd'hui
+1yetfcu	Entrée simple
+0i43ri6	Payé aujourd'hui
+0wv5s44	Notes pour la victoire de ce soir
+0cfkl9x	Ce soir · {date}
+0l3ql07	Règle maison
+0ohh9of	Sur scène · niv {level}
+1d8xe0i	Gagné ce soir
+16gyw2s	Tes deux premiers compagnons
+1ginijz	Nouveau concert dans {msToTomorrow}
+1izp7up	Réessaie autant que tu veux
+1vy1lnc	Rejouer
+1dt0t41	Jouer le concert
+16jnn15	Concert gagné !
+0hqkd91	Encore un super concert !
+0t1b6a6	Déjà payé aujourd'hui
+18imhfd	Les lumières se sont éteintes avant les Din.
+0d1n3lp	Réessaie autant que tu veux.
+1lzfam5	Retour à l'affiche
+0yjpaj1	Un compagnon · cinq concerts · un boss
+1yve732	Concert {n}
+1ol94ul	{n} + équipement
+0fnhp9o	Boss
+0xl0w5y	Les 5 premières victoires en concert et la première contre le boss paient chaque jour. Nouvelle paie dans {msToTomorrow}.
+1611szw	Tout est payé aujourd'hui. Les tournées comptent toujours pour le plaisir et l'expérience.
+1iiozi7	En tournée · {n}
+1ge46m3	{gigs} concerts sur 5 gagnés
+0eo55r4	{"one":"{n} faveur","other":"{n} faveurs"}
+0s77dwq	Reprendre la route
+0vcj9z8	Abandonner la tournée
+0nydgv5	Abandonner la tournée ?
+0gcqlob	Tu gardes tes notes.
+1jqit4p	Abandonner
+07pfpca	La route s'adapte à ton soliste.
+1jomgr2	Partir en tournée avec {n}
+0wqg5d6	Choisis ton soliste
+0mtitlv	{boons}. Les voir
+0pk5huj	Pas encore de faveurs
+10kjgrl	Combo
+0azrw18	{n} · niv {level}
+0jndyot	Boss ensuite
+02zvux1	Combo avec {n} : {d}
+0d1xs4z	Faveurs de cette tournée
+0ls4fiu	Combos
+00u5kof	Gagne des concerts et des jams pour récolter des faveurs. Elles durent toute la tournée.
+1ivwi98	{p} de Puissance
+1czrh23	{p} de PV
+18dqeg6	De la route : {list}
+1jeu1u6	Concert
+0yik53o	Concert bruyant
+1no7203	Jam
+1f5g7va	Mystère
+030xvgf	Départ
+0rcomre	‹ Concerts
+1nz9721	Tournée : {region}
+1y1z148	La scène de {din}
+0suqviq	{stop}, tu peux y aller
+10yi615	{stop}, visité
+0bloln1	{stop}
+0y4qqu7	Pas sur ta route. Les haltes qui brillent sont les suivantes.
+17lnddt	Ta tournée commence ici. Choisis une route.
+0nbrgm6	Choisis la prochaine halte. Touches-en une pour la voir.
+0zqhp1s	Tournée solo
+1p7xg55	5 concerts, puis {n}
+0acptz9	Une petite scène.
+1idq6xu	Un public agité et des Din plus coriaces.
+0mkdcb6	La dernière halte de la tournée.
+0wsnj4k	Dormir ou répéter.
+1g00h8i	Joue avec eux pour une faveur.
+1bqe9lc	Il se passe quelque chose ici.
+0cbomgp	Faveur rare
+0cm0w8n	Faveur
+0unuhh5	Victoire
+18w23xo	Affronter le boss
+0z0syb8	Jouer ce concert
+1lkop6h	Y aller
+0jar724	Pas encore
+0pv5mv6	La route
+1qd1crm	Deux Din. Gagne pour une faveur.
+05me9k8	Des Din plus coriaces. Gagne pour une faveur rare.
+0fqmz7h	Récupère 40 %, ou répète pour +10 % de Puissance.
+18gfynz	Choisis une faveur.
+0m8hcnl	Un choix, bon ou risqué.
+14v8vbh	La fin de la tournée.
+0vozr6z	Les PV passent d'un concert à l'autre. Le public s'impatiente si un concert s'éternise : chaque coup frappe plus fort.
+0i9n2t3	Le public est en délire
+0e67mga	Fouiller la caisse
+17cajel	Choisis une faveur rare
+0crwowb	Choisis une faveur
+14mzec6	Prendre {n}
+00dbte5	Passer cette faveur ?
+19b6o8k	Cette halte n'en donne pas d'autre.
+0rhzcma	Une nuit calme sur la route
+0d7yc2w	Dormir
+0yis9fp	PV {now} → {heal}
+1ko57eo	Répéter
+0iibvtx	+{n} % de Puissance pour cette tournée
+1vj67te	Tu as obtenu
+0qvo2av	Concert bruyant gagné !
+04ymvaf	Ça bouge !
+1eea2cs	PV {n} %
+0wc81n0	Notes de cette tournée
+0cc3ko5	Tournée réussie !
+0x5rhez	Fin de la tournée
+1vcaw9j	Ton soliste
+11w4s05	<b>{pet}</b> a gagné les cinq concerts et battu le boss.
+1rb3v2o	<b>{n} sur 5</b> concerts gagnés.
+1t4vb48	Et le boss a laissé
+17kf24l	Tenter une autre tournée
+1k3jeja	Autre tournée
+02dv84d	<b>{pets}</b> <span class="dim">sont forts contre lui.</span>
+06u84tt	<b>{pets}</b> <span class="dim">est fort contre lui.</span>
+1jh7dyr	<span class="dim">Il est fort contre</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Niv {lvl}
+0j8axo0	sur {max}
+0xw1kwq	<b>Bouclier.</b> <span class="dim">Absorbe les {shield} prochains dégâts.</span>
+0fuwg7s	Pendant {t}.
+03ojm4e	Quitter cette vague ?
+104x6pe	Ta partie s'arrête ici. Tu gardes tes récompenses.
+1xf0sbk	Quitter
+0l14tjq	Quitter ce concert ?
+17mnxxq	Ta tournée s'arrête ici. Tu gardes tes notes.
+113qxrx	Finir la tournée
+0ax5053	Quitter le concert ?
+1ymwhol	Réessaie quand tu veux.
+0iou6h7	Quitter ce combat ?
+0b3qhh2	Tu ne perds rien.
+0ssgire	Quitter le combat
+1jmvu80	Solo · boss
+0lrhoo2	Solo · concert {n}
+1olfrt8	Répétition {n}
+0bigcx0	{"one":"encore {n}","other":"encore {n}"}
+05trtda	dans {n}
+0qn7msh	Agité !
+0ujdg0z	Règle maison : {n}
+1epghlp	Le public
+13qzva8	Le public s'impatiente : chaque coup frappe plus fort à chaque tour.
+0540b06	Auto
+1fn0bdg	Utiliser
+07t8f32	Attaque de base
+0wv4sck	Prépare-toi
+1gig116	il faut le micro
+1dafg0x	prêt dans {t}
+12udzhb	repos de {t} après usage
+0eoacl7	toujours prêt
+09mc5ki	Attaque bonus
+1mzzz6r	{move}, il faut le micro
+1cbobby	Tour ennemi
+1s58kd5	Le combat auto est activé
+0o9tv84	Seul le compagnon avec le micro peut l'utiliser.
+1yv3h7m	Pas encore prêt. Choisis une autre attaque.
+0xt3jlr	Touche un ennemi pour l'utiliser, ou appuie sur Utiliser.
+0bbedtn	Appuie sur Utiliser.
+1i1wq4v	Seul le compagnon avec le micro peut utiliser ça.
+1o29ocf	Cette attaque n'est pas encore prête.
+1k3jdut	Il doit frapper celui qui a Provocation.
+0amsa7g	Maintiens le doigt pour voir ses stats et ses attaques.
+19s7xp8	À toi ! Touche l'ennemi pour l'attaquer.
+1xkyhxm	Touche une icône ronde pour choisir une autre attaque.
+1xatr8w	Flèche verte : ton compagnon est fort contre cet ennemi.
+1fo7mmm	La ligne jaune montre à qui c'est le tour ensuite.
+1gg5fya	Bloqué
+0nz7kx7	Critique !
+03sm2ze	Fort
+0uhuaqx	Faible
+001d664	Esquivé
+169g4lg	Étourdi
+13qsw78	{name} est étourdi et saute un tour
+0b538j2	Debout !
+0kaw7l1	Plus tôt
+0pb3b0x	Changement !
+1o2e5hh	Le public s'impatiente !
+0h1zwxb	Changement de tonalité !
+1rzr4qi	Patate chaude !
+0yrhd9v	Micro !
+167szal	Rappel · vague {n}
+1ryq1vy	Tournée solo · la dernière halte
+0wdzx1i	Concert du jour · {n}
+0ncefmr	Boss · étage {n}
+0vh77hq	Touche pour passer
+0wqg7ri	VS
+01lmez5	Concert du jour · {venue}
+0d68t5f	Touche pour commencer
+0jleco1	Victoire !
+1jc3an7	Ton groupe est K.-O.
+13ssvg2	Vague {wave} terminée !
+1mh43qm	Récompense hebdo : vague {n}
+0catbos	Prochaine récompense : vague {n}
+0kbukl4	Toutes les récompenses gagnées cette semaine
+1cprp2x	S'arrêter là
+0nzp3il	Fin du Rappel
+1ut9ian	{"one":"Tu as terminé <b>{n}</b> vague.","other":"Tu as terminé <b>{n}</b> vagues."}
+0ty85y2	Record : <b>{n}</b>.
+0sxepax	Retour au Rappel
+1mbtrrm	Niveau supérieur
+1t44dyo	{"one":"Niveau supérieur !","other":"+{n} niveaux !"}
+0jgpwku	Niveau suivant
+1upuqw4	Un succès est prêt
+1oyw1a7	Répétition réussie !
+1p1n9oo	Plus de répétitions
+0tmft7x	Répétitions
+1olud0e	Boss vaincu !
+0hcfevc	Étage terminé !
+1lol7z1	Rejouer ne rapporte pas de notes.
+0rbs9h4	Tu as trouvé
+1j1b8hw	Vers le boss
+0to2fym	Étage suivant
+1pob5wr	Rejouer
+1h119dp	<b>Un boss arrive.</b> Vérifie d'abord ton groupe.
+08xkpxs	Étage suivant dans {left}
+1ft5bxw	Astuce : <b>{n}</b> peut progresser.
+1y4qsj9	Astuce : tu as un coquillage à ouvrir.
+0ee4m6n	Astuce : il y a dans ton sac de l'équipement que personne ne porte.
+17h3lmh	Astuce : gagner une répétition rapporte un écho.
+1yxlsvo	Astuce : tes compagnons pourraient former un ensemble.
+11jmiib	Astuce : essaie un autre groupe, ou rejoue un étage précédent pour monter de niveau.
+03eg7mm	Astuce : rejoue un étage précédent pour monter de niveau, puis reviens.
+1uopv4k	Tu as trouvé un coquillage !
+16ub219	Un compagnon est dedans. Ouvre-le dans <b>Coquillages</b>.
+03ywr4q	Montre-moi
+07hdxv7	Tu as trouvé de l'équipement !
+15xrlrb	Chaque compagnon porte deux pièces. Équipe-les depuis sa page.
+16us7mj	Langue

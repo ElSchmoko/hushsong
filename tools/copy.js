@@ -1,7 +1,7 @@
 // Every piece of player-facing text in Hushsong, as one Markdown list: node tools/copy.js > copy.md
 // Screen text is listed by hand (it lives in the UI code); everything that comes from game data is read from the data itself.
 // {curly} marks a value filled in by the game.
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js');
 const H = globalThis.H, out = [], h = (n, t) => out.push('', '#'.repeat(n) + ' ' + t), li = (...xs) => xs.forEach((x) => out.push('- ' + x)), p = (x) => out.push('', x);
 const kv = (k, v) => `**${k}**: ${v}`;
 

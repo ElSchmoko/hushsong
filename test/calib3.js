@@ -1,4 +1,4 @@
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
 const H = globalThis.H;
 Object.assign(H.ROLES.rhythm, { hp: 1.2, vol: 0.85, poise: 10, tempo: 0.94 });
 Object.assign(H.ROLES.lead, { hp: 0.9, vol: 1.12, poise: 0, tempo: 1.04 });

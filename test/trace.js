@@ -1,4 +1,4 @@
-require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); const H = globalThis.H;
+require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); const H = globalThis.H;
 const [region, lvl, ...forms] = process.argv.slice(2); const rnd = H.rng(5);
 const S = H.newState(); forms.forEach((f) => { const p = H.addPet(S, H.FORMS[f].sp, null); p.form = f; }); S.level = +lvl;
 const dv = H.genDelve(S, region, false, rnd); const b = H.startBattle(S, dv, dv.cols[6][0], rnd);

@@ -1,0 +1,839 @@
+1a4u7t2	{stats}.
+0q7birz	{"one":"{n} turno","other":"{n} turnos"}
+14hthj2	Golpea a enemigos al azar {n} veces con un {p} cada vez (dos enemigos distintos).
+0byjh8c	Golpea a enemigos al azar {n} veces con un {p} cada vez.
+07n71hn	Cada golpe es un {p} más fuerte que el anterior.
+0m7nu51	{c} de probabilidad de {st} durante {t}.
+1av7cih	{st} durante {t}.
+0rufu09	Se cura un {p} del daño.
+0c2qpnw	Lo retrasa en el orden de turnos.
+13becoz	Los retrasa en el orden de turnos.
+1tf8g37	Un {p} más fuerte si el enemigo tiene más del 80% de PV.
+0y0bald	Hasta un {p} más fuerte cuanto más herido esté el enemigo.
+0k522we	Luego golpea a los demás enemigos con un {p}.
+1v1cx0m	+{p} de probabilidad de golpe crítico.
+1klobiz	Atraviesa el Escudo.
+03a2a9p	Cada golpe crítico añade un golpe más (hasta {n}).
+0vdxodq	Cada golpe tiene un {c} de probabilidad de causar Lento, Veneno, Menos poder o Desafinado durante {t}.
+0cqxp7o	Cada golpe causa Lento, Veneno, Menos poder o Desafinado durante {t}.
+1m5emfp	{p} de probabilidad de jugar otro turno enseguida.
+0gtqyd5	Un {p} más fuerte por cada compañero caído.
+1f7wvud	Un {p} más fuerte por cada compañero caído o con menos de la mitad de PV.
+01otle1	Un {p} más fuerte contra enemigos con {st}.
+1tbjmve	Un {p} más fuerte mientras tiene {st}.
+0a8oif0	Si eso derrota al enemigo, todos sus movimientos vuelven a estar listos.
+0os6g8v	Si eso derrota al enemigo, juega otro turno enseguida.
+1lbrklu	{c} de probabilidad: {fx}
+1oa0nre	Su siguiente turno llega antes.
+1jyhvo1	Juega otro turno enseguida.
+18w9g0n	Revive a un compañero caído con un {p} de PV.
+0xnfd5d	Cada compañero se une con su ataque básico al {p}.
+04clvli	Luego todo el Veneno de los enemigos inflige de golpe el daño que le queda.
+00bdm66	Le cuesta un {p} de sus PV máximos.
+0eo8xqz	Toda tu banda actúa antes que cualquier enemigo, y todos los enemigos quedan Lentos durante {t}.
+13kjpwg	Los primeros {n} golpes de tu banda son golpes críticos.
+0ohlr4q	Viento a favor: tu banda juega sus turnos un {p} antes durante toda la batalla.
+1vdaa7w	Crescendo: tu banda gana un {p} de Poder cada turno, hasta {max}.
+0qlchvz	Armonía: cuando una mascota se cura, las otras dos se curan la mitad.
+0z4jtn1	Más velocidad para tu banda durante {t}.
+1el07f1	Menos poder para todos los enemigos durante {t}.
+0imqe8u	Bis: el primer Especial de cada mascota vuelve a estar listo enseguida. Una mascota sin Especial lo hace con su Habilidad.
+1tii7s6	Escudo para tu banda, del {p} de los PV de cada mascota.
+0i05xu4	Confeti: cada enemigo empieza con un efecto al azar (Lento, Veneno o Menos poder) durante {t}.
+0kr4kqx	Tu mascota más rápida juega dos turnos seguidos al empezar.
+0skalmm	{"one":"Cada mascota se libra la primera vez que recibiría Lento, Aturdido, Veneno o Menos poder.","other":"Cada mascota se libra las primeras {n} veces que recibiría Lento, Aturdido, Veneno o Menos poder."}
+0x2th3i	Regeneración para tu banda durante {t}.
+1rw69zs	Nota aguda: los {n} enemigos con más PV quedan aturdidos durante {t}.
+1m4ob43	La primera mascota que caiga se levanta con un {p} de PV.
+0c5orbx	Contraataque
+0a7kf5t	Líder de la manada
+11j7o30	Gana un ensayo con el conjunto {ens}.
+0xq0xcg	Escudo
+0taf2ay	Solo
+0578o3h	Raro
+14wniqc	Común
+1bwxzco	Fogata
+1hpqu3m	Saltar
+13347be	Legendario
+0bgmlfx	Tambor
+0qq0dw8	Cuerda
+1wnfmqv	Aliento
+0v3iwlm	Metal
+0b1qn4p	Voz
+0wrl2jw	Silencio
+0bq1jab	Cría
+13kzokd	Aún no ha elegido un rol.
+13mh6zt	Tanque
+04kb9mm	Resistente. Protege a la banda.
+1ms8i26	Atacante
+1s6iiyn	Inflige el mayor daño.
+11vozmg	Sanador
+0lt3nwi	Cura y refuerza a la banda.
+0txsyvc	Apoyo
+0urf652	Ralentiza y debilita a los enemigos.
+1msji33	Más poder
+0erp7z0	Inflige un 25% más de daño.
+0b8ve6i	Menos poder
+043t7d0	Inflige un 25% menos de daño.
+1j5x8rx	Más velocidad
+0rp2o65	Sus turnos llegan un 30% antes.
+1tyvniw	Lento
+1rtwjtt	Sus turnos llegan un 30% después.
+0pyxe0x	Aturdido
+00adhon	Pierde su próximo turno.
+1g8baa9	Veneno
+1398ids	Pierde PV al empezar cada turno, cerca del 30% del Poder de quien lo envenenó. Más Veneno se acumula, hasta el triple. Ignora la Defensa.
+1a9erp6	Regeneración
+1lwdm4g	Recupera PV al empezar cada turno.
+0kydatf	Provocar
+13fn23l	Los enemigos deben dirigirle sus golpes individuales.
+1w0r2pc	Esquiva
+09468f2	El próximo golpe falla.
+0o8p8v9	Absorbe el daño antes que los PV.
+0mj9nr2	Canción vital
+0u9dw02	Se cura un 30% del daño que inflige.
+0yi27yk	Desafinado
+0uit45j	Recibe un 25% más de daño de los golpes.
+1s7324o	Épico
+1lplimc	Baquetas
+0xngqp3	Maza de fieltro
+0hl254k	Sordina
+0t0h0nv	Metrónomo
+1pmltzc	Diapasón
+1xxzjnx	Púa
+0mnjw2v	Correa
+1qclhrl	Aceite de pistones
+1rduu0f	Aguja
+1qrq5l4	Tapones
+0qdt5kh	Caña
+1gebtxn	Partitura
+0wj9jiy	Batuta dorada
+1rtrb8v	Gana un 5% de Poder cada turno (hasta el 30%).
+0ybj8yk	Baquetas de diamante
+0v76wmc	Sus golpes críticos hacen 2,5 veces el daño en vez de 1,5.
+12kiexo	Primer atril
+12q6xbm	Siempre juega el primer turno de la batalla.
+1osjyep	Gran metrónomo
+03lt9cb	Cada cinco turnos, vuelve a actuar enseguida.
+0rk5hgb	Trampa de tempo
+00nk1l9	Golpear a un enemigo con un efecto negativo retrasa su turno.
+0s7dviz	Cámara de reverberación
+095d12f	Gana un pequeño Escudo al empezar cada turno.
+0yaewc6	Vinilo viejo
+0xroqxz	Toda la banda empieza cada batalla con un pequeño Escudo.
+1yaft0f	Maza fénix
+1iwcp47	Cuando cae un compañero, cura a la banda un 20% de sus PV.
+1q012vs	Oído absoluto
+07zccg4	Un golpe crítico acerca su próximo turno a la mitad.
+1en3rt7	Diapasón resonante
+1bes0ck	Sus golpes a un enemigo también golpean a los demás con un 40%.
+0uha798	Bucle de acople
+1mij54t	Al recibir un golpe, 30% de probabilidad de devolverlo con un 60%.
+0lqm3ph	Telón de terciopelo
+0iv9n0e	Mientras siga en pie, sus compañeros reciben un 15% menos de daño.
+1rqad0h	Púa de la suerte
+1bhy6r1	Su primer golpe de cada batalla hace el doble de daño.
+0tyoa6z	Último acorde
+0hhhh6j	Con menos del 40% de PV, tiene un 40% más de Poder.
+0tcoh3o	Rosa del bis
+0yf8ri3	+15% de PV. Una vez por batalla, un golpe que lo derrotaría lo deja con 1 PV.
+05qp0ud	Estuche de hierro
+0cpv7kz	No puede quedar aturdido ni lento.
+1o0tj45	Azogue
+0xkwte3	Cada golpe que recibe adelanta su próximo turno.
+1k88bjf	Pedal crescendo
+1a8fi66	Gana un 5% de Poder con cada golpe que acierta (hasta el 30%).
+0jqmtzy	Aguja láser
+1qsg3ll	Inflige un 50% más de daño a enemigos con menos de la mitad de PV.
+00n6suo	Aguja venenosa
+0h8bhjw	Inflige un 50% más de daño por cada efecto negativo de su objetivo.
+089dbpu	Tapones con pinchos
+0sw1vf6	Los enemigos que lo golpean reciben un 40% de ese daño.
+0yid6us	Puerta de ruido
+0wodx13	Empieza cada batalla con un Escudo del 25% de sus PV.
+1vb4l90	Caña dorada
+0w6jc56	Al empezar su turno, cura al compañero más herido un 3% de sus PV. Curar por encima del máximo se convierte en Escudo.
+06ejlsm	Caña de sirena
+0n3vio6	Se cura un 20% del daño que inflige.
+1gcy07d	Partitura perdida
+1fyohlw	+15% de Poder. Cuando derrota a un enemigo, juega otro turno enseguida.
+16r2ajv	Obra maestra
+1rwxckh	La banda empieza cada batalla con Más poder durante 3 turnos.
+1vm6jxe	Ciénaga de juncos
+1lu8609	Fundición de campanas
+1aqnn33	Huerto zumbante
+0qeq0q2	Cresta nevada
+1go8kfv	Camino traqueteante
+1tsmmag	Cuevas goteantes
+0erieq9	Dunas ventosas
+089006i	Puerto de hojalata
+0y8oub5	Torre del tictac
+0prtznc	Sala de conciertos
+07cnyyp	Un tambor redondo con orejas, patas y una maza por cola. Resistente, y su ritmo pesado frena a los enemigos.
+0cb38pk	Una pandereta que corretea de lado y hace sonar dos castañuelas. Rápida, con golpes dobles.
+1nypsb6	Una lira con orejas y cola de gato. Sus notas pegan fuerte, pero es frágil.
+0bla1xc	Un violín de patas finas que se rasca con su arco. Rápido, y su chirrido envenena.
+01ewlb7	Una ocarina con alas y pico. Toque lo que toque, cura a sus amigos.
+0vq3eyw	Un acordeón que repta como una oruga. Se cura mientras muerde.
+0ip1aqa	Una larga trompa de metal que serpentea. Sus toques animan a la banda a golpear más fuerte.
+0hgjl3j	Una campana pesada con cabeza y patas. Muy resistente, y su repique protege a sus amigos.
+0yfvbp8	Un micrófono redondo con patas de rana. Su canto golpea a todos los enemigos a la vez.
+0quz911	Un megáfono con orejas y cola de lobo. Su aullido debilita a los enemigos.
+0yagm31	Un gong que lleva su propio marco a cuestas. Lento, pero un buen golpe aturde.
+0thkqwo	Un xilófono que repta como una oruga. Muchos golpecitos que se van haciendo más fuertes.
+1ncgrg2	Un banjo con un mástil larguísimo. Rápido, con suerte y amante de los críticos.
+1tu5eb4	Un pianito que sonríe con todas sus teclas. Sus acordes salpican a todos los enemigos.
+0z9n8pn	Un pollito con una flauta de pan por cresta. La mascota más rápida, y mete prisa a sus amigos.
+0pjb82g	Una gaita con ideas propias. Sus notas agrias envenenan y debilitan.
+0z3v4rf	Un caracol cuya concha es una tuba. La mascota más resistente, y empuja a los enemigos al final de la cola.
+16ocv01	Un saxofón que se enrosca como un caballito de mar. Suave y rápido, enseguida vuelve a por otro solo.
+0moyagl	Un viejo gramófono con patas de pájaro. Sus canciones crujientes desgastan a todos los enemigos.
+04o4dyo	Una radio pequeña que no para de hablar. Confunde a los enemigos y anima a la banda.
+1warb8t	Una caja de música que camina sobre su llave de cuerda. Su melodía cura a los compañeros y enseña a sus golpes a curarlos también.
+1p4j4fd	Una sordina de goma con un mango tambaleante. Su uá-uá agrio desafina a los enemigos, y así todo golpe les hace más daño.
+0ulqhj0	Un contrabajo que camina sobre su pica. Sus notas graves aguantan la línea y frenan todo a su alrededor.
+0qwhhhy	Un cancionero cuyas páginas cantan en armonía. Protege a la banda con sus tapas y le quita lo que le pesa.
+09u3bzj	Una armónica que resopla. Remata a quien flaquea y se lleva lo que sostiene a los enemigos.
+01x3s9q	La ciénaga se oye a sí misma
+1ojydxp	Muffle ahogaba aquí cada sonido. Sin él, los juncos vuelven a susurrar y las ranas ensayan una melodía.
+01t2fwo	Las campanas vuelven a sonar
+0l2q3ef	Shush tuvo la fundición en silencio durante años. Esta mañana sonó la primera campana, y nadie le dijo que parase.
+0sm94v5	Un tarareo, no un zumbido
+0n432ha	El Swarm se ha dispersado. Las abejas vuelven al trabajo, y ahora su zumbido lleva una melodía.
+08pq5pm	Se acabó el chisporroteo
+0o961ya	Sin Static, el aire de la montaña está limpio. Se oye caer la nieve, y alguien canta a lo lejos a la tirolesa.
+050rbw1	A mitad de camino
+0bie91b	A Honk se le acabó la bocina. Un músico callejero se ha instalado en el cruce. Medio mundo ya canta. La otra mitad sigue siendo ruido.
+0wfscp4	Las cuevas responden cantando
+03yysnx	Rumble es escombro. Canta una nota en la oscuridad y las cuevas te devuelven un acorde entero.
+0zb5ixc	El viento aprendió a silbar
+1azpzws	Gale se ha desinflado. Lo que queda de él flota sobre las dunas, silbando algo casi parecido a una canción.
+1f6bdh0	Canciones marineras en el muelle
+1tgx1fo	Por fin Foghorn calla. Los marineros han vuelto al muelle y han traído todas las estrofas que saben.
+05puppg	Hora de respirar
+0ndwonj	Alarm ha sonado por última vez. Solo queda un lugar en silencio: la Sala de conciertos, donde espera el director de los Din.
+1srx7zk	La música ha vuelto
+1w3fx2b	La batuta de Tacet está rota y la sala está llena. Los Din seguirán colándose por los bordes, así que los pisos continúan. Pero ahora el mundo tiene una canción con la que responder.
+0p5gla7	Batería
+09rkysq	Trío de cuerda
+0uymolf	Trío de viento
+1bw6h1x	Banda de metales
+04kfc8k	Coro
+1dmx33u	Banda folk
+1qefubr	Banda de ragtime
+1ec98d7	Banda de rock
+1c3dj47	Banda de marcha
+03htgfn	Carnaval
+1wlcqos	Banda de swing
+1ifvqcu	Orquesta de cámara
+0h4v89a	Serenata
+0ee95mc	Ópera
+1sz7gr5	Himno
+1d82w65	Calentando
+16exdhj	Llega al nivel 10.
+1f07moh	A mitad de camino
+1gv1hup	Supera el piso 50.
+1xdsyc5	Estrella en ascenso
+08vjn4t	Llega al nivel 30.
+0ttac5j	Cambio de vestuario
+0wpbvxt	Haz evolucionar a una mascota por primera vez.
+08tp2nq	De gala
+0cibbx3	Llena las seis casillas de equipo de tu banda.
+0qu08qx	La banda crece
+1s7jpui	Encuentra 10 mascotas distintas.
+15m6zkv	Gira mundial
+0p6isfb	Supera el piso 100.
+18sngox	Segunda etapa
+0t97xxs	Supera el piso 200.
+0xyy5v8	Larga duración
+1ko6msl	Supera el piso 300.
+0p2uvqz	Gira sin fin
+077abr7	Supera el piso 500.
+0kttfj7	Orquesta completa
+1ftdlwm	Encuentra todas las mascotas.
+1uei586	Cabezas de cartel
+0co2oyg	Haz evolucionar del todo a tres mascotas.
+1u76xcj	Armonía a cinco voces
+1sd4tuz	Haz evolucionar del todo a una mascota de cada una de las cinco familias.
+17o4t10	Virtuoso
+1s586d8	Dale a una mascota las 10 estrellas.
+1o7uwii	Número en solitario
+0twods9	Vence a un jefe en el piso 30 o superior con una sola mascota.
+0xwplmu	Desenchufado
+131dj0h	Vence a un jefe en el piso 50 o superior sin equipo en tu banda.
+0ziqytr	Ensayo por secciones
+1l05r7p	Vence a un jefe en el piso 30 o superior con tres mascotas de la misma familia.
+0tq62qo	Nota perfecta
+1u1qfsk	Vence a 10 jefes en el piso 50 o superior sin que caiga ninguna mascota.
+0daw3ej	Ensayo general
+0q7582o	Gana 10 ensayos.
+0yev4ot	Colección de oro
+0ths2r3	Ten 3 piezas de equipo legendarias.
+18j4xs2	Cancionero completo
+12lew62	Gana un ensayo con cada uno de los 15 conjuntos.
+0bsk9ij	Lluvia de conchas
+0amgn09	Abre 100 conchas.
+04ow5gr	Salida a escena
+1hzejfp	Supera la oleada 10 en Bis.
+0kw590z	Ovación en pie
+1dkx4s4	Supera la oleada 20 en Bis.
+1do6rpz	Concierto nocturno
+0xygpvx	Escenario al atardecer
+1ptwv93	Sala dorada
+03pncfo	Auroras boreales
+0ul31af	Foco
+1cpl67j	Bis de neón
+1s5oon2	Cada vez más fuerte
+1lbmtjt	Un jefe se vuelve un 2% más fuerte con cada turno que juega.
+0xim5vx	Ruidoso
+092waxc	Un enemigo más grande y duro. Hay uno cada cinco pisos.
+0detaua	Acople
+0g6vhsb	Golpea a un enemigo con un 130%. Le cuesta un 8% de sus PV máximos.
+13d8q61	Pum
+053ta2h	Barrigazo
+0dnj979	Primer tiempo
+1f34o5f	Aguantar la línea
+06dokpr	Al recibir un golpe, devuelve un 25% al atacante.
+0tkh80d	Marcha adelante
+0off7vu	Tac-tac
+0uzjydt	Ráfaga
+1ktqn6d	Calentamiento
+1w1qopz	Cada golpe que acierta le da un 3% de Poder en esta batalla (hasta el 30%).
+05gb6aq	Giga zapateada
+0gho9na	Redoble
+038yh51	Tris
+1gsd4k6	Clac-clac
+0grptg6	Clic-clic
+10gnhwk	Chasquido de castañuelas
+0d5rai9	A tiempo
+15trs8b	+20% de probabilidad de golpe crítico.
+0eepwoa	Zapateado
+07uac25	Tomar la delantera
+0rjnqfp	Sacudida
+047l8xc	Poner nervioso
+09ye9dh	Inquietar
+0lowabh	Sus golpes retrasan en el orden de turnos a los enemigos con un efecto negativo.
+0aod8j9	Fuego lento
+1n8nf0k	Tuang
+1njs3ln	Cuerda rota
+0rmyty0	Punteo
+0zetxk0	Pizzicato
+1ixfsur	Oído fino
+13r6jhf	Sus golpes ignoran la mitad de la Defensa del enemigo.
+190f7pf	Riff potente
+0lsw47p	Shred
+1tcc1q9	Rasgueo suave
+1r8efu3	Acorde abierto
+0gwozuz	Desborde
+1bi0r1i	Curar por encima del máximo de PV se convierte en Escudo.
+19tfqi5	Estrofa lenta
+02z2n2x	Un-dos-tres
+0046r2t	Raspado
+1d60evi	Chirrido
+1vlk8s6	Serrucho
+1oaglvk	Doble cuerda
+1mezlbl	Nervio crudo
+0x6ypis	Inflige un 30% más de daño a enemigos envenenados.
+1nlh6h7	Reel giratorio
+0grbtku	Lamento
+1e5kf37	Trémolo
+1sar8nm	Escalofrío
+0y60q2o	Nervios
+1872r7h	Cada enemigo empieza la batalla con Veneno durante 2 turnos.
+1d3oejo	Anochecer
+1yr6ulo	Capricho
+0kpiauz	Pasan dos cosas al azar: un golpe del 110%, Veneno a todos los enemigos, una curación, Más poder para la banda, Menos poder para todos los enemigos o un Escudo para la banda.
+04loohm	Soplido
+1gip12f	Tarareo suave
+05rb9v7	Nota grave
+1jwqcvd	Trasfondo
+08pwtpf	Lastre
+1d37j2m	Al empezar su turno, cada enemigo se retrasa un poco en el orden de turnos.
+0n9p0kk	Endecha
+1mrb7u9	Coral
+0137tax	Silbido
+1jm256h	Melodía alegre
+08saj29	Reconstituyente
+12r52vs	Los compañeros que cura juegan antes su siguiente turno.
+0489ktu	Villancico
+031a0vk	Nana
+10obzew	Mordisco
+1nncv0n	Apretón
+1x3i0of	Fuelle
+0lztsun	Respiro hondo
+0ucjz7n	Hincharse
+1p6naxy	Um-pa
+0ffym9e	Aúpa
+10x93ym	Trino
+1lziham	Notas de adorno
+1jlfytj	Da capo
+11v7pdr	Cada tres turnos, juega otro turno enseguida.
+145ygjx	Travesura
+1xdqyxh	Cadencia
+0j4vn7f	Bocinazo
+0du2tax	Estallido
+1q199jr	Arenga
+0p1cq54	Prepararse
+1ize82t	Muro de sonido
+1ghjany	Fanfarria
+1oqpjfk	Himno triunfal
+1fi7bq7	Tuu
+0egkrm1	Llamada
+1bs2pyw	Metal brillante
+1xrch8d	A todo swing
+171camj	Diana
+0u8765q	Clang
+0x5xpcb	Tañido
+12so223	Dong
+1nzb8p5	Toque de queda
+0qp1h57	Concha resonante
+0g1ih39	Los enemigos que lo golpean reciben un 30% de ese daño.
+0zz0vag	Campanada final
+1frl26u	Repique completo
+02g7rrc	Cascabeleo
+1jcu2sd	Cascabeles de trineo
+0ly2anh	Buen ánimo
+0253kh0	Toda la banda empieza cada batalla con un Escudo.
+0hbl061	Carillón
+0yaiaoq	Gamelán
+1gxfv6d	Gañido
+0llfocq	Maullido
+1ho4s88	Canturreo
+0zoqbb6	Palabras dulces
+0fmm7ac	Pico de oro
+14zv8di	Los enemigos que lo golpean reciben Menos poder durante 1 turno.
+18kz9uo	Revive a un compañero caído con un 40% de PV. Si nadie ha caído, cura a la banda un 80% y le da Regeneración durante 2 turnos.
+0q23ubm	Grito
+0gplas9	A pleno pulmón
+11jbqjr	Gana un 8% de Poder cada turno (hasta el 40%).
+1suzhoz	Pregunta y respuesta
+1mf5fhz	Nota aguda
+1ft5tz7	Ladrido
+0b5mtzn	Aullido
+0nm4tup	Gruñido
+1uasau4	Gruñido grave
+060y87e	Sangre en el agua
+0uiaph2	Se cura un 25% de todo el daño que inflige.
+1plccmp	El blues
+0n5padm	Distorsión
+0hkfdb4	Ladrido guardián
+089p2ow	Llamada de la manada
+1rcckl9	Cuando golpean a un compañero, muerde al atacante con un 15%.
+1tw4u3u	Cantar en canon
+0c4884z	Réquiem
+0k3n0gx	Tonc
+17s5l5v	Gran gong
+0ulcui7	Golpe
+0285t0s	Muro de gong
+18pn1sd	Marco pesado
+1cd2qde	Recibe un 15% menos de daño.
+0oijiii	Tam-tam
+0fntgyk	Trueno rodante
+175bu1x	Reverberación
+1bi05dj	Onda
+0v5ox0l	Réplica
+1tobm5k	Al empezar su turno, un enemigo al azar recibe un pequeño golpe.
+0bijhqs	Destello
+1syafku	Terremoto
+03qzdj6	Toque
+0b6rpxt	Escala
+1g2l3gx	Redoble de mazas
+0mdaju9	Glissando
+0sjrqyn	Vistoso
+0dm89q6	+10% de probabilidad de golpe crítico, y sus críticos hacen el doble de daño.
+1h2jl76	Vibrato
+0qmpvvu	Redoble de pulgar
+192ngsl	Ding
+1wo4w1o	Campanillas de viento
+1wk49em	Tono limpio
+16zpp23	Al empezar su turno, el compañero más herido gana un pequeño Escudo.
+1v808cb	Luz de estrellas
+013ez5c	Árbol de campanas
+1v3w591	Tin
+13ghs0j	Dar cuerda
+0sqdz4h	Pirueta
+1y8bun6	Tiovivo
+1ey26u4	Recuerdo
+03876pu	Toda la banda empieza cada batalla con Canción vital durante 2 turnos.
+1fm2p05	Gavota
+13c01uc	Ensueño
+1de4oh0	Manivela
+0ulk3i1	Pasado de cuerda
+0xqe02d	Muelle real
+16o0zud	Se cura un 4% de sus PV al empezar cada turno.
+1eltb1u	Tocata
+0pc6z0g	Ostinato
+142pjgn	Uá
+15u0adm	Nota doblada
+1w0u0b4	Du-uá
+1c9a2xa	Acorde agrio
+1nd0o6b	Pedal uá-uá
+13v1pyf	Al empezar su turno, un enemigo al azar queda Desafinado durante 1 turno.
+1m85wqp	Skank
+1p63sus	Tailgate
+0fzbi2a	Toque de corneta
+1cb3e8r	Glissando sucio
+18snyl1	Campana arriba
+1c0cjbg	Inflige un 30% más de daño a enemigos Desafinados.
+1n9ab9m	Grito
+0d3w5x9	Mambo
+064rxuz	Rasgueo
+1w8hi7m	Bajo caminante
+1o5p4k3	Slap
+149cpa8	Graves
+1ayqna0	Cuerdas simpáticas
+0eqy5uj	Los enemigos que lo golpean quedan Lentos durante 1 turno.
+12k0kna	Slap de vuelta
+1cv8o1m	Bajo continuo
+1o5i5xn	Arco
+0nxg2if	Arco largo
+0bn4xiv	Resonancia profunda
+07xsmwg	Su Lento, Menos poder y Desafinado duran 1 turno más.
+1cf17bj	Sostenuto
+1oijyxf	Fuga
+0n5cim9	Du
+0bqam4h	Piña
+01l0qgh	Uuh
+0xhzqh1	Armonía cerrada
+06kkvvg	La unión hace la fuerza
+0it613x	Mientras siga en pie, sus compañeros tienen +10 de Defensa.
+1798q1h	Cantata
+1vvj5n8	Madrigal
+0qlmoj8	Shu-bop
+0bieu0o	Coros
+1lsbfmx	Sigue cantando
+1gnqofp	Cuando cae un compañero, el resto de la banda se cura un 20% de sus PV.
+1mnxtq9	Góspel
+1600uw6	Canto llano
+1ikzkcy	Resoplido
+19736uu	Bend aspirado
+0i6ws0l	Duelo de riffs
+0w9oj4m	Pasar la gorra
+1atvc33	Bote de propinas
+01lvqlq	Cada enemigo que derrota cura a la banda un 10% de sus PV.
+0v021qm	Encrucijada
+1weecg8	Garito
+1yyx1mu	Deslizamiento
+1szi2dg	Escala cromática
+1lzzbce	Ráfaga de viento
+0wy3h7a	Al empezar su turno, un enemigo al azar pierde sus efectos positivos y su Escudo.
+1wmvbsn	Mistral
+05qm91p	Siroco
+1yyjzys	Floritura
+0horseb	Baile del granero
+0s5x4gp	Lick ardiente
+1tepclg	Breakdown
+1itkjsg	Número de apertura
+0565xbc	Su primer golpe de cada batalla hace el triple de daño.
+136slnp	Dedos rápidos
+1ewltag	Duelo final
+0iht9iv	Rasguear juntos
+1fpt46k	Amuleto
+067ey8x	Sus compañeros tienen +10% de probabilidad de golpe crítico.
+13xisjs	Jolgorio
+1kzmbnb	Lamento solitario
+070t5e1	Tecla
+04hzoc5	Acorde
+1t9dizn	Izquierda-derecha
+1enbm4h	Rag
+0d7yg7m	Contratiempo
+0wxfzr7	Boogie-woogie
+0qrseta	Gran stride
+076qa28	Do grave
+1taqerg	Fortissimo
+1xya3ki	Último movimiento
+1ly1frj	Con menos de la mitad de PV inflige un 30% más de daño y recibe un 30% menos.
+0dau8k8	Gran final
+09qr6d3	Minueto
+08bgdtw	Picotazo
+1fz8y39	Viento a favor
+1niikg4	Flautín
+1kh1kgu	Marcha
+16ik1sb	Abrir camino
+0q04ctl	Al empezar su turno, el compañero más lento avanza en el orden de turnos.
+112a04m	Sígueme
+09lgj6i	Cura a toda la banda un 80%. Sus dos compañeros juegan su turno enseguida.
+1auvt6u	Canción del viento
+11j6mia	Todos esquivan el próximo golpe. Sus compañeros juegan antes su siguiente turno.
+1rhp193	Estridente
+12i0tva	Nota penetrante
+17r7bwl	Remate
+04lfs3w	Do agudo
+014y2uz	Céfiro
+0u1bt4z	Golpea a todos los enemigos con un 95% y juega otro turno enseguida.
+1y4ituh	Graznido
+0txyels	Skirl
+0ub5jus	Nota de caña
+09xx760	Gemido
+1593f7k	Nota agria
+1s8g04q	Los enemigos que lo golpean quedan envenenados durante 1 turno.
+0xrv5m8	Pibroch
+0hqctvw	Retreta
+1f9no5x	Gran bocanada
+1o740zk	Saco de aire
+1vq6ps1	Lleno de aire
+0fnpt4v	Una vez por batalla, un golpe que lo derrotaría lo deja con 1 PV.
+0b9p1g6	Reunión
+1wq7opa	Llanto
+02ezjje	Um
+03d6thh	¡Pa!
+1j7ua0j	Golpe bajo
+1lgrf66	Muro de metal
+1h65juz	El último en pie
+0bkmu8k	Cuando cae un compañero, se cura un 30% de sus PV y gana Más poder durante 3 turnos.
+1swv50y	Atrincherarse
+0yd6exr	Bombardino
+1o492e6	Pedorreta
+1tztmpf	Caída de graves
+1dmoz3o	Aire pesado
+12a1zk4	Cada enemigo empieza la batalla más atrás en el orden de turnos.
+1grgl3z	Subsónico
+0kzafyq	Carcajada
+12irlv3	Dut
+12v24qq	Escala suave
+1i4i61e	Bip-bap
+1rejxdw	En racha
+10542q1	Cuando derrota a un enemigo, juega otro turno enseguida.
+1ba51d5	Cascada de sonido
+103fmui	Take Five
+1158c3h	Suave
+1n8sgyg	Balada lenta
+1v0rywu	Música ligera
+0s3lxnj	Sus curaciones son un 20% más fuertes.
+0thz03i	Soul
+0p9c45r	La última
+04x3i68	Gorjeo
+1jth8jr	Disco viejo
+1wofsfp	Rayado
+07o26sh	Disco rayado
+0s8sb10	No puede quedar lento ni aturdido.
+04w3idr	Deformación
+0h4z7yy	Favorito del público
+0a06dpc	Nota cumbre
+06114a7	Carrera de vibrato
+12617m3	Sus golpes individuales también salpican a los demás enemigos con un 30%.
+05q1aub	Rompecristales
+15e19ob	Número estelar
+1krmegy	Blip
+0jdw2g7	Última hora
+0uhcr28	Fuzz
+1oh86fx	Interferencia
+0dasz8l	Mala recepción
+0hpinqo	Al empezar su turno, un enemigo al azar queda Lento durante 1 turno.
+070e6on	Silencio en antena
+0syrtcz	Radio pirata
+1dgv55j	Dedicatoria
+0y7fncs	Los 40 principales
+1viyfap	Euforia
+0sgn6pd	La banda empieza cada batalla con Más poder.
+06ioqpd	Recopilatorio
+0t2h378	Emisión
+18vix4v	Porrazo
+1a9gry0	Estruendo
+1m23wf6	Aguja
+18vi9jv	Escupitajo
+0aws48u	Escaldar
+1mm9ky0	Clonc
+0rnljou	Guardia oxidada
+11v1m3f	Parloteo
+1jvhh7j	Abucheo
+1dmpqsv	Cura a su amigo más herido un 140%. Si nadie está herido, golpea a un enemigo con un 60% y lo debilita.
+0pbjb31	Sofocar
+1dckffs	Manta
+0s5yoff	Empapar
+0jmesgy	Chist
+1ocf601	Dedo en los labios
+1vovvjr	¡Silencio!
+0re2x9y	Crepitar
+199ocsc	Ruido blanco
+0ymjbq5	Interferencias
+03y74hh	Borrar
+0lhig2f	Gran pausa
+0te3ooz	Calderón
+0mbf94q	Tonalidad cambiante
+0ho4woa	Cambia de familia cada 2 turnos. Acelera con menos del 40% de PV.
+0vud5dq	Picadura
+0suiob1	Nube zumbante
+1xqxmn5	Dispersarse
+1p2yjim	Esquiva los 2 próximos golpes y acelera durante 2 turnos.
+0348nnh	Bip
+014ong2	Atasco
+0twh2hk	Furia al volante
+0lm7olu	Pedrusco
+1wyvn1w	Derrumbe
+1lpefml	Lecho de roca
+1m0m7p0	Tormenta de arena
+1g02785	Ojo de la tormenta
+1p1dny7	Banco de niebla
+16fafs5	Toque largo
+0cfa1iz	Tic tac
+1k71mcf	Cabezada
+145jl5l	¡Despierta!
+1whanfo	Golpea a todos los enemigos con un 75% y su siguiente turno llega antes.
+03wcmz8	Zas
+1d0s7av	Picado
+08ydjo4	Golpea a un enemigo con un 100% y esquiva el próximo golpe.
+0adtvon	Traqueteo
+0mje0od	Derrame
+091kazk	Plic
+10fizix	Charco
+0ku1wmm	Aleteo
+0vlq75j	Remolino
+0dsitjv	Esquiva el próximo golpe y acelera durante 2 turnos.
+07kb9qa	Gemido
+1pldi2s	Tic
+0jd6glc	Dar cuerda
+0t91r2l	Croac
+0qfmpg7	Eructo
+01o2zzp	Machacar
+0diq20m	Caída del yunque
+1xq6gzj	Toc toc
+1tlu3pa	Taladro
+1yiehgc	Zap
+17k1p4r	Arco eléctrico
+1lfz91z	Picado
+0hoak0x	Arena
+1s9fv30	Contraviento
+0u0gbsk	Alboroto
+1ohbysp	Cucú
+0n5mp84	Salir del reloj
+1rk256n	Golpea a un enemigo con un 130% y esquiva el próximo golpe.
+1q05kvf	Ring ring ring
+1k5sntb	Duelo de espejos
+12eqhw1	Los Din copian a tu banda, movimiento a movimiento.
+002004f	Patata caliente
+0ctam6o	Una patata con mecha pasa de mano en mano con cada golpe individual. Cuando se acaba la mecha, quien la tenga pierde un 30% de PV.
+1pkoab8	Cambio de tonalidad
+1cfq8ai	Cada 6 turnos, todos avanzan un paso en el círculo de familias.
+1yxenyh	Control de volumen
+0zlkzru	Los golpes empiezan a media potencia y suben cada 2 turnos, hasta el 250%.
+0s0fk5e	Tempo al revés
+1pjw2si	Lento es rápido: la Velocidad más baja actúa más a menudo.
+0s2p00q	Escenario compartido
+1wmdz40	Cada golpe se reparte a partes iguales entre todo el bando de su objetivo.
+0ahnj2t	Reacción en cadena
+18m6nsh	Quien cae, estalla: el resto de su bando pierde un 20% de sus PV máximos.
+0lqtb84	Matagigantes
+0ide5cc	Un jefe gigante. Cada cuarto de sus PV que le quitas lo aturde y lo deja Desafinado.
+0d7j2pf	Dúo
+1yhp35s	Solo juegan tus dos primeras mascotas. A cada movimiento se une el movimiento básico de la otra al 60%.
+1g3255c	Kits cambiados
+1wxliqd	Cada mascota usa los movimientos de la que tiene al lado.
+1gj42n8	Pásame el micro
+1suqz2y	Solo quien tiene el micro puede usar Habilidades y Especiales, siempre listos y más rápidos. El micro cambia de manos cada turno.
+0qtmljq	Cámara de eco
+02g9xpm	Las Habilidades y los Especiales se repiten a media potencia en el siguiente turno de quien los usó.
+0fo10iz	Última ronda
+0f4c821	Gana en 45 turnos o menos, contando los de todos.
+15jnqbh	Sin básicos
+0otfaz7	Los movimientos básicos se convierten en Acople: un golpe del 130% que cuesta un 8% de los PV máximos.
+0sahm09	El Nenúfar
+0k0njhx	La Sala del Yunque
+18dezam	Quiosco de la Colmena
+06g7ffd	Refugio de la Cumbre
+0qq75ff	La Encrucijada
+1q752zs	El Pozo del Eco
+1r6b410	Escenario del Oasis
+0k61u7j	Muelle Nueve
+0co005d	El Desván del Reloj
+1ptzihn	La Caja de Terciopelo
+1okadjr	Ampli más grande
+13erzoo	+20% de Poder.
+0zkl7hh	Estuche acolchado
+0j69l3w	+25% de PV.
+1fwjw4a	Dedos ágiles
+0n3fqeu	+15% de Velocidad.
+01esu05	Punto dulce
+0gd36kj	+12% de probabilidad de golpe crítico, y los críticos hacen un 25% más.
+0lby3om	Caparazón duro
+1ebxeoo	+12 de Defensa. Empieza cada concierto con un Escudo del 20% de sus PV.
+0775ytv	Canción del alma
+0zr669t	Se cura un 15% del daño que inflige.
+1h8xmtl	Notas agrias
+0zh5dqc	Sus golpes envenenan durante 2 turnos.
+13h5hic	Acorde equivocado
+1osujrv	Sus golpes tienen un 50% de probabilidad de dejar Desafinado al objetivo durante 2 turnos.
+0jx2cpn	Telonero
+1oin4ol	Sale primero en cada concierto, y su primer golpe hace un 40% más.
+0x53ene	Riff con pinchos
+1sps3gb	Los enemigos que lo golpean reciben un 25% de ese daño.
+1iavafh	Animador
+00rkxb6	Empieza cada concierto con Más poder y Más velocidad durante 2 turnos.
+1ttntdf	Silencio, por favor
+16d9zln	Los enemigos empiezan cada concierto Lentos durante 2 turnos.
+1qxqqjj	Crescendo
+0yvpkv3	+4% de Poder cada turno de un concierto, hasta +40%.
+0we7ixn	Curar por encima del máximo de PV se convierte en Escudo.
+1dvzvpk	Bucle vital
+0wtrnwu	Empieza cada concierto con Canción vital durante 3 turnos. Cada derribo añade 2.
+1p30ql0	Claqueta
+17kd3zj	Las Habilidades y los Especiales descansan 1 turno menos (nunca menos de 1).
+0n2c1w1	Doble tiempo
+0ppnxok	Cada tres turnos vuelve a actuar enseguida.
+09xfsf7	Maestro del veneno
+0h3c4te	Inflige un 40% más de daño a objetivos envenenados y un 30% más a los Desafinados.
+06oj68c	Acople crítico
+0rtev9z	Los golpes críticos llenan un 35% de su barra de turno.
+1phtf1k	Cañón de cristal
+09uxb6d	+45% de Poder, pero un 30% menos de PV.
+1jqu99t	Segundo aire
+0fcws9q	Una vez por concierto, sobrevive a un derribo con 1 PV y se cura un 30%.
+0lir46c	Gran cierre
+0iorug3	Inflige un 60% más de daño a enemigos con menos del 35% de PV.
+0x3dm2o	Pedal de eco
+11qru8z	Sus Habilidades y Especiales se repiten al 40% en su siguiente turno.
+1rd7chv	Pogo
+1nswr2b	Los golpes individuales salpican un 30% a los demás enemigos.
+0b0n679	Salto al público
+1bytrrw	Cada derribo cura un 20% y llena media barra de turno.
+1vvq1dc	cada golpe recarga un Escudo
+1g75ypi	los derribos recargan un Escudo
+05zgsrj	las Habilidades vuelven muy rápido
+1g6a7f8	más ecos, más a menudo
+0tydj6s	los ecos vuelven a envenenar
+0l5gh4m	los ecos vuelven a desafinar
+1jq6u3o	los golpes a enemigos envenenados pegan un 40% más
+0q3fcpj	los enemigos Desafinados reciben mucho más
+1243pgd	los críticos acercan el siguiente turno
+0lnuiy9	golpes fuertes con red de seguridad
+0jl2xy1	golpes fuertes tras un Escudo
+1aj2zep	difícil de golpear, doloroso de golpear
+0q14mqo	sube el volumen el doble de rápido
+07pt0rk	remátalos y cúrate
+0smkptf	una salida lanzada
+1ohz4qd	Un músico callejero
+1h8j3n9	Un músico con una guitarra maltrecha se ofrece a intercambiar canciones.
+0u6vqnk	Intercambiar canciones
+0p8btdk	Pierde un 20% de PV. Consigue una bendición rara al azar.
+0snxryu	Dar palmas
+1izkrj7	Cúrate un 10%.
+1ogo5bn	Un viejo santuario de afinación
+01hfnq9	Un círculo de piedras que zumban. El aire parece afinado.
+1t547k9	Descansar un rato
+0d5lodj	Cúrate un 50%.
+0g5iyjw	Afinar
+03q4xnl	+12% de Poder en esta gira. Pierde un 10% de PV.
+0fj3xl2	Un fan con un regalo
+0t0aywx	Alguien con una camiseta hecha a mano te llama.
+1r5p1i0	Coger la bufanda
+032f49i	+20% de PV en esta gira.
+05oc9pj	Coger el tentempié
+1f37te6	Cúrate un 35%.
+1jb1g85	Un ampli que zumba
+0xxly2g	Hay un ampli en la hierba, sin enchufar, zumbando de todos modos.
+0bqr3ag	Enchufarlo
+0zbafn5	+25% de Poder, pero un 15% menos de PV en esta gira.
+1xplfql	Dejarlo
+0f5386r	No pasa nada.
+1mc7zav	Una caja de discos viejos
+17qilb0	Fundas polvorientas, algunas aún precintadas.
+0o8ngf2	Rebuscar
+1483ux0	Elige 1 de 3 bendiciones comunes. Pierde un 10% de PV.
+1xz3u50	Coger una a ciegas
+0zz4zxc	Una bendición común al azar.
+1cy74sa	El público quiere una canción
+0edgn6c	Se ha reunido un pequeño público y empieza a corear.
+0rpo8v2	Tocar para ellos
+12e9pna	+8% de Poder en esta gira. Cúrate un 15%.
+1jsvac1	Hacer una reverencia
+0fl07dj	Cúrate un 25%.

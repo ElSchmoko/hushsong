@@ -622,7 +622,8 @@
     reed: { n: 'Reed', stats: [['heal', 0.1]] },
     sheet: { n: 'Sheet Music', stats: [['xp', 0.05]] },
   };
-  H.STAT_TEXT = { vol: (v) => `+${v} Power`, hp: (v) => `+${v} HP`, poise: (v) => `+${v} Guard`, tempo: (v) => `+${v} Speed`, crit: (v) => `+${v} critical hit chance`, pierce: (v) => `Ignores ${v} of enemy Guard`, taken: (v) => `Takes ${v} less damage`, heal: (v) => `Its heals are ${v} stronger`, xp: (v) => `+${v} experience for the band` };
+  const ST = { vol: '+{v} Power', hp: '+{v} HP', poise: '+{v} Guard', tempo: '+{v} Speed', crit: '+{v} critical hit chance', pierce: 'Ignores {v} of enemy Guard', taken: 'Takes {v} less damage', heal: 'Its heals are {v} stronger', xp: '+{v} experience for the band' };
+  H.STAT_TEXT = {}; for (const k in ST) H.STAT_TEXT[k] = (v) => H.T(ST[k], { v });
   // Legendary pieces: one of each in the whole game, each with an effect of its own. They are found, never merged.
   H.LEGENDS = {
     baton: { n: 'Golden Baton', type: 'sticks', pd: 'Gains 5% Power every turn (up to 30%).', p: { ramp: { on: 'turn', per: 0.05, max: 0.3 } } },
@@ -654,9 +655,9 @@
   };
   H.itemName = (it) => (it.leg ? H.LEGENDS[it.leg].n : H.ITEM_TYPES[it.type].n);
   H.itemMods = (it) => { const k = H.RARITY[it.rar].k, m = {}; for (const [st, v, flat] of H.ITEM_TYPES[it.type].stats) m[st] = flat ? Math.round(v * k) : Math.round(v * k * 1000) / 1000; return m; };
-  H.itemStatText = (it) => { const m = H.itemMods(it); return H.ITEM_TYPES[it.type].stats.map(([st, , flat]) => H.STAT_TEXT[st](flat ? Math.abs(m[st]) : Math.round(Math.abs(m[st]) * 100) + '%')).join(', '); };
+  H.itemStatText = (it) => { const m = H.itemMods(it); return H.T.list(H.ITEM_TYPES[it.type].stats.map(([st, , flat]) => H.STAT_TEXT[st](flat ? Math.abs(m[st]) : Math.round(Math.abs(m[st]) * 100) + '%'))); };
   H.itemStat = (it) => ({ text: H.itemStatText(it) });
-  H.itemText = (it) => H.itemStatText(it) + '.' + (it.leg ? ' ' + H.LEGENDS[it.leg].pd : '');
+  H.itemText = (it) => H.T('{stats}.', { stats: H.itemStatText(it) }) + (it.leg ? H.T.sep() + H.LEGENDS[it.leg].pd : '');
   H.itemPerk = (it) => { const leg = it.leg ? H.LEGENDS[it.leg].p : {}; return Object.assign({}, leg, { n: H.itemName(it), d: H.itemText(it), mod: Object.assign(H.itemMods(it), leg.mod || {}) }); };
   H.MAX_LEVEL = 99999;
   H.xpNeed = (L) => 24 + 16 * (L - 1);
@@ -848,72 +849,77 @@
   };
 
   /* ---------- move text, in plain words ---------- */
+  // Move text is written from the move's effects, one sentence per part, so it always matches what the move does.
+  // Each sentence is a whole template with its target in it, so every language can order the words its own way.
+  const T = (s, v) => H.T(s, v);
   const TGT = { one: 'one enemy', rand: 'a random enemy', all: 'all enemies', same: 'it', self: 'itself', ally: 'the most hurt bandmate', allies: 'the whole band', others: 'its bandmates', strong: 'the strongest bandmate', slow: 'the slowest bandmate', attacker: 'the attacker' };
   const pc = (x) => Math.round(x * 100) + '%';
-  const turns = (n) => n + (n === 1 ? ' turn' : ' turns');
+  const turns = (n) => T('{n} turns', { n });
   const stDo = { pup: 'Power Up', pdown: 'Power Down', sup: 'Speed Up', sdown: 'Slow', stun: 'Stun', poison: 'Poison', regen: 'Regen', taunt: 'Taunt', dodge: 'Dodge', lifesong: 'Lifesong', offkey: 'Off-Key' };
+  const stN = (k) => T(stDo[k]);
   function fxText(fx) {
-    const k = fx[0];
+    const k = fx[0], tg = fx[1];
     if (k === 'dmg') {
-      const o = fx[3] || {}, h = o.h || 1; let s;
-      if (fx[1] === 'rand' && h > 1) s = `Hits random enemies ${h} times for ${pc(fx[2])} each` + (o.distinct ? ' (two different enemies)' : '');
-      else s = `Hits ${TGT[fx[1]]} ` + (h > 1 ? `${h} times for ${pc(fx[2])} each` : `for ${pc(fx[2])}`);
-      const r = [];
-      if (o.inc) r.push(`each hit is ${pc(o.inc)} stronger than the last`);
-      if (o.st) for (const t of o.st) r.push((t[2] && t[2] < 1 ? pc(t[2]) + ' chance of ' : '') + `${stDo[t[0]]} for ${turns(t[1])}`);
-      if (o.drain) r.push(`heals itself for ${pc(o.drain)} of the damage`);
-      if (o.push) r.push(fx[1] === 'one' ? 'pushes it back in the turn order' : 'pushes them back in the turn order');
-      if (o.fresh) r.push(`${pc(o.fresh)} stronger if the enemy is above 80% HP`);
-      if (o.exec) r.push(`up to ${pc(o.exec)} stronger the more hurt the enemy is`);
-      if (o.chain) r.push(`then hits every other enemy for ${pc(o.chain * fx[2])}`);
-      if (o.crit) r.push(`+${pc(o.crit)} critical hit chance`);
-      if (o.shatter) r.push('goes straight through Shield');
-      if (o.perCrit) r.push(`every critical hit adds one more hit (up to ${o.perCrit})`);
-      if (o.randSt) r.push(o.randCh ? `each hit has a ${pc(o.randCh)} chance to add Slow, Poison, Power Down or Off-Key for ${turns(o.randSt)}` : `every hit adds Slow, Poison, Power Down or Off-Key for ${turns(o.randSt)}`);
-      if (o.again) r.push(`${pc(o.again)} chance to take another turn right away`);
-      if (o.perFallen) r.push(`${pc(o.perFallen)} stronger for each fallen bandmate`);
-      if (o.perLow) r.push(`${pc(o.perLow)} stronger for each bandmate that has fallen or is below half HP`);
-      if (o.vs) for (const s2 in o.vs) r.push(`${pc(o.vs[s2])} stronger against enemies with ${stDo[s2]}`);
-      if (o.ifSelf) for (const s2 in o.ifSelf) r.push(`${pc(o.ifSelf[s2])} stronger while it has ${stDo[s2]}`);
-      if (o.onKill) r.push(o.onKill[0][0] === 'cdr' ? 'if that defeats the enemy, all its moves are ready again' : 'if that defeats the enemy, it takes another turn right away');
-      return s + (r.length ? '. ' + r.map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join('. ') : '') + '.';
+      const o = fx[3] || {}, h = o.h || 1, p = pc(fx[2]); let s;
+      if (tg === 'rand' && h > 1) s = T(o.distinct ? 'Hits random enemies {n} times for {p} each (two different enemies).' : 'Hits random enemies {n} times for {p} each.', { n: h, p });
+      else if (h > 1) s = T(`Hits ${TGT[tg]} {n} times for {p} each.`, { n: h, p });
+      else s = T(`Hits ${TGT[tg]} for {p}.`, { p });
+      const r = [s], them = tg === 'one' || tg === 'rand' ? 'it' : 'them';
+      if (o.inc) r.push(T('Each hit is {p} stronger than the last.', { p: pc(o.inc) }));
+      if (o.st) for (const t of o.st) r.push(t[2] && t[2] < 1 ? T('{c} chance of {st} for {t}.', { c: pc(t[2]), st: stN(t[0]), t: turns(t[1]) }) : T('{st} for {t}.', { st: stN(t[0]), t: turns(t[1]) }));
+      if (o.drain) r.push(T('Heals itself for {p} of the damage.', { p: pc(o.drain) }));
+      if (o.push) r.push(T(them === 'it' ? 'Pushes it back in the turn order.' : 'Pushes them back in the turn order.'));
+      if (o.fresh) r.push(T('{p} stronger if the enemy is above 80% HP.', { p: pc(o.fresh) }));
+      if (o.exec) r.push(T('Up to {p} stronger the more hurt the enemy is.', { p: pc(o.exec) }));
+      if (o.chain) r.push(T('Then hits every other enemy for {p}.', { p: pc(o.chain * fx[2]) }));
+      if (o.crit) r.push(T('+{p} critical hit chance.', { p: pc(o.crit) }));
+      if (o.shatter) r.push(T('Goes straight through Shield.'));
+      if (o.perCrit) r.push(T('Every critical hit adds one more hit (up to {n}).', { n: o.perCrit }));
+      if (o.randSt) r.push(o.randCh ? T('Each hit has a {c} chance to add Slow, Poison, Power Down or Off-Key for {t}.', { c: pc(o.randCh), t: turns(o.randSt) }) : T('Every hit adds Slow, Poison, Power Down or Off-Key for {t}.', { t: turns(o.randSt) }));
+      if (o.again) r.push(T('{p} chance to take another turn right away.', { p: pc(o.again) }));
+      if (o.perFallen) r.push(T('{p} stronger for each fallen bandmate.', { p: pc(o.perFallen) }));
+      if (o.perLow) r.push(T('{p} stronger for each bandmate that has fallen or is below half HP.', { p: pc(o.perLow) }));
+      if (o.vs) for (const s2 in o.vs) r.push(T('{p} stronger against enemies with {st}.', { p: pc(o.vs[s2]), st: stN(s2) }));
+      if (o.ifSelf) for (const s2 in o.ifSelf) r.push(T('{p} stronger while it has {st}.', { p: pc(o.ifSelf[s2]), st: stN(s2) }));
+      if (o.onKill) r.push(T(o.onKill[0][0] === 'cdr' ? 'If that defeats the enemy, all its moves are ready again.' : 'If that defeats the enemy, it takes another turn right away.'));
+      return r.join(H.T.sep());
     }
-    if (k === 'heal') { const o = fx[3] || {}; return `Heals ${TGT[fx[1]]} for ${o.pct ? pc(o.pct) + ' of max HP' : pc(fx[2])}.`; }
-    if (k === 'st') { const o = fx[4] || {}; return `${o.ch ? pc(o.ch) + ' chance: ' : ''}${stDo[fx[2]]} on ${TGT[fx[1]]} for ${turns(fx[3])}.`; }
-    if (k === 'shield') return `Shield for ${TGT[fx[1]]}.`;
-    if (k === 'gauge') { const v = fx[2]; if (fx[1] === 'self' && v < 1) return 'Its next turn comes sooner.'; if (v >= 1) return fx[1] === 'self' ? 'Takes another turn right away.' : `${H.cap(TGT[fx[1]])} takes the next turn.`; return v > 0 ? `${H.cap(TGT[fx[1]])} ${['allies', 'others', 'all'].includes(fx[1]) ? 'get their' : 'gets its'} next turn sooner.` : `Pushes ${TGT[fx[1]]} back in the turn order.`; }
-    if (k === 'cleanse') return `Removes all bad effects from ${TGT[fx[1]]}.`;
-    if (k === 'dispel') return `Removes all good effects and Shield from ${TGT[fx[1]]}.`;
-    if (k === 'revive') return `Brings a fallen bandmate back at ${pc(fx[1])} HP.`;
-    if (k === 'follow') return `Every bandmate joins in with its basic attack at ${pc(fx[1])}.`;
-    if (k === 'detonate') return 'Then all Poison on enemies deals its remaining damage at once.';
+    if (k === 'heal') { const o = fx[3] || {}; return o.pct ? T(`Heals ${TGT[tg]} for {p} of max HP.`, { p: pc(o.pct) }) : T(`Heals ${TGT[tg]} for {p}.`, { p: pc(fx[2]) }); }
+    if (k === 'st') { const o = fx[4] || {}, base = T(`{st} on ${TGT[tg]} for {t}.`, { st: stN(fx[2]), t: turns(fx[3]) }); return o.ch ? T('{c} chance: {fx}', { c: pc(o.ch), fx: base }) : base; }
+    if (k === 'shield') return T(`Shield for ${TGT[tg]}.`);
+    if (k === 'gauge') { const v = fx[2]; if (tg === 'self' && v < 1) return T('Its next turn comes sooner.'); if (v >= 1) return tg === 'self' ? T('Takes another turn right away.') : T(`${H.cap(TGT[tg])} ${['allies', 'others', 'all'].includes(tg) ? 'take' : 'takes'} the next turn.`); return v > 0 ? T(`${H.cap(TGT[tg])} ${['allies', 'others', 'all'].includes(tg) ? 'get their' : 'gets its'} next turn sooner.`) : T(`Pushes ${TGT[tg]} back in the turn order.`); }
+    if (k === 'cleanse') return T(`Removes all bad effects from ${TGT[tg]}.`);
+    if (k === 'dispel') return T(`Removes all good effects and Shield from ${TGT[tg]}.`);
+    if (k === 'revive') return T('Brings a fallen bandmate back at {p} HP.', { p: pc(fx[1]) });
+    if (k === 'follow') return T('Every bandmate joins in with its basic attack at {p}.', { p: pc(fx[1]) });
+    if (k === 'detonate') return T('Then all Poison on enemies deals its remaining damage at once.');
+    if (k === 'recoil') return T('Costs the user {p} of its max HP.', { p: pc(fx[1]) });
     return '';
   }
   H.cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
-  H.describe = (ab) => ab.d || ab.fx.map(fxText).filter(Boolean).join(' ');
+  H.describe = (ab) => ab.d || ab.fx.map(fxText).filter(Boolean).join(H.T.sep());
   // Does the player have to pick an enemy for this move?
   H.needsTarget = (ab) => { const scan = (list) => list.some((fx) => (fx[0] === 'dmg' || fx[0] === 'st') && fx[1] === 'one' ? true : fx[0] === 'if' ? scan(fx[2]) || scan(fx[3]) : false); return scan(ab.fx); };
 
   /* ---------- ensembles: three pets of three different families, or three of one family, form a band with its own opening and a boon ---------- */
   H.ENS_K = { slow: 1, crits: 8, tail: 0.09, cres: 0.05, cresMax: 0.25, harmony: 0.5, speed: 3, weak: 4, shield: 0.15, confetti: 2, ward: 2, regen: 3, regenVal: 0.4, stun: 1, stunN: 2, hymn: 0.2 };
-  const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
-  const EK = H.ENS_K, pct = (x) => Math.round(x * 100) + '%', turnsOf = (k) => k + (k === 1 ? ' turn' : ' turns');
+  const EK = H.ENS_K, pct = (x) => Math.round(x * 100) + '%', T2 = (s, v) => H.T(s, v), tn = (n) => H.T('{n} turns', { n });
   H.ENSEMBLES = [
-    { id: 'drumline', n: 'Drumline', fam: ['drum', 'drum', 'drum'], d: () => `Your whole band acts before any enemy, and all enemies are slowed for ${turnsOf(EK.slow)}.` },
-    { id: 'stringtrio', n: 'String Trio', fam: ['string', 'string', 'string'], d: () => `Your band's first ${WORDS[EK.crits] || EK.crits} hits are critical hits.` },
-    { id: 'windtrio', n: 'Wind Trio', fam: ['breath', 'breath', 'breath'], d: () => `Tailwind: your band takes its turns ${pct(EK.tail)} sooner for the whole battle.` },
-    { id: 'brassband', n: 'Brass Band', fam: ['brass', 'brass', 'brass'], d: () => `Crescendo: your band gains ${pct(EK.cres)} Power every turn, up to ${pct(EK.cresMax)}.` },
-    { id: 'choir', n: 'Choir', fam: ['voice', 'voice', 'voice'], d: () => `Harmony: whenever one pet is healed, the other two heal for ${EK.harmony >= 0.45 ? 'half' : 'a third'} as much.` },
-    { id: 'folk', n: 'Folk Band', fam: ['drum', 'string', 'breath'], d: () => `Speed Up on your band for ${turnsOf(EK.speed)}.` },
-    { id: 'ragtime', n: 'Ragtime Band', fam: ['drum', 'string', 'brass'], d: () => `Power Down on all enemies for ${turnsOf(EK.weak)}.` },
-    { id: 'rock', n: 'Rock Band', fam: ['drum', 'string', 'voice'], d: () => 'Encore: the first Special each pet uses is ready again right away. A pet without a Special does this with its Skill.' },
-    { id: 'marching', n: 'Marching Band', fam: ['drum', 'breath', 'brass'], d: () => `Shield for your band, worth ${pct(EK.shield)} of each pet's HP.` },
-    { id: 'carnival', n: 'Carnival', fam: ['drum', 'breath', 'voice'], d: () => `Confetti: every enemy starts with one random effect (Slow, Poison or Power Down) for ${turnsOf(EK.confetti)}.` },
-    { id: 'swing', n: 'Swing Band', fam: ['drum', 'brass', 'voice'], d: () => 'Your fastest pet takes two turns in a row at the start.' },
-    { id: 'chamber', n: 'Chamber Orchestra', fam: ['string', 'breath', 'brass'], d: () => `Each pet shrugs off the first ${EK.ward > 1 ? WORDS[EK.ward] + ' times' : 'time'} it would get Slow, Stun, Poison or Power Down.` },
-    { id: 'serenade', n: 'Serenade', fam: ['string', 'breath', 'voice'], d: () => `Regen on your band for ${turnsOf(EK.regen)}.` },
-    { id: 'opera', n: 'Opera', fam: ['string', 'brass', 'voice'], d: () => `High note: the ${EK.stunN > 1 ? WORDS[EK.stunN] + ' enemies' : 'enemy'} with the most HP ${EK.stunN > 1 ? 'are' : 'is'} stunned for ${turnsOf(EK.stun)}.` },
-    { id: 'hymn', n: 'Hymn', fam: ['breath', 'brass', 'voice'], d: () => `The first pet to fall gets back up at ${pct(EK.hymn)} HP.` },
+    { id: 'drumline', n: 'Drumline', fam: ['drum', 'drum', 'drum'], d: () => T2('Your whole band acts before any enemy, and all enemies are slowed for {t}.', { t: tn(EK.slow) }) },
+    { id: 'stringtrio', n: 'String Trio', fam: ['string', 'string', 'string'], d: () => T2('Your band\'s first {n} hits are critical hits.', { n: EK.crits }) },
+    { id: 'windtrio', n: 'Wind Trio', fam: ['breath', 'breath', 'breath'], d: () => T2('Tailwind: your band takes its turns {p} sooner for the whole battle.', { p: pct(EK.tail) }) },
+    { id: 'brassband', n: 'Brass Band', fam: ['brass', 'brass', 'brass'], d: () => T2('Crescendo: your band gains {p} Power every turn, up to {max}.', { p: pct(EK.cres), max: pct(EK.cresMax) }) },
+    { id: 'choir', n: 'Choir', fam: ['voice', 'voice', 'voice'], d: () => T2('Harmony: whenever one pet is healed, the other two heal for half as much.') },
+    { id: 'folk', n: 'Folk Band', fam: ['drum', 'string', 'breath'], d: () => T2('Speed Up on your band for {t}.', { t: tn(EK.speed) }) },
+    { id: 'ragtime', n: 'Ragtime Band', fam: ['drum', 'string', 'brass'], d: () => T2('Power Down on all enemies for {t}.', { t: tn(EK.weak) }) },
+    { id: 'rock', n: 'Rock Band', fam: ['drum', 'string', 'voice'], d: () => T2('Encore: the first Special each pet uses is ready again right away. A pet without a Special does this with its Skill.') },
+    { id: 'marching', n: 'Marching Band', fam: ['drum', 'breath', 'brass'], d: () => T2('Shield for your band, worth {p} of each pet\'s HP.', { p: pct(EK.shield) }) },
+    { id: 'carnival', n: 'Carnival', fam: ['drum', 'breath', 'voice'], d: () => T2('Confetti: every enemy starts with one random effect (Slow, Poison or Power Down) for {t}.', { t: tn(EK.confetti) }) },
+    { id: 'swing', n: 'Swing Band', fam: ['drum', 'brass', 'voice'], d: () => T2('Your fastest pet takes two turns in a row at the start.') },
+    { id: 'chamber', n: 'Chamber Orchestra', fam: ['string', 'breath', 'brass'], d: () => T2('Each pet shrugs off the first {n} times it would get Slow, Stun, Poison or Power Down.', { n: EK.ward }) },
+    { id: 'serenade', n: 'Serenade', fam: ['string', 'breath', 'voice'], d: () => T2('Regen on your band for {t}.', { t: tn(EK.regen) }) },
+    { id: 'opera', n: 'Opera', fam: ['string', 'brass', 'voice'], d: () => T2('High note: the {n} enemies with the most HP are stunned for {t}.', { n: EK.stunN, t: tn(EK.stun) }) },
+    { id: 'hymn', n: 'Hymn', fam: ['breath', 'brass', 'voice'], d: () => T2('The first pet to fall gets back up at {p} HP.', { p: pct(EK.hymn) }) },
   ];
   const famKey = (fams) => fams.slice().sort((a, b) => H.FAMILY_ORDER.indexOf(a) - H.FAMILY_ORDER.indexOf(b)).join('+');
   const ENS_BY = {}; for (const e of H.ENSEMBLES) ENS_BY[famKey(e.fam)] = e;

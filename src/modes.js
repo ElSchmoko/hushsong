@@ -56,9 +56,9 @@
   H.GIANT = { hp: 2.0, vol: 1.15, steps: [0.75, 0.5, 0.25] };
   H.dailyFoe = (e) => {
     // a mirror is your own pet at your level without its equipment or stars, a little softer
-    if (e.pet) { const u = H.buildPetUnit({ form: e.id, rank: 0, gear: [] }, e.lvl), m = H.MIRROR; u.base = Object.assign({}, u.base, { hp: u.base.hp * m.hp * e.k, vol: u.base.vol * m.vol * e.k }); u.name = 'Mirror ' + H.FORMS[e.id].n; u.mirror = true; u.role = 'din'; return u; }
+    if (e.pet) { const u = H.buildPetUnit({ form: e.id, rank: 0, gear: [] }, e.lvl), m = H.MIRROR; u.base = Object.assign({}, u.base, { hp: u.base.hp * m.hp * e.k, vol: u.base.vol * m.vol * e.k }); u.name = H.T('Mirror {pet}', { pet: H.FORMS[e.id].n }); u.mirror = true; u.role = 'din'; return u; }
     const u = H.buildDinUnit(e.id, e.lvl, e.loud, null, e.k); if (e.hp || e.vol) u.base = Object.assign({}, u.base, { hp: u.base.hp * (e.hp || 1), vol: u.base.vol * (e.vol || 1) });
-    if (e.giant) { u.base = Object.assign({}, u.base, { hp: u.base.hp * H.GIANT.hp, vol: u.base.vol * H.GIANT.vol }); u.giant = H.GIANT.steps; u.name = 'Giant ' + H.DIN[e.id].n; u.perks = u.perks.filter((p) => p !== H.SWELL); }
+    if (e.giant) { u.base = Object.assign({}, u.base, { hp: u.base.hp * H.GIANT.hp, vol: u.base.vol * H.GIANT.vol }); u.giant = H.GIANT.steps; u.name = H.T('Giant {din}', { din: H.DIN[e.id].n }); u.perks = u.perks.filter((p) => p !== H.SWELL); }
     return u;
   };
   H.startDaily = (S, rnd, ms) => {

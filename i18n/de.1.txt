@@ -1,0 +1,839 @@
+1a4u7t2	{stats}.
+0q7birz	{"one":"{n} Runde","other":"{n} Runden"}
+14hthj2	Trifft zufällige Gegner {n}-mal mit je {p} (zwei verschiedene Gegner).
+0byjh8c	Trifft zufällige Gegner {n}-mal mit je {p}.
+07n71hn	Jeder Treffer ist {p} stärker als der vorige.
+0m7nu51	{c} Chance auf {st} für {t}.
+1av7cih	{st} für {t}.
+0rufu09	Heilt sich um {p} des Schadens.
+0c2qpnw	Schiebt ihn in der Zugreihenfolge zurück.
+13becoz	Schiebt sie in der Zugreihenfolge zurück.
+1tf8g37	{p} stärker, wenn der Gegner über 80 % LP hat.
+0y0bald	Bis zu {p} stärker, je verletzter der Gegner ist.
+0k522we	Trifft dann alle anderen Gegner mit {p}.
+1v1cx0m	+{p} Chance auf kritische Treffer.
+1klobiz	Geht direkt durch Schild.
+03a2a9p	Jeder kritische Treffer fügt einen weiteren Treffer hinzu (bis zu {n}).
+0vdxodq	Jeder Treffer hat {c} Chance, Langsam, Gift, Kraft runter oder Schief für {t} zu verursachen.
+0cqxp7o	Jeder Treffer verursacht Langsam, Gift, Kraft runter oder Schief für {t}.
+1m5emfp	{p} Chance, sofort noch einen Zug zu machen.
+0gtqyd5	{p} stärker für jedes gefallene Bandmitglied.
+1f7wvud	{p} stärker für jedes Bandmitglied, das gefallen ist oder unter halben LP liegt.
+01otle1	{p} stärker gegen Gegner mit {st}.
+1tbjmve	{p} stärker, solange es {st} hat.
+0a8oif0	Besiegt das den Gegner, sind alle seine Züge wieder bereit.
+0os6g8v	Besiegt das den Gegner, macht es sofort noch einen Zug.
+1lbrklu	{c} Chance: {fx}
+1oa0nre	Sein nächster Zug kommt früher.
+1jyhvo1	Macht sofort noch einen Zug.
+18w9g0n	Holt ein gefallenes Bandmitglied mit {p} LP zurück.
+0xnfd5d	Jedes Bandmitglied stimmt mit seinem Grundangriff zu {p} ein.
+04clvli	Dann richtet alles Gift auf den Gegnern seinen restlichen Schaden auf einmal an.
+00bdm66	Kostet den Anwender {p} seiner maximalen LP.
+0eo8xqz	Deine ganze Band handelt vor allen Gegnern, und alle Gegner sind für {t} verlangsamt.
+13kjpwg	Die ersten {n} Treffer deiner Band sind kritische Treffer.
+0ohlr4q	Rückenwind: Deine Band ist den ganzen Kampf über {p} früher am Zug.
+1vdaa7w	Crescendo: Deine Band erhält jede Runde {p} Kraft, bis zu {max}.
+0qlchvz	Harmonie: Wird ein Tier geheilt, heilen die anderen beiden um die Hälfte.
+0z4jtn1	Tempo hoch für deine Band für {t}.
+1el07f1	Kraft runter für alle Gegner für {t}.
+0imqe8u	Zugabe: Das erste Spezial jedes Tiers ist sofort wieder bereit. Ein Tier ohne Spezial macht das mit seiner Fähigkeit.
+1tii7s6	Schild für deine Band in Höhe von {p} der LP jedes Tiers.
+0i05xu4	Konfetti: Jeder Gegner beginnt mit einem zufälligen Effekt (Langsam, Gift oder Kraft runter) für {t}.
+0kr4kqx	Dein schnellstes Tier macht zu Beginn zwei Züge hintereinander.
+0skalmm	{"one":"Jedes Tier wehrt das erste Mal Langsam, Betäubt, Gift oder Kraft runter ab.","other":"Jedes Tier wehrt die ersten {n} Male Langsam, Betäubt, Gift oder Kraft runter ab."}
+0x2th3i	Regeneration für deine Band für {t}.
+1rw69zs	Hoher Ton: Die {n} Gegner mit den meisten LP sind für {t} betäubt.
+1m4ob43	Das erste Tier, das fällt, steht mit {p} LP wieder auf.
+0c5orbx	Zurückschlagen
+0a7kf5t	Rudelführer
+11j7o30	Gewinne eine Probe mit dem Ensemble {ens}.
+0xq0xcg	Schild
+0taf2ay	Solo
+0578o3h	Selten
+14wniqc	Gewöhnlich
+1bwxzco	Lagerfeuer
+1hpqu3m	Überspringen
+13347be	Legendär
+0bgmlfx	Trommel
+0qq0dw8	Saite
+1wnfmqv	Atem
+0v3iwlm	Blech
+0b1qn4p	Stimme
+0wrl2jw	Stille
+0bq1jab	Jung
+13kzokd	Hat noch keine Rolle gewählt.
+13mh6zt	Tank
+04kb9mm	Zäh. Beschützt die Band.
+1ms8i26	Angreifer
+1s6iiyn	Macht den meisten Schaden.
+11vozmg	Heiler
+0lt3nwi	Heilt und stärkt die Band.
+0txsyvc	Unterstützer
+0urf652	Verlangsamt und schwächt Gegner.
+1msji33	Kraft hoch
+0erp7z0	Macht 25 % mehr Schaden.
+0b8ve6i	Kraft runter
+043t7d0	Macht 25 % weniger Schaden.
+1j5x8rx	Tempo hoch
+0rp2o65	Züge kommen 30 % früher.
+1tyvniw	Langsam
+1rtwjtt	Züge kommen 30 % später.
+0pyxe0x	Betäubt
+00adhon	Setzt seinen nächsten Zug aus.
+1g8baa9	Gift
+1398ids	Verliert zu Beginn jedes Zugs LP, etwa 30 % der Kraft des Vergifters. Mehr Gift summiert sich, bis zum Dreifachen. Ignoriert Abwehr.
+1a9erp6	Regeneration
+1lwdm4g	Erhält zu Beginn jedes Zugs LP.
+0kydatf	Spott
+13fn23l	Gegner müssen ihre Einzeltreffer auf es richten.
+1w0r2pc	Ausweichen
+09468f2	Der nächste Treffer geht daneben.
+0o8p8v9	Fängt Schaden ab, bevor die LP es tun.
+0mj9nr2	Lebenslied
+0u9dw02	Heilt sich um 30 % des angerichteten Schadens.
+0yi27yk	Schief
+0uit45j	Erleidet 25 % mehr Schaden durch Treffer.
+1s7324o	Episch
+1lplimc	Trommelstöcke
+0xngqp3	Filzschlägel
+0hl254k	Dämpfer
+0t0h0nv	Metronom
+1pmltzc	Stimmgabel
+1xxzjnx	Plektrum
+0mnjw2v	Schultergurt
+1qclhrl	Ventilöl
+1rduu0f	Nadel
+1qrq5l4	Ohrstöpsel
+0qdt5kh	Rohrblatt
+1gebtxn	Notenblatt
+0wj9jiy	Goldener Taktstock
+1rtrb8v	Erhält jede Runde 5 % Kraft (bis zu 30 %).
+0ybj8yk	Diamantstöcke
+0v76wmc	Seine kritischen Treffer machen das 2,5-Fache statt das 1,5-Fache an Schaden.
+12kiexo	Erstes Pult
+12q6xbm	Macht immer den ersten Zug eines Kampfes.
+1osjyep	Großes Metronom
+03lt9cb	Jeden fünften Zug handelt es sofort noch einmal.
+0rk5hgb	Tempofalle
+00nk1l9	Trifft es einen Gegner mit einem schlechten Effekt, wird dessen Zug nach hinten geschoben.
+0s7dviz	Hallraum
+095d12f	Erhält zu Beginn jedes Zugs einen kleinen Schild.
+0yaewc6	Alte Schallplatte
+0xroqxz	Die ganze Band beginnt jeden Kampf mit einem kleinen Schild.
+1yaft0f	Phönixschlägel
+1iwcp47	Fällt ein Bandmitglied, heilt es die Band um 20 % von dessen LP.
+1q012vs	Absolutes Gehör
+07zccg4	Ein kritischer Treffer holt seinen nächsten Zug um die Hälfte näher.
+1en3rt7	Klingende Gabel
+1bes0ck	Seine Treffer auf einen Gegner treffen auch die anderen mit 40 %.
+0uha798	Rückkopplungsschleife
+1mij54t	Wird es getroffen, 30 % Chance, mit 60 % zurückzuschlagen.
+0lqm3ph	Samtvorhang
+0iv9n0e	Solange es steht, erleiden seine Bandmitglieder 15 % weniger Schaden.
+1rqad0h	Glücksplektrum
+1bhy6r1	Sein erster Treffer in jedem Kampf macht doppelten Schaden.
+0tyoa6z	Letzter Akkord
+0hhhh6j	Unter 40 % LP hat es 40 % mehr Kraft.
+0tcoh3o	Zugabe-Rose
+0yf8ri3	+15 % LP. Einmal pro Kampf lässt ein K.-o.-Treffer es mit 1 LP stehen.
+05qp0ud	Eisenkoffer
+0cpv7kz	Kann weder betäubt noch verlangsamt werden.
+1o0tj45	Quecksilber
+0xkwte3	Jeder erlittene Treffer holt seinen nächsten Zug näher.
+1k88bjf	Crescendo-Pedal
+1a8fi66	Erhält mit jedem Treffer 5 % Kraft (bis zu 30 %).
+0jqmtzy	Lasernadel
+1qsg3ll	Macht 50 % mehr Schaden gegen Gegner unter halben LP.
+00n6suo	Giftnadel
+0h8bhjw	Macht 50 % mehr Schaden pro schlechtem Effekt auf seinem Ziel.
+089dbpu	Stachelstöpsel
+0sw1vf6	Gegner, die es treffen, erleiden 40 % dieses Schadens selbst.
+0yid6us	Noise Gate
+0wodx13	Beginnt jeden Kampf mit einem Schild von 25 % seiner LP.
+1vb4l90	Goldenes Rohrblatt
+0w6jc56	Zu Beginn seines Zugs heilt es das am stärksten verletzte Bandmitglied um 3 % von dessen LP. Heilung über volle LP wird zu Schild.
+06ejlsm	Sirenenblatt
+0n3vio6	Heilt sich um 20 % des angerichteten Schadens.
+1gcy07d	Verschollene Partitur
+1fyohlw	+15 % Kraft. Schlägt es einen Gegner K. o., macht es sofort noch einen Zug.
+16r2ajv	Magnum Opus
+1rwxckh	Die Band beginnt jeden Kampf mit Kraft hoch für 3 Runden.
+1vm6jxe	Schilfsumpf
+1lu8609	Glockengießerei
+1aqnn33	Summender Obstgarten
+0qeq0q2	Verschneiter Grat
+1go8kfv	Klapperstraße
+1tsmmag	Tropfhöhlen
+0erieq9	Windige Dünen
+089006i	Blechhafen
+0y8oub5	Tickender Turm
+0prtznc	Konzertsaal
+07cnyyp	Eine runde Trommel mit Ohren, Füßen und einem Schlägel als Schwanz. Robust, und ihr schwerer Beat bremst Gegner aus.
+0cb38pk	Ein Tamburin, das seitwärts flitzt und zwei Kastagnetten klappern lässt. Schnelle, knackige Doppeltreffer.
+1nypsb6	Eine Leier mit Katzenohren und -schwanz. Ihre Töne treffen hart, aber sie ist verletzlich.
+0bla1xc	Eine Geige auf dünnen Beinen, die sich selbst mit dem Bogen bearbeitet. Schnell, und ihr Kratzen vergiftet Gegner.
+01ewlb7	Eine Okarina mit Flügeln und Schnabel. Was sie auch spielt, sie heilt ihre Freunde.
+0vq3eyw	Ein Akkordeon, das wie eine Raupe kriecht. Es heilt sich beim Beißen.
+0ip1aqa	Ein langes Blechhorn, das sich schlängelt. Seine Stöße bringen die Band dazu, härter zuzuschlagen.
+0hgjl3j	Eine schwere Glocke, aus der Kopf und Füße ragen. Sehr robust, und ihr Läuten schützt ihre Freunde.
+0yfvbp8	Ein rundes Mikrofon auf federnden Froschbeinen. Sein Gesang trifft alle Gegner zugleich.
+0quz911	Ein Megafon mit Wolfsohren und -schwanz. Sein Heulen schwächt Gegner.
+0yagm31	Ein Gong, der seinen eigenen Rahmen mit sich trägt. Langsam, aber ein guter Schlag betäubt.
+0thkqwo	Ein Xylofon, das wie eine Raupe kriecht. Viele kleine Treffer, die immer stärker werden.
+1ncgrg2	Ein Banjo mit sehr langem Hals. Schnell, glücklich und vernarrt in kritische Treffer.
+1tu5eb4	Ein kleines Klavier, das mit allen Tasten lächelt. Seine Akkorde spritzen auf alle Gegner.
+0z9n8pn	Ein Küken mit einer Panflöte als Kamm. Das schnellste Tier, und es treibt seine Freunde an.
+0pjb82g	Ein Dudelsack mit eigenem Kopf. Seine sauren Töne vergiften und schwächen.
+0z3v4rf	Eine Schnecke, deren Haus eine Tuba ist. Das zäheste Tier überhaupt, und es schiebt Gegner ans Ende der Schlange.
+16ocv01	Ein Saxofon, das sich wie ein Seepferdchen ringelt. Geschmeidig und schnell, ist es im Nu bereit für das nächste Solo.
+0moyagl	Ein altes Grammofon mit Vogelfüßen. Seine knisternden Lieder zermürben alle Gegner.
+04o4dyo	Ein kleines Radio, das nie aufhört zu reden. Es verwirrt Gegner und feuert die Band an.
+1warb8t	Eine Spieldose, die auf ihrem Aufziehschlüssel watschelt. Ihre Melodie heilt Bandmitglieder und bringt ihren Treffern bei, sie ebenfalls zu heilen.
+1p4j4fd	Ein Gummi-Trompetendämpfer an einem wackeligen Griff. Sein saures Wah-Wah bringt Gegner aus dem Ton, sodass jeder Treffer härter sitzt.
+0ulqhj0	Ein Kontrabass, der auf seinem Stachel läuft. Seine tiefen Töne halten die Linie und bremsen alles um ihn herum.
+0qwhhhy	Ein kleines Liederbuch, dessen Seiten im Einklang singen. Es schützt die Band mit seinem Einband und schüttelt ab, was sie belastet.
+09u3bzj	Eine Mundharmonika, die ein- und ausschnauft. Sie erledigt, was schwächelt, und bläst weg, was Gegner stützt.
+01x3s9q	Der Sumpf hört sich selbst
+1ojydxp	Muffle hat hier jeden Laut erstickt. Jetzt rascheln die Schilfhalme wieder, und die Frösche probieren eine Melodie.
+01t2fwo	Die Glocken läuten wieder
+0l2q3ef	Shush hielt die Gießerei jahrelang still. Heute Morgen läutete die erste Glocke, und niemand sagte ihr, sie solle aufhören.
+0sm94v5	Ein Summen, kein Brummen
+0n432ha	Der Swarm ist verstreut. Die Bienen sind wieder bei der Arbeit, und in ihrem Summen steckt jetzt eine Melodie.
+08pq5pm	Das Knistern ist weg
+0o961ya	Ohne Static ist die Bergluft klar. Man hört den Schnee fallen, und irgendwo in der Ferne jodelt jemand.
+050rbw1	Halbzeit
+0bie91b	Honk ist die Hupe ausgegangen. An der Kreuzung spielt jetzt ein Straßenmusiker. Die halbe Welt singt. Die andere Hälfte ist noch Lärm.
+0wfscp4	Die Höhlen singen zurück
+03yysnx	Rumble ist Geröll. Sing einen Ton ins Dunkel, und die Höhlen geben dir einen ganzen Akkord zurück.
+0zb5ixc	Der Wind lernte pfeifen
+1azpzws	Gale hat sich ausgeblasen. Was von ihm übrig ist, treibt über die Dünen und pfeift beinahe ein Lied.
+1f6bdh0	Shantys auf dem Pier
+1tgx1fo	Foghorn ist endlich still. Die Seeleute sind zurück auf dem Pier und haben jede Strophe mitgebracht, die sie kennen.
+05puppg	Zeit zum Durchatmen
+0ndwonj	Alarm hat zum letzten Mal geklingelt. Nur ein Ort ist noch still: der Konzertsaal, wo der Dirigent der Din wartet.
+1srx7zk	Die Musik ist zurück
+1w3fx2b	Tacets Taktstock ist zerbrochen und der Saal ist voll. Die Din werden weiter von den Rändern hereinkriechen, also gehen die Ebenen weiter. Aber die Welt hat jetzt ein Lied, mit dem sie antworten kann.
+0p5gla7	Trommelzug
+09rkysq	Streichtrio
+0uymolf	Bläsertrio
+1bw6h1x	Blaskapelle
+04kfc8k	Chor
+1dmx33u	Folkband
+1qefubr	Ragtime-Band
+1ec98d7	Rockband
+1c3dj47	Marschkapelle
+03htgfn	Karneval
+1wlcqos	Swingband
+1ifvqcu	Kammerorchester
+0h4v89a	Serenade
+0ee95mc	Oper
+1sz7gr5	Hymne
+1d82w65	Aufwärmen
+16exdhj	Erreiche Level 10.
+1f07moh	Halbzeit
+1gv1hup	Schaffe Ebene 50.
+1xdsyc5	Aufsteigender Stern
+08vjn4t	Erreiche Level 30.
+0ttac5j	Kostümwechsel
+0wpbvxt	Entwickle zum ersten Mal ein Tier.
+08tp2nq	Herausgeputzt
+0cibbx3	Belege alle sechs Ausrüstungsplätze deiner Band.
+0qu08qx	Wachsende Band
+1s7jpui	Finde 10 verschiedene Tiere.
+15m6zkv	Welttournee
+0p6isfb	Schaffe Ebene 100.
+18sngox	Zweite Etappe
+0t97xxs	Schaffe Ebene 200.
+0xyy5v8	Langspielplatte
+1ko6msl	Schaffe Ebene 300.
+0p2uvqz	Endlose Tour
+077abr7	Schaffe Ebene 500.
+0kttfj7	Volles Orchester
+1ftdlwm	Finde alle Tiere.
+1uei586	Headliner
+0co2oyg	Entwickle drei Tiere vollständig.
+1u76xcj	Fünfstimmige Harmonie
+1sd4tuz	Entwickle ein Tier aus jeder der fünf Familien vollständig.
+17o4t10	Virtuose
+1s586d8	Gib einem Tier alle 10 Sterne.
+1o7uwii	Soloauftritt
+0twods9	Besiege einen Boss ab Ebene 30 mit einem einzigen Tier.
+0xwplmu	Unplugged
+131dj0h	Besiege einen Boss ab Ebene 50 ohne Ausrüstung in deiner Band.
+0ziqytr	Registerprobe
+1l05r7p	Besiege einen Boss ab Ebene 30 mit drei Tieren derselben Familie.
+0tq62qo	Tonrein
+1u1qfsk	Besiege 10 Bosse ab Ebene 50, ohne dass ein Tier fällt.
+0daw3ej	Generalprobe
+0q7582o	Gewinne 10 Proben.
+0yev4ot	Goldsammlung
+0ths2r3	Besitze 3 legendäre Ausrüstungsteile.
+18j4xs2	Komplettes Liederbuch
+12lew62	Gewinne eine Probe mit jedem der 15 Ensembles.
+0bsk9ij	Muschelschock
+0amgn09	Öffne 100 Muscheln.
+04ow5gr	Vorhang auf
+1hzejfp	Schaffe Welle 10 in Zugabe.
+0kw590z	Stehende Ovationen
+1dkx4s4	Schaffe Welle 20 in Zugabe.
+1do6rpz	Nachtkonzert
+0xygpvx	Abendbühne
+1ptwv93	Goldener Saal
+03pncfo	Nordlichter
+0ul31af	Rampenlicht
+1cpl67j	Neon-Zugabe
+1s5oon2	Immer lauter
+1lbmtjt	Ein Boss wird mit jedem Zug, den er macht, 2 % stärker.
+0xim5vx	Laut
+092waxc	Ein größerer, zäherer Gegner. Jede fünfte Ebene hat einen.
+0detaua	Rückkopplung
+0g6vhsb	Trifft einen Gegner mit 130 %. Kostet den Anwender 8 % seiner maximalen LP.
+13d8q61	Wumms
+053ta2h	Bauchstoß
+0dnj979	Auftakt
+1f34o5f	Die Linie halten
+06dokpr	Wird es getroffen, schlägt es mit 25 % zurück.
+0tkh80d	Vorwärts, marsch
+0off7vu	Tap-tap
+0uzjydt	Wirbel
+1ktqn6d	Einspielen
+1w1qopz	Jeder Treffer gibt 3 % Kraft für diesen Kampf (bis zu 30 %).
+05gb6aq	Stampf-Jig
+0gho9na	Trommelwirbel
+038yh51	Schnipp
+1gsd4k6	Klack-klack
+0grptg6	Klick-klick
+10gnhwk	Kastagnettenschlag
+0d5rai9	Im Takt
+15trs8b	+20 % Chance auf kritische Treffer.
+0eepwoa	Zapateado
+07uac25	Die Führung übernehmen
+0rjnqfp	Schütteln
+047l8xc	Nervenrassel
+09ye9dh	Verunsichern
+0lowabh	Seine Treffer schieben Gegner mit schlechtem Effekt in der Zugreihenfolge zurück.
+0aod8j9	Schwelbrand
+1n8nf0k	Twang
+1njs3ln	Gerissene Saite
+0rmyty0	Zupfer
+0zetxk0	Pizzicato
+1ixfsur	Feines Gehör
+13r6jhf	Seine Treffer ignorieren die Hälfte der gegnerischen Abwehr.
+190f7pf	Kraftriff
+0lsw47p	Shred
+1tcc1q9	Sanftes Schrammeln
+1r8efu3	Offener Akkord
+0gwozuz	Überlauf
+1bi0r1i	Heilung über volle LP wird zu Schild.
+19tfqi5	Langsame Strophe
+02z2n2x	Eins-zwei-drei
+0046r2t	Kratzer
+1d60evi	Kreischen
+1vlk8s6	Sägen
+1oaglvk	Doppelgriff
+1mezlbl	Blanker Nerv
+0x6ypis	Macht 30 % mehr Schaden gegen vergiftete Gegner.
+1nlh6h7	Wirbelnder Reel
+0grbtku	Klagelied
+1e5kf37	Tremolo
+1sar8nm	Schauer
+0y60q2o	Lampenfieber
+1872r7h	Jeder Gegner beginnt den Kampf mit Gift für 2 Runden.
+1d3oejo	Einbruch der Nacht
+1yr6ulo	Laune
+0kpiauz	Zwei zufällige Dinge passieren: ein 110-%-Treffer, Gift auf alle Gegner, eine Heilung, Kraft hoch für die Band, Kraft runter für alle Gegner oder ein Schild für die Band.
+04loohm	Hauch
+1gip12f	Leises Summen
+05rb9v7	Tiefer Ton
+1jwqcvd	Unterton
+08pwtpf	Zug nach hinten
+1d37j2m	Zu Beginn seines Zugs rutscht jeder Gegner in der Zugreihenfolge etwas zurück.
+0n9p0kk	Trauergesang
+1mrb7u9	Choral
+0137tax	Pfiff
+1jm256h	Heitere Weise
+08saj29	Muntermacher
+12r52vs	Bandmitglieder, die es heilt, sind früher wieder am Zug.
+0489ktu	Weihnachtslied
+031a0vk	Wiegenlied
+10obzew	Zwicken
+1nncv0n	Quetschen
+1x3i0of	Blasebalg
+0lztsun	Tief durchatmen
+0ucjz7n	Aufpusten
+1p6naxy	Umpa
+0ffym9e	Hau-ruck
+10x93ym	Triller
+1lziham	Verzierungen
+1jlfytj	Da capo
+11v7pdr	Jeden dritten Zug macht es sofort noch einen Zug.
+145ygjx	Streich
+1xdqyxh	Kadenz
+0j4vn7f	Tröt
+0du2tax	Stoß
+1q199jr	Anfeuern
+0p1cq54	Wappnen
+1ize82t	Klangwand
+1ghjany	Fanfare
+1oqpjfk	Hymne
+1fi7bq7	Tuut
+0egkrm1	Ruf
+1bs2pyw	Strahlendes Blech
+1xrch8d	Swing los
+171camj	Weckruf
+0u8765q	Klang
+0x5xpcb	Läuten
+12so223	Dong
+1nzb8p5	Sperrstunde
+0qp1h57	Klingende Schale
+0g1ih39	Gegner, die es treffen, erleiden 30 % dieses Schadens selbst.
+0zz0vag	Letzte Glocke
+1frl26u	Volles Geläut
+02g7rrc	Bimmeln
+1jcu2sd	Schlittenglocken
+0ly2anh	Frohsinn
+0253kh0	Die ganze Band beginnt jeden Kampf mit einem Schild.
+0hbl061	Glockenspiel
+0yaiaoq	Gamelan
+1gxfv6d	Kläffen
+0llfocq	Jaulen
+1ho4s88	Schmachten
+0zoqbb6	Süßholz
+0fmm7ac	Silberzunge
+14zv8di	Gegner, die es treffen, erhalten Kraft runter für 1 Runde.
+18kz9uo	Holt ein gefallenes Bandmitglied mit 40 % LP zurück. Ist niemand gefallen, heilt es die Band um 80 % und gibt Regeneration für 2 Runden.
+0q23ubm	Schrei
+0gplas9	Aus voller Kehle
+11jbqjr	Erhält jede Runde 8 % Kraft (bis zu 40 %).
+1suzhoz	Ruf und Antwort
+1mf5fhz	Hoher Ton
+1ft5tz7	Bellen
+0b5mtzn	Heulen
+0nm4tup	Knurren
+1uasau4	Tiefes Grollen
+060y87e	Blut im Wasser
+0uiaph2	Heilt sich um 25 % allen angerichteten Schadens.
+1plccmp	Der Blues
+0n5padm	Verzerrung
+0hkfdb4	Wachgebell
+089p2ow	Rudelruf
+1rcckl9	Wird ein Bandmitglied getroffen, beißt es den Angreifer mit 15 %.
+1tw4u3u	Im Kanon singen
+0c4884z	Requiem
+0k3n0gx	Bonk
+17s5l5v	Großer Bong
+0ulcui7	Schlag
+0285t0s	Gongwand
+18pn1sd	Schwerer Rahmen
+1cd2qde	Erleidet 15 % weniger Schaden.
+0oijiii	Tamtam
+0fntgyk	Rollender Donner
+175bu1x	Hall
+1bi05dj	Kräuseln
+0v5ox0l	Nachbeben
+1tobm5k	Zu Beginn seines Zugs erhält ein zufälliger Gegner einen kleinen Treffer.
+0bijhqs	Schimmer
+1syafku	Beben
+03qzdj6	Tipp
+0b6rpxt	Tonleiter
+1g2l3gx	Schlägelwirbel
+0mdaju9	Glissando
+0sjrqyn	Angeber
+0dm89q6	+10 % Chance auf kritische Treffer, und seine kritischen Treffer machen doppelten Schaden.
+1h2jl76	Vibrato
+0qmpvvu	Daumenwirbel
+192ngsl	Ding
+1wo4w1o	Windspiel
+1wk49em	Klarer Ton
+16zpp23	Zu Beginn seines Zugs erhält das am stärksten verletzte Bandmitglied einen kleinen Schild.
+1v808cb	Sternenlicht
+013ez5c	Schellenbaum
+1v3w591	Ting
+13ghs0j	Aufziehen
+0sqdz4h	Drehung
+1y8bun6	Karussell
+1ey26u4	Andenken
+03876pu	Die ganze Band beginnt jeden Kampf mit Lebenslied für 2 Runden.
+1fm2p05	Gavotte
+13c01uc	Tagtraum
+1de4oh0	Kurbel
+0ulk3i1	Überdreht
+0xqe02d	Hauptfeder
+16o0zud	Heilt zu Beginn jedes Zugs 4 % seiner LP.
+1eltb1u	Toccata
+0pc6z0g	Ostinato
+142pjgn	Wah
+15u0adm	Gezogener Ton
+1w0u0b4	Du-wah
+1c9a2xa	Saurer Akkord
+1nd0o6b	Wah-Pedal
+13v1pyf	Zu Beginn seines Zugs wird ein zufälliger Gegner für 1 Runde Schief.
+1m85wqp	Skank
+1p63sus	Tailgate
+0fzbi2a	Hornsignal
+1cb3e8r	Schmier
+18snyl1	Schalltrichter hoch
+1c0cjbg	Macht 30 % mehr Schaden gegen schiefe Gegner.
+1n9ab9m	Grito
+0d3w5x9	Mambo
+064rxuz	Dröhnen
+1w8hi7m	Walking Bass
+1o5p4k3	Slap
+149cpa8	Tiefen
+1ayqna0	Resonanzsaiten
+0eqy5uj	Gegner, die es treffen, sind für 1 Runde verlangsamt.
+12k0kna	Slap zurück
+1cv8o1m	Basso continuo
+1o5i5xn	Bogen
+0nxg2if	Langer Bogen
+0bn4xiv	Tiefe Resonanz
+07xsmwg	Seine Langsam, Kraft runter und Schief halten 1 Runde länger.
+1cf17bj	Sostenuto
+1oijyxf	Fuge
+0n5cim9	Duu
+0bqam4h	Zusammenrücken
+01l0qgh	Uuh
+0xhzqh1	Enge Harmonie
+06kkvvg	Gemeinsam stark
+0it613x	Solange es steht, haben seine Bandmitglieder +10 Abwehr.
+1798q1h	Kantate
+1vvj5n8	Madrigal
+0qlmoj8	Schu-bop
+0bieu0o	Backgroundgesang
+1lsbfmx	Weitersingen
+1gnqofp	Fällt ein Bandmitglied, heilt der Rest der Band 20 % seiner LP.
+1mnxtq9	Gospel
+1600uw6	Choralgesang
+1ikzkcy	Schnaufer
+19736uu	Ziehbend
+0i6ws0l	Riff-Duell
+0w9oj4m	Mit dem Hut rumgehen
+1atvc33	Trinkgeldglas
+01lvqlq	Jeder Gegner, den es besiegt, heilt die Band um 10 % ihrer LP.
+0v021qm	Kreuzweg
+1weecg8	Juke Joint
+1yyx1mu	Slide
+1szi2dg	Chromatischer Lauf
+1lzzbce	Böe
+0wy3h7a	Zu Beginn seines Zugs verliert ein zufälliger Gegner seine guten Effekte und seinen Schild.
+1wmvbsn	Mistral
+05qm91p	Schirokko
+1yyjzys	Fiedelei
+0horseb	Hoedown
+0s5x4gp	Heißer Lick
+1tepclg	Breakdown
+1itkjsg	Eröffnungsnummer
+0565xbc	Sein erster Treffer in jedem Kampf macht dreifachen Schaden.
+136slnp	Flinke Finger
+1ewltag	Showdown
+0iht9iv	Mitschrammeln
+1fpt46k	Glücksbringer
+067ey8x	Seine Bandmitglieder haben +10 % Chance auf kritische Treffer.
+13xisjs	Jamboree
+1kzmbnb	High Lonesome
+070t5e1	Tastenschlag
+04hzoc5	Akkord
+1t9dizn	Links-rechts
+1enbm4h	Rag
+0d7yg7m	Offbeat
+0wxfzr7	Boogie-Woogie
+0qrseta	Großer Stride
+076qa28	Tiefes C
+1taqerg	Fortissimo
+1xya3ki	Letzter Satz
+1ly1frj	Unter halben LP macht es 30 % mehr Schaden und erleidet 30 % weniger.
+0dau8k8	Großes Finale
+09qr6d3	Menuett
+08bgdtw	Picken
+1fz8y39	Rückenwind
+1niikg4	Flötchen
+1kh1kgu	Marschweise
+16ik1sb	Vorangehen
+0q04ctl	Zu Beginn seines Zugs rückt das langsamste Bandmitglied in der Zugreihenfolge vor.
+112a04m	Mir nach
+09lgj6i	Heilt die ganze Band um 80 %. Beide Bandmitglieder sind sofort am Zug.
+1auvt6u	Windlied
+11j6mia	Alle weichen dem nächsten Treffer aus. Seine Bandmitglieder sind früher wieder am Zug.
+1rhp193	Schrill
+12i0tva	Durchdringender Ton
+17r7bwl	Gnadenstoß
+04lfs3w	Hohes C
+014y2uz	Zephir
+0u1bt4z	Trifft alle Gegner mit 95 % und macht dann sofort noch einen Zug.
+1y4ituh	Krächzen
+0txyels	Skirl
+0ub5jus	Rohrblattton
+09xx760	Jammern
+1593f7k	Saurer Ton
+1s8g04q	Gegner, die es treffen, sind für 1 Runde vergiftet.
+0xrv5m8	Pibroch
+0hqctvw	Zapfenstreich
+1f9no5x	Großer Atemzug
+1o740zk	Windsack
+1vq6ps1	Voller Luft
+0fnpt4v	Einmal pro Kampf lässt ein K.-o.-Treffer es stattdessen mit 1 LP stehen.
+0b9p1g6	Versammlung
+1wq7opa	Wehklage
+02ezjje	Um
+03d6thh	Pa!
+1j7ua0j	Tiefschlag
+1lgrf66	Blechwand
+1h65juz	Der Letzte steht
+0bkmu8k	Fällt ein Bandmitglied, heilt es 30 % seiner LP und erhält Kraft hoch für 3 Runden.
+1swv50y	Eingraben
+0yd6exr	Bombardon
+1o492e6	Tröööt
+1tztmpf	Bass-Drop
+1dmoz3o	Schwere Luft
+12a1zk4	Jeder Gegner beginnt den Kampf weiter hinten in der Zugreihenfolge.
+1grgl3z	Infraschall
+0kzafyq	Bauchlachen
+12irlv3	Dut
+12v24qq	Geschmeidiger Lauf
+1i4i61e	Bip-bap
+1rejxdw	Im Höhenflug
+10542q1	Schlägt es einen Gegner K. o., macht es sofort noch einen Zug.
+1ba51d5	Klangteppich
+103fmui	Take Five
+1158c3h	Sanft
+1n8sgyg	Slow Jam
+1v0rywu	Easy Listening
+0s3lxnj	Seine Heilungen sind 20 % stärker.
+0thz03i	Soul
+0p9c45r	Absacker
+04x3i68	Zwitschern
+1jth8jr	Alte Platte
+1wofsfp	Scratch
+07o26sh	Zerkratzte Platte
+0s8sb10	Kann weder verlangsamt noch betäubt werden.
+04w3idr	Verzerrt
+0h4z7yy	Publikumsliebling
+0a06dpc	Spitzenton
+06114a7	Vibratolauf
+12617m3	Seine Einzeltreffer spritzen auch mit 30 % auf alle anderen Gegner.
+05q1aub	Glasbrecher
+15e19ob	Showstopper
+1krmegy	Blip
+0jdw2g7	Eilmeldung
+0uhcr28	Fuzz
+1oh86fx	Störsignal
+0dasz8l	Schlechter Empfang
+0hpinqo	Zu Beginn seines Zugs wird ein zufälliger Gegner für 1 Runde verlangsamt.
+070e6on	Funkstille
+0syrtcz	Piratensender
+1dgv55j	Grüße
+0y7fncs	Top 40
+1viyfap	Hype
+0sgn6pd	Die Band beginnt jeden Kampf mit Kraft hoch.
+06ioqpd	Mixtape
+0t2h378	Sendung
+18vix4v	Hieb
+1a9gry0	Krach
+1m23wf6	Nadel
+18vi9jv	Spucke
+0aws48u	Verbrühen
+1mm9ky0	Klonk
+0rnljou	Rostschutz
+11v1m3f	Geplapper
+1jvhh7j	Spott
+1dmpqsv	Heilt seinen am stärksten verletzten Freund um 140 %. Ist niemand verletzt, trifft es einen Gegner mit 60 % und schwächt ihn.
+0pbjb31	Ersticken
+1dckffs	Decke
+0s5yoff	Durchnässen
+0jmesgy	Pst
+1ocf601	Finger an die Lippen
+1vovvjr	Ruhe!
+0re2x9y	Knistern
+199ocsc	Weißes Rauschen
+0ymjbq5	Störung
+03y74hh	Löschen
+0lhig2f	Generalpause
+0te3ooz	Fermate
+0mbf94q	Wechselnde Tonart
+0ho4woa	Wechselt alle 2 Runden die Familie. Wird unter 40 % LP schneller.
+0vud5dq	Stich
+0suiob1	Summwolke
+1xqxmn5	Ausschwärmen
+1p2yjim	Weicht den nächsten 2 Treffern aus und wird für 2 Runden schneller.
+0348nnh	Piep
+014ong2	Stau
+0twh2hk	Straßenwut
+0lm7olu	Felsbrocken
+1wyvn1w	Einsturz
+1lpefml	Grundgestein
+1m0m7p0	Sandsturm
+1g02785	Auge des Sturms
+1p1dny7	Nebelbank
+16fafs5	Langer Stoß
+0cfa1iz	Tick-tack
+1k71mcf	Schlummer
+145jl5l	Aufwachen!
+1whanfo	Trifft alle Gegner mit 75 %, dann kommt sein nächster Zug früher.
+03wcmz8	Zisch
+1d0s7av	Sturzflug
+08ydjo4	Trifft einen Gegner mit 100 % und weicht dem nächsten Treffer aus.
+0adtvon	Rasseln
+0mje0od	Verschütten
+091kazk	Plipp
+10fizix	Pfütze
+0ku1wmm	Flattern
+0vlq75j	Wirbel
+0dsitjv	Weicht dem nächsten Treffer aus und wird für 2 Runden schneller.
+07kb9qa	Ächzen
+1pldi2s	Tick
+0jd6glc	Aufziehen
+0t91r2l	Quak
+0qfmpg7	Rülpser
+01o2zzp	Hämmern
+0diq20m	Ambossfall
+1xq6gzj	Tipp tipp
+1tlu3pa	Bohrer
+1yiehgc	Zapp
+17k1p4r	Lichtbogen
+1lfz91z	Herabstoßen
+0hoak0x	Splitt
+1s9fv30	Rückstoß
+0u0gbsk	Aufruhr
+1ohbysp	Kuckuck
+0n5mp84	Herausspringen
+1rk256n	Trifft einen Gegner mit 130 % und weicht dem nächsten Treffer aus.
+1q05kvf	Ring ring ring
+1k5sntb	Spiegelkampf
+12eqhw1	Die Din kopieren deine Band, Zug um Zug.
+002004f	Heiße Kartoffel
+0ctam6o	Eine tickende Kartoffel wandert mit jedem Einzeltreffer weiter. Brennt ihre Lunte ab, verliert ihr Halter 30 % LP.
+1pkoab8	Tonartwechsel
+1cfq8ai	Alle 6 Runden rücken alle einen Schritt im Familienkreis weiter.
+1yxenyh	Lautstärkeregler
+0zlkzru	Treffer beginnen mit halber Stärke und werden alle 2 Runden lauter, bis 250 %.
+0s0fk5e	Rückwärtstempo
+1pjw2si	Langsam ist schnell: Das niedrigste Tempo handelt am häufigsten.
+0s2p00q	Geteilte Bühne
+1wmdz40	Jeder Treffer wird gleichmäßig auf die ganze Seite seines Ziels verteilt.
+0ahnj2t	Kettenreaktion
+18m6nsh	Wer fällt, platzt: Der Rest seiner Seite verliert 20 % der maximalen LP.
+0lqtb84	Riesentöter
+0ide5cc	Ein riesiger Boss. Jedes Viertel seiner LP, das du ihm abnimmst, betäubt ihn und macht ihn Schief.
+0d7j2pf	Duett
+1yhp35s	Nur deine ersten zwei Tiere spielen. Zu jedem Zug kommt der Grundangriff des anderen mit 60 % dazu.
+1g3255c	Getauschte Sets
+1wxliqd	Jedes Tier spielt mit den Zügen des Tiers daneben.
+1gj42n8	Mikro weiterreichen
+1suqz2y	Nur wer das Mikro hat, kann Fähigkeiten und Spezials nutzen – immer bereit und schneller. Das Mikro wandert jede Runde weiter.
+0qtmljq	Echokammer
+02g9xpm	Fähigkeiten und Spezials wiederholen sich im nächsten Zug des Anwenders mit halber Stärke.
+0fo10iz	Letzte Runde
+0f4c821	Gewinne innerhalb von 45 Zügen, alle mitgezählt.
+15jnqbh	Keine Grundangriffe
+0otfaz7	Grundangriffe werden zu Rückkopplung: ein 130-%-Treffer, der den Anwender 8 % seiner maximalen LP kostet.
+0sahm09	Das Seerosenblatt
+0k0njhx	Der Ambossraum
+18dezam	Bienenstock-Pavillon
+06g7ffd	Gipfelhütte
+0qq75ff	Die Kreuzung
+1q752zs	Die Echogrube
+1r6b410	Oasenbühne
+0k61u7j	Pier Neun
+0co005d	Der Uhrenspeicher
+1ptzihn	Die Samtschachtel
+1okadjr	Größerer Verstärker
+13erzoo	+20 % Kraft.
+0zkl7hh	Gepolsterter Koffer
+0j69l3w	+25 % LP.
+1fwjw4a	Schnelle Finger
+0n3fqeu	+15 % Tempo.
+01esu05	Sweet Spot
+0gd36kj	+12 % Chance auf kritische Treffer, und kritische Treffer machen 25 % mehr.
+0lby3om	Harte Schale
+1ebxeoo	+12 Abwehr. Beginnt jeden Auftritt mit einem Schild von 20 % seiner LP.
+0775ytv	Seelenlied
+0zr669t	Heilt sich um 15 % des angerichteten Schadens.
+1h8xmtl	Saure Töne
+0zh5dqc	Seine Treffer vergiften für 2 Runden.
+13h5hic	Falscher Akkord
+1osujrv	Seine Treffer haben 50 % Chance, das Ziel für 2 Runden Schief zu machen.
+0jx2cpn	Vorband
+1oin4ol	Ist bei jedem Auftritt zuerst dran, und sein erster Treffer macht 40 % mehr.
+0x53ene	Stachelriff
+1sps3gb	Gegner, die es treffen, erleiden 25 % dieses Schadens selbst.
+1iavafh	Anheizer
+00rkxb6	Beginnt jeden Auftritt mit Kraft hoch und Tempo hoch für 2 Runden.
+1ttntdf	Ruhe, bitte
+16d9zln	Gegner beginnen jeden Auftritt 2 Runden lang Langsam.
+1qxqqjj	Crescendo
+0yvpkv3	+4 % Kraft in jeder Runde eines Auftritts, bis zu +40 %.
+0we7ixn	Heilung über volle LP wird zu Schild.
+1dvzvpk	Lebensschleife
+0wtrnwu	Beginnt jeden Auftritt mit Lebenslied für 3 Runden. Jeder K. o. fügt 2 hinzu.
+1p30ql0	Klicktrack
+17kd3zj	Fähigkeiten und Spezials ruhen 1 Runde weniger (nie unter 1).
+0n2c1w1	Doppeltempo
+0ppnxok	Jeden dritten Zug handelt es sofort noch einmal.
+09xfsf7	Giftmaestro
+0h3c4te	Macht 40 % mehr Schaden gegen vergiftete Ziele und 30 % mehr gegen schiefe.
+06oj68c	Kritische Rückkopplung
+0rtev9z	Kritische Treffer füllen 35 % seiner Zugleiste.
+1phtf1k	Glaskanone
+09uxb6d	+45 % Kraft, aber 30 % weniger LP.
+1jqu99t	Zweiter Atem
+0fcws9q	Einmal pro Auftritt übersteht es einen K. o. mit 1 LP und heilt 30 %.
+0lir46c	Großer Abschluss
+0iorug3	Macht 60 % mehr Schaden gegen Gegner unter 35 % LP.
+0x3dm2o	Echopedal
+11qru8z	Seine Fähigkeiten und Spezials wiederholen sich im nächsten Zug mit 40 %.
+1rd7chv	Moshpit
+1nswr2b	Einzeltreffer spritzen mit 30 % auf die anderen Gegner.
+0b0n679	Stagedive
+1bytrrw	Jeder K. o. heilt 20 % und füllt die halbe Zugleiste.
+1vvq1dc	jeder Treffer frischt einen Schild auf
+1g75ypi	K. o.s frischen einen Schild auf
+05zgsrj	Fähigkeiten kommen sehr schnell wieder
+1g6a7f8	mehr Echos, öfter
+0tydj6s	Echos vergiften erneut
+0l5gh4m	Echos machen wieder Schief
+1jq6u3o	Treffer gegen vergiftete Gegner sitzen 40 % härter
+0q3fcpj	schiefe Gegner nehmen viel mehr
+1243pgd	Krits holen den nächsten Zug näher
+0lnuiy9	harte Treffer mit Sicherheitsnetz
+0jl2xy1	harte Treffer hinter einem Schild
+1aj2zep	schwer zu treffen, schmerzhaft zu treffen
+0q14mqo	wird doppelt so schnell lauter
+07pt0rk	erledige sie, heil dich
+0smkptf	ein fliegender Start
+1ohz4qd	Ein Straßenmusiker
+1h8j3n9	Ein Straßenmusiker mit ramponierter Gitarre bietet an, Lieder zu tauschen.
+0u6vqnk	Lieder tauschen
+0p8btdk	Verliere 20 % LP. Nimm einen zufälligen seltenen Segen.
+0snxryu	Mitklatschen
+1izkrj7	Heile 10 %.
+1ogo5bn	Ein alter Stimmschrein
+01hfnq9	Ein Kreis summender Steine. Die Luft fühlt sich gestimmt an.
+1t547k9	Eine Weile rasten
+0d5lodj	Heile 50 %.
+0g5iyjw	Stimmen
+03q4xnl	+12 % Kraft für diese Tour. Verliere 10 % LP.
+0fj3xl2	Ein Fan mit Geschenk
+0t0aywx	Jemand in einem selbst bemalten T-Shirt winkt dich heran.
+1r5p1i0	Den Schal nehmen
+032f49i	+20 % LP für diese Tour.
+05oc9pj	Den Snack nehmen
+1f37te6	Heile 35 %.
+1jb1g85	Ein summender Verstärker
+0xxly2g	Im Gras steht ein Verstärker, an nichts angeschlossen, und summt trotzdem.
+0bqr3ag	Einstöpseln
+0zbafn5	+25 % Kraft, aber 15 % weniger LP für diese Tour.
+1xplfql	Liegen lassen
+0f5386r	Nichts passiert.
+1mc7zav	Eine Kiste alter Platten
+17qilb0	Staubige Hüllen, manche noch eingeschweißt.
+0o8ngf2	Durchwühlen
+1483ux0	Wähle 1 von 3 gewöhnlichen Segen. Verliere 10 % LP.
+1xz3u50	Blind zugreifen
+0zz4zxc	Ein zufälliger gewöhnlicher Segen.
+1cy74sa	Das Publikum will ein Lied
+0edgn6c	Ein kleines Publikum hat sich versammelt und fängt an zu skandieren.
+0rpo8v2	Für sie spielen
+12e9pna	+8 % Kraft für diese Tour. Heile 15 %.
+1jsvac1	Verbeugen
+0fl07dj	Heile 25 %.

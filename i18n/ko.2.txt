@@ -1,0 +1,551 @@
+0f55hyc	적 하나에게 {p} 공격.
+1pnhot0	자신에게 보호막.
+15drddl	{t} 동안 자신에게 {st}.
+1nd99m8	밴드 전원에게 보호막.
+1qwd7ml	{t} 동안 밴드 전원에게 {st}.
+1uwsay5	모든 적에게 {p} 공격.
+1q8cjc9	적 하나를 {n}번, 매번 {p}로 공격.
+1076p36	모든 적을 {n}번, 매번 {p}로 공격.
+1q2u71s	가장 다친 동료를 {p} 회복.
+0ompy9w	밴드 전원을 {p} 회복.
+0u3dj57	밴드 전원의 나쁜 효과를 모두 제거.
+0onaigk	가장 느린 동료의 다음 행동이 빨라짐.
+0khc9zz	가장 다친 동료의 나쁜 효과를 모두 제거.
+190xcnu	{t} 동안 적 하나에게 {st}.
+0e7f6lw	{t} 동안 가장 강한 동료에게 {st}.
+1bdc500	가장 다친 동료에게 보호막.
+106aayv	{t} 동안 모든 적에게 {st}.
+17snu6e	{t} 동안 무작위 적 하나에게 {st}.
+15vipv3	{t} 동안 대상에게 {st}.
+0cnywq4	동료의 다음 행동이 빨라짐.
+13j8tn6	대상에게 보호막.
+16clkzn	대상의 좋은 효과와 보호막을 모두 제거.
+1o2z45w	모든 적의 행동 순서를 뒤로 미룸.
+0amfle1	모든 적의 좋은 효과와 보호막을 제거.
+1kxpnpz	최대 HP의 {p} 회복.
+117au04	동료가 다음 턴을 가져감.
+0ebcfe0	무작위 적 하나에게 {p} 공격.
+0dye84z	파워 +{v}
+1i3vqsq	HP +{v}
+1tt83ij	방어 +{v}
+1ub8ovp	속도 +{v}
+0s1jrr2	치명타 확률 +{v}
+1bmhzw0	적 방어 {v} 무시
+00bjksl	받는 피해 −{v}
+0pcq1bs	회복량 +{v}
+0fdv6n1	밴드 경험치 +{v}
+1h4s45e	라이벌 {pet}
+0eujuva	시끄러운 {din}
+03alka9	펑!
+0kui9jn	불이 꺼졌다!
+0c1w867	메아리!
+0mq77hg	앙코르!
+1qm2xxm	한 번 더!
+0k2fpcm	버텼다!
+0rd3yt1	연쇄!
+0belrl0	비틀!
+1xob2db	빨라졌다!
+1lwo7a3	안 통함
+0hn3zaj	모험
+03gtdjg	리허설
+13u5rhp	앙코르
+0siy9wx	수집
+03bpwir	거울 {pet}
+0htre55	거대 {din}
+1jamndy	파워
+1m575se	방어
+02w2xwg	속도
+06xig19	치명타
+1l0xxoj	닫기
+007q5wa	메뉴
+0v0wv6e	스킬
+1q4pntc	스페셜
+0n0mxf2	홈
+04f76ga	음표
+0wto1r4	메아리
+04zpoy4	메아리 {n}개를 찾았어요!
+1oo9ppz	메아리를 찾았어요!
+1we7hk3	{n}의 진화를 돕고, 나중엔 별도 살 수 있어요.
+0sxhh51	일반 메아리는 어떤 펫이든 진화를 도와요. 펫 페이지에서 쓰세요.
+1msq7av	오늘의 공연
+1mwx410	<b>홈에 새로 생김:</b> {modes}
+0fkew5h	{label}, 받음
+160umau	밴드
+0excb6f	펫
+1jht0nq	조개
+1jp3e8h	가방
+17o19ow	여기서 조개를 열어요
+1npfg7x	기본
+0t4uqph	항상 발동
+0x2jl9c	대기 {n}
+1cjrhja	언제든
+0b9jhu9	NEW
+0ew9em3	취소
+166o4fr	‹ 뒤로
+1id7d20	플레이 방법
+1602nqr	층을 이기며 나아가요. 10층마다 <b>보스</b>가 있어요. 조개에서는 무작위 펫이 나와요.
+119v05d	펫과 적은 노란 게이지가 차면 행동해요. <b>적을 탭</b>하면 고른 기술을 쓰고, 둥근 아이콘을 탭하면 기술을 바꾸고, 누구든 <b>길게 누르면</b> 능력치를 볼 수 있어요. 조준하는 동안 체력 게이지의 깜빡이는 부분이 그 기술로 깎이는 양이에요.
+04f26x8	능력치
+0vbx2p1	HP
+1va0zku	쓰러지기 전까지 버틸 수 있는 피해.
+1rtj1g9	기술의 공격, 회복, 보호막 세기.
+0t35lk6	받는 피해를 줄여요. 방어 50이면 3분의 1 감소.
+1sqimv3	차례가 돌아오는 빈도.
+08j0mei	공격이 50% 더 아플 확률. 모든 펫은 5%에서 시작.
+11rzah1	패밀리
+19nc0fc	각 패밀리는 순환의 다음 패밀리에 강해요: 주는 피해 +30%, 받는 피해 −20%.
+0oqv3et	효과
+1a4ajy7	효과 위 숫자는 남은 턴 수예요.
+0dekir8	<b>{n}</b>:
+114mnho	메아리와 별
+1x1u4jp	펫은 메아리로 두 번 진화하고, 그다음 별을 더해요: 최대 10개, 하나당 HP와 파워 +3%. 이미 가진 펫이 조개에서 나오면 그 펫만 쓸 수 있는 메아리가 돼요. 위에 보이는 일반 메아리는 어떤 펫에게나 써요.
+0a8e6q1	음표와 경험치
+047ok7c	새 층은 음표를 줘요. 음표로 조개를 사요. 모든 전투에서 경험치를 얻지만, 레벨보다 한참 낮은 층에서는 적어요.
+02k1r1n	앙상블
+1ethk2v	세 패밀리에서 하나씩, 또는 한 패밀리 셋이 모이면 앙상블이 돼요: 오프닝 곡과 밴드 보너스.
+1c0bob4	10~100층에서 쓰러뜨린 보스가 내 레벨로 돌아와요. 각각 주 1회 메아리를 주고, 월요일에 초기화돼요.
+1xtq0ev	장비
+1eepakt	펫마다 장비 2개를 착용해요. 승리하면 더 나올 수 있어요: 확률은 모험 화면에 표시돼요. 같은 종류 남는 장비 3개는 다음 등급으로 합쳐져요(에픽까지).
+0baj6qd	레벨 {unlock}부터: 하루 한 번, 전투 방식이 바뀌는 하우스 룰이 붙은 전투. 모두에게 똑같아요. 매일 첫 승리에 보상; 몇 번이든 재도전 가능.
+0h1kfu0	레벨 {unlock}부터: 펫 하나가 공연 5개, 들를 곳, 보스가 있는 갈림길을 투어해요. 축복은 투어 내내 유지되고, 함께 쓰면 좋은 조합도 있어요. 매일 첫 승리들에 보상.
+07zgmz9	레벨 {unlock}부터: 점점 어려워지는 끝없는 웨이브. HP는 이어지고 쓰러진 펫은 빠져요. 주요 웨이브는 주 1회 보상.
+0orgbil	업적
+08hfti8	조개, 메아리, 홈 배경을 주는 어려운 목표.
+0l8hqi2	알겠어요
+0zmnv1z	소리: 켬
+1j3s0cb	소리: 끔
+0ohwdis	음악
+0u4bbh9	저장 코드
+0a17t5z	처음부터
+0ah2vw0	이 게임을 지울까요?
+07v407v	펫 {n}마리
+1h0aetd	{pets} 전부, {stage}층까지의 여정, 모든 음표·조개·메아리가 영원히 사라져요. 미리 만들어 둔 저장 코드가 있으면 되돌릴 수 있어요.
+13p56d7	{stage}층, {pets}가 담겨 있어요. 이 기기의 게임을 대신해요.
+1yiqur6	모두 지우기
+1u9zao8	내 저장 코드
+0oqbnyd	여기에 저장 코드를 붙여 넣으세요
+1kt4ziu	불러올 저장 코드
+13h0r7b	내 코드 복사
+0iim041	복사했어요. 안전한 곳에 보관하세요.
+0wqainm	텍스트를 선택해 직접 복사하세요.
+0zcg70w	이 코드 불러오기
+04nf0s1	Hushsong 저장 코드가 아니에요.
+0wazdu1	이 저장을 불러올까요?
+1ughagm	불러오기
+0ribzan	게임은 이 기기에 자동 저장돼요. 이 코드는 보관용이거나 다른 곳에서 이어 하기 위한 사본이에요.
+1i3udnb	코드 불러오기
+0xptzj8	웨이브 {n}
+0opsnl8	보스 {n}
+1dxyp09	시끄러운 {n}
+192xyh5	{n}층
+1wsths9	나중에
+1vkg66p	내 앙상블
+0oes1nf	메아리 +{n}
+0tyfhvo	이번 도전을 끝낼까요?
+10yh3fa	보상은 그대로 남아요.
+179chx3	끝내기
+1xqrqh9	{pet} 진화
+007flrr	{pet} 별 추가
+1bipuuc	계속하기
+0kayn18	조개 열기
+1hzmxtu	뒤로
+1o2o6dp	밴드 바꾸기
+03kusfv	밴드를 바꿔 보세요
+0ovvjp1	내 밴드
+1yikd80	솔로 투어
+1g2tab0	공연 {n}/5
+0n3ydks	하나 고르기
+0x4nga3	출발
+00fxhu9	진화 전
+18kfar1	1차 진화
+1fvnaj8	최종 진화
+0h2yt8f	Lv {level}
+114caoa	최고 레벨
+1ys28bo	{xp} / {level} XP
+051r543	10개 지역 중 {n}곳이 노래해요
+0osohmo	{pet}, 밴드에 있음
+0qrjb0u	{n} 오프닝 연주
+1wnoi3m	{region} · {n}층
+11dqdbh	피날레 보상
+1dfllbn	보스 보상
+1mw0j2l	조개 +{n}
+1l232k4	Hushsong
+0skq8vk	음악 펫을 모아 음악을 되찾아요.
+0bk85tv	플레이
+1y45tsh	첫 조개 열기
+1yi0f7c	한때는 모든 것이 노래했어요
+0lomxls	언덕도 항구도 홀도 저마다의 가락이 있었고, 음악 펫들이 하루 종일 연주했어요.
+0i6vi28	그때 Din이 나타났어요
+1jeck9n	가락을 못 견디는 시끄러운 생물들. 쳐들어와 모든 노래를 소음 속에 묻어버렸어요.
+1pzwbfm	세상이 조용해졌어요
+0cv90j1	색이 빠져나갔어요. 펫들은 조개 속에 숨었고, 그 뒤로 아무도 노래를 듣지 못했어요.
+0p1upin	하지만 조개 하나가 아직 흥얼거려요
+0niwiss	열어서 밴드를 모으고, 한 층씩 음악을 되찾아요.
+1vufmm8	탭해서 계속
+1kpwk02	보스 층 {n}
+0x7pfo0	여기서 모험을 시작해요
+0s60a9m	보스 · 적 Lv {n}
+1j7pu5k	적 Lv {n}
+08rseiv	공연
+03n17d7	{ready}개 받을 수 있음
+1vgexli	{done}/{length}
+02zyyv8	오늘의 공연 준비 완료
+1reuah4	솔로 투어 진행 중
+0u73zav	다음: 앙코르 웨이브 {n}
+1xxqbrb	리허설 {n}개 열림
+1vzcv0c	오늘 솔로 보상 있음
+1i8e16b	첫 공연은 레벨 {n}
+1skvt3i	오늘은 모두 플레이함
+0azt7u3	레벨 {unlock}에 열림
+0mbqao6	오늘 승리함
+1m0zof0	다음: 웨이브 {wave}
+0sssj9z	이번 주 최고: {weekBest}
+0bv6gmn	10층 이후 열림
+09hmetg	보스 {n}명 열림
+1qt0ibb	모두 플레이함
+1w35moz	{"one":"내일 초기화","other":"{n}일 후 초기화"}
+1mf63c1	앙상블 없음
+1s9gkj5	이전 층
+06lywvr	다음 층
+127oer9	클리어 · 적 Lv {n}
+1byxumh	경험치
+1lr0g08	전설 +1
+1lafnle	장비 확률
+0dr6vfq	{name}, 레벨 {lvl}, 내 밴드가 유리. 기술 보기
+0k11ss3	{name}, 레벨 {lvl}, 내 밴드가 불리. 기술 보기
+1twb6b1	{name}, 레벨 {lvl}. 기술 보기
+1i8jmgf	Lv {n} · 보스
+03c3p2r	Lv {n}
+02k9jns	내 공격이 더 아파요
+0af1lm1	적의 공격이 더 아파요
+1eenfp5	적이 나보다 {n}레벨 높아요
+0d8gyft	계속 진행: 켬
+0jkleb9	계속 진행: 끔
+0y8m6so	자동 전투
+15hb32v	전투
+10tx3xo	위의 적과 싸우기
+0sh945i	지도: {n}, {n2}층. 모든 지역 보기
+19rtxhg	세계, 앙코르 {n}
+1f41oeh	100층으로 가는 길
+1ki85pn	{a}~{b}층 · 다시 노래함
+1grm6vy	{a}~{b}층 · {din}이 잠재움
+18s8a97	현재
+0mxtf0p	빈자리
+1whegdc	펫을 탭하세요
+1tmmxpq	{n} 정보
+1rkfalq	교체
+1ybtjd0	세 자리를 모두 채우세요.
+1rlp9ke	<b>서로 다른 패밀리 3</b>이나 <b>같은 패밀리 3</b>이 필요해요.
+1q7gv3d	가능: <b>{list}</b>
+10ubeg8	모든 앙상블
+1c5mvf7	모험으로
+02u5zbh	준비됐나요? 출발
+05o74q3	여기엔 누가 설까요?
+18z83m5	이 자리 비우기
+19xt0al	서로 다른 패밀리 3, 또는 같은 패밀리 3.
+0jtpxy5	사용 중
+1g5f5vb	펫 부족
+0dzuldu	연주함
+12mrurj	아직 안 함
+1p633z1	열 수 있는 조개 {n}개
+0ost8of	지금은 조개가 없어요
+1stb3ay	첫 펫이 안에 있어요. <b>조개를 탭하세요.</b>
+0fi2qkf	<b>무작위 펫</b>. 이미 가진 펫이면 <b>메아리</b>가 돼요.
+1r45u9w	보스가 조개를 남겨요. 음표로 더 살 수 있어요.
+0zvrdho	조개 열기
+1mhuvb6	조개 사기
+0hv9zs9	{n} 선택
+0oe9ixr	펫 세 마리가 들어 있었어요!
+0mecjw0	하나를 고르세요. 나머지는 나중에 나타나요.
+0tlq0tf	새 펫!
+1sy6y67	또 {base}
+0i0wqsf	또 {base} (내 {n})
+0say7eo	{pet} 메아리 +{n}
+1mw6eu2	하나 더 열기 ({n}개 남음)
+1taelf6	가자
+13cn9g1	완료
+0to0bon	메아리 {have}/{need}
+0ow97sa	진화 대상
+0ay0li2	새 스페셜
+1jxgm35	하나 고르세요. 나중에 무료로 바꿀 수 있어요.
+1yylcbd	메아리는 조개, 보스, 리허설, 업적에서 얻어요.
+1128a0z	별 {n}/{max}
+1i6zzkz	별 추가 · HP와 파워 +3%
+1n5ofxj	이 펫은 이미 최강이에요.
+1hgwrl8	여기서 장비를 착용하세요
+051r6dq	빈 칸
+0xpvvet	기술
+083gk8g	진화 경로 바꾸기
+19b2u1a	좋아요
+1eq65tc	진화
+1mntkmf	메아리 {have}/{n}
+0we11jd	몇 번이든 무료.
+0v7hfzm	해제
+0hpqcmx	교체:
+12sm7bj	가방 안
+08kj2qr	완료! 돌아가서 계속 싸워요.
+19ky8vr	가방에 더는 없어요.
+0ggizsd	가방이 비었어요.
+1j0zoai	아직 아무것도 없어요
+0musznz	전투에서 가끔 장비가 나와요.
+0am4v1q	같은 종류 남는 장비 3개를 더 좋은 하나로 합쳐요.
+10ttus6	{item} 3개 합성 → {rarity}
+1fkec2w	합성 완료!
+0h4pk9n	<b>{n}</b> 착용 중.
+0rrnf75	아무도 착용하지 않음.
+0xide7m	{n}에게서 해제
+03295io	{n}에게로
+0ngmxng	3개 합성 → {n}
+0br649q	합성: 남는 장비 {length}/3
+1pquyhx	팔기
+0ix7gem	10층 보스를 쓰러뜨리면 열려요.
+067l7h2	쓰러뜨린 보스가 <b>내 레벨</b>로 돌아와요.
+12rgeuk	이번 주 모두 승리
+1vgwehg	{din}, {region}, 이번 주 승리함
+0qjjz61	{din}, {region}, 보상 메아리 1
+1fqbflp	앙코르는 레벨 {unlock}에 열려요.
+03scfen	탈락
+08gv74u	점점 어려워지는 끝없는 웨이브. HP는 이어지고, 웨이브마다 4분의 1이 돌아와요.
+1nvt7jn	이번 주
+15kcesy	이번 주 최고 <b>{week}</b> · 역대 최고 <b>{best}</b>
+15jnq83	{"one":"내일 초기화","other":"{n}일 후 초기화"}
+04pp0j3	웨이브 {wave} 도전
+1ywcpar	이번 도전 끝내기
+0asw5g5	앙코르 시작
+03839q1	새 무대: {set}
+1078zjl	무대: {set}
+0f8duxs	현재 층
+03yitl0	홈 무대
+00n1act	완료.
+19cqi1l	메아리 1 받기.
+1c6dls2	보상: 메아리 1.
+0rfmv4f	받기
+1cnat5z	모든 앙상블로 리허설 승리
+0l8z7n2	<b>레벨 업!</b>
+15eua8j	이번엔 아쉽네요
+0982hh6	다시 하기
+0xuoasm	{h}시간 {m}분
+0z7rxr8	{m}분
+1sawk0u	오늘
+1yetfcu	1인 입장권
+0i43ri6	오늘 받음
+0wv5s44	오늘 밤 승리의 음표
+0cfkl9x	오늘 밤 · {date}
+0l3ql07	하우스 룰
+0ohh9of	무대 위 · Lv {level}
+1d8xe0i	오늘 밤 승리
+16gyw2s	처음 두 펫
+1ginijz	{msToTomorrow} 후 새 공연
+1izp7up	몇 번이든 다시 도전
+1vy1lnc	다시 연주
+1dt0t41	공연 시작
+16jnn15	공연 승리!
+0hqkd91	오늘도 멋진 무대!
+0t1b6a6	오늘은 이미 받음
+18imhfd	Din보다 조명이 먼저 꺼졌어요.
+0d1n3lp	몇 번이든 다시 도전할 수 있어요.
+1lzfam5	포스터로
+0yjpaj1	펫 하나 · 공연 다섯 · 보스 하나
+1yve732	공연 {n}
+1ol94ul	{n} + 장비
+0fnhp9o	보스
+0xl0w5y	매일 첫 공연 승리 5번과 첫 보스 승리에 보상. 새 보상까지 {msToTomorrow}.
+1611szw	오늘 보상은 모두 받았어요. 투어는 재미와 경험치를 위해 계속할 수 있어요.
+1iiozi7	투어 중 · {n}
+1ge46m3	공연 5개 중 {gigs}개 승리
+0eo55r4	축복 {n}개
+0s77dwq	다시 길 위로
+0vcj9z8	투어 포기
+0nydgv5	투어를 포기할까요?
+0gcqlob	음표는 그대로 남아요.
+1jqit4p	포기
+07pfpca	길은 솔로이스트에게 맞춰져요.
+1jomgr2	{n}로 투어 시작
+0wqg5d6	솔로이스트 고르기
+0mtitlv	{boons}. 보기
+0pk5huj	아직 축복 없음
+10kjgrl	콤보
+0azrw18	{n} · Lv {level}
+0jndyot	다음은 보스
+02zvux1	{n} 콤보: {d}
+0d1xs4z	이번 투어의 축복
+0ls4fiu	콤보
+00u5kof	공연에서 이기고 잼을 해서 축복을 모아요. 투어 내내 유지돼요.
+1ivwi98	파워 {p}
+1czrh23	HP {p}
+18dqeg6	길에서 얻음: {list}
+1jeu1u6	공연
+0yik53o	시끄러운 공연
+1no7203	잼 세션
+1f5g7va	미스터리
+030xvgf	출발
+0rcomre	‹ 공연
+1nz9721	{region} 투어
+1y1z148	{din}의 무대
+0suqviq	{stop}, 갈 수 있음
+10yi615	{stop}, 다녀옴
+0bloln1	{stop}
+0y4qqu7	내 길이 아니에요. 빛나는 곳이 다음 목적지예요.
+17lnddt	투어는 여기서 시작해요. 길을 고르세요.
+0nbrgm6	다음 목적지를 고르세요. 탭해서 확인.
+0zqhp1s	솔로 투어
+1p7xg55	공연 5개, 그다음 {n}
+0acptz9	작은 무대.
+1idq6xu	거친 관객과 더 강한 Din.
+0mkdcb6	투어의 마지막 장소.
+0wsnj4k	잠자기 또는 연습.
+1g00h8i	함께 연주하고 축복 받기.
+1bqe9lc	여기서 무슨 일이 일어나고 있어요.
+0cbomgp	희귀 축복
+0cm0w8n	축복
+0unuhh5	승리
+18w23xo	보스와 대결
+0z0syb8	이 공연 하기
+1lkop6h	거기로 가기
+0jar724	아직 아니에요
+0pv5mv6	길
+1qd1crm	Din 둘. 이기면 축복.
+05me9k8	더 강한 Din. 이기면 희귀 축복.
+0fqmz7h	40% 회복, 또는 연습해서 파워 +10%.
+18gfynz	축복 고르기.
+0m8hcnl	좋을 수도, 위험할 수도 있는 선택.
+14v8vbh	투어의 끝.
+0vozr6z	HP는 공연에서 공연으로 이어져요. 공연이 길어지면 관객이 들썩여서 모든 공격이 더 아파져요.
+0i9n2t3	관객이 열광해요
+0e67mga	상자 뒤지기
+17cajel	희귀 축복을 고르세요
+0crwowb	축복을 고르세요
+14mzec6	{n} 받기
+00dbte5	이 축복을 건너뛸까요?
+19b6o8k	여기서는 다른 걸 주지 않아요.
+0rhzcma	길 위의 조용한 밤
+0d7yc2w	잠자기
+0yis9fp	HP {now} → {heal}
+1ko57eo	연습
+0iibvtx	이번 투어 동안 파워 +{n}%
+1vj67te	획득
+0qvo2av	시끄러운 공연 승리!
+04ymvaf	난리 났다!
+1eea2cs	HP {n}%
+0wc81n0	이번 투어의 음표
+0cc3ko5	투어 완주!
+0x5rhez	투어 종료
+1vcaw9j	내 솔로이스트
+11w4s05	<b>{pet}</b>, 공연 다섯과 보스까지 모두 승리.
+1rb3v2o	공연 <b>5개 중 {n}개</b> 승리.
+1t4vb48	보스가 떨어뜨린 것
+17kf24l	다른 투어 도전
+1k3jeja	다른 투어
+02dv84d	<b>{pets}</b> <span class="dim">유리.</span>
+06u84tt	<b>{pets}</b> <span class="dim">유리.</span>
+1jh7dyr	<span class="dim">이 적에게 불리:</span> <b>{pets}</b><span class="dim">.</span>
+1bss4gn	Lv {lvl}
+0j8axo0	/{max}
+0xw1kwq	<b>보호막.</b> <span class="dim">다음 피해 {shield}를 흡수.</span>
+0fuwg7s	{t} 동안.
+03ojm4e	이 웨이브를 떠날까요?
+104x6pe	도전이 여기서 끝나요. 보상은 그대로 남아요.
+1xf0sbk	떠나기
+0l14tjq	이 공연을 떠날까요?
+17mnxxq	투어가 여기서 끝나요. 음표는 그대로 남아요.
+113qxrx	투어 끝내기
+0ax5053	공연을 떠날까요?
+1ymwhol	언제든 다시 도전할 수 있어요.
+0iou6h7	이 전투를 떠날까요?
+0b3qhh2	잃는 건 없어요.
+0ssgire	전투 떠나기
+1jmvu80	솔로 · 보스
+0lrhoo2	솔로 · 공연 {n}
+1olfrt8	리허설 {n}
+0bigcx0	{n} 남음
+05trtda	{n} 후
+0qn7msh	들썩들썩!
+0ujdg0z	하우스 룰: {n}
+1epghlp	관객
+13qzva8	관객이 들썩여요: 턴마다 모든 공격이 더 아파져요.
+0540b06	자동
+1fn0bdg	사용
+07t8f32	기본 기술
+0wv4sck	준비
+1gig116	마이크 필요
+1dafg0x	{t} 후 준비
+12udzhb	사용 후 {t} 휴식
+0eoacl7	언제나 준비
+09mc5ki	추가 기술
+1mzzz6r	{move}, 마이크 필요
+1cbobby	적의 턴
+1s58kd5	자동 전투 중
+0o9tv84	마이크를 든 펫만 쓸 수 있어요.
+1yv3h7m	아직 준비 안 됨. 다른 기술을 고르세요.
+0xt3jlr	적을 탭하거나 사용을 누르세요.
+0bbedtn	사용을 누르세요.
+1i1wq4v	마이크를 든 펫만 쓸 수 있어요.
+1o29ocf	그 기술은 아직 준비되지 않았어요.
+1k3jdut	도발 중인 상대를 때려야 해요.
+0amsa7g	길게 눌러 능력치와 기술 보기.
+19s7xp8	내 차례! 적을 탭해서 공격하세요.
+1xkyhxm	둥근 아이콘을 탭해서 다른 기술을 고르세요.
+1xatr8w	초록 화살표: 내 펫이 그 적에게 유리해요.
+1fo7mmm	노란 선은 다음 차례를 보여줘요.
+1gg5fya	막음
+0nz7kx7	치명타!
+03sm2ze	효과 굉장
+0uhuaqx	효과 미미
+001d664	회피
+169g4lg	기절
+13qsw78	{name} 기절, 한 턴 쉼
+0b538j2	다시 일어났다!
+0kaw7l1	빨라짐
+0pb3b0x	바뀜!
+1o2e5hh	관객이 들썩여요!
+0h1zwxb	전조!
+1rzr4qi	뜨거운 감자!
+0yrhd9v	마이크!
+167szal	앙코르 · 웨이브 {n}
+1ryq1vy	솔로 투어 · 마지막 장소
+0wdzx1i	오늘의 공연 · {n}
+0ncefmr	보스 · {n}층
+0vh77hq	탭해서 건너뛰기
+0wqg7ri	VS
+01lmez5	오늘의 공연 · {venue}
+0d68t5f	탭해서 시작
+0jleco1	승리!
+1jc3an7	밴드 전멸
+13ssvg2	웨이브 {wave} 클리어!
+1mh43qm	주간 보상: 웨이브 {n}
+0catbos	다음 보상: 웨이브 {n}
+0kbukl4	이번 주 보상을 모두 받았어요
+1cprp2x	여기서 멈추기
+0nzp3il	앙코르 종료
+1ut9ian	웨이브 <b>{n}</b>개를 클리어했어요.
+0ty85y2	최고: <b>{n}</b>.
+0sxepax	앙코르로
+1mbtrrm	레벨 업
+1t44dyo	{"one":"레벨 업!","other":"+{n}레벨!"}
+0jgpwku	다음 레벨
+1upuqw4	받을 수 있는 업적
+1oyw1a7	리허설 완료!
+1p1n9oo	다른 리허설
+0tmft7x	리허설
+1olud0e	보스 처치!
+0hcfevc	층 클리어!
+1lol7z1	다시 하면 음표를 주지 않아요.
+0rbs9h4	찾은 것
+1j1b8hw	보스에게
+0to2fym	다음 층
+1pob5wr	다시 하기
+1h119dp	<b>다음은 보스.</b> 먼저 밴드를 확인하세요.
+08xkpxs	{left}초 후 다음 층
+1ft5bxw	팁: <b>{n}</b> 성장 가능.
+1y4qsj9	팁: 열 수 있는 조개가 있어요.
+0ee4m6n	팁: 가방에 아무도 착용하지 않은 장비가 있어요.
+17h3lmh	팁: 리허설에서 이기면 메아리를 줘요.
+1yxlsvo	팁: 내 펫들로 앙상블을 만들 수 있어요.
+11jmiib	팁: 다른 밴드를 써 보거나, 이전 층에서 레벨을 올리세요.
+03eg7mm	팁: 이전 층에서 레벨을 올리고 다시 오세요.
+1uopv4k	조개를 찾았어요!
+16ub219	안에 펫이 있어요. <b>조개</b>에서 여세요.
+03ywr4q	보기
+07hdxv7	장비를 찾았어요!
+15xrlrb	펫마다 장비 2개를 착용해요. 펫 페이지에서 착용하세요.
+16us7mj	언어
