@@ -15,7 +15,6 @@
 0e7f6lw	{st} sul compagno più forte per {t}.
 1bdc500	Scudo per il compagno più ferito.
 106aayv	{st} su tutti i nemici per {t}.
-17snu6e	{st} su un nemico a caso per {t}.
 15vipv3	{st} sul bersaglio per {t}.
 0cnywq4	I compagni giocano prima il prossimo turno.
 13j8tn6	Scudo per il bersaglio.
@@ -100,12 +99,10 @@
 114mnho	Echi e stelle
 1x1u4jp	I cuccioli si evolvono due volte con gli echi, poi aggiungono stelle: fino a 10, ognuna +3% di PS e Potenza. Una conchiglia con un cucciolo che hai già dà un eco che solo quel cucciolo può usare. Gli echi semplici, in alto, vanno bene per tutti.
 0a8e6q1	Note ed esperienza
-047ok7c	I piani nuovi pagano note, che comprano conchiglie. Ogni battaglia dà esperienza, meno sui piani molto sotto il tuo livello.
 02k1r1n	Ensemble
 1ethk2v	Tre cuccioli di tre famiglie, o tutti della stessa, formano un ensemble: una melodia d'apertura e un vantaggio per la band.
 1c0bob4	I boss sconfitti dei piani 10–100 tornano al tuo livello. Ognuno paga un eco una volta a settimana, e si azzera il lunedì.
 1xtq0ev	Equipaggiamento
-1eepakt	Ogni cucciolo porta due pezzi. Le vittorie possono darne altri: la schermata Avventura mostra la probabilità. 3 pezzi in più dello stesso tipo si fondono nella rarità successiva, fino a Epico.
 0baj6qd	Dal livello {unlock}: una battaglia al giorno con una regola della casa che cambia come funzionano le battaglie, uguale per tutti. La prima vittoria del giorno paga; riprova quanto vuoi.
 0h1kfu0	Dal livello {unlock}: un cucciolo percorre una strada a bivi con cinque concerti, tappe e un boss. I doni durano tutto il tour, e alcuni si combinano. Le prime vittorie del giorno pagano.
 07zgmz9	Dal livello {unlock}: ondate infinite, ognuna un po' più dura. I PS restano e i cuccioli caduti stanno fuori. Le ondate traguardo pagano una volta a settimana.
@@ -144,8 +141,6 @@
 0tyfhvo	Terminare questa partita?
 10yh3fa	Le ricompense restano tue.
 179chx3	Termina
-1xqrqh9	Fai evolvere {pet}
-007flrr	Una stella a {pet}
 1bipuuc	Continua
 0kayn18	Apri la conchiglia
 1hzmxtu	Indietro
@@ -350,7 +345,6 @@
 1ol94ul	{n} + equipaggiamento
 0fnhp9o	Boss
 0xl0w5y	Le prime 5 vittorie in concerto e la prima contro il boss pagano ogni giorno. Nuova paga tra {msToTomorrow}.
-1611szw	Tutto pagato oggi. I tour contano comunque per divertimento ed esperienza.
 1iiozi7	In tour · {n}
 1ge46m3	{gigs} concerti su 5 vinti
 0eo55r4	{"one":"{n} dono","other":"{n} doni"}
@@ -536,7 +530,6 @@
 1pob5wr	Gioca ancora
 1h119dp	<b>Ora c'è un boss.</b> Controlla prima la band.
 08xkpxs	Piano successivo tra {left}
-1ft5bxw	Consiglio: <b>{n}</b> può crescere.
 1y4qsj9	Consiglio: hai una conchiglia da aprire.
 0ee4m6n	Consiglio: nella borsa c'è equipaggiamento che nessuno indossa.
 17h3lmh	Consiglio: vincere una prova paga un eco.

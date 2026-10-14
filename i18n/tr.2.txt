@@ -15,7 +15,6 @@
 0e7f6lw	{t} boyunca en güçlü grup arkadaşına {st}.
 1bdc500	En yaralı grup arkadaşına Kalkan.
 106aayv	{t} boyunca tüm düşmanlara {st}.
-17snu6e	{t} boyunca rastgele bir düşmana {st}.
 15vipv3	{t} boyunca hedefe {st}.
 0cnywq4	Grup arkadaşlarının sıradaki turu daha erken gelir.
 13j8tn6	Hedefe Kalkan.
@@ -100,12 +99,10 @@
 114mnho	Yankılar ve yıldızlar
 1x1u4jp	Dostlar yankılarla iki kez evrimleşir, sonra yıldız ekler: en fazla 10, her biri +%3 CP ve Güç. Zaten sahip olduğun bir dostu çıkaran kabuk, yalnızca o dostun kullanabileceği bir yankı verir. Üstte gösterilen düz yankılar her dosta uyar.
 0a8e6q1	Notalar ve deneyim
-047ok7c	Yeni katlar nota öder; notalarla kabuk alınır. Her savaş deneyim verir, seviyenin çok altındaki katlarda daha az.
 02k1r1n	Topluluklar
 1ethk2v	Üç farklı aileden üç dost ya da hepsi aynı aileden bir topluluk oluşturur: bir açılış ezgisi ve gruba bir avantaj.
 1c0bob4	10–100. katların yenilen patronları senin seviyende geri gelir. Her biri haftada bir kez bir yankı öder, pazartesi sıfırlanır.
 1xtq0ev	Ekipman
-1eepakt	Her dost iki parça takar. Zaferler daha fazlasını düşürebilir: Macera ekranı ihtimali gösterir. Aynı türden 3 fazla parça bir sonraki nadirliğe birleşir, Destansı'ya kadar.
 0baj6qd	{unlock}. seviyeden itibaren: günde bir savaş, savaşların işleyişini değiştiren ve herkes için aynı olan bir ev kuralıyla. Her günün ilk zaferi öder; dilediğin kadar dene.
 0h1kfu0	{unlock}. seviyeden itibaren: bir dost beş konser, duraklar ve bir patrondan oluşan çatallı bir yolda turneye çıkar. Lütuflar turne boyunca sürer, bazıları birlikte çalışır. Her günün ilk zaferleri öder.
 07zgmz9	{unlock}. seviyeden itibaren: her biri biraz daha zor sonsuz dalgalar. CP aktarılır, düşen dostlar dışarıda kalır. Kilometre taşı dalgalar haftada bir öder.
@@ -144,8 +141,6 @@
 0tyfhvo	Bu oyun bitirilsin mi?
 10yh3fa	Ödüller sende kalır.
 179chx3	Bitir
-1xqrqh9	Evrimleştir: {pet}
-007flrr	Yıldız ekle: {pet}
 1bipuuc	Devam
 0kayn18	Kabuğu aç
 1hzmxtu	Geri
@@ -350,7 +345,6 @@
 1ol94ul	{n} + ekipman
 0fnhp9o	Patron
 0xl0w5y	Her gün ilk 5 konser zaferi ve ilk patron zaferi öder. Yeni ödeme: {msToTomorrow}.
-1611szw	Bugün hepsi ödendi. Turneler yine de eğlence ve deneyim için sayılır.
 1iiozi7	Turnede · {n}
 1ge46m3	5 konserden {gigs} tanesi kazanıldı
 0eo55r4	{n} lütuf
@@ -536,7 +530,6 @@
 1pob5wr	Yeniden oyna
 1h119dp	<b>Sırada bir patron var.</b> Önce grubunu kontrol et.
 08xkpxs	Sonraki kat: {left}
-1ft5bxw	İpucu: <b>{n}</b> büyüyebilir.
 1y4qsj9	İpucu: açılacak bir kabuğun var.
 0ee4m6n	İpucu: çantanda kimsenin takmadığı ekipman var.
 17h3lmh	İpucu: prova zaferi bir yankı öder.

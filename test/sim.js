@@ -43,7 +43,7 @@ function campaign(seed, upto) {
     const out = H.finishStage(S, n, win, rnd);
     if (win && out.first && n % 10 === 0) for (const rn of H.rehearsals(S)) if (!S.reh[rn]) for (let t = 0; t < 2 && !S.reh[rn]; t++) { tidy(); const rb = H.startStage(S, rn, rnd, true), rw = H.autoRun(rb); H.finishRehearsal(S, rn, rw, rnd); battles++; const g = (global.RT = global.RT || {}), kk = n + ':' + (n - rn); g[kk] = g[kk] || [0, 0]; g[kk][0]++; if (rw) g[kk][1]++; }
     if (win && out.first) { streak = 0; grind = 0; const band = n; if (MARKS.includes(n)) marks[band] = { battles, losses, lvl: S.level, flv: H.stageLevel(n), pets: S.pets.length, opened: S.opened, items: S.items.length, plain: EC.plain, own: EC.own, legs: S.items.filter((x) => x.rar === 'l').length, tiers: H.teamPets(S).filter(Boolean).map((p) => H.petTier(p) + (p.rank ? '*' + p.rank : '')).join(' ') }; }
-    else if (!win) { losses++; if (n === S.stage) { streak++; if (n > 10) { const k = n % 10 === 0 ? H.stage(n).enemies[0].id : n % 10 === 5 ? 'loud' : 'plain'; IDX[k] = (IDX[k] || 0) + 1; } } }
+    else if (!win) { losses++; if (n === S.stage) { streak++; if (n > 10) { const k = (n % 10 === 0 ? H.stage(n).enemies[0].id + '@' + n : n % 10 === 5 ? 'loud' : 'plain') + (n % 10 === 0 ? '' : n <= 40 ? '<=40' : n <= 100 ? '<=100' : '>100'); IDX[k] = (IDX[k] || 0) + 1; } } }
   }
   return { S, battles, losses, marks };
 }
@@ -62,13 +62,13 @@ if (mode === 'over') {
   const xp = (n) => (8 + 3 * n) * 0.5; console.log('  replaying floor', F - 5, 'gives', xp(F - 5), 'xp; next level needs', H.xpNeed(Math.round(lvSum / N)));
 } else if (mode === 'tune') {
   // Nudge the enemy curve until every stretch of floors costs an auto-playing team about the same number of losses.
-  const bands = [[10, 0.1], [20, 0.2], [40, 0.25], [100, 0.25], [200, 0.25], [400, 0.25], [1000, 0.25]], N = +(process.argv[4] || 8), upto = +(process.env.UPTO || 1000);
+  const bands = process.env.TARGETS ? JSON.parse(process.env.TARGETS) : [[10, 0.1], [20, 0.2], [40, 0.25], [100, 0.25], [200, 0.25], [400, 0.25], [1000, 0.25]], N = +(process.argv[4] || 8), upto = +(process.env.UPTO || 1000);
   for (let it = 0; it < +(process.argv[3] || 8); it++) {
     const sum = bands.map(() => 0);
     for (let s = 0; s < N; s++) { const r = campaign(500 + s + it * 31, upto); let pl = 0; bands.forEach(([f], i) => { const m = r.marks[f]; if (m) { sum[i] += m.losses - pl; pl = m.losses; } else sum[i] = NaN; }); }
     let pf = 0; const rates = bands.map(([f], i) => { const r = sum[i] / N / (f - pf); pf = f; return r; });
     console.log('iter', it, 'rates', rates.map((x) => x.toFixed(2)).join(' '), 'curve', JSON.stringify(H.DIN_CURVE.map((c) => [c[0], +c[1].toFixed(2)])));
-    bands.forEach(([f, target], i) => { if (!(rates[i] >= 0)) return; const c = H.DIN_CURVE[i + 1], err = target - rates[i]; c[1] = Math.max(1.05, c[1] * (1 + Math.max(-0.12, Math.min(0.12, err * 0.5)))); });
+    bands.forEach(([f, target], i) => { if (!(rates[i] >= 0) || target < 0) return; const c = H.DIN_CURVE[i + 1], err = target - rates[i]; c[1] = Math.max(1.05, c[1] * (1 + Math.max(-0.12, Math.min(0.12, err * 0.5)))); });
     for (let i = 1; i < H.DIN_CURVE.length; i++) H.DIN_CURVE[i][1] = Math.max(H.DIN_CURVE[i][1], H.DIN_CURVE[i - 1][1]);   // never let enemies get relatively weaker
   }
   console.log(JSON.stringify(H.DIN_CURVE.map((c) => [c[0], +c[1].toFixed(2)])));

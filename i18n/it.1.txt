@@ -14,8 +14,6 @@
 1v1cx0m	+{p} di probabilità di colpo critico.
 1klobiz	Passa dritto attraverso lo Scudo.
 03a2a9p	Ogni colpo critico aggiunge un altro colpo (fino a {n}).
-0vdxodq	Ogni colpo ha il {c} di probabilità di causare Lento, Veleno, Potenza giù o Stonato per {t}.
-0cqxp7o	Ogni colpo causa Lento, Veleno, Potenza giù o Stonato per {t}.
 1m5emfp	{p} di probabilità di giocare subito un altro turno.
 0gtqyd5	Più forte del {p} per ogni compagno caduto.
 1f7wvud	Più forte del {p} per ogni compagno caduto o sotto metà PS.
@@ -69,8 +67,6 @@
 1s6iiyn	Infligge più danni.
 11vozmg	Guaritore
 0lt3nwi	Cura e rafforza la band.
-0txsyvc	Supporto
-0urf652	Rallenta e indebolisce i nemici.
 1msji33	Potenza su
 0erp7z0	Infligge il 25% di danni in più.
 0b8ve6i	Potenza giù
@@ -80,7 +76,6 @@
 1tyvniw	Lento
 1rtwjtt	I turni arrivano il 30% dopo.
 0pyxe0x	Stordito
-00adhon	Salta il prossimo turno.
 1g8baa9	Veleno
 1398ids	Perde PS all'inizio di ogni turno, circa il 30% della Potenza di chi l'ha avvelenato. Più Veleno si somma, fino al triplo. Ignora la Guardia.
 1a9erp6	Rigenerazione
@@ -313,7 +308,6 @@
 047l8xc	Sfidare i nervi
 09ye9dh	Inquietare
 0lowabh	I suoi colpi spingono indietro nell'ordine dei turni i nemici con un effetto negativo.
-0aod8j9	Fuoco lento
 1n8nf0k	Twang
 1njs3ln	Corda spezzata
 0rmyty0	Pizzico
@@ -340,9 +334,7 @@
 1sar8nm	Brivido
 0y60q2o	Tremarella
 1872r7h	Ogni nemico inizia la battaglia con Veleno per 2 turni.
-1d3oejo	Calar della notte
 1yr6ulo	Capriccio
-0kpiauz	Succedono due cose a caso: un colpo al 110%, Veleno su tutti i nemici, una cura, Potenza su per la band, Potenza giù su tutti i nemici o uno Scudo per la band.
 04loohm	Sbuffo
 1gip12f	Canticchiare
 05rb9v7	Nota bassa
@@ -362,7 +354,6 @@
 1x3i0of	Mantice
 0lztsun	Respiro profondo
 0ucjz7n	Gonfiarsi
-1p6naxy	Um-pa
 0ffym9e	Oh issa
 10x93ym	Trillo
 1lziham	Abbellimenti
@@ -466,9 +457,7 @@
 142pjgn	Uà
 15u0adm	Nota piegata
 1w0u0b4	Du-uà
-1c9a2xa	Accordo aspro
 1nd0o6b	Pedale wah
-13v1pyf	All'inizio del suo turno, un nemico a caso diventa Stonato per 1 turno.
 1m85wqp	Skank
 1p63sus	Tailgate
 0fzbi2a	Squillo di tromba
@@ -482,14 +471,12 @@
 1o5p4k3	Slap
 149cpa8	Bassi
 1ayqna0	Corde simpatiche
-0eqy5uj	I nemici che lo colpiscono sono rallentati per 1 turno.
 12k0kna	Slap di risposta
 1cv8o1m	Basso continuo
 1o5i5xn	Archetto
 0nxg2if	Arcata lunga
 0bn4xiv	Risonanza profonda
 07xsmwg	I suoi Lento, Potenza giù e Stonato durano 1 turno in più.
-1cf17bj	Sostenuto
 1oijyxf	Fuga
 0n5cim9	Du
 0bqam4h	Stringersi
@@ -510,7 +497,6 @@
 0i6ws0l	Sfida di riff
 0w9oj4m	Passare il cappello
 1atvc33	Barattolo delle mance
-01lvqlq	Ogni nemico che sconfigge cura la band del 10% dei suoi PS.
 0v021qm	Crocevia
 1weecg8	Juke joint
 1yyx1mu	Slide
@@ -552,15 +538,12 @@
 16ik1sb	Fare strada
 0q04ctl	All'inizio del suo turno, il compagno più lento avanza nell'ordine dei turni.
 112a04m	Seguitemi
-09lgj6i	Cura tutta la band dell'80%. Entrambi i compagni giocano subito il loro turno.
 1auvt6u	Canto del vento
-11j6mia	Tutti schivano il prossimo colpo. I compagni giocano prima il prossimo turno.
 1rhp193	Stridulo
 12i0tva	Nota penetrante
 17r7bwl	Colpo di grazia
 04lfs3w	Do acuto
 014y2uz	Zefiro
-0u1bt4z	Colpisce tutti i nemici al 95%, poi gioca subito un altro turno.
 1y4ituh	Starnazzo
 0txyels	Skirl
 0ub5jus	Nota d'ancia
@@ -586,7 +569,6 @@
 1o492e6	Pernacchia
 1tztmpf	Drop di bassi
 1dmoz3o	Aria pesante
-12a1zk4	Ogni nemico inizia la battaglia più indietro nell'ordine dei turni.
 1grgl3z	Subsonico
 0kzafyq	Risata di pancia
 12irlv3	Dut
@@ -607,8 +589,6 @@
 1wofsfp	Scratch
 07o26sh	Disco graffiato
 0s8sb10	Non può essere rallentato né stordito.
-04w3idr	Distorto
-0h4z7yy	Beniamino del pubblico
 0a06dpc	Nota di punta
 06114a7	Corsa di vibrato
 12617m3	I suoi colpi singoli schizzano anche su tutti gli altri nemici al 30%.
@@ -650,8 +630,6 @@
 03y74hh	Cancellare
 0lhig2f	Grande pausa
 0te3ooz	Corona
-0mbf94q	Tonalità mutevole
-0ho4woa	Cambia famiglia ogni 2 turni. Accelera sotto il 40% dei PS.
 0vud5dq	Puntura
 0suiob1	Nube ronzante
 1xqxmn5	Sparpagliarsi

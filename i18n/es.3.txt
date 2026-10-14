@@ -1,0 +1,78 @@
+01ct8n3	Cada golpe añade el siguiente de Lento, Veneno, Menos poder y Desafinado, durante {t}.
+1rzd98f	Un {p} más fuerte por cada efecto negativo del enemigo.
+1im9pg9	Siempre es un golpe crítico.
+18epamm	Cada compañero se une con su Habilidad al {p}.
+091g0zg	Los efectos negativos de la banda se vuelven positivos.
+1g9ctr0	Reproduce la última Habilidad o Especial que usó un enemigo, al {p}.
+0ii06ha	Si aún no hay ninguna:
+1h7xe68	Vuelve a sonar al empezar su siguiente turno, al {p}.
+14ff1pf	Su Habilidad vuelve a estar lista.
+03rbr2n	Se prepara durante un turno y luego:
+1wqphzd	Luego copia sus efectos negativos a todos los demás enemigos.
+096se8g	Pícaro
+04p5njp	Debilita a los enemigos y vuelve sus trucos contra ellos.
+082ppzi	Pierde su siguiente turno. Después ignora el Aturdido hasta que vuelva a actuar.
+1n4mlgw	Silenciado
+0nhd3or	Solo puede usar su movimiento Básico.
+0u127ug	Aturullado
+02w38fw	Sus golpes a un solo objetivo caen en su propio bando.
+08s4urx	Resonando
+0g1ih39	Los enemigos que lo golpean reciben de vuelta un 30% de ese daño.
+19rbwgq	Preparando
+1dz7r6g	Su gran golpe estalla en su siguiente turno.
+19xherf	Acolchado
+0hu1gdm	Mientras tiene Escudo, recibe un 30% menos de daño.
+10fhp4d	Silencio, por favor
+1umhpkf	Cargado
+0skkrgg	Cada golpe que recibe adelanta un poco su siguiente turno.
+0wbu1w2	Muchas alas
+0kwlyli	Atasco
+0q595wi	Mientras uno de sus amigos siga en pie, recibe un 40% menos de daño.
+0t06anh	Roca firme
+0uv7drb	Ningún golpe puede quitarle más del 10% de sus PV máximos.
+0uf8l0n	Ráfagas
+1sg53gk	Al empezar su turno, se lleva todos los Escudos de tu banda.
+0wqlxlj	Aviso de niebla
+0qmojh2	Su Toque largo tarda un turno en prepararse. Quítale un 20% de PV, atúrdelo o quítale sus efectos positivos en ese tiempo para cancelarlo.
+08vlzg6	Despertar brusco
+0u2avl0	Inflige un 50% más de daño a las mascotas aturdidas.
+1khmw6h	El director
+16typ61	{st} al enemigo con más PV durante {t}.
+1rm2sti	Le roba sus efectos positivos y su Escudo.
+0xa5m0d	Roba los efectos positivos y el Escudo del enemigo con más PV.
+0bu7s81	Los efectos negativos de todos los enemigos duran {n} turnos más.
+0el6hwd	Los efectos positivos de todos los enemigos se vuelven negativos, y su Escudo se rompe.
+06jee3b	¡Repetición!
+08s3kwt	¡Ráfaga!
+0xke2xn	¡Aturullado!
+0nlpt1o	¡Cancelado!
+088ops5	¡Robado!
+0m7hiye	¡Al revés!
+0ryu3ky	Los pisos nuevos dan notas, que compran caparazones. Las batallas de Aventura dan experiencia, menos en pisos muy por debajo de tu nivel. Los demás modos no dan.
+1k3sxl1	Cada mascota lleva dos piezas. Las victorias pueden dar más: la pantalla de Aventura muestra la probabilidad. 3 piezas sobrantes de un tipo se fusionan en la rareza siguiente. 3 Épicas hacen una Legendaria de ese tipo, mientras quede alguna por encontrar.
+0u2ons2	Ya tienes todas las Legendarias de este tipo.
+1j3qiv2	Todo cobrado hoy. Aún puedes salir de gira por diversión.
+07vx66o	silenciado
+1e9bsxh	{move}, silenciado
+05s2466	Silenciado: este turno solo funciona su movimiento Básico.
+0yq3ydv	Maracas
+106f17a	Pesadilla
+0walzaz	Salto de polca
+0s287cx	Sordina de goma
+08vewrq	Pedal de resonancia
+00k24sq	Mensaje al revés
+1058hua	Petición
+1059m6a	Hace las dos cosas que más ayudan ahora, entre: un golpe del 140%, Veneno a todos los enemigos, una gran curación, Más poder para la banda, Menos poder para todos los enemigos o un Escudo para la banda.
+0fhzq35	Al empezar su turno, un enemigo al azar queda Desafinado durante 2 turnos.
+1cnuism	Los enemigos que lo golpean retroceden en el orden de turnos.
+1aqo0b9	Cada enemigo que derrota cura a la banda un 15% de sus PV.
+010sn6d	Cura a toda la banda un 85%. Sus dos compañeros juegan su turno enseguida.
+155srmi	Golpea a todos los enemigos con un 120% y juega otro turno enseguida.
+0hl254k	Silencio
+0e0jpn0	Aturullar
+0tm98ix	Recibe un 30% menos de daño de los movimientos Básicos.
+1jal0vz	Recibe un 30% menos de daño, salvo de los movimientos que golpean a todos los enemigos.
+16e8lmh	{st} para sus compañeros durante {t}.
+0dw3c79	Cambia de familia cada 2 turnos y acelera por debajo del 40% de PV. Mientras siga en pie, sus amigos reciben un 15% menos de daño.
+0gx2g8q	Cura a toda la banda un 50%. Sus compañeros esquivan el siguiente golpe y adelantan su siguiente turno.
+0zfx8pe	Cada enemigo empieza la batalla más atrás en el orden de turnos y Lento durante 1 turno.

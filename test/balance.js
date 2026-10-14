@@ -1,5 +1,7 @@
 // How much does each pet form add to a team? Random trios against fixed floors, win rate by form.
 require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js');
+// family advantage is switched off unless ADV=1: floors lean towards some families, which would skew the comparison
+if (!process.env.ADV) globalThis.H.advantage = () => 0;
 
 const H = globalThis.H, tier = +(process.argv[2] || 2), N = +(process.argv[3] || 30000);
 const floors = tier === 2 ? [64, 67, 70, 76, 80, 88, 90, 94, 100] : tier === 0 ? [4, 6, 8, 10, 12, 14, 16, 18, 20] : [24, 27, 30, 36, 40, 44, 50];

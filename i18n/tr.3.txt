@@ -1,0 +1,78 @@
+01ct8n3	Her vuruş sıradakini ekler: Yavaş, Zehir, Güç düşüşü, Detone; {t} boyunca.
+1rzd98f	Düşmandaki her kötü etki için {p} daha güçlü.
+1im9pg9	Her zaman kritik vuruş.
+18epamm	Her grup arkadaşı Yeteneğiyle {p} güçte katılır.
+091g0zg	Gruptaki kötü etkiler iyiye döner.
+1g9ctr0	Bir düşmanın kullandığı son Yeteneği ya da Özeli {p} güçte geri çalar.
+0ii06ha	Henüz yoksa:
+1h7xe68	Bir sonraki turunun başında {p} güçte yeniden çalar.
+14ff1pf	Yeteneği yeniden hazır olur.
+03rbr2n	Bir tur boyunca hazırlanır, sonra:
+1wqphzd	Sonra kötü etkilerini diğer tüm düşmanlara kopyalar.
+096se8g	Düzenbaz
+04p5njp	Düşmanları zayıflatır, oyunlarını kendilerine çevirir.
+082ppzi	Sonraki turunu kaçırır. Sonra yeniden hamle yapana kadar Sersem işlemez.
+1n4mlgw	Susturuldu
+0nhd3or	Yalnızca Temel hamlesini kullanabilir.
+0u127ug	Şaşkın
+02w38fw	Tek hedefli vuruşları kendi tarafına gider.
+08s4urx	Çınlıyor
+0g1ih39	Ona vuran düşmanlar o hasarın %30'unu geri alır.
+19rbwgq	Hazırlanıyor
+1dz7r6g	Büyük hamlesi bir sonraki turunda patlar.
+19xherf	Dolgulu
+0hu1gdm	Kalkanı varken %30 daha az hasar alır.
+10fhp4d	Lütfen sessiz
+1umhpkf	Yüklü
+0skkrgg	Aldığı her vuruş bir sonraki turunu biraz öne çeker.
+0wbu1w2	Sayısız kanat
+0kwlyli	Trafik
+0q595wi	Arkadaşlarından biri ayaktayken %40 daha az hasar alır.
+0t06anh	Som kaya
+0uv7drb	Hiçbir vuruş maksimum CP'sinin %10'undan fazlasını alamaz.
+0uf8l0n	Ani rüzgârlar
+1sg53gk	Turunun başında grubundaki tüm Kalkanları savurur.
+0wqlxlj	Sis uyarısı
+0qmojh2	Uzun düdük bir turda hazırlanır. Bu sürede CP'sinin %20'sini al, onu sersemlet ya da iyi etkilerini kaldır; hamle iptal olur.
+08vlzg6	Kaba uyanış
+0u2avl0	Sersemlemiş dostlara %50 daha fazla hasar verir.
+1khmw6h	Şef
+16typ61	{t} boyunca en çok CP'si olan düşmana {st}.
+1rm2sti	İyi etkilerini ve Kalkanını çalar.
+0xa5m0d	En çok canı olan düşmanın iyi etkilerini ve Kalkanını çalar.
+0bu7s81	Tüm düşmanlardaki kötü etkiler {n} tur daha uzun sürer.
+0el6hwd	Tüm düşmanlardaki iyi etkiler kötüye döner ve Kalkanları kırılır.
+06jee3b	Tekrar!
+08s3kwt	Rüzgâr!
+0xke2xn	Şaşkın!
+0nlpt1o	İptal!
+088ops5	Çalındı!
+0m7hiye	Ters döndü!
+0ryu3ky	Yeni katlar nota verir, notalarla kabuk alınır. Macera savaşları deneyim verir; seviyenin çok altındaki katlarda daha az. Diğer modlar vermez.
+1k3sxl1	Her dost iki parça takar. Zaferler daha fazlasını düşürebilir: Macera ekranı olasılığı gösterir. Aynı türden 3 fazla parça bir üst nadirliğe birleşir. Bulunacak biri kaldıkça 3 Destansı, o türden bir Efsanevi yapar.
+0u2ons2	Bu türün tüm Efsanevi parçaları zaten senin.
+1j3qiv2	Bugünkü tüm ödemeler alındı. Yine de keyfine turneye çıkabilirsin.
+07vx66o	susturuldu
+1e9bsxh	{move}, susturuldu
+05s2466	Susturuldu: bu tur yalnızca Temel hamlesi çalışır.
+0yq3ydv	Marakas
+106f17a	Kâbus
+0walzaz	Polka sıçrayışı
+0s287cx	Plancır surdin
+08vewrq	Sürdürme pedalı
+00k24sq	Ters mesaj
+1058hua	İstek parça
+1059m6a	O an en çok işe yarayan iki şeyi yapar: %140 vuruş, tüm düşmanlara Zehir, büyük iyileştirme, gruba Güç artışı, tüm düşmanlara Güç düşüşü, gruba Kalkan.
+0fhzq35	Turunun başında rastgele bir düşman 2 tur Detone olur.
+1cnuism	Ona vuran düşmanlar tur sırasında geriye kayar.
+1aqo0b9	Yendiği her düşman grubu CP'sinin %15'i kadar iyileştirir.
+010sn6d	Tüm grubu %85 iyileştirir. İki grup arkadaşı da hemen turunu oynar.
+155srmi	Tüm düşmanlara %120 vurur, sonra hemen bir tur daha oynar.
+0hl254k	Susturma
+0e0jpn0	Şaşırtma
+0tm98ix	Temel hamlelerden %30 daha az hasar alır.
+1jal0vz	Tüm düşmanlara vuran hamleler dışında %30 daha az hasar alır.
+16e8lmh	{t} boyunca grup arkadaşlarına {st}.
+0dw3c79	Her 2 turda bir aile değiştirir, CP'si %40'ın altına inince hızlanır. Ayakta olduğu sürece arkadaşları %15 daha az hasar alır.
+0gx2g8q	Tüm grubu %50 iyileştirir. Grup arkadaşları sonraki vuruştan kaçar ve sıradaki turları öne gelir.
+0zfx8pe	Her düşman savaşa tur sırasında daha geride ve 1 tur Yavaş başlar.

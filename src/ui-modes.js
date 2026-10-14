@@ -66,7 +66,7 @@
     // what today still pays: the first five gig wins and the first boss win
     const steps = [0, 1, 2, 3, 4].map((i) => ({ icon: 'ic_note', n: H.SOLO.gigNotes, got: i < P.gigs, label: tr('Gig {n}', { n: i + 1 }) })).concat([{ icon: 'ic_boss', n: tr('{n} + gear', { n: H.SOLO.bossNotes }), got: !!P.boss, wide: true, label: tr('Boss') }]);
     const pay = add(el('button', 'payline'), txt('label', tr('Today')), UI.track(steps)); pay.type = 'button';
-    pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(H.soloPaidLeft(S) ? tr('The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.', { msToTomorrow: countdown(H.msToTomorrow()) }) : tr('All paid today. Tours still count for fun and experience.')); });
+    pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(H.soloPaidLeft(S) ? tr('The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.', { msToTomorrow: countdown(H.msToTomorrow()) }) : tr('All paid today. You can still tour for fun.')); });
     pad.appendChild(pay);
     if (run) {
       const pet = H.petById(S, run.pet), card = el('div', 'tourcard'); if (!pet) { H.endSolo(S); return UI.go('solo'); }

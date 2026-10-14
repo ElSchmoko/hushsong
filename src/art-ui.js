@@ -33,6 +33,10 @@
   TOK('shield', '#4a8ae0', (g) => g.p('M24 22 H76 V52 Q76 72 50 84 Q24 72 24 52 Z', WHITE));
   TOK('lifesong', '#ff5a8a', (g) => g.p('M50 80 C22 62 18 38 32 30 C42 24 50 32 50 40 C50 32 58 24 68 30 C82 38 78 62 50 80 Z', WHITE));
   TOK('offkey', '#d0603a', (g) => { g.s('M38 18 V78', WHITE, 9); g.s('M38 76 Q64 70 64 56 Q64 44 38 50', WHITE, 9); });
+  TOK('mute', '#5a6078', (g) => { g.p('M22 40 H36 L56 24 V76 L36 60 H22 Z', WHITE); g.s('M64 38 L82 62 M82 38 L64 62', WHITE, 8); });
+  TOK('muddle', '#9a52c8', (g) => { g.s('M34 36 Q34 20 50 20 Q66 20 66 34 Q66 46 50 50 V60', WHITE, 10); g.c(50, 76, 7, WHITE); });
+  TOK('ring', '#d9a012', (g) => { g.p('M30 66 Q30 30 50 24 Q70 30 70 66 L78 72 H22 Z', WHITE); g.c(50, 80, 7, WHITE); });
+  TOK('charge', '#ff7a2a', (g) => g.p('M56 14 L28 56 H48 L42 86 L72 42 H52 Z', WHITE));
   /* small signs */
   I('ic_note', 10, (g) => { g.s('M36 72 V20 L78 12 V60', INK, 16); g.s('M36 72 V20 L78 12 V60', '#ffb020', 8); g.oc(26, 74, 14, '#ffb020'); g.oc(68, 62, 14, '#ffb020'); });
   // experience: an arrow up, so it never looks like a pet's stars

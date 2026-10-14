@@ -15,7 +15,6 @@
 0e7f6lw	{st} sur le coéquipier le plus fort pendant {t}.
 1bdc500	Bouclier pour le coéquipier le plus blessé.
 106aayv	{st} sur tous les ennemis pendant {t}.
-17snu6e	{st} sur un ennemi au hasard pendant {t}.
 15vipv3	{st} sur la cible pendant {t}.
 0cnywq4	Ses coéquipiers jouent leur prochain tour plus tôt.
 13j8tn6	Bouclier pour la cible.
@@ -100,12 +99,10 @@
 114mnho	Échos et étoiles
 1x1u4jp	Les compagnons évoluent deux fois avec des échos, puis gagnent des étoiles : jusqu'à 10, chacune +3 % de PV et de Puissance. Un coquillage contenant un compagnon déjà possédé donne un écho que seul ce compagnon peut utiliser. Les échos simples, affichés en haut, conviennent à tous.
 0a8e6q1	Notes et expérience
-047ok7c	Les nouveaux étages rapportent des notes, qui achètent des coquillages. Chaque combat donne de l'expérience, moins sur les étages bien en dessous de ton niveau.
 02k1r1n	Ensembles
 1ethk2v	Trois compagnons de trois familles, ou tous de la même, forment un ensemble : un air d'ouverture et un bonus pour le groupe.
 1c0bob4	Les boss vaincus des étages 10 à 100 reviennent à ton niveau. Chacun rapporte un écho une fois par semaine, remis à zéro le lundi.
 1xtq0ev	Équipement
-1eepakt	Chaque compagnon porte deux pièces. Les victoires peuvent en donner d'autres : l'écran Aventure montre les chances. 3 pièces en trop d'un même type fusionnent dans la rareté suivante, jusqu'à Épique.
 0baj6qd	Dès le niveau {unlock} : un combat par jour avec une règle maison qui change le fonctionnement des combats, la même pour tous. La première victoire de chaque jour paie ; réessaie librement.
 0h1kfu0	Dès le niveau {unlock} : un compagnon parcourt une route à embranchements de cinq concerts, haltes et un boss. Les faveurs durent toute la tournée, et certaines se combinent. Les premières victoires de chaque jour paient.
 07zgmz9	Dès le niveau {unlock} : des vagues sans fin, chacune un peu plus dure. Les PV sont conservés et les compagnons tombés restent sur la touche. Les vagues clés paient une fois par semaine.
@@ -144,8 +141,6 @@
 0tyfhvo	Arrêter cette partie ?
 10yh3fa	Tu gardes tes récompenses.
 179chx3	Arrêter
-1xqrqh9	Faire évoluer {pet}
-007flrr	Une étoile pour {pet}
 1bipuuc	Continuer
 0kayn18	Ouvrir le coquillage
 1hzmxtu	Retour
@@ -350,7 +345,6 @@
 1ol94ul	{n} + équipement
 0fnhp9o	Boss
 0xl0w5y	Les 5 premières victoires en concert et la première contre le boss paient chaque jour. Nouvelle paie dans {msToTomorrow}.
-1611szw	Tout est payé aujourd'hui. Les tournées comptent toujours pour le plaisir et l'expérience.
 1iiozi7	En tournée · {n}
 1ge46m3	{gigs} concerts sur 5 gagnés
 0eo55r4	{"one":"{n} faveur","other":"{n} faveurs"}
@@ -536,7 +530,6 @@
 1pob5wr	Rejouer
 1h119dp	<b>Un boss arrive.</b> Vérifie d'abord ton groupe.
 08xkpxs	Étage suivant dans {left}
-1ft5bxw	Astuce : <b>{n}</b> peut progresser.
 1y4qsj9	Astuce : tu as un coquillage à ouvrir.
 0ee4m6n	Astuce : il y a dans ton sac de l'équipement que personne ne porte.
 17h3lmh	Astuce : gagner une répétition rapporte un écho.

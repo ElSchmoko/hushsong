@@ -1,0 +1,78 @@
+01ct8n3	Jeder Treffer fügt das nächste von Langsam, Gift, Kraft runter und Schief hinzu, für {t}.
+1rzd98f	{p} stärker für jeden schlechten Effekt auf dem Gegner.
+1im9pg9	Immer ein kritischer Treffer.
+18epamm	Jedes Bandmitglied stimmt mit seiner Fähigkeit zu {p} ein.
+091g0zg	Schlechte Effekte auf der Band werden zu guten.
+1g9ctr0	Spielt die letzte Fähigkeit oder Spezial eines Gegners zurück, zu {p}.
+0ii06ha	Wenn es noch keine gibt:
+1h7xe68	Erklingt zu Beginn seines nächsten Zugs noch einmal, zu {p}.
+14ff1pf	Seine Fähigkeit ist wieder bereit.
+03rbr2n	Baut sich einen Zug lang auf, dann:
+1wqphzd	Dann kopiert es seine schlechten Effekte auf alle anderen Gegner.
+096se8g	Trickser
+04p5njp	Schwächt Gegner und dreht ihre Tricks gegen sie.
+082ppzi	Setzt den nächsten Zug aus. Danach schüttelt es Betäubt ab, bis es wieder gehandelt hat.
+1n4mlgw	Gedämpft
+0nhd3or	Kann nur seinen Grundzug einsetzen.
+0u127ug	Verwirrt
+02w38fw	Seine Einzeltreffer landen auf der eigenen Seite.
+08s4urx	Klingend
+0g1ih39	Gegner, die es treffen, erleiden 30 % dieses Schadens selbst.
+19rbwgq	Holt aus
+1dz7r6g	Sein großer Zug geht im nächsten Zug los.
+19xherf	Gepolstert
+0hu1gdm	Solange es einen Schild hat, erleidet es 30 % weniger Schaden.
+10fhp4d	Ruhe, bitte
+1umhpkf	Geladen
+0skkrgg	Jeder Treffer, den es einsteckt, bringt seinen nächsten Zug etwas näher.
+0wbu1w2	Viele Flügel
+0kwlyli	Stau
+0q595wi	Solange einer seiner Freunde steht, erleidet es 40 % weniger Schaden.
+0t06anh	Fester Fels
+0uv7drb	Kein einzelner Treffer kann ihm mehr als 10 % seiner max. LP nehmen.
+0uf8l0n	Böen
+1sg53gk	Zu Beginn seines Zugs bläst es alle Schilde deiner Band weg.
+0wqlxlj	Nebelwarnung
+0qmojh2	Sein Langer Stoß braucht einen Zug Anlauf. Nimm ihm in der Zeit 20 % LP, betäube es oder entferne seine guten Effekte, um ihn abzubrechen.
+08vlzg6	Böses Erwachen
+0u2avl0	Fügt betäubten Tieren 50 % mehr Schaden zu.
+1khmw6h	Der Dirigent
+16typ61	{st} auf den Gegner mit den meisten LP für {t}.
+1rm2sti	Stiehlt ihm seine guten Effekte und seinen Schild.
+0xa5m0d	Stiehlt dem Gegner mit den meisten LP seine guten Effekte und seinen Schild.
+0bu7s81	Schlechte Effekte auf allen Gegnern halten {n} Züge länger.
+0el6hwd	Gute Effekte auf allen Gegnern werden zu schlechten, und ihr Schild zerbricht.
+06jee3b	Wiedergabe!
+08s3kwt	Bö!
+0xke2xn	Verwirrt!
+0nlpt1o	Abgebrochen!
+088ops5	Geklaut!
+0m7hiye	Umgedreht!
+0ryu3ky	Neue Etagen bringen Noten, mit denen du Muscheln kaufst. Abenteuer-Kämpfe geben Erfahrung, weniger auf Etagen weit unter deiner Stufe. Andere Modi geben keine.
+1k3sxl1	Jedes Tier trägt zwei Teile. Siege können mehr bringen: Der Abenteuer-Bildschirm zeigt die Chance. 3 übrige Teile einer Art verschmelzen zur nächsten Seltenheit. 3 Epische ergeben ein Legendäres dieser Art, solange noch eins zu finden ist.
+0u2ons2	Alle Legendären dieser Art gehören schon dir.
+1j3qiv2	Heute alles ausgezahlt. Touren macht trotzdem Spaß.
+07vx66o	gedämpft
+1e9bsxh	{move}, gedämpft
+05s2466	Gedämpft: Diesen Zug geht nur sein Grundzug.
+0yq3ydv	Rasseln
+106f17a	Albtraum
+0walzaz	Polkahüpfer
+0s287cx	Plunger-Dämpfer
+08vewrq	Haltepedal
+00k24sq	Rückwärtsbotschaft
+1058hua	Musikwunsch
+1059m6a	Tut die zwei Dinge, die gerade am meisten helfen, aus: ein 140-%-Treffer, Gift auf alle Gegner, eine große Heilung, Kraft hoch für die Band, Kraft runter für alle Gegner, ein Schild für die Band.
+0fhzq35	Zu Beginn seines Zugs wird ein zufälliger Gegner für 2 Runden Schief.
+1cnuism	Gegner, die es treffen, rutschen in der Zugreihenfolge nach hinten.
+1aqo0b9	Jeder Gegner, den es besiegt, heilt die Band um 15 % ihrer LP.
+010sn6d	Heilt die ganze Band um 85 %. Beide Bandmitglieder sind sofort am Zug.
+155srmi	Trifft alle Gegner mit 120 % und macht dann sofort noch einen Zug.
+0hl254k	Dämpfer
+0e0jpn0	Verwirrung
+0tm98ix	Erleidet 30 % weniger Schaden durch Grundzüge.
+1jal0vz	Erleidet 30 % weniger Schaden, außer durch Züge, die alle Gegner treffen.
+16e8lmh	{st} für seine Bandmitglieder für {t}.
+0dw3c79	Wechselt alle 2 Züge die Familie und wird unter 40 % LP schneller. Solange es steht, erleiden seine Freunde 15 % weniger Schaden.
+0gx2g8q	Heilt die ganze Band um 50 %. Seine Bandmitglieder weichen dem nächsten Treffer aus und sind früher wieder am Zug.
+0zfx8pe	Jeder Gegner beginnt den Kampf weiter hinten in der Zugreihenfolge und für 1 Runde Langsam.

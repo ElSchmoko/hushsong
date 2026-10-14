@@ -14,8 +14,6 @@
 1v1cx0m	+{p} Chance auf kritische Treffer.
 1klobiz	Geht direkt durch Schild.
 03a2a9p	Jeder kritische Treffer fügt einen weiteren Treffer hinzu (bis zu {n}).
-0vdxodq	Jeder Treffer hat {c} Chance, Langsam, Gift, Kraft runter oder Schief für {t} zu verursachen.
-0cqxp7o	Jeder Treffer verursacht Langsam, Gift, Kraft runter oder Schief für {t}.
 1m5emfp	{p} Chance, sofort noch einen Zug zu machen.
 0gtqyd5	{p} stärker für jedes gefallene Bandmitglied.
 1f7wvud	{p} stärker für jedes Bandmitglied, das gefallen ist oder unter halben LP liegt.
@@ -69,8 +67,6 @@
 1s6iiyn	Macht den meisten Schaden.
 11vozmg	Heiler
 0lt3nwi	Heilt und stärkt die Band.
-0txsyvc	Unterstützer
-0urf652	Verlangsamt und schwächt Gegner.
 1msji33	Kraft hoch
 0erp7z0	Macht 25 % mehr Schaden.
 0b8ve6i	Kraft runter
@@ -80,7 +76,6 @@
 1tyvniw	Langsam
 1rtwjtt	Züge kommen 30 % später.
 0pyxe0x	Betäubt
-00adhon	Setzt seinen nächsten Zug aus.
 1g8baa9	Gift
 1398ids	Verliert zu Beginn jedes Zugs LP, etwa 30 % der Kraft des Vergifters. Mehr Gift summiert sich, bis zum Dreifachen. Ignoriert Abwehr.
 1a9erp6	Regeneration
@@ -313,7 +308,6 @@
 047l8xc	Nervenrassel
 09ye9dh	Verunsichern
 0lowabh	Seine Treffer schieben Gegner mit schlechtem Effekt in der Zugreihenfolge zurück.
-0aod8j9	Schwelbrand
 1n8nf0k	Twang
 1njs3ln	Gerissene Saite
 0rmyty0	Zupfer
@@ -340,9 +334,7 @@
 1sar8nm	Schauer
 0y60q2o	Lampenfieber
 1872r7h	Jeder Gegner beginnt den Kampf mit Gift für 2 Runden.
-1d3oejo	Einbruch der Nacht
 1yr6ulo	Laune
-0kpiauz	Zwei zufällige Dinge passieren: ein 110-%-Treffer, Gift auf alle Gegner, eine Heilung, Kraft hoch für die Band, Kraft runter für alle Gegner oder ein Schild für die Band.
 04loohm	Hauch
 1gip12f	Leises Summen
 05rb9v7	Tiefer Ton
@@ -362,7 +354,6 @@
 1x3i0of	Blasebalg
 0lztsun	Tief durchatmen
 0ucjz7n	Aufpusten
-1p6naxy	Umpa
 0ffym9e	Hau-ruck
 10x93ym	Triller
 1lziham	Verzierungen
@@ -466,9 +457,7 @@
 142pjgn	Wah
 15u0adm	Gezogener Ton
 1w0u0b4	Du-wah
-1c9a2xa	Saurer Akkord
 1nd0o6b	Wah-Pedal
-13v1pyf	Zu Beginn seines Zugs wird ein zufälliger Gegner für 1 Runde Schief.
 1m85wqp	Skank
 1p63sus	Tailgate
 0fzbi2a	Hornsignal
@@ -482,14 +471,12 @@
 1o5p4k3	Slap
 149cpa8	Tiefen
 1ayqna0	Resonanzsaiten
-0eqy5uj	Gegner, die es treffen, sind für 1 Runde verlangsamt.
 12k0kna	Slap zurück
 1cv8o1m	Basso continuo
 1o5i5xn	Bogen
 0nxg2if	Langer Bogen
 0bn4xiv	Tiefe Resonanz
 07xsmwg	Seine Langsam, Kraft runter und Schief halten 1 Runde länger.
-1cf17bj	Sostenuto
 1oijyxf	Fuge
 0n5cim9	Duu
 0bqam4h	Zusammenrücken
@@ -510,7 +497,6 @@
 0i6ws0l	Riff-Duell
 0w9oj4m	Mit dem Hut rumgehen
 1atvc33	Trinkgeldglas
-01lvqlq	Jeder Gegner, den es besiegt, heilt die Band um 10 % ihrer LP.
 0v021qm	Kreuzweg
 1weecg8	Juke Joint
 1yyx1mu	Slide
@@ -552,15 +538,12 @@
 16ik1sb	Vorangehen
 0q04ctl	Zu Beginn seines Zugs rückt das langsamste Bandmitglied in der Zugreihenfolge vor.
 112a04m	Mir nach
-09lgj6i	Heilt die ganze Band um 80 %. Beide Bandmitglieder sind sofort am Zug.
 1auvt6u	Windlied
-11j6mia	Alle weichen dem nächsten Treffer aus. Seine Bandmitglieder sind früher wieder am Zug.
 1rhp193	Schrill
 12i0tva	Durchdringender Ton
 17r7bwl	Gnadenstoß
 04lfs3w	Hohes C
 014y2uz	Zephir
-0u1bt4z	Trifft alle Gegner mit 95 % und macht dann sofort noch einen Zug.
 1y4ituh	Krächzen
 0txyels	Skirl
 0ub5jus	Rohrblattton
@@ -586,7 +569,6 @@
 1o492e6	Tröööt
 1tztmpf	Bass-Drop
 1dmoz3o	Schwere Luft
-12a1zk4	Jeder Gegner beginnt den Kampf weiter hinten in der Zugreihenfolge.
 1grgl3z	Infraschall
 0kzafyq	Bauchlachen
 12irlv3	Dut
@@ -607,8 +589,6 @@
 1wofsfp	Scratch
 07o26sh	Zerkratzte Platte
 0s8sb10	Kann weder verlangsamt noch betäubt werden.
-04w3idr	Verzerrt
-0h4z7yy	Publikumsliebling
 0a06dpc	Spitzenton
 06114a7	Vibratolauf
 12617m3	Seine Einzeltreffer spritzen auch mit 30 % auf alle anderen Gegner.
@@ -650,8 +630,6 @@
 03y74hh	Löschen
 0lhig2f	Generalpause
 0te3ooz	Fermate
-0mbf94q	Wechselnde Tonart
-0ho4woa	Wechselt alle 2 Runden die Familie. Wird unter 40 % LP schneller.
 0vud5dq	Stich
 0suiob1	Summwolke
 1xqxmn5	Ausschwärmen

@@ -1,0 +1,49 @@
+
+/* Layout: one column of stages; each tier is a row with a lettered badge beside a wrapping grid of pet cards, as in the game's own sheets */
+:root {
+  --bg: #fff6dc; --surface: #ffffff; --ink: #2b2140; --dim: #5f5677; --line: #2b2140; --soft: #efe5c8;
+  --tS: #ff6b5e; --tA: #ffc928; --tB: #4fd1a8; --tC: #b9aee6; --badge-ink: #2b2140;
+  --f-display: 'Baloo 2', 'Nunito', system-ui, sans-serif; --f-body: 'Nunito', system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1c1630; --surface: #2a2244; --ink: #f4effc; --dim: #b8aed3; --line: #0f0b1c; --soft: #332a52; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #1c1630; --surface: #2a2244; --ink: #f4effc; --dim: #b8aed3; --line: #0f0b1c; --soft: #332a52; color-scheme: dark }
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.45; padding: 0 16px; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 28px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 800; margin: 0; line-height: 1.05; text-wrap: balance; }
+h1 { font-size: clamp(34px, 6vw, 52px); letter-spacing: -0.01em; }
+.intro { display: flex; flex-direction: column; gap: 10px; max-width: 70ch; }
+.intro p { margin: 0; color: var(--dim); }
+.find { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.find div { background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 12px 14px; box-shadow: 0 3px 0 var(--line); min-width: 0; }
+.find b { font-family: var(--f-display); font-size: 18px; display: block; line-height: 1.15; margin-bottom: 4px; }
+.find p { margin: 0; font-size: 14px; color: var(--dim); }
+nav.jump { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 3; display: flex; gap: 8px; flex-wrap: wrap; padding: 10px 0; background: var(--bg); }
+nav.jump a { font-family: var(--f-display); font-weight: 800; font-size: 16px; color: var(--ink); text-decoration: none; padding: 4px 14px; border: 2px solid var(--line); border-radius: 999px; background: var(--surface); box-shadow: 0 2px 0 var(--line); }
+nav.jump a:hover, nav.jump a:focus-visible { background: var(--soft); outline: none; }
+.stage { display: flex; flex-direction: column; gap: 14px; scroll-margin-top: 64px; }
+.stage-h h2 { font-size: 32px; }
+.stage-h p { margin: 4px 0 0; color: var(--dim); font-variant-numeric: tabular-nums; }
+.tier { display: grid; grid-template-columns: 92px 1fr; gap: 12px; align-items: start; }
+.badge { position: sticky; top: 64px; border: 2px solid var(--line); border-radius: 14px; padding: 8px 6px 10px; text-align: center; color: var(--badge-ink); box-shadow: 0 3px 0 var(--line); display: flex; flex-direction: column; gap: 2px; }
+.badge span { font-family: var(--f-display); font-weight: 800; font-size: 44px; line-height: 1; }
+.badge small { font-weight: 800; font-size: 12px; line-height: 1.2; }
+.badge .rng { font-weight: 700; opacity: 0.75; font-variant-numeric: tabular-nums; }
+.t-S .badge { background: var(--tS); } .t-A .badge { background: var(--tA); } .t-B .badge { background: var(--tB); } .t-C .badge { background: var(--tC); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; min-width: 0; }
+.card { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border: 2px solid var(--line); border-radius: 14px; padding: 10px 12px 10px 8px; min-width: 0; }
+.card img { flex: none; width: 64px; height: 64px; image-rendering: auto; }
+.card .body { min-width: 0; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.card .top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.card h3 { font-size: 20px; }
+.win { font-family: var(--f-display); font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.tags span { font-size: 11.5px; font-weight: 800; letter-spacing: 0.02em; padding: 1px 8px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--soft); white-space: nowrap; }
+.tags .fam { background: var(--fc); color: #2b2140; }
+.tags .role { background: var(--surface); }
+.tags .boss { background: transparent; color: var(--dim); border-color: transparent; padding-left: 2px; font-variant-numeric: tabular-nums; }
+.card p { margin: 0; font-size: 13.5px; color: var(--dim); }
+.new { font-style: normal; font-family: var(--f-body); font-size: 11px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; vertical-align: 3px; padding: 1px 6px; border-radius: 999px; background: var(--tA); color: #2b2140; border: 1.5px solid var(--line); }
+.method { color: var(--dim); font-size: 13.5px; max-width: 80ch; margin: 0; }
+@media (max-width: 560px) { .tier { grid-template-columns: 1fr; } .badge { position: static; flex-direction: row; align-items: baseline; gap: 10px; padding: 6px 12px; text-align: left; } .badge span { font-size: 30px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -14,8 +14,6 @@
 1v1cx0m	+{p} de chances de coup critique.
 1klobiz	Traverse le Bouclier.
 03a2a9p	Chaque coup critique ajoute un coup (jusqu'à {n}).
-0vdxodq	Chaque coup a {c} de chances d'infliger Lenteur, Poison, Puissance − ou Fausse note pendant {t}.
-0cqxp7o	Chaque coup inflige Lenteur, Poison, Puissance − ou Fausse note pendant {t}.
 1m5emfp	{p} de chances de rejouer aussitôt.
 0gtqyd5	{p} plus fort pour chaque coéquipier tombé.
 1f7wvud	{p} plus fort pour chaque coéquipier tombé ou sous la moitié de ses PV.
@@ -69,8 +67,6 @@
 1s6iiyn	Inflige le plus de dégâts.
 11vozmg	Soigneur
 0lt3nwi	Soigne et renforce le groupe.
-0txsyvc	Soutien
-0urf652	Ralentit et affaiblit les ennemis.
 1msji33	Puissance +
 0erp7z0	Inflige 25 % de dégâts en plus.
 0b8ve6i	Puissance −
@@ -80,7 +76,6 @@
 1tyvniw	Lenteur
 1rtwjtt	Ses tours arrivent 30 % plus tard.
 0pyxe0x	Étourdi
-00adhon	Saute son prochain tour.
 1g8baa9	Poison
 1398ids	Perd des PV au début de chaque tour, environ 30 % de la Puissance de l'empoisonneur. Le Poison se cumule, jusqu'au triple. Ignore la Garde.
 1a9erp6	Régénération
@@ -313,7 +308,6 @@
 047l8xc	Taper sur les nerfs
 09ye9dh	Déstabiliser
 0lowabh	Ses coups repoussent dans l'ordre des tours les ennemis sous un effet négatif.
-0aod8j9	Feu lent
 1n8nf0k	Twang
 1njs3ln	Corde cassée
 0rmyty0	Pincement
@@ -340,9 +334,7 @@
 1sar8nm	Frisson
 0y60q2o	Trac
 1872r7h	Chaque ennemi commence le combat avec Poison pendant 2 tours.
-1d3oejo	Tombée de la nuit
 1yr6ulo	Caprice
-0kpiauz	Deux choses au hasard : un coup à 110 %, Poison sur tous les ennemis, un soin, Puissance + pour le groupe, Puissance − pour tous les ennemis ou un Bouclier pour le groupe.
 04loohm	Souffle
 1gip12f	Fredonnement doux
 05rb9v7	Note grave
@@ -362,7 +354,6 @@
 1x3i0of	Soufflet
 0lztsun	Grande inspiration
 0ucjz7n	Gonflement
-1p6naxy	Oum-pa
 0ffym9e	Oh hisse
 10x93ym	Trille
 1lziham	Fioritures
@@ -466,9 +457,7 @@
 142pjgn	Wah
 15u0adm	Note tordue
 1w0u0b4	Dou-wah
-1c9a2xa	Accord aigre
 1nd0o6b	Pédale wah
-13v1pyf	Au début de son tour, un ennemi au hasard subit Fausse note pendant 1 tour.
 1m85wqp	Skank
 1p63sus	Tailgate
 0fzbi2a	Sonnerie de clairon
@@ -482,14 +471,12 @@
 1o5p4k3	Slap
 149cpa8	Basses
 1ayqna0	Cordes sympathiques
-0eqy5uj	Les ennemis qui le frappent subissent Lenteur pendant 1 tour.
 12k0kna	Retour de slap
 1cv8o1m	Basse continue
 1o5i5xn	Archet
 0nxg2if	Long archet
 0bn4xiv	Résonance profonde
 07xsmwg	Ses Lenteur, Puissance − et Fausse note durent 1 tour de plus.
-1cf17bj	Sostenuto
 1oijyxf	Fugue
 0n5cim9	Dou
 0bqam4h	Serrés
@@ -510,7 +497,6 @@
 0i6ws0l	Duel de riffs
 0w9oj4m	Faire la manche
 1atvc33	Pot à pourboires
-01lvqlq	Chaque ennemi qu'il vainc soigne le groupe de 10 % de ses PV.
 0v021qm	Carrefour
 1weecg8	Juke joint
 1yyx1mu	Glissé
@@ -552,15 +538,12 @@
 16ik1sb	Ouvrir la voie
 0q04ctl	Au début de son tour, le coéquipier le plus lent avance dans l'ordre des tours.
 112a04m	Suivez-moi
-09lgj6i	Soigne tout le groupe de 80 %. Ses deux coéquipiers jouent leur tour aussitôt.
 1auvt6u	Chant du vent
-11j6mia	Tout le monde esquive le prochain coup. Ses coéquipiers jouent leur prochain tour plus tôt.
 1rhp193	Strident
 12i0tva	Note perçante
 17r7bwl	Coup de grâce
 04lfs3w	Contre-ut
 014y2uz	Zéphyr
-0u1bt4z	Frappe tous les ennemis à 95 %, puis rejoue aussitôt.
 1y4ituh	Couac
 0txyels	Skirl
 0ub5jus	Note d'anche
@@ -586,7 +569,6 @@
 1o492e6	Prout
 1tztmpf	Drop de basse
 1dmoz3o	Air lourd
-12a1zk4	Chaque ennemi commence le combat plus loin dans l'ordre des tours.
 1grgl3z	Subsonique
 0kzafyq	Fou rire
 12irlv3	Dout
@@ -607,8 +589,6 @@
 1wofsfp	Scratch
 07o26sh	Disque rayé
 0s8sb10	Ne peut être ni ralenti ni étourdi.
-04w3idr	Voilage
-0h4z7yy	Chouchou du public
 0a06dpc	Note de tête
 06114a7	Envolée vibrato
 12617m3	Ses coups simples éclaboussent aussi tous les autres ennemis à 30 %.
@@ -650,8 +630,6 @@
 03y74hh	Effacer
 0lhig2f	Grande pause
 0te3ooz	Point d'orgue
-0mbf94q	Tonalité changeante
-0ho4woa	Change de famille tous les 2 tours. Accélère sous 40 % de PV.
 0vud5dq	Piqûre
 0suiob1	Nuage bourdonnant
 1xqxmn5	Dispersion

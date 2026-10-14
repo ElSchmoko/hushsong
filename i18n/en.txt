@@ -14,21 +14,31 @@
 0k522we	Then hits every other enemy for {p}.	data moves	
 1v1cx0m	+{p} critical hit chance.	data moves	
 1klobiz	Goes straight through Shield.	data moves	
-03a2a9p	Every critical hit adds one more hit (up to {n}).	data	
-0vdxodq	Each hit has a {c} chance to add Slow, Poison, Power Down or Off-Key for {t}.	data	
-0cqxp7o	Every hit adds Slow, Poison, Power Down or Off-Key for {t}.	data moves	
-1m5emfp	{p} chance to take another turn right away.	data moves	
+03a2a9p	Every critical hit adds one more hit (up to {n}).	data moves	
+01ct8n3	Every hit adds the next of Slow, Poison, Power Down and Off-Key, for {t}.	data moves	
+1rzd98f	{p} stronger for each bad effect on the enemy.	data moves	
+1im9pg9	Always a critical hit.	data moves	
+1m5emfp	{p} chance to take another turn right away.	data	
 0gtqyd5	{p} stronger for each fallen bandmate.	data	
 1f7wvud	{p} stronger for each bandmate that has fallen or is below half HP.	data	
 01otle1	{p} stronger against enemies with {st}.	data moves	
-1tbjmve	{p} stronger while it has {st}.	data moves	
+1tbjmve	{p} stronger while it has {st}.	data	
 0a8oif0	If that defeats the enemy, all its moves are ready again.	data moves	
 0os6g8v	If that defeats the enemy, it takes another turn right away.	data moves	
 1lbrklu	{c} chance: {fx}	data	
 1oa0nre	Its next turn comes sooner.	data moves	
 1jyhvo1	Takes another turn right away.	data moves	
 18w9g0n	Brings a fallen bandmate back at {p} HP.	data moves	
+18epamm	Every bandmate joins in with its Skill at {p}.	data moves	
 0xnfd5d	Every bandmate joins in with its basic attack at {p}.	data moves	
+1rm2sti	Steals its good effects and Shield.	data moves	
+091g0zg	Bad effects on the band turn into good ones.	data moves	
+1g9ctr0	Plays back the last Skill or Special an enemy used, at {p}.	data moves	
+0ii06ha	If there is none yet:	data moves	
+1h7xe68	Plays again at the start of its next turn, at {p}.	data moves	
+14ff1pf	Its Skill is ready again.	data moves	
+03rbr2n	Builds up for a turn, then:	data moves	
+1wqphzd	Then copies its bad effects onto every other enemy.	data moves	
 04clvli	Then all Poison on enemies deals its remaining damage at once.	data moves	
 00bdm66	Costs the user {p} of its max HP.	data moves	
 0eo8xqz	Your whole band acts before any enemy, and all enemies are slowed for {t}.	data ensembles	
@@ -70,8 +80,8 @@
 1s6iiyn	Deals the most damage.	data	
 11vozmg	Healer	data	
 0lt3nwi	Heals and strengthens the band.	data	
-0txsyvc	Support	data	
-0urf652	Slows and weakens enemies.	data	
+096se8g	Trickster	data	
+04p5njp	Weakens enemies and turns their tricks against them.	data	
 1msji33	Power Up	data moves	
 0erp7z0	Deals 25% more damage.	data	
 0b8ve6i	Power Down	data moves	
@@ -81,7 +91,7 @@
 1tyvniw	Slow	data moves	
 1rtwjtt	Turns come 30% later.	data	
 0pyxe0x	Stun	data moves	
-00adhon	Misses its next turn.	data	
+082ppzi	Misses its next turn. Then it shrugs off Stun until it has acted again.	data	
 1g8baa9	Poison	data moves	
 1398ids	Loses HP at the start of each turn, about 30% of the poisoner's Power. More Poison adds up, to 3 times that. Ignores Guard.	data	
 1a9erp6	Regen	data moves	
@@ -95,10 +105,18 @@
 0u9dw02	Heals for 30% of the damage it deals.	data	
 0yi27yk	Off-Key	data moves	
 0uit45j	Takes 25% more damage from hits.	data	
+1n4mlgw	Muted	data	
+0nhd3or	Can only use its Basic move.	data	
+0u127ug	Muddled	data	
+02w38fw	Its single hits land on its own side.	data	
+08s4urx	Ringing	data moves	
+0g1ih39	Enemies that hit it take 30% of that damage back.	data	
+19rbwgq	Building Up	data	
+1dz7r6g	Its big move goes off on its next turn.	data	
 1s7324o	Epic	data	
 1lplimc	Drumsticks	data	
 0xngqp3	Felt Mallet	data	
-0hl254k	Mute	data	
+0hl254k	Mute	data moves	
 0t0h0nv	Metronome	data	
 1pmltzc	Tuning Fork	data	
 1xxzjnx	Plectrum	data	
@@ -314,7 +332,7 @@
 047l8xc	Rattle Nerves	data	
 09ye9dh	Unsettle	data	
 0lowabh	Its hits push enemies that have a bad effect back in the turn order.	data	
-0aod8j9	Slow Burn	data	
+0yq3ydv	Maracas	data	
 1n8nf0k	Twang	data	
 1njs3ln	Snapped String	data	
 0rmyty0	Pick	data	
@@ -341,9 +359,9 @@
 1sar8nm	Shiver	data	
 0y60q2o	Jitters	data	
 1872r7h	Every enemy starts the battle with Poison for 2 turns.	data	
-1d3oejo	Nightfall	data	
+106f17a	Nightmare	data	
 1yr6ulo	Whim	data	
-0kpiauz	Two random things happen: a 110% hit, Poison on all enemies, a heal, Power Up for the band, Power Down for all enemies, or a Shield for the band.	data	
+1059m6a	Does the two things that help most right now, out of: a 140% hit, Poison on all enemies, a big heal, Power Up for the band, Power Down for all enemies, a Shield for the band.	data	
 04loohm	Puff	data	
 1gip12f	Soft Hum	data	
 05rb9v7	Low Note	data	
@@ -363,7 +381,7 @@
 1x3i0of	Bellows	data	
 0lztsun	Deep Breath	data	
 0ucjz7n	Puff Up	data	
-1p6naxy	Oom-Pah	data	
+0walzaz	Polka Hop	data	
 0ffym9e	Heave-Ho	data	
 10x93ym	Trill	data	
 1lziham	Grace Notes	data	
@@ -388,7 +406,6 @@
 12so223	Dong	data	
 1nzb8p5	Curfew	data	
 0qp1h57	Ringing Shell	data	
-0g1ih39	Enemies that hit it take 30% of that damage back.	data	
 0zz0vag	Final Bell	data	
 1frl26u	Full Peal	data	
 02g7rrc	Jingle	data	
@@ -467,9 +484,9 @@
 142pjgn	Wah	data	
 15u0adm	Bent Note	data	
 1w0u0b4	Doo-Wah	data	
-1c9a2xa	Sour Chord	data	
+0s287cx	Plunger Mute	data	
 1nd0o6b	Wah Pedal	data	
-13v1pyf	At the start of its turn, a random enemy goes Off-Key for 1 turn.	data	
+0fhzq35	At the start of its turn, a random enemy goes Off-Key for 2 turns.	data	
 1m85wqp	Skank	data	
 1p63sus	Tailgate	data	
 0fzbi2a	Bugle Call	data	
@@ -483,14 +500,14 @@
 1o5p4k3	Slap	data	
 149cpa8	Low End	data	
 1ayqna0	Sympathetic Strings	data	
-0eqy5uj	Enemies that hit it are slowed for 1 turn.	data	
+1cnuism	Enemies that hit it slip back in the turn order.	data	
 12k0kna	Slap Back	data	
 1cv8o1m	Basso Continuo	data	
 1o5i5xn	Bow	data	
 0nxg2if	Long Bow	data	
 0bn4xiv	Deep Resonance	data	
 07xsmwg	Its Slow, Power Down and Off-Key last 1 turn longer.	data	
-1cf17bj	Sostenuto	data	
+08vewrq	Sustain Pedal	data	
 1oijyxf	Fugue	data	
 0n5cim9	Doo	data	
 0bqam4h	Huddle	data	
@@ -511,7 +528,7 @@
 0i6ws0l	Riff Off	data	
 0w9oj4m	Pass the Hat	data	
 1atvc33	Tip Jar	data	
-01lvqlq	Each enemy it defeats heals the band for 10% of their HP.	data	
+1aqo0b9	Each enemy it defeats heals the band for 15% of their HP.	data	
 0v021qm	Crossroads	data	
 1weecg8	Juke Joint	data	
 1yyx1mu	Slide	data	
@@ -553,15 +570,15 @@
 16ik1sb	Lead the Way	data	
 0q04ctl	At the start of its turn, the slowest bandmate moves up in the turn order.	data	
 112a04m	Follow Me	data	
-09lgj6i	Heals the whole band for 80%. Both bandmates take their turns right away.	data	
+010sn6d	Heals the whole band for 85%. Both bandmates take their turns right away.	data	
 1auvt6u	Windsong	data	
-11j6mia	Everyone dodges the next hit. Its bandmates get their next turn sooner.	data	
+0gx2g8q	Heals the whole band for 50%. Its bandmates dodge the next hit and get their next turn sooner.	data	
 1rhp193	Shrill	data	
 12i0tva	Piercing Note	data	
 17r7bwl	Finisher	data	
 04lfs3w	High C	data	
 014y2uz	Zephyr	data	
-0u1bt4z	Hits all enemies for 95%, then takes another turn right away.	data	
+155srmi	Hits all enemies for 120%, then takes another turn right away.	data	
 1y4ituh	Squawk	data	
 0txyels	Skirl	data	
 0ub5jus	Reedy Note	data	
@@ -587,7 +604,7 @@
 1o492e6	Blat	data	
 1tztmpf	Bass Drop	data	
 1dmoz3o	Heavy Air	data	
-12a1zk4	Every enemy starts the battle further back in the turn order.	data	
+0zfx8pe	Every enemy starts the battle further back in the turn order, and Slowed for 1 turn.	data	
 1grgl3z	Subsonic	data	
 0kzafyq	Belly Laugh	data	
 12irlv3	Doot	data	
@@ -608,8 +625,8 @@
 1wofsfp	Scratch	data	
 07o26sh	Scratched Record	data	
 0s8sb10	It cannot be slowed or stunned.	data	
-04w3idr	Warp	data	
-0h4z7yy	Crowd Pleaser	data	
+00k24sq	Backmask	data	
+1058hua	Request	data	
 0a06dpc	Top Note	data	
 06114a7	Vibrato Run	data	
 12617m3	Its single hits also splash onto every other enemy for 30%.	data	
@@ -642,35 +659,53 @@
 0pbjb31	Smother	data	
 1dckffs	Blanket	data	
 0s5yoff	Soak	data	
+19xherf	Padded	data	
+0hu1gdm	While it has a Shield, it takes 30% less damage.	data	
 0jmesgy	Shh	data	
 1ocf601	Finger to Lips	data	
 1vovvjr	Silence!	data	
+10fhp4d	Quiet, Please	data	
+0tm98ix	Takes 30% less damage from Basic moves.	data	
 0re2x9y	Crackle	data	
 199ocsc	White Noise	data	
 0ymjbq5	Interference	data	
+1umhpkf	Charged	data	
+0skkrgg	Every hit it takes brings its next turn a little sooner.	data	
 03y74hh	Erase	data	
 0lhig2f	Grand Pause	data	
 0te3ooz	Fermata	data	
-0mbf94q	Shifting Key	data	
-0ho4woa	Changes family every 2 turns. Speeds up when below 40% HP.	data	
+1khmw6h	The Conductor	data	
+0dw3c79	Changes family every 2 turns and speeds up below 40% HP. While it stands, its friends take 15% less damage.	data	
 0vud5dq	Sting	data	
 0suiob1	Buzz Cloud	data	
 1xqxmn5	Scatter	data	
 1p2yjim	Dodges the next 2 hits and speeds up for 2 turns.	data	
+0wbu1w2	Many Wings	data	
+1jal0vz	Takes 30% less damage, except from moves that hit all enemies.	data	
 0348nnh	Beep	data	
 014ong2	Traffic Jam	data	
 0twh2hk	Road Rage	data	
+0kwlyli	Traffic	data	
+0q595wi	While one of its friends is standing, it takes 40% less damage.	data	
 0lm7olu	Boulder	data	
 1wyvn1w	Cave-in	data	
 1lpefml	Bedrock	data	
+0t06anh	Solid Rock	data	
+0uv7drb	No single hit can take more than 10% of its max HP.	data	
 1m0m7p0	Sandstorm	data	
 1g02785	Eye of the Storm	data	
+0uf8l0n	Gusts	data	
+1sg53gk	At the start of its turn, it blows away every Shield on your band.	data	
 1p1dny7	Fog Bank	data	
 16fafs5	Long Blast	data	
+0wqlxlj	Fog Warning	data	
+0qmojh2	Its Long Blast takes a turn to build up. Deal 20% of its HP, stun it or remove its good effects in that time to call it off.	data	
 0cfa1iz	Tick Tock	data	
 1k71mcf	Snooze	data	
 145jl5l	Wake Up!	data	
 1whanfo	Hits all enemies for 75%, then gets its next turn sooner.	data	
+08vlzg6	Rude Awakening	data	
+0u2avl0	Deals 50% more damage to stunned pets.	data	
 03wcmz8	Zip	data	
 1d0s7av	Dive	data	
 08ydjo4	Hits one enemy for 100% and dodges the next hit.	data	
@@ -844,26 +879,31 @@
 1nd99m8	Shield for the whole band.	moves	
 1qwd7ml	{st} on the whole band for {t}.	moves	
 1uwsay5	Hits all enemies for {p}.	moves	
+0cnywq4	Its bandmates get their next turn sooner.	moves	
 1q8cjc9	Hits one enemy {n} times for {p} each.	moves	
 1076p36	Hits all enemies {n} times for {p} each.	moves	
+0e0jpn0	Muddle	moves	
+16typ61	{st} on the enemy with the most HP for {t}.	moves	
 1q2u71s	Heals the most hurt bandmate for {p}.	moves	
 0ompy9w	Heals the whole band for {p}.	moves	
 0u3dj57	Removes all bad effects from the whole band.	moves	
-0onaigk	The slowest bandmate gets its next turn sooner.	moves	
+106aayv	{st} on all enemies for {t}.	moves	
 0khc9zz	Removes all bad effects from the most hurt bandmate.	moves	
 190xcnu	{st} on one enemy for {t}.	moves	
 0e7f6lw	{st} on the strongest bandmate for {t}.	moves	
 1bdc500	Shield for the most hurt bandmate.	moves	
-106aayv	{st} on all enemies for {t}.	moves	
-17snu6e	{st} on a random enemy for {t}.	moves	
 15vipv3	{st} on it for {t}.	moves	
-0cnywq4	Its bandmates get their next turn sooner.	moves	
 13j8tn6	Shield for it.	moves	
+0bu7s81	Bad effects on all enemies last {n} turns longer.	moves	
 16clkzn	Removes all good effects and Shield from it.	moves	
 1o2z45w	Pushes all enemies back in the turn order.	moves	
 0amfle1	Removes all good effects and Shield from all enemies.	moves	
 1kxpnpz	Heals itself for {p} of max HP.	moves	
 117au04	Its bandmates take the next turn.	moves	
+16e8lmh	{st} on its bandmates for {t}.	moves	
+0onaigk	The slowest bandmate gets its next turn sooner.	moves	
+0el6hwd	Good effects on all enemies turn into bad ones, and their Shield breaks.	moves	
+0xa5m0d	Steals the good effects and Shield of the enemy with the most HP.	moves	
 0ebcfe0	Hits a random enemy for {p}.	moves	
 0dye84z	+{v} Power	items	
 1i3vqsq	+{v} HP	items	
@@ -881,10 +921,16 @@
 0c1w867	Echo!	engine	
 0mq77hg	Encore!	engine ui-modes	
 1qm2xxm	Again!	engine ui-modes	
+06jee3b	Playback!	engine	
+08s3kwt	Gust!	engine	
+0xke2xn	Muddled!	engine	
 0k2fpcm	Hangs on!	engine	
 0rd3yt1	Chain!	engine	
 0belrl0	Staggered!	engine	
 1xob2db	Faster!	engine	
+0nlpt1o	Called off!	engine	
+088ops5	Stolen!	engine	
+0m7hiye	Flipped!	engine	
 1lwo7a3	Shrugs it off	engine	
 0hn3zaj	Adventure	game ui-screens	
 03gtdjg	Rehearsal	game ui-battle ui-core ui-screens	
@@ -940,12 +986,12 @@
 114mnho	Echoes and stars	ui-core	
 1x1u4jp	Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.	ui-core	
 0a8e6q1	Notes and experience	ui-core	
-047ok7c	New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.	ui-core	
+0ryu3ky	New floors pay notes, which buy shells. Adventure battles give experience, less on floors far below your level. Other modes give none.	ui-core	
 02k1r1n	Ensembles	ui-core ui-screens	
 1ethk2v	Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.	ui-core	
 1c0bob4	Beaten bosses of floors 10 to 100 return at your level. Each pays an echo once a week, resetting on Monday.	ui-core	
 1xtq0ev	Equipment	ui-core ui-modes ui-screens	
-1eepakt	Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.	ui-core	
+1k3sxl1	Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity. 3 Epics make a Legendary of that kind, while one is left to find.	ui-core	
 0baj6qd	From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.	ui-core	
 0h1kfu0	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.	ui-core	
 07zgmz9	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.	ui-core	
@@ -985,8 +1031,6 @@
 0tyfhvo	End this run?	ui-battle ui-screens	
 10yh3fa	Rewards stay yours.	ui-battle ui-screens	
 179chx3	End run	ui-battle ui-screens	
-1xqrqh9	Evolve {pet}	ui-battle ui-screens	
-007flrr	Add a star to {pet}	ui-battle ui-screens	
 1bipuuc	Continue	ui-battle ui-screens	
 0kayn18	Open the shell	ui-battle ui-screens	
 1hzmxtu	Back	ui-battle ui-screens	
@@ -1137,6 +1181,7 @@
 0xide7m	Take it off {n}	ui-screens	
 03295io	Go to {n}	ui-screens	
 0ngmxng	Merge 3 → {n}	ui-screens	
+0u2ons2	Every Legendary of this kind is yours.	ui-screens	
 0br649q	Merge: {length} / 3 spare	ui-screens	
 1pquyhx	Sell	ui-screens	
 0ix7gem	Opens after the boss on floor 10.	ui-screens	
@@ -1191,7 +1236,7 @@
 1ol94ul	{n} + gear	ui-modes	
 0fnhp9o	Boss	ui-modes	
 0xl0w5y	The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.	ui-modes	
-1611szw	All paid today. Tours still count for fun and experience.	ui-modes	
+1j3qiv2	All paid today. You can still tour for fun.	ui-modes	
 1iiozi7	On tour · {n}	ui-modes	
 1ge46m3	{gigs} of 5 gigs won	ui-modes	
 0eo55r4	{n} boons	ui-modes	{"one":"{n} boon","other":"{n} boons"}
@@ -1308,14 +1353,17 @@
 1fn0bdg	Use	ui-battle	
 07t8f32	Basic move	ui-battle	
 0wv4sck	Get ready	ui-battle	
+07vx66o	muted	ui-battle	
 1gig116	needs the mic	ui-battle	
 1dafg0x	ready in {t}	ui-battle	
 12udzhb	rests {t} after use	ui-battle	
 0eoacl7	always ready	ui-battle	
 09mc5ki	Extra move	ui-battle	
+1e9bsxh	{move}, muted	ui-battle	
 1mzzz6r	{move}, needs the mic	ui-battle	
 1cbobby	Enemy turn	ui-battle	
 1s58kd5	Auto battle is on	ui-battle	
+05s2466	Muted: only its Basic move works this turn.	ui-battle	
 0o9tv84	Only the pet with the mic can use this.	ui-battle	
 1yv3h7m	Not ready yet. Pick another move.	ui-battle	
 0xt3jlr	Tap an enemy to use it, or press Use.	ui-battle	
@@ -1377,7 +1425,6 @@
 1pob5wr	Play again	ui-battle	
 1h119dp	<b>A boss is next.</b> Check your band first.	ui-battle	
 08xkpxs	Next floor in {left}	ui-battle	
-1ft5bxw	Tip: <b>{n}</b> can grow.	ui-battle	
 1y4qsj9	Tip: you have a shell to open.	ui-battle	
 0ee4m6n	Tip: there is equipment in your bag that nobody is wearing.	ui-battle	
 17h3lmh	Tip: a rehearsal win pays an echo.	ui-battle	

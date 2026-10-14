@@ -14,8 +14,6 @@
 1v1cx0m	+{p} kritik vuruş ihtimali.
 1klobiz	Kalkanı delip geçer.
 03a2a9p	Her kritik vuruş bir vuruş daha ekler (en fazla {n}).
-0vdxodq	Her vuruşun {t} boyunca Yavaş, Zehir, Güç düşüşü veya Detone verme ihtimali {c}.
-0cqxp7o	Her vuruş {t} boyunca Yavaş, Zehir, Güç düşüşü veya Detone verir.
 1m5emfp	{p} ihtimalle hemen bir tur daha oynar.
 0gtqyd5	Düşen her grup arkadaşı için {p} daha güçlü.
 1f7wvud	Düşen ya da CP'si yarının altındaki her grup arkadaşı için {p} daha güçlü.
@@ -69,8 +67,6 @@
 1s6iiyn	En çok hasarı verir.
 11vozmg	Şifacı
 0lt3nwi	Grubu iyileştirir ve güçlendirir.
-0txsyvc	Destek
-0urf652	Düşmanları yavaşlatır ve zayıflatır.
 1msji33	Güç artışı
 0erp7z0	%25 daha fazla hasar verir.
 0b8ve6i	Güç düşüşü
@@ -80,7 +76,6 @@
 1tyvniw	Yavaş
 1rtwjtt	Turları %30 daha geç gelir.
 0pyxe0x	Sersem
-00adhon	Sıradaki turunu kaçırır.
 1g8baa9	Zehir
 1398ids	Her turun başında, zehirleyenin Gücünün yaklaşık %30'u kadar CP kaybeder. Daha fazla Zehir birikir, üç katına kadar. Korumayı yok sayar.
 1a9erp6	Yenilenme
@@ -313,7 +308,6 @@
 047l8xc	Sinir bozma
 09ye9dh	Huzursuz et
 0lowabh	Vuruşları kötü etkisi olan düşmanları tur sırasında geriye iter.
-0aod8j9	Ağır ateş
 1n8nf0k	Tıng
 1njs3ln	Kopan tel
 0rmyty0	Çekme
@@ -340,9 +334,7 @@
 1sar8nm	Ürperti
 0y60q2o	Sahne korkusu
 1872r7h	Her düşman savaşa 2 tur Zehirle başlar.
-1d3oejo	Akşam karanlığı
 1yr6ulo	Kapris
-0kpiauz	Rastgele iki şey olur: %110 vuruş, tüm düşmanlara Zehir, iyileştirme, gruba Güç artışı, tüm düşmanlara Güç düşüşü ya da gruba Kalkan.
 04loohm	Üfürük
 1gip12f	Hafif mırıltı
 05rb9v7	Pes nota
@@ -362,7 +354,6 @@
 1x3i0of	Körük
 0lztsun	Derin nefes
 0ucjz7n	Şişinme
-1p6naxy	Um-pa
 0ffym9e	Hey yapa
 10x93ym	Tril
 1lziham	Süs notaları
@@ -466,9 +457,7 @@
 142pjgn	Vah
 15u0adm	Bükülmüş nota
 1w0u0b4	Du-vah
-1c9a2xa	Ekşi akor
 1nd0o6b	Wah pedalı
-13v1pyf	Turunun başında rastgele bir düşman 1 tur Detone olur.
 1m85wqp	Skank
 1p63sus	Tailgate
 0fzbi2a	Boru sesi
@@ -482,14 +471,12 @@
 1o5p4k3	Slap
 149cpa8	Bas
 1ayqna0	Tınlayan teller
-0eqy5uj	Ona vuran düşmanlar 1 tur yavaşlar.
 12k0kna	Karşı slap
 1cv8o1m	Basso continuo
 1o5i5xn	Yay
 0nxg2if	Uzun yay
 0bn4xiv	Derin rezonans
 07xsmwg	Verdiği Yavaş, Güç düşüşü ve Detone 1 tur daha uzun sürer.
-1cf17bj	Sostenuto
 1oijyxf	Füg
 0n5cim9	Du
 0bqam4h	Kenetlenme
@@ -510,7 +497,6 @@
 0i6ws0l	Riff düellosu
 0w9oj4m	Şapka dolaştır
 1atvc33	Bahşiş kavanozu
-01lvqlq	Yendiği her düşman grubu CP'sinin %10'u kadar iyileştirir.
 0v021qm	Dört yol ağzı
 1weecg8	Juke joint
 1yyx1mu	Kaydırak
@@ -552,15 +538,12 @@
 16ik1sb	Yolu aç
 0q04ctl	Turunun başında en yavaş grup arkadaşı tur sırasında öne geçer.
 112a04m	Beni izleyin
-09lgj6i	Tüm grubu %80 iyileştirir. İki grup arkadaşı da hemen turunu oynar.
 1auvt6u	Rüzgâr şarkısı
-11j6mia	Herkes sıradaki vuruştan kaçar. Grup arkadaşlarının sıradaki turu daha erken gelir.
 1rhp193	Cırtlak
 12i0tva	Delici nota
 17r7bwl	Bitirici
 04lfs3w	Tiz do
 014y2uz	Meltem
-0u1bt4z	Tüm düşmanlara %95 vurur, sonra hemen bir tur daha oynar.
 1y4ituh	Gıdaklama
 0txyels	Skirl
 0ub5jus	Kamış notası
@@ -586,7 +569,6 @@
 1o492e6	Pırt
 1tztmpf	Bas düşüşü
 1dmoz3o	Ağır hava
-12a1zk4	Her düşman savaşa tur sırasında daha geride başlar.
 1grgl3z	Ses altı
 0kzafyq	Kahkaha
 12irlv3	Düt
@@ -607,8 +589,6 @@
 1wofsfp	Scratch
 07o26sh	Çizik plak
 0s8sb10	Yavaşlatılamaz ve sersemletilemez.
-04w3idr	Eğrilme
-0h4z7yy	Seyircinin gözdesi
 0a06dpc	Zirve notası
 06114a7	Vibrato koşusu
 12617m3	Tekli vuruşları diğer tüm düşmanlara da %30 sıçrar.
@@ -650,8 +630,6 @@
 03y74hh	Silme
 0lhig2f	Büyük es
 0te3ooz	Fermata
-0mbf94q	Değişen ton
-0ho4woa	Her 2 turda bir aile değiştirir. CP'si %40'ın altındayken hızlanır.
 0vud5dq	İğne
 0suiob1	Vızıltı bulutu
 1xqxmn5	Dağılma

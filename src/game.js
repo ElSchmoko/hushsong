@@ -74,7 +74,10 @@
   H.rankUp = (S, pet) => { if (!H.rankCheck(S, pet)) return false; pay(S, pet, H.rankCost(pet.rank || 0)); pet.rank = (pet.rank || 0) + 1; return true; };
   H.canGrow = (S, pet) => H.nextForms(pet).some((f) => H.evoCheck(S, pet, f).ok) || H.rankCheck(S, pet);
   // With one pot of echoes nearly every pet could grow, so the game points at the band: the pet in it that has grown least.
-  H.canEvolveAny = (S) => H.teamPets(S).filter((p) => p && H.canGrow(S, p)).sort((a, b) => H.petTier(a) - H.petTier(b) || (a.rank || 0) - (b.rank || 0))[0] || null;
+  // The "!" marks a pet whose own echoes already pay its next step (plain echoes are shared, so they would light up every pet).
+  H.growCost = (pet) => { const n = H.nextForms(pet); if (n.length) { const f = H.FORMS[n[0]]; let c = 0; if (f.tier >= 1 && !pet.t1) c += H.ECHO_COST[1]; if (f.tier >= 2 && !pet.t2) c += H.ECHO_COST[2]; return c; } return pet.t2 && H.petTier(pet) === 2 && (pet.rank || 0) < H.RANK_MAX ? H.rankCost(pet.rank || 0) : 0; };
+  H.ownGrow = (S, pet) => { const c = H.growCost(pet); return c > 0 && H.ownEchoes(S, pet) >= c; };
+  H.canEvolveAny = (S) => S.pets.find((p) => H.ownGrow(S, p)) || null;
 
   /* equipment */
   // rarity odds in % (Common, Rare, Epic, Legendary) for a piece that drops
@@ -101,14 +104,17 @@
   H.itemOwner = (S, id) => S.pets.find((p) => p.gear && p.gear.includes(id)) || null;
   H.equip = (S, pet, slot, id) => { for (const p of S.pets) if (p.gear) p.gear = p.gear.map((g) => (g === id ? null : g)); if (!pet.gear) pet.gear = [null, null]; pet.gear[slot] = id; };
   H.unequip = (S, pet, slot) => { if (pet.gear) pet.gear[slot] = null; };
-  // Three spare pieces of the same kind and rarity make one of the next rarity, up to Epic. Legendaries are only found.
-  H.mergeGroups = (S) => { const g = {}; for (const it of H.spareItems(S)) if (it.rar === 'c' || it.rar === 'r') (g[it.type + '|' + it.rar] = g[it.type + '|' + it.rar] || []).push(it); return Object.values(g).filter((x) => x.length >= 3); };
-  H.canMerge = (S, it) => (it.rar === 'c' || it.rar === 'r') && !H.itemOwner(S, it.id) && H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length >= 3;
+  // Three spare pieces of the same kind and rarity make one of the next rarity. Three Epics make that kind's Legendary,
+  // as long as one of its Legendaries is still out there (each exists once).
+  const mergeable = (S, it) => it.rar === 'c' || it.rar === 'r' || (it.rar === 'e' && H.freeLegends(S, it.type).length > 0);
+  H.mergeGroups = (S) => { const g = {}; for (const it of H.spareItems(S)) if (mergeable(S, it)) (g[it.type + '|' + it.rar] = g[it.type + '|' + it.rar] || []).push(it); return Object.values(g).filter((x) => x.length >= 3); };
+  H.canMerge = (S, it) => mergeable(S, it) && !H.itemOwner(S, it.id) && H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length >= 3;
   H.mergeItems = (S, it, rnd) => {
     if (!H.canMerge(S, it)) return null;
     const same = H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar && x.id !== it.id).slice(0, 2).concat([it]), ids = same.map((x) => x.id);
     S.items = S.items.filter((x) => !ids.includes(x.id));
     const out = { id: S.nextItem++, type: it.type, rar: H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1] };
+    if (out.rar === 'l') { const free = H.freeLegends(S, it.type); out.leg = free[Math.floor((rnd ? rnd() : Math.random()) * free.length)]; }
     S.items.push(out); S.stats.merges = (S.stats.merges || 0) + 1; return out;
   };
   H.sellItem = (S, id) => { const it = H.itemById(S, id); if (!it || H.itemOwner(S, id)) return 0; S.items = S.items.filter((x) => x.id !== id); const v = H.RARITY[it.rar].sell; S.notes += v; return v; };
@@ -169,17 +175,16 @@
   H.finishRehearsal = (S, n, win, rnd, battle) => {
     H.refreshRehearsals(S);
     const out = { win, n, reh: true, boss: true, region: H.stage(n).region, notes: 0, xp: 0, ups: 0, first: false, echo: 0, ens: null };
-    out.xp = Math.round((8 + 3 * S.stage) * (win ? 0.5 : 0.2) * teamXp(S)); out.ups = H.gainXp(S, out.xp);
     if (win && !S.reh[n]) { S.reh[n] = 1; out.first = true; S.stats.reh = (S.stats.reh || 0) + 1; out.echo = H.addEchoes(S, H.ECHO_REH); }
     if (win) { H.noteBossWin(S, n, battle); const e = noteEnsemble(S); if (e && !S.ens[e.id].reh) { S.ens[e.id].reh = 1; out.ens = e.id; } }
     return out;
   };
 
   /* ---------- Encore: endless waves for a band that has grown up (level 20+) ----------
-     Each wave is three Din a little below your level (2 levels and a tenth), 4% tougher every wave; every fifth wave is led by a boss.
+     Each wave is three Din a little below your level (2 levels and 8%), 5% tougher every wave; every fifth wave is led by a boss.
      The band is set when the run starts. HP carries over (a quarter of it comes back between waves) and fallen pets stay down.
      Reaching wave 5, 10, 15 and 20 pays once a week; the week starts on Monday, as for rehearsals. */
-  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.1, step: 0.04, heal: 0.25, bossK: 0.85, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
+  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.08, step: 0.05, heal: 0.25, bossK: 0.88, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
   H.encoreOpen = (S) => S.level >= H.ENCORE.unlock;
   H.refreshEncore = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms), E = (S.encore = S.encore || { week: w, paid: 0, best: 0, weekBest: 0 }); if (E.week === w) return false; E.week = w; E.paid = 0; E.weekBest = 0; return true; };
   H.encoreStage = (S, wave) => {
@@ -202,7 +207,6 @@
   // After each wave: HP is noted, a quarter of it comes back, milestones pay out (once a week). A loss ends the run.
   H.finishEncore = (S, win, battle) => {
     H.refreshEncore(S); const run = S.encoreRun, E = S.encore, wave = run.wave, out = { encore: true, win, wave, paid: [], xp: 0, ups: 0, echo: 0, shells: 0 };
-    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? 0.35 : 0.15) * teamXp(S)); out.ups = H.gainXp(S, out.xp);
     if (!win) { out.reached = wave - 1; out.best = E.best; S.encoreRun = null; return out; }
     if (battle) for (const u of battle.units) if (u.side === 0 && u.petId != null) run.hp[u.petId] = u.alive ? Math.min(1, u.hp / u.max + H.ENCORE.heal) : 0;
     E.best = Math.max(E.best, wave); E.weekBest = Math.max(E.weekBest, wave); out.best = E.best; S.stats.encore = Math.max(S.stats.encore || 0, wave);

@@ -1,0 +1,78 @@
+01ct8n3	Cada golpe adiciona o próximo de Lento, Veneno, Menos poder e Desafinado, por {t}.
+1rzd98f	{p} mais forte para cada efeito negativo no inimigo.
+1im9pg9	Sempre um golpe crítico.
+18epamm	Cada colega entra junto com sua Habilidade a {p}.
+091g0zg	Os efeitos negativos da banda viram positivos.
+1g9ctr0	Reproduz a última Habilidade ou Especial que um inimigo usou, a {p}.
+0ii06ha	Se ainda não houver:
+1h7xe68	Toca de novo no início do próximo turno, a {p}.
+14ff1pf	Sua Habilidade fica pronta de novo.
+03rbr2n	Se prepara por um turno, depois:
+1wqphzd	Depois copia seus efeitos negativos para todos os outros inimigos.
+096se8g	Trapaceiro
+04p5njp	Enfraquece os inimigos e vira os truques deles contra eles.
+082ppzi	Perde o próximo turno. Depois ignora o Atordoado até agir de novo.
+1n4mlgw	Abafado
+0nhd3or	Só pode usar seu golpe Básico.
+0u127ug	Atrapalhado
+02w38fw	Seus golpes de alvo único caem no próprio lado.
+08s4urx	Ressoando
+0g1ih39	Inimigos que o atingem recebem de volta 30% desse dano.
+19rbwgq	Carregando
+1dz7r6g	Seu golpe forte dispara no próximo turno.
+19xherf	Acolchoado
+0hu1gdm	Enquanto tem Escudo, recebe 30% menos dano.
+10fhp4d	Silêncio, por favor
+1umhpkf	Carregado
+0skkrgg	Cada golpe que recebe adianta um pouco seu próximo turno.
+0wbu1w2	Muitas asas
+0kwlyli	Trânsito
+0q595wi	Enquanto um de seus amigos estiver de pé, recebe 40% menos dano.
+0t06anh	Rocha firme
+0uv7drb	Nenhum golpe pode tirar mais de 10% do seu PV máximo.
+0uf8l0n	Rajadas
+1sg53gk	No início do turno, sopra para longe todos os Escudos da sua banda.
+0wqlxlj	Alerta de neblina
+0qmojh2	Seu Apito longo leva um turno para carregar. Tire 20% do PV dele, atordoe-o ou tire seus efeitos positivos nesse tempo para cancelá-lo.
+08vlzg6	Despertar rude
+0u2avl0	Causa 50% mais dano a bichinhos atordoados.
+1khmw6h	O maestro
+16typ61	{st} no inimigo com mais PV por {t}.
+1rm2sti	Rouba seus efeitos positivos e seu Escudo.
+0xa5m0d	Rouba os efeitos positivos e o Escudo do inimigo com mais PV.
+0bu7s81	Os efeitos negativos em todos os inimigos duram {n} turnos a mais.
+0el6hwd	Os efeitos positivos de todos os inimigos viram negativos, e o Escudo deles quebra.
+06jee3b	Replay!
+08s3kwt	Rajada!
+0xke2xn	Atrapalhado!
+0nlpt1o	Cancelado!
+088ops5	Roubado!
+0m7hiye	Invertido!
+0ryu3ky	Andares novos dão notas, que compram conchas. Batalhas da Aventura dão experiência, menos em andares bem abaixo do seu nível. Os outros modos não dão.
+1k3sxl1	Cada bichinho usa duas peças. Vitórias podem dar mais: a tela de Aventura mostra a chance. 3 peças sobrando de um tipo se fundem na raridade seguinte. 3 Épicas fazem uma Lendária daquele tipo, enquanto restar alguma para achar.
+0u2ons2	Você já tem todas as Lendárias deste tipo.
+1j3qiv2	Tudo pago hoje. Você ainda pode sair em turnê por diversão.
+07vx66o	abafado
+1e9bsxh	{move}, abafado
+05s2466	Abafado: neste turno só o golpe Básico funciona.
+0yq3ydv	Maracas
+106f17a	Pesadelo
+0walzaz	Pulo de polca
+0s287cx	Surdina de borracha
+08vewrq	Pedal de sustentação
+00k24sq	Mensagem ao contrário
+1058hua	Pedido
+1059m6a	Faz as duas coisas que mais ajudam agora, entre: um golpe de 140%, Veneno em todos os inimigos, uma grande cura, Mais poder para a banda, Menos poder em todos os inimigos, um Escudo para a banda.
+0fhzq35	No começo do turno, um inimigo aleatório fica Desafinado por 2 turnos.
+1cnuism	Inimigos que o atingem recuam na ordem de turnos.
+1aqo0b9	Cada inimigo que derrota cura a banda em 15% dos PV.
+010sn6d	Cura a banda toda em 85%. Os dois colegas jogam o turno na hora.
+155srmi	Acerta todos os inimigos com 120% e joga outro turno na hora.
+0hl254k	Abafar
+0e0jpn0	Atrapalhar
+0tm98ix	Recebe 30% menos dano de golpes Básicos.
+1jal0vz	Recebe 30% menos dano, exceto de golpes que atingem todos os inimigos.
+16e8lmh	{st} nos colegas por {t}.
+0dw3c79	Muda de família a cada 2 turnos e acelera abaixo de 40% do PV. Enquanto estiver de pé, seus amigos recebem 15% menos dano.
+0gx2g8q	Cura a banda toda em 50%. Seus colegas esquivam do próximo golpe e jogam o próximo turno mais cedo.
+0zfx8pe	Cada inimigo começa a batalha mais atrás na ordem de turnos, e Lento por 1 turno.

@@ -15,7 +15,6 @@
 0e7f6lw	{st} auf das stärkste Bandmitglied für {t}.
 1bdc500	Schild für das am stärksten verletzte Bandmitglied.
 106aayv	{st} auf alle Gegner für {t}.
-17snu6e	{st} auf einen zufälligen Gegner für {t}.
 15vipv3	{st} auf das Ziel für {t}.
 0cnywq4	Seine Bandmitglieder sind früher wieder am Zug.
 13j8tn6	Schild für das Ziel.
@@ -100,12 +99,10 @@
 114mnho	Echos und Sterne
 1x1u4jp	Tiere entwickeln sich zweimal mit Echos und sammeln dann Sterne: bis zu 10, jeder +3 % LP und Kraft. Eine Muschel mit einem Tier, das du schon hast, gibt ein Echo, das nur dieses Tier nutzen kann. Einfache Echos, oben angezeigt, passen zu jedem Tier.
 0a8e6q1	Noten und Erfahrung
-047ok7c	Neue Ebenen bringen Noten, mit denen du Muscheln kaufst. Jeder Kampf gibt Erfahrung, weniger auf Ebenen weit unter deinem Level.
 02k1r1n	Ensembles
 1ethk2v	Drei Tiere aus drei Familien oder alle aus einer bilden ein Ensemble: eine Eröffnungsmelodie und einen Vorteil für die Band.
 1c0bob4	Besiegte Bosse der Ebenen 10 bis 100 kehren auf deinem Level zurück. Jeder bringt einmal pro Woche ein Echo, zurückgesetzt am Montag.
 1xtq0ev	Ausrüstung
-1eepakt	Jedes Tier trägt zwei Teile. Siege können mehr bringen: Der Abenteuer-Bildschirm zeigt die Chance. 3 übrige Teile einer Art verschmelzen zur nächsten Seltenheit, bis Episch.
 0baj6qd	Ab Level {unlock}: ein Kampf pro Tag mit einer Hausregel, die verändert, wie Kämpfe laufen, für alle gleich. Der erste Sieg jedes Tages zahlt; versuch es beliebig oft.
 0h1kfu0	Ab Level {unlock}: Ein Tier tourt über eine verzweigte Straße mit fünf Auftritten, Stationen und einem Boss. Segen halten die ganze Tour, und manche wirken zusammen. Die ersten Siege jedes Tages zahlen.
 07zgmz9	Ab Level {unlock}: endlose Wellen, jede etwas härter. LP bleiben erhalten, und gefallene Tiere setzen aus. Meilenstein-Wellen zahlen einmal pro Woche.
@@ -144,8 +141,6 @@
 0tyfhvo	Diesen Lauf beenden?
 10yh3fa	Belohnungen bleiben dir.
 179chx3	Beenden
-1xqrqh9	{pet} entwickeln
-007flrr	{pet} einen Stern geben
 1bipuuc	Weiter
 0kayn18	Muschel öffnen
 1hzmxtu	Zurück
@@ -350,7 +345,6 @@
 1ol94ul	{n} + Ausrüstung
 0fnhp9o	Boss
 0xl0w5y	Die ersten 5 Auftrittssiege und der erste Bosssieg jedes Tages zahlen. Neue Bezahlung in {msToTomorrow}.
-1611szw	Heute alles bezahlt. Touren zählen trotzdem für Spaß und Erfahrung.
 1iiozi7	Auf Tour · {n}
 1ge46m3	{gigs} von 5 Auftritten gewonnen
 0eo55r4	{"one":"{n} Segen","other":"{n} Segen"}
@@ -536,7 +530,6 @@
 1pob5wr	Nochmal spielen
 1h119dp	<b>Als Nächstes kommt ein Boss.</b> Prüfe zuerst deine Band.
 08xkpxs	Nächste Ebene in {left}
-1ft5bxw	Tipp: <b>{n}</b> kann wachsen.
 1y4qsj9	Tipp: Du hast eine Muschel zum Öffnen.
 0ee4m6n	Tipp: In deiner Tasche ist Ausrüstung, die niemand trägt.
 17h3lmh	Tipp: Ein Probensieg bringt ein Echo.

@@ -15,7 +15,6 @@
 0e7f6lw	{st} al compañero más fuerte durante {t}.
 1bdc500	Escudo para el compañero más herido.
 106aayv	{st} a todos los enemigos durante {t}.
-17snu6e	{st} a un enemigo al azar durante {t}.
 15vipv3	{st} al objetivo durante {t}.
 0cnywq4	Sus compañeros juegan antes su siguiente turno.
 13j8tn6	Escudo para el objetivo.
@@ -100,12 +99,10 @@
 114mnho	Ecos y estrellas
 1x1u4jp	Las mascotas evolucionan dos veces con ecos y después suman estrellas: hasta 10, cada una +3% de PV y Poder. Una concha con una mascota que ya tienes da un eco que solo esa mascota puede usar. Los ecos simples, arriba, sirven para cualquiera.
 0a8e6q1	Notas y experiencia
-047ok7c	Los pisos nuevos pagan notas, que compran conchas. Toda batalla da experiencia, menos en pisos muy por debajo de tu nivel.
 02k1r1n	Conjuntos
 1ethk2v	Tres mascotas de tres familias, o las tres de una, forman un conjunto: una melodía de apertura y una ventaja para la banda.
 1c0bob4	Los jefes vencidos de los pisos 10 a 100 vuelven a tu nivel. Cada uno paga un eco una vez por semana, y se reinicia el lunes.
 1xtq0ev	Equipo
-1eepakt	Cada mascota lleva dos piezas. Las victorias pueden dar más: la pantalla de Aventura muestra la probabilidad. 3 piezas sobrantes de un tipo se fusionan en la rareza siguiente, hasta Épico.
 0baj6qd	Desde el nivel {unlock}: una batalla al día con una regla de la casa que cambia cómo funcionan las batallas, igual para todos. La primera victoria de cada día paga; reintenta cuanto quieras.
 0h1kfu0	Desde el nivel {unlock}: una mascota recorre un camino con desvíos de cinco conciertos, paradas y un jefe. Las bendiciones duran toda la gira y algunas se combinan. Las primeras victorias de cada día pagan.
 07zgmz9	Desde el nivel {unlock}: oleadas sin fin, cada una algo más dura. Los PV se mantienen y las mascotas caídas se quedan fuera. Las oleadas clave pagan una vez por semana.
@@ -144,8 +141,6 @@
 0tyfhvo	¿Terminar esta partida?
 10yh3fa	Las recompensas son tuyas.
 179chx3	Terminar
-1xqrqh9	Evolucionar a {pet}
-007flrr	Añadir estrella a {pet}
 1bipuuc	Continuar
 0kayn18	Abrir la concha
 1hzmxtu	Atrás
@@ -350,7 +345,6 @@
 1ol94ul	{n} + equipo
 0fnhp9o	Jefe
 0xl0w5y	Las 5 primeras victorias en conciertos y la primera contra el jefe pagan cada día. Nueva paga en {msToTomorrow}.
-1611szw	Todo cobrado hoy. Las giras siguen contando para divertirte y ganar experiencia.
 1iiozi7	De gira · {n}
 1ge46m3	{gigs} de 5 conciertos ganados
 0eo55r4	{"one":"{n} bendición","other":"{n} bendiciones"}
@@ -536,7 +530,6 @@
 1pob5wr	Jugar otra vez
 1h119dp	<b>Ahora viene un jefe.</b> Revisa tu banda antes.
 08xkpxs	Siguiente piso en {left}
-1ft5bxw	Consejo: <b>{n}</b> puede crecer.
 1y4qsj9	Consejo: tienes una concha por abrir.
 0ee4m6n	Consejo: hay equipo en tu bolsa que nadie lleva puesto.
 17h3lmh	Consejo: ganar un ensayo paga un eco.

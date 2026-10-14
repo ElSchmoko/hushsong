@@ -68,10 +68,9 @@
     const ens = band.length === 3 ? H.teamEnsemble(S) : null;
     return new H.Battle({ allies, enemies: st.enemies.map(H.dailyFoe), rng: rnd, ensemble: ens ? ens.id : null, rules: st.rules });
   };
-  // A win pays 50 notes the first time each day. Every try gives some experience.
+  // A win pays 50 notes the first time each day. Only Adventure gives experience.
   H.finishDaily = (S, win, battle) => {
     H.refreshDaily(S); const g = H.gigOf(S.daily.day), out = { daily: true, win, twist: g.twist, venue: g.venue, region: g.region, notes: 0, xp: 0, ups: 0, first: false };
-    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? 0.5 : 0.2)); out.ups = H.gainXp(S, out.xp);
     if (win && !S.daily.won) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
     return out;
   };
@@ -236,7 +235,6 @@
   // after a gig: HP carries on, the day's notes are paid, and a boon is offered. A loss ends the tour.
   H.finishSolo = (S, win, battle, rnd) => {
     H.refreshSolo(S); const run = runOf(S), node = run.map[run.at], P = S.solo, out = { solo: true, win, boss: node.type === 'boss', loud: node.type === 'loud', gig: run.gigs + (win && node.type !== 'boss' ? 1 : 0), notes: 0, xp: 0, ups: 0, item: null, pet: run.pet, boons: run.boons.slice(), region: run.region };
-    out.xp = Math.round((8 + 3 * Math.min(S.stage, 10 + 2 * S.level)) * (win ? (out.boss ? 0.6 : 0.3) : 0.12)); out.ups = H.gainXp(S, out.xp);
     if (!win) { out.reached = run.gigs; out.total = run.earned || 0; P.best = Math.max(P.best, run.gigs); S.soloRun = null; return out; }
     if (battle) { const u = battle.units.find((v) => v.side === 0); run.hp = u && u.alive ? Math.max(0.01, u.hp / u.max) : 0.01; }
     if (out.boss) {

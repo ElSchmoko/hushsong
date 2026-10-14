@@ -15,7 +15,6 @@
 0e7f6lw	{st} no colega mais forte por {t}.
 1bdc500	Escudo para o colega mais ferido.
 106aayv	{st} em todos os inimigos por {t}.
-17snu6e	{st} em um inimigo aleatório por {t}.
 15vipv3	{st} no alvo por {t}.
 0cnywq4	Os colegas jogam o próximo turno antes.
 13j8tn6	Escudo para o alvo.
@@ -100,12 +99,10 @@
 114mnho	Ecos e estrelas
 1x1u4jp	Bichinhos evoluem duas vezes com ecos e depois ganham estrelas: até 10, cada uma +3% de PV e Poder. Uma concha com um bichinho que você já tem dá um eco que só ele pode usar. Ecos simples, mostrados no topo, servem para qualquer um.
 0a8e6q1	Notas e experiência
-047ok7c	Andares novos pagam notas, que compram conchas. Toda batalha dá experiência, menos em andares muito abaixo do seu nível.
 02k1r1n	Conjuntos
 1ethk2v	Três bichinhos de três famílias, ou todos de uma, formam um conjunto: uma abertura e uma vantagem para a banda.
 1c0bob4	Chefes vencidos dos andares 10 a 100 voltam no seu nível. Cada um paga um eco uma vez por semana, com reinício na segunda-feira.
 1xtq0ev	Equipamento
-1eepakt	Cada bichinho usa duas peças. Vitórias podem dar mais: a tela de Aventura mostra a chance. 3 peças sobrando de um tipo se fundem na raridade seguinte, até Épico.
 0baj6qd	A partir do nível {unlock}: uma batalha por dia com uma regra da casa que muda como as batalhas funcionam, igual para todos. A primeira vitória de cada dia paga; tente quantas vezes quiser.
 0h1kfu0	A partir do nível {unlock}: um bichinho percorre uma estrada com bifurcações de cinco shows, paradas e um chefe. Bênçãos duram a turnê toda, e algumas se combinam. As primeiras vitórias de cada dia pagam.
 07zgmz9	A partir do nível {unlock}: ondas sem fim, cada uma um pouco mais difícil. Os PV continuam e bichinhos caídos ficam de fora. Ondas-marco pagam uma vez por semana.
@@ -144,8 +141,6 @@
 0tyfhvo	Encerrar esta partida?
 10yh3fa	As recompensas são suas.
 179chx3	Encerrar
-1xqrqh9	Evoluir {pet}
-007flrr	Dar estrela a {pet}
 1bipuuc	Continuar
 0kayn18	Abrir a concha
 1hzmxtu	Voltar
@@ -350,7 +345,6 @@
 1ol94ul	{n} + equipamento
 0fnhp9o	Chefe
 0xl0w5y	As 5 primeiras vitórias em shows e a primeira contra o chefe pagam todo dia. Novo pagamento em {msToTomorrow}.
-1611szw	Tudo pago hoje. Turnês ainda valem pela diversão e pela experiência.
 1iiozi7	Em turnê · {n}
 1ge46m3	{gigs} de 5 shows vencidos
 0eo55r4	{"one":"{n} bênção","other":"{n} bênçãos"}
@@ -536,7 +530,6 @@
 1pob5wr	Jogar de novo
 1h119dp	<b>Vem aí um chefe.</b> Confira sua banda antes.
 08xkpxs	Próximo andar em {left}
-1ft5bxw	Dica: <b>{n}</b> pode crescer.
 1y4qsj9	Dica: você tem uma concha para abrir.
 0ee4m6n	Dica: há equipamento na mochila que ninguém está usando.
 17h3lmh	Dica: vencer um ensaio paga um eco.

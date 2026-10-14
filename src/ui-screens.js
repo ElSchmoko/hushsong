@@ -26,7 +26,7 @@
     const main = el('button', 'cmain'); main.type = 'button'; main.setAttribute('aria-label', (on ? tr('{pet}, in band', { pet: H.FORMS[p.form].n }) : H.FORMS[p.form].n)); main.addEventListener('click', () => onTap(p));
     add(main, UI.sp(p.form, 1, { anim: false }), add(el('div', 'cnm'), UI.icon('fam_' + fam, 0.8), el('span', '', H.FORMS[p.form].n)));
     if (on) main.appendChild(add(el('div', 'ccheck'), UI.icon('ic_bigcheck')));
-    if (on && H.canGrow(S, p)) main.appendChild(add(el('span', 'dot'), UI.icon('ic_bang', 1.2)));   // only the band: echoes are shared, so any pet could grow
+    if (H.ownGrow(S, p)) main.appendChild(add(el('span', 'dot'), UI.icon('ic_bang', 1.2)));   // its own echoes pay the next step
     c.appendChild(main); return c;
   };
 
@@ -266,7 +266,7 @@
         if (!p) { const b = el('button', 'lu empty'); b.type = 'button'; b.innerHTML = `<b>+</b><span>${tr('free spot')}</span>`; b.addEventListener('click', () => { Au.sfx('tap'); pick(slot); }); cell.appendChild(b); row.appendChild(cell); return; }
         const b = UI.coach(el('button', 'lu'), S.flags.coach === 'gear' && !row.querySelector('.coach'), tr('Tap your pet')); b.type = 'button'; b.setAttribute('aria-label', tr('About {n}', { n: H.FORMS[p.form].n })); b.addEventListener('click', () => { Au.sfx('noise', H.petSpecies(p)); UI.go('pet', { id: p.id, n: pr.n, back: 'team' }); });
         add(b, UI.sp(p.form, lh > 112 ? 1.25 : 1.05), add(el('div', 'lunm'), UI.icon('fam_' + H.petFamily(p)), el('span', '', H.FORMS[p.form].n)));
-        if (H.canGrow(S, p)) b.appendChild(add(el('span', 'dot'), UI.icon('ic_bang', 1.3)));
+        if (H.ownGrow(S, p)) b.appendChild(add(el('span', 'dot'), UI.icon('ic_bang', 1.3)));
         add(cell, b, key(tr('Swap'), () => pick(slot), 'sm soft swap')); row.appendChild(cell);
       });
       lu.appendChild(row); root.appendChild(lu);
@@ -372,7 +372,6 @@
         add(boxEl, txt('chip', f.n === base ? tr('Another {base}', { base }) : tr('Another {base} (your {n})', { base, n: f.n })), add(el('div', 'row center disp big'), UI.icon('ic_echo', 1.4), el('span', '', tr('+{n} {pet} echoes', { n: r.echo, pet: base }))), UI.echoIntro(pet));
       }
       // only when this shell's own echo is what lets the pet grow, so a new pet never points at someone else
-      if (!r.isNew && H.canGrow(S, pet)) foot.appendChild(key(tr(H.nextForms(pet).length ? 'Evolve {pet}' : 'Add a star to {pet}', { pet: f.n }), () => UI.go('pet', { id: pet.id, back: 'shells' }), 'gold wide'));
       if (S.shells) foot.appendChild(key(tr('Open another ({n} left)', { n: S.shells }), crack, 'go big wide'));
       foot.appendChild(key(pr.first ? tr('Let\'s go') : tr('Done'), () => { if (pr.first || (wasCoach && !S.shells)) { S.flags.coach = 'go'; UI.go('home'); } else idle(); }, S.shells ? 'soft wide' : 'go big wide'));
     };
@@ -468,6 +467,7 @@
       if (who) kids.push(key(tr('Take it off {n}', { n: H.FORMS[who.form].n }), () => { H.unequip(S, who, who.gear.indexOf(it.id)); Au.sfx('back'); UI.save(); draw(); sheet(it); }, 'wide gold'), key(tr('Go to {n}', { n: H.FORMS[who.form].n }), () => UI.go('pet', { id: who.id, back: 'bag' }), 'wide soft'));
       else {
         if (H.canMerge(S, it)) { const m = key(tr('Merge 3 → {n}', { n: H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n }), () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
+        else if (it.rar === 'e' && !H.freeLegends(S, it.type).length) kids.push(txt('small dim center', tr('Every Legendary of this kind is yours.')));
         else if (it.rar !== 'l') kids.push(txt('small dim center', tr('Merge: {length} / 3 spare', { length: H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length })));
         const sell = key('', () => { H.sellItem(S, it.id); Au.sfx('coin'); UI.save(); UI.closeModal(); draw(); }, 'wide soft'); add(sell, tr('Sell') + ' · ', UI.icon('ic_note'), String(H.RARITY[it.rar].sell)); kids.push(sell);
       }

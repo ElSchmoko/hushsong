@@ -106,22 +106,22 @@
       title.innerHTML = ''; add(title, UI.icon('fam_' + (fam || 'none')), el('span', '', a ? a.def.n === u.name ? a.def.n : `${u.name} · ${a.def.n}` : `${u.name}: ${shown.name}`));
       if (a) {
         const ready = a.cd === 0, lockd = battle.locked(u, a);
-        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${tr(KN[a.kind])}</b> ` + (mine && lockd ? `<span class="bad">${tr('needs the mic')}</span>` : mine && !ready ? `<span class="bad">${tr('ready in {t}', { t: turns(a.cd) })}</span>` : a.def.cd ? `<span>${tr('rests {t} after use', { t: turns(a.def.cd) })}</span>` : `<span>${tr('always ready')}</span>`);
+        meta.className = 'pmeta k-' + a.kind; meta.innerHTML = `<b>${tr(KN[a.kind])}</b> ` + (mine && lockd ? `<span class="bad">${battle.lockWhy(u, a) === 'mute' ? tr('muted') : tr('needs the mic')}</span>` : mine && !ready ? `<span class="bad">${tr('ready in {t}', { t: turns(a.cd) })}</span>` : a.def.cd ? `<span>${tr('rests {t} after use', { t: turns(a.def.cd) })}</span>` : `<span>${tr('always ready')}</span>`);
         desc.innerHTML = UI.rich(H.describe(a.def));
       } else { meta.className = 'pmeta'; meta.textContent = tr('Extra move'); desc.textContent = ''; }
       icons.innerHTML = '';
       u.ab.forEach((m, i) => {
-        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', (lk ? tr('{move}, needs the mic', { move: m.def.n }) : m.def.n));
+        const lk = battle.locked(u, m), b = el('button', 'mvi' + (i === shown.idx ? ' sel' : '') + (m.cd > 0 || lk ? ' cool' : '') + (mine ? '' : ' off')); b.type = 'button'; b.setAttribute('aria-label', (lk ? (battle.lockWhy(u, m) === 'mute' ? tr('{move}, muted', { move: m.def.n }) : tr('{move}, needs the mic', { move: m.def.n })) : m.def.n));
         b.appendChild(UI.icon(A.moveIcon(m.def, m.kind, u.side === 0 ? fam : 'none'), 1.08)); if (lk) b.appendChild(add(el('span', 'cdn lk'), UI.icon('ic_lock', 0.85))); else if (m.cd > 0) b.appendChild(el('span', 'cdn', String(m.cd)));
         b.addEventListener('click', () => { if (!mine || waiting == null) return; if (i === sel && battle.ready(u, m)) return fire(); sel = i; shown = { u, idx: i }; Au.sfx('tap', i * 2); render(); });
         icons.appendChild(b);
       });
       useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? tr('Use') : '· · ·';
       hint.className = 'phint' + (mine && tipText ? ' tipc' : '');
-      hint.textContent = !mine ? u.side === 1 ? tr('Enemy turn') : auto ? tr('Auto battle is on') : '' : tipText || a && battle.locked(u, a) ? tr('Only the pet with the mic can use this.') : a && a.cd > 0 ? tr('Not ready yet. Pick another move.') : a && H.needsTarget(a.def) ? tr('Tap an enemy to use it, or press Use.') : tr('Press Use.');
+      hint.textContent = !mine ? u.side === 1 ? tr('Enemy turn') : auto ? tr('Auto battle is on') : '' : tipText || a && battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use this.')) : a && a.cd > 0 ? tr('Not ready yet. Pick another move.') : a && H.needsTarget(a.def) ? tr('Tap an enemy to use it, or press Use.') : tr('Press Use.');
     };
     let tipText = '';
-    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? tr('Only the pet with the mic can use that.') : tr('That move is not ready yet.')); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
+    const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use that.')) : tr('That move is not ready yet.')); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
 
     const unitAt = (px, py) => { let best = null; for (const v of V) { if (!v.alive) continue; if (px >= v.x + 1 && px <= v.x + v.sz - 1 && py >= v.hy && py <= v.y + v.bb.b + 3) if (!best || v.y + v.sz > best.y + best.sz) best = v; } return best; };
     let opening = false, skipOpening = false; fwrap.addEventListener('click', () => { if (opening) skipOpening = true; }, true); panel.addEventListener('click', () => { if (opening) skipOpening = true; }, true);
@@ -140,7 +140,7 @@
         const u = battle.units[battle.waiting], a = u.ab[sel];
         if (H.needsTarget(a.def)) {
           if (!battle.validTargets(u).includes(v.u)) { UI.toast(tr('It has to hit the one with Taunt.')); return; }
-          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? tr('Only the pet with the mic can use that.') : tr('That move is not ready yet.')); return; } fire(); return;
+          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use that.')) : tr('That move is not ready yet.')); return; } fire(); return;
         }
       }
       // a tap is only for aiming; the first stray tap of a battle says how to look closer
@@ -376,7 +376,6 @@
     if (out.solo) return UI.soloResult(out);
     const S = UI.S, kids = [], nx = out.first ? S.stage : out.n;
     const loot = () => { const r = box('loot'); if (out.notes) r.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) r.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.shells && !out.giftShell) r.appendChild(UI.purse('ic_shell', '+' + out.shells)); if (out.echo && !out.story) r.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); return r; };
-    const evo = H.canEvolveAny(S), evoKey = () => UI.key(tr(H.nextForms(evo).length ? 'Evolve {pet}' : 'Add a star to {pet}', { pet: H.FORMS[evo.form].n }), () => UI.go('pet', { id: evo.id, n: nx, back: out.reh ? 'rehearsal' : 'team' }), 'gold wide');
     const levelUp = () => {
       if (out.ups) {
         const lv = el('div', 'lvup' + (window.__hsSpeed ? ' now' : '')), band = el('div', 'lvband'), team = H.teamPets(S).filter(Boolean);
@@ -393,7 +392,7 @@
       // a rehearsal: an echo the first time, practice after that
       if (out.win) {
         kids.push(txt('disp big center', tr('Rehearsal done!')), loot());
-        levelUp(); gold(); if (evo) kids.push(evoKey());
+        levelUp(); gold();
         kids.push(UI.key(tr('More rehearsals'), () => UI.go('rehearsal'), 'go wide big'), UI.key(tr('Home'), () => UI.go('home'), 'wide soft'));
       } else {
         kids.push(txt('disp big center', tr('Not this time')), txt('center dim', tr('Nothing is lost.')), loot());
@@ -412,7 +411,7 @@
       else if (out.gift) kids.push(UI.key(tr('Continue'), () => UI.gift('item', out.item), 'go wide big'));
       else {
         const rec = gold(), bossNext = out.first && H.stage(nx).boss;
-        if (out.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide big')); else if (evo) kids.push(evoKey());
+        if (out.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide big'));
         // a boss is never walked into by accident: the way there leads past the team screen
         const go = bossNext ? UI.key(tr('To the boss'), () => UI.go('adventure', { n: nx }), 'coral wide big') : UI.key(out.first ? tr('Next floor') : tr('Play again'), () => UI.go('battle', { n: nx }), (out.shells ? '' : 'big ') + 'go wide');
         kids.push(go); if (!bossNext) kids.push(UI.key(tr('Back'), () => UI.go('adventure', { n: nx }), 'wide soft'));
@@ -427,8 +426,8 @@
     } else {
       kids.push(txt('disp big center', tr('Not this time')), txt('center dim', tr('Nothing is lost.')), loot());
       const spare = H.spareItems(S).length && S.pets.some((p) => p.gear.includes(null)), reh = H.rehearsals(S).some((n) => !S.reh[n]);
-      kids.push(txt('small center', evo ? tr('Tip: <b>{n}</b> can grow.', { n: H.FORMS[evo.form].n }) : S.shells ? tr('Tip: you have a shell to open.') : spare ? tr('Tip: there is equipment in your bag that nobody is wearing.') : reh ? tr('Tip: a rehearsal win pays an echo.') : !H.teamEnsemble(S) && H.possibleEnsembles(S).length ? tr('Tip: your pets could form an ensemble.') : S.pets.length > 3 ? tr('Tip: try a different band, or replay an earlier floor to level up.') : tr('Tip: replay an earlier floor to level up, then come back.')));
-      if (evo) kids.push(evoKey()); else if (S.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide'));
+      kids.push(txt('small center', S.shells ? tr('Tip: you have a shell to open.') : spare ? tr('Tip: there is equipment in your bag that nobody is wearing.') : reh ? tr('Tip: a rehearsal win pays an echo.') : !H.teamEnsemble(S) && H.possibleEnsembles(S).length ? tr('Tip: your pets could form an ensemble.') : S.pets.length > 3 ? tr('Tip: try a different band, or replay an earlier floor to level up.') : tr('Tip: replay an earlier floor to level up, then come back.')));
+      if (S.shells) kids.push(UI.key(tr('Open the shell'), () => UI.go('shells', {}), 'gold wide'));
       kids.push(UI.key(tr('Try again'), () => UI.go('battle', { n: out.n }), 'go wide big'), UI.key(tr('Change the band'), () => UI.go('team', { n: out.n }), 'wide soft'));
     }
     UI.modal(...kids);

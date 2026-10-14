@@ -1,0 +1,78 @@
+01ct8n3	Ogni colpo aggiunge il successivo tra Lento, Veleno, Potenza giù e Stonato, per {t}.
+1rzd98f	Più forte del {p} per ogni effetto negativo sul nemico.
+1im9pg9	Sempre un colpo critico.
+18epamm	Ogni compagno si unisce con la sua Abilità al {p}.
+091g0zg	Gli effetti negativi della band diventano positivi.
+1g9ctr0	Riproduce l'ultima Abilità o Speciale usata da un nemico, al {p}.
+0ii06ha	Se non ce n'è ancora:
+1h7xe68	Risuona all'inizio del suo turno successivo, al {p}.
+14ff1pf	La sua Abilità è di nuovo pronta.
+03rbr2n	Si carica per un turno, poi:
+1wqphzd	Poi copia i suoi effetti negativi su tutti gli altri nemici.
+096se8g	Burlone
+04p5njp	Indebolisce i nemici e ritorce i loro trucchi contro di loro.
+082ppzi	Salta il suo turno successivo. Poi ignora lo Stordito finché non ha agito di nuovo.
+1n4mlgw	Sordina
+0nhd3or	Può usare solo la sua mossa Base.
+0u127ug	Confuso
+02w38fw	I suoi colpi singoli finiscono sulla sua stessa squadra.
+08s4urx	Risonante
+0g1ih39	I nemici che lo colpiscono subiscono il 30% di quel danno.
+19rbwgq	In carica
+1dz7r6g	La sua mossa forte parte al prossimo turno.
+19xherf	Imbottito
+0hu1gdm	Finché ha uno Scudo, subisce il 30% di danni in meno.
+10fhp4d	Silenzio, prego
+1umhpkf	Carico
+0skkrgg	Ogni colpo che subisce anticipa un po' il suo turno successivo.
+0wbu1w2	Mille ali
+0kwlyli	Traffico
+0q595wi	Finché uno dei suoi amici è in piedi, subisce il 40% di danni in meno.
+0t06anh	Roccia salda
+0uv7drb	Nessun colpo può togliergli più del 10% dei suoi PS massimi.
+0uf8l0n	Raffiche
+1sg53gk	All'inizio del suo turno, spazza via tutti gli Scudi della tua band.
+0wqlxlj	Allarme nebbia
+0qmojh2	Il suo Lungo squillo impiega un turno a caricarsi. Toglili il 20% dei PS, stordiscilo o togligli gli effetti positivi in quel tempo per annullarlo.
+08vlzg6	Brusco risveglio
+0u2avl0	Infligge il 50% di danni in più ai cuccioli storditi.
+1khmw6h	Il direttore
+16typ61	{st} sul nemico con più PS per {t}.
+1rm2sti	Gli ruba gli effetti positivi e lo Scudo.
+0xa5m0d	Ruba gli effetti positivi e lo Scudo al nemico con più PS.
+0bu7s81	Gli effetti negativi su tutti i nemici durano {n} turni in più.
+0el6hwd	Gli effetti positivi su tutti i nemici diventano negativi, e il loro Scudo si rompe.
+06jee3b	Riproduzione!
+08s3kwt	Raffica!
+0xke2xn	Confuso!
+0nlpt1o	Annullato!
+088ops5	Rubato!
+0m7hiye	Ribaltato!
+0ryu3ky	I piani nuovi danno note, che comprano conchiglie. Le battaglie dell'Avventura danno esperienza, meno sui piani molto sotto il tuo livello. Le altre modalità non ne danno.
+1k3sxl1	Ogni cucciolo indossa due pezzi. Le vittorie possono darne altri: la schermata Avventura mostra la probabilità. 3 pezzi in più di un tipo si fondono nella rarità successiva. 3 Epici fanno un Leggendario di quel tipo, finché ne resta uno da trovare.
+0u2ons2	Hai già tutti i Leggendari di questo tipo.
+1j3qiv2	Tutto pagato oggi. Puoi ancora andare in tour per divertirti.
+07vx66o	in sordina
+1e9bsxh	{move}, in sordina
+05s2466	In sordina: questo turno funziona solo la mossa Base.
+0yq3ydv	Maracas
+106f17a	Incubo
+0walzaz	Salto di polka
+0s287cx	Sordina a ventosa
+08vewrq	Pedale di risonanza
+00k24sq	Messaggio al contrario
+1058hua	Richiesta
+1059m6a	Fa le due cose che aiutano di più in quel momento, tra: un colpo al 140%, Veleno su tutti i nemici, una grande cura, Potenza su per la band, Potenza giù su tutti i nemici, uno Scudo per la band.
+0fhzq35	All'inizio del suo turno, un nemico a caso diventa Stonato per 2 turni.
+1cnuism	I nemici che lo colpiscono scivolano indietro nell'ordine dei turni.
+1aqo0b9	Ogni nemico che sconfigge cura la band del 15% dei suoi PS.
+010sn6d	Cura tutta la band dell'85%. Entrambi i compagni giocano subito il loro turno.
+155srmi	Colpisce tutti i nemici al 120%, poi gioca subito un altro turno.
+0hl254k	Sordina
+0e0jpn0	Confusione
+0tm98ix	Subisce il 30% di danni in meno dalle mosse Base.
+1jal0vz	Subisce il 30% di danni in meno, tranne dalle mosse che colpiscono tutti i nemici.
+16e8lmh	{st} sui suoi compagni per {t}.
+0dw3c79	Cambia famiglia ogni 2 turni e accelera sotto il 40% dei PS. Finché è in piedi, i suoi amici subiscono il 15% di danni in meno.
+0gx2g8q	Cura tutta la band del 50%. I suoi compagni schivano il prossimo colpo e anticipano il loro turno.
+0zfx8pe	Ogni nemico inizia la battaglia più indietro nell'ordine dei turni, e Lento per 1 turno.

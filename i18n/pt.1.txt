@@ -14,8 +14,6 @@
 1v1cx0m	+{p} de chance de acerto crítico.
 1klobiz	Atravessa o Escudo.
 03a2a9p	Cada acerto crítico adiciona mais um golpe (até {n}).
-0vdxodq	Cada golpe tem {c} de chance de causar Lento, Veneno, Menos poder ou Desafinado por {t}.
-0cqxp7o	Cada golpe causa Lento, Veneno, Menos poder ou Desafinado por {t}.
 1m5emfp	{p} de chance de jogar outro turno na hora.
 0gtqyd5	{p} mais forte para cada colega caído.
 1f7wvud	{p} mais forte para cada colega caído ou abaixo da metade dos PV.
@@ -69,8 +67,6 @@
 1s6iiyn	Causa o maior dano.
 11vozmg	Curandeiro
 0lt3nwi	Cura e fortalece a banda.
-0txsyvc	Suporte
-0urf652	Deixa os inimigos lentos e fracos.
 1msji33	Mais poder
 0erp7z0	Causa 25% mais dano.
 0b8ve6i	Menos poder
@@ -80,7 +76,6 @@
 1tyvniw	Lento
 1rtwjtt	Os turnos chegam 30% depois.
 0pyxe0x	Atordoado
-00adhon	Perde o próximo turno.
 1g8baa9	Veneno
 1398ids	Perde PV no começo de cada turno, cerca de 30% do Poder de quem envenenou. Mais Veneno se acumula, até o triplo. Ignora a Defesa.
 1a9erp6	Regeneração
@@ -313,7 +308,6 @@
 047l8xc	Dar nos nervos
 09ye9dh	Desestabilizar
 0lowabh	Seus golpes empurram para trás na ordem de turnos os inimigos com efeito negativo.
-0aod8j9	Fogo lento
 1n8nf0k	Twang
 1njs3ln	Corda arrebentada
 0rmyty0	Dedilhado
@@ -340,9 +334,7 @@
 1sar8nm	Arrepio
 0y60q2o	Nervosismo
 1872r7h	Cada inimigo começa a batalha com Veneno por 2 turnos.
-1d3oejo	Anoitecer
 1yr6ulo	Capricho
-0kpiauz	Duas coisas aleatórias acontecem: um golpe de 110%, Veneno em todos os inimigos, uma cura, Mais poder para a banda, Menos poder em todos os inimigos ou um Escudo para a banda.
 04loohm	Sopro
 1gip12f	Cantarolar suave
 05rb9v7	Nota grave
@@ -362,7 +354,6 @@
 1x3i0of	Fole
 0lztsun	Respiração funda
 0ucjz7n	Estufar
-1p6naxy	Um-pá
 0ffym9e	Upa
 10x93ym	Trinado
 1lziham	Ornamentos
@@ -466,9 +457,7 @@
 142pjgn	Uá
 15u0adm	Nota dobrada
 1w0u0b4	Du-uá
-1c9a2xa	Acorde azedo
 1nd0o6b	Pedal wah
-13v1pyf	No começo do turno, um inimigo aleatório fica Desafinado por 1 turno.
 1m85wqp	Skank
 1p63sus	Tailgate
 0fzbi2a	Toque de clarim
@@ -482,14 +471,12 @@
 1o5p4k3	Slap
 149cpa8	Graves
 1ayqna0	Cordas simpáticas
-0eqy5uj	Inimigos que o atingem ficam lentos por 1 turno.
 12k0kna	Slap de volta
 1cv8o1m	Baixo contínuo
 1o5i5xn	Arco
 0nxg2if	Arco longo
 0bn4xiv	Ressonância profunda
 07xsmwg	Seus Lento, Menos poder e Desafinado duram 1 turno a mais.
-1cf17bj	Sostenuto
 1oijyxf	Fuga
 0n5cim9	Du
 0bqam4h	Juntinhos
@@ -510,7 +497,6 @@
 0i6ws0l	Duelo de riffs
 0w9oj4m	Passar o chapéu
 1atvc33	Pote de gorjetas
-01lvqlq	Cada inimigo que derrota cura a banda em 10% dos PV.
 0v021qm	Encruzilhada
 1weecg8	Juke joint
 1yyx1mu	Slide
@@ -552,15 +538,12 @@
 16ik1sb	Abrir caminho
 0q04ctl	No começo do turno, o colega mais lento avança na ordem de turnos.
 112a04m	Sigam-me
-09lgj6i	Cura a banda toda em 80%. Os dois colegas jogam o turno na hora.
 1auvt6u	Canção do vento
-11j6mia	Todos esquivam do próximo golpe. Os colegas jogam o próximo turno antes.
 1rhp193	Estridente
 12i0tva	Nota penetrante
 17r7bwl	Golpe final
 04lfs3w	Dó agudo
 014y2uz	Zéfiro
-0u1bt4z	Acerta todos os inimigos com 95% e joga outro turno na hora.
 1y4ituh	Grasnado
 0txyels	Skirl
 0ub5jus	Nota de palheta
@@ -586,7 +569,6 @@
 1o492e6	Pum
 1tztmpf	Queda de grave
 1dmoz3o	Ar pesado
-12a1zk4	Cada inimigo começa a batalha mais atrás na ordem de turnos.
 1grgl3z	Subsônico
 0kzafyq	Gargalhada
 12irlv3	Dut
@@ -607,8 +589,6 @@
 1wofsfp	Scratch
 07o26sh	Disco riscado
 0s8sb10	Não pode ficar lento nem atordoado.
-04w3idr	Empenado
-0h4z7yy	Queridinho do público
 0a06dpc	Nota de topo
 06114a7	Corrida de vibrato
 12617m3	Seus golpes únicos também respingam em todos os outros inimigos com 30%.
@@ -650,8 +630,6 @@
 03y74hh	Apagar
 0lhig2f	Grande pausa
 0te3ooz	Fermata
-0mbf94q	Tom mutante
-0ho4woa	Muda de família a cada 2 turnos. Acelera abaixo de 40% de PV.
 0vud5dq	Ferroada
 0suiob1	Nuvem zumbidora
 1xqxmn5	Dispersar

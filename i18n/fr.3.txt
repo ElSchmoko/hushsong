@@ -1,0 +1,78 @@
+01ct8n3	Chaque coup ajoute le suivant parmi Lenteur, Poison, Puissance − et Fausse note, pendant {t}.
+1rzd98f	{p} plus fort pour chaque effet négatif sur l'ennemi.
+1im9pg9	Toujours un coup critique.
+18epamm	Chaque coéquipier se joint avec sa Compétence à {p}.
+091g0zg	Les effets négatifs du groupe deviennent positifs.
+1g9ctr0	Rejoue la dernière Compétence ou Spéciale utilisée par un ennemi, à {p}.
+0ii06ha	S'il n'y en a pas encore :
+1h7xe68	Rejoue au début de son prochain tour, à {p}.
+14ff1pf	Sa Compétence est de nouveau prête.
+03rbr2n	Se prépare pendant un tour, puis :
+1wqphzd	Puis copie ses effets négatifs sur tous les autres ennemis.
+096se8g	Filou
+04p5njp	Affaiblit les ennemis et retourne leurs tours contre eux.
+082ppzi	Passe son prochain tour. Ensuite, l'Étourdi glisse sur lui jusqu'à ce qu'il ait rejoué.
+1n4mlgw	Sourdine
+0nhd3or	Ne peut utiliser que son attaque de base.
+0u127ug	Embrouillé
+02w38fw	Ses coups sur une seule cible frappent son propre camp.
+08s4urx	Résonnant
+0g1ih39	Les ennemis qui le frappent subissent en retour 30 % de ces dégâts.
+19rbwgq	En charge
+1dz7r6g	Son grand coup part à son prochain tour.
+19xherf	Rembourré
+0hu1gdm	Tant qu'il a un Bouclier, il subit 30 % de dégâts en moins.
+10fhp4d	Silence, s'il vous plaît
+1umhpkf	Chargé
+0skkrgg	Chaque coup reçu rapproche un peu son prochain tour.
+0wbu1w2	Mille ailes
+0kwlyli	Bouchon
+0q595wi	Tant qu'un de ses amis tient debout, il subit 40 % de dégâts en moins.
+0t06anh	Roc solide
+0uv7drb	Aucun coup ne peut lui retirer plus de 10 % de ses PV max.
+0uf8l0n	Rafales
+1sg53gk	Au début de son tour, il souffle tous les Boucliers de ton groupe.
+0wqlxlj	Alerte brouillard
+0qmojh2	Son Long coup de corne met un tour à se préparer. Inflige 20 % de ses PV, étourdis-le ou retire ses effets positifs pendant ce temps pour l'annuler.
+08vlzg6	Réveil brutal
+0u2avl0	Inflige 50 % de dégâts en plus aux compagnons étourdis.
+1khmw6h	Le chef d'orchestre
+16typ61	{st} sur l'ennemi qui a le plus de PV pendant {t}.
+1rm2sti	Lui vole ses effets positifs et son Bouclier.
+0xa5m0d	Vole les effets positifs et le Bouclier de l'ennemi qui a le plus de PV.
+0bu7s81	Les effets négatifs de tous les ennemis durent {n} tours de plus.
+0el6hwd	Les effets positifs de tous les ennemis deviennent négatifs, et leur Bouclier se brise.
+06jee3b	Rediffusion !
+08s3kwt	Rafale !
+0xke2xn	Embrouillé !
+0nlpt1o	Annulé !
+088ops5	Volé !
+0m7hiye	Renversé !
+0ryu3ky	Les nouveaux étages rapportent des notes, qui achètent des coquilles. Les combats d'Aventure donnent de l'expérience, moins sur les étages bien en dessous de ton niveau. Les autres modes n'en donnent pas.
+1k3sxl1	Chaque compagnon porte deux pièces. Les victoires peuvent en donner d'autres : l'écran Aventure montre la chance. 3 pièces en trop d'un type fusionnent dans la rareté suivante. 3 Épiques font une Légendaire de ce type, tant qu'il en reste une à trouver.
+0u2ons2	Tu as déjà toutes les Légendaires de ce type.
+1j3qiv2	Tout est payé aujourd'hui. Tu peux encore tourner pour le plaisir.
+07vx66o	en sourdine
+1e9bsxh	{move}, en sourdine
+05s2466	En sourdine : seule son attaque de base marche ce tour-ci.
+0yq3ydv	Maracas
+106f17a	Cauchemar
+0walzaz	Saut de polka
+0s287cx	Sourdine ventouse
+08vewrq	Pédale forte
+00k24sq	Message inversé
+1058hua	Dédicace
+1059m6a	Fait les deux choses qui aident le plus maintenant, parmi : un coup à 140 %, Poison sur tous les ennemis, un gros soin, Puissance + pour le groupe, Puissance − pour tous les ennemis, un Bouclier pour le groupe.
+0fhzq35	Au début de son tour, un ennemi au hasard subit Fausse note pendant 2 tours.
+1cnuism	Les ennemis qui le frappent reculent dans l'ordre des tours.
+1aqo0b9	Chaque ennemi qu'il vainc soigne le groupe de 15 % de ses PV.
+010sn6d	Soigne tout le groupe de 85 %. Ses deux coéquipiers jouent leur tour aussitôt.
+155srmi	Frappe tous les ennemis à 120 %, puis rejoue aussitôt.
+0hl254k	Sourdine
+0e0jpn0	Embrouille
+0tm98ix	Subit 30 % de dégâts en moins des attaques de base.
+1jal0vz	Subit 30 % de dégâts en moins, sauf des attaques qui frappent tous les ennemis.
+16e8lmh	{st} sur ses coéquipiers pendant {t}.
+0dw3c79	Change de famille tous les 2 tours et accélère sous 40 % de PV. Tant qu'il tient debout, ses amis subissent 15 % de dégâts en moins.
+0gx2g8q	Soigne tout le groupe de 50 %. Ses coéquipiers esquivent le prochain coup et rejouent plus tôt.
+0zfx8pe	Chaque ennemi commence le combat plus loin dans l'ordre des tours, et en Lenteur pendant 1 tour.

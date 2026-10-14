@@ -21,11 +21,11 @@
     const form = H.FORMS[pet.form], sp = H.SPECIES[form.sp], kit = H.kitOf(pet.form);
     return { name: form.n, form: pet.form, sprite: pet.form, family: sp.family, role: kit.role, lvl: level, base: H.petStats(pet, level), perks: H.petPerks(pet, S), kit, petId: pet.id };
   };
-  // After floor 100 other bands turn up: evolved pets on the enemy side, cut down to enemy size.
+  // After floor 100 other bands turn up: evolved pets on the enemy side, cut down to enemy size (and without their passive).
   H.buildRivalUnit = (form, level, k) => {
     const f = H.FORMS[form], sp = H.SPECIES[f.sp], kit = H.kitOf(form), role = H.ROLES[kit.role], sc = H.dinScale(level); k = k || 1;
     return { name: H.T('Rival {pet}', { pet: f.n }), form, sprite: form, family: sp.family, role: 'din', lvl: level, rival: true,
-      base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * k * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * k * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: kit.passive ? [kit.passive] : [], kit };
+      base: { hp: sp.base.hp * role.hp * 0.6 * sc.hp * k * H.PLAIN_K[0], vol: sp.base.vol * role.vol * 0.72 * sc.vol * k * H.PLAIN_K[1], poise: Math.max(4, sp.base.poise + role.poise - 8), tempo: sp.base.tempo * role.tempo * 0.95 }, perks: [], kit };
   };
   H.buildDinUnit = (id, level, loud, extra, k) => {
     const d = H.DIN[id], sc = H.dinScale(level), perks = []; k = k || 1;
@@ -36,7 +36,7 @@
 
   class Battle {
     constructor(o) {
-      this.rnd = o.rng || Math.random; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null; this.rules = o.rules || {};
+      this.rnd = o.rng || Math.random; this.lastMove = [null, null]; this.units = []; this.over = null; this.turn = 0; this.ev = []; this.acting = null; this.waiting = null; this.rules = o.rules || {};
       o.allies.forEach((s, i) => s && this._add(s, 0, i)); o.enemies.forEach((s, i) => s && this._add(s, 1, i));
       for (const u of this.units) {
         u.max = Math.round(u.base.hp * (1 + this.mod(u, 'hp'))); u.hp = u.max;
@@ -103,7 +103,8 @@
     }
     micHolder(u) { return !!this.mic && this.mic[u.side] === u.uid; }
     // a move that is there but may not be used now: under Pass the Mic only the holder plays Skills and Specials
-    locked(u, a) { return !!this.mic && a.kind !== 'beat' && !this.micHolder(u); }
+    locked(u, a) { return a.kind !== 'beat' && ((!!this.mic && !this.micHolder(u)) || !!u.st.mute); }
+    lockWhy(u, a) { return !this.locked(u, a) ? null : u.st.mute ? 'mute' : 'mic'; }
     ready(u, a) { return a.cd === 0 && !this.locked(u, a); }
     echoK(u) { return this.rules.echo || this.sum(u, 'echoPedal'); }
     passMic(side) {
@@ -153,7 +154,10 @@
       if (actor.alive && actor.st.regen) this.heal(null, actor, actor.st.regen.val);
       if (actor.alive) { this.bump(actor, 'turn'); this.fire(actor, 'turn'); }
       if (!actor.alive || this.over) { this.acting = null; this.checkOver(); this.emit(this.sync()); return { events: this.ev, wait: null }; }
-      if (actor.st.stun) { this.emit({ t: 'skip', u: actor.uid }); this.endTurn(actor, null); this.emit(this.sync()); return { events: this.ev, wait: null }; }
+      // a stun costs one turn; after that the unit shrugs off stuns until it has acted again, so nobody is ever locked out
+      if (actor.st.stun) { actor.stunGuard = true; if (actor.charging) this.callOff(actor); this.emit({ t: 'skip', u: actor.uid }); this.endTurn(actor, null); this.emit(this.sync()); return { events: this.ev, wait: null }; }
+      // a move that was building up goes off now, unless it was called off
+      if (actor.charging) { const ch = actor.charging; actor.charging = null; if (actor.st.charge) { delete actor.st.charge; this.emit({ t: 'stoff', u: actor.uid, s: 'charge' }); this.useAbility(actor, { kind: 'finale', def: ch.def }, { target: null }); actor.stunGuard = false; this.endTurn(actor, null); this.emit(this.sync()); return { events: this.ev, wait: null }; } }
       // the mic: everything is ready for whoever holds it
       if (this.mic && this.micHolder(actor)) actor.ab.forEach((a) => (a.cd = 0));
       // last turn's Skill or Special plays again, softer
@@ -173,7 +177,9 @@
     }
     autoAct() { const u = this.units[this.waiting]; if (!u) return null; const p = this.autoPick(u); return this.act(u.ab.indexOf(p.ab), p.target ? p.target.uid : null); }
     perform(u, a, target) {
+      u.stunGuard = false;
       this.useAbility(u, a, { target });
+      if (a.kind !== 'beat') this.lastMove[u.side] = a.def;
       const ek = a.kind !== 'beat' && u.alive ? this.echoK(u) : 0; if (ek) u.echoNext = { def: a.def, kind: a.kind, target, k: ek };
       // Duet: the partner joins in with its Basic move
       if (this.rules.duet && u.side === 0 && !this.over) { const p = this.alive(0).find((x) => x !== u); if (p && p.ab[0]) { const t = target && target.alive && target.side !== p.side ? target : this.bestTarget(p, p.ab[0].def); this.useAbility(p, p.ab[0], { powMul: this.rules.duet, reactive: true, target: t }); } }
@@ -184,6 +190,7 @@
       if (u.alive) {
         const cut = this.sum(u, 'cdCut'); for (const a of u.ab) { if (a === used) a.cd = a.def.cd ? Math.max(1, a.def.cd - cut) : 0; else if (a.cd > 0) a.cd--; }
         if (u.cdReset) { u.ab.forEach((a) => (a.cd = 0)); u.cdReset = false; }
+        if (u.readyKind) { const r = u.ab.find((a) => a.kind === u.readyKind); if (r) r.cd = 0; u.readyKind = null; }
         if (used && u.rockEncore === used.kind) { used.cd = 0; u.rockEncore = null; this.emit({ t: 'note', u: u.uid, txt: H.T('Encore!') }); }
         if (u.bonusTurn && !this.over) { u.bonusTurn = 0; u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: H.T('Again!') }); }
         const en = this.has(u, 'encore'); if (en && used && u.turns % en === 0 && !this.over) { u.gauge = GMAX; this.emit({ t: 'note', u: u.uid, txt: H.T('Encore!') }); }
@@ -217,13 +224,14 @@
       if (tgt.st.dodge) return 0;
       let m = pow * this.vol(src); const adv = H.advantage(src.family, tgt.family); m *= adv > 0 ? 1.3 : adv < 0 ? 0.8 : 1;
       m *= 100 / (100 + this.poise(tgt) * (1 - Math.min(1, this.mod(src, 'pierce'))));
-      m *= x && x.sure ? 1.5 + this.mod(src, 'critDmg') : 1 + Math.min(1, 0.05 + this.mod(src, 'crit') + (o.crit || 0)) * (0.5 + this.mod(src, 'critDmg'));
+      m *= (x && x.sure) || o.critSure ? 1.5 + this.mod(src, 'critDmg') : 1 + Math.min(1, 0.05 + this.mod(src, 'crit') + (o.crit || 0)) * (0.5 + this.mod(src, 'critDmg'));
       let b = 0; const ex = this.has(src, 'execute');
       if (x) { if (x.fs) b += this.has(src, 'firstStrike') || 0; if (o.perFallen) b += o.perFallen * this.units.filter((v) => v.side === src.side && !v.alive).length; if (o.perLow) b += o.perLow * this.units.filter((v) => v.side === src.side && v !== src && (!v.alive || v.hp / v.max < 0.5)).length; } if (ex && tgt.hp / tgt.max < ex.below) b += ex.bonus;
       if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh; if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max);
-      if (o.vs) for (const k in o.vs) if (tgt.st[k]) b += o.vs[k]; if (o.ifSelf) for (const k in o.ifSelf) if (src.st[k]) b += o.ifSelf[k];
+      if (o.vs) for (const k in o.vs) if (tgt.st[k]) b += o.vs[k]; if (o.ifSelf) for (const k in o.ifSelf) if (src.st[k]) b += o.ifSelf[k]; if (o.perBad) b += o.perBad * this.badCount(tgt);
       for (const p of src.perks) if (p.vs) for (const k in p.vs) if (tgt.st[k]) b += p.vs[k];
-      const lt = this.low(tgt); return m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul();
+      const lt = this.low(tgt), cap = this.has(tgt, 'cap'), E = m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * this.guardK(tgt, x && x.c, x ? x.aoe : o.aoe);
+      return cap ? Math.min(E, tgt.max * cap) : E;
     }
     aiValue(u, def, chosen) {
       const foes = this.alive(1 - u.side), pals = this.alive(u.side); if (!foes.length) return 0;
@@ -237,7 +245,9 @@
         const cur = t.st[k], im = this.has(t, 'immune'); if (im && im.includes(k)) return 0;
         const left = cur ? cur.dur : 0; if (left >= dur) return 0; const f = (dur - left) / dur, foe = t.side !== u.side;
         if (foe) switch (k) {
-          case 'stun': return t.st.stun ? 0 : 0.45 * wt(t);
+          case 'stun': return t.st.stun || t.stunGuard ? 0 : 0.45 * wt(t);
+          case 'mute': return t.ab.some((a) => a.kind !== 'beat' && a.cd <= 1) ? 0.3 * wt(t) : 0.05;
+          case 'muddle': return (this.alive(t.side).length > 1 ? 0.3 : 0.2) * wt(t);
           case 'pdown': return 0.07 * dur * f * wt(t);
           case 'sdown': return 0.06 * dur * f * wt(t);
           case 'offkey': return 0.08 * dur * f * wt(t);
@@ -250,12 +260,15 @@
           case 'regen': return Math.min(0.6, ((val || 0.4) * this.vol(u) * dur) / t.max) * (0.25 + need(t));
           case 'dodge': return 0.15 * (val || 1);
           case 'lifesong': return 0.05 * dur * f * Math.min(1.5, this.vol(t) / Math.max(1, this.vol(u))) * (0.4 + need(t));
+          case 'ring': return 0.05 * dur * f;
+          case 'charge': return 0;
           case 'taunt': { if (t.hp / t.max < 0.35) return 0.02; const others = pals.filter((x) => x !== t); return 0.08 + 0.5 * Math.max(0, ...others.map(need)); }
           default: return 0.05 * f;
         }
       };
       const ally = () => (pals.length ? pals.reduce((b, x) => (x.hp / x.max < b.hp / b.max ? x : b), pals[0]) : null);
       const groupOf = (t) => this.groupFor(u, t, chosen, foes, pals, ally);
+      const kind = (u.ab.find((a) => a.def === def) || {}).kind, X = (aoe) => ({ aoe, c: { kind } });
       const fxV = (list) => {
         let v = 0;
         for (const fx of list || []) {
@@ -263,13 +276,14 @@
           if (k === 'dmg') {
             const o = fx[3] || {}, hits = o.h || 1; let ramp = 0; for (let i = 0; i < hits; i++) ramp += 1 + (o.inc || 0) * i;
             let ts, share = 1; if (fx[1] === 'rand') { ts = o.distinct ? foes : this.validTargets(u); share = 1 / Math.max(1, ts.length); } else ts = groupOf(fx[1]);
+            if (u.st.muddle && (fx[1] === 'one' || fx[1] === 'rand')) { v -= 0.3; continue; }
             for (const t of ts) {
-              const E = this.expHit(u, t, fx[2], o) * ramp * share; v += dmgV(t, E, o);
+              const E = this.expHit(u, t, fx[2], o, X(fx[1] === 'all')) * ramp * share; v += dmgV(t, E, o);
               const dies = E >= t.hp + t.shield;
               if (!dies) { if (o.st) for (const s2 of o.st) v += stV(t, s2[0], s2[1], s2[3]) * (s2[2] != null ? s2[2] : 1) * share; if (o.randSt) v += 0.05 * o.randSt * share; if (o.push) v += o.push * 0.3 * wt(t) * share; }
               if (o.drain) v += healV(u, E * o.drain) * 0.8;
             }
-            if (o.chain) for (const f of foes) if (!ts.includes(f)) v += dmgV(f, this.expHit(u, f, fx[2] * o.chain, {}), {});
+            if (o.chain) for (const f of foes) if (!ts.includes(f)) v += dmgV(f, this.expHit(u, f, fx[2] * o.chain, {}, X(false)), {});
             if (o.again) v += 0.4 * o.again;
             const sp = this.has(u, 'splash'); if (sp && fx[1] !== 'all') for (const f of foes) if (!ts.includes(f)) v += dmgV(f, this.expHit(u, f, fx[2] * sp, {}) * hits * share, {}) * 0.8;
           } else if (k === 'heal') { const o = fx[3] || {}; for (const t of groupOf(fx[1])) v += healV(t, o.pct ? t.max * o.pct : fx[2] * this.vol(u) * (1 + this.mod(u, 'heal'))); }
@@ -281,7 +295,15 @@
           else if (k === 'revive') { if (this.units.some((x) => x.side === u.side && !x.alive && !x.revived)) v += 1 + fx[1]; }
           else if (k === 'if') { const all = this.units.filter((x) => x.side === u.side); const ok = fx[1] === 'allyHurt' ? all.some((x) => x.alive && x.hp / x.max < 0.85) : all.some((x) => !x.alive && !x.revived); v += fxV(ok ? fx[2] : fx[3]); }
           else if (k === 'random') { const vals = fx[2].map(fxV); v += (vals.reduce((a, b) => a + b, 0) / Math.max(1, vals.length)) * fx[1]; }
-          else if (k === 'follow') v += pals.filter((x) => x !== u).length * fx[1] * 0.3;
+          else if (k === 'follow') v += pals.filter((x) => x !== u).length * fx[1] * (fx[2] ? 0.5 : 0.3);
+          else if (k === 'steal' || k === 'flip') { for (const t of groupOf(fx[1])) { const foe = t.side !== u.side; for (const s2 in t.st) if (!!H.STATUS[s2].buff === foe && t.st[s2].dur < 90) v += 0.1 * Math.min(4, t.st[s2].dur) * (k === 'steal' ? 1.6 : 1.3); if (foe) v += (t.shield / t.max) * (k === 'steal' ? 1.6 : 1) + (t.charging ? 0.6 : 0); } }
+          else if (k === 'extend') { for (const t of groupOf(fx[1])) for (const s2 in t.st) if (!H.STATUS[s2].buff && t.st[s2].dur < 90 && s2 !== 'stun') v += 0.06 * fx[2] * wt(t); }
+          else if (k === 'replay') { const d = this.lastMove[1 - u.side]; v += d && !d.fx.some((f) => f[0] === 'replay') ? fxV(d.fx) * fx[1] : fxV(fx[2] || []); }
+          else if (k === 'echo') v += 0.3;
+          else if (k === 'pick') { const vals = fx[2].map(fxV).sort((a, b) => b - a); v += vals.slice(0, fx[1]).reduce((a, b) => a + b, 0); }
+          else if (k === 'ready') v += 0.25;
+          else if (k === 'unshield') { for (const t of groupOf(fx[1])) v += t.shield / t.max; }
+          else if (k === 'charge') v += fxV(fx[1]) * 0.8;
           else if (k === 'detonate') { for (const t of groupOf(fx[1])) if (t.st.poison) v += dmgV(t, t.st.poison.val * t.st.poison.dur, { shatter: true }); }
           else if (k === 'spread') v += 0.15;
           else if (k === 'cdr') v += 0.25;
@@ -297,6 +319,7 @@
       switch (t) {
         case 'one': return chosen ? [chosen] : this.validTargets(u).slice(0, 1);
         case 'all': return foes; case 'self': return [u]; case 'allies': return pals; case 'others': return pals.filter((x) => x !== u);
+        case 'big': return foes.length ? [foes.reduce((b, x) => (x.hp > b.hp ? x : b), foes[0])] : [];
         case 'ally': { const a = ally ? ally() : pals.length ? pals.reduce((b, x) => (x.hp / x.max < b.hp / b.max ? x : b), pals[0]) : null; return a ? [a] : []; }
         case 'strong': { const o = pals.filter((x) => x !== u), p = o.length ? o : pals; return p.length ? [p.reduce((b, x) => (this.vol(x) > this.vol(b) ? x : b), p[0])] : []; }
         case 'slow': { const o = pals.filter((x) => x !== u); return o.length ? [o.reduce((b, x) => (x.gauge < b.gauge ? x : b), o[0])] : []; }
@@ -309,7 +332,7 @@
       mul = mul || 1;
       const out = {}, put = (t, k, v) => { if (v > 0) (out[t.uid] = out[t.uid] || { dmg: 0, heal: 0 })[k] += v; };
       const foes = this.alive(1 - u.side), pals = this.alive(u.side), song = u.st.lifesong ? 0.3 : 0;
-      let first = !u.once.first, sure = u.side === 0 ? this.ensCrits || 0 : 0;
+      let first = !u.once.first, sure = u.side === 0 ? this.ensCrits || 0 : 0; const kind = (u.ab.find((a) => a.def === def) || {}).kind;
       // effects the move puts on before its later hits (Off-Key) are lent for the sum, then taken back
       const lent = [], lend = (t, s) => { if (!t.st[s]) { t.st[s] = { dur: 1 }; lent.push([t, s]); } };
       const walk = (list) => {
@@ -318,8 +341,9 @@
           if (k === 'dmg') {
             const o = fx[3] || {}, hits = o.h || 1, sp = fx[1] !== 'all' && this.has(u, 'splash');
             let ts, share = 1; if (fx[1] === 'rand') { ts = o.distinct ? foes : this.validTargets(u); share = 1 / Math.max(1, ts.length); } else ts = this.groupFor(u, fx[1], chosen, foes, pals);
-            let dealt = 0; const hitE = (t, pw, oo) => { const E = this.expHit(u, t, pw * mul, oo, { fs: first, sure: sure > 0 }) * share; first = false; if (sure > 0) sure--; put(t, 'dmg', E); dealt += E; };
-            for (let i = 0; i < hits; i++) for (const t of ts) { hitE(t, fx[2] * (1 + (o.inc || 0) * i), o); if (sp) for (const f of foes) if (!ts.includes(f)) hitE(f, fx[2] * (1 + (o.inc || 0) * i) * sp, {}); }
+            let dealt = 0; const hitE = (t, pw, oo, ae) => { const E = this.expHit(u, t, pw * mul, oo, { fs: first, sure: sure > 0, aoe: ae, c: { kind } }) * share; first = false; if (sure > 0) sure--; put(t, 'dmg', E); dealt += E; };
+            if (u.st.muddle && (fx[1] === 'one' || fx[1] === 'rand')) continue;
+            for (let i = 0; i < hits; i++) for (const t of ts) { hitE(t, fx[2] * (1 + (o.inc || 0) * i), o, fx[1] === 'all'); if (sp) for (const f of foes) if (!ts.includes(f)) hitE(f, fx[2] * (1 + (o.inc || 0) * i) * sp, {}, true); }
             if (o.chain) for (const f of foes) if (!ts.includes(f)) hitE(f, fx[2] * o.chain, {});
             put(u, 'heal', dealt * ((o.drain || 0) + song + (this.has(u, 'leech') || 0)));
             if (o.st) for (const s2 of o.st) if (s2[0] === 'offkey' && (s2[2] == null || s2[2] >= 1)) for (const t of ts) lend(t, 'offkey');
@@ -345,7 +369,7 @@
     /* ----- moves ----- */
     useAbility(u, a, ctx) {
       this.emit({ t: 'ability', u: u.uid, n: a.def.n, kind: a.kind, follow: !!ctx.reactive, tgt: ctx.target ? ctx.target.uid : -1 });
-      const c = { src: u, kind: a.kind, powMul: ctx.powMul || 1, last: [], reactive: !!ctx.reactive, chosen: ctx.target && ctx.target.alive ? ctx.target : null };
+      const c = { src: u, kind: a.kind, def: a.def, powMul: ctx.powMul || 1, last: [], reactive: !!ctx.reactive, chosen: ctx.target && ctx.target.alive ? ctx.target : null };
       this.runFx(a.def.fx, c);
     }
     fire(u, name, extra) { for (const p of u.perks) if (p.on && p.on[name]) this.runFx(p.on[name], Object.assign({ src: u, kind: 'perk', powMul: 1, last: [], reactive: true }, extra || {})); }
@@ -356,6 +380,7 @@
         case 'one': { const vt = this.validTargets(src); if (!vt.length) return []; if (c.chosen && c.chosen.alive && vt.includes(c.chosen)) return [c.chosen]; const p = vt[Math.floor(this.rnd() * vt.length)]; c.chosen = p; return [p]; }
         case 'rand': { let pool = this.validTargets(src); if (!pool.length) return []; if (used) { const fr = foes.filter((x) => !used.has(x)); if (fr.length) pool = fr; } else pool = foes; return [pool[Math.floor(this.rnd() * pool.length)]]; }
         case 'all': return foes;
+        case 'big': return foes.length ? [minBy(foes, (x) => -x.hp)] : [];
         case 'same': return c.last.filter((x) => x.alive);
         case 'self': return src.alive ? [src] : [];
         case 'allies': return pals;
@@ -379,7 +404,16 @@
         else if (k === 'dispel') { for (const t of this.targets(c, fx[1])) { this.strip(t, 1); if (t.shield) { t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); } } }
         else if (k === 'revive') { const d = this.units.find((v) => v.side === c.src.side && !v.alive && !v.revived); if (d) this.revive(d, fx[1]); }
         else if (k === 'if') { const pals = this.units.filter((v) => v.side === c.src.side); const ok = fx[1] === 'allyHurt' ? pals.some((v) => v.alive && v.hp / v.max < 0.85) : pals.some((v) => !v.alive && !v.revived); this.runFx(ok ? fx[2] : fx[3], c); }
-        else if (k === 'follow') { for (const p of this.alive(c.src.side)) if (p !== c.src && !this.over) this.useAbility(p, p.ab[0], { powMul: fx[1], reactive: true, target: c.chosen }); }
+        else if (k === 'follow') { for (const p of this.alive(c.src.side)) if (p !== c.src && !this.over) { const a = (fx[2] && p.ab.find((x) => x.kind === fx[2])) || p.ab[0]; this.useAbility(p, a, { powMul: fx[1], reactive: true, target: c.chosen && c.chosen.side !== p.side ? c.chosen : null }); } }
+        else if (k === 'steal') { for (const t of this.targets(c, fx[1])) this.steal(c.src, t); }
+        else if (k === 'flip') { for (const t of this.targets(c, fx[1])) this.flip(c.src, t); }
+        else if (k === 'extend') { for (const t of this.targets(c, fx[1])) for (const s of Object.keys(t.st)) if (!H.STATUS[s].buff && t.st[s].dur < 90 && s !== 'stun') { t.st[s].dur += fx[2]; this.emit({ t: 'st', u: t.uid, s, dur: t.st[s].dur }); } }
+        else if (k === 'replay') { const d = this.lastMove[1 - c.src.side]; if (d && !c.reactive && !d.fx.some((f) => f[0] === 'replay')) { this.emit({ t: 'note', u: c.src.uid, txt: H.T('Playback!') }); this.useAbility(c.src, { kind: c.kind, def: d }, { powMul: fx[1] * c.powMul, target: null }); } else this.runFx(fx[2] || [], c); }
+        else if (k === 'echo') { if (!c.reactive && c.src.alive) c.src.echoNext = { def: c.def, kind: c.kind, target: c.chosen, k: fx[1] }; }
+        else if (k === 'pick') { const opts = fx[2].map((l, i) => ({ l, v: this.aiValue(c.src, { fx: l }, c.chosen) - i * 1e-6 })).sort((a, b) => b.v - a.v); for (const o of opts.slice(0, fx[1])) this.runFx(o.l, c); }
+        else if (k === 'ready') c.src.readyKind = fx[1];
+        else if (k === 'unshield') { let any = false; for (const t of this.targets(c, fx[1])) if (t.shield > 0) { t.shield = 0; any = true; this.emit({ t: 'shield', u: t.uid, shield: 0 }); } if (any) this.emit({ t: 'note', u: c.src.uid, txt: H.T('Gust!') }); }
+        else if (k === 'charge') { if (c.src.alive && !c.reactive) { c.src.charging = { def: { n: c.def ? c.def.n : '', fx: fx[1] }, taken: 0 }; this.applySt(c.src, c.src, 'charge', 1); } }
         else if (k === 'random') { const opts = fx[2].slice(); for (let i = 0; i < fx[1] && opts.length; i++) { const j = Math.floor(this.rnd() * opts.length); this.runFx(opts.splice(j, 1)[0], c); } }
         else if (k === 'detonate') { for (const t of this.targets(c, fx[1])) if (t.st.poison) { const d = t.st.poison.val * t.st.poison.dur; delete t.st.poison; this.emit({ t: 'stoff', u: t.uid, s: 'poison' }); this.applyDamage(t, d, { kind: 'poison', src: c.src }); } }
         else if (k === 'spread') { const from = c.last[0]; if (from && from.alive) for (const t of this.alive(1 - c.src.side)) if (t !== from) for (const s of ['sdown', 'poison', 'stun', 'pdown', 'offkey']) if (from.st[s]) this.applySt(null, t, s, from.st[s].dur, { rawVal: from.st[s].val }); }
@@ -389,9 +423,11 @@
     }
     fxDmg(fx, c) {
       const tg = fx[1], pow = fx[2], o = fx[3] || {}, hits = o.h || 1; let extra = 0; const used = o.distinct ? new Set() : null; let main = [];
+      const mud = c.src.st.muddle && !c.reactive && (tg === 'one' || tg === 'rand');
+      if (mud) this.emit({ t: 'note', u: c.src.uid, txt: H.T('Muddled!') });
       for (let i = 0; i < hits + extra; i++) {
         if (this.over || !c.src.alive) break;
-        const ts = this.targets(c, tg, used); if (!ts.length) break;
+        const ts = mud ? this.muddleTarget(c.src) : this.targets(c, tg, used); if (!ts.length) break;
         for (const t of ts) { const r = this.hit(c.src, t, pow * c.powMul * (1 + (o.inc || 0) * i), o, c, tg === 'all'); if (r && r.crit && o.perCrit && extra < o.perCrit) extra++; if (used) used.add(t); }
         main = ts; c.last = ts;
       }
@@ -404,7 +440,7 @@
       let m = pow * this.vol(src); const adv = H.advantage(src.family, tgt.family);
       m *= adv > 0 ? 1.3 : adv < 0 ? 0.8 : 1;
       m *= 100 / (100 + this.poise(tgt) * (1 - Math.min(1, this.mod(src, 'pierce'))));
-      let crit = this.rnd() < 0.05 + this.mod(src, 'crit') + (o.crit || 0); if (src.side === 0 && this.ensCrits > 0) { this.ensCrits--; crit = true; } if (crit) m *= 1.5 + this.mod(src, 'critDmg');
+      let crit = !!o.critSure || this.rnd() < 0.05 + this.mod(src, 'crit') + (o.crit || 0); if (src.side === 0 && this.ensCrits > 0) { this.ensCrits--; crit = true; } if (crit) m *= 1.5 + this.mod(src, 'critDmg');
       let b = 0;
       const fs = this.has(src, 'firstStrike'); if (fs && !src.once.first) { src.once.first = true; b += fs; }
       const ex = this.has(src, 'execute'); if (ex && tgt.hp / tgt.max < ex.below) b += ex.bonus;
@@ -415,8 +451,10 @@
       if (o.perLow) b += o.perLow * this.units.filter((v) => v.side === src.side && v !== src && (!v.alive || v.hp / v.max < 0.5)).length;
       if (o.vs) for (const s in o.vs) if (tgt.st[s]) b += o.vs[s];
       if (o.ifSelf) for (const s in o.ifSelf) if (src.st[s]) b += o.ifSelf[s];
+      if (o.perBad) b += o.perBad * this.badCount(tgt);
       for (const p of src.perks) if (p.vs) for (const s in p.vs) if (tgt.st[s]) b += p.vs[s];
-      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * (0.95 + this.rnd() * 0.1);
+      m *= (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * this.guardK(tgt, c, aoe) * (0.95 + this.rnd() * 0.1);
+      const cap = this.has(tgt, 'cap'); if (cap) m = Math.min(m, tgt.max * cap);
       m = Math.max(1, Math.round(m));
       let abs = 0; if (tgt.shield > 0 && !o.shatter) { abs = Math.min(tgt.shield, m); tgt.shield -= abs; }
       const dealt = m - abs;
@@ -424,7 +462,7 @@
       if (tgt.alive) {
         if (o.st) for (const s of o.st) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
         if (!c.reactive) for (const p of src.perks) if (p.hitSt) for (const s of p.hitSt) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
-        if (o.randSt && (o.randCh == null || this.rnd() < o.randCh)) this.applySt(src, tgt, ['pdown', 'sdown', 'poison', 'offkey'][Math.floor(this.rnd() * 4)], o.randSt, {});
+        if (o.randSt && (o.randCh == null || this.rnd() < o.randCh)) { src.cyc = (src.cyc || 0) + 1; this.applySt(src, tgt, H.CYCLE[(src.cyc - 1) % 4], o.randSt, {}); }
         if (o.push) this.pushGauge(tgt, -o.push);
         const dp = this.has(src, 'debuffPush'); if (dp && Object.keys(tgt.st).some((s) => !H.STATUS[s].buff)) this.pushGauge(tgt, -dp, true);
       }
@@ -436,7 +474,7 @@
         if (crit) { const cg = this.has(src, 'critGauge'); if (cg) src.gauge = Math.min(GMAX, src.gauge + cg * GMAX); }
       }
       if (!c.reactive && src.alive) {
-        const th = this.has(tgt, 'thorns'); if (th && dealt > 0) this.applyDamage(src, Math.max(1, dealt * th), { src: tgt, kind: 'thorn' });
+        const th = (this.has(tgt, 'thorns') || 0) + (tgt.st.ring ? H.RING : 0); if (th && dealt > 0) this.applyDamage(src, Math.max(1, dealt * th), { src: tgt, kind: 'thorn' });
         if (tgt.alive && src.alive) { this.fire(tgt, 'hurt', { attacker: src }); const ct = this.has(tgt, 'counter'); if (ct && src.alive && tgt.alive && this.rnd() < ct.ch) this.react(tgt, src, ct.pow, H.T('Hit Back')); }
         for (const g of this.alive(tgt.side)) if (g !== tgt && src.alive) { const gd = this.has(g, 'guard'); if (gd && this.rnd() < gd.ch) this.react(g, src, gd.pow, H.T('Pack Leader')); }
       }
@@ -455,6 +493,7 @@
       if (info.kind === 'poison' && tgt.shield > 0) { const a = Math.min(tgt.shield, amt); tgt.shield -= a; info.abs = a; amt -= a; }
       let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: H.T('Hangs on!') }); }
       const was = tgt.hp / tgt.max; tgt.hp = Math.max(0, tgt.hp - amt);
+      if (tgt.charging && amt + (info.abs || 0) > 0) { tgt.charging.taken += amt + (info.abs || 0); if (tgt.charging.taken >= tgt.max * H.CHARGE_BREAK && tgt.hp > 0) this.callOff(tgt); }
       this.emit({ t: 'dmg', src: info.src ? info.src.uid : -1, tgt: tgt.uid, amt, abs: info.abs || 0, crit: !!info.crit, adv: info.adv || 0, kind: info.kind, hp: tgt.hp, shield: tgt.shield });
       if (stood) this.fire(tgt, 'stand');
       if (tgt.hp <= 0) {
@@ -481,6 +520,37 @@
       if (src && src !== tgt && !quiet) { const hg = this.has(src, 'healGauge'); if (hg) tgt.gauge = Math.min(GMAX, tgt.gauge + hg * GMAX); }
     }
     addShield(t, amt) { if (!t.alive) return; amt = Math.round(amt); if (amt <= 0) return; t.shield = Math.min(Math.round(t.max * 0.6), t.shield + amt); this.emit({ t: 'shield', u: t.uid, shield: t.shield, amt }); }
+    // how many bad effects are on a unit
+    badCount(t) { let n = 0; for (const s in t.st) if (!H.STATUS[s].buff) n++; return n; }
+    // boss passives that soften some kinds of hits (all visible in the boss's passive text)
+    guardK(t, c, aoe) {
+      let k = 1; const pd = this.has(t, 'padded'), qt = this.has(t, 'quiet'), wg = this.has(t, 'wings'), tf = this.has(t, 'traffic');
+      if (pd && t.shield > 0) k *= 1 - pd; if (qt && c && c.kind === 'beat') k *= 1 - qt; if (wg && !aoe) k *= 1 - wg; if (tf && this.alive(t.side).length > 1) k *= 1 - tf;
+      return k;
+    }
+    // a Muddled unit's single hits land on its own side: a bandmate if it has one, itself if not
+    muddleTarget(u) { const own = this.alive(u.side).filter((x) => x !== u), pool = own.length ? own : [u]; return [pool[Math.floor(this.rnd() * pool.length)]]; }
+    callOff(u) { u.charging = null; if (u.st.charge) { delete u.st.charge; this.emit({ t: 'stoff', u: u.uid, s: 'charge' }); } this.emit({ t: 'note', u: u.uid, txt: H.T('Called off!') }); }
+    // take every good effect and the Shield off one unit and keep them
+    steal(src, t) {
+      if (!t.alive || !src.alive) return; let any = false;
+      for (const s of Object.keys(t.st)) if (H.STATUS[s].buff && t.st[s].dur < 90 && s !== 'charge') { const v = t.st[s]; delete t.st[s]; this.emit({ t: 'stoff', u: t.uid, s }); if (s !== 'taunt') this.applySt(null, src, s, v.dur, { rawVal: v.val, val: v.val }); any = true; }
+      if (t.charging) { this.callOff(t); any = true; }
+      if (t.shield > 0) { const a = t.shield; t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); this.addShield(src, a); any = true; }
+      if (any) this.emit({ t: 'note', u: src.uid, txt: H.T('Stolen!') });
+    }
+    // turn a unit's effects around: on an enemy its good effects go bad, on a friend its bad effects go good
+    flip(src, t) {
+      if (!t.alive) return; const foe = t.side !== src.side, P = H.FLIP; let any = false;
+      for (const s of Object.keys(t.st)) {
+        const v = t.st[s]; if (!!H.STATUS[s].buff !== foe || v.dur >= 90) continue;
+        delete t.st[s]; this.emit({ t: 'stoff', u: t.uid, s }); any = true;
+        if (P[s]) this.applySt(null, t, P[s], v.dur, { rawVal: v.val, force: !foe });
+      }
+      if (foe && t.charging) { this.callOff(t); any = true; }
+      if (foe && t.shield > 0) { t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); any = true; }
+      if (any) this.emit({ t: 'note', u: t.uid, txt: H.T('Flipped!') });
+    }
     pushGauge(t, frac, quiet) { if (!t.alive) return; t.gauge = Math.max(0, Math.min(GMAX, t.gauge + frac * GMAX)); if (!quiet) this.emit({ t: 'gauge', u: t.uid, d: frac }); }
     strip(t, buffs) { for (const k of Object.keys(t.st)) if (!!H.STATUS[k].buff === !!buffs && t.st[k].dur < 90) { delete t.st[k]; this.emit({ t: 'stoff', u: t.uid, s: k }); } }
     applySt(src, tgt, s, dur, o) {
@@ -488,6 +558,7 @@
       const def = H.STATUS[s];
       const im = !o.force && this.has(tgt, 'immune'); if (im && im.includes(s)) { this.emit({ t: 'note', u: tgt.uid, txt: H.T('Shrugs it off') }); return false; }
       if (!def.buff && tgt.ward && !o.force) { tgt.ward--; this.emit({ t: 'note', u: tgt.uid, txt: H.T('Shrugs it off') }); return false; }
+      if (s === 'stun' && tgt.stunGuard && !o.force) { this.emit({ t: 'note', u: tgt.uid, txt: H.T('Shrugs it off') }); return false; }
       if (!def.buff) {
         if (src && (s === 'sdown' || s === 'pdown' || s === 'offkey')) dur += this.mod(src, 'statusDur');
       }
