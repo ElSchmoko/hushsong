@@ -418,7 +418,7 @@
     };
     // the old form glows white and swells, then the new one bursts out
     const evoMoment = (from, to) => {
-      const kf = H.FORMS[to], kk = H.kitOf(to), stage = el('div', 'evostage'), a = UI.sp(from, 2, { anim: false }), b = UI.sp(to, 2); a.classList.add('evo-out'); b.classList.add('evo-in'); add(stage, el('div', 'rays'), a, b);
+      const kf = H.FORMS[to], kk = H.kitOf(to), stage = el('div', 'evostage'), a = UI.sp(from, 2.4, { anim: false }), b = UI.sp(to, 2.4); a.classList.add('evo-out'); b.classList.add('evo-in'); add(stage, el('div', 'rays'), a, b);
       const s = UI.modal(stage, txt('disp big center evo-txt', kf.n), txt('center evo-txt', H.ROLES[kk.role].d), key(tr('Great'), UI.closeModal, 'go wide big evo-txt')); s.classList.add('evosheet');
       if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 1250);
     };

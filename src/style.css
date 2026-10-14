@@ -283,9 +283,9 @@ button.foerow { width: 100%; text-align: left; font: inherit; color: inherit; cu
 .maprow canvas.bgc { border-radius: calc(var(--u) * 3); flex: none; } .maprow b { font-family: var(--f-display); font-size: calc(var(--u) * 7.5); } .maprow.here { background: #fff3c2; } .maprow.hushed b { color: var(--dim); }
 
 /* ---------- evolving, and a record ---------- */
-.evostage { position: relative; height: calc(var(--u) * 72); display: flex; align-items: flex-end; justify-content: center; overflow: hidden; border-radius: calc(var(--u) * 8); }
+.evostage { position: relative; height: calc(var(--u) * 124); margin: calc(var(--u) * -2) 0; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; border-radius: calc(var(--u) * 8); }
 .evostage .rays { position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 220); height: calc(var(--u) * 220); margin: calc(var(--u) * -110); background: repeating-conic-gradient(rgba(255, 201, 40, 0.45) 0 12deg, transparent 12deg 24deg); border-radius: 50%; opacity: 0; animation: fadein 0.6s 1.1s forwards, spin 18s linear infinite; }
-.evostage canvas.spr { position: absolute; bottom: 0; }
+.evostage canvas.spr { position: absolute; bottom: calc(var(--u) * 4); }
 .evostage canvas.evo-out { animation: evout 1.3s ease-in forwards; } @keyframes evout { 30% { filter: brightness(1.6); transform: scale(1.04); } 55% { filter: brightness(3) saturate(0); transform: scale(0.96); } 80% { filter: brightness(6) saturate(0); transform: scale(1.12); opacity: 1; } 100% { filter: brightness(8) saturate(0); transform: scale(1.3); opacity: 0; } }
 .evostage canvas.evo-in { opacity: 0; animation: evoin 0.6s 1.15s cubic-bezier(0.2, 1.6, 0.4, 1) forwards; } @keyframes evoin { from { opacity: 0; transform: scale(0.2); filter: brightness(5); } to { opacity: 1; transform: scale(1); filter: none; } }
 .evo-txt { opacity: 0; animation: fadein 0.5s 1.5s forwards; }
