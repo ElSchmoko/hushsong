@@ -76,3 +76,14 @@
 0dw3c79	Her 2 turda bir aile değiştirir, CP'si %40'ın altına inince hızlanır. Ayakta olduğu sürece arkadaşları %15 daha az hasar alır.
 0gx2g8q	Tüm grubu %50 iyileştirir. Grup arkadaşları sonraki vuruştan kaçar ve sıradaki turları öne gelir.
 0zfx8pe	Her düşman savaşa tur sırasında daha geride ve 1 tur Yavaş başlar.
+1dtr4y4	Diğer dostların taktıkları
+1u4qftu	{n} üzerinden alındı.
+1xspbs7	Başka bir dosta ver
+1wufhjy	Bir dosta tak
+15jqxfb	Bu Efsanevi parça satılsın mı?
+1alfeh8	{item} nadirdir ve yeniden bulmak zordur.
+1p5is0e	Artık {n} takıyor. {m} üzerinden alındı.
+067obx2	Artık {n} takıyor.
+18hvg1l	Hangi parçanın yerine geçsin?
+0emtdf5	Seçtiğin parça çantana geri döner.
+0sznj2r	Kim taksın?

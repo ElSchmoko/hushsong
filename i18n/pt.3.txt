@@ -76,3 +76,14 @@
 0dw3c79	Muda de família a cada 2 turnos e acelera abaixo de 40% do PV. Enquanto estiver de pé, seus amigos recebem 15% menos dano.
 0gx2g8q	Cura a banda toda em 50%. Seus colegas esquivam do próximo golpe e jogam o próximo turno mais cedo.
 0zfx8pe	Cada inimigo começa a batalha mais atrás na ordem de turnos, e Lento por 1 turno.
+1dtr4y4	Usado por outros bichinhos
+1u4qftu	Tirado de {n}.
+1xspbs7	Dar a outro bichinho
+1wufhjy	Equipar num bichinho
+15jqxfb	Vender este Lendário?
+1alfeh8	{item} é raro e difícil de achar de novo.
+1p5is0e	Agora {n} está usando. Tirado de {m}.
+067obx2	Agora {n} está usando.
+18hvg1l	Qual peça substituir?
+0emtdf5	A peça escolhida volta para a bolsa.
+0sznj2r	Quem vai usar?

@@ -76,3 +76,14 @@
 0dw3c79	Cambia famiglia ogni 2 turni e accelera sotto il 40% dei PS. Finché è in piedi, i suoi amici subiscono il 15% di danni in meno.
 0gx2g8q	Cura tutta la band del 50%. I suoi compagni schivano il prossimo colpo e anticipano il loro turno.
 0zfx8pe	Ogni nemico inizia la battaglia più indietro nell'ordine dei turni, e Lento per 1 turno.
+1dtr4y4	Indossato da altri cuccioli
+1u4qftu	Tolto a {n}.
+1xspbs7	Dallo a un altro cucciolo
+1wufhjy	Equipaggia un cucciolo
+15jqxfb	Vendere questo Leggendario?
+1alfeh8	{item} è raro e difficile da ritrovare.
+1p5is0e	Ora lo indossa {n}. Tolto a {m}.
+067obx2	Ora lo indossa {n}.
+18hvg1l	Quale pezzo sostituisce?
+0emtdf5	Il pezzo scelto torna nella tua borsa.
+0sznj2r	Chi deve indossarlo?

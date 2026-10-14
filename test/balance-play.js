@@ -22,3 +22,18 @@ S.newfight = async ({ sleep, shot, evalS }) => {
   await evalS(S.inject, { pets: ['dixie', 'rumba', 'pirate'], level: 40, stage: 81, auto: true, speed: 2, go: 'battle', params: { n: 76 } });
   for (let i = 0; i < 10; i++) { await sleep(2600); await shot('fight-' + i); }
 };
+S.gear = async ({ p, sleep, shot, evalS }) => {
+  await evalS(S.inject, { pets: ['march', 'ballad', 'riff', 'jukebox'], level: 45, stage: 81, items: 7, wear: 5, legs: ['ring'] });
+  // a pet's slot shows pieces other pets wear
+  await evalS(() => { const H = window.H, S = H.UI.S; S.team = S.pets.slice(0, 3).map((x) => x.id); H.UI.go('pet', { id: S.pets[3].id, back: 'pets' }); }); await sleep(400);
+  await p.locator('button:has-text("Empty slot")').first().click(); await sleep(400); await shot('slot-sheet'); await p.mouse.wheel(0, 600); await sleep(200); await shot('slot-sheet-2');
+  await p.locator('.sheet button.item:has(canvas)').first().click(); await sleep(500); await shot('taken');
+  // from the bag: equip a spare piece on a pet
+  await evalS(() => window.H.UI.go('bag')); await sleep(400);
+  const spare = p.locator('#game button.item:not(:has(canvas.who))').first(); await spare.click(); await sleep(300); await shot('bag-sheet');
+  await p.locator('button:has-text("Equip on a pet")').click(); await sleep(300); await shot('who');
+  await p.locator('.sheet button.item:has(canvas)').first().click(); await sleep(400); await shot('replace-or-done');
+  // selling a Legendary asks first
+  await evalS(() => { const H = window.H, S = H.UI.S; H.UI.closeModal(); for (const x of S.pets) x.gear = x.gear.map((g) => { const it = g && H.itemById(S, g); return it && it.rar === 'l' ? null : g; }); H.UI.go('bag'); }); await sleep(300);
+  await p.locator('#game button.item.r-l').first().click(); await sleep(300); await p.locator('button:has-text("Sell")').first().click(); await sleep(300); await shot('sell-legend');
+};

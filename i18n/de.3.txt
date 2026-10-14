@@ -76,3 +76,14 @@
 0dw3c79	Wechselt alle 2 Züge die Familie und wird unter 40 % LP schneller. Solange es steht, erleiden seine Freunde 15 % weniger Schaden.
 0gx2g8q	Heilt die ganze Band um 50 %. Seine Bandmitglieder weichen dem nächsten Treffer aus und sind früher wieder am Zug.
 0zfx8pe	Jeder Gegner beginnt den Kampf weiter hinten in der Zugreihenfolge und für 1 Runde Langsam.
+1dtr4y4	Von anderen Tieren getragen
+1u4qftu	{n} abgenommen.
+1xspbs7	Einem anderen Tier geben
+1wufhjy	Einem Tier anlegen
+15jqxfb	Dieses Legendäre verkaufen?
+1alfeh8	{item} ist selten und schwer wiederzufinden.
+1p5is0e	{n} trägt es jetzt. {m} abgenommen.
+067obx2	{n} trägt es jetzt.
+18hvg1l	Welches Teil soll es ersetzen?
+0emtdf5	Das gewählte Teil kommt zurück in deine Tasche.
+0sznj2r	Wer soll es tragen?

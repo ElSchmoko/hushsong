@@ -76,3 +76,14 @@
 0dw3c79	Change de famille tous les 2 tours et accélère sous 40 % de PV. Tant qu'il tient debout, ses amis subissent 15 % de dégâts en moins.
 0gx2g8q	Soigne tout le groupe de 50 %. Ses coéquipiers esquivent le prochain coup et rejouent plus tôt.
 0zfx8pe	Chaque ennemi commence le combat plus loin dans l'ordre des tours, et en Lenteur pendant 1 tour.
+1dtr4y4	Porté par d'autres compagnons
+1u4qftu	Pris à {n}.
+1xspbs7	Le donner à un autre compagnon
+1wufhjy	Équiper un compagnon
+15jqxfb	Vendre cette pièce Légendaire ?
+1alfeh8	{item} est rare et difficile à retrouver.
+1p5is0e	{n} le porte maintenant. Pris à {m}.
+067obx2	{n} le porte maintenant.
+18hvg1l	Quelle pièce remplacer ?
+0emtdf5	La pièce choisie retourne dans ton sac.
+0sznj2r	Qui doit le porter ?

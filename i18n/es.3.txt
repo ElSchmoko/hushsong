@@ -76,3 +76,14 @@
 0dw3c79	Cambia de familia cada 2 turnos y acelera por debajo del 40% de PV. Mientras siga en pie, sus amigos reciben un 15% menos de daño.
 0gx2g8q	Cura a toda la banda un 50%. Sus compañeros esquivan el siguiente golpe y adelantan su siguiente turno.
 0zfx8pe	Cada enemigo empieza la batalla más atrás en el orden de turnos y Lento durante 1 turno.
+1dtr4y4	Lo llevan otras mascotas
+1u4qftu	Quitado a {n}.
+1xspbs7	Dárselo a otra mascota
+1wufhjy	Equipar a una mascota
+15jqxfb	¿Vender este Legendario?
+1alfeh8	{item} es raro y difícil de volver a encontrar.
+1p5is0e	Ahora lo lleva {n}. Quitado a {m}.
+067obx2	Ahora lo lleva {n}.
+18hvg1l	¿Qué pieza reemplaza?
+0emtdf5	La pieza que elijas vuelve a tu bolsa.
+0sznj2r	¿Quién debe llevarlo?

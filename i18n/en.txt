@@ -1171,6 +1171,8 @@
 08kj2qr	Done! Head back and battle on.	ui-screens	
 19ky8vr	Nothing else in your bag.	ui-screens	
 0ggizsd	Your bag is empty.	ui-screens	
+1dtr4y4	Worn by other pets	ui-screens	
+1u4qftu	Taken from {n}.	ui-screens	
 1j0zoai	Nothing here yet	ui-screens	
 0musznz	Battles sometimes drop equipment.	ui-screens	
 0am4v1q	3 spare pieces of one kind merge into a better one.	ui-screens	
@@ -1179,11 +1181,20 @@
 0h4pk9n	<b>{n}</b> is wearing this.	ui-screens	
 0rrnf75	Nobody is wearing this.	ui-screens	
 0xide7m	Take it off {n}	ui-screens	
+1xspbs7	Give to another pet	ui-screens	
 03295io	Go to {n}	ui-screens	
+1wufhjy	Equip on a pet	ui-screens	
 0ngmxng	Merge 3 → {n}	ui-screens	
 0u2ons2	Every Legendary of this kind is yours.	ui-screens	
 0br649q	Merge: {length} / 3 spare	ui-screens	
+15jqxfb	Sell this Legendary?	ui-screens	
+1alfeh8	{item} is rare and hard to find again.	ui-screens	
 1pquyhx	Sell	ui-screens	
+1p5is0e	{n} wears it now. Taken from {m}.	ui-screens	
+067obx2	{n} wears it now.	ui-screens	
+18hvg1l	Which piece should it replace?	ui-screens	
+0emtdf5	The piece you pick goes back to your bag.	ui-screens	
+0sznj2r	Who should wear it?	ui-screens	
 0ix7gem	Opens after the boss on floor 10.	ui-screens	
 067l7h2	Beaten bosses return at <b>your level</b>.	ui-screens	
 12rgeuk	All won this week	ui-screens	

@@ -440,6 +440,9 @@
       if (cur) kids.push(UI.itemRow(cur), key(tr('Take it off'), () => { H.unequip(S, pet, slot); UI.save(); UI.closeModal(); draw(); }, 'wide soft sm'));
       if (spare.length) { kids.push(txt('label', cur ? tr('Swap for') : tr('In your bag'))); spare.forEach((it) => { const b = UI.itemRow(it, 'button'); b.addEventListener('click', () => { H.equip(S, pet, slot, it.id); Au.sfx('good'); if (taught) S.flags.coach = 'go'; UI.save(); UI.closeModal(); draw(); if (taught) UI.toast(tr('Done! Head back and battle on.')); }); kids.push(b); }); }
       else kids.push(txt('dim center', cur ? tr('Nothing else in your bag.') : tr('Your bag is empty.')));
+      // pieces other pets wear can move over from here; the wearer's slot is left empty
+      const worn = S.items.filter((it) => { const o = H.itemOwner(S, it.id); return o && o !== pet; }).sort((a, b) => H.itemRank(b) - H.itemRank(a));
+      if (worn.length) { kids.push(txt('label', tr('Worn by other pets'))); worn.forEach((it) => { const o = H.itemOwner(S, it.id), b = UI.itemRow(it, 'button', UI.sp(o.form, 0.5, { anim: false })); b.addEventListener('click', () => { H.equip(S, pet, slot, it.id); Au.sfx('good'); UI.save(); UI.closeModal(); draw(); UI.toast(tr('Taken from {n}.', { n: H.FORMS[o.form].n })); }); kids.push(b); }); }
       kids.push(key(tr('Close'), UI.closeModal, 'wide')); UI.modal(...kids);
     };
     draw(); if (openGear) { openGear = false; gearSheet(pet.gear[0] ? 1 : 0); }
@@ -464,14 +467,38 @@
     const sheet = (it) => {
       const who = H.itemOwner(S, it.id), kids = [UI.itemRow(it), who ? txt('center', tr('<b>{n}</b> is wearing this.', { n: H.FORMS[who.form].n })) : txt('center dim', tr('Nobody is wearing this.'))];
       // take it off right here, without a trip to the pet's page; the sheet then shows the piece as spare
-      if (who) kids.push(key(tr('Take it off {n}', { n: H.FORMS[who.form].n }), () => { H.unequip(S, who, who.gear.indexOf(it.id)); Au.sfx('back'); UI.save(); draw(); sheet(it); }, 'wide gold'), key(tr('Go to {n}', { n: H.FORMS[who.form].n }), () => UI.go('pet', { id: who.id, back: 'bag' }), 'wide soft'));
+      if (who) kids.push(key(tr('Take it off {n}', { n: H.FORMS[who.form].n }), () => { H.unequip(S, who, who.gear.indexOf(it.id)); Au.sfx('back'); UI.save(); draw(); sheet(it); }, 'wide gold'), key(tr('Give to another pet'), () => wearer(it), 'wide soft'), key(tr('Go to {n}', { n: H.FORMS[who.form].n }), () => UI.go('pet', { id: who.id, back: 'bag' }), 'wide soft'));
       else {
+        kids.push(key(tr('Equip on a pet'), () => wearer(it), 'wide go'));
         if (H.canMerge(S, it)) { const m = key(tr('Merge 3 → {n}', { n: H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n }), () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
         else if (it.rar === 'e' && !H.freeLegends(S, it.type).length) kids.push(txt('small dim center', tr('Every Legendary of this kind is yours.')));
         else if (it.rar !== 'l') kids.push(txt('small dim center', tr('Merge: {length} / 3 spare', { length: H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length })));
-        const sell = key('', () => { H.sellItem(S, it.id); Au.sfx('coin'); UI.save(); UI.closeModal(); draw(); }, 'wide soft'); add(sell, tr('Sell') + ' · ', UI.icon('ic_note'), String(H.RARITY[it.rar].sell)); kids.push(sell);
+        const doSell = () => { H.sellItem(S, it.id); Au.sfx('coin'); UI.save(); UI.closeModal(); draw(); };
+        // a Legendary is never sold by a slip of the finger
+        const sell = key('', () => (it.rar === 'l' ? UI.confirm(tr('Sell this Legendary?'), tr('{item} is rare and hard to find again.', { item: H.itemName(it) }), tr('Sell'), doSell, 'coral') : doSell()), 'wide soft'); add(sell, tr('Sell') + ' · ', UI.icon('ic_note'), String(H.RARITY[it.rar].sell)); kids.push(sell);
       }
       kids.push(key(tr('Close'), UI.closeModal, 'wide')); UI.modal(...kids);
+    };
+    // who should wear a piece: the band first, then everyone else; a pet with both slots full picks which piece goes back to the bag
+    const wearer = (it) => {
+      const band = H.teamPets(S).filter(Boolean), rest = S.pets.filter((p) => !band.includes(p)).sort((a, b) => H.petTier(b) - H.petTier(a) || (b.rank || 0) - (a.rank || 0));
+      const put = (p, slot) => { const from = H.itemOwner(S, it.id); H.equip(S, p, slot, it.id); Au.sfx('good'); UI.save(); UI.closeModal(); draw(); UI.toast(from && from !== p ? tr('{n} wears it now. Taken from {m}.', { n: H.FORMS[p.form].n, m: H.FORMS[from.form].n }) : tr('{n} wears it now.', { n: H.FORMS[p.form].n })); };
+      const row = (p) => {
+        const b = el('button', 'item'); b.type = 'button'; add(b, UI.sp(p.form, 0.55, { anim: false }), el('div', 'grow', `<b>${H.FORMS[p.form].n}</b>`));
+        const icons = box('row'); p.gear.forEach((id) => { const g = id && H.itemById(S, id); icons.appendChild(g ? UI.icon(A.itemIcon(g), 0.9) : UI.icon('ic_plus', 0.7)); }); b.appendChild(icons);
+        if (p.gear.includes(it.id)) b.disabled = true;
+        b.addEventListener('click', () => {
+          Au.sfx('tap'); const free = p.gear.indexOf(null); if (free >= 0) return put(p, free);
+          const kids = [txt('disp', tr('Which piece should it replace?')), txt('small dim', tr('The piece you pick goes back to your bag.'))];
+          p.gear.forEach((id, slot) => { const g = H.itemById(S, id), r = UI.itemRow(g, 'button'); r.addEventListener('click', () => put(p, slot)); kids.push(r); });
+          kids.push(key(tr('Back'), () => wearer(it), 'wide soft')); UI.modal(...kids);
+        });
+        return b;
+      };
+      const kids = [txt('disp', tr('Who should wear it?')), UI.itemRow(it)];
+      if (band.length) kids.push(txt('label', tr('Band')), ...band.map(row));
+      if (rest.length) kids.push(txt('label', tr('Pets')), ...rest.map(row));
+      kids.push(key(tr('Back'), () => sheet(it), 'wide soft')); UI.modal(...kids);
     };
     draw();
   };
