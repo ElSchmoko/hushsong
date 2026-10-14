@@ -132,7 +132,7 @@
   UI.screens.home = (root) => {
     const S = UI.S, st = H.stage(S.stage), R = H.REGIONS[st.region]; UI.music('camp', st.region);
     root.appendChild(statusBar());
-    const hh = Math.max(100, UI.Hh - 172), hero = el('div', 'hero'); const set = homeSet(S), mode = H.SETS[set] ? null : hereMode(S); add(hero, UI.bgEl(set, UI.W, hh + 14, 0.46, mode), ambience(mode === 'hush' ? 'hush' : 'sing', 5));
+    const hh = Math.max(100, UI.Hh - 144), hero = el('div', 'hero'); const set = homeSet(S), mode = H.SETS[set] ? null : hereMode(S); add(hero, UI.bgEl(set, UI.W, hh + 14, 0.46, mode), ambience(mode === 'hush' ? 'hush' : 'sing', 5));
     add(hero, add(el('div', 'zone'), txt('chip', R.n), txt('disp', (st.boss ? 'Boss floor ' : 'Floor ') + S.stage), songChip(S)));
     const trio = el('button', 'trio'); trio.type = 'button'; trio.setAttribute('aria-label', 'Your band'); const big = hh > 200 ? 1.75 : hh > 150 ? 1.5 : 1.25;
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
@@ -140,20 +140,50 @@
     const modes = el('div', 'modes');
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', (st.boss ? 'Boss · ' : '') + `Foes Lv ${st.level}`)));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
-    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls + (pip === '!' && cls !== 'day' ? ' fresh' : '')); b.type = 'button'; add(b, add(el('span', 'micon'), UI.icon(icon, 1.25)), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
-    if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
-    // a mode you cannot play yet looks like the others, greyed, with a small lock and when it opens
-    const later = (cls, icon, name, sub, text) => { const b = small(cls + ' locked', icon, name, sub, () => UI.toast(text)); b.querySelector('.micon').appendChild(UI.icon('ic_lock', 0.62)); b.setAttribute('aria-label', name + ', locked. ' + sub); return b; };
-    const atLv = (cls, icon, name, lv, go, sub, pip) => (S.level >= lv ? small(cls, icon, name, sub, go, pip) : later(cls, icon, name, 'Unlocks at Level ' + lv, `${name} unlocks at level ${lv}.`));
-    H.refreshEncore(S); const E = S.encore, eSub = S.encoreRun ? `Wave ${S.encoreRun.wave} next` : E.weekBest ? `Best this week: ${E.weekBest}` : 'Endless waves';
-    const D = H.dailyStatus(S), soloSub = S.soloRun ? `Gig ${Math.min(5, H.soloGigsWon(S.soloRun) + 1)} of 5 next` : H.soloPaidLeft(S) ? 'Rewards today' : 'Play for fun';
-    const reh = S.stage > 10 ? small('reh', 'ic_baton', 'Rehearsal', open ? open + ' open' : 'Boss replays', 'rehearsal', open) : later('reh', 'ic_baton', 'Rehearsal', 'Unlocks after floor 10', 'Rehearsal unlocks after the boss on floor 10.');
-    add(modes, box('mgrid', reh, atLv(S.flags.seenDaily ? 'day' : 'day fresh', 'ic_ticket', 'Daily Gig', H.DAILY.unlock, 'daily', D.won ? 'Won today' : H.TWISTS[D.twist].n, D.won ? 0 : '!'),
-      atLv('solo', 'ic_solo', 'Solo', H.SOLO.unlock, 'solo', soloSub, S.flags.seenSolo ? 0 : '!'), atLv('enc', 'ic_mic', 'Encore', H.ENCORE.unlock, 'encore', eSub, S.flags.seenEnc ? 0 : '!')));
-    // records are goals, not a mode: they live on a small button over the home scene
-    const rec = el('button', 'recbtn'); rec.type = 'button'; rec.setAttribute('aria-label', 'Records' + (ready ? `, ${ready} ready` : '')); add(rec, UI.icon('ic_record', 1.15)); if (ready) rec.appendChild(el('span', 'pip', String(ready)));
-    rec.addEventListener('click', () => { Au.sfx('tap'); UI.go('records'); }); hero.appendChild(rec);
+    const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls); b.type = 'button'; add(b, add(el('span', 'micon'), UI.icon(icon, 1.25)), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
+    // the side modes live on the Gig Board; its button names the most pressing thing there
+    const G = gigNews(S), ready = H.recordsReady(S), done = H.RECORDS.filter((r) => S.records[r.id]).length;
+    add(modes, box('mrow', small('gigs' + (G.fresh ? ' fresh' : ''), 'ic_ticket', 'Gigs', G.line, 'gigs', G.pips || (G.fresh ? '!' : 0)),
+      small('rec', 'ic_record', 'Records', ready ? ready + ' ready' : `${done} of ${H.RECORDS.length}`, 'records', ready)));
     root.appendChild(modes); root.appendChild(UI.nav('home'));
+  };
+
+  // what the Gig Board has going on: a line for the Home button, and how many things want a look
+  const gigNews = (S) => {
+    if (H.refreshRehearsals(S)) UI.save(); H.refreshEncore(S);
+    const reh = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, day = H.dailyOpen(S) && !H.dailyStatus(S).won, solo = H.soloOpen(S) && H.soloPaidLeft(S) > 0;
+    const fresh = (H.dailyOpen(S) && !S.flags.seenDaily) || (H.soloOpen(S) && !S.flags.seenSolo) || (H.encoreOpen(S) && !S.flags.seenEnc);
+    const line = day ? 'Daily Gig ready' : S.soloRun ? 'Solo tour on the road' : S.encoreRun ? `Encore wave ${S.encoreRun.wave} next` : reh ? `${reh} rehearsal${reh === 1 ? '' : 's'} open` : solo ? 'Solo pays today' : S.stage <= 10 && !H.dailyOpen(S) ? 'First gig at level ' + H.DAILY.unlock : 'All played today';
+    return { line, pips: (day ? 1 : 0) + reh, fresh };
+  };
+
+  /* ================= the Gig Board: every side mode as a poster pinned to a board ================= */
+  UI.screens.gigs = (root) => {
+    const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshRehearsals(S)) UI.save(); H.refreshEncore(S);
+    root.appendChild(UI.topbar('Gigs', () => UI.go('home'), UI.wallet()));
+    const board = el('div', 'board scroll'), grid = el('div', 'flyers');
+    const pin = (cls, open, lockText, build, go, pip, tilt) => {
+      const f = el('button', 'flyer ' + cls + (open ? '' : ' wrapped')); f.type = 'button'; f.style.setProperty('--tilt', tilt + 'deg');
+      f.appendChild(el('i', 'tack'));
+      if (open) { build(f); if (pip) f.appendChild(el('span', 'pip', String(pip))); f.addEventListener('click', () => { Au.sfx('tap'); UI.go(go, {}); }); }
+      else { build(f); f.appendChild(add(el('div', 'wrap'), el('i', 'string'), el('b', '', lockText))); f.setAttribute('aria-label', lockText); f.addEventListener('click', () => { Au.sfx('tap'); UI.toast(lockText + '.'); }); }
+      grid.appendChild(f); return f;
+    };
+    // Daily Gig: today's poster, biggest, at the top
+    const D = H.dailyOpen(S) ? H.dailyStatus(S) : H.gigOf(H.dayOf(Date.now())), T = H.TWISTS[D.twist];
+    pin('daily', H.dailyOpen(S), 'Unlocks at Level ' + H.DAILY.unlock, (f) => add(f, txt('fkick', 'Daily Gig'), add(el('div', 'frow'), UI.icon(A.twistIcon(D.twist), 2.2), add(el('div', 'grow'), el('b', 'ftitle', T.n), txt('fsub', D.venue))),
+      H.dailyOpen(S) && D.won ? UI.stamp('Won today', 'green still') : null), 'daily', D.won ? 0 : '!', -1.5);
+    // Solo: a spotlight flyer with today's pay
+    const P = (H.refreshSolo(S), S.solo), pays = [0, 1, 2, 3, 4].map((i) => i < P.gigs).concat([!!P.boss]);
+    pin('solo', H.soloOpen(S), 'Unlocks at Level ' + H.SOLO.unlock, (f) => add(f, el('i', 'spot'), txt('fkick', 'Solo'), UI.icon('ic_solo', 2), el('b', 'ftitle', S.soloRun ? `Gig ${Math.min(5, S.soloRun.gigs + 1)} of 5` : 'Solo Tour'),
+      add(el('div', 'dots'), ...pays.map((g, i) => el('i', (g ? 'got' : '') + (i === 5 ? ' boss' : ''))))), 'solo', S.flags.seenSolo ? 0 : '!', 2);
+    // Encore: neon on dark
+    const E = S.encore;
+    pin('enc', H.encoreOpen(S), 'Unlocks at Level ' + H.ENCORE.unlock, (f) => add(f, txt('fkick', 'Encore'), el('b', 'neonw', 'Encore'), UI.icon('ic_mic', 1.6), txt('fsub', S.encoreRun ? `Wave ${S.encoreRun.wave} next` : `Best this week: ${E.weekBest}`)), 'encore', S.flags.seenEnc ? 0 : '!', -2);
+    // Rehearsal: sheet music
+    const open = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, days = H.daysToReset(Date.now());
+    pin('reh', S.stage > 10, 'Unlocks after floor 10', (f) => add(f, el('i', 'staff'), add(el('div', 'frow'), UI.icon('ic_baton', 1.9), add(el('div', 'grow'), txt('fkick', 'Rehearsal'), el('b', 'ftitle', open ? `${open} boss${open === 1 ? '' : 'es'} open` : 'All played'), txt('fsub', `Resets ${days === 1 ? 'tomorrow' : `in ${days} days`}`)))), 'rehearsal', open, 1);
+    board.appendChild(grid); root.appendChild(board); root.appendChild(UI.nav('home'));
   };
 
   /* ================= adventure: the next floor, who is waiting on it, and the battle buttons ================= */
@@ -448,7 +478,7 @@
   /* ================= rehearsal: a beaten boss again, at your own level, for an echo ================= */
   UI.screens.rehearsal = (root) => {
     const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshRehearsals(S)) UI.save();
-    root.appendChild(UI.topbar('Rehearsal', () => UI.go('home'), UI.wallet()));
+    root.appendChild(UI.topbar('Rehearsal', () => UI.go('gigs'), UI.wallet()));
     const body = el('div', 'scroll'), pad = el('div', 'pad'); pad.style.paddingTop = '0';
     const list = H.rehearsals(S).reverse();
     if (!list.length) add(pad, box('row center', UI.icon('ic_baton', 3)), txt('dim center', 'Opens after the boss on floor 10.'));
@@ -469,7 +499,7 @@
   UI.screens.encore = (root) => {
     const S = UI.S; UI.music('camp', regionOf(S.stage)); if (H.refreshEncore(S)) UI.save(); S.flags.seenEnc = 1;
     const E = S.encore, run = S.encoreRun, M = H.ENCORE.miles;
-    root.appendChild(UI.topbar('Encore', () => UI.go('home'), UI.wallet()));
+    root.appendChild(UI.topbar('Encore', () => UI.go('gigs'), UI.wallet()));
     const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot'); pad.style.paddingTop = 'calc(var(--u) * 4)';
     if (!H.encoreOpen(S)) {
       add(pad, box('row center', UI.icon('ic_lock', 3)), txt('dim center', `Encore opens at level ${H.ENCORE.unlock}.`));

@@ -17,7 +17,7 @@
     const S = UI.S; if (!H.dailyOpen(S)) return UI.go('home');
     if (H.refreshDaily(S)) UI.save(); S.flags.seenDaily = 1;
     const st = H.dailyStage(S), T = H.TWISTS[st.twist], R = H.REGIONS[st.region], won = S.daily.won; UI.music('camp', st.region);
-    root.appendChild(UI.topbar('Daily Gig', () => UI.go('home'), UI.wallet()));
+    root.appendChild(UI.topbar('Daily Gig', () => UI.go('gigs'), UI.wallet()));
     const sh = UI.Hh - 30 - 86, scene = el('div', 'gigscene');
     add(scene, UI.bgEl(st.region, UI.W, sh, 0.55, 'sing'), el('div', 'nightwash'), el('div', 'beam l'), el('div', 'beam r'), lights(9));
     const poster = el('div', 'poster' + (won ? ' won' : ''));
@@ -58,7 +58,7 @@
     const S = UI.S; if (!H.soloOpen(S)) return UI.go('home');
     if (H.refreshSolo(S)) UI.save(); S.flags.seenSolo = 1; UI.music('camp', 'hall');
     const P = S.solo, run = S.soloRun;
-    root.appendChild(UI.topbar('Solo', () => UI.go('home'), UI.wallet()));
+    root.appendChild(UI.topbar('Solo', () => UI.go('gigs'), UI.wallet()));
     const hh = Math.max(84, Math.min(118, UI.Hh - 260)), hero = el('div', 'solohero'); hero.style.height = `calc(var(--u) * ${hh})`;
     add(hero, UI.bgEl('spot', UI.W, hh, 0.62), el('div', 'cone l'), el('div', 'cone r'), add(el('div', 'stitle'), el('div', 'logo small', 'Solo Tour'), txt('tag', 'One pet · five gigs · one boss')));
     root.appendChild(hero);
@@ -129,7 +129,7 @@
     if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', { solo: 1 }) : UI.go('solostop');
     const pet = H.petById(S, run.pet); if (!pet) { H.endSolo(S); return UI.go('solo'); }
     UI.music('camp', run.region);
-    const bar = el('div', 'bar'); add(bar, UI.key('‹ Home', () => { Au.sfx('back'); UI.go('home'); }, 'soft sm'), el('div', 'disp', H.REGIONS[run.region].n + ' tour'), UI.gearKey(() => UI.settings(key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
+    const bar = el('div', 'bar'); add(bar, UI.key('‹ Gigs', () => { Au.sfx('back'); UI.go('gigs'); }, 'soft sm'), el('div', 'disp', H.REGIONS[run.region].n + ' tour'), UI.gearKey(() => UI.settings(key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
     root.appendChild(bar); root.appendChild(hud(S));
     const W = UI.W, rows = H.SOLO.rows.length, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
     const pos = (n) => (n ? { x: xOf(n), y: yOf(n.r) + (n.dy || 0) } : { x: W / 2, y: MH - BOT + 4 });

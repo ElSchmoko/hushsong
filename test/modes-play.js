@@ -6,7 +6,8 @@ S.modes = async ({ p, shot, tap, has, sleep, evalS, waitBattle }) => {
   await sleep(300); await shot('home');
   await evalS(() => { const UI = window.H.UI; UI.S.level = 3; UI.go('home'); }); await sleep(200); await shot('home-locked');
   await evalS(() => { const UI = window.H.UI; UI.S.level = 12; UI.go('home'); }); await sleep(100);
-  await tap('Daily Gig'); await sleep(700); await shot('daily');
+  await p.locator('.mode.gigs').click(); await sleep(400); await shot('gigs'); await evalS(() => { const UI = window.H.UI; UI.S.level = 3; UI.S.stage = 8; UI.go('gigs'); }); await sleep(300); await shot('gigs-locked'); await evalS(() => { const UI = window.H.UI; UI.S.level = 12; UI.S.stage = 27; UI.go('gigs'); }); await sleep(200);
+  await p.locator('.flyer.daily').click(); await sleep(700); await shot('daily');
   await tap('Play the gig'); await sleep(1500); await shot('daily-intro');
   await sleep(1400); await p.mouse.click(200, 300); await sleep(900); await shot('daily-battle');
   await p.evaluate(() => { const b = [...document.querySelectorAll('.key.tog')].find((x) => x.textContent === 'Auto'); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); }); await waitBattle(); await sleep(300); await shot('daily-result');
