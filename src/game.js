@@ -181,10 +181,10 @@
   };
 
   /* ---------- Encore: endless waves for a band that has grown up (level 20+) ----------
-     Each wave is three Din a little below your level (2 levels and 8%), 5% tougher every wave; every fifth wave is led by a boss.
+     Each wave is three Din a little below your level (2 levels and 9%), 4.5% tougher every wave; every fifth wave is led by a boss.
      The band is set when the run starts. HP carries over (a quarter of it comes back between waves) and fallen pets stay down.
      Reaching wave 5, 10, 15 and 20 pays once a week; the week starts on Monday, as for rehearsals. */
-  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.08, step: 0.05, heal: 0.25, bossK: 0.88, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
+  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.09, step: 0.045, heal: 0.25, bossK: 0.865, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
   H.encoreOpen = (S) => S.level >= H.ENCORE.unlock;
   H.refreshEncore = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms), E = (S.encore = S.encore || { week: w, paid: 0, best: 0, weekBest: 0 }); if (E.week === w) return false; E.week = w; E.paid = 0; E.weekBest = 0; return true; };
   H.encoreStage = (S, wave) => {

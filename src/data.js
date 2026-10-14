@@ -802,7 +802,7 @@
 
   // Enemies gain 10% per level like pets do, times a slow extra curve that stands in for everything else a team gains over time
   // (a third pet, evolving, stars, equipment). Tuned by simulation so floors 41-100 push back harder than 1-40, and floors past 100 harder still: [enemy level, HP multiplier].
-  H.DIN_CURVE = [[1, 1], [5, 1.35], [9, 1.52], [18, 2.05], [45, 2.55], [60, 3.1], [89, 3.2], [177, 3.6], [440, 4.5]];
+  H.DIN_CURVE = [[1, 1], [5, 1.35], [9, 1.52], [18, 2.05], [45, 2.52], [60, 3.03], [89, 3.25], [177, 3.72], [440, 4.7]];
   H.BOSS_K = [0.8, 1.0]; H.PLAIN_K = [1.08, 1.04];
   // the first two adventure bosses are a little softer (HP and Power); rehearsals use the full boss
   H.EARLY_BOSS_K = { 10: 0.9, 20: 0.88 };
@@ -814,15 +814,15 @@
   H.MID_K = { to: Infinity, fade: 10, plain: 0.1, boss: 0.1 };
   // the finale boss on every 100th floor is already the toughest wall, so it keeps its strength
   // From floor 41 the weight moves from bosses to everyone else: ordinary floors get tougher, bosses lean more on their own mechanics.
-  H.DEEP_K = { from: 40, ramp: 10, plain: 0.15, boss: -0.12 };
+  H.DEEP_K = { from: 40, ramp: 10, plain: 0.11, boss: -0.1 };
   H.lateK = (n, boss) => {
     const L = H.LATE_K, M = H.MID_K, Dp = H.DEEP_K, t = Math.max(0, Math.min(1, (n - L.from) / L.ramp)), m = t * Math.max(0, Math.min(1, 1 - (n - M.to) / M.fade)), d = Math.max(0, Math.min(1, (n - Dp.from) / Dp.ramp));
     return boss && n % 100 === 0 ? 1 : 1 + t * (boss ? L.boss : L.plain) + m * (boss ? M.boss : M.plain) + d * (boss ? Dp.boss : Dp.plain);
   };
   H.dinMult = (L) => { const C = H.DIN_CURVE, x = Math.log(L); let i = 0; while (i < C.length - 2 && L > C[i + 1][0]) i++; const x0 = Math.log(C[i][0]), x1 = Math.log(C[i + 1][0]); return Math.max(1, C[i][1] + ((C[i + 1][1] - C[i][1]) * (x - x0)) / (x1 - x0)); };
-  // Power takes a part of the extra curve: 45% of it up to enemy level 18 (floor 40), growing to 60% by level 45 (floor 100),
+  // Power takes a part of the extra curve: 45% of it up to enemy level 18 (floor 40), growing to 55% by level 45 (floor 100),
   // so later enemies hit harder rather than only lasting longer.
-  H.VOL_SHARE = { lo: 0.45, hi: 0.6, from: 18, to: 45 };
+  H.VOL_SHARE = { lo: 0.45, hi: 0.55, from: 18, to: 45 };
   H.dinScale = (L) => { const lin = 1 + 0.10 * (L - 1), m = H.dinMult(L), V = H.VOL_SHARE, sh = V.lo + (V.hi - V.lo) * Math.max(0, Math.min(1, (L - V.from) / (V.to - V.from))); return { hp: lin * m, vol: lin * (1 + (m - 1) * sh) }; };
   H.petScale = (L, tier) => (1 + 0.10 * (L - 1)) * H.TIER_MUL[tier];
 
