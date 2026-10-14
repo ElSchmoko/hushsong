@@ -197,7 +197,7 @@
     trill: { sp: 'squeak', tier: 1, parent: 'squeak', role: 'lead', n: 'Trill',
       beat: A('Trill', 0, [D('one', 0.38, { h: 3, drain: 0.2 })]),
       phrase: A('Grace Notes', 2, [D('rand', 0.7, { h: 2 }), ['gauge', 'self', 0.2]]),
-      passive: { n: 'Encore', d: 'Every third turn, it takes another turn right away.', encore: 3 } },
+      passive: { n: 'Da Capo', d: 'Every third turn, it takes another turn right away.', encore: 3 } },
     scherzo: { sp: 'squeak', tier: 2, parent: 'trill', n: 'Scherzo',
       finale: A('Prank', 4, [D('rand', 0.45, { h: 4, drain: 0.3, randSt: 1 })]) },
     cadenza: { sp: 'squeak', tier: 2, parent: 'trill', n: 'Cadenza',
@@ -226,7 +226,7 @@
 
     /* CLANG: very tough, and its ringing shields its friends */
     clang: { sp: 'clang', tier: 0, n: 'Clang',
-      beat: A('Bonk', 0, [D('one', 1.0)]),
+      beat: A('Clang', 0, [D('one', 1.0)]),
       phrase: A('Ring', 3, [D('one', 1.1), ['shield', 'ally', 0.5]]) },
     toll: { sp: 'clang', tier: 1, parent: 'clang', role: 'rhythm', n: 'Toll',
       beat: A('Dong', 0, [D('one', 0.9), ['shield', 'self', 0.3]]),
@@ -549,7 +549,7 @@
     soul: { sp: 'bop', tier: 2, parent: 'smooth', n: 'Soul',
       finale: A('Soul', 4, [['heal', 'allies', 0.85], ['gauge', 'others', 0.2]]) },
     lounge: { sp: 'bop', tier: 2, parent: 'smooth', n: 'Lounge',
-      finale: A('Last Call', 5, [['heal', 'allies', 0.5], ['gauge', 'self', 1.0]]) },
+      finale: A('Nightcap', 5, [['heal', 'allies', 0.5], ['gauge', 'self', 1.0]]) },
     /* WARBLE: its crackly songs wear every enemy down */
     warble: { sp: 'warble', tier: 0, n: 'Warble',
       beat: A('Chirrup', 0, [D('one', 0.95)]),
@@ -563,7 +563,7 @@
     jukebox: { sp: 'warble', tier: 2, parent: 'shellac', n: 'Jukebox',
       finale: A('Crowd Pleaser', 4, [D('all', 0.6), ['st', 'allies', 'pup', 3]]) },
     diva: { sp: 'warble', tier: 1, parent: 'warble', role: 'lead', n: 'Diva',
-      beat: A('High Note', 0, [D('one', 1.1)]),
+      beat: A('Top Note', 0, [D('one', 1.1)]),
       phrase: A('Vibrato Run', 3, [D('all', 0.6, { crit: 0.15 })]),
       passive: { n: 'Spotlight', d: 'Its single hits also splash onto every other enemy for 30%.', splash: 0.3 } },
     opera: { sp: 'warble', tier: 2, parent: 'diva', n: 'Opera',
