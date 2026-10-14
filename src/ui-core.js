@@ -40,7 +40,7 @@
   UI.echoIntro = (pet) => {
     const S = UI.S, k = pet ? 'petEchoIntro' : 'echoIntro'; if (S.flags[k]) return null; S.flags[k] = 1; const n = pet && H.FORMS[H.petSpecies(pet)].n;
     return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? `You found ${n} echoes!` : 'You found an echo!'),
-      el('div', 'small', pet ? `They help ${n} evolve. A fully evolved pet turns its echoes into stars.` : 'Plain echoes help any pet evolve, on top of its own echoes. Spend them on a pet\'s page.'))); };
+      el('div', 'small', pet ? `They help ${n} evolve, and later buy stars.` : 'Plain echoes help any pet evolve. Spend them on a pet\'s page.'))); };
   // after a level up: the modes that just opened
   UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
   // a slim row of rewards along a line: [{ k: what it is for, icon, n: how much, got }]. A paid one shows a tick.
@@ -139,7 +139,7 @@
     const loop = el('div', 'loop'); H.FAMILY_ORDER.forEach((f) => UI.add(loop, UI.famChip(f), UI.txt('dim', '›'))); loop.appendChild(UI.famChip('drum'));
     const sec = (t, ...lines) => [UI.txt('label', t), ...lines.map((l) => UI.txt('dim', l))];
     const kids = [UI.txt('disp', 'How to play'),
-      UI.txt('', 'Win floors to go further. Every 10th floor is a <b>boss</b>: the first win there gives a shell and an echo. Shells hold random pets.'),
+      UI.txt('', 'Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.'),
       UI.txt('', 'Pets and enemies act when their yellow bar fills. <b>Tap an enemy</b> to use the chosen move on it, tap a round icon to switch moves, and <b>press and hold</b> anyone to see their stats. While you aim, the blinking part of a health bar is what the move will take.'),
       UI.txt('label', 'Stats')];
     [['HP', 'Damage it can take before it falls.'], ['Power', 'How hard its moves hit, heal and shield.'], ['Guard', 'Cuts the damage it takes. 50 Guard takes a third off.'], ['Speed', 'How often it gets a turn.'], ['Crit', 'Chance that a hit deals 50% more. Every pet starts at 5%.']]
@@ -150,11 +150,11 @@
       ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
       ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
+      ...sec('Rehearsal', 'Beaten bosses of floors 10 to 100 return at your level. Each pays an echo once a week, resetting on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
-      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day at your level, with a house rule that changes how battles work. The rule is the same for everyone that day. The first win pays ${H.DAILY.notes} notes; try as often as you like.`),
-      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet goes on tour. Pick roads on a map: five gigs, stops to rest, jam or take a chance, and a boss at the end. Boons collected on the way last the whole tour and some work together. Each day the first five gig wins pay ${H.SOLO.gigNotes} notes and the first boss win ${H.SOLO.bossNotes} notes and a piece of equipment.`),
-      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves near your level, a little tougher each time. HP carries over and fallen pets sit out. Waves 5, 10, 15 and 20 pay echoes and a shell, once a week.`),
+      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.`),
+      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.`),
+      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.`),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
     UI.modal(...kids);
@@ -180,7 +180,7 @@
     const inp = el('textarea', 'code'); inp.placeholder = 'Paste a save code here'; inp.setAttribute('aria-label', 'Save code to load');
     const copy = UI.key('Copy my code', () => { const done = () => UI.toast('Copied. Keep it somewhere safe.'); out.focus(); out.select(); try { navigator.clipboard.writeText(out.value).then(done, () => { try { document.execCommand('copy'); done(); } catch (e) { UI.toast('Select the text and copy it by hand.'); } }); } catch (e) { try { document.execCommand('copy'); done(); } catch (e2) { UI.toast('Select the text and copy it by hand.'); } } }, 'wide gold');
     const load = UI.key('Load this code', () => { const S = UI.decode(inp.value); if (!S) { UI.toast('That is not a Hushsong save code.'); return; } UI.confirm('Load this save?', `It holds ${S.pets.length} pets on floor ${S.stage}. It replaces the game on this device.`, 'Load it', () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch (e) { /* no storage */ } try { const hot = window.claude && window.claude.hot; if (hot && hot.data) hot.data.S = null; } catch (e) { /* no hot data */ } UI.adopt(S); UI.go('title'); }); }, 'wide soft');
-    UI.modal(UI.txt('disp', 'Save code'), UI.txt('dim small', 'Your game is saved on this device by itself. This code is a copy you can keep, or use to carry on with on another device.'), out, copy, UI.txt('label', 'Load a code'), inp, load, UI.key('Close', UI.closeModal, 'wide'));
+    UI.modal(UI.txt('disp', 'Save code'), UI.txt('dim small', 'Your game saves itself on this device. This code is a copy to keep, or to carry on elsewhere.'), out, copy, UI.txt('label', 'Load a code'), inp, load, UI.key('Close', UI.closeModal, 'wide'));
   };
 
   UI.boot = () => {

@@ -564,10 +564,10 @@ button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 
 .gigscene .beam { position: absolute; top: calc(var(--u) * -10); width: 50%; height: 130%; background: linear-gradient(180deg, rgba(255, 240, 190, 0.32), rgba(255, 240, 190, 0)); clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%); transform-origin: 50% 0; animation: sweep 6s ease-in-out infinite alternate; pointer-events: none; }
 .gigscene .beam.l { left: -4%; } .gigscene .beam.r { right: -4%; animation-delay: -3s; background: linear-gradient(180deg, rgba(255, 170, 220, 0.3), rgba(255, 170, 220, 0)); }
 .poster .stampmark { z-index: 4; right: calc(var(--u) * -9); top: calc(var(--u) * -7); font-size: calc(var(--u) * 8.5); transform: rotate(14deg); background: rgba(214, 245, 223, 0.92); mix-blend-mode: normal; }
-.ticket .stampmark { right: calc(var(--u) * 6); top: calc(var(--u) * -4); font-size: calc(var(--u) * 9); }
+.ticket .stampmark { right: calc(var(--u) * 4); top: calc(var(--u) * -8); font-size: calc(var(--u) * 7); }
 
 /* after a Solo gig */
-.wonhead { position: relative; display: flex; justify-content: center; } .wonhead .stampmark { right: calc(var(--u) * -2); top: calc(var(--u) * -7); font-size: calc(var(--u) * 7.5); }
+.wonhead { position: relative; display: flex; justify-content: center; } .wonhead .stampmark { right: calc(var(--u) * -6); top: calc(var(--u) * -5); font-size: calc(var(--u) * 6.4); }
 .tourtrack { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 calc(var(--u) * 2); }
 .tourtrack::before { content: ''; position: absolute; left: calc(var(--u) * 8); right: calc(var(--u) * 8); top: 50%; height: calc(var(--u) * 1.2); margin-top: calc(var(--u) * -0.6); background: var(--ink); opacity: 0.4; }
 .tp { position: relative; display: flex; align-items: center; justify-content: center; width: calc(var(--u) * 15); height: calc(var(--u) * 15); border-radius: 50%; background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 7); color: var(--dim); }
@@ -620,3 +620,5 @@ button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 
 @keyframes poweron { 0% { opacity: 0.1; box-shadow: none; text-shadow: none; } 15% { opacity: 1; } 22% { opacity: 0.15; } 34% { opacity: 1; } 40% { opacity: 0.3; } 52% { opacity: 1; } }
 .mode.fresh { background-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 58%) !important; background-size: 300% 100% !important; background-repeat: no-repeat !important; animation: shimmer 2.8s ease-in-out infinite; }
 @keyframes shimmer { 0%, 35% { background-position: 110% 0; } 100% { background-position: -10% 0; } }
+.winrow { gap: calc(var(--u) * 2); justify-content: center; } .winrow .label { margin-right: calc(var(--u) * 1); }
+.boonchip { background: #fff6dc; } .boonchip.rare { background: linear-gradient(135deg, #e7d4ff, #ffe58a); }

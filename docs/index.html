@@ -594,10 +594,10 @@ button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 
 .gigscene .beam { position: absolute; top: calc(var(--u) * -10); width: 50%; height: 130%; background: linear-gradient(180deg, rgba(255, 240, 190, 0.32), rgba(255, 240, 190, 0)); clip-path: polygon(46% 0, 54% 0, 100% 100%, 0 100%); transform-origin: 50% 0; animation: sweep 6s ease-in-out infinite alternate; pointer-events: none; }
 .gigscene .beam.l { left: -4%; } .gigscene .beam.r { right: -4%; animation-delay: -3s; background: linear-gradient(180deg, rgba(255, 170, 220, 0.3), rgba(255, 170, 220, 0)); }
 .poster .stampmark { z-index: 4; right: calc(var(--u) * -9); top: calc(var(--u) * -7); font-size: calc(var(--u) * 8.5); transform: rotate(14deg); background: rgba(214, 245, 223, 0.92); mix-blend-mode: normal; }
-.ticket .stampmark { right: calc(var(--u) * 6); top: calc(var(--u) * -4); font-size: calc(var(--u) * 9); }
+.ticket .stampmark { right: calc(var(--u) * 4); top: calc(var(--u) * -8); font-size: calc(var(--u) * 7); }
 
 /* after a Solo gig */
-.wonhead { position: relative; display: flex; justify-content: center; } .wonhead .stampmark { right: calc(var(--u) * -2); top: calc(var(--u) * -7); font-size: calc(var(--u) * 7.5); }
+.wonhead { position: relative; display: flex; justify-content: center; } .wonhead .stampmark { right: calc(var(--u) * -6); top: calc(var(--u) * -5); font-size: calc(var(--u) * 6.4); }
 .tourtrack { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 calc(var(--u) * 2); }
 .tourtrack::before { content: ''; position: absolute; left: calc(var(--u) * 8); right: calc(var(--u) * 8); top: 50%; height: calc(var(--u) * 1.2); margin-top: calc(var(--u) * -0.6); background: var(--ink); opacity: 0.4; }
 .tp { position: relative; display: flex; align-items: center; justify-content: center; width: calc(var(--u) * 15); height: calc(var(--u) * 15); border-radius: 50%; background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 7); color: var(--dim); }
@@ -650,6 +650,8 @@ button.boon:active { transform: translateY(calc(var(--u) * 1.5)); box-shadow: 0 
 @keyframes poweron { 0% { opacity: 0.1; box-shadow: none; text-shadow: none; } 15% { opacity: 1; } 22% { opacity: 0.15; } 34% { opacity: 1; } 40% { opacity: 0.3; } 52% { opacity: 1; } }
 .mode.fresh { background-image: linear-gradient(100deg, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 58%) !important; background-size: 300% 100% !important; background-repeat: no-repeat !important; animation: shimmer 2.8s ease-in-out infinite; }
 @keyframes shimmer { 0%, 35% { background-position: 110% 0; } 100% { background-position: -10% 0; } }
+.winrow { gap: calc(var(--u) * 2); justify-content: center; } .winrow .label { margin-right: calc(var(--u) * 1); }
+.boonchip { background: #fff6dc; } .boonchip.rare { background: linear-gradient(135deg, #e7d4ff, #ffe58a); }
 
 </style>
 <div id="app"><div id="game"><div id="screen"></div><div id="modal" hidden></div><div id="toast" hidden></div></div></div>
@@ -697,7 +699,7 @@ window.H = {};
   const A = (n, cd, fx, o) => Object.assign({ n, cd, fx }, o || {});
   const D = (tgt, pow, o) => ['dmg', tgt, pow, o || {}];
   // what every Basic move turns into when a Daily Gig unplugs them
-  H.FEEDBACK = A('Feedback', 0, [D('one', 1.3), ['recoil', 0.08]], { d: 'Hits one enemy for 130%. The screech costs the user 8% of its max HP.' });
+  H.FEEDBACK = A('Feedback', 0, [D('one', 1.3), ['recoil', 0.08]], { d: 'Hits one enemy for 130%. Costs the user 8% of its max HP.' });
 
   H.SPECIES = {
     thud:    { family: 'drum',   base: { hp: 150, vol: 20, poise: 30, tempo: 90 },  animal: 'drum', lore: 'A round drum with ears, feet and a mallet for a tail. Sturdy, and its heavy beat slows enemies down.' },
@@ -2334,7 +2336,7 @@ window.H = {};
     { id: 'half', cat: 'adv', n: 'Halfway There', d: 'Clear floor 50.', prog: (S) => [S.stage - 1, 50], shells: 1 },
     { id: 'lv30', cat: 'adv', n: 'Rising Star', d: 'Reach level 30.', prog: (S) => [S.level, 30], shells: 1 },
     { id: 'evo1', cat: 'col', n: 'First Encore', d: 'Evolve a pet for the first time.', prog: (S) => [S.pets.some((p) => H.petTier(p) > 0) ? 1 : 0, 1], echo: 1 },
-    { id: 'dressed', cat: 'col', n: 'Dressed Up', d: 'Give all three pets in your band two pieces of equipment each.', prog: (S) => [H.teamPets(S).filter(Boolean).reduce((a, p) => a + p.gear.filter(Boolean).length, 0), 6], echo: 1 },
+    { id: 'dressed', cat: 'col', n: 'Dressed Up', d: 'Fill all six equipment slots in your band.', prog: (S) => [H.teamPets(S).filter(Boolean).reduce((a, p) => a + p.gear.filter(Boolean).length, 0), 6], echo: 1 },
     { id: 'ten', cat: 'col', n: 'Growing Band', d: 'Find 10 different pets.', prog: (S) => [new Set(S.pets.map(H.petSpecies)).size, 10], echo: 1 },
     { id: 'tour1', cat: 'adv', n: 'World Tour', d: 'Clear floor 100.', prog: (S) => [S.stage - 1, 100], shells: 1, bg: 'night' },
     { id: 'tour2', cat: 'adv', n: 'Second Leg', d: 'Clear floor 200.', prog: (S) => [S.stage - 1, 200], shells: 2 },
@@ -2343,7 +2345,7 @@ window.H = {};
     { id: 'all', cat: 'col', n: 'Full Orchestra', d: 'Find every pet.', prog: (S) => [new Set(S.pets.map(H.petSpecies)).size, H.SPECIES_ORDER.length], shells: 2, bg: 'aurora' },
     { id: 'trio', cat: 'col', n: 'Headliners', d: 'Fully evolve three pets.', prog: (S) => [maxed(S).length, 3], shells: 1 },
     { id: 'five', cat: 'col', n: 'Five-Part Harmony', d: 'Fully evolve a pet from each of the five families.', prog: (S) => [new Set(maxed(S).map(H.petFamily)).size, 5], shells: 2 },
-    { id: 'star', cat: 'col', n: 'Virtuoso', d: 'Give one pet all 10 stars. Stars cost echoes, once a pet is fully evolved.', prog: (S) => [Math.max(0, ...S.pets.map((p) => p.rank || 0)), 10], shells: 3 },
+    { id: 'star', cat: 'col', n: 'Virtuoso', d: 'Give one pet all 10 stars.', prog: (S) => [Math.max(0, ...S.pets.map((p) => p.rank || 0)), 10], shells: 3 },
     { id: 'solo', cat: 'adv', n: 'Solo Act', d: 'Beat a boss on floor 30 or higher with a single pet.', prog: (S) => [S.stats.solo ? 1 : 0, 1], shells: 2 },
     { id: 'unplugged', cat: 'adv', n: 'Unplugged', d: 'Beat a boss on floor 50 or higher with no equipment in your band.', prog: (S) => [S.stats.unplugged ? 1 : 0, 1], shells: 1 },
     { id: 'section', cat: 'adv', n: 'Section Rehearsal', d: 'Beat a boss on floor 30 or higher with three pets of the same family.', prog: (S) => [S.stats.section ? 1 : 0, 1], shells: 1 },
@@ -2377,20 +2379,20 @@ window.H = {};
   // k: how tough the Din are for that rule (tuned by test/modes.js so every rule is about as winnable as the others)
   H.DAILY = { unlock: 5, notes: 50, k: 1, loud: true };
   H.TWISTS = {
-    mirror: { n: 'Mirror Match', d: 'The Din copy your band. You face your own pets, move for move.', k: 1.12 },
-    potato: { n: 'Hot Potato', d: 'A potato is ticking on the stage. Hit someone with a single hit to pass it on. When the fuse runs out, whoever holds it loses 30% of their HP.', rules: { potato: { every: 5, pct: 0.3 } }, k: 1.0 },
-    key: { n: 'Key Change', d: 'Every 6 turns everyone moves one step round the family loop, so who is strong against whom keeps changing.', rules: { keyChange: 6 }, k: 1.0 },
-    volume: { n: 'Volume Knob', d: 'Hits start at half strength and get louder every 2 turns, up to two and a half times.', rules: { volume: { start: 0.5, per: 0.1, every: 2, max: 2.5 } }, k: 1.0 },
-    backwards: { n: 'Backwards Tempo', d: 'Slow is fast: the lowest Speed acts most often. Speed Up and Slow work the other way round too.', rules: { backwards: true }, k: 1.0 },
-    shared: { n: 'Shared Stage', d: 'A hit on one fighter is split evenly over its whole side. Area moves hit everyone at full strength.', rules: { share: true }, k: 1.05 },
-    chain: { n: 'Chain Reaction', d: 'Whoever falls bursts: everyone left on its side loses 20% of their max HP.', rules: { chain: 0.2 }, k: 1.0 },
-    giant: { n: 'Giant Slayer', d: 'One giant boss and nothing else. Every quarter of its HP you knock off staggers it: it misses a turn and goes Off-Key.', k: 1.0 },
-    duet: { n: 'Duet', d: 'Only the first two pets of your band play. Every move one makes is joined by the other\'s Basic move at 60%.', rules: { duet: 0.6 }, k: 0.8 },
-    swap: { n: 'Swapped Kits', d: 'Each pet plays with the moves of the pet beside it. Stats stay the same.', k: 1.0 },
-    mic: { n: 'Pass the Mic', d: 'Only the one holding the mic can use Skills and Specials. They are all ready for it, and it acts faster. The mic moves on after each turn.', rules: { mic: { tempo: 1.4 } }, k: 1.0 },
-    echo: { n: 'Echo Chamber', d: 'Every Skill and Special plays again at half strength at the start of the user\'s next turn.', rules: { echo: 0.5 }, k: 1.0 },
-    lastcall: { n: 'Last Call', d: 'The lights go out after 45 turns, counting everyone\'s. Win before then.', rules: { lastCall: 45 }, k: 0.85 },
-    nobasics: { n: 'No Basics', d: 'Basic moves are unplugged. In their place everyone has Feedback: a 130% hit that costs the user 8% of its max HP.', rules: { noBasics: true }, k: 1.0 },
+    mirror: { n: 'Mirror Match', d: 'The Din copy your band, move for move.', k: 1.12 },
+    potato: { n: 'Hot Potato', d: 'A ticking potato passes on with every single hit. When its fuse runs out, whoever holds it loses 30% HP.', rules: { potato: { every: 5, pct: 0.3 } }, k: 1.0 },
+    key: { n: 'Key Change', d: 'Every 6 turns, everyone moves one step round the family loop.', rules: { keyChange: 6 }, k: 1.0 },
+    volume: { n: 'Volume Knob', d: 'Hits start at half strength and grow louder every 2 turns, up to 250%.', rules: { volume: { start: 0.5, per: 0.1, every: 2, max: 2.5 } }, k: 1.0 },
+    backwards: { n: 'Backwards Tempo', d: 'Slow is fast: the lowest Speed acts most often.', rules: { backwards: true }, k: 1.0 },
+    shared: { n: 'Shared Stage', d: 'Each hit is split evenly across its target\'s whole side.', rules: { share: true }, k: 1.05 },
+    chain: { n: 'Chain Reaction', d: 'Whoever falls bursts: the rest of its side loses 20% of max HP.', rules: { chain: 0.2 }, k: 1.0 },
+    giant: { n: 'Giant Slayer', d: 'One giant boss. Each quarter of its HP knocked off stuns it and leaves it Off-Key.', k: 1.0 },
+    duet: { n: 'Duet', d: 'Only your first two pets play. Each move is joined by the other\'s Basic move at 60%.', rules: { duet: 0.6 }, k: 0.8 },
+    swap: { n: 'Swapped Kits', d: 'Each pet plays with the moves of the pet beside it.', k: 1.0 },
+    mic: { n: 'Pass the Mic', d: 'Only the mic holder can use Skills and Specials, always ready and faster. The mic moves on each turn.', rules: { mic: { tempo: 1.4 } }, k: 1.0 },
+    echo: { n: 'Echo Chamber', d: 'Skills and Specials play again at half strength on the user\'s next turn.', rules: { echo: 0.5 }, k: 1.0 },
+    lastcall: { n: 'Last Call', d: 'Win within 45 turns, counting everyone\'s.', rules: { lastCall: 45 }, k: 0.85 },
+    nobasics: { n: 'No Basics', d: 'Basic moves become Feedback: a 130% hit that costs the user 8% of its max HP.', rules: { noBasics: true }, k: 1.0 },
   };
   H.TWIST_ORDER = Object.keys(H.TWISTS);
   // one venue per region
@@ -2463,26 +2465,26 @@ window.H = {};
     amp: B('Bigger Amp', 'c', '+20% Power.', { mod: { vol: 0.2 } }),
     case: B('Padded Case', 'c', '+25% HP.', { mod: { hp: 0.25 } }),
     quick: B('Quick Fingers', 'c', '+15% Speed.', { mod: { tempo: 0.15 } }),
-    pitch: B('Perfect Pitch', 'c', '+12% critical hit chance, and critical hits deal 25% more.', { mod: { crit: 0.12, critDmg: 0.25 } }),
-    shell: B('Hard Shell', 'c', '+12 Guard, and every gig starts with a Shield of 20% of its HP.', { mod: { poise: 12 }, on: { start: [['shield', 'self', 0, { pct: 0.2 }]] } }),
+    pitch: B('Sweet Spot', 'c', '+12% critical hit chance, and critical hits deal 25% more.', { mod: { crit: 0.12, critDmg: 0.25 } }),
+    shell: B('Hard Shell', 'c', '+12 Guard. Starts each gig with a Shield of 20% of its HP.', { mod: { poise: 12 }, on: { start: [['shield', 'self', 0, { pct: 0.2 }]] } }),
     soul: B('Soul Song', 'c', 'Heals for 15% of the damage it deals.', { leech: 0.15 }),
     sour: B('Sour Notes', 'c', 'Its hits Poison for 2 turns.', { hitSt: [['poison', 2, 1, 0.25]] }),
     wrong: B('Wrong Chord', 'c', 'Its hits have a 50% chance to make the target Off-Key for 2 turns.', { hitSt: [['offkey', 2, 0.5]] }),
-    opener: B('Opening Act', 'c', 'Goes first in every gig, and its first hit deals 40% more.', { startGauge: 0.99, firstStrike: 0.4 }),
+    opener: B('Opening Act', 'c', 'Goes first in each gig, and its first hit deals 40% more.', { startGauge: 0.99, firstStrike: 0.4 }),
     spiky: B('Spiky Riff', 'c', 'Enemies that hit it take 25% of that damage back.', { thorns: 0.25 }),
-    hype: B('Hype Man', 'c', 'Starts every gig with Power Up and Speed Up for 2 turns.', { on: { start: [['st', 'self', 'pup', 2], ['st', 'self', 'sup', 2]] } }),
-    hush: B('Quiet Please', 'c', 'Enemies start every gig Slow for 2 turns.', { on: { start: [['st', 'all', 'sdown', 2]] } }),
+    hype: B('Hype Man', 'c', 'Starts each gig with Power Up and Speed Up for 2 turns.', { on: { start: [['st', 'self', 'pup', 2], ['st', 'self', 'sup', 2]] } }),
+    hush: B('Quiet Please', 'c', 'Enemies start each gig Slow for 2 turns.', { on: { start: [['st', 'all', 'sdown', 2]] } }),
     cresc: B('Crescendo', 'c', '+4% Power every turn of a gig, up to +40%.', { ramp: { on: 'turn', per: 0.04, max: 0.4 } }),
     overflow: B('Overflow', 'r', 'Healing past full HP turns into Shield.', { overheal: true }),
-    lifeloop: B('Lifesong Loop', 'r', 'Starts every gig with Lifesong for 3 turns. Every knockout gives 2 more.', { on: { start: [['st', 'self', 'lifesong', 3]], kill: [['st', 'self', 'lifesong', 2]] } }),
+    lifeloop: B('Lifesong Loop', 'r', 'Starts each gig with Lifesong for 3 turns. Each knockout adds 2.', { on: { start: [['st', 'self', 'lifesong', 3]], kill: [['st', 'self', 'lifesong', 2]] } }),
     click: B('Click Track', 'r', 'Skills and Specials rest 1 turn less (never less than 1).', { cdCut: 1 }),
     double: B('Double Time', 'r', 'Every third turn it acts again straight away.', { encore: 3 }),
     maestro: B('Venom Maestro', 'r', 'Deals 40% more damage to Poisoned targets and 30% more to Off-Key ones.', { vs: { poison: 0.4, offkey: 0.3 } }),
     critfb: B('Crit Feedback', 'r', 'Critical hits fill 35% of its turn bar.', { critGauge: 0.35 }),
     glass: B('Glass Cannon', 'r', '+45% Power, but 30% less HP.', { mod: { vol: 0.45, hp: -0.3 } }),
-    second: B('Second Wind', 'r', 'Once per gig, a knockout leaves it at 1 HP instead, and it heals 30%.', { lastStand: true, on: { stand: [['heal', 'self', 0, { pct: 0.3 }]] } }),
+    second: B('Second Wind', 'r', 'Once per gig, survives a knockout on 1 HP and heals 30%.', { lastStand: true, on: { stand: [['heal', 'self', 0, { pct: 0.3 }]] } }),
     finish: B('Big Finish', 'r', 'Deals 60% more damage to enemies under 35% HP.', { execute: { below: 0.35, bonus: 0.6 } }),
-    pedal: B('Echo Pedal', 'r', 'Its Skills and Specials play again at 40% at the start of its next turn.', { echoPedal: 0.4 }),
+    pedal: B('Echo Pedal', 'r', 'Its Skills and Specials play again at 40% on its next turn.', { echoPedal: 0.4 }),
     mosh: B('Mosh Pit', 'r', 'Single hits splash 30% onto the other enemies.', { splash: 0.3 }),
     dive: B('Stage Dive', 'r', 'Every knockout heals 20% and fills half its turn bar.', { on: { kill: [['heal', 'self', 0, { pct: 0.2 }], ['gauge', 'self', 0.5]] } }),
   };
@@ -4423,7 +4425,7 @@ window.H = {};
   UI.echoIntro = (pet) => {
     const S = UI.S, k = pet ? 'petEchoIntro' : 'echoIntro'; if (S.flags[k]) return null; S.flags[k] = 1; const n = pet && H.FORMS[H.petSpecies(pet)].n;
     return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? `You found ${n} echoes!` : 'You found an echo!'),
-      el('div', 'small', pet ? `They help ${n} evolve. A fully evolved pet turns its echoes into stars.` : 'Plain echoes help any pet evolve, on top of its own echoes. Spend them on a pet\'s page.'))); };
+      el('div', 'small', pet ? `They help ${n} evolve, and later buy stars.` : 'Plain echoes help any pet evolve. Spend them on a pet\'s page.'))); };
   // after a level up: the modes that just opened
   UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, 'Daily Gig'], [H.SOLO.unlock, 'Solo'], [H.ENCORE.unlock, 'Encore']].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', `<b>New on Home:</b> ${got.map((x) => x[1]).join(' and ')}`)) : null; };
   // a slim row of rewards along a line: [{ k: what it is for, icon, n: how much, got }]. A paid one shows a tick.
@@ -4522,7 +4524,7 @@ window.H = {};
     const loop = el('div', 'loop'); H.FAMILY_ORDER.forEach((f) => UI.add(loop, UI.famChip(f), UI.txt('dim', '›'))); loop.appendChild(UI.famChip('drum'));
     const sec = (t, ...lines) => [UI.txt('label', t), ...lines.map((l) => UI.txt('dim', l))];
     const kids = [UI.txt('disp', 'How to play'),
-      UI.txt('', 'Win floors to go further. Every 10th floor is a <b>boss</b>: the first win there gives a shell and an echo. Shells hold random pets.'),
+      UI.txt('', 'Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.'),
       UI.txt('', 'Pets and enemies act when their yellow bar fills. <b>Tap an enemy</b> to use the chosen move on it, tap a round icon to switch moves, and <b>press and hold</b> anyone to see their stats. While you aim, the blinking part of a health bar is what the move will take.'),
       UI.txt('label', 'Stats')];
     [['HP', 'Damage it can take before it falls.'], ['Power', 'How hard its moves hit, heal and shield.'], ['Guard', 'Cuts the damage it takes. 50 Guard takes a third off.'], ['Speed', 'How often it gets a turn.'], ['Crit', 'Chance that a hit deals 50% more. Every pet starts at 5%.']]
@@ -4533,11 +4535,11 @@ window.H = {};
       ...sec('Echoes and stars', 'Pets evolve twice with echoes, then add stars: up to 10, each +3% HP and Power. A shell with a pet you have gives an echo only that pet can use. Plain echoes, shown at the top, fit any pet.'),
       ...sec('Notes and experience', 'New floors pay notes, which buy shells. Every battle gives experience, less on floors far below your level.'),
       ...sec('Ensembles', 'Three pets of three families, or all of one, form an ensemble: an opening tune and a boon for the band.'),
-      ...sec('Rehearsal', 'The bosses of floors 10 to 100 return at your level once beaten. Each pays an echo once a week; they all come back on Monday.'),
+      ...sec('Rehearsal', 'Beaten bosses of floors 10 to 100 return at your level. Each pays an echo once a week, resetting on Monday.'),
       ...sec('Equipment', 'Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity, up to Epic.'),
-      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day at your level, with a house rule that changes how battles work. The rule is the same for everyone that day. The first win pays ${H.DAILY.notes} notes; try as often as you like.`),
-      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet goes on tour. Pick roads on a map: five gigs, stops to rest, jam or take a chance, and a boss at the end. Boons collected on the way last the whole tour and some work together. Each day the first five gig wins pay ${H.SOLO.gigNotes} notes and the first boss win ${H.SOLO.bossNotes} notes and a piece of equipment.`),
-      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves near your level, a little tougher each time. HP carries over and fallen pets sit out. Waves 5, 10, 15 and 20 pay echoes and a shell, once a week.`),
+      ...sec('Daily Gig', `From level ${H.DAILY.unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.`),
+      ...sec('Solo', `From level ${H.SOLO.unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.`),
+      ...sec('Encore', `From level ${H.ENCORE.unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.`),
       ...sec('Records', 'Hard goals that pay shells, echoes and Home backdrops.'),
       UI.key('Got it', UI.closeModal, 'wide go'));
     UI.modal(...kids);
@@ -4563,7 +4565,7 @@ window.H = {};
     const inp = el('textarea', 'code'); inp.placeholder = 'Paste a save code here'; inp.setAttribute('aria-label', 'Save code to load');
     const copy = UI.key('Copy my code', () => { const done = () => UI.toast('Copied. Keep it somewhere safe.'); out.focus(); out.select(); try { navigator.clipboard.writeText(out.value).then(done, () => { try { document.execCommand('copy'); done(); } catch (e) { UI.toast('Select the text and copy it by hand.'); } }); } catch (e) { try { document.execCommand('copy'); done(); } catch (e2) { UI.toast('Select the text and copy it by hand.'); } } }, 'wide gold');
     const load = UI.key('Load this code', () => { const S = UI.decode(inp.value); if (!S) { UI.toast('That is not a Hushsong save code.'); return; } UI.confirm('Load this save?', `It holds ${S.pets.length} pets on floor ${S.stage}. It replaces the game on this device.`, 'Load it', () => { try { localStorage.setItem(SAVE_KEY, JSON.stringify(S)); } catch (e) { /* no storage */ } try { const hot = window.claude && window.claude.hot; if (hot && hot.data) hot.data.S = null; } catch (e) { /* no hot data */ } UI.adopt(S); UI.go('title'); }); }, 'wide soft');
-    UI.modal(UI.txt('disp', 'Save code'), UI.txt('dim small', 'Your game is saved on this device by itself. This code is a copy you can keep, or use to carry on with on another device.'), out, copy, UI.txt('label', 'Load a code'), inp, load, UI.key('Close', UI.closeModal, 'wide'));
+    UI.modal(UI.txt('disp', 'Save code'), UI.txt('dim small', 'Your game saves itself on this device. This code is a copy to keep, or to carry on elsewhere.'), out, copy, UI.txt('label', 'Load a code'), inp, load, UI.key('Close', UI.closeModal, 'wide'));
   };
 
   UI.boot = () => {
@@ -4640,7 +4642,7 @@ window.H = {};
     const pips = el('div', 'pips'); for (let i = 0; i < 10; i++) { const c = UI.icon('ic_note', 1.1); if (i >= done) c.classList.add('mute'); else if (i === done - 1) c.classList.add('fresh'); pips.appendChild(c); }
     const par = el('div', 'parade'); const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => par.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? 1.5 : 1.2)));
     add(w, air, add(el('div', 'late col center'), txt('chip', R.n + ' · floor ' + pr.n), el('div', 'logo small', st[0])), par,
-      add(el('div', 'panel col late2'), txt('center', st[1]), pips, txt('small dim center', done >= 10 ? 'All ten regions sing again.' : `${done} of 10 regions sing again.`)),
+      add(el('div', 'panel col late2'), txt('center', st[1]), pips),
       key('Onwards', () => (pr.shells || pr.echo ? UI.go('bossreward', pr) : UI.go('home')), 'go wide big late2'));
     root.appendChild(w);
     if (window.__hsSpeed) { w.classList.add('now'); return; }
@@ -4721,7 +4723,7 @@ window.H = {};
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
     trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio); root.appendChild(hero);
     const modes = el('div', 'modes');
-    const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
+    const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', (st.boss ? 'Boss · ' : '') + `Foes Lv ${st.level}`)));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
     const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls + (pip === '!' && cls !== 'day' ? ' fresh' : '')); b.type = 'button'; add(b, add(el('span', 'micon'), UI.icon(icon, 1.25)), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
     if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
@@ -4891,7 +4893,7 @@ window.H = {};
       let sh = UI.sp('shell', 2, { anim: false }); if (!S.shells) sh.style.opacity = '0.45';
       else { const t = el('button', 'shelltap'); t.type = 'button'; t.setAttribute('aria-label', 'Open the shell'); t.appendChild(sh); t.addEventListener('click', crack); sh = t; }
       add(boxEl, sh, txt('disp big', S.shells ? plural(S.shells, 'shell') + ' to open' : 'No shells right now'),
-        txt('', pr.first ? 'Your first pet is waiting inside. <b>Tap the shell</b> to open it.' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
+        txt('', pr.first ? 'Your first pet is inside. <b>Tap the shell.</b>' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
         pr.first || S.shells ? null : txt('small dim', 'Bosses leave shells. Notes buy more.'));
       const open = key(S.shells > 1 ? 'Open a shell' : 'Open the shell', crack, 'go big wide'); open.disabled = !S.shells; foot.appendChild(open);
       if (!pr.first) { const price = H.shellPrice(S), buy = key('', () => { if (H.buyShell(S)) { Au.sfx('coin'); UI.save(); idle(); } }, 'gold wide'); add(buy, 'Buy a shell · ', UI.icon('ic_note'), String(price)); buy.disabled = S.notes < price; foot.appendChild(buy); }
@@ -4966,7 +4968,7 @@ window.H = {};
       });
       add(pad, txt('label', 'Equipment'), gear, txt('label', 'Moves'), ...UI.formInfo(pet.form));
       const others = Object.keys(H.FORMS).filter((k) => H.FORMS[k].sp === f.sp && k !== pet.form && H.FORMS[k].tier > 0 && (H.FORMS[k].tier === 1 ? pet.t1 : pet.t2));
-      if (others.length) pad.appendChild(key('Change its path (free)', pathSheet, 'wide soft sm'));
+      if (others.length) pad.appendChild(key('Change path', pathSheet, 'wide soft sm'));
       body.appendChild(pad); root.appendChild(body);
     };
     // the old form glows white and swells, then the new one bursts out
@@ -5008,7 +5010,7 @@ window.H = {};
       if (!items.length) add(pad, box('row center', UI.icon('ic_bag', 3)), txt('disp center', 'Nothing here yet'), txt('dim center', 'Battles sometimes drop equipment.'));
       else {
         if (!H.mergeGroups(S).length) pad.appendChild(txt('small dim center', '3 spare pieces of one kind merge into a better one.'));
-        H.mergeGroups(S).slice(0, 3).forEach((g) => { const it = g[0], nx = H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, b = key('', () => merge(it), 'gold wide sm'); add(b, UI.icon(A.itemIcon(it), 0.7), `Merge 3 ${H.RARITY[it.rar].n} ${H.itemName(it)} into 1 ${nx}`); pad.appendChild(b); });
+        H.mergeGroups(S).slice(0, 3).forEach((g) => { const it = g[0], nx = H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, b = key('', () => merge(it), 'gold wide sm'); add(b, UI.icon(A.itemIcon(it), 0.7), `Merge 3 ${H.itemName(it)} → ${nx}`); pad.appendChild(b); });
         items.forEach((it) => { const who = H.itemOwner(S, it.id), b = UI.itemRow(it, 'button', who ? UI.sp(who.form, 0.5, { anim: false }) : null); b.addEventListener('click', () => { Au.sfx('tap'); sheet(it); }); pad.appendChild(b); });
       }
       body.appendChild(pad); add(root, body, UI.nav('bag'));
@@ -5019,7 +5021,7 @@ window.H = {};
       // take it off right here, without a trip to the pet's page; the sheet then shows the piece as spare
       if (who) kids.push(key('Take it off ' + H.FORMS[who.form].n, () => { H.unequip(S, who, who.gear.indexOf(it.id)); Au.sfx('back'); UI.save(); draw(); sheet(it); }, 'wide gold'), key('Go to ' + H.FORMS[who.form].n, () => UI.go('pet', { id: who.id, back: 'bag' }), 'wide soft'));
       else {
-        if (H.canMerge(S, it)) { const m = key('Merge 3 into 1 ' + H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
+        if (H.canMerge(S, it)) { const m = key('Merge 3 → ' + H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
         else if (it.rar !== 'l') kids.push(txt('small dim center', `Merge: ${H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length} / 3 spare`));
         const sell = key('', () => { H.sellItem(S, it.id); Au.sfx('coin'); UI.save(); UI.closeModal(); draw(); }, 'wide soft'); add(sell, 'Sell · ', UI.icon('ic_note'), String(H.RARITY[it.rar].sell)); kids.push(sell);
       }
@@ -5037,8 +5039,8 @@ window.H = {};
     if (!list.length) add(pad, box('row center', UI.icon('ic_baton', 3)), txt('dim center', 'Opens after the boss on floor 10.'));
     else {
       const left = list.filter((m) => !S.reh[m]).length, days = H.daysToReset(Date.now());
-      pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. Each pays <b>1 echo</b> a week.`));
-      pad.appendChild(txt('small dim center', (left ? `${left} of ${list.length} left this week` : 'All won this week') + ` · new echoes ${days === 1 ? '<b>tomorrow</b>' : `in <b>${days} days</b>`}`));
+      pad.appendChild(txt('small center', `Beaten bosses return at <b>your level</b>.`));
+      pad.appendChild(txt('small dim center', (left ? '' : 'All won this week · ') + `Resets ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
     }
     list.sort((a, b) => (S.reh[a] ? 1 : 0) - (S.reh[b] ? 1 : 0)).forEach((n) => {
       const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won this week' : ', reward 1 echo'));
@@ -5063,14 +5065,13 @@ window.H = {};
     // the band on stage; in a run, each pet's HP under it
     const stage = el('div', 'encstage'); H.encoreTeam(S).forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] || 0 : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.9, { anim: hp > 0 }), run ? UI.meter(hp) : null, run ? el('b', '', hp > 0 ? Math.round(hp * 100) + '%' : 'Out') : null); stage.appendChild(c); });
     add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign' + (window.__hsSpeed ? '' : ' poweron'), 'Encore'), stage); root.appendChild(hero);
-    pad.appendChild(txt('small center', 'Endless waves near <b>your level</b>, a little tougher each time. HP carries over, a quarter comes back after each wave, and fallen pets sit out.'));
+    pad.appendChild(txt('small center', 'Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.'));
     // this week's milestones
     const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: E.paid > i, label: 'Wave ' + m })), 'neon');
     add(pad, add(el('div', 'payline'), txt('label', 'This week'), miles), txt('small dim center', `Best this week <b>${E.weekBest}</b> · all time <b>${E.best}</b> · resets ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
-    pad.appendChild(txt('small dim center', run ? `<b>Your run:</b> wave ${run.wave} is next.` : 'Your band goes in as it is now.'));
     if (run) {
       foot.appendChild(key(`Play wave ${run.wave}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
-      foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+      foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
       const ready = H.teamPets(S).some(Boolean), start = key('Start Encore', () => { H.startEncoreRun(S, Math.random); UI.save(); UI.go('battle', { enc: 1 }); }, 'go wide big'); start.disabled = !ready;
       foot.appendChild(start); foot.appendChild(key('Change the band', () => UI.go('team', {}), 'wide soft'));
@@ -5153,7 +5154,7 @@ window.H = {};
     scene.appendChild(poster); root.appendChild(scene);
     const foot = el('div', 'gofoot'), band = H.dailyBand(S, st.twist);
     const strip = el('button', 'tstrip'); strip.type = 'button'; strip.setAttribute('aria-label', 'Change your band');
-    add(strip, faces(band), add(el('div', 'grow'), el('b', '', st.twist === 'duet' ? 'Your first two pets' : 'Your band'), el('div', 'small dim', won ? `New gig in ${countdown(H.msToTomorrow())}` : S.daily.tries ? `${plural(S.daily.tries, 'try')} so far · try as often as you like` : 'Try as often as you like')), el('span', 'chip', 'Band'));
+    add(strip, faces(band), add(el('div', 'grow'), el('b', '', st.twist === 'duet' ? 'Your first two pets' : 'Your band'), el('div', 'small dim', won ? `New gig in ${countdown(H.msToTomorrow())}` : 'Retry as often as you like')), el('span', 'chip', 'Band'));
     strip.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); });
     const play = key(won ? 'Play it again' : 'Play the gig', () => UI.go('battle', { daily: 1 }), (won ? 'blue' : 'go') + ' wide big'); play.disabled = !band.length;
     add(foot, strip, play); root.appendChild(foot);
@@ -5166,11 +5167,11 @@ window.H = {};
     if (out.win) {
       ticket.appendChild(UI.stamp(out.first ? 'Encore!' : 'Again!')); UI.confetti(out.first ? 46 : 20);
       kids.push(txt('disp big center', out.first ? 'Gig won!' : 'Another great show!'), ticket, loot);
-      kids.push(txt('small dim center', out.first ? `Tomorrow brings a new house rule. New gig in ${countdown(H.msToTomorrow())}.` : 'Today\'s notes are already yours. Play again any time for fun.'));
+      kids.push(txt('small dim center', out.first ? `New gig in ${countdown(H.msToTomorrow())}` : 'Paid already today'));
     } else {
-      kids.push(txt('disp big center', out.why === 'time' ? 'Lights out!' : 'Not this time'), ticket, txt('center dim', out.why === 'time' ? 'The venue closed before the Din were done. Hit harder, faster.' : 'Try again as often as you like. Today\'s notes are still waiting.'), loot);
+      kids.push(txt('disp big center', out.why === 'time' ? 'Lights out!' : 'Not this time'), ticket, txt('center dim', out.why === 'time' ? 'The lights went out before the Din did.' : 'Retry as often as you like.'), loot);
     }
-    if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
+    if (out.ups) kids.push(txt('center good', `<b>Level up!</b>`), UI.unlockNote(out.ups));
     kids.push(UI.key(out.win ? 'Home' : 'Try again', () => (out.win ? UI.go('home') : UI.go('battle', { daily: 1 })), 'go wide big'), UI.key(out.win ? 'Back to the poster' : 'Change the band', () => (out.win ? UI.go('daily') : UI.go('team', {})), 'wide soft'));
     if (out.win) Au.sfx('coin');
     UI.modal(...kids);
@@ -5195,7 +5196,7 @@ window.H = {};
       const pet = H.petById(S, run.pet), card = el('div', 'tourcard'); if (!pet) { H.endSolo(S); return UI.go('solo'); }
       add(card, UI.sp(pet.form, 1.1), add(el('div', 'grow col'), txt('label', 'On tour · ' + H.REGIONS[run.region].n), el('b', 'disp', H.FORMS[pet.form].n), add(el('div', 'row'), UI.meter(run.hp), txt('small', Math.round(run.hp * 100) + '%')), txt('small dim', `${run.gigs} of 5 gigs won · ${plural(run.boons.length, 'boon')}`)));
       pad.appendChild(card); body.appendChild(pad); root.appendChild(body);
-      add(foot, key('Back on the road', () => UI.go(run.pending && run.pending.type !== 'battle' ? 'solostop' : 'solomap'), 'go wide big'), key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes you have won stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'));
+      add(foot, key('Back on the road', () => UI.go(run.pending && run.pending.type !== 'battle' ? 'solostop' : 'solomap'), 'go wide big'), key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'));
       root.appendChild(foot); return;
     }
     // choose who goes: every pet you own, the band first
@@ -5204,7 +5205,7 @@ window.H = {};
     const sel = () => {
       grid.querySelectorAll('.card').forEach((c) => c.classList.toggle('on', +c.dataset.id === pick));
       const p = H.petById(S, pick); info.innerHTML = ''; if (!p) return; const kit = H.kitOf(p.form);
-      add(info, box('row', UI.famChip(H.petFamily(p)), UI.roleChip(kit.role), UI.stars(p.rank)), txt('small dim', 'The road scales to your soloist: its level, how far it has evolved, and its role.'));
+      add(info, box('row', UI.famChip(H.petFamily(p)), UI.roleChip(kit.role), UI.stars(p.rank)), txt('small dim', 'The road scales to your soloist.'));
       start.textContent = 'Start the tour with ' + H.FORMS[p.form].n;
     };
     S.pets.slice().sort((a, b) => (S.team.includes(b.id) ? 1 : 0) - (S.team.includes(a.id) ? 1 : 0) || H.petTier(b) - H.petTier(a)).forEach((p) => {
@@ -5236,7 +5237,7 @@ window.H = {};
   const boonSheet = (S) => {
     const run = S.soloRun, kids = [txt('disp', 'Boons on this tour')], cs = H.activeCombos(run.boons);
     if (cs.length) kids.push(txt('label', 'Combos'), ...cs.map((c) => add(el('div', 'bcombo big'), UI.icon(A.boonIcon(c[0]), 0.7), UI.icon(A.boonIcon(c[1]), 0.7), el('span', '', `<b>${H.BOONS[c[0]].n} + ${H.BOONS[c[1]].n}</b>: ${c[2]}`))));
-    if (!run.boons.length) kids.push(txt('dim center', 'Win gigs and visit jam sessions to collect boons. They last for the whole tour.'));
+    if (!run.boons.length) kids.push(txt('dim center', 'Win gigs and jam to collect boons. They last the tour.'));
     const cnt = {}; run.boons.forEach((id) => (cnt[id] = (cnt[id] || 0) + 1));
     Object.keys(cnt).forEach((id) => { const c = boonCard(id, run.boons); if (cnt[id] > 1) c.querySelector('.bname').textContent += ' ×' + cnt[id]; kids.push(c); });
     if (run.extra.vol || run.extra.hp) kids.push(txt('small dim center', 'From the road: ' + [run.extra.vol ? `${run.extra.vol > 0 ? '+' : ''}${Math.round(run.extra.vol * 100)}% Power` : '', run.extra.hp ? `${run.extra.hp > 0 ? '+' : ''}${Math.round(run.extra.hp * 100)}% HP` : ''].filter(Boolean).join(', ')));
@@ -5252,7 +5253,7 @@ window.H = {};
     if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', { solo: 1 }) : UI.go('solostop');
     const pet = H.petById(S, run.pet); if (!pet) { H.endSolo(S); return UI.go('solo'); }
     UI.music('camp', run.region);
-    const bar = el('div', 'bar'); add(bar, UI.key('‹ Home', () => { Au.sfx('back'); UI.go('home'); }, 'soft sm'), el('div', 'disp', H.REGIONS[run.region].n + ' tour'), UI.gearKey(() => UI.settings(key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes you have won stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
+    const bar = el('div', 'bar'); add(bar, UI.key('‹ Home', () => { Au.sfx('back'); UI.go('home'); }, 'soft sm'), el('div', 'disp', H.REGIONS[run.region].n + ' tour'), UI.gearKey(() => UI.settings(key('Give up the tour', () => UI.confirm('Give up the tour?', 'Notes stay yours.', 'Give up', () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
     root.appendChild(bar); root.appendChild(hud(S));
     const W = UI.W, rows = H.SOLO.rows.length, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
     const pos = (n) => (n ? { x: xOf(n), y: yOf(n.r) + (n.dy || 0) } : { x: W / 2, y: MH - BOT + 4 });
@@ -5281,7 +5282,7 @@ window.H = {};
       if (can) { b.classList.add('appear'); b.style.animationDelay = (intro ? 2.3 : 0.15) + [...reach].indexOf(n.id) * 0.1 + 's, 0s'; }
       b.setAttribute('aria-label', NODE[type] + (can ? ', you can go here' : done ? ', visited' : ''));
       if (can) { const lb = add(el('div', 'slabel'), NODE[type]); lb.style.cssText = at(p.x - 24, p.y + sz / 2 + 1); inner.appendChild(lb); }
-      b.addEventListener('click', () => { if (!n || walking) return; if (can) preview(n); else if (!done) { Au.sfx('tap'); UI.toast('Not on your road from here. Glowing stops are next.'); } });
+      b.addEventListener('click', () => { if (!n || walking) return; if (can) preview(n); else if (!done) { Au.sfx('tap'); UI.toast('Not on your road. Glowing stops are next.'); } });
       inner.appendChild(b); return b;
     };
     const intro = !!pr.fresh && !window.__hsSpeed;
@@ -5303,11 +5304,11 @@ window.H = {};
     function preview(n) {
       Au.sfx('tap'); const kids = [], bat = n.type === 'gig' || n.type === 'loud' || n.type === 'boss';
       kids.push(box('row', add(el('div', 'nbadge t-' + n.type), n.type === 'boss' ? UI.sp(H.REGIONS[run.region].boss, 0.6, { flip: true, anim: false }) : UI.icon(A.nodeIcon(n.type), 2)), add(el('div', 'grow col'), txt('disp', n.type === 'boss' ? H.DIN[H.REGIONS[run.region].boss].n : NODE[n.type]), txt('small dim', {
-        gig: 'A gig. Win it for a boon.', loud: 'A rowdy crowd: tougher Din, a Loud one in front. Win it for a rare boon.', boss: 'The last stop of the tour.', rest: 'Sleep, or practise.', jam: 'Play along with a band for a boon.', mystery: 'Something is going on here.' }[n.type]))));
+        gig: 'A small stage.', loud: 'A rowdy crowd and tougher Din.', boss: 'The last stop of the tour.', rest: 'Sleep, or practise.', jam: 'Play along for a boon.', mystery: 'Something is going on here.' }[n.type]))));
       if (bat) {
         const stg = H.soloStage(S, n), line = el('div', 'plineup'); stg.enemies.forEach((e) => line.appendChild(UI.sp(e.id, H.DIN[e.id].boss ? 0.62 : 0.52, { flip: true, anim: false })));
-        const P = S.solo, pays = n.type === 'boss' ? (!P.boss ? `+${H.SOLO.bossNotes} notes and a piece of equipment` : 'today\'s boss pay is already yours') : P.gigs < 5 ? `+${H.SOLO.gigNotes} notes` : 'today\'s gig pay is already yours';
-        kids.push(add(el('div', 'plinebox'), txt('label', 'On stage · Lv ' + stg.level), line), add(el('div', 'row small'), UI.icon('ic_note', 0.8), el('span', '', 'Win: ' + (n.type === 'boss' ? 'the tour' : n.type === 'loud' ? 'a rare boon' : 'a boon') + ' · ' + pays)));
+        const P = S.solo, notes = n.type === 'boss' ? (P.boss ? 0 : H.SOLO.bossNotes) : P.gigs < 5 ? H.SOLO.gigNotes : 0, prize = n.type === 'boss' ? null : add(el('span', 'chip boonchip' + (n.type === 'loud' ? ' rare' : '')), UI.icon('bn_amp', 0.55), n.type === 'loud' ? 'Rare boon' : 'Boon');
+        kids.push(add(el('div', 'plinebox'), txt('label', 'On stage · Lv ' + stg.level), line), add(el('div', 'row winrow'), txt('label', 'Win'), prize, notes ? UI.purse('ic_note', '+' + notes, 'Notes') : null, n.type === 'boss' && !P.boss ? UI.purse('ic_bag', '+1', 'Equipment') : null));
       }
       kids.push(key(bat ? (n.type === 'boss' ? 'Face the boss' : 'Play this gig') : 'Go there', () => { UI.closeModal(); walk(n); }, (n.type === 'boss' ? 'coral' : 'go') + ' wide big'), key('Not yet', UI.closeModal, 'wide soft'));
       UI.modal(...kids);
@@ -5341,12 +5342,12 @@ window.H = {};
     const done = () => { UI.save(); UI.go(S.soloRun && S.soloRun.pending ? 'solostop' : 'solomap'); };
     if (p.type === 'boon') {
       const title = p.src === 'jam' ? 'Jam session' : p.src === 'loud' ? 'The crowd goes wild' : p.src === 'c' ? 'Dig through the crate' : 'Gig won!';
-      add(scene, el('div', 'rays'), add(el('div', 'sart'), UI.sp(pet.form, 1.2), p.src === 'jam' ? UI.icon('nd_jam', 2.2) : UI.icon('ic_note', 2)), add(el('div', 'sbanner'), el('b', '', title), el('span', '', p.src === 'loud' || p.src === 'r' ? 'Pick a rare boon' : 'Pick a boon for the tour')));
+      add(scene, el('div', 'rays'), add(el('div', 'sart'), UI.sp(pet.form, 1.2), p.src === 'jam' ? UI.icon('nd_jam', 2.2) : UI.icon('ic_note', 2)), add(el('div', 'sbanner'), el('b', '', title), el('span', '', p.src === 'loud' || p.src === 'r' ? 'Pick a rare boon' : 'Pick a boon')));
       let chosen = null, chosenEl = null; const take = key('Pick one', () => { if (!chosen || take.dataset.busy) return; take.dataset.busy = 1; H.soloPick(S, chosen); Au.sfx('evolve'); UI.save();
         // the card glows and flies up into the boons on the header
         chosenEl.classList.add('taken'); pad.querySelectorAll('.boon').forEach((x) => { if (x !== chosenEl) x.classList.add('gone'); }); setTimeout(done, window.__hsSpeed ? 0 : 650); }, 'go wide big'); take.disabled = true;
       p.opts.forEach((id, i) => { const c = boonCard(id, run.boons, 'button'); c.classList.add('dealt'); c.style.animationDelay = 0.12 + i * 0.12 + 's'; c.addEventListener('click', () => { chosen = id; chosenEl = c; Au.sfx('good'); pad.querySelectorAll('.boon').forEach((x) => x.classList.toggle('on', x === c)); take.disabled = false; take.textContent = 'Take ' + H.BOONS[id].n; }); pad.appendChild(c); });
-      add(foot, take, key('Skip', () => UI.confirm('Skip this boon?', 'You will not get another one from this stop.', 'Skip', () => { H.soloPick(S, null); done(); }), 'wide soft sm'));
+      add(foot, take, key('Skip', () => UI.confirm('Skip this boon?', 'This stop gives no other.', 'Skip', () => { H.soloPick(S, null); done(); }), 'wide soft sm'));
     } else if (p.type === 'rest') {
       const embers = el('div', 'embers'); for (let i = 0; i < 7; i++) { const e = el('i'); e.style.left = 44 + Math.random() * 12 + '%'; e.style.animationDelay = -i * 0.4 + 's'; embers.appendChild(e); }
       const zzz = el('div', 'zzz'); ['z', 'z', 'Z'].forEach((t, i) => { const z = el('i', '', t); z.style.animationDelay = i * 0.7 + 's'; zzz.appendChild(z); });
@@ -5354,8 +5355,8 @@ window.H = {};
       const after = (cls, text) => { scene.classList.add(cls); scene.appendChild(add(el('div', 'restfx'), el('b', '', text))); pad.querySelectorAll('.choice').forEach((b) => (b.disabled = true)); setTimeout(done, window.__hsSpeed ? 0 : 900); };
       const max = H.soloMaxHp(S), now = Math.round(max * run.hp), heal = Math.min(max, Math.round(max * (run.hp + H.SOLO.rest)));
       const opt = (icon, name, d, fn) => { const b = el('button', 'choice'); b.type = 'button'; add(b, UI.icon(icon, 1.6), add(el('div', 'grow col'), el('b', '', name), txt('small', d))); b.addEventListener('click', fn); return b; };
-      add(pad, opt('st_regen', 'Sleep', `Heal ${Math.round(H.SOLO.rest * 100)}% · HP ${UI.fmt(now)} → ${UI.fmt(heal)}`, () => { H.soloRest(S, 'nap'); UI.save(); Au.sfx('heal'); after('slept', '+' + UI.fmt(heal - now) + ' HP'); }),
-        opt('st_pup', 'Practise', `+${Math.round(H.SOLO.practise * 100)}% Power for the rest of the tour`, () => { H.soloRest(S, 'practise'); UI.save(); Au.sfx('level'); after('practised', `+${Math.round(H.SOLO.practise * 100)}% Power`); }));
+      add(pad, opt('st_regen', 'Sleep', `HP ${UI.fmt(now)} → ${UI.fmt(heal)}`, () => { H.soloRest(S, 'nap'); UI.save(); Au.sfx('heal'); after('slept', '+' + UI.fmt(heal - now) + ' HP'); }),
+        opt('st_pup', 'Practise', `+${Math.round(H.SOLO.practise * 100)}% Power for this tour`, () => { H.soloRest(S, 'practise'); UI.save(); Au.sfx('level'); after('practised', `+${Math.round(H.SOLO.practise * 100)}% Power`); }));
     } else if (p.type === 'event') {
       const E = H.EVENTS[p.ev];
       add(scene, add(el('div', 'sart'), add(el('div', 'evart'), UI.icon('ev_' + p.ev, 2.3)), UI.sp(pet.form, 1)), add(el('div', 'sbanner'), el('b', '', E.n), el('span', '', 'Mystery')));
@@ -5373,10 +5374,9 @@ window.H = {};
     const S = UI.S;
     if (!out.win || out.done) return UI.go('soloend', { out });
     const kids = [], loot = box('loot'); if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
-    kids.push(add(el('div', 'wonhead'), txt('disp big center', out.loud ? 'Loud gig won!' : 'Gig won!'), UI.stamp(out.loud ? 'Rowdy!' : 'Encore!')), tourTrack(out.gig, out.gig - 1), txt('center dim small', `HP ${Math.round(S.soloRun.hp * 100)}% · ${out.gig < 5 ? 5 - out.gig + ' more to the boss' : 'the boss is next'}`), loot);
+    kids.push(add(el('div', 'wonhead'), txt('disp big center', out.loud ? 'Loud gig won!' : 'Gig won!'), UI.stamp(out.loud ? 'Rowdy!' : 'Encore!')), tourTrack(out.gig, out.gig - 1), txt('center dim small', `HP ${Math.round(S.soloRun.hp * 100)}%`), loot);
     UI.confetti(out.loud ? 44 : 30); Au.sfx('coin');
-    if (!out.notes) kids.push(txt('small dim center', 'Today\'s gig pay is already yours.'));
-    if (out.ups) kids.push(txt('center good', '<b>Level up!</b> Your pets got stronger.'), UI.unlockNote(out.ups));
+    if (out.ups) kids.push(txt('center good', '<b>Level up!</b>'), UI.unlockNote(out.ups));
     kids.push(UI.key(out.loud ? 'Pick a rare boon' : 'Pick a boon', () => UI.go('solostop'), 'gold wide big'));
     UI.modal(...kids);
   };
@@ -5389,7 +5389,7 @@ window.H = {};
     if (won) UI.confetti(70, true);
     const hero = pet ? UI.sp(pet.form, won ? 2 : 1.5, { anim: false }) : null; if (hero) hero.classList.add(won ? 'cheer' : 'slump');
     add(w, add(el('div', 'logo small dropin'), won ? 'Tour complete!' : 'Tour over'), hero,
-      add(el('div', 'panel col center endp risein'), txt('center', won ? `<b>${pet ? H.FORMS[pet.form].n : 'Your soloist'}</b> beat all five gigs and the boss.` : `Reached <b>${out.reached || 0} of 5</b> gigs. Every tour is a new road.`), (out.boons || []).length ? boons : null, loot, it ? txt('label center', 'And the boss dropped') : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', '<b>Level up!</b>') : null),
+      add(el('div', 'panel col center endp risein'), txt('center', won ? `<b>${pet ? H.FORMS[pet.form].n : 'Your soloist'}</b> beat all five gigs and the boss.` : `<b>${out.reached || 0} of 5</b> gigs won.`), (out.boons || []).length ? boons : null, loot, it ? txt('label center', 'And the boss dropped') : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', '<b>Level up!</b>') : null),
       key(won ? 'Home' : 'Try another tour', () => (won ? UI.go('home') : UI.go('solo', { pet: out.pet })), 'go wide big'), key(won ? 'Another tour' : 'Home', () => (won ? UI.go('solo', { pet: out.pet }) : UI.go('home')), 'wide soft'));
     root.appendChild(w);
   };
@@ -5470,10 +5470,10 @@ window.H = {};
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your Encore run ends here. Rewards you have reached stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
-      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes you have won stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
-      : daily ? UI.confirm('Leave the gig?', 'You can try again as often as you like.', 'Leave', () => UI.go('daily'))
-      : UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
+    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your run ends here. Rewards stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
+      : daily ? UI.confirm('Leave the gig?', 'Try again any time.', 'Leave', () => UI.go('daily'))
+      : UI.confirm('Leave this battle?', 'Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
     const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
@@ -5756,11 +5756,11 @@ window.H = {};
       if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
       UI.confetti(out.paid.length ? 50 : 16); if (out.paid.length) Au.sfx('coin');
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
-      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
+      if (out.ups) kids.push(txt('center good', `<b>Level up!</b>`), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
-      kids.push(txt('small dim center', next ? `Next weekly reward at wave ${next[0]}.` : 'All weekly rewards won. Go for a new best!'));
+      kids.push(txt('small dim center', next ? `Next reward: wave ${next[0]}` : 'All rewards won this week'));
       kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
-      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
       kids.push(txt('disp big center', 'Encore over'), txt('center', `You cleared <b>${out.reached}</b> ${out.reached === 1 ? 'wave' : 'waves'}. Best: <b>${out.best}</b>.`), loot);
       kids.push(UI.key('Back to Encore', () => UI.go('encore'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
@@ -5780,7 +5780,7 @@ window.H = {};
         team.forEach((p, i) => { const c = UI.sp(p.form, team.length === 1 || i === 1 ? 1.05 : 0.9, { anim: false }); c.style.setProperty('--d', i * 0.09 + 's'); band.appendChild(c); });
         add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', 'Level up'), el('b', '', String(S.level))));
         for (let i = 0; i < 14; i++) { const s = el('i', 'spark'), a = (i / 14) * 6.283; s.style.left = '50%'; s.style.top = '34%'; s.style.setProperty('--x', Math.cos(a) * (60 + (i % 3) * 22) + '%'); s.style.setProperty('--y', Math.sin(a) * (110 + (i % 2) * 40) + '%'); s.style.animationDelay = 0.15 + (i % 4) * 0.05 + 's'; lv.appendChild(s); }
-        kids.push(lv, txt('center good', out.ups > 1 ? `<b>+${out.ups} levels!</b> Your pets got stronger.` : 'Your pets got stronger.'));
+        kids.push(lv); if (out.ups > 1) kids.push(txt('center good', `<b>+${out.ups} levels!</b>`));
         const un = UI.unlockNote(out.ups); if (un) kids.push(un);
         if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 850);
       }
@@ -5793,7 +5793,7 @@ window.H = {};
         levelUp(); gold(); if (evo) kids.push(evoKey());
         kids.push(UI.key('More rehearsals', () => UI.go('rehearsal'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
       } else {
-        kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost. Try as often as you like.'), loot());
+        kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost.'), loot());
         kids.push(UI.key('Try again', () => UI.go('battle', { n: out.n, reh: 1 }), 'go wide big'), UI.key('Rehearsals', () => UI.go('rehearsal'), 'wide soft'));
       }
       UI.modal(...kids); return;
@@ -5801,7 +5801,7 @@ window.H = {};
     if (out.win) {
       kids.push(txt('disp big center', out.boss ? 'Boss beaten!' : 'Floor cleared!'), loot());
       levelUp();
-      if (!out.first) kids.push(txt('small dim center', 'Replay: no notes.'));
+      if (!out.first) kids.push(txt('small dim center', 'Replays pay no notes.'));
       if (out.item && !out.gift) kids.push(txt('label center', 'You found'), UI.itemRow(out.item));
       // some wins lead somewhere first: the story after a boss, or the first shell and first piece of equipment
       if (out.story) kids.push(UI.key('Continue', () => UI.go('story', { region: out.region, n: out.n, shells: out.shells, echo: out.bossEcho || 0, legend: out.legend ? out.legend.id : 0 }), 'go wide big'));
@@ -5833,9 +5833,9 @@ window.H = {};
   // The first shell and the first piece of equipment each get their own moment, then a pointer to where they are used.
   UI.gift = (kind, item) => {
     const S = UI.S; H.Audio.sfx('evolve');
-    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', 'You found a shell!'), txt('center', 'A pet is waiting inside. Shells are opened in the <b>Shells</b> menu.'),
+    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', 'You found a shell!'), txt('center', 'A pet is inside. Open it in <b>Shells</b>.'),
       UI.key('Show me', () => { S.flags.coach = 'shell'; UI.go('home'); }, 'go wide big'));
-    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', 'You found equipment!'), UI.itemRow(item), txt('center', 'Every pet can wear two pieces. You put them on from the pet\'s own page.'),
+    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', 'You found equipment!'), UI.itemRow(item), txt('center', 'Each pet wears two pieces. Put them on from its page.'),
       UI.key('Show me', () => { S.flags.coach = 'gear'; UI.go('team', {}); }, 'go wide big'));
   };
 })(window.H);

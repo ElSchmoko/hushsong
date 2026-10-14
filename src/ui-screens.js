@@ -57,7 +57,7 @@
     const pips = el('div', 'pips'); for (let i = 0; i < 10; i++) { const c = UI.icon('ic_note', 1.1); if (i >= done) c.classList.add('mute'); else if (i === done - 1) c.classList.add('fresh'); pips.appendChild(c); }
     const par = el('div', 'parade'); const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => par.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? 1.5 : 1.2)));
     add(w, air, add(el('div', 'late col center'), txt('chip', R.n + ' · floor ' + pr.n), el('div', 'logo small', st[0])), par,
-      add(el('div', 'panel col late2'), txt('center', st[1]), pips, txt('small dim center', done >= 10 ? 'All ten regions sing again.' : `${done} of 10 regions sing again.`)),
+      add(el('div', 'panel col late2'), txt('center', st[1]), pips),
       key('Onwards', () => (pr.shells || pr.echo ? UI.go('bossreward', pr) : UI.go('home')), 'go wide big late2'));
     root.appendChild(w);
     if (window.__hsSpeed) { w.classList.add('now'); return; }
@@ -138,7 +138,7 @@
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
     trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio); root.appendChild(hero);
     const modes = el('div', 'modes');
-    const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', `Floor ${S.stage}` + (st.boss ? ' · boss · wins a shell' : S.stage === 1 ? ' · wins a shell' : ` · foes Lv ${st.level}`))));
+    const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', 'Start your adventure here'); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', 'Adventure'), txt('sub', (st.boss ? 'Boss · ' : '') + `Foes Lv ${st.level}`)));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
     const small = (cls, icon, name, sub, go, pip) => { const b = el('button', 'mode side ' + cls + (pip === '!' && cls !== 'day' ? ' fresh' : '')); b.type = 'button'; add(b, add(el('span', 'micon'), UI.icon(icon, 1.25)), add(el('div', 'grow'), txt('disp', name), txt('sub', sub))); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); if (typeof go === 'function') go(); else UI.go(go, {}); }); return b; };
     if (H.refreshRehearsals(S)) UI.save(); const open = H.rehearsals(S).filter((n) => !S.reh[n]).length, ready = H.recordsReady(S);
@@ -308,7 +308,7 @@
       let sh = UI.sp('shell', 2, { anim: false }); if (!S.shells) sh.style.opacity = '0.45';
       else { const t = el('button', 'shelltap'); t.type = 'button'; t.setAttribute('aria-label', 'Open the shell'); t.appendChild(sh); t.addEventListener('click', crack); sh = t; }
       add(boxEl, sh, txt('disp big', S.shells ? plural(S.shells, 'shell') + ' to open' : 'No shells right now'),
-        txt('', pr.first ? 'Your first pet is waiting inside. <b>Tap the shell</b> to open it.' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
+        txt('', pr.first ? 'Your first pet is inside. <b>Tap the shell.</b>' : 'A <b>random pet</b>. One you already have becomes an <b>echo</b>.'), pr.first ? null : coll(),
         pr.first || S.shells ? null : txt('small dim', 'Bosses leave shells. Notes buy more.'));
       const open = key(S.shells > 1 ? 'Open a shell' : 'Open the shell', crack, 'go big wide'); open.disabled = !S.shells; foot.appendChild(open);
       if (!pr.first) { const price = H.shellPrice(S), buy = key('', () => { if (H.buyShell(S)) { Au.sfx('coin'); UI.save(); idle(); } }, 'gold wide'); add(buy, 'Buy a shell · ', UI.icon('ic_note'), String(price)); buy.disabled = S.notes < price; foot.appendChild(buy); }
@@ -383,7 +383,7 @@
       });
       add(pad, txt('label', 'Equipment'), gear, txt('label', 'Moves'), ...UI.formInfo(pet.form));
       const others = Object.keys(H.FORMS).filter((k) => H.FORMS[k].sp === f.sp && k !== pet.form && H.FORMS[k].tier > 0 && (H.FORMS[k].tier === 1 ? pet.t1 : pet.t2));
-      if (others.length) pad.appendChild(key('Change its path (free)', pathSheet, 'wide soft sm'));
+      if (others.length) pad.appendChild(key('Change path', pathSheet, 'wide soft sm'));
       body.appendChild(pad); root.appendChild(body);
     };
     // the old form glows white and swells, then the new one bursts out
@@ -425,7 +425,7 @@
       if (!items.length) add(pad, box('row center', UI.icon('ic_bag', 3)), txt('disp center', 'Nothing here yet'), txt('dim center', 'Battles sometimes drop equipment.'));
       else {
         if (!H.mergeGroups(S).length) pad.appendChild(txt('small dim center', '3 spare pieces of one kind merge into a better one.'));
-        H.mergeGroups(S).slice(0, 3).forEach((g) => { const it = g[0], nx = H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, b = key('', () => merge(it), 'gold wide sm'); add(b, UI.icon(A.itemIcon(it), 0.7), `Merge 3 ${H.RARITY[it.rar].n} ${H.itemName(it)} into 1 ${nx}`); pad.appendChild(b); });
+        H.mergeGroups(S).slice(0, 3).forEach((g) => { const it = g[0], nx = H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, b = key('', () => merge(it), 'gold wide sm'); add(b, UI.icon(A.itemIcon(it), 0.7), `Merge 3 ${H.itemName(it)} → ${nx}`); pad.appendChild(b); });
         items.forEach((it) => { const who = H.itemOwner(S, it.id), b = UI.itemRow(it, 'button', who ? UI.sp(who.form, 0.5, { anim: false }) : null); b.addEventListener('click', () => { Au.sfx('tap'); sheet(it); }); pad.appendChild(b); });
       }
       body.appendChild(pad); add(root, body, UI.nav('bag'));
@@ -436,7 +436,7 @@
       // take it off right here, without a trip to the pet's page; the sheet then shows the piece as spare
       if (who) kids.push(key('Take it off ' + H.FORMS[who.form].n, () => { H.unequip(S, who, who.gear.indexOf(it.id)); Au.sfx('back'); UI.save(); draw(); sheet(it); }, 'wide gold'), key('Go to ' + H.FORMS[who.form].n, () => UI.go('pet', { id: who.id, back: 'bag' }), 'wide soft'));
       else {
-        if (H.canMerge(S, it)) { const m = key('Merge 3 into 1 ' + H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
+        if (H.canMerge(S, it)) { const m = key('Merge 3 → ' + H.RARITY[H.RARITY_ORDER[H.RARITY_ORDER.indexOf(it.rar) + 1]].n, () => { UI.closeModal(); merge(it); }, 'gold wide'); kids.push(m); }
         else if (it.rar !== 'l') kids.push(txt('small dim center', `Merge: ${H.spareItems(S).filter((x) => x.type === it.type && x.rar === it.rar).length} / 3 spare`));
         const sell = key('', () => { H.sellItem(S, it.id); Au.sfx('coin'); UI.save(); UI.closeModal(); draw(); }, 'wide soft'); add(sell, 'Sell · ', UI.icon('ic_note'), String(H.RARITY[it.rar].sell)); kids.push(sell);
       }
@@ -454,8 +454,8 @@
     if (!list.length) add(pad, box('row center', UI.icon('ic_baton', 3)), txt('dim center', 'Opens after the boss on floor 10.'));
     else {
       const left = list.filter((m) => !S.reh[m]).length, days = H.daysToReset(Date.now());
-      pad.appendChild(txt('small center', `Bosses return at <b>your level (Lv ${S.level})</b>. Each pays <b>1 echo</b> a week.`));
-      pad.appendChild(txt('small dim center', (left ? `${left} of ${list.length} left this week` : 'All won this week') + ` · new echoes ${days === 1 ? '<b>tomorrow</b>' : `in <b>${days} days</b>`}`));
+      pad.appendChild(txt('small center', `Beaten bosses return at <b>your level</b>.`));
+      pad.appendChild(txt('small dim center', (left ? '' : 'All won this week · ') + `Resets ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
     }
     list.sort((a, b) => (S.reh[a] ? 1 : 0) - (S.reh[b] ? 1 : 0)).forEach((n) => {
       const st = H.stage(n), R = H.REGIONS[st.region], d = H.DIN[R.boss], done = !!S.reh[n], b = el('button', 'item ' + (done ? 'r-c' : 'r-l')); b.type = 'button'; b.setAttribute('aria-label', d.n + ', ' + R.n + (done ? ', won this week' : ', reward 1 echo'));
@@ -480,14 +480,13 @@
     // the band on stage; in a run, each pet's HP under it
     const stage = el('div', 'encstage'); H.encoreTeam(S).forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] || 0 : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.9, { anim: hp > 0 }), run ? UI.meter(hp) : null, run ? el('b', '', hp > 0 ? Math.round(hp * 100) + '%' : 'Out') : null); stage.appendChild(c); });
     add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign' + (window.__hsSpeed ? '' : ' poweron'), 'Encore'), stage); root.appendChild(hero);
-    pad.appendChild(txt('small center', 'Endless waves near <b>your level</b>, a little tougher each time. HP carries over, a quarter comes back after each wave, and fallen pets sit out.'));
+    pad.appendChild(txt('small center', 'Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.'));
     // this week's milestones
     const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: E.paid > i, label: 'Wave ' + m })), 'neon');
     add(pad, add(el('div', 'payline'), txt('label', 'This week'), miles), txt('small dim center', `Best this week <b>${E.weekBest}</b> · all time <b>${E.best}</b> · resets ${days === 1 ? 'tomorrow' : `in ${days} days`}`));
-    pad.appendChild(txt('small dim center', run ? `<b>Your run:</b> wave ${run.wave} is next.` : 'Your band goes in as it is now.'));
     if (run) {
       foot.appendChild(key(`Play wave ${run.wave}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
-      foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+      foot.appendChild(key('End this run', () => UI.confirm('End this run?', 'Rewards stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
       const ready = H.teamPets(S).some(Boolean), start = key('Start Encore', () => { H.startEncoreRun(S, Math.random); UI.save(); UI.go('battle', { enc: 1 }); }, 'go wide big'); start.disabled = !ready;
       foot.appendChild(start); foot.appendChild(key('Change the band', () => UI.go('team', {}), 'wide soft'));

@@ -72,10 +72,10 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your Encore run ends here. Rewards you have reached stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
-      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes you have won stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
-      : daily ? UI.confirm('Leave the gig?', 'You can try again as often as you like.', 'Leave', () => UI.go('daily'))
-      : UI.confirm('Leave this battle?', 'You go back to your band. Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
+    const leave = () => (enc ? UI.confirm('Leave this wave?', 'Your run ends here. Rewards stay yours.', 'Leave', () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+      : solo ? UI.confirm('Leave this gig?', 'Your tour ends here. Notes stay yours.', 'End the tour', () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
+      : daily ? UI.confirm('Leave the gig?', 'Try again any time.', 'Leave', () => UI.go('daily'))
+      : UI.confirm('Leave this battle?', 'Nothing is lost.', 'Leave', () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
     const menu = () => { paused = true; UI.settings(key('Leave battle', leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
@@ -358,11 +358,11 @@
       if (out.paid.length) kids.push(txt('chip center', 'Weekly reward: wave ' + out.paid.join(', ')));
       UI.confetti(out.paid.length ? 50 : 16); if (out.paid.length) Au.sfx('coin');
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
-      if (out.ups) kids.push(txt('center good', `<b>Level up!</b> Your pets got stronger.`), UI.unlockNote(out.ups));
+      if (out.ups) kids.push(txt('center good', `<b>Level up!</b>`), UI.unlockNote(out.ups));
       const next = H.ENCORE.miles.find(([m]) => m > out.wave && S.encore.weekBest < m);
-      kids.push(txt('small dim center', next ? `Next weekly reward at wave ${next[0]}.` : 'All weekly rewards won. Go for a new best!'));
+      kids.push(txt('small dim center', next ? `Next reward: wave ${next[0]}` : 'All rewards won this week'));
       kids.push(UI.key(`Wave ${out.wave + 1}`, () => UI.go('battle', { enc: 1 }), 'go wide big'));
-      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards you have reached stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
+      kids.push(UI.key('Stop here', () => UI.confirm('End this run?', 'Rewards stay yours.', 'End run', () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
       kids.push(txt('disp big center', 'Encore over'), txt('center', `You cleared <b>${out.reached}</b> ${out.reached === 1 ? 'wave' : 'waves'}. Best: <b>${out.best}</b>.`), loot);
       kids.push(UI.key('Back to Encore', () => UI.go('encore'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
@@ -382,7 +382,7 @@
         team.forEach((p, i) => { const c = UI.sp(p.form, team.length === 1 || i === 1 ? 1.05 : 0.9, { anim: false }); c.style.setProperty('--d', i * 0.09 + 's'); band.appendChild(c); });
         add(lv, el('div', 'rays'), band, add(el('div', 'lvbadge'), el('small', '', 'Level up'), el('b', '', String(S.level))));
         for (let i = 0; i < 14; i++) { const s = el('i', 'spark'), a = (i / 14) * 6.283; s.style.left = '50%'; s.style.top = '34%'; s.style.setProperty('--x', Math.cos(a) * (60 + (i % 3) * 22) + '%'); s.style.setProperty('--y', Math.sin(a) * (110 + (i % 2) * 40) + '%'); s.style.animationDelay = 0.15 + (i % 4) * 0.05 + 's'; lv.appendChild(s); }
-        kids.push(lv, txt('center good', out.ups > 1 ? `<b>+${out.ups} levels!</b> Your pets got stronger.` : 'Your pets got stronger.'));
+        kids.push(lv); if (out.ups > 1) kids.push(txt('center good', `<b>+${out.ups} levels!</b>`));
         const un = UI.unlockNote(out.ups); if (un) kids.push(un);
         if (!window.__hsSpeed) setTimeout(() => Au.sfx('level'), 850);
       }
@@ -395,7 +395,7 @@
         levelUp(); gold(); if (evo) kids.push(evoKey());
         kids.push(UI.key('More rehearsals', () => UI.go('rehearsal'), 'go wide big'), UI.key('Home', () => UI.go('home'), 'wide soft'));
       } else {
-        kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost. Try as often as you like.'), loot());
+        kids.push(txt('disp big center', 'Not this time'), txt('center dim', 'Nothing is lost.'), loot());
         kids.push(UI.key('Try again', () => UI.go('battle', { n: out.n, reh: 1 }), 'go wide big'), UI.key('Rehearsals', () => UI.go('rehearsal'), 'wide soft'));
       }
       UI.modal(...kids); return;
@@ -403,7 +403,7 @@
     if (out.win) {
       kids.push(txt('disp big center', out.boss ? 'Boss beaten!' : 'Floor cleared!'), loot());
       levelUp();
-      if (!out.first) kids.push(txt('small dim center', 'Replay: no notes.'));
+      if (!out.first) kids.push(txt('small dim center', 'Replays pay no notes.'));
       if (out.item && !out.gift) kids.push(txt('label center', 'You found'), UI.itemRow(out.item));
       // some wins lead somewhere first: the story after a boss, or the first shell and first piece of equipment
       if (out.story) kids.push(UI.key('Continue', () => UI.go('story', { region: out.region, n: out.n, shells: out.shells, echo: out.bossEcho || 0, legend: out.legend ? out.legend.id : 0 }), 'go wide big'));
@@ -435,9 +435,9 @@
   // The first shell and the first piece of equipment each get their own moment, then a pointer to where they are used.
   UI.gift = (kind, item) => {
     const S = UI.S; H.Audio.sfx('evolve');
-    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', 'You found a shell!'), txt('center', 'A pet is waiting inside. Shells are opened in the <b>Shells</b> menu.'),
+    if (kind === 'shell') UI.modal(box('row center', UI.sp('shell', 2)), txt('disp big center', 'You found a shell!'), txt('center', 'A pet is inside. Open it in <b>Shells</b>.'),
       UI.key('Show me', () => { S.flags.coach = 'shell'; UI.go('home'); }, 'go wide big'));
-    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', 'You found equipment!'), UI.itemRow(item), txt('center', 'Every pet can wear two pieces. You put them on from the pet\'s own page.'),
+    else UI.modal(box('row center', UI.icon(A.itemIcon(item), 3.4)), txt('disp big center', 'You found equipment!'), UI.itemRow(item), txt('center', 'Each pet wears two pieces. Put them on from its page.'),
       UI.key('Show me', () => { S.flags.coach = 'gear'; UI.go('team', {}); }, 'go wide big'));
   };
 })(window.H);
