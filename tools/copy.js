@@ -17,10 +17,13 @@ li(kv('Once, everything sang', 'Every hill, harbour and hall had its own tune, a
 
 h(2, 'Home');
 li('Lv {n} · {xp} / {need} XP · Top level', '{Region} · Floor {n} / Boss floor {n} · {n} of 10 regions sing',
-  'Adventure · Foes Lv {n} / Boss · Foes Lv {n}', 'Rehearsal · {n} open / Boss replays', 'Daily Gig · {house rule} / Won today', 'Solo · Gig {n} of 5 next / Rewards today / Play for fun',
-  'Encore · Wave {n} next / Best this week: {n} / Endless waves', '[locked] Unlocks at Level {n} · Unlocks after floor 10', '[locked, tapped] {Mode} unlocks at level {n}. · Rehearsal unlocks after the boss on floor 10.',
+  'Adventure · Foes Lv {n} / Boss · Foes Lv {n}',
+  'Gigs · Daily Gig ready / Solo tour on the road / Encore wave {n} next / {n} rehearsals open / Solo pays today / First gig at level 5 / All played today', 'Records · {n} ready / {n} of {total}',
   'Tabs: Home · Band · Pets · Shells · Bag');
 li('[first steps] Start your adventure here · Fight the foes above · Ready? Head out · Open your shell here · Tap your pet · Put your equipment on here · Done! Head back and battle on.');
+
+h(2, 'Gig Board');
+li('Gigs · Daily Gig · {house rule} · {venue} · Won today [stamp]', 'Solo · Solo Tour / Gig {n} of 5', 'Encore · Best this week: {n} / Wave {n} next', 'Rehearsal · {n} bosses open / All played · Resets tomorrow / in {n} days', '[wrapped] Unlocks at Level {n} / Unlocks after floor 10', '‹ Gigs [back from a mode]');
 
 h(2, 'Adventure');
 li('Your band / No ensemble · {ensemble boon} · Band', '{Region} · Floor {n} / Loud {n} / Boss {n} · Cleared · Foes Lv {n}', 'Rival {pet} · Loud {Din}', 'You hit it harder · It hits you harder',
