@@ -77,6 +77,7 @@
       : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
       : daily ? UI.confirm(tr('Leave the gig?'), tr('Try again any time.'), tr('Leave'), () => UI.go('daily'))
       : UI.confirm(tr('Leave this battle?'), tr('Nothing is lost.'), tr('Leave'), () => (reh ? UI.go('rehearsal') : UI.go('adventure', { n }))));
+    UI.cur.back = () => { if (battle.over) return; paused = true; leave(); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const menu = () => { paused = true; UI.settings(key(tr('Leave battle'), leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
@@ -345,6 +346,10 @@
       const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
       UI.save(); UI.result(out);
+      // back on the result: a story, gift or boon still to come is shown; otherwise back to where the battle was started
+      UI.cur.modalBack = () => { const m = document.getElementById('modal'), next = m.querySelector('.key.go') || m.querySelector('.key.gold');
+        if ((out.story || out.giftShell || out.gift || solo) && next) return next.click();
+        Au.sfx('back'); UI.go(enc ? 'encore' : daily ? 'daily' : reh ? 'rehearsal' : 'adventure', {}); };
       if (win && H.Net && (enc || (!solo && !daily && !reh && out.first))) H.Net.push(S, UI.save);   // a new best for the Ranks boards
     }
     Au.music.din(1); requestAnimationFrame(loop); run();

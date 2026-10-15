@@ -130,7 +130,7 @@
     if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', { solo: 1 }) : UI.go('solostop');
     const pet = H.petById(S, run.pet); if (!pet) { H.endSolo(S); return UI.go('solo'); }
     UI.music('camp', run.region);
-    const bar = el('div', 'bar'); add(bar, UI.key(tr('‹ Gigs'), () => { Au.sfx('back'); UI.go('gigs'); }, 'soft sm'), el('div', 'disp', tr('{region} tour', { region: H.REGIONS[run.region].n })), UI.gearKey(() => UI.settings(key(tr('Give up the tour'), () => UI.confirm(tr('Give up the tour?'), tr('Notes stay yours.'), tr('Give up'), () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
+    const bar = el('div', 'bar'); add(bar, UI.key(tr('‹ Gigs'), () => { Au.sfx('back'); UI.go('gigs'); }, 'soft sm backk'), el('div', 'disp', tr('{region} tour', { region: H.REGIONS[run.region].n })), UI.gearKey(() => UI.settings(key(tr('Give up the tour'), () => UI.confirm(tr('Give up the tour?'), tr('Notes stay yours.'), tr('Give up'), () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
     root.appendChild(bar); root.appendChild(hud(S));
     const W = UI.W, rows = H.SOLO.rows.length, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
     const pos = (n) => (n ? { x: xOf(n), y: yOf(n.r) + (n.dy || 0) } : { x: W / 2, y: MH - BOT + 4 });

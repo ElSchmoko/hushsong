@@ -1100,6 +1100,7 @@
 1byxumh	Experience	ui-screens	
 1lr0g08	+1 Legendary	ui-screens	
 1lafnle	Chance of equipment	ui-screens	
+0dtejv3	Chance of a shell	ui-screens	
 0dr6vfq	{name}, level {lvl}, your band is strong against it. Show its moves	ui-screens	
 0k11ss3	{name}, level {lvl}, strong against your band. Show its moves	ui-screens	
 1twb6b1	{name}, level {lvl}. Show its moves	ui-screens	

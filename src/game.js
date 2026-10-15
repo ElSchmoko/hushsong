@@ -44,7 +44,10 @@
   H.shellPool = (S) => {
     if (!S.pets.length) return H.STARTERS.map((sp) => [sp, 1]);
     const missing = H.SPECIES_ORDER.filter((sp) => !H.owned(S, sp));
-    if (S.pets.length < 3 && missing.length) return missing.map((sp) => [sp, 1]);      // your first three shells are always new pets
+    if (S.pets.length < 3 && missing.length) {      // your first three shells are always new pets, each of a family you don't have yet: three families make an ensemble
+      const have = new Set(S.pets.map(H.petFamily)), fresh = missing.filter((sp) => !have.has(H.SPECIES[sp].family));
+      return (fresh.length ? fresh : missing).map((sp) => [sp, 1]);
+    }
     return H.SPECIES_ORDER.map((sp) => [sp, 1]);   // after that every pet is equally likely, owned or not
   };
   // The very first shell lets you pick one of the three starters (pass its name as `pick`).
@@ -98,8 +101,10 @@
   H.xpFactor = (S, n) => { const gap = S.level - H.stageLevel(n), span = 5 + 0.3 * S.level; return Math.max(0.1, Math.min(1, 1 - gap / span)); };
   H.xpFor = (S, n) => { const st = H.stage(n), first = n >= S.stage; return Math.round((8 + 3 * n) * (st.boss ? 2 : st.elite ? 1.3 : 1) * (first ? 1 : 0.5) * H.xpFactor(S, n) * teamXp(S)); };
   // The chance a won battle drops a piece: full on floors at or above your level, less the further below you a floor is. Bosses drop twice as often.
-  H.ITEM_BASE = 0.16;
-  H.dropChance = (S, n) => { const gap = S.level - H.stageLevel(n), span = 5 + 0.3 * S.level; return H.ITEM_BASE * (H.stage(n).boss ? 2 : 1) * Math.max(0, Math.min(1, 1 - gap / span)); };
+  H.ITEM_BASE = 0.16; H.SHELL_DROP = 0.03;
+  const levelFit = (S, n) => { const gap = S.level - H.stageLevel(n), span = 5 + 0.3 * S.level; return Math.max(0, Math.min(1, 1 - gap / span)); };   // 1 on floors at your level, down to 0 far below it
+  H.dropChance = (S, n) => H.ITEM_BASE * (H.stage(n).boss ? 2 : 1) * levelFit(S, n);
+  H.shellDropChance = (S, n) => H.SHELL_DROP * levelFit(S, n);
   H.itemById = (S, id) => S.items.find((x) => x.id === id) || null;
   H.itemOwner = (S, id) => S.pets.find((p) => p.gear && p.gear.includes(id)) || null;
   H.equip = (S, pet, slot, id) => { for (const p of S.pets) if (p.gear) p.gear = p.gear.map((g) => (g === id ? null : g)); if (!pet.gear) pet.gear = [null, null]; pet.gear[slot] = id; };
@@ -163,6 +168,7 @@
     // the second floor hands over one piece of equipment, once; after that every win has a small chance
     if (out.first && n === 2 && !S.flags.gift2) { S.flags.gift2 = 1; out.item = H.rollItem(S, rnd, 'gift'); out.gift = true; }
     else if (rnd() < drop) out.item = H.rollItem(S, rnd, st.boss ? 'boss' : st.elite ? 'elite' : 'win');
+    if (rnd() < H.shellDropChance(S, n)) { S.shells++; out.shells += 1; out.shellDrop = true; }
     return out;
   };
   // Rehearsal echoes come back every week: each boss pays one echo per week, and they all reset on Monday (local time).
