@@ -1707,7 +1707,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUFAAGzMwAAAAAAAAA
   // Shells: one for the very first floor (a welcome gift), then one from every boss, the first time it falls.
   H.shellsFor = (n) => (n === 1 || n % 10 === 0 ? 1 : 0);
   H.isShellStage = (n) => H.shellsFor(n) > 0;
-  H.NOTES = 17.5;   // (was 14) per new floor: 18 notes, a Loud enemy 26, a boss 53; the same on every floor; a Loud enemy pays 1.5x and a boss 3x. Replays pay none.
+  H.NOTES = 17.5;   // (was 14) per new floor: 18 notes, a Loud enemy 26, a boss 53; the same on every floor; a Loud enemy pays 1.5x and a boss 3x. Cleared floors pay a share (H.notesFor).
   H.ENEMY_COUNT = [1, 2, 2, 2, 2, 2, 2, 2, 2];   // the first ten floors are for a team of two; three enemies from then on
   const FRONT = { clank: 0, creak: 0, bash: 0, racket: 1, clatter: 1, croak: 1, beep: 1, hiss: 2, drip: 2, whoosh: 2, squawk: 2, gibber: 3, tick: 3, cuckoo: 3, ringtone: 3, whine: 4, rustle: 4, buzz: 4, peck: 4, crackle: 4, squeal: 4 };
   H.DIN_FRONT = FRONT;
@@ -2525,6 +2525,9 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUFAAGzMwAAAAAAAAA
   const levelFit = (S, n) => { const gap = S.level - H.stageLevel(n), span = 5 + 0.3 * S.level; return Math.max(0, Math.min(1, 1 - gap / span)); };   // 1 on floors at your level, down to 0 far below it
   H.dropChance = (S, n) => H.ITEM_BASE * (H.stage(n).boss ? 2 : 1) * levelFit(S, n);
   H.shellDropChance = (S, n) => H.SHELL_DROP * levelFit(S, n);
+  // Notes for a floor: full on a new floor; a cleared floor pays a quarter, down to none on floors far below your level
+  H.REPLAY_NOTES = 0.25;
+  H.notesFor = (S, n) => { const st = H.stage(n), full = H.NOTES * (st.boss ? 3 : st.elite ? 1.5 : 1); return Math.round(n >= S.stage ? full : full * H.REPLAY_NOTES * levelFit(S, n)); };
   H.itemById = (S, id) => S.items.find((x) => x.id === id) || null;
   H.itemOwner = (S, id) => S.pets.find((p) => p.gear && p.gear.includes(id)) || null;
   H.equip = (S, pet, slot, id) => { for (const p of S.pets) if (p.gear) p.gear = p.gear.map((g) => (g === id ? null : g)); if (!pet.gear) pet.gear = [null, null]; pet.gear[slot] = id; };
@@ -2571,7 +2574,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUFAAGzMwAAAAAAAAA
     const drop = H.dropChance(S, n), xk = H.xpFactor(S, n), st = H.stage(n), out = { win, n, notes: 0, xp: 0, ups: 0, first: false, boss: st.boss, region: st.region, shells: 0, item: null, gift: false, giftShell: false, story: false, echo: 0 };
     if (!win) { out.xp = Math.round((8 + 3 * n) * 0.25 * xk * teamXp(S)); out.ups = H.gainXp(S, out.xp); return out; }
     out.first = n >= S.stage; const k = out.first ? 1 : 0.5;
-    out.notes = out.first ? Math.round(H.NOTES * (st.boss ? 3 : st.elite ? 1.5 : 1)) : 0;
+    out.notes = H.notesFor(S, n);
     out.xp = Math.round((8 + 3 * n) * (st.boss ? 2 : st.elite ? 1.3 : 1) * k * xk * teamXp(S));
     S.notes += out.notes; out.ups = H.gainXp(S, out.xp);
     if (out.first) {
@@ -5248,7 +5251,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUFAAGzMwAAAAAAAAA
       strip.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', { n }); }); root.appendChild(strip);
       const fb = el('div', 'foebar'), prev = key('‹', () => { n--; draw(); }, 'soft sm'), nextB = key('›', () => { n++; draw(); }, 'soft sm'); prev.disabled = n <= 1; nextB.disabled = n >= S.stage; prev.setAttribute('aria-label', tr('Earlier floor')); nextB.setAttribute('aria-label', tr('Later floor'));
       const gapL = st.level - S.level, sh = n >= S.stage ? H.shellsFor(n) : 0, ech = n >= S.stage ? (n % H.ECHO_EVERY === 0 ? H.ECHO_FLOORS : 0) + (st.boss ? H.ECHO_BOSS : 0) : 0, drop = Math.round(H.dropChance(S, n) * 100), shellCh = Math.round(H.shellDropChance(S, n) * 100), gift = n === 2 && !S.flags.gift2;
-      add(fb, add(el('div', 'col'), txt('label', R.n), box('row', prev, txt('disp', tr(st.boss ? 'Boss {n}' : st.elite ? 'Loud {n}' : 'Floor {n}', { n })), nextB)), add(el('div', 'frew'), txt('small ' + (gapL >= 2 ? 'bad' : 'dim'), tr(n < S.stage ? 'Cleared · Foes Lv {n}' : 'Foes Lv {n}', { n: st.level })), box('row', UI.purse('ic_xp', '+' + UI.fmt(H.xpFor(S, n)), tr('Experience')), sh ? UI.purse('ic_shell', '+' + sh, tr('Shells')) : null, ech ? UI.purse('ic_echo', '+' + ech, tr('Echoes')) : null, gift ? UI.purse('ic_bag', '+1', tr('Equipment')) : n === 100 && !S.flags.leg100 ? txt('chip legend', tr('+1 Legendary')) : drop > 0 ? UI.purse('ic_bag', drop + '%', tr('Chance of equipment')) : null, !sh && shellCh > 0 ? UI.purse('ic_shell', shellCh + '%', tr('Chance of a shell')) : null)));
+      add(fb, add(el('div', 'col'), txt('label', R.n), box('row', prev, txt('disp', tr(st.boss ? 'Boss {n}' : st.elite ? 'Loud {n}' : 'Floor {n}', { n })), nextB)), add(el('div', 'frew'), txt('small ' + (gapL >= 2 ? 'bad' : 'dim'), tr(n < S.stage ? 'Cleared · Foes Lv {n}' : 'Foes Lv {n}', { n: st.level })), box('row', H.notesFor(S, n) > 0 ? UI.purse('ic_note', '+' + H.notesFor(S, n), tr('Notes')) : null, UI.purse('ic_xp', '+' + UI.fmt(H.xpFor(S, n)), tr('Experience')), sh ? UI.purse('ic_shell', '+' + sh, tr('Shells')) : null, ech ? UI.purse('ic_echo', '+' + ech, tr('Echoes')) : null, gift ? UI.purse('ic_bag', '+1', tr('Equipment')) : n === 100 && !S.flags.leg100 ? txt('chip legend', tr('+1 Legendary')) : drop > 0 ? UI.purse('ic_bag', drop + '%', tr('Chance of equipment')) : null, !sh && shellCh > 0 ? UI.purse('ic_shell', shellCh + '%', tr('Chance of a shell')) : null)));
       // the floor section: which floor, what it pays, and where it lies on the way to floor 100
       root.appendChild(add(el('div', 'floorsec'), fb, worldMap(S, n)));
       const body = el('div', 'scroll'), pad = el('div', 'pad foelist'); pad.style.gap = 'calc(var(--u) * 3.5)';
