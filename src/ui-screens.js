@@ -137,7 +137,9 @@
     add(hero, add(el('div', 'zone'), txt('chip', R.n), txt('disp', tr(st.boss ? 'Boss floor {n}' : 'Floor {n}', { n: S.stage })), songChip(S)));
     const trio = el('button', 'trio'); trio.type = 'button'; trio.setAttribute('aria-label', tr('Your band')); const big = hh > 200 ? 1.75 : hh > 150 ? 1.5 : 1.25;
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
-    trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio); root.appendChild(hero);
+    trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio);
+    const rk = el('button', 'rankb'); rk.type = 'button'; add(rk, UI.icon('ic_trophy', 1.1), el('span', '', tr('Ranks'))); rk.addEventListener('click', () => { Au.sfx('tap'); UI.go('ranks', {}); }); hero.appendChild(rk);
+    root.appendChild(hero);
     const modes = el('div', 'modes');
     const adv = UI.coach(el('button', 'mode'), S.flags.coach === 'go', tr('Start your adventure here')); adv.type = 'button'; add(adv, UI.icon('ic_sword', 1.7), add(el('div', 'grow'), txt('disp', tr('Adventure')), txt('sub', tr(st.boss ? 'Boss · Foes Lv {n}' : 'Foes Lv {n}', { n: st.level }))));
     adv.addEventListener('click', () => { Au.sfx('tap', 4); UI.go('adventure', {}); }); modes.appendChild(adv);
@@ -542,6 +544,7 @@
     // this week's milestones
     const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: E.paid > i, label: tr('Wave {n}', { n: m }) })), 'neon');
     add(pad, add(el('div', 'payline'), txt('label', tr('This week')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));
+    const rk = key('', () => UI.go('ranks', { tab: 'encore_week', from: 'encore' }), 'soft sm rankk'); add(rk, UI.icon('ic_trophy', 0.9), el('span', '', tr('See the ranks'))); pad.appendChild(rk);
     if (run) {
       foot.appendChild(key(tr('Play wave {wave}', { wave: run.wave }), () => UI.go('battle', { enc: 1 }), 'go wide big'));
       foot.appendChild(key(tr('End this run'), () => UI.confirm(tr('End this run?'), tr('Rewards stay yours.'), tr('End run'), () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));

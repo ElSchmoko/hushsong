@@ -42,6 +42,9 @@
   // experience: an arrow up, so it never looks like a pet's stars
   I('ic_xp', 10, (g) => { g.o('M14 14 H86 V86 H14 Z', '#4a8ae0', 6); g.p('M50 22 L76 52 H60 V78 H40 V52 H24 Z', WHITE); });
   I('ic_star', 8, (g) => g.o(star(50, 54, 44, 20, 5), '#ffc928', 8));
+  // the Ranks board: a gold cup on a plum base, a star on the cup
+  I('ic_trophy', 10, (g) => { g.s('M30 26 Q12 26 14 40 Q16 52 34 52 M70 26 Q88 26 86 40 Q84 52 66 52', INK, 15); g.s('M30 26 Q12 26 14 40 Q16 52 34 52 M70 26 Q88 26 86 40 Q84 52 66 52', '#ffc928', 7);
+    g.o('M44 62 H56 V76 H44 Z', '#d99a12', 6); g.o('M26 16 H74 V38 Q74 64 50 66 Q26 64 26 38 Z', '#ffc928', 7); g.o('M28 76 H72 Q76 76 76 80 V88 H24 V80 Q24 76 28 76 Z', '#6b4a8c', 6); g.p(star(50, 38, 13, 6, 5), '#fff3c4'); });
   I('ic_staroff', 8, (g) => g.o(star(50, 54, 44, 20, 5), '#e6e0f0', 8));
   // an echo: a sound that rings on, fading as it goes
   I('ic_echo', 8.5, (g) => { g.push(11.6, 10, 0.8); const arc = (r) => `M${(20 + r * Math.cos(0.85)).toFixed(1)} ${(50 - r * Math.sin(0.85)).toFixed(1)} A${r} ${r} 0 0 1 ${(20 + r * Math.cos(0.85)).toFixed(1)} ${(50 + r * Math.sin(0.85)).toFixed(1)}`; [[28, '#18b4c8'], [46, '#5fd8e2'], [64, '#b4f0f2']].forEach(([r, c]) => { g.s(arc(r), INK, 20); g.s(arc(r), c, 11); }); g.oc(20, 50, 15, '#18b4c8', 6); g.pop(); });   // drawn at 80% so the outer wave stays inside the box

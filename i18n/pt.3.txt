@@ -87,3 +87,24 @@
 18hvg1l	Qual peça substituir?
 0emtdf5	A peça escolhida volta para a bolsa.
 0sznj2r	Quem vai usar?
+1e9u2fw	Rankings
+1710few	Ver os rankings
+1k4gy16	Andares
+0t459ce	Andares vencidos
+09nlntg	Melhor onda
+0g3lfb1	Seu nome
+0d85xjl	Escolha um nome de 1 a 16 letras.
+0jek9h7	Não foi possível acessar os rankings. Verifique sua conexão e tente de novo.
+0lewgh4	Salvar
+1x60xlj	Mudar seu nome
+12blyyl	Ele muda em todos os rankings.
+01krowb	Participar
+1t0bya1	Coloque seu nome
+0eq3xj6	Seu nome, sua banda e seus recordes vão para a internet para que outros vejam. Nada mais sai deste aparelho.
+1vkrx7g	Você: <b>#{rank}</b>
+1iouwdz	Ainda não está neste ranking
+1jhzhtf	Renomear
+07w3c4g	Jogador
+1p9hkma	Reinicia na segunda
+0n859tb	Afinando…
+1kuxdf7	Ninguém aqui ainda. Seja o primeiro!

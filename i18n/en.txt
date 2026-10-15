@@ -934,7 +934,7 @@
 1lwo7a3	Shrugs it off	engine	
 0hn3zaj	Adventure	game ui-screens	
 03gtdjg	Rehearsal	game ui-battle ui-core ui-screens	
-13u5rhp	Encore	game ui-core ui-screens	
+13u5rhp	Encore	game ui-core ui-ranks ui-screens	
 0siy9wx	Collection	game	
 03bpwir	Mirror {pet}	modes	
 0htre55	Giant {din}	modes	
@@ -966,7 +966,7 @@
 0x2jl9c	wait {n}	ui-core	
 1cjrhja	any time	ui-core	
 0b9jhu9	new	ui-core	
-0ew9em3	Cancel	ui-core	
+0ew9em3	Cancel	ui-core ui-ranks	
 166o4fr	‹ Back	ui-core	
 1id7d20	How to play	ui-core	
 1602nqr	Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.	ui-core	
@@ -1041,10 +1041,12 @@
 1g2tab0	Gig {n} of 5	ui-modes ui-screens	
 0n3ydks	Pick one	ui-modes ui-screens	
 0x4nga3	Onwards	ui-modes ui-screens	
+1nvt7jn	This week	ui-ranks ui-screens	
+1e9u2fw	Ranks	ui-ranks ui-screens	
+0h2yt8f	Lv {level}	ui-ranks ui-screens	
 00fxhu9	Not evolved	ui-screens	
 18kfar1	Evolved once	ui-screens	
 1fvnaj8	Fully evolved	ui-screens	
-0h2yt8f	Lv {level}	ui-screens	
 114caoa	Top level	ui-screens	
 1ys28bo	{xp} / {level} XP	ui-screens	
 051r543	{n} of 10 regions sing	ui-screens	
@@ -1203,9 +1205,9 @@
 1fqbflp	Encore opens at level {unlock}.	ui-screens	
 03scfen	Out	ui-screens	
 08gv74u	Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.	ui-screens	
-1nvt7jn	This week	ui-screens	
 15kcesy	Best this week <b>{week}</b> · all time <b>{best}</b>	ui-screens	
 15jnq83	resets in {n} days	ui-screens	{"one":"resets tomorrow","other":"resets in {n} days"}
+1710few	See the ranks	ui-screens	
 04pp0j3	Play wave {wave}	ui-screens	
 1ywcpar	End this run	ui-screens	
 0asw5g5	Start Encore	ui-screens	
@@ -1220,7 +1222,7 @@
 1cnat5z	Win a rehearsal with each ensemble	ui-screens	
 0l8z7n2	<b>Level up!</b>	ui-battle ui-modes	
 15eua8j	Not this time	ui-battle ui-modes	
-0982hh6	Try again	ui-battle ui-modes	
+0982hh6	Try again	ui-battle ui-modes ui-ranks	
 0xuoasm	{h} h {m} min	ui-modes	
 0z7rxr8	{m} min	ui-modes	
 1sawk0u	Today	ui-modes	
@@ -1447,3 +1449,22 @@
 03ywr4q	Show me	ui-battle	
 07hdxv7	You found equipment!	ui-battle	
 15xrlrb	Each pet wears two pieces. Put them on from its page.	ui-battle	
+1k4gy16	Floors	ui-ranks	
+0t459ce	Floors cleared	ui-ranks	
+09nlntg	Best wave	ui-ranks	
+0g3lfb1	Your name	ui-ranks	
+0d85xjl	Pick a name of 1 to 16 letters.	ui-ranks	
+0jek9h7	Could not reach the boards. Check your connection and try again.	ui-ranks	
+0lewgh4	Save	ui-ranks	
+1x60xlj	Change your name	ui-ranks	
+12blyyl	It changes on every board.	ui-ranks	
+01krowb	Join the boards	ui-ranks	
+1t0bya1	Put your name up	ui-ranks	
+0eq3xj6	Your name, band and best results go online so others can see them. Nothing else leaves this device.	ui-ranks	
+1vkrx7g	You: <b>#{rank}</b>	ui-ranks	
+1iouwdz	Not on this board yet	ui-ranks	
+1jhzhtf	Rename	ui-ranks	
+07w3c4g	Player	ui-ranks	
+1p9hkma	Resets on Monday	ui-ranks	
+0n859tb	Tuning in…	ui-ranks	
+1kuxdf7	No one here yet. Be the first!	ui-ranks	

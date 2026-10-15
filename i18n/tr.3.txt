@@ -87,3 +87,24 @@
 18hvg1l	Hangi parçanın yerine geçsin?
 0emtdf5	Seçtiğin parça çantana geri döner.
 0sznj2r	Kim taksın?
+1e9u2fw	Sıralama
+1710few	Sıralamaya bak
+1k4gy16	Katlar
+0t459ce	Geçilen katlar
+09nlntg	En iyi dalga
+0g3lfb1	Adın
+0d85xjl	1 ile 16 harf arasında bir ad seç.
+0jek9h7	Sıralamaya ulaşılamadı. Bağlantını kontrol edip tekrar dene.
+0lewgh4	Kaydet
+1x60xlj	Adını değiştir
+12blyyl	Tüm sıralamalarda değişir.
+01krowb	Katıl
+1t0bya1	Adını yazdır
+0eq3xj6	Adın, grubun ve en iyi sonuçların başkaları görsün diye çevrimiçi paylaşılır. Bu cihazdan başka hiçbir şey çıkmaz.
+1vkrx7g	Sen: <b>#{rank}</b>
+1iouwdz	Henüz bu listede değilsin
+1jhzhtf	Yeniden adlandır
+07w3c4g	Oyuncu
+1p9hkma	Pazartesi sıfırlanır
+0n859tb	Akort ediliyor…
+1kuxdf7	Burada henüz kimse yok. İlk sen ol!

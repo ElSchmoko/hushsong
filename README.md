@@ -22,11 +22,18 @@ npm run apk          # build/android/hushsong.apk (see tools/apk.sh for the tool
 npm run sim          # 4000 random battles as a crash check
 ```
 
+## Leaderboards
+
+The Ranks screen (Home, top right) shows online boards for Adventure floors cleared, best Encore wave, and this week's Encore wave.
+They are kept by Supabase: `src/net.js` talks to the project, and `supabase/setup.sql` sets up its table and functions (run it once in the Supabase SQL Editor; running it again is safe).
+Nothing is sent until a player picks a name. After that, each new best goes up with the name and the band, and an offline phone sends it later.
+
 ## Layout
 
 - `src/` game source: data, engine, art, audio and UI, bundled in the order listed in `build.js`
 - `assets/icon/` the app icon (Hum up close) and its rendered sizes
 - `android/` the Android app: a full-screen WebView around the bundled game
 - `tools/` icon, web-app and Android builders
+- `supabase/` the database setup for the leaderboards
 - `test/` headless simulations and scripted screenshot playthroughs
 - `docs/` the built web app, served by GitHub Pages
