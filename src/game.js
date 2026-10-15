@@ -175,7 +175,7 @@
   H.finishRehearsal = (S, n, win, rnd, battle) => {
     H.refreshRehearsals(S);
     const out = { win, n, reh: true, boss: true, region: H.stage(n).region, notes: 0, xp: 0, ups: 0, first: false, echo: 0, ens: null };
-    if (win && !S.reh[n]) { S.reh[n] = 1; out.first = true; S.stats.reh = (S.stats.reh || 0) + 1; out.echo = H.addEchoes(S, H.ECHO_REH); }
+    if (win && (!H.GATES || !S.reh[n])) { S.reh[n] = 1; out.first = true; S.stats.reh = (S.stats.reh || 0) + 1; out.echo = H.addEchoes(S, H.ECHO_REH); }
     if (win) { H.noteBossWin(S, n, battle); const e = noteEnsemble(S); if (e && !S.ens[e.id].reh) { S.ens[e.id].reh = 1; out.ens = e.id; } }
     return out;
   };
@@ -184,7 +184,11 @@
      Each wave is three Din a little below your level (2 levels and 9%), 4.5% tougher every wave; every fifth wave is led by a boss.
      The band is set when the run starts. HP carries over (a quarter of it comes back between waves) and fallen pets stay down.
      Reaching wave 5, 10, 15 and 20 pays once a week; the week starts on Monday, as for rehearsals. */
-  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.09, step: 0.045, heal: 0.25, bossK: 0.865, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]] };
+  // Time gates: when on, gig rewards pay once a day (Daily Gig, Solo) or once a week (Encore milestones, Rehearsal).
+  // Off for now: every win pays. The gated code stays in place; set this to true to bring it back.
+  H.GATES = false;
+  // Encore milestones. With gates on they paid once a week: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]]
+  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.09, step: 0.045, heal: 0.25, bossK: 0.865, bossEvery: 5, miles: [[10, { echo: 1 }], [20, { shells: 1 }], [30, { echo: 1 }], [50, { shells: 1 }]] };
   H.encoreOpen = (S) => S.level >= H.ENCORE.unlock;
   H.refreshEncore = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms), E = (S.encore = S.encore || { week: w, paid: 0, best: 0, weekBest: 0 }); if (E.week === w) return false; E.week = w; E.paid = 0; E.weekBest = 0; return true; };
   H.encoreStage = (S, wave) => {
@@ -210,7 +214,7 @@
     if (!win) { out.reached = wave - 1; out.best = E.best; S.encoreRun = null; return out; }
     if (battle) for (const u of battle.units) if (u.side === 0 && u.petId != null) run.hp[u.petId] = u.alive ? Math.min(1, u.hp / u.max + H.ENCORE.heal) : 0;
     E.best = Math.max(E.best, wave); E.weekBest = Math.max(E.weekBest, wave); out.best = E.best; S.stats.encore = Math.max(S.stats.encore || 0, wave);
-    H.ENCORE.miles.forEach(([m, r], i) => { if (wave >= m && E.paid <= i) { E.paid = i + 1; out.paid.push(m); if (r.echo) out.echo += H.addEchoes(S, r.echo); if (r.shells) { S.shells += r.shells; out.shells += r.shells; } } });
+    H.ENCORE.miles.forEach(([m, r], i) => { if (H.GATES ? wave >= m && E.paid <= i : wave === m) { if (H.GATES) E.paid = i + 1; out.paid.push(m); if (r.echo) out.echo += H.addEchoes(S, r.echo); if (r.shells) { S.shells += r.shells; out.shells += r.shells; } } });
     run.wave = wave + 1; out.alive = H.encoreAlive(S);
     return out;
   };

@@ -1205,6 +1205,7 @@
 1fqbflp	Encore opens at level {unlock}.	ui-screens	
 03scfen	Out	ui-screens	
 08gv74u	Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.	ui-screens	
+1pk1o6l	Each run	ui-screens	
 15kcesy	Best this week <b>{week}</b> · all time <b>{best}</b>	ui-screens	
 15jnq83	resets in {n} days	ui-screens	{"one":"resets tomorrow","other":"resets in {n} days"}
 1710few	See the ranks	ui-screens	
@@ -1415,8 +1416,10 @@
 1jc3an7	Your band is out	ui-battle	
 13ssvg2	Wave {wave} cleared!	ui-battle	
 1mh43qm	Weekly reward: wave {n}	ui-battle	
+1qc7mgd	Reward: wave {n}	ui-battle	
 0catbos	Next reward: wave {n}	ui-battle	
 0kbukl4	All rewards won this week	ui-battle	
+041npe9	All rewards won this run	ui-battle	
 1cprp2x	Stop here	ui-battle	
 0nzp3il	Encore over	ui-battle	
 1ut9ian	You cleared <b>{n}</b> waves.	ui-battle	{"one":"You cleared <b>{n}</b> wave.","other":"You cleared <b>{n}</b> waves."}
