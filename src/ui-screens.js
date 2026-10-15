@@ -542,8 +542,8 @@
     add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign' + (window.__hsSpeed ? '' : ' poweron'), tr('Encore')), stage); root.appendChild(hero);
     pad.appendChild(txt('small center', tr('Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.')));
     // this week's milestones
-    const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: E.paid > i, label: tr('Wave {n}', { n: m }) })), 'neon');
-    add(pad, add(el('div', 'payline'), txt('label', tr('This week')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));
+    const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: H.GATES ? E.paid > i : !!run && run.wave > m, label: tr('Wave {n}', { n: m }) })), 'neon');
+    add(pad, add(el('div', 'payline'), txt('label', H.GATES ? tr('This week') : tr('Each run')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));
     const rk = key('', () => UI.go('ranks', { tab: 'encore_week', from: 'encore' }), 'soft sm rankk'); add(rk, UI.icon('ic_trophy', 0.9), el('span', '', tr('See the ranks'))); pad.appendChild(rk);
     if (run) {
       foot.appendChild(key(tr('Play wave {wave}', { wave: run.wave }), () => UI.go('battle', { enc: 1 }), 'go wide big'));

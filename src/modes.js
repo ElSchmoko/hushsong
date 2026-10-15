@@ -7,7 +7,7 @@
 
   /* ================= Daily Gig ================= */
   // k: how tough the Din are for that rule (tuned by test/modes.js so every rule is about as winnable as the others)
-  H.DAILY = { unlock: 5, notes: 50, k: 1, loud: true };
+  H.DAILY = { unlock: 5, notes: 20, k: 1, loud: true };
   H.TWISTS = {
     mirror: { n: 'Mirror Match', d: 'The Din copy your band, move for move.', k: 1.12 },
     potato: { n: 'Hot Potato', d: 'A ticking potato passes on with every single hit. When its fuse runs out, whoever holds it loses 30% HP.', rules: { potato: { every: 5, pct: 0.3 } }, k: 1.0 },
@@ -71,7 +71,7 @@
   // A win pays 50 notes the first time each day. Only Adventure gives experience.
   H.finishDaily = (S, win, battle) => {
     H.refreshDaily(S); const g = H.gigOf(S.daily.day), out = { daily: true, win, twist: g.twist, venue: g.venue, region: g.region, notes: 0, xp: 0, ups: 0, first: false };
-    if (win && !S.daily.won) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
+    if (win && (!H.GATES || !S.daily.won)) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
     return out;
   };
   H.msToTomorrow = (ms) => { ms = ms == null ? now() : ms; return (H.dayOf(ms) + 1) * DAY + new Date(ms).getTimezoneOffset() * 60000 - ms; };
@@ -79,7 +79,7 @@
   /* ================= Solo ================= */
   // rows: what each step of the road offers. g: a gig (or a Loud gig), s: a stop (rest, jam session or mystery), b: the boss.
   H.SOLO = {
-    unlock: 10, refLv: 14, gigNotes: 15, bossNotes: 25, rows: ['g', 's', 'g', 's', 'g', 's', 'g', 's', 'g', 'b'], loudCh: 0.4,
+    unlock: 10, refLv: 14, gigNotes: 10, bossNotes: 10, rows: ['g', 's', 'g', 's', 'g', 's', 'g', 's', 'g', 'b'], loudCh: 0.4,
     rest: 0.4, practise: 0.1, restless: { from: 30, per: 0.06 },
     // how tough the Din are: per gig (the first to the fifth), for a Loud gig, the boss, and by how grown the pet is
     k: 0.33, ramp: 0.12, loudK: 1.15, bossK: 0.92, count: [2, 2, 2, 2, 2], tierK: [1, 1.36, 1.65], roleK: { stray: 1, rhythm: 1, lead: 1.05, harmony: 1, bass: 0.92 },
@@ -172,7 +172,7 @@
   H.soloPet = (S) => (S.soloRun ? H.petById(S, S.soloRun.pet) : null);
   H.refreshSolo = (S, ms) => { const d = H.dayOf(ms == null ? now() : ms), P = (S.solo = S.solo || { day: d, gigs: 0, boss: 0, best: 0, tours: 0, wins: 0 }); if (P.day === d) return false; P.day = d; P.gigs = 0; P.boss = 0; return true; };
   // what is still to be earned today: the first five gig wins and the first boss win of the day pay
-  H.soloPaidLeft = (S) => { H.refreshSolo(S); return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
+  H.soloPaidLeft = (S) => { H.refreshSolo(S); if (!H.GATES) return 6; return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
   H.startSolo = (S, petId, rnd) => {
     const seed = 1 + Math.floor(rnd() * 1e9), r2 = H.rng(seed), region = H.REGION_ORDER[Math.floor(r2() * 10)];
     S.soloRun = { seed, pet: petId, region, map: H.soloMap(seed), at: null, done: [], hp: 1, boons: [], extra: { vol: 0, hp: 0 }, gigs: 0, pending: null, log: [] };
@@ -238,10 +238,10 @@
     if (!win) { out.reached = run.gigs; out.total = run.earned || 0; P.best = Math.max(P.best, run.gigs); S.soloRun = null; return out; }
     if (battle) { const u = battle.units.find((v) => v.side === 0); run.hp = u && u.alive ? Math.max(0.01, u.hp / u.max) : 0.01; }
     if (out.boss) {
-      if (!P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
+      if (!H.GATES || !P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
       P.best = Math.max(P.best, 6); P.wins++; S.stats.soloWins = (S.stats.soloWins || 0) + 1; out.done = true; out.total = (run.earned || 0) + out.notes; S.soloRun = null;
     } else {
-      run.gigs++; if (P.gigs < 5) { P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
+      run.gigs++; if (!H.GATES || P.gigs < 5) { if (P.gigs < 5) P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
       P.best = Math.max(P.best, run.gigs);
       run.pending = { type: 'boon', src: node.type === 'loud' ? 'loud' : 'gig', opts: H.boonOffer(run, node.type === 'loud' ? 'loud' : 'gig', rnd) };
     }
