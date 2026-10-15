@@ -994,6 +994,7 @@
 1k3sxl1	Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity. 3 Epics make a Legendary of that kind, while one is left to find.	ui-core	
 0baj6qd	From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.	ui-core	
 0h1kfu0	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.	ui-core	
+0325btm	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.	ui-core	
 07zgmz9	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.	ui-core	
 0orgbil	Records	ui-core ui-screens	
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
@@ -1081,6 +1082,7 @@
 0u73zav	Encore wave {n} next	ui-screens	
 1xxqbrb	{n} rehearsals open	ui-screens	{"one":"{n} rehearsal open","other":"{n} rehearsals open"}
 1vzcv0c	Solo pays today	ui-screens	
+0otxor0	Solo pays every tour	ui-screens	
 1i8e16b	First gig at level {n}	ui-screens	
 1skvt3i	All played today	ui-screens	
 0azt7u3	Unlocks at Level {unlock}	ui-screens	
@@ -1249,6 +1251,8 @@
 1yve732	Gig {n}	ui-modes	
 1ol94ul	{n} + gear	ui-modes	
 0fnhp9o	Boss	ui-modes	
+0nllqkm	Every tour	ui-modes	
+1m1c7s0	Every tour pays: each gig win and the boss. Tour as often as you like.	ui-modes	
 0xl0w5y	The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.	ui-modes	
 1j3qiv2	All paid today. You can still tour for fun.	ui-modes	
 1iiozi7	On tour · {n}	ui-modes	
