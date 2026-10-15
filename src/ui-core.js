@@ -187,7 +187,7 @@
       ...sec(tr('Equipment'), tr('Each pet wears two pieces. Wins may drop more: the Adventure screen shows the chance. 3 spare pieces of a kind merge into the next rarity. 3 Epics make a Legendary of that kind, while one is left to find.')),
       ...sec(tr('Daily Gig'), tr('From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.', { unlock: H.DAILY.unlock })),
       ...sec(tr('Solo'), H.GATES.solo ? tr('From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.', { unlock: H.SOLO.unlock }) : tr('From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.', { unlock: H.SOLO.unlock })),
-      ...sec(tr('Encore'), tr('From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.', { unlock: H.ENCORE.unlock })),
+      ...sec(tr('Encore'), tr('From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.', { unlock: H.ENCORE.unlock, notes: H.ENCORE.notes })),
       ...sec(tr('Records'), tr('Hard goals that pay shells, echoes and Home backdrops.')),
       UI.key(tr('Got it'), UI.closeModal, 'wide go'));
     UI.modal(...kids);
