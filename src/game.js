@@ -105,6 +105,9 @@
   const levelFit = (S, n) => { const gap = S.level - H.stageLevel(n), span = 5 + 0.3 * S.level; return Math.max(0, Math.min(1, 1 - gap / span)); };   // 1 on floors at your level, down to 0 far below it
   H.dropChance = (S, n) => H.ITEM_BASE * (H.stage(n).boss ? 2 : 1) * levelFit(S, n);
   H.shellDropChance = (S, n) => H.SHELL_DROP * levelFit(S, n);
+  // Notes for a floor: full on a new floor; a cleared floor pays a quarter, down to none on floors far below your level
+  H.REPLAY_NOTES = 0.25;
+  H.notesFor = (S, n) => { const st = H.stage(n), full = H.NOTES * (st.boss ? 3 : st.elite ? 1.5 : 1); return Math.round(n >= S.stage ? full : full * H.REPLAY_NOTES * levelFit(S, n)); };
   H.itemById = (S, id) => S.items.find((x) => x.id === id) || null;
   H.itemOwner = (S, id) => S.pets.find((p) => p.gear && p.gear.includes(id)) || null;
   H.equip = (S, pet, slot, id) => { for (const p of S.pets) if (p.gear) p.gear = p.gear.map((g) => (g === id ? null : g)); if (!pet.gear) pet.gear = [null, null]; pet.gear[slot] = id; };
@@ -151,7 +154,7 @@
     const drop = H.dropChance(S, n), xk = H.xpFactor(S, n), st = H.stage(n), out = { win, n, notes: 0, xp: 0, ups: 0, first: false, boss: st.boss, region: st.region, shells: 0, item: null, gift: false, giftShell: false, story: false, echo: 0 };
     if (!win) { out.xp = Math.round((8 + 3 * n) * 0.25 * xk * teamXp(S)); out.ups = H.gainXp(S, out.xp); return out; }
     out.first = n >= S.stage; const k = out.first ? 1 : 0.5;
-    out.notes = out.first ? Math.round(H.NOTES * (st.boss ? 3 : st.elite ? 1.5 : 1)) : 0;
+    out.notes = H.notesFor(S, n);
     out.xp = Math.round((8 + 3 * n) * (st.boss ? 2 : st.elite ? 1.3 : 1) * k * xk * teamXp(S));
     S.notes += out.notes; out.ups = H.gainXp(S, out.xp);
     if (out.first) {
