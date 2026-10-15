@@ -197,10 +197,11 @@ public class MainActivity extends Activity {
         web.evaluateJavascript("try{H.Audio.ctx&&H.Audio.ctx.resume()}catch(e){}", null);
     }
 
-    // Back closes an open sheet first; otherwise the game goes to the background instead of quitting.
+    // Back goes one step up in the game (H.UI.back: a sheet closes, a screen goes back, a battle asks before leaving).
+    // On Home and the title the game goes to the background instead of quitting. Older game builds only close a sheet.
     @Override
     public void onBackPressed() {
-        web.evaluateJavascript("(function(){var m=document.getElementById('modal');if(m&&!m.hidden){H.UI.closeModal();return 1}return 0})()",
+        web.evaluateJavascript("(function(){try{if(window.H&&H.UI&&H.UI.back)return H.UI.back()?1:0;var m=document.getElementById('modal');if(m&&!m.hidden){H.UI.closeModal();return 1}}catch(e){}return 0})()",
             new ValueCallback<String>() {
                 @Override
                 public void onReceiveValue(String v) { if (!"1".equals(v)) moveTaskToBack(true); }

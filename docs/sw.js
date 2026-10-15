@@ -1,5 +1,5 @@
-// Hushsong offline cache, version ceb49fdbd6
-const CACHE = 'hushsong-ceb49fdbd6', FILES = ["./","index.html","manifest.webmanifest","icons/apple-touch-icon.png","icons/favicon-32.png","icons/favicon-64.png","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-192.png","icons/icon-maskable-512.png"];
+// Hushsong offline cache, version ff0b6f8e5e
+const CACHE = 'hushsong-ff0b6f8e5e', FILES = ["./","index.html","manifest.webmanifest","icons/apple-touch-icon.png","icons/favicon-32.png","icons/favicon-64.png","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-192.png","icons/icon-maskable-512.png"];
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', (e) => { e.waitUntil(caches.keys().then((ks) => Promise.all(ks.filter((k) => k !== CACHE).map((k) => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', (e) => {

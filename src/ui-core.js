@@ -134,6 +134,20 @@
     A.tick(UI.frame); UI.save();
   };
   UI.redraw = () => UI.go(UI.cur.name, UI.cur.params);
+  /* Back (the phone's back button or gesture): one step up. An open sheet closes first; a screen can set UI.cur.back, or
+     UI.cur.modalBack for its sheets; a screen with a ‹ Back key goes where that key goes; tab screens go Home.
+     Returns false on Home and the title, where the app may go to the background. */
+  const STEP = { adventure: 'home', team: 'home', pets: 'home', shells: 'home', bag: 'home', solostop: 'gigs', soloend: 'solo' };
+  UI.back = () => {
+    const m = document.getElementById('modal'), c = UI.cur || {}, name = c.name;
+    if (!m.hidden) { if (c.modalBack) c.modalBack(); else { Au.sfx('back'); UI.closeModal(); } return true; }
+    if (c.back) { c.back(); return true; }
+    if (name === 'intro' || (name === 'shells' && !UI.S.pets.length)) return true;   // the first minutes: the story and the first shell lead on by themselves
+    if (name === 'story' || name === 'bossreward') { const k = document.querySelector('#screen .key.go'); if (k) k.click(); return true; }
+    const b = document.querySelector('#screen .backk'); if (b) { b.click(); return true; }
+    if (STEP[name]) { Au.sfx('back'); UI.go(STEP[name], {}); return true; }
+    return false;
+  };
   /* text that does not fit its box (longer words in other languages) is set a little smaller, down to 70%, before it is cut */
   const FIT = '.key, .disp, .ptwn, .ftitle, .pvenue, .label, .stats .label, .cnm, .ftitle, .fkick, .fsub, .sub, .tag, .lunm, .stagepill, .phint, .pkick, .pvenue, .pregion, .rn, .tabs .tab span, .seg button, .chip, .small';
   const fitEl = (e) => {
@@ -150,7 +164,7 @@
   let toastT = null;
   UI.toast = (msg) => { const t = document.getElementById('toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => (t.hidden = true), 1800); };
   UI.confirm = (title, body, yes, fn, cls) => UI.modal(UI.txt('disp', title), UI.txt('dim', body), UI.key(yes, () => { UI.closeModal(); fn(); }, 'wide ' + (cls || 'gold')), UI.key(tr('Cancel'), UI.closeModal, 'wide soft'));
-  UI.topbar = (title, back, right) => { const bar = el('div', 'bar'); if (back) bar.appendChild(UI.key(tr('‹ Back'), () => { Au.sfx('back'); back(); }, 'soft sm')); bar.appendChild(el('div', 'disp', title)); UI.add(bar, right); return bar; };
+  UI.topbar = (title, back, right) => { const bar = el('div', 'bar'); if (back) bar.appendChild(UI.key(tr('‹ Back'), () => { Au.sfx('back'); back(); }, 'soft sm backk')); bar.appendChild(el('div', 'disp', title)); UI.add(bar, right); return bar; };
   UI.music = (mode, prog, hold) => Au.music.set(mode, mode === 'silent' ? [] : Au.layersFor(H.teamPets(UI.S)), (H.REGIONS[prog] && H.REGIONS[prog].prog) || prog, prog, hold);
 
   /* how to play, in one sheet */
@@ -219,6 +233,11 @@
 
   UI.boot = () => {
     UI.load(); UI.resize(); UI.fitWatch();
+    // As an installed web app the phone's back goes through the browser history: keep one step in hand and spend it on UI.back.
+    if (window.top === window && !(window.claude && window.claude.hot) && window.history && history.pushState) {
+      try { history.replaceState({ hs: 'root' }, ''); history.pushState({ hs: 'top' }, ''); } catch (e) { /* no history */ }
+      window.addEventListener('popstate', () => { if (UI.back()) { try { history.pushState({ hs: 'top' }, ''); } catch (e) { /* no history */ } } else history.back(); });
+    }
     if (H.Net) { H.Net.flush(UI.S, UI.save); window.addEventListener('online', () => H.Net.flush(UI.S, UI.save)); }
     const st = UI.S.settings; Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound;
     // On a phone the keyboard shrinks the window: while a text field has focus, keep the layout as it is (a redraw would drop the field and close the keyboard), and look again once typing is done.

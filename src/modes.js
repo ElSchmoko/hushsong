@@ -7,7 +7,7 @@
 
   /* ================= Daily Gig ================= */
   // k: how tough the Din are for that rule (tuned by test/modes.js so every rule is about as winnable as the others)
-  H.DAILY = { unlock: 5, notes: 20, k: 1, loud: true };
+  H.DAILY = { unlock: 5, notes: 50, k: 1, loud: true };
   H.TWISTS = {
     mirror: { n: 'Mirror Match', d: 'The Din copy your band, move for move.', k: 1.12 },
     potato: { n: 'Hot Potato', d: 'A ticking potato passes on with every single hit. When its fuse runs out, whoever holds it loses 30% HP.', rules: { potato: { every: 5, pct: 0.3 } }, k: 1.0 },
