@@ -156,7 +156,7 @@
     if (H.refreshRehearsals(S)) UI.save(); H.refreshEncore(S);
     const reh = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, day = H.dailyOpen(S) && !H.dailyStatus(S).won, solo = H.soloOpen(S) && H.soloPaidLeft(S) > 0;
     const fresh = (H.dailyOpen(S) && !S.flags.seenDaily) || (H.soloOpen(S) && !S.flags.seenSolo) || (H.encoreOpen(S) && !S.flags.seenEnc);
-    const line = day ? tr('Daily Gig ready') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? tr('Solo pays today') : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
+    const line = day ? tr('Daily Gig ready') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? (H.GATES.solo ? tr('Solo pays today') : tr('Solo pays every tour')) : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
     return { line, pips: (day ? 1 : 0) + reh, fresh };
   };
 
@@ -177,7 +177,7 @@
     pin('daily', H.dailyOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.DAILY.unlock }), (f) => add(f, txt('fkick', tr('Daily Gig')), add(el('div', 'frow'), UI.icon(A.twistIcon(D.twist), 2.2), add(el('div', 'grow'), el('b', 'ftitle', T.n), txt('fsub', D.venue))),
       H.dailyOpen(S) && D.won ? UI.stamp(tr('Won today'), 'green still') : null), 'daily', D.won ? 0 : '!', -1.5);
     // Solo: a spotlight flyer with today's pay
-    const P = (H.refreshSolo(S), S.solo), pays = [0, 1, 2, 3, 4].map((i) => i < P.gigs).concat([!!P.boss]);
+    const P = (H.refreshSolo(S), S.solo), pays = H.GATES.solo ? [0, 1, 2, 3, 4].map((i) => i < P.gigs).concat([!!P.boss]) : [0, 1, 2, 3, 4].map((i) => !!S.soloRun && i < S.soloRun.gigs).concat([false]);
     pin('solo', H.soloOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.SOLO.unlock }), (f) => add(f, el('i', 'spot'), txt('fkick', tr('Solo')), UI.icon('ic_solo', 2), el('b', 'ftitle', S.soloRun ? tr('Gig {n} of 5', { n: Math.min(5, S.soloRun.gigs + 1) }) : tr('Solo Tour')),
       add(el('div', 'dots'), ...pays.map((g, i) => el('i', (g ? 'got' : '') + (i === 5 ? ' boss' : ''))))), 'solo', S.flags.seenSolo ? 0 : '!', 2);
     // Encore: neon on dark
@@ -542,8 +542,8 @@
     add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign' + (window.__hsSpeed ? '' : ' poweron'), tr('Encore')), stage); root.appendChild(hero);
     pad.appendChild(txt('small center', tr('Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.')));
     // this week's milestones
-    const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: H.GATES ? E.paid > i : !!run && run.wave > m, label: tr('Wave {n}', { n: m }) })), 'neon');
-    add(pad, add(el('div', 'payline'), txt('label', H.GATES ? tr('This week') : tr('Each run')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));
+    const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: H.GATES.encore ? E.paid > i : !!run && run.wave > m, label: tr('Wave {n}', { n: m }) })), 'neon');
+    add(pad, add(el('div', 'payline'), txt('label', H.GATES.encore ? tr('This week') : tr('Each run')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));
     const rk = key('', () => UI.go('ranks', { tab: 'encore_week', from: 'encore' }), 'soft sm rankk'); add(rk, UI.icon('ic_trophy', 0.9), el('span', '', tr('See the ranks'))); pad.appendChild(rk);
     if (run) {
       foot.appendChild(key(tr('Play wave {wave}', { wave: run.wave }), () => UI.go('battle', { enc: 1 }), 'go wide big'));

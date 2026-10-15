@@ -71,7 +71,7 @@
   // A win pays 50 notes the first time each day. Only Adventure gives experience.
   H.finishDaily = (S, win, battle) => {
     H.refreshDaily(S); const g = H.gigOf(S.daily.day), out = { daily: true, win, twist: g.twist, venue: g.venue, region: g.region, notes: 0, xp: 0, ups: 0, first: false };
-    if (win && (!H.GATES || !S.daily.won)) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
+    if (win && (!H.GATES.daily || !S.daily.won)) { S.daily.won = 1; out.first = true; out.notes = H.DAILY.notes; S.notes += out.notes; S.stats.daily = (S.stats.daily || 0) + 1; }
     return out;
   };
   H.msToTomorrow = (ms) => { ms = ms == null ? now() : ms; return (H.dayOf(ms) + 1) * DAY + new Date(ms).getTimezoneOffset() * 60000 - ms; };
@@ -172,7 +172,7 @@
   H.soloPet = (S) => (S.soloRun ? H.petById(S, S.soloRun.pet) : null);
   H.refreshSolo = (S, ms) => { const d = H.dayOf(ms == null ? now() : ms), P = (S.solo = S.solo || { day: d, gigs: 0, boss: 0, best: 0, tours: 0, wins: 0 }); if (P.day === d) return false; P.day = d; P.gigs = 0; P.boss = 0; return true; };
   // what is still to be earned today: the first five gig wins and the first boss win of the day pay
-  H.soloPaidLeft = (S) => { H.refreshSolo(S); if (!H.GATES) return 6; return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
+  H.soloPaidLeft = (S) => { H.refreshSolo(S); if (!H.GATES.solo) return 6; return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
   H.startSolo = (S, petId, rnd) => {
     const seed = 1 + Math.floor(rnd() * 1e9), r2 = H.rng(seed), region = H.REGION_ORDER[Math.floor(r2() * 10)];
     S.soloRun = { seed, pet: petId, region, map: H.soloMap(seed), at: null, done: [], hp: 1, boons: [], extra: { vol: 0, hp: 0 }, gigs: 0, pending: null, log: [] };
@@ -238,10 +238,10 @@
     if (!win) { out.reached = run.gigs; out.total = run.earned || 0; P.best = Math.max(P.best, run.gigs); S.soloRun = null; return out; }
     if (battle) { const u = battle.units.find((v) => v.side === 0); run.hp = u && u.alive ? Math.max(0.01, u.hp / u.max) : 0.01; }
     if (out.boss) {
-      if (!H.GATES || !P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
+      if (!H.GATES.solo || !P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
       P.best = Math.max(P.best, 6); P.wins++; S.stats.soloWins = (S.stats.soloWins || 0) + 1; out.done = true; out.total = (run.earned || 0) + out.notes; S.soloRun = null;
     } else {
-      run.gigs++; if (!H.GATES || P.gigs < 5) { if (P.gigs < 5) P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
+      run.gigs++; if (!H.GATES.solo || P.gigs < 5) { if (P.gigs < 5) P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
       P.best = Math.max(P.best, run.gigs);
       run.pending = { type: 'boon', src: node.type === 'loud' ? 'loud' : 'gig', opts: H.boonOffer(run, node.type === 'loud' ? 'loud' : 'gig', rnd) };
     }

@@ -63,10 +63,11 @@
     add(hero, UI.bgEl('spot', UI.W, hh, 0.62), el('div', 'cone l'), el('div', 'cone r'), add(el('div', 'stitle'), el('div', 'logo small', tr('Solo Tour')), txt('tag', tr('One pet · five gigs · one boss'))));
     root.appendChild(hero);
     const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot');
-    // what today still pays: the first five gig wins and the first boss win
-    const steps = [0, 1, 2, 3, 4].map((i) => ({ icon: 'ic_note', n: H.SOLO.gigNotes, got: i < P.gigs, label: tr('Gig {n}', { n: i + 1 }) })).concat([{ icon: 'ic_boss', n: tr('{n} + gear', { n: H.SOLO.bossNotes }), got: !!P.boss, wide: true, label: tr('Boss') }]);
-    const pay = add(el('button', 'payline'), txt('label', tr('Today')), UI.track(steps)); pay.type = 'button';
-    pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(H.soloPaidLeft(S) ? tr('The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.', { msToTomorrow: countdown(H.msToTomorrow()) }) : tr('All paid today. You can still tour for fun.')); });
+    // what is paid: gated, today's first five gig wins and first boss win; ungated, every tour pays and the line shows this tour
+    const G = H.GATES.solo, runGigs = S.soloRun ? S.soloRun.gigs : 0;
+    const steps = [0, 1, 2, 3, 4].map((i) => ({ icon: 'ic_note', n: H.SOLO.gigNotes, got: G ? i < P.gigs : i < runGigs, label: tr('Gig {n}', { n: i + 1 }) })).concat([{ icon: 'ic_boss', n: tr('{n} + gear', { n: H.SOLO.bossNotes }), got: G && !!P.boss, wide: true, label: tr('Boss') }]);
+    const pay = add(el('button', 'payline'), txt('label', G ? tr('Today') : tr('Every tour')), UI.track(steps)); pay.type = 'button';
+    pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(!G ? tr('Every tour pays: each gig win and the boss. Tour as often as you like.') : H.soloPaidLeft(S) ? tr('The first 5 gig wins and the first boss win each day pay. New pay in {msToTomorrow}.', { msToTomorrow: countdown(H.msToTomorrow()) }) : tr('All paid today. You can still tour for fun.')); });
     pad.appendChild(pay);
     if (run) {
       const pet = H.petById(S, run.pet), card = el('div', 'tourcard'); if (!pet) { H.endSolo(S); return UI.go('solo'); }
@@ -183,7 +184,7 @@
         gig: H.T.k('A small stage.'), loud: H.T.k('A rowdy crowd and tougher Din.'), boss: H.T.k('The last stop of the tour.'), rest: H.T.k('Sleep, or practise.'), jam: H.T.k('Play along for a boon.'), mystery: H.T.k('Something is going on here.') }[n.type])))));
       if (bat) {
         const stg = H.soloStage(S, n), line = el('div', 'plineup'); stg.enemies.forEach((e) => line.appendChild(UI.sp(e.id, H.DIN[e.id].boss ? 0.62 : 0.52, { flip: true, anim: false })));
-        const P = S.solo, notes = n.type === 'boss' ? (P.boss ? 0 : H.SOLO.bossNotes) : P.gigs < 5 ? H.SOLO.gigNotes : 0, prize = n.type === 'boss' ? null : add(el('span', 'chip boonchip' + (n.type === 'loud' ? ' rare' : '')), UI.icon('bn_amp', 0.55), tr(n.type === 'loud' ? 'Rare boon' : 'Boon'));
+        const P = S.solo, notes = n.type === 'boss' ? (H.GATES.solo && P.boss ? 0 : H.SOLO.bossNotes) : !H.GATES.solo || P.gigs < 5 ? H.SOLO.gigNotes : 0, prize = n.type === 'boss' ? null : add(el('span', 'chip boonchip' + (n.type === 'loud' ? ' rare' : '')), UI.icon('bn_amp', 0.55), tr(n.type === 'loud' ? 'Rare boon' : 'Boon'));
         kids.push(add(el('div', 'plinebox'), txt('label', tr('On stage · Lv {level}', { level: stg.level })), line), add(el('div', 'row winrow'), txt('label', tr('Win')), prize, notes ? UI.purse('ic_note', '+' + notes, tr('Notes')) : null, n.type === 'boss' && !P.boss ? UI.purse('ic_bag', '+1', tr('Equipment')) : null));
       }
       kids.push(key(bat ? n.type === 'boss' ? tr('Face the boss') : tr('Play this gig') : tr('Go there'), () => { UI.closeModal(); walk(n); }, (n.type === 'boss' ? 'coral' : 'go') + ' wide big'), key(tr('Not yet'), UI.closeModal, 'wide soft'));

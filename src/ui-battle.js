@@ -357,12 +357,12 @@
     if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
     if (out.win) {
       kids.push(txt('disp big center', tr('Wave {wave} cleared!', { wave: out.wave })));
-      if (out.paid.length) kids.push(txt('chip center', H.GATES ? tr('Weekly reward: wave {n}', { n: out.paid.join(', ') }) : tr('Reward: wave {n}', { n: out.paid.join(', ') })));
+      if (out.paid.length) kids.push(txt('chip center', H.GATES.encore ? tr('Weekly reward: wave {n}', { n: out.paid.join(', ') }) : tr('Reward: wave {n}', { n: out.paid.join(', ') })));
       UI.confetti(out.paid.length ? 50 : 16); if (out.paid.length) Au.sfx('coin');
       kids.push(loot); if (out.echo) { const ei = UI.echoIntro(); if (ei) kids.push(ei); }
       if (out.ups) kids.push(txt('center good', tr('<b>Level up!</b>')), UI.unlockNote(out.ups));
-      const next = H.ENCORE.miles.find(([m]) => m > out.wave && (!H.GATES || S.encore.weekBest < m));
-      kids.push(txt('small dim center', next ? tr('Next reward: wave {n}', { n: next[0] }) : H.GATES ? tr('All rewards won this week') : tr('All rewards won this run')));
+      const next = H.ENCORE.miles.find(([m]) => m > out.wave && (!H.GATES.encore || S.encore.weekBest < m));
+      kids.push(txt('small dim center', next ? tr('Next reward: wave {n}', { n: next[0] }) : H.GATES.encore ? tr('All rewards won this week') : tr('All rewards won this run')));
       kids.push(UI.key(tr('Wave {n}', { n: out.wave + 1 }), () => UI.go('battle', { enc: 1 }), 'go wide big'));
       kids.push(UI.key(tr('Stop here'), () => UI.confirm(tr('End this run?'), tr('Rewards stay yours.'), tr('End run'), () => { H.endEncore(S); UI.save(); UI.go('encore'); }), 'wide soft'));
     } else {
