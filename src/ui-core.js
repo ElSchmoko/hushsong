@@ -219,6 +219,7 @@
 
   UI.boot = () => {
     UI.load(); UI.resize(); UI.fitWatch();
+    if (H.Net) { H.Net.flush(UI.S, UI.save); window.addEventListener('online', () => H.Net.flush(UI.S, UI.save)); }
     const st = UI.S.settings; Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound;
     let rsT = null; window.addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(() => { const was = [UI.u, UI.W, UI.Hh, A.k].join(); UI.resize(); UI.fit(document.getElementById('screen')); if ([UI.u, UI.W, UI.Hh, A.k].join() === was) return; if (UI.cur && UI.cur.name !== 'battle' && document.getElementById('modal').hidden) UI.redraw(); }, 180); });
     const wake = () => { const fresh = !Au.ctx; if (Au.init()) { Au.applyVol(); if (fresh) Au.music.set(Au.music.mode, Au.music.layers, Au.music.prog); } };

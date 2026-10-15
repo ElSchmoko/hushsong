@@ -87,3 +87,24 @@
 18hvg1l	Welches Teil soll es ersetzen?
 0emtdf5	Das gewählte Teil kommt zurück in deine Tasche.
 0sznj2r	Wer soll es tragen?
+1e9u2fw	Ranglisten
+1710few	Zu den Ranglisten
+1k4gy16	Ebenen
+0t459ce	Ebenen geschafft
+09nlntg	Beste Welle
+0g3lfb1	Dein Name
+0d85xjl	Wähle einen Namen mit 1 bis 16 Zeichen.
+0jek9h7	Die Ranglisten sind nicht erreichbar. Prüf deine Verbindung und versuch es nochmal.
+0lewgh4	Speichern
+1x60xlj	Namen ändern
+12blyyl	Er ändert sich auf jeder Rangliste.
+01krowb	Mitmachen
+1t0bya1	Trag deinen Namen ein
+0eq3xj6	Dein Name, deine Band und deine Bestwerte gehen online, damit andere sie sehen. Sonst verlässt nichts dieses Gerät.
+1vkrx7g	Du: <b>#{rank}</b>
+1iouwdz	Noch nicht auf dieser Liste
+1jhzhtf	Umbenennen
+07w3c4g	Spieler
+1p9hkma	Neustart am Montag
+0n859tb	Wird eingestimmt…
+1kuxdf7	Noch niemand hier. Sei der Erste!

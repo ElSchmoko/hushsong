@@ -87,3 +87,24 @@
 18hvg1l	Quelle pièce remplacer ?
 0emtdf5	La pièce choisie retourne dans ton sac.
 0sznj2r	Qui doit le porter ?
+1e9u2fw	Classements
+1710few	Voir les classements
+1k4gy16	Étages
+0t459ce	Étages réussis
+09nlntg	Meilleure vague
+0g3lfb1	Ton nom
+0d85xjl	Choisis un nom de 1 à 16 lettres.
+0jek9h7	Impossible de joindre les classements. Vérifie ta connexion et réessaie.
+0lewgh4	Enregistrer
+1x60xlj	Changer de nom
+12blyyl	Il change dans tous les classements.
+01krowb	Participer
+1t0bya1	Inscris ton nom
+0eq3xj6	Ton nom, ton groupe et tes meilleurs résultats sont mis en ligne pour que d'autres les voient. Rien d'autre ne quitte cet appareil.
+1vkrx7g	Toi : <b>#{rank}</b>
+1iouwdz	Pas encore dans ce classement
+1jhzhtf	Renommer
+07w3c4g	Joueur
+1p9hkma	Remise à zéro lundi
+0n859tb	On s'accorde…
+1kuxdf7	Personne pour l'instant. Sois le premier !

@@ -87,3 +87,24 @@
 18hvg1l	¿Qué pieza reemplaza?
 0emtdf5	La pieza que elijas vuelve a tu bolsa.
 0sznj2r	¿Quién debe llevarlo?
+1e9u2fw	Clasificación
+1710few	Ver la clasificación
+1k4gy16	Pisos
+0t459ce	Pisos superados
+09nlntg	Mejor oleada
+0g3lfb1	Tu nombre
+0d85xjl	Elige un nombre de 1 a 16 letras.
+0jek9h7	No se pudo conectar con la clasificación. Revisa tu conexión e inténtalo de nuevo.
+0lewgh4	Guardar
+1x60xlj	Cambiar tu nombre
+12blyyl	Cambia en todas las clasificaciones.
+01krowb	Unirme
+1t0bya1	Pon tu nombre
+0eq3xj6	Tu nombre, tu banda y tus mejores resultados se publican para que otros los vean. Nada más sale de este dispositivo.
+1vkrx7g	Tú: <b>#{rank}</b>
+1iouwdz	Aún no estás en esta lista
+1jhzhtf	Renombrar
+07w3c4g	Jugador
+1p9hkma	Se reinicia el lunes
+0n859tb	Afinando…
+1kuxdf7	Aún no hay nadie. ¡Sé el primero!

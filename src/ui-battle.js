@@ -345,6 +345,7 @@
       const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
       UI.save(); UI.result(out);
+      if (win && H.Net && (enc || (!solo && !daily && !reh && out.first))) H.Net.push(S, UI.save);   // a new best for the Ranks boards
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };

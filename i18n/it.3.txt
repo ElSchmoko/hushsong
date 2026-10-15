@@ -87,3 +87,24 @@
 18hvg1l	Quale pezzo sostituisce?
 0emtdf5	Il pezzo scelto torna nella tua borsa.
 0sznj2r	Chi deve indossarlo?
+1e9u2fw	Classifiche
+1710few	Vedi le classifiche
+1k4gy16	Piani
+0t459ce	Piani superati
+09nlntg	Ondata migliore
+0g3lfb1	Il tuo nome
+0d85xjl	Scegli un nome da 1 a 16 lettere.
+0jek9h7	Impossibile raggiungere le classifiche. Controlla la connessione e riprova.
+0lewgh4	Salva
+1x60xlj	Cambia nome
+12blyyl	Cambia in tutte le classifiche.
+01krowb	Partecipa
+1t0bya1	Metti il tuo nome
+0eq3xj6	Il tuo nome, la tua band e i tuoi record vanno online perché altri li vedano. Nient'altro lascia questo dispositivo.
+1vkrx7g	Tu: <b>#{rank}</b>
+1iouwdz	Non sei ancora in questa classifica
+1jhzhtf	Rinomina
+07w3c4g	Giocatore
+1p9hkma	Si azzera lunedì
+0n859tb	Ci accordiamo…
+1kuxdf7	Ancora nessuno. Sii il primo!
