@@ -194,7 +194,7 @@
   // Solo is open for now; the gated code stays in place for it.
   H.GATES = { daily: true, encore: true, reh: true, solo: false };
   // Encore milestones, paid once a week. Before: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { echo: 3 }], [20, { shells: 1 }]]
-  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.09, step: 0.045, heal: 0.25, bossK: 0.865, bossEvery: 5, miles: [[10, { echo: 1 }], [20, { shells: 1 }], [30, { echo: 1 }], [50, { shells: 1 }]] };
+  H.ENCORE = { unlock: 20, gap: 2, gapPct: 0.09, step: 0.045, heal: 0.25, bossK: 0.865, bossEvery: 5, miles: [[5, { echo: 1 }], [10, { echo: 2 }], [15, { shells: 2 }], [20, { echo: 3 }]], notes: 10 };   // notes: for every wave cleared
   H.encoreOpen = (S) => S.level >= H.ENCORE.unlock;
   H.refreshEncore = (S, ms) => { const w = H.weekOf(ms == null ? Date.now() : ms), E = (S.encore = S.encore || { week: w, paid: 0, best: 0, weekBest: 0 }); if (E.week === w) return false; E.week = w; E.paid = 0; E.weekBest = 0; return true; };
   H.encoreStage = (S, wave) => {
@@ -216,10 +216,10 @@
   };
   // After each wave: HP is noted, a quarter of it comes back, milestones pay out (once a week). A loss ends the run.
   H.finishEncore = (S, win, battle) => {
-    H.refreshEncore(S); const run = S.encoreRun, E = S.encore, wave = run.wave, out = { encore: true, win, wave, paid: [], xp: 0, ups: 0, echo: 0, shells: 0 };
+    H.refreshEncore(S); const run = S.encoreRun, E = S.encore, wave = run.wave, out = { encore: true, win, wave, paid: [], xp: 0, ups: 0, echo: 0, shells: 0, notes: 0 };
     if (!win) { out.reached = wave - 1; out.best = E.best; S.encoreRun = null; return out; }
     if (battle) for (const u of battle.units) if (u.side === 0 && u.petId != null) run.hp[u.petId] = u.alive ? Math.min(1, u.hp / u.max + H.ENCORE.heal) : 0;
-    E.best = Math.max(E.best, wave); E.weekBest = Math.max(E.weekBest, wave); out.best = E.best; S.stats.encore = Math.max(S.stats.encore || 0, wave);
+    out.notes = H.ENCORE.notes; S.notes += out.notes; E.best = Math.max(E.best, wave); E.weekBest = Math.max(E.weekBest, wave); out.best = E.best; S.stats.encore = Math.max(S.stats.encore || 0, wave);
     H.ENCORE.miles.forEach(([m, r], i) => { if (H.GATES.encore ? wave >= m && E.paid <= i : wave === m) { if (H.GATES.encore) E.paid = i + 1; out.paid.push(m); if (r.echo) out.echo += H.addEchoes(S, r.echo); if (r.shells) { S.shells += r.shells; out.shells += r.shells; } } });
     run.wave = wave + 1; out.alive = H.encoreAlive(S);
     return out;

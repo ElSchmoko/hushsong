@@ -540,7 +540,7 @@
     // the band on stage; in a run, each pet's HP under it
     const stage = el('div', 'encstage'); H.encoreTeam(S).forEach((p) => { if (!p) return; const hp = run ? run.hp[p.id] || 0 : 1, c = el('div', 'encpet' + (hp > 0 ? '' : ' down')); add(c, UI.sp(p.form, 0.9, { anim: hp > 0 }), run ? UI.meter(hp) : null, run ? el('b', '', hp > 0 ? Math.round(hp * 100) + '%' : tr('Out')) : null); stage.appendChild(c); });
     add(hero, UI.bgEl('neon', UI.W, hh, 0.62), el('div', 'neonsign' + (window.__hsSpeed ? '' : ' poweron'), tr('Encore')), stage); root.appendChild(hero);
-    pad.appendChild(txt('small center', tr('Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.')));
+    pad.appendChild(txt('small center', tr('Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.') + ' ' + tr('Each wave cleared pays {n} notes.', { n: H.ENCORE.notes })));
     // this week's milestones
     const days = H.daysToReset(Date.now()), miles = UI.track(M.map(([m, r], i) => ({ k: m, icon: r.echo ? 'ic_echo' : 'ic_shell', n: '+' + (r.echo || r.shells), got: H.GATES.encore ? E.paid > i : !!run && run.wave > m, label: tr('Wave {n}', { n: m }) })), 'neon');
     add(pad, add(el('div', 'payline'), txt('label', H.GATES.encore ? tr('This week') : tr('Each run')), miles), txt('small dim center', tr('Best this week <b>{week}</b> · all time <b>{best}</b>', { week: E.weekBest, best: E.best }) + ' · ' + tr('resets in {n} days', { n: days })));

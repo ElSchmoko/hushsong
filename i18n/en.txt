@@ -995,7 +995,7 @@
 0baj6qd	From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.	ui-core	
 0h1kfu0	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.	ui-core	
 0325btm	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.	ui-core	
-07zgmz9	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Milestone waves pay once a week.	ui-core	
+01gr3w3	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.	ui-core	
 0orgbil	Records	ui-core ui-screens	
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
 0l8hqi2	Got it	ui-core ui-modes	
@@ -1208,6 +1208,7 @@
 1fqbflp	Encore opens at level {unlock}.	ui-screens	
 03scfen	Out	ui-screens	
 08gv74u	Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.	ui-screens	
+12vomrp	Each wave cleared pays {n} notes.	ui-screens	
 1pk1o6l	Each run	ui-screens	
 15kcesy	Best this week <b>{week}</b> · all time <b>{best}</b>	ui-screens	
 15jnq83	resets in {n} days	ui-screens	{"one":"resets tomorrow","other":"resets in {n} days"}

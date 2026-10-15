@@ -359,7 +359,7 @@
   // Encore: after a won wave, go on or stop; after a lost one, the run is over
   UI.encoreResult = (out) => {
     const S = UI.S, kids = [], loot = box('loot');
-    if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
+    if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp)); if (out.echo) loot.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo }))); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
     if (out.win) {
       kids.push(txt('disp big center', tr('Wave {wave} cleared!', { wave: out.wave })));
       if (out.paid.length) kids.push(txt('chip center', H.GATES.encore ? tr('Weekly reward: wave {n}', { n: out.paid.join(', ') }) : tr('Reward: wave {n}', { n: out.paid.join(', ') })));
