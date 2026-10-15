@@ -221,7 +221,10 @@
     UI.load(); UI.resize(); UI.fitWatch();
     if (H.Net) { H.Net.flush(UI.S, UI.save); window.addEventListener('online', () => H.Net.flush(UI.S, UI.save)); }
     const st = UI.S.settings; Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound;
-    let rsT = null; window.addEventListener('resize', () => { clearTimeout(rsT); rsT = setTimeout(() => { const was = [UI.u, UI.W, UI.Hh, A.k].join(); UI.resize(); UI.fit(document.getElementById('screen')); if ([UI.u, UI.W, UI.Hh, A.k].join() === was) return; if (UI.cur && UI.cur.name !== 'battle' && document.getElementById('modal').hidden) UI.redraw(); }, 180); });
+    // On a phone the keyboard shrinks the window: while a text field has focus, keep the layout as it is (a redraw would drop the field and close the keyboard), and look again once typing is done.
+    const typing = () => { const a = document.activeElement; return !!a && (a.tagName === 'INPUT' || a.tagName === 'TEXTAREA'); };
+    let rsT = null; const onResize = () => { clearTimeout(rsT); rsT = setTimeout(() => { if (typing()) return; const was = [UI.u, UI.W, UI.Hh, A.k].join(); UI.resize(); UI.fit(document.getElementById('screen')); if ([UI.u, UI.W, UI.Hh, A.k].join() === was) return; if (UI.cur && UI.cur.name !== 'battle' && document.getElementById('modal').hidden) UI.redraw(); }, 180); };
+    window.addEventListener('resize', onResize); document.addEventListener('focusout', () => setTimeout(onResize, 350));
     const wake = () => { const fresh = !Au.ctx; if (Au.init()) { Au.applyVol(); if (fresh) Au.music.set(Au.music.mode, Au.music.layers, Au.music.prog); } };
     window.addEventListener('pointerdown', wake); window.addEventListener('keydown', wake);
     setInterval(() => { UI.frame ^= 1; A.tick(UI.frame); }, 520);
