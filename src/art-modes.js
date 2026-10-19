@@ -73,7 +73,33 @@
   I('bn_pedal', 14, (g) => { g.o('M14 28 H86 V90 H14 Z', '#2fd0d0'); g.oc(30, 42, 6, WHITE, 4); g.oc(50, 42, 6, WHITE, 4); g.oc(70, 42, 6, WHITE, 4); g.oc(50, 72, 10, '#c9c3da', 5); g.s('M30 14 Q50 2 70 14', INK, 9); g.s('M30 14 Q50 2 70 14', '#c88af8', 4); });
   I('bn_mosh', 14, (g) => { g.o('M50 8 Q80 46 74 66 A26 26 0 0 1 26 66 Q20 46 50 8 Z', '#4a8ae0'); g.o('M14 30 Q22 42 14 48 Q6 42 14 30 Z', '#8fd4ff', 4); g.o('M86 30 Q94 42 86 48 Q78 42 86 30 Z', '#8fd4ff', 4); g.s('M38 56 Q40 70 52 72', WHITE, 5); });
   I('bn_dive', 14, (g) => { g.o('M40 4 H60 V30 H74 L50 56 L26 30 H40 Z', '#ff6b5e'); for (const [x, c] of [[20, '#ffd9b3'], [50, '#ffcfe0'], [80, '#bdf3d2']]) { g.s(`M${x - 9} 82 L${x - 13} 66 M${x + 9} 82 L${x + 13} 66`, INK, 6); g.oc(x, 86, 10, c, 5); g.c(x - 3, 85, 1.6, INK); g.c(x + 3, 85, 1.6, INK); } });
+  // boons added with the Tour
+  I('bn_tuning', 14, (g) => { const f = 'M36 10 V48 Q36 64 50 64 Q64 64 64 48 V10'; g.s(f, INK, 15); g.s(f, '#c9d4e8', 7); g.s('M50 64 V92', INK, 14); g.s('M50 64 V92', '#8a90a8', 6); g.s('M14 26 Q8 36 14 46 M86 26 Q92 36 86 46', '#2ecb6e', 5); });
+  I('bn_mute', 14, (g) => { g.o('M8 36 H26 L50 16 V84 L26 64 H8 Z', '#c9c3da'); g.oc(74, 50, 18, WHITE, 6); g.s('M62 62 L86 38', INK, 9); g.s('M62 62 L86 38', '#ff6b5e', 4); });
+  I('bn_dropbeat', 14, (g) => { g.r(16, 78, 68, 14, 5, INK); g.r(19, 81, 62, 8, 3, '#ff6b5e'); g.o('M40 6 H60 V40 H76 L50 70 L24 40 H40 Z', '#2fd0d0'); });
+  I('bn_presence', 14, (g) => { g.o('M16 12 H84 V46 Q84 78 50 92 Q16 78 16 46 Z', '#ffc928'); g.o(star(50, 48, 24, 10, 5), WHITE, 5); });
+  I('bn_counter', 14, (g) => { g.o('M6 12 H58 V46 H30 L18 60 V46 H6 Z', '#8fd4ff'); g.o('M42 44 H94 V78 H84 V92 L70 78 H42 Z', '#ffc928'); g.s('M18 29 H46 M54 61 H82', INK, 5); });
+  I('bn_overdrive', 14, (g) => { g.o('M14 44 H86 V92 H14 Z', '#e0445a'); g.oc(50, 68, 15, '#5a5270', 5); g.c(50, 68, 5, '#ffc928'); g.o('M50 4 Q72 22 64 38 Q60 46 50 46 Q40 46 36 38 Q28 22 50 4 Z', '#ff9a3a'); g.o('M50 20 Q60 30 56 38 Q50 42 44 38 Q40 30 50 20 Z', '#ffe58a', 4); });
+  I('bn_bassdrop', 14, (g) => { g.o('M14 8 H86 V92 H14 Z', '#4a3d6a'); g.oc(50, 60, 25, '#2c2366', 5); g.oc(50, 60, 10, '#7fe0d8', 4); g.oc(50, 24, 8, '#7fe0d8', 4); });
+  I('bn_pyro', 14, (g) => { for (let i = 0; i < 8; i++) { const a = (i / 8) * 6.283, d = `M${50 + Math.cos(a) * 18} ${50 + Math.sin(a) * 18} L${50 + Math.cos(a) * 44} ${50 + Math.sin(a) * 44}`; g.s(d, INK, 10); g.s(d, i % 2 ? '#ff6b5e' : '#ffc928', 4); } g.o(star(50, 50, 20, 9, 5), '#ffc928'); });
+  I('bn_harmony', 14, (g) => { g.o(heart, '#ffcfe0'); note(g, 36, 54, 0.85, '#ff5a8a'); note(g, 60, 46, 0.85, '#2ecb6e'); });
+  I('bn_backing', 14, (g) => { for (const [x, c] of [[28, '#c88af8'], [72, '#8fd4ff'], [50, '#ffc928']]) { g.s(`M${x} 56 V88`, INK, 10); g.s(`M${x} 56 V88`, '#8a90a8', 4); g.oc(x, 38, 16, c, 6); g.s(`M${x - 10} 34 H${x + 10} M${x - 10} 42 H${x + 10}`, INK, 3); } });
+  I('bn_angel', 14, (g) => { g.e(50, 16, 22, 7, '#ffe58a'); g.s('M28 16 A22 7 0 1 0 72 16 A22 7 0 1 0 28 16', INK, 5); g.o('M50 54 Q20 26 6 44 Q14 58 26 60 Q16 72 30 78 Q44 74 50 62 Z', WHITE); g.o('M50 54 Q80 26 94 44 Q86 58 74 60 Q84 72 70 78 Q56 74 50 62 Z', WHITE); g.oc(50, 62, 10, '#ffc928', 5); });
   A.boonIcon = (id) => 'bn_' + id;
+  // Headliners: a gold rosette around the badge of the boon they echo
+  const rosette = (g) => { g.o(star(50, 50, 48, 40, 16), '#ffc928', 6); g.oc(50, 50, 36, '#fff6dc', 5); };
+  A.headIcons = () => { for (const id in H.HEADLINERS) { const inner = A.defs['bn_' + H.HEADLINERS[id].icon]; I('hl_' + id, 14, (g) => { rosette(g); g.push(50, 50, 0.6); g.push(-50, -50); if (inner) inner.fn(g); g.pop(); g.pop(); }); } };
+  A.headIcons();
+  // the Tour on the Gig Board: the band's bus
+  I('ic_tour', 14, (g) => { g.o('M6 30 Q6 16 20 16 H84 Q94 16 94 28 V70 H6 Z', '#ff6b5e'); for (const x of [16, 38, 60]) g.o(`M${x} 26 H${x + 16} V44 H${x} Z`, '#bfe8ff', 4); g.o('M80 26 H90 V50 H80 Z', '#bfe8ff', 4); g.r(6, 52, 88, 6, 0, '#ffc928'); g.oc(26, 72, 10, '#5a5270', 5); g.oc(74, 72, 10, '#5a5270', 5); g.c(26, 72, 3, '#c9c3da'); g.c(74, 72, 3, '#c9c3da'); note(g, 52, 64, 0.5, WHITE); });
+  /* mystery stops added with the Tour */
+  I('ev_crossroads', 20, (g) => { g.e(50, 90, 44, 7, '#9fdcc4'); g.s('M50 90 V18', INK, 12); g.s('M50 90 V18', '#a8703a', 5); g.o('M50 22 H84 L94 32 L84 42 H50 Z', '#fff6dc'); g.o('M50 48 H16 L6 58 L16 68 H50 Z', '#ffd95a'); g.c(50, 14, 6, INK); });
+  I('ev_mirror', 20, (g) => { g.o('M22 8 H78 V92 H22 Z', '#c98a4a'); g.o('M30 16 H70 V84 H30 Z', '#d6f2ff'); g.s('M38 26 L52 20 M40 40 L60 30', WHITE, 5); for (const y of [16, 38, 60, 82]) { g.oc(16, y, 5, '#ffe58a', 3); g.oc(84, y, 5, '#ffe58a', 3); } });
+  I('ev_roadie', 20, (g) => { g.e(50, 92, 44, 6, '#7fd69c'); g.o('M10 34 H90 V88 H10 Z', '#4a4060'); g.r(10, 34, 80, 10, 0, '#8a84a0'); for (const [x, y] of [[10, 34], [82, 34], [10, 80], [82, 80]]) g.r(x, y, 8, 8, 1, '#c9c3da'); g.o('M38 22 H62 V34 H56 V28 H44 V34 H38 Z', '#c9c3da', 4); g.r(30, 56, 40, 12, 3, '#ffc928'); });
+  I('ev_legend', 20, (g) => { g.oc(50, 50, 42, INK); for (const r of [34, 26]) g.s(`M${50 - r} 50 A${r} ${r} 0 1 0 ${50 + r} 50 A${r} ${r} 0 1 0 ${50 - r} 50`, '#4a4060', 2); g.oc(50, 50, 14, '#ffc928', 4); g.o(star(50, 50, 9, 4, 5), WHITE, 2); });
+  I('ev_well', 20, (g) => { g.s('M20 40 V12 H80 V40', INK, 9); g.s('M20 40 V12 H80 V40', '#8a5a3a', 4); g.o('M10 6 H90 L80 16 H20 Z', '#c8304a'); g.o('M14 40 H86 V88 H14 Z', '#a9b7d6'); g.s('M14 56 H86 M14 72 H86 M38 40 V56 M62 56 V72 M38 72 V88', INK, 3); g.e(50, 40, 36, 6, '#2c4a8a'); g.oc(60, 26, 6, '#ffc928', 3); });
+  I('ev_storm', 20, (g) => { g.o('M18 50 Q6 50 8 38 Q10 26 24 28 Q28 10 48 12 Q64 8 70 24 Q90 22 92 38 Q94 52 78 52 Z', '#8a84b0'); g.o('M52 46 L36 72 H50 L42 94 L68 62 H54 L62 46 Z', '#ffc928'); g.s('M22 62 L18 72 M80 62 L76 74', '#8fd4ff', 5); });
+  I('ev_medic', 20, (g) => { g.e(50, 92, 44, 6, '#7fd69c'); g.s('M36 30 Q36 14 50 14 Q64 14 64 30', INK, 10); g.s('M36 30 Q36 14 50 14 Q64 14 64 30', '#8a5a3a', 4); g.o('M10 30 H90 V86 H10 Z', '#e0445a'); g.o('M42 40 H58 V52 H70 V68 H58 V80 H42 V68 H30 V52 H42 Z', WHITE); });
 
   /* ---------- the Solo map: the region seen from above. Ground first, then a few things that belong there. ---------- */
   const mc = new Map();
