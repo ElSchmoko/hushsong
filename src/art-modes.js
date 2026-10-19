@@ -36,6 +36,9 @@
   I('nd_rest', 12, (g) => { g.o('M14 78 L84 62 L88 74 L18 90 Z', '#8a5a3a'); g.o('M86 78 L16 62 L12 74 L82 90 Z', '#a8703a'); g.o('M50 6 Q74 32 70 52 Q66 72 50 72 Q34 72 30 52 Q28 34 50 6 Z', '#ff9a3a'); g.p('M50 32 Q61 46 59 57 Q57 67 50 67 Q43 67 41 57 Q41 46 50 32 Z', '#ffe06a'); });
   I('nd_jam', 12, (g) => { g.push(56, 60, 0.86, 35); guitar(g); g.pop(); });
   I('nd_mystery', 12, (g) => { g.oc(50, 48, 40, '#c88af8'); g.s('M37 38 Q37 22 52 22 Q67 22 65 37 Q63 48 50 52 V60', INK, 16); g.s('M37 38 Q37 22 52 22 Q67 22 65 37 Q63 48 50 52 V60', WHITE, 8); g.oc(50, 76, 6.5, WHITE, 4); });
+  // a Benefit show: a heart-shaped donation jar; Battle of the Bands: two crossed guitars
+  I('nd_benefit', 12, (g) => { g.o('M30 26 H70 V30 Q84 38 84 60 Q84 90 50 92 Q16 90 16 60 Q16 38 30 30 Z', '#bdf3d2'); g.o('M50 80 C30 66 28 52 36 46 C43 41 50 47 50 52 C50 47 57 41 64 46 C72 52 70 66 50 80 Z', '#ff5a8a', 5); g.o('M26 14 H74 V28 H26 Z', '#8a5a3a', 5); });
+  I('nd_battle', 12, (g) => { g.push(50, 52, 0.62, -38); guitar(g); g.pop(); g.push(50, 52, 0.62, 38); guitar(g); g.pop(); g.o(star(50, 22, 14, 6, 5), '#ffc928', 4); });
   I('nd_start', 12, (g) => { g.s('M28 94 V8', INK, 10); g.s('M28 94 V8', '#c98a4a', 4); g.o('M30 10 H84 L72 28 L84 46 H30 Z', '#2ecb6e'); });
   A.nodeIcon = (type) => (type === 'boss' ? 'ic_boss' : 'nd_' + type);
 
@@ -82,8 +85,6 @@
   I('bn_overdrive', 14, (g) => { g.o('M14 44 H86 V92 H14 Z', '#e0445a'); g.oc(50, 68, 15, '#5a5270', 5); g.c(50, 68, 5, '#ffc928'); g.o('M50 4 Q72 22 64 38 Q60 46 50 46 Q40 46 36 38 Q28 22 50 4 Z', '#ff9a3a'); g.o('M50 20 Q60 30 56 38 Q50 42 44 38 Q40 30 50 20 Z', '#ffe58a', 4); });
   I('bn_bassdrop', 14, (g) => { g.o('M14 8 H86 V92 H14 Z', '#4a3d6a'); g.oc(50, 60, 25, '#2c2366', 5); g.oc(50, 60, 10, '#7fe0d8', 4); g.oc(50, 24, 8, '#7fe0d8', 4); });
   I('bn_pyro', 14, (g) => { for (let i = 0; i < 8; i++) { const a = (i / 8) * 6.283, d = `M${50 + Math.cos(a) * 18} ${50 + Math.sin(a) * 18} L${50 + Math.cos(a) * 44} ${50 + Math.sin(a) * 44}`; g.s(d, INK, 10); g.s(d, i % 2 ? '#ff6b5e' : '#ffc928', 4); } g.o(star(50, 50, 20, 9, 5), '#ffc928'); });
-  I('bn_harmony', 14, (g) => { g.o(heart, '#ffcfe0'); note(g, 36, 54, 0.85, '#ff5a8a'); note(g, 60, 46, 0.85, '#2ecb6e'); });
-  I('bn_backing', 14, (g) => { for (const [x, c] of [[28, '#c88af8'], [72, '#8fd4ff'], [50, '#ffc928']]) { g.s(`M${x} 56 V88`, INK, 10); g.s(`M${x} 56 V88`, '#8a90a8', 4); g.oc(x, 38, 16, c, 6); g.s(`M${x - 10} 34 H${x + 10} M${x - 10} 42 H${x + 10}`, INK, 3); } });
   I('bn_angel', 14, (g) => { g.e(50, 16, 22, 7, '#ffe58a'); g.s('M28 16 A22 7 0 1 0 72 16 A22 7 0 1 0 28 16', INK, 5); g.o('M50 54 Q20 26 6 44 Q14 58 26 60 Q16 72 30 78 Q44 74 50 62 Z', WHITE); g.o('M50 54 Q80 26 94 44 Q86 58 74 60 Q84 72 70 78 Q56 74 50 62 Z', WHITE); g.oc(50, 62, 10, '#ffc928', 5); });
   A.boonIcon = (id) => 'bn_' + id;
   // Headliners: a gold rosette around the badge of the boon they echo

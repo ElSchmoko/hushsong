@@ -835,11 +835,8 @@
 0fqmwlj	Each gig starts with every enemy Power Down and Slow for 2 turns.	data	
 08eas0y	Pyrotechnics	data	
 0p1byva	Each gig starts with every enemy Poisoned for 3 turns.	data	
-0ro40l5	Harmony Line	data	
-1icv4jw	After each of its turns, the most hurt bandmate heals 6%.	data	
-1tqf3wb	The other pets in the band get +15% Power while it plays.	data	
 18fw7hr	Guardian Angel	data	
-1kyeyhv	When a bandmate falls, it gets back up with 25% HP (once each per gig).	data	
+1yjw8ns	A bandmate that falls gets back up with 20% HP, once per gig.	data	
 1vvq1dc	every hit tops up a Shield	data	
 1g75ypi	knockouts top up a Shield	data	
 05zgsrj	Skills come round very fast	data	
@@ -867,16 +864,13 @@
 0voo4z0	hit it and pay twice	data	
 0fq9t0e	strike while they are weak	data	
 1eh7dk7	quiet and out of tune	data	
-0ogm089	spare healing becomes Shield	data	
-0wylqmk	the band carries the glass cannon	data	
 1gg1am2	hard to keep down	data	
-0ixdtlm	the tank always gets back up	data	
 1ohz4qd	A street busker	data	
 1h8j3n9	A busker with a battered guitar offers to swap songs.	data	
 0u6vqnk	Swap songs	data	
 0frat3l	Lose 25% HP. Take two random rare boons.	data	
 1pkwh2g	Busk together	data	
-1kgmbe3	Heal 30% and take a random boon.	data	
+0cayfld	Heal 30%, and +10% Power for this tour.	data	
 1ogo5bn	An old tuning shrine	data	
 01hfnq9	A ring of humming stones. The air feels in tune.	data	
 1yyrwti	Attune	data	
@@ -906,7 +900,7 @@
 0rpo8v2	Play for them	data	
 0hxi0r2	+20% Power for this tour, and heal 30%.	data	
 1aherk5	Stage dive	data	
-0p8btdk	Lose 20% HP. Take a random rare boon.	data	
+027uevb	Lose 20% HP. +12% Power and +12% Speed for this tour.	data	
 0rg0tuv	A deal at the crossroads	data	
 01gyuw5	A stranger in a long coat offers to tune your strings, for a price.	data	
 1j3pbtf	Shake on it	data	
@@ -916,7 +910,7 @@
 1ozbb9m	A dressing-room mirror	data	
 12n3l3p	The bulbs flicker. Your reflection seems to play a little better.	data	
 1k13z9g	Look closer	data	
-0au82nb	A copy of one of your boons, at random.	data	
+1iy7xmc	A copy of one of your boons that add up, at random.	data	
 0to6nct	Fix your hair	data	
 1s2pz3d	+15% Speed for this tour.	data	
 01q5opq	A roadie with spare gear	data	
@@ -1024,7 +1018,7 @@
 1q4pntc	Special	ui-battle ui-core	
 0n0mxf2	Home	ui-battle ui-core ui-modes ui-tour	
 04f76ga	Notes	ui-core ui-modes ui-screens ui-tour	
-0wto1r4	Echoes	ui-core ui-screens ui-tour	
+0wto1r4	Echoes	ui-core ui-modes ui-screens ui-tour	
 04zpoy4	You found {n} echoes!	ui-core	
 1oo9ppz	You found an echo!	ui-core	
 1we7hk3	They help {n} evolve, and later buy stars.	ui-core	
@@ -1073,7 +1067,7 @@
 0h1kfu0	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.	ui-core	
 0325btm	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.	ui-core	
 01gr3w3	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.	ui-core	
-13iz9xh	From level {unlock}: the whole band on a World Tour of five legs, each ten gigs and a boss, every leg much tougher than the last. HP carries over; a pet that falls sits out until a campfire. Each boon goes to one pet, and each leg starts with a Headliner for the whole band. Gigs pay notes, bosses an echo and equipment, the last boss a shell and a Legendary.	ui-core	
+10nkzyp	From level {unlock}: the whole band on a World Tour of five legs, each five gigs and a boss, every leg much tougher than the last. HP carries over; a pet that falls sits out until a campfire, a Benefit show or the next leg. Boons work on the whole band, and legs 1, 3 and 5 start with a Headliner: a big change with a price. Gigs pay notes, bosses an echo and equipment, the last boss a shell and a Legendary.	ui-core	
 0orgbil	Records	ui-core ui-screens	
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
 0l8hqi2	Got it	ui-core ui-modes	
@@ -1106,7 +1100,7 @@
 192xyh5	Floor {n}	ui-battle ui-screens	
 1wsths9	Later	ui-battle ui-screens	
 1vkg66p	Your ensemble	ui-battle ui-screens	
-0oes1nf	+{n} echoes	ui-battle ui-screens ui-tour	{"one":"+{n} echo","other":"+{n} echoes"}
+0oes1nf	+{n} echoes	ui-battle ui-modes ui-screens ui-tour	{"one":"+{n} echo","other":"+{n} echoes"}
 0tyfhvo	End this run?	ui-battle ui-screens	
 10yh3fa	Rewards stay yours.	ui-battle ui-screens	
 179chx3	End run	ui-battle ui-screens	
@@ -1119,7 +1113,8 @@
 1yikd80	Solo Tour	ui-modes ui-screens	
 1g2tab0	Gig {n} of 5	ui-modes ui-screens	
 0n3ydks	Pick one	ui-modes ui-screens ui-tour	
-0x4nga3	Onwards	ui-modes ui-screens ui-tour	
+03scfen	Out	ui-modes ui-screens ui-tour	
+0x4nga3	Onwards	ui-modes ui-screens	
 1nvt7jn	This week	ui-ranks ui-screens	
 1e9u2fw	Ranks	ui-ranks ui-screens	
 0h2yt8f	Lv {level}	ui-ranks ui-screens	
@@ -1287,7 +1282,6 @@
 1vgwehg	{din}, {region}, won this week	ui-screens	
 0qjjz61	{din}, {region}, reward 1 echo	ui-screens	
 1fqbflp	Encore opens at level {unlock}.	ui-screens	
-03scfen	Out	ui-screens ui-tour	
 08gv74u	Endless waves, each a little tougher. HP carries over, and a quarter comes back after each wave.	ui-screens	
 12vomrp	Each wave cleared pays {n} notes.	ui-screens	
 1pk1o6l	Each run	ui-screens	
@@ -1357,15 +1351,17 @@
 02zvux1	Combo with {n}: {d}	ui-modes	
 0d1xs4z	Boons on this tour	ui-modes	
 0ls4fiu	Combos	ui-modes	
-00u5kof	Win gigs and jam to collect boons. They last the tour.	ui-modes	
+00u5kof	Win gigs and jam to collect boons. They last the tour.	ui-modes ui-tour	
 1ivwi98	{p} Power	ui-modes ui-tour	
-1czrh23	{p} HP	ui-modes ui-tour	
+1czrh23	{p} HP	ui-modes	
 18dqeg6	From the road: {list}	ui-modes	
 1jeu1u6	Gig	ui-modes	
 0yik53o	Loud gig	ui-modes	
 1no7203	Jam session	ui-modes ui-tour	
 1f5g7va	Mystery	ui-modes ui-tour	
 030xvgf	Start	ui-modes	
+1ua43j9	Benefit show	ui-modes	
+02aafln	Battle of the Bands	ui-modes	
 0rcomre	‹ Gigs	ui-modes	
 1y1z148	{din}'s stage	ui-modes	
 0suqviq	{stop}, you can go here	ui-modes	
@@ -1380,6 +1376,8 @@
 0wsnj4k	Sleep, or practise.	ui-modes	
 1g00h8i	Play along for a boon.	ui-modes	
 1bqe9lc	Something is going on here.	ui-modes	
+1rr4l6u	An easy crowd, a good cause. Win to heal up.	ui-modes	
+1xtcooa	A rival band wants your stage. Win for a rare boon and an echo.	ui-modes	
 0unuhh5	Win	ui-modes	
 18w23xo	Face the boss	ui-modes	
 0z0syb8	Play this gig	ui-modes	
@@ -1390,19 +1388,22 @@
 05me9k8	Tougher Din. Win for a rare boon.	ui-modes	
 0fqmz7h	Heal 40%, or practise for +10% Power.	ui-modes	
 18gfynz	Pick a boon.	ui-modes	
-0m8hcnl	A choice, good or risky.	ui-modes	
+07yjwdu	A choice, worth more than a boon. Often with a price.	ui-modes	
 14v8vbh	The end of the tour.	ui-modes	
+15xah32	Easier Din. Win to heal 50%.	ui-modes	
+1gcvy69	A rival band, tougher than a gig. Win for a rare boon and an echo.	ui-modes	
 0vozr6z	HP carries on from gig to gig. The crowd gets restless if a gig drags on: every hit lands harder.	ui-modes	
 1nz9721	{region} tour	ui-modes	
 0zqhp1s	Solo tour	ui-modes	
 1p7xg55	5 gigs, then {n}	ui-modes	
+0g3i5q8	Heal {p}%	ui-modes	
 0cbomgp	Rare boon	ui-modes ui-tour	
 0cm0w8n	Boon	ui-modes ui-tour	
 0i9n2t3	The crowd goes wild	ui-modes ui-tour	
 0e67mga	Dig through the crate	ui-modes	
 17cajel	Pick a rare boon	ui-modes ui-tour	
 0crwowb	Pick a boon	ui-modes ui-tour	
-14mzec6	Take {n}	ui-modes	
+14mzec6	Take {n}	ui-modes ui-tour	
 00dbte5	Skip this boon?	ui-modes ui-tour	
 19b6o8k	This stop gives no other.	ui-modes ui-tour	
 0rhzcma	A quiet night on the road	ui-modes ui-tour	
@@ -1410,9 +1411,31 @@
 0yis9fp	HP {now} → {heal}	ui-modes	
 1ko57eo	Practise	ui-modes ui-tour	
 0iibvtx	+{n}% Power for this tour	ui-modes	
-1mjiqfy	Lucky!	ui-modes ui-tour	
-1vj67te	You got	ui-modes ui-tour	
-0lilh78	No luck this time.	ui-modes ui-tour	
+1dz8ikm	{p} Speed	ui-modes	
+144d6v7	{p} crit	ui-modes	
+1tbbpxv	+{n} Guard	ui-modes	
+0t5fl5e	{p} Shield	ui-modes	
+0qxcjn6	{p} Power for the rest of the tour	ui-modes	
+06nnlu5	{p} max HP for the rest of the tour	ui-modes	
+1996bcs	{p} Speed for the rest of the tour	ui-modes	
+0q5los9	{p} critical hit chance	ui-modes	
+0gk10gu	crits {p} harder	ui-modes	
+1vraof0	A Shield at the start of every gig	ui-modes	
+0a124qq	The fallen get back up	ui-modes	
+0b27l74	Healed to full	ui-modes	
+0xwoepc	Healed {p}	ui-modes	
+0p1poin	Lost {p} HP	ui-modes	
+1mjiqfy	Lucky!	ui-modes	
+1icydm7	No luck	ui-modes	
+1j86w40	Next: pick a boon.	ui-modes	
+1lzb2j0	Benefit show!	ui-modes	
+0sw8jpd	Healed!	ui-modes	
+0t4qn4n	The fallen are back, and everyone heals {p}%.	ui-modes	
+1yr3hz6	Everyone heals {p}%.	ui-modes ui-tour	
+184bkn5	HP {n}	ui-modes ui-tour	
+0mkoere	Battle won!	ui-modes	
+15d89dh	Headliners!	ui-modes	
+0j4zizi	The rival band bows out.	ui-modes	
 0qvo2av	Loud gig won!	ui-modes ui-tour	
 04ymvaf	Rowdy!	ui-modes ui-tour	
 1eea2cs	HP {n}%	ui-modes	
@@ -1569,11 +1592,11 @@
 0jrwxj3	Headliners and boons. Show them	ui-tour	
 14a1zty	On this tour	ui-tour	
 14lfw5f	Ensemble on tour	ui-tour	
-0tciy3p	While all three play.	ui-tour	
-1gominw	{n} more	ui-tour	
-1rhsd0c	From the road, for the whole band: {list}	ui-tour	
+0anedhh	While at least two of the band play.	ui-tour	
+0ap9r42	Boons for the whole band	ui-tour	
+1u4tacc	From the road	ui-tour	
 0e3jrep	Headliner	ui-tour	
-0bji6c1	For the whole band, for the rest of the tour.	ui-tour	
+0avbq7e	Price: {p}	ui-tour	
 1f582ew	The Tour opens at level {unlock}.	ui-tour	
 1qsfsmm	Pays	ui-tour	
 1qsewkh	{n} a gig	ui-tour	
@@ -1582,35 +1605,36 @@
 06zkpiq	Notes and loot stay yours.	ui-tour	
 08g47x3	On tour: <b>{n}</b>. {d}	ui-tour	
 1u033ul	Three pets that form an ensemble also play its tour version.	ui-tour	
-0jkvwgl	HP carries on from gig to gig. A pet that falls sits out until a campfire. Each boon goes to one pet; each leg starts with a Headliner for the whole band.	ui-tour	
+0m8jann	Each leg is five gigs and a boss. HP carries on; a pet that falls sits out until a campfire or a Benefit show. Boons work on the whole band. Legs 1, 3 and 5 start with a Headliner: a big change, with a price.	ui-tour	
 1m5jwwh	Best: leg <b>{leg}</b>, gig <b>{gig}</b>	ui-tour	
 1iwtza2	{n} tours finished	ui-tour	
 161rcee	Start the tour	ui-tour	
 080gaqe	World Tour · leg {n}	ui-tour	
 033a7zg	{gigs} gigs, then {n}	ui-tour	
 1841f7w	The end of this leg.	ui-tour	
+0uxw82y	The end of the leg. The fallen get back up.	ui-tour	
 0021oqo	Three Din. Win for a boon.	ui-tour	
-1ectdto	Everyone heals 40% and the fallen get back up, or practise for +8% Power.	ui-tour	
-1wg31wh	The end of the leg.	ui-tour	
+02jyq3n	Everyone heals and the fallen get back up, or practise for +6% Power.	ui-tour	
+1wdguj9	Easier Din. Win: the fallen get back up and everyone heals 25%.	ui-tour	
+10y8o2p	Revive + heal	ui-tour	
 1j76wat	Leg {n}: {region}	ui-tour	
 1j4dwt9	Pick a Headliner	ui-tour	
+1rj8odi	It changes how the band plays for the rest of the tour, and the road makes you pay for it.	ui-tour	
 0o4yfm7	Headline with {n}	ui-tour	
+1ytulac	The rival band bows out	ui-tour	
 0sce3p3	A find on the road	ui-tour	
-0fxkiwg	Give to {pet}	ui-tour	
-1b846sm	Give it to	ui-tour	
-1yr3hz6	Everyone heals {p}%.	ui-tour	
 0uii4q9	The fallen get back up with {p}% HP.	ui-tour	
 12eqonx	Back on their feet	ui-tour	
 1hkx7g6	Rested	ui-tour	
 1n797w8	+{n}% Power for the band for this tour.	ui-tour	
 08abf4l	The fallen stay down.	ui-tour	
-0l3i72a	On tour it works on the whole band. Boons go to the pet with the fewest.	ui-tour	
-12410nh	For {pet}	ui-tour	
+1m40sap	On tour it works on the whole band.	ui-tour	
 171yphh	Leg {n} complete!	ui-tour	
 1vabklu	Sold out!	ui-tour	
 1f4d94b	The boss dropped	ui-tour	
+0ih6387	The fallen get back up for the next leg.	ui-tour	
 0zaxzgb	On to {region}	ui-tour	
-1rsr4ns	{n} of the band sit out until a campfire.	ui-tour	
+181y3pu	{n} of the band sit out until a campfire or a Benefit show.	ui-tour	
 1d2cvtt	World Tour complete!	ui-tour	
 0c9ts3v	Five legs, five bosses. The whole world sang along.	ui-tour	
 0ynkrqv	Out on leg <b>{leg}</b>, after <b>{gigs}</b> gigs of {n}.	ui-tour	

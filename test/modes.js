@@ -51,7 +51,7 @@ const tour = (S, petId, rnd, trace) => {
   return { gigs: run.gigs, done: false };
 };
 // the road: prefer rest when hurt, otherwise anything (a little random)
-const score = (r, n) => (n.type === 'rest' ? (r.hp < 0.6 ? 3 : 0.5) : n.type === 'loud' ? (r.hp > 0.7 ? 1.2 : 0.2) : n.type === 'jam' ? 1.5 : 1) + Math.random() * 0.8;
+const score = (r, n) => ({ rest: r.hp < 0.6 ? 3 : 0.5, benefit: r.hp < 0.6 ? 2.8 : 0.6, battle: r.hp > 0.75 ? 1.6 : 0.1, loud: r.hp > 0.7 ? 1.2 : 0.2, jam: 1.5 }[n.type] || 1) + Math.random() * 0.8;
 
 if (mode === 'solo' || mode === 'roles') {
   const rnd = H.rng(9), byTier = {}, byRole = {}, reach = [0, 0, 0, 0, 0, 0, 0], perForm = [];
