@@ -1037,6 +1037,7 @@
 0x2jl9c	wait {n}	ui-core	
 1cjrhja	any time	ui-core	
 0b9jhu9	new	ui-core	
+06qxefl	Something went wrong there. Back to Home.	ui-core	
 0ew9em3	Cancel	ui-core ui-ranks	
 166o4fr	‹ Back	ui-core	
 1id7d20	How to play	ui-core	

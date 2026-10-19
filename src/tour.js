@@ -116,6 +116,24 @@
     legStart(run, rnd); S.tourRun = run; H.refreshTour(S).tours++; return run;
   };
   H.endTour = (S) => { S.tourRun = null; };
+  // A tour saved by an older build (boons per pet, ten-gig legs, retired Headliners) is brought up to date:
+  // its boons go to the whole band, unknown Headliners and boons are dropped, and a leg from the longer roads starts over on a new road.
+  H.fixTourRun = (S) => {
+    const run = S.tourRun; if (!run) return false; let changed = false;
+    if (!Array.isArray(run.boons)) { run.boons = [].concat(...Object.values(run.kit || {})); delete run.kit; changed = true; }
+    const ok = (id) => H.BOONS[id] && H.BOON_ORDER.includes(id), seen = new Set();
+    const boons = run.boons.filter((id) => ok(id) && (H.BOONS[id].stack || (!seen.has(id) && seen.add(id)))); if (boons.length !== run.boons.length) { run.boons = boons; changed = true; }
+    const heads = (run.heads || []).filter((id) => H.HEADLINERS[id]); if (heads.length !== (run.heads || []).length) { run.heads = heads; changed = true; }
+    if (!run.extra) run.extra = { vol: 0, hp: 0, perks: [] }; if (!run.extra.perks) run.extra.perks = [];
+    if (!run.loot) run.loot = { echo: 0, shells: 0, items: [] };
+    const rows = run.map && run.map.length ? Math.max(...run.map.map((n) => n.r)) + 1 : 0;
+    if (rows !== H.TOUR.rows.length || run.gigs > H.TOUR.gigs) { run.map = legMap(run); run.at = null; run.done = []; run.gigs = 0; if (run.pending && run.pending.type !== 'head') run.pending = null; changed = true; }
+    const p = run.pending;
+    if (p && p.type === 'head') { p.opts = (p.opts || []).filter((id) => H.HEADLINERS[id] && !run.heads.includes(id)); if (!p.opts.length) p.opts = headOffer(run, Math.random); }
+    if (p && p.type === 'boon') { p.opts = (p.opts || []).filter(ok); if (!p.opts.length) run.pending = null; }
+    if (p && p.type === 'event' && !H.EVENTS[p.ev]) run.pending = null;
+    return changed;
+  };
 
   // a pet as it plays on this tour: its usual self, then the Headliners, the boons, the road's extras and the ensemble's tour version.
   // Headliners come first, so where a boon does the same thing the Headliner's stronger value is the one that counts.

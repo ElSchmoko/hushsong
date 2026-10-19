@@ -121,6 +121,7 @@
     if (!S.flags.bossEcho2) { S.flags.bossEcho2 = 1; S.echo += H.ECHO_BOSS * Math.max(0, Math.floor((S.stage - 1) / 10) - 10); }   // bosses past floor 100 pay an echo too now
     if (Object.values(S.petEcho || {}).some((x) => x > 0)) S.flags.petEchoIntro = 1;
     if (!S.flags.leg100 && S.stage > 100) { S.flags.leg100 = 1; H.rollLegend(S, Math.random); }   // the floor-100 Legendary for saves already past it   // and for the region bosses up to floor 100
+    if (H.fixTourRun) H.fixTourRun(S);   // a tour from an older build
     UI.S = S; return S;
   };
   let saveT = null;
@@ -130,7 +131,10 @@
   UI.go = (name, params) => {
     const scr = document.getElementById('screen'); if (UI.cur && UI.cur.leave) UI.cur.leave();
     scr.innerHTML = ''; UI.closeModal(); UI.cur = { name, params: params || {} }; if (name === 'battle') document.querySelectorAll('.confetti').forEach((c) => c.remove());
-    const out = UI.screens[name](scr, params || {}) || {}; UI.cur.leave = out.leave;
+    let out;
+    try { out = UI.screens[name](scr, params || {}) || {}; }
+    catch (e) { console.error(e); if (name === 'home' || name === 'title') throw e; UI.toast(tr('Something went wrong there. Back to Home.')); return UI.go('home'); }
+    UI.cur.leave = out.leave;
     A.tick(UI.frame); UI.save();
   };
   UI.redraw = () => UI.go(UI.cur.name, UI.cur.params);
