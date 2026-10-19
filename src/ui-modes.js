@@ -103,12 +103,12 @@
     if (!run.boons.length) bn.appendChild(txt('small dim', tr('No boons yet'))); else run.boons.slice(-6).forEach((id) => bn.appendChild(add(el('span', 'bchip r-' + H.BOONS[id].r), UI.icon(A.boonIcon(id), 0.62))));
     if (run.boons.length > 6) bn.appendChild(el('span', 'small', '+' + (run.boons.length - 6))); if (H.activeCombos(run.boons).length) bn.appendChild(el('span', 'combo', tr('Combo')));
     bn.addEventListener('click', () => { Au.sfx('tap'); (onBoons || boonSheet)(S); });
-    add(h, face, add(el('div', 'grow col'), box('row between', el('b', '', tr('{n} · Lv {level}', { n: H.FORMS[pet.form].n, level: S.level })), txt('chip gigc', run.gigs >= 5 ? tr('Boss next') : tr('Gig {n} of 5', { n: run.gigs + 1 }))), add(el('div', 'row hprow'), UI.icon('st_regen', 0.7), hpm, txt('small hpn', `${UI.fmt(hp)} / ${UI.fmt(max)}`)), bn));
+    add(h, face, add(el('div', 'grow col'), box('row between', el('b', '', tr('{n} · Lv {level}', { n: H.FORMS[pet.form].n, level: S.level })), txt('chip gigc', run.gigs >= 5 ? tr('Boss next') : tr('Gig {n} of 5', { n: run.gigs + 1 }))), add(el('div', 'row hprow'), UI.icon('st_regen', 0.7), hpm, txt('small hpn', `${UI.fmt(hp)} / ${UI.fmt(max)}`)), bn, UI.extraChips(run.extra)));
     return h;
   };
-  const boonCard = (id, have, tag) => {
+  const boonCard = (id, have, tag, desc) => {
     const b = H.BOONS[id], combos = H.combosOf(id, have.filter((x) => x !== id)), c = el(tag || 'div', 'boon r-' + b.r); if (tag === 'button') c.type = 'button';
-    add(c, add(el('div', 'bart'), UI.icon(A.boonIcon(id), 1.9)), add(el('div', 'grow col'), box('row between', el('b', 'bname', b.n), txt('rar', b.r === 'r' ? tr('Rare') : tr('Common'))), txt('small', b.d), ...combos.map((x) => add(el('div', 'bcombo'), UI.icon(A.boonIcon(x.with), 0.55), el('span', '', tr('Combo with {n}: {d}', { n: H.BOONS[x.with].n, d: x.d }))))));
+    add(c, add(el('div', 'bart'), UI.icon(A.boonIcon(id), 1.9)), add(el('div', 'grow col'), box('row between', el('b', 'bname', b.n), txt('rar', b.r === 'r' ? tr('Rare') : tr('Common'))), txt('small', desc || b.d), ...combos.map((x) => add(el('div', 'bcombo'), UI.icon(A.boonIcon(x.with), 0.55), el('span', '', tr('Combo with {n}: {d}', { n: H.BOONS[x.with].n, d: x.d }))))));
     return c;
   };
   const boonSheet = (S) => {
@@ -120,23 +120,23 @@
     if (run.extra.vol || run.extra.hp) kids.push(txt('small dim center', tr('From the road: {list}', { list: H.T.list([run.extra.vol ? tr('{p} Power', { p: `${run.extra.vol > 0 ? '+' : ''}${Math.round(run.extra.vol * 100)}%` }) : '', run.extra.hp ? tr('{p} HP', { p: `${run.extra.hp > 0 ? '+' : ''}${Math.round(run.extra.hp * 100)}%` }) : ''].filter(Boolean)) })));
     kids.push(key(tr('Close'), UI.closeModal, 'wide')); UI.modal(...kids);
   };
-  UI.soloBoonSheet = boonSheet;
+  UI.soloBoonSheet = boonSheet; UI.boonCard = boonCard;
 
   /* ================= the road: a map of the region, the soloist walking it stop by stop ================= */
-  const NODE = { gig: H.T.k('Gig'), loud: H.T.k('Loud gig'), rest: H.T.k('Campfire'), jam: H.T.k('Jam session'), mystery: H.T.k('Mystery'), boss: H.T.k('Boss'), start: H.T.k('Start') };
+  const NODE = { gig: H.T.k('Gig'), loud: H.T.k('Loud gig'), rest: H.T.k('Campfire'), jam: H.T.k('Jam session'), mystery: H.T.k('Mystery'), boss: H.T.k('Boss'), start: H.T.k('Start'), benefit: H.T.k('Benefit show'), battle: H.T.k('Battle of the Bands') };
   const GAP = 44, TOP = 42, BOT = 34;
-  UI.screens.solomap = (root, pr) => {
-    const S = UI.S, run = S.soloRun; if (!run) return UI.go('solo');
-    if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', { solo: 1 }) : UI.go('solostop');
-    const pet = H.petById(S, run.pet); if (!pet) { H.endSolo(S); return UI.go('solo'); }
-    UI.music('camp', run.region);
-    const bar = el('div', 'bar'); add(bar, UI.key(tr('‹ Gigs'), () => { Au.sfx('back'); UI.go('gigs'); }, 'soft sm backk'), el('div', 'disp', tr('{region} tour', { region: H.REGIONS[run.region].n })), UI.gearKey(() => UI.settings(key(tr('Give up the tour'), () => UI.confirm(tr('Give up the tour?'), tr('Notes stay yours.'), tr('Give up'), () => { H.endSolo(S); UI.save(); UI.go('solo'); }), 'wide soft'))));
-    root.appendChild(bar); root.appendChild(hud(S));
-    const W = UI.W, rows = H.SOLO.rows.length, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
+  /* The road map, shared by Solo and Tour. M (from UI.roadOf) says which run it is and how that mode does things. */
+  UI.roadScreen = (root, pr, M) => {
+    const S = UI.S, run = M.run, region = M.region;
+    if (run.pending) return run.pending.type === 'battle' ? UI.go('battle', M.battle) : UI.go(M.stopScreen);
+    UI.music('camp', region);
+    const bar = el('div', 'bar'); add(bar, UI.key(tr('‹ Gigs'), () => { Au.sfx('back'); UI.go('gigs'); }, 'soft sm backk'), el('div', 'disp', M.title), UI.gearKey(() => UI.settings(key(tr('Give up the tour'), () => UI.confirm(tr('Give up the tour?'), M.giveUpNote, tr('Give up'), () => { M.giveUp(); UI.save(); UI.go(M.lobby); }), 'wide soft'))));
+    root.appendChild(bar); root.appendChild(M.hud());
+    const W = UI.W, rows = M.rows, MH = TOP + (rows - 1) * GAP + GAP + BOT, yOf = (r) => MH - BOT - GAP - r * GAP, xOf = (n) => 14 + n.x * (W - 28);
     const pos = (n) => (n ? { x: xOf(n), y: yOf(n.r) + (n.dy || 0) } : { x: W / 2, y: MH - BOT + 4 });
     const scroller = el('div', 'smap'), inner = el('div', 'smapin'); inner.style.height = `calc(var(--u) * ${MH})`;
     // the ground, then the roads between stops: travelled ones in gold, the rest as sandy tracks
-    const gnd = A.mapGround(run.region, W, MH, run.seed % 997, [null].concat(run.map).map((n) => { const p = pos(n); return [p.x, p.y]; })), cv = A.make(gnd.width, gnd.height), x = cv.getContext('2d'); x.drawImage(gnd, 0, 0); x.scale(A.k, A.k); cv.className = 'bgc'; cv.style.width = `calc(var(--u) * ${W})`; cv.style.height = `calc(var(--u) * ${MH})`;
+    const gnd = A.mapGround(region, W, MH, run.seed % 997, [null].concat(run.map).map((n) => { const p = pos(n); return [p.x, p.y]; })), cv = A.make(gnd.width, gnd.height), x = cv.getContext('2d'); x.drawImage(gnd, 0, 0); x.scale(A.k, A.k); cv.className = 'bgc'; cv.style.width = `calc(var(--u) * ${W})`; cv.style.height = `calc(var(--u) * ${MH})`;
     const path = [null].concat(run.done.map((id) => run.map[id])), walked = new Set(); for (let i = 1; i < path.length; i++) walked.add((path[i - 1] ? path[i - 1].id : 's') + '>' + path[i].id);
     const bend = (a, b) => { const p = pos(a), q = pos(b); return { p, q, m: { x: (p.x + q.x) / 2 + (p.y % 7 - 3), y: (p.y + q.y) / 2 } }; };
     const along = (c, t) => ({ x: (1 - t) * (1 - t) * c.p.x + 2 * (1 - t) * t * c.m.x + t * t * c.q.x, y: (1 - t) * (1 - t) * c.p.y + 2 * (1 - t) * t * c.m.y + t * t * c.q.y });
@@ -149,12 +149,12 @@
     const trail = A.make(gnd.width, gnd.height), tx = trail.getContext('2d'); tx.scale(A.k, A.k); trail.className = 'bgc trail'; trail.style.width = cv.style.width; trail.style.height = cv.style.height; inner.appendChild(trail);
     for (let i = 0; i < 3; i++) { const c = el('div', 'cloudsh'); c.style.top = `calc(var(--u) * ${40 + i * (MH / 3)})`; c.style.animationDelay = -i * 11 + 's'; c.style.animationDuration = 34 + i * 6 + 's'; inner.appendChild(c); }
     // the region's name on a ribbon at the top, by the boss
-    inner.appendChild(add(el('div', 'sribbon'), el('span', '', tr('{din}\'s stage', { din: H.DIN[H.REGIONS[run.region].boss].n }))));
-    const reach = new Set(H.soloReach(run).map((n) => n.id)), here = run.at == null ? null : run.map[run.at];
+    inner.appendChild(add(el('div', 'sribbon'), el('span', '', tr('{din}\'s stage', { din: H.DIN[H.REGIONS[region].boss].n }))));
+    const reach = new Set(M.reach().map((n) => n.id)), here = run.at == null ? null : run.map[run.at];
     const stop = (n, type) => {
       const p = pos(n), big = type === 'boss', sz = big ? 34 : type === 'start' ? 20 : 25, can = n && reach.has(n.id), done = n && run.done.includes(n.id);
       const b = el('button', 'snode t-' + type + (can ? ' can' : '') + (done ? ' done' : '') + (n === here ? ' here' : '')); b.type = 'button'; b.style.cssText = at(p.x - sz / 2, p.y - sz / 2) + `width: calc(var(--u) * ${sz}); height: calc(var(--u) * ${sz});`;
-      b.appendChild(big ? UI.sp(H.REGIONS[run.region].boss, 0.5, { flip: true, anim: true }) : UI.icon(type === 'start' ? 'nd_start' : A.nodeIcon(type), type === 'start' ? 1.1 : 1.45));
+      b.appendChild(big ? UI.sp(H.REGIONS[region].boss, 0.5, { flip: true, anim: true }) : UI.icon(type === 'start' ? 'nd_start' : A.nodeIcon(type), type === 'start' ? 1.1 : 1.45));
       if (done && n !== here) b.appendChild(add(el('span', 'ndone'), UI.icon('ic_check', 0.5)));
       if (can) { b.classList.add('appear'); b.style.animationDelay = (intro ? 2.3 : 0.15) + [...reach].indexOf(n.id) * 0.1 + 's, 0s'; }
       b.setAttribute('aria-label', tr(can ? '{stop}, you can go here' : done ? '{stop}, visited' : '{stop}', { stop: tr(NODE[type]) }));
@@ -165,13 +165,13 @@
     const intro = !!pr.fresh && !window.__hsSpeed;
     stop(null, 'start'); for (const n of run.map) stop(n, n.type);
     // the soloist stands where it got to
-    const tok = el('div', 'stoken'), tp = pos(here); tok.appendChild(UI.sp(pet.form, 0.42, { anim: false })); tok.style.cssText = at(tp.x - 10, tp.y - 22); inner.appendChild(tok);
+    const tok = el('div', 'stoken'), tp = pos(here); tok.appendChild(UI.sp(M.token, 0.42, { anim: false })); tok.style.cssText = at(tp.x - 10, tp.y - 22); inner.appendChild(tok);
     scroller.appendChild(inner); root.appendChild(scroller);
     const foot = el('div', 'shint'); add(foot, el('span', '', run.at == null ? tr('Your tour starts here. Pick a road.') : tr('Pick the next stop. Tap one to see it.')), key('?', legend, 'soft sm')); root.appendChild(foot);
     const target = () => Math.max(0, tp.y * UI.u - scroller.clientHeight * 0.68);
     // a new tour: the view starts at the boss and sweeps down the road to the start, under a title card; then the soloist drops in
     if (intro) {
-      const card = add(el('div', 'tourcard2'), txt('label', tr('Solo tour')), el('b', '', H.REGIONS[run.region].n), txt('small', tr('5 gigs, then {n}', { n: H.DIN[H.REGIONS[run.region].boss].n })));
+      const card = add(el('div', 'tourcard2'), txt('label', M.introKick), el('b', '', H.REGIONS[region].n), txt('small', M.introLine));
       root.appendChild(card); tok.style.opacity = '0'; inner.classList.add('busy');
       let skip = false, t0 = 0; const end = () => { skip = true; scroller.scrollTop = target(); card.classList.add('out'); setTimeout(() => card.remove(), 500); tok.style.opacity = ''; tok.classList.add('dropin'); Au.sfx('stamp'); inner.classList.remove('busy'); };
       root.addEventListener('pointerdown', () => { if (!skip) end(); }, { once: true, capture: true });
@@ -179,13 +179,12 @@
     } else requestAnimationFrame(() => { scroller.scrollTop = target(); });
     // a look at a stop before going: who plays there, what it gives
     function preview(n) {
-      Au.sfx('tap'); const kids = [], bat = n.type === 'gig' || n.type === 'loud' || n.type === 'boss';
-      kids.push(box('row', add(el('div', 'nbadge t-' + n.type), n.type === 'boss' ? UI.sp(H.REGIONS[run.region].boss, 0.6, { flip: true, anim: false }) : UI.icon(A.nodeIcon(n.type), 2)), add(el('div', 'grow col'), txt('disp', n.type === 'boss' ? H.DIN[H.REGIONS[run.region].boss].n : tr(NODE[n.type])), txt('small dim', tr({
-        gig: H.T.k('A small stage.'), loud: H.T.k('A rowdy crowd and tougher Din.'), boss: H.T.k('The last stop of the tour.'), rest: H.T.k('Sleep, or practise.'), jam: H.T.k('Play along for a boon.'), mystery: H.T.k('Something is going on here.') }[n.type])))));
+      Au.sfx('tap'); const kids = [], bat = H.isFight(n.type);
+      kids.push(box('row', add(el('div', 'nbadge t-' + n.type), n.type === 'boss' ? UI.sp(H.REGIONS[region].boss, 0.6, { flip: true, anim: false }) : UI.icon(A.nodeIcon(n.type), 2)), add(el('div', 'grow col'), txt('disp', n.type === 'boss' ? H.DIN[H.REGIONS[region].boss].n : tr(NODE[n.type])), txt('small dim', tr({
+        gig: H.T.k('A small stage.'), loud: H.T.k('A rowdy crowd and tougher Din.'), boss: M.bossLine || H.T.k('The last stop of the tour.'), rest: H.T.k('Sleep, or practise.'), jam: H.T.k('Play along for a boon.'), mystery: H.T.k('Something is going on here.'), benefit: H.T.k('An easy crowd, a good cause. Win to heal up.'), battle: H.T.k('A rival band wants your stage. Win for a rare boon and an echo.') }[n.type])))));
       if (bat) {
-        const stg = H.soloStage(S, n), line = el('div', 'plineup'); stg.enemies.forEach((e) => line.appendChild(UI.sp(e.id, H.DIN[e.id].boss ? 0.62 : 0.52, { flip: true, anim: false })));
-        const P = S.solo, notes = n.type === 'boss' ? (H.GATES.solo && P.boss ? 0 : H.SOLO.bossNotes) : !H.GATES.solo || P.gigs < 5 ? H.SOLO.gigNotes : 0, prize = n.type === 'boss' ? null : add(el('span', 'chip boonchip' + (n.type === 'loud' ? ' rare' : '')), UI.icon('bn_amp', 0.55), tr(n.type === 'loud' ? 'Rare boon' : 'Boon'));
-        kids.push(add(el('div', 'plinebox'), txt('label', tr('On stage · Lv {level}', { level: stg.level })), line), add(el('div', 'row winrow'), txt('label', tr('Win')), prize, notes ? UI.purse('ic_note', '+' + notes, tr('Notes')) : null, n.type === 'boss' && !P.boss ? UI.purse('ic_bag', '+1', tr('Equipment')) : null));
+        const stg = M.stage(n), line = el('div', 'plineup'); stg.enemies.forEach((e) => line.appendChild(UI.sp(e.id, H.DIN[e.id] && H.DIN[e.id].boss ? 0.62 : 0.52, { flip: true, anim: false })));
+        kids.push(add(el('div', 'plinebox'), txt('label', tr('On stage · Lv {level}', { level: stg.level })), line), add(el('div', 'row winrow'), txt('label', tr('Win')), ...M.prize(n)));
       }
       kids.push(key(bat ? n.type === 'boss' ? tr('Face the boss') : tr('Play this gig') : tr('Go there'), () => { UI.closeModal(); walk(n); }, (n.type === 'boss' ? 'coral' : 'go') + ' wide big'), key(tr('Not yet'), UI.closeModal, 'wide soft'));
       UI.modal(...kids);
@@ -194,9 +193,9 @@
     function walk(n) {
       if (walking) return; walking = true; inner.classList.add('busy');
       const c = bend(here, n), dur = window.__hsSpeed ? 40 : 900, s0 = scroller.scrollTop; let t0 = 0, lastPuff = 0, last = c.p; tok.classList.add('walk'); tok.style.transition = 'none';
-      const arrive = () => { if (UI.cur.name !== 'solomap') return; Au.sfx('tap', 5); const got = H.soloEnter(S, n.id, rnd); UI.save(); if (!got) return UI.go('solomap'); setTimeout(() => UI.go(got.type === 'battle' ? 'battle' : 'solostop', { solo: 1 }), window.__hsSpeed ? 0 : 220); };
+      const arrive = () => { if (UI.cur.name !== M.mapScreen) return; Au.sfx('tap', 5); const got = M.enter(n.id); UI.save(); if (!got) return UI.go(M.mapScreen); setTimeout(() => (got.type === 'battle' ? UI.go('battle', M.battle) : UI.go(M.stopScreen)), window.__hsSpeed ? 0 : 220); };
       const step = (now) => {
-        if (UI.cur.name !== 'solomap') return; if (!t0) t0 = now; const k = Math.min(1, (now - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, q = along(c, e);
+        if (UI.cur.name !== M.mapScreen) return; if (!t0) t0 = now; const k = Math.min(1, (now - t0) / dur), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2, q = along(c, e);
         tok.style.left = `calc(var(--u) * ${q.x - 10})`; tok.style.top = `calc(var(--u) * ${q.y - 22})`;
         tx.lineCap = 'round'; tx.strokeStyle = A.INK; tx.lineWidth = 6.4; tx.beginPath(); tx.moveTo(last.x, last.y); tx.lineTo(q.x, q.y); tx.stroke(); tx.strokeStyle = '#ffc928'; tx.lineWidth = 4; tx.stroke(); last = q;
         if (now - lastPuff > 110) { lastPuff = now; const pf = el('i', 'puff'); pf.style.cssText = at(q.x - 3, q.y - 2); inner.appendChild(pf); setTimeout(() => pf.remove(), 600); Au.sfx('tap', 1); }
@@ -205,9 +204,22 @@
       };
       if (window.__hsSpeed) { arrive(); return; } requestAnimationFrame(step);
     }
-    function legend() { UI.modal(txt('disp', tr('The road')), ...['gig', 'loud', 'rest', 'jam', 'mystery', 'boss'].map((t) => box('row', add(el('div', 'nbadge sm t-' + t), UI.icon(A.nodeIcon(t), 1.2)), txt('grow small', `<b>${tr(NODE[t])}</b>` + H.T.sep() + `<span class="dim">${tr({ gig: H.T.k('Two Din. Win for a boon.'), loud: H.T.k('Tougher Din. Win for a rare boon.'), rest: H.T.k('Heal 40%, or practise for +10% Power.'), jam: H.T.k('Pick a boon.'), mystery: H.T.k('A choice, good or risky.'), boss: H.T.k('The end of the tour.') }[t])}</span>`))),
+    function legend() { UI.modal(txt('disp', tr('The road')), ...['gig', 'loud', 'battle', 'benefit', 'rest', 'jam', 'mystery', 'boss'].map((t) => box('row', add(el('div', 'nbadge sm t-' + t), UI.icon(A.nodeIcon(t), 1.2)), txt('grow small', `<b>${tr(NODE[t])}</b>` + H.T.sep() + `<span class="dim">${tr({ gig: M.gigLine || H.T.k('Two Din. Win for a boon.'), loud: H.T.k('Tougher Din. Win for a rare boon.'), rest: M.restLine || H.T.k('Heal 40%, or practise for +10% Power.'), jam: H.T.k('Pick a boon.'), mystery: H.T.k('A choice, worth more than a boon. Often with a price.'), boss: M.bossLegend || H.T.k('The end of the tour.'), benefit: M.benefitLine || H.T.k('Easier Din. Win to heal 50%.'), battle: H.T.k('A rival band, tougher than a gig. Win for a rare boon and an echo.') }[t])}</span>`))),
       txt('small dim', tr('HP carries on from gig to gig. The crowd gets restless if a gig drags on: every hit lands harder.')), key(tr('Got it'), UI.closeModal, 'wide go')); }
   };
+
+  // Solo's side of the road
+  UI.roadOf = { solo: (S) => { const run = S.soloRun, pet = run && H.petById(S, run.pet); if (!pet) return null; return {
+    run, region: run.region, rows: H.SOLO.rows.length, mapScreen: 'solomap', stopScreen: 'solostop', lobby: 'solo', battle: { solo: 1 }, token: pet.form,
+    title: tr('{region} tour', { region: H.REGIONS[run.region].n }), introKick: tr('Solo tour'), introLine: tr('5 gigs, then {n}', { n: H.DIN[H.REGIONS[run.region].boss].n }),
+    giveUpNote: tr('Notes stay yours.'), giveUp: () => H.endSolo(S), hud: () => hud(S),
+    reach: () => H.soloReach(run), enter: (id) => H.soloEnter(S, id, rnd), stage: (n) => H.soloStage(S, n),
+    prize: (n) => { const P = S.solo, notes = n.type === 'boss' ? (H.GATES.solo && P.boss ? 0 : H.SOLO.bossNotes) : !H.GATES.solo || P.gigs < 5 ? H.SOLO.gigNotes : 0;
+      if (n.type === 'benefit') return [add(el('span', 'chip'), UI.icon('st_regen', 0.6), tr('Heal {p}%', { p: Math.round(H.SOLO.benefitHeal * 100) })), UI.purse('ic_note', '+' + H.SOLO.gigNotes, tr('Notes'))];
+      if (n.type === 'battle') return [add(el('span', 'chip boonchip rare'), UI.icon('bn_amp', 0.55), tr('Rare boon')), UI.purse('ic_echo', '+1', tr('Echoes')), UI.purse('ic_note', '+' + H.SOLO.gigNotes, tr('Notes'))];
+      return [n.type === 'boss' ? null : add(el('span', 'chip boonchip' + (n.type === 'loud' ? ' rare' : '')), UI.icon('bn_amp', 0.55), tr(n.type === 'loud' ? 'Rare boon' : 'Boon')), notes ? UI.purse('ic_note', '+' + notes, tr('Notes')) : null, n.type === 'boss' && (!H.GATES.solo || !P.boss) ? UI.purse('ic_bag', '+1', tr('Equipment')) : null]; },
+  }; } };
+  UI.screens.solomap = (root, pr) => { const S = UI.S, M = S.soloRun && UI.roadOf.solo(S); if (!M) { if (S.soloRun) H.endSolo(S); return UI.go('solo'); } return UI.roadScreen(root, pr, M); };
 
   /* ================= a stop on the road: boons, the campfire, a mystery ================= */
   UI.screens.solostop = (root) => {
@@ -239,17 +251,70 @@
       add(scene, add(el('div', 'sart'), add(el('div', 'evart'), UI.icon('ev_' + p.ev, 2.3)), UI.sp(pet.form, 1)), add(el('div', 'sbanner'), el('b', '', E.n), el('span', '', tr('Mystery'))));
       pad.appendChild(txt('center', E.d));
       E.opts.forEach((o, i) => { const b = el('button', 'choice'); b.type = 'button'; add(b, add(el('div', 'grow col'), el('b', '', o.n), txt('small', o.d))); b.addEventListener('click', () => {
-        const got = H.soloEvent(S, i, rnd); Au.sfx('good'); UI.save();
-        if (got && got.boon) { UI.modal(txt('label center', tr('You got')), boonCard(got.boon, S.soloRun.boons), key(tr('Onwards'), () => { UI.closeModal(); done(); }, 'go wide big')); return; }
-        UI.toast(o.n + ': ' + o.d.replace(/\.$/, '') + '.'); done(); }); pad.appendChild(b); });
+        if (pad.dataset.busy) return; pad.dataset.busy = 1; const from = [{ form: pet.form, hp: run.hp }];
+        const got = H.soloEvent(S, i, rnd); UI.save(); const r2 = S.soloRun;
+        UI.roadResult({ scene, title: o.n, fx: o.fx, got, bars: [{ form: pet.form, from: from[0].hp, to: r2.hp }], card: (id) => boonCard(id, r2.boons), done }); }); pad.appendChild(b); });
     }
     root.appendChild(scene); body.appendChild(pad); root.appendChild(body); if (foot.children.length) root.appendChild(foot);
+  };
+
+  /* ----- lasting effects from the road (Power, HP, Speed, crits, Guard, Shields), as small chips ----- */
+  UI.extraSum = (extra) => {
+    const s = { vol: extra.vol || 0, hp: extra.hp || 0, tempo: 0, crit: 0, poise: 0, shield: 0 };
+    for (const p of extra.perks || []) { const m = p.mod || {}; s.tempo += m.tempo || 0; s.crit += m.crit || 0; s.poise += m.poise || 0; for (const f of (p.on && p.on.start) || []) if (f[0] === 'shield') s.shield += (f[3] && f[3].pct) || 0; }
+    return s;
+  };
+  const pct = (x) => `${x > 0 ? '+' : '−'}${Math.round(Math.abs(x) * 100)}%`;
+  UI.extraChips = (extra) => {
+    const s = UI.extraSum(extra || {}), row = el('div', 'xchips');
+    for (const [k, icon, f] of [['vol', 'st_pup', (x) => tr('{p} Power', { p: pct(x) })], ['hp', 'st_lifesong', (x) => tr('{p} HP', { p: pct(x) })], ['tempo', 'st_sup', (x) => tr('{p} Speed', { p: pct(x) })], ['crit', 'bn_pitch', (x) => tr('{p} crit', { p: pct(x) })], ['poise', 'st_shield', (x) => tr('+{n} Guard', { n: Math.round(x) })], ['shield', 'bn_shell', (x) => tr('{p} Shield', { p: pct(x).replace('+', '') })]])
+      if (s[k]) row.appendChild(add(el('span', 'xchip' + (s[k] < 0 ? ' bad' : '')), UI.icon(icon, 0.5), el('span', '', f(s[k]))));
+    return row.children.length ? row : null;
+  };
+  // what a mystery's choice did, line by line
+  const fxLines = (fx) => {
+    const L = [], add2 = (icon, text, bad) => L.push({ icon, text, bad }), m = (fx.perk && fx.perk.mod) || {};
+    if (fx.vol) add2(fx.vol > 0 ? 'st_pup' : 'st_pdown', tr('{p} Power for the rest of the tour', { p: pct(fx.vol) }), fx.vol < 0);
+    if (fx.hp) add2('st_lifesong', tr('{p} max HP for the rest of the tour', { p: pct(fx.hp) }), fx.hp < 0);
+    if (m.tempo) add2('st_sup', tr('{p} Speed for the rest of the tour', { p: pct(m.tempo) }));
+    if (m.crit) add2('bn_pitch', tr('{p} critical hit chance', { p: pct(m.crit) }) + (m.critDmg ? ', ' + tr('crits {p} harder', { p: pct(m.critDmg) }) : ''));
+    if (m.poise) add2('st_shield', tr('+{n} Guard', { n: m.poise }));
+    if (fx.perk && fx.perk.on && fx.perk.on.start) add2('bn_shell', tr('A Shield at the start of every gig'));
+    if (fx.revive) add2('st_lifesong', tr('The fallen get back up'));
+    if (fx.full) add2('st_regen', tr('Healed to full')); else if (fx.heal) add2('st_regen', tr('Healed {p}', { p: pct(fx.heal) }));
+    if (fx.hurt) add2('ic_bang', tr('Lost {p} HP', { p: Math.round(fx.hurt * 100) + '%' }), true);
+    return L;
+  };
+  // A mystery plays out: the scene glows (Power), shines (healing) or flashes red (a price); a gamble stamps WIN or NO LUCK;
+  // then a card lists every change, shows each pet's HP moving, and any boons gained.
+  UI.roadResult = (o) => {
+    const fx = o.got && o.got.gamble ? o.fx.gamble[o.got.gamble] : o.fx, L = fxLines(fx), cls = [];
+    if (fx.vol > 0 || fx.perk) cls.push('fx-power'); if (fx.heal || fx.full || fx.revive || fx.hp > 0) cls.push('fx-heal'); if (fx.hurt || fx.hp < 0) cls.push('fx-hurt');
+    o.scene.classList.add(...cls, 'fx-on'); Au.sfx(o.got && o.got.gamble === 'lose' ? 'bad' : fx.hurt ? 'hit' : 'evolve');
+    if (o.got && o.got.gamble) o.scene.appendChild(UI.stamp(o.got.gamble === 'win' ? tr('Lucky!') : tr('No luck'), o.got.gamble === 'win' ? 'green' : ''));
+    setTimeout(() => {
+      const bars = (o.bars || []).map((b) => { const mtr = UI.meter(b.from), i = mtr.querySelector('i'); mtr.classList.add('hpm', 'anim'); if (b.to <= 0) mtr.classList.add('low'); setTimeout(() => { i.style.width = Math.round(Math.max(0, Math.min(1, b.to)) * 100) + '%'; }, 250);
+        return add(el('div', 'rrbar' + (b.to > 0 ? '' : ' down')), UI.sp(b.form, 0.42, { anim: false }), mtr, el('b', '', b.to > 0 ? Math.round(b.to * 100) + '%' : tr('Out'))); });
+      UI.modal(txt('label center', tr('Mystery')), txt('disp center', o.title), add(el('div', 'rrlines'), ...L.map((x) => add(el('div', 'rrline' + (x.bad ? ' bad' : ' good')), UI.icon(x.icon, 0.8), el('span', '', x.text)))),
+        bars.length ? add(el('div', 'rrbars'), ...bars) : null, ...((o.got && o.got.boons) || []).map((id) => o.card(id)), o.got && o.got.pick ? txt('small center', tr('Next: pick a boon.')) : null,
+        key(tr('Onwards'), () => { UI.closeModal(); o.done(); }, 'go wide big'));
+    }, window.__hsSpeed ? 0 : 900);
+  };
+  // after a Benefit show or Battle of the Bands (Solo and Tour)
+  UI.sideResult = (out, hpLine, next) => {
+    const kids = [], loot = box('loot'); if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.echo) loot.appendChild(UI.purse('ic_echo', tr('+{n} echoes', { n: out.echo })));
+    if (out.kind === 'benefit') kids.push(add(el('div', 'wonhead'), txt('disp big center', tr('Benefit show!')), UI.stamp(tr('Healed!'), 'green')), txt('center', out.revived ? tr('The fallen are back, and everyone heals {p}%.', { p: Math.round(out.heal * 100) }) : tr('Everyone heals {p}%.', { p: Math.round(out.heal * 100) })), hpLine ? txt('center dim small', tr('HP {n}', { n: hpLine })) : null, loot);
+    else kids.push(add(el('div', 'wonhead'), txt('disp big center', tr('Battle won!')), UI.stamp(tr('Headliners!'))), txt('center', tr('The rival band bows out.')), loot);
+    UI.confetti(out.kind === 'battle' ? 46 : 24); Au.sfx('coin');
+    kids.push(UI.key(out.kind === 'battle' ? tr('Pick a rare boon') : tr('Back on the road'), next, 'gold wide big'));
+    UI.modal(...kids);
   };
 
   /* ================= after a Solo gig ================= */
   UI.soloResult = (out) => {
     const S = UI.S;
     if (!out.win || out.done) return UI.go('soloend', { out });
+    if (out.kind === 'benefit' || out.kind === 'battle') return UI.sideResult(out, Math.round(S.soloRun.hp * 100) + '%', () => UI.go(S.soloRun.pending ? 'solostop' : 'solomap'));
     const kids = [], loot = box('loot'); if (out.notes) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.xp) loot.appendChild(UI.purse('ic_xp', '+' + out.xp));
     kids.push(add(el('div', 'wonhead'), txt('disp big center', out.loud ? tr('Loud gig won!') : tr('Gig won!')), UI.stamp(out.loud ? tr('Rowdy!') : tr('Encore!'))), tourTrack(out.gig, out.gig - 1), txt('center dim small', tr('HP {n}%', { n: Math.round(S.soloRun.hp * 100) })), loot);
     UI.confetti(out.loud ? 44 : 30); Au.sfx('coin');

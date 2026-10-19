@@ -155,8 +155,8 @@
   const gigNews = (S) => {
     if (H.refreshRehearsals(S)) UI.save(); H.refreshEncore(S);
     const reh = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, day = H.dailyOpen(S) && !H.dailyStatus(S).won, solo = H.soloOpen(S) && H.soloPaidLeft(S) > 0;
-    const fresh = (H.dailyOpen(S) && !S.flags.seenDaily) || (H.soloOpen(S) && !S.flags.seenSolo) || (H.encoreOpen(S) && !S.flags.seenEnc);
-    const line = day ? tr('Daily Gig ready') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? (H.GATES.solo ? tr('Solo pays today') : tr('Solo pays every tour')) : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
+    const fresh = (H.dailyOpen(S) && !S.flags.seenDaily) || (H.soloOpen(S) && !S.flags.seenSolo) || (H.encoreOpen(S) && !S.flags.seenEnc) || (H.tourOpen(S) && !S.flags.seenTour);
+    const line = day ? tr('Daily Gig ready') : S.tourRun ? tr('World Tour on the road') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? (H.GATES.solo ? tr('Solo pays today') : tr('Solo pays every tour')) : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
     return { line, pips: (day ? 1 : 0) + reh, fresh };
   };
 
@@ -183,6 +183,10 @@
     // Encore: neon on dark
     const E = S.encore;
     pin('enc', H.encoreOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.ENCORE.unlock }), (f) => add(f, txt('fkick', tr('Encore')), el('b', 'neonw', tr('Encore')), UI.icon('ic_mic', 1.6), txt('fsub', S.encoreRun ? tr('Wave {wave} next', { wave: S.encoreRun.wave }) : tr('Best this week: {weekBest}', { weekBest: E.weekBest }))), 'encore', S.flags.seenEnc ? 0 : '!', -2);
+    // Tour: a gig poster for the whole band, wide, with the tour bus
+    const TR = S.tourRun;
+    pin('tour', H.tourOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.TOUR.unlock }), (f) => add(f, el('i', 'stripes'), add(el('div', 'frow'), UI.icon('ic_tour', 2.4), add(el('div', 'grow'), txt('fkick', tr('Tour')), el('b', 'ftitle', tr('World Tour')),
+      txt('fsub', TR ? tr('Leg {leg} · gig {n} next', { leg: TR.leg + 1, n: Math.min(H.TOUR.gigs, TR.gigs + 1) }) : tr('Your band · five legs · five bosses'))))), 'tour', S.flags.seenTour ? 0 : '!', -1);
     // Rehearsal: sheet music
     const open = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, days = H.daysToReset(Date.now());
     pin('reh', S.stage > 10, tr('Unlocks after floor 10'), (f) => add(f, el('i', 'staff'), add(el('div', 'frow'), UI.icon('ic_baton', 1.9), add(el('div', 'grow'), txt('fkick', tr('Rehearsal')), el('b', 'ftitle', open ? tr('{n} bosses open', { n: open }) : tr('All played')), txt('fsub', tr('Resets in {n} days', { n: days }))))), 'rehearsal', open, 1);

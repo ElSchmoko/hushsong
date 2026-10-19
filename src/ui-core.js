@@ -50,7 +50,7 @@
     return UI.add(el('div', 'echointro'), UI.icon('ic_echo', 1.4), UI.add(el('div', 'grow'), el('b', '', pet ? tr('You found {n} echoes!', { n }) : tr('You found an echo!')),
       el('div', 'small', pet ? tr('They help {n} evolve, and later buy stars.', { n }) : tr('Plain echoes help any pet evolve. Spend them on a pet\'s page.')))); };
   // after a level up: the modes that just opened
-  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, H.T.k('Daily Gig')], [H.SOLO.unlock, H.T.k('Solo')], [H.ENCORE.unlock, H.T.k('Encore')]].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', tr('<b>New on Home:</b> {modes}', { modes: H.T.list(got.map((x) => tr(x[1]))) }))) : null; };
+  UI.unlockNote = (ups) => { const S = UI.S, from = S.level - (ups || 0), got = [[H.DAILY.unlock, H.T.k('Daily Gig')], [H.SOLO.unlock, H.T.k('Solo')], [H.ENCORE.unlock, H.T.k('Encore')], [H.TOUR.unlock, H.T.k('Tour')]].filter(([lv]) => from < lv && S.level >= lv); return got.length ? UI.add(el('div', 'unlocked'), UI.icon('ic_bang', 0.9), el('span', '', tr('<b>New on Home:</b> {modes}', { modes: H.T.list(got.map((x) => tr(x[1]))) }))) : null; };
   // a slim row of rewards along a line: [{ k: what it is for, icon, n: how much, got }]. A paid one shows a tick.
   UI.track = (steps, cls) => { const t = el('div', 'rtrack ' + (cls || '')); steps.forEach((x) => { const p = el('span', 'rt' + (x.got ? ' got' : '') + (x.wide ? ' wide' : '')); if (x.k != null) p.appendChild(el('i', '', String(x.k))); p.appendChild(UI.icon(x.got ? 'ic_check' : x.icon, x.got ? 0.62 : 0.6)); if (x.n != null) p.appendChild(el('b', '', String(x.n))); p.setAttribute('aria-label', x.got ? tr('{label}, paid', { label: x.label || '' }) : x.label || ''); t.appendChild(p); }); return t; };
   // celebrations: confetti bursting from the middle, or raining from the top; a rubber stamp that lands with a thump
@@ -121,6 +121,7 @@
     if (!S.flags.bossEcho2) { S.flags.bossEcho2 = 1; S.echo += H.ECHO_BOSS * Math.max(0, Math.floor((S.stage - 1) / 10) - 10); }   // bosses past floor 100 pay an echo too now
     if (Object.values(S.petEcho || {}).some((x) => x > 0)) S.flags.petEchoIntro = 1;
     if (!S.flags.leg100 && S.stage > 100) { S.flags.leg100 = 1; H.rollLegend(S, Math.random); }   // the floor-100 Legendary for saves already past it   // and for the region bosses up to floor 100
+    if (H.fixTourRun) H.fixTourRun(S);   // a tour from an older build
     UI.S = S; return S;
   };
   let saveT = null;
@@ -130,14 +131,17 @@
   UI.go = (name, params) => {
     const scr = document.getElementById('screen'); if (UI.cur && UI.cur.leave) UI.cur.leave();
     scr.innerHTML = ''; UI.closeModal(); UI.cur = { name, params: params || {} }; if (name === 'battle') document.querySelectorAll('.confetti').forEach((c) => c.remove());
-    const out = UI.screens[name](scr, params || {}) || {}; UI.cur.leave = out.leave;
+    let out;
+    try { out = UI.screens[name](scr, params || {}) || {}; }
+    catch (e) { console.error(e); if (name === 'home' || name === 'title') throw e; UI.toast(tr('Something went wrong there. Back to Home.')); return UI.go('home'); }
+    UI.cur.leave = out.leave;
     A.tick(UI.frame); UI.save();
   };
   UI.redraw = () => UI.go(UI.cur.name, UI.cur.params);
   /* Back (the phone's back button or gesture): one step up. An open sheet closes first; a screen can set UI.cur.back, or
      UI.cur.modalBack for its sheets; a screen with a ‹ Back key goes where that key goes; tab screens go Home.
      Returns false on Home and the title, where the app may go to the background. */
-  const STEP = { adventure: 'home', team: 'home', pets: 'home', shells: 'home', bag: 'home', solostop: 'gigs', soloend: 'solo' };
+  const STEP = { adventure: 'home', team: 'home', pets: 'home', shells: 'home', bag: 'home', solostop: 'gigs', soloend: 'solo', tourstop: 'gigs', tourend: 'tour' };
   UI.back = () => {
     const m = document.getElementById('modal'), c = UI.cur || {}, name = c.name;
     if (!m.hidden) { if (c.modalBack) c.modalBack(); else { Au.sfx('back'); UI.closeModal(); } return true; }
@@ -188,6 +192,7 @@
       ...sec(tr('Daily Gig'), tr('From level {unlock}: one battle a day with a house rule that changes how battles work, the same for everyone. The first win each day pays; retry freely.', { unlock: H.DAILY.unlock })),
       ...sec(tr('Solo'), H.GATES.solo ? tr('From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. The first wins each day pay.', { unlock: H.SOLO.unlock }) : tr('From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.', { unlock: H.SOLO.unlock })),
       ...sec(tr('Encore'), tr('From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.', { unlock: H.ENCORE.unlock, notes: H.ENCORE.notes })),
+      ...sec(tr('Tour'), tr('From level {unlock}: the whole band on a World Tour of five legs, each five gigs and a boss, every leg much tougher than the last. HP carries over; a pet that falls sits out until a campfire, a Benefit show or the next leg. Boons work on the whole band, and legs 1, 3 and 5 start with a Headliner: a big change with a price. Gigs pay notes, bosses an echo and equipment, the last boss a shell and a Legendary.', { unlock: H.TOUR.unlock })),
       ...sec(tr('Records'), tr('Hard goals that pay shells, echoes and Home backdrops.')),
       UI.key(tr('Got it'), UI.closeModal, 'wide go'));
     UI.modal(...kids);

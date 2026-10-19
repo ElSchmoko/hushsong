@@ -81,8 +81,8 @@
   H.SOLO = {
     unlock: 10, refLv: 14, gigNotes: 10, bossNotes: 10, rows: ['g', 's', 'g', 's', 'g', 's', 'g', 's', 'g', 'b'], loudCh: 0.4,
     rest: 0.4, practise: 0.1, restless: { from: 30, per: 0.06 },
-    // how tough the Din are: per gig (the first to the fifth), for a Loud gig, the boss, and by how grown the pet is
-    k: 0.33, ramp: 0.12, loudK: 1.15, bossK: 0.92, count: [2, 2, 2, 2, 2], tierK: [1, 1.36, 1.65], roleK: { stray: 1, rhythm: 1, lead: 1.05, harmony: 1, bass: 0.92 },
+    // how tough the Din are: per gig (curve: gigs 1-5 and the boss; it was +12% a gig with a 0.92x boss), for a Loud gig, the boss, and by how grown the pet is
+    k: 0.33, curve: [0.88, 0.98, 1.15, 1.38, 1.62, 1.78], loudK: 1.15, benefitK: 0.7, battleK: 1.25, benefitHeal: 0.5, bossK: 1, count: [2, 2, 2, 2, 3], tierK: [1, 1.36, 1.65], roleK: { stray: 1, rhythm: 1, lead: 1.05, harmony: 1, bass: 0.92 },
   };
   H.soloOpen = (S) => S.level >= H.SOLO.unlock;
   // Each pet's own fine-tuning on top of its growth and role, so that every pet makes about as good a soloist (fitted by test/modes.js fit)
@@ -116,39 +116,83 @@
     pedal: B('Echo Pedal', 'r', 'Its Skills and Specials play again at 40% on its next turn.', { echoPedal: 0.4 }),
     mosh: B('Mosh Pit', 'r', 'Single hits splash 30% onto the other enemies.', { splash: 0.3 }),
     dive: B('Stage Dive', 'r', 'Every knockout heals 20% and fills half its turn bar.', { on: { kill: [['heal', 'self', 0, { pct: 0.2 }], ['gauge', 'self', 0.5]] } }),
+    tuning: B('Tuning Fork', 'c', 'Heals 5% of its HP after each of its turns.', { on: { turn: [['heal', 'self', 0, { pct: 0.05 }]] } }),
+    mute: B('Mute Button', 'c', 'Its hits have a 30% chance to Mute the target for 1 turn.', { hitSt: [['mute', 1, 0.3]] }),
+    dropbeat: B('Drop the Beat', 'c', 'Each knockout fills its turn bar: it goes again at once.', { on: { kill: [['gauge', 'self', 1]] } }),
+    presence: B('Stage Presence', 'c', '+15 Guard. Draws the attacks (Taunt) for the first 2 turns of each gig.', { mod: { poise: 15 }, on: { start: [['st', 'self', 'taunt', 2]] } }),
+    counter: B('Call and Response', 'c', 'When hit, 35% chance to hit back for 60%.', { counter: { ch: 0.35, pow: 0.6 } }),
+    overdrive: B('Overdrive', 'r', '+50% Power, but it loses 3% HP after each of its turns.', { mod: { vol: 0.5 }, on: { turn: [['recoil', 0.03]] } }),
+    bassdrop: B('Bass Drop', 'r', 'Each gig starts with every enemy Power Down and Slow for 2 turns.', { on: { start: [['st', 'all', 'pdown', 2], ['st', 'all', 'sdown', 2]] } }),
+    pyro: B('Pyrotechnics', 'r', 'Each gig starts with every enemy Poisoned for 3 turns.', { on: { start: [['st', 'all', 'poison', 3, { val: 0.45 }]] } }),
+    angel: Object.assign(B('Guardian Angel', 'r', 'A bandmate that falls gets back up with 20% HP, once per gig.', { on: { allyFall: [['revive', 0.2]] } }), { tour: 1 }),
   };
   H.BOON_ORDER = Object.keys(H.BOONS);
+  // Taken twice, these add up. Every other boon does nothing the second time, so it is offered once per run.
+  for (const id of ['amp', 'case', 'quick', 'pitch', 'shell', 'sour', 'wrong', 'cresc', 'tuning', 'mute']) H.BOONS[id].stack = 1;
   // pairs that are better together; the boon cards point them out
   H.COMBOS = [
     ['overflow', 'soul', 'every hit tops up a Shield'], ['overflow', 'lifeloop', 'every hit tops up a Shield'], ['overflow', 'dive', 'knockouts top up a Shield'],
     ['click', 'double', 'Skills come round very fast'], ['click', 'pedal', 'more echoes, more often'], ['pedal', 'sour', 'echoes poison again'], ['pedal', 'wrong', 'echoes put Off-Key back on'],
     ['sour', 'maestro', 'hits on Poisoned foes land 40% harder'], ['wrong', 'maestro', 'Off-Key foes take a lot more'], ['pitch', 'critfb', 'crits bring the next turn closer'],
     ['glass', 'second', 'big hits with a safety net'], ['glass', 'shell', 'big hits behind a Shield'], ['spiky', 'shell', 'hard to hit, painful to hit'], ['cresc', 'double', 'grows louder twice as fast'], ['finish', 'dive', 'finish them off, heal up'], ['opener', 'hype', 'a flying start'],
+    ['tuning', 'overflow', 'steady healing turns into Shield'], ['overdrive', 'soul', 'the healing pays for the noise'], ['overdrive', 'tuning', 'the fork keeps the amp from burning out'],
+    ['pyro', 'maestro', 'Poisoned foes from the first beat'], ['pyro', 'pedal', 'echoes hit burning foes'], ['dropbeat', 'finish', 'finish one, go again'], ['dropbeat', 'mosh', 'splash knockouts keep the turns coming'],
+    ['presence', 'spiky', 'they have to hit you, and it hurts'], ['presence', 'shell', 'the wall at the front'], ['counter', 'spiky', 'hit it and pay twice'], ['bassdrop', 'opener', 'strike while they are weak'],
+    ['mute', 'wrong', 'quiet and out of tune'], ['angel', 'second', 'hard to keep down'], 
   ];
   H.combosOf = (id, have) => H.COMBOS.filter((c) => (c[0] === id && have.includes(c[1])) || (c[1] === id && have.includes(c[0]))).map((c) => ({ with: c[0] === id ? c[1] : c[0], d: c[2] }));
   H.activeCombos = (have) => H.COMBOS.filter((c) => have.includes(c[0]) && have.includes(c[1]));
 
-  /* mystery stops: two choices, each a trade */
+  /* mystery stops: two choices, each worth more than a boon, most with a price. On Tour they work on the whole band.
+     fx: vol / hp (for the rest of the tour), perk (a lasting effect), hurt / heal (share of HP now), full (heal to full),
+     rare / common (that many random boons), pick ('r' or 'c': choose 1 of 3), dupe (a copy of a boon you have),
+     revive (fallen bandmates get up with that share of HP), gamble ({ p, win, lose }). tour: 1 = only on Tour. */
   H.EVENTS = {
-    busker: { n: 'A street busker', d: 'A busker with a battered guitar offers to swap songs.', opts: [{ n: 'Swap songs', d: 'Lose 20% HP. Take a random rare boon.', fx: { hurt: 0.2, rare: 1 } }, { n: 'Clap along', d: 'Heal 10%.', fx: { heal: 0.1 } }] },
-    shrine: { n: 'An old tuning shrine', d: 'A ring of humming stones. The air feels in tune.', opts: [{ n: 'Rest a while', d: 'Heal 50%.', fx: { heal: 0.5 } }, { n: 'Tune up', d: '+12% Power for this tour. Lose 10% HP.', fx: { vol: 0.12, hurt: 0.1 } }] },
-    fan: { n: 'A fan with a gift', d: 'Someone in a homemade T-shirt waves you over.', opts: [{ n: 'Take the scarf', d: '+20% HP for this tour.', fx: { hp: 0.2 } }, { n: 'Take the snack', d: 'Heal 35%.', fx: { heal: 0.35 } }] },
-    amp: { n: 'A humming amp', d: 'An amp sits in the grass, plugged into nothing, buzzing anyway.', opts: [{ n: 'Plug in', d: '+25% Power, but 15% less HP for this tour.', fx: { vol: 0.25, hp: -0.15 } }, { n: 'Leave it', d: 'Nothing happens.', fx: {} }] },
-    crate: { n: 'A crate of old records', d: 'Dusty sleeves, some of them still sealed.', opts: [{ n: 'Dig through', d: 'Pick 1 of 3 common boons. Lose 10% HP.', fx: { hurt: 0.1, pick: 'c' } }, { n: 'Grab one blind', d: 'A random common boon.', fx: { common: 1 } }] },
-    crowd: { n: 'A crowd wants a song', d: 'A little crowd has gathered and starts to chant.', opts: [{ n: 'Play for them', d: '+8% Power for this tour. Heal 15%.', fx: { vol: 0.08, heal: 0.15 } }, { n: 'Take a bow', d: 'Heal 25%.', fx: { heal: 0.25 } }] },
+    busker: { n: 'A street busker', d: 'A busker with a battered guitar offers to swap songs.', opts: [{ n: 'Swap songs', d: 'Lose 25% HP. Take two random rare boons.', fx: { hurt: 0.25, rare: 2 } }, { n: 'Busk together', d: 'Heal 30%, and +10% Power for this tour.', fx: { heal: 0.3, vol: 0.1 } }] },
+    shrine: { n: 'An old tuning shrine', d: 'A ring of humming stones. The air feels in tune.', opts: [{ n: 'Attune', d: '+25% Power and +25% HP for this tour. Lose 30% HP now.', fx: { vol: 0.25, hp: 0.25, hurt: 0.3 } }, { n: 'Rest among the stones', d: 'Heal to full.', fx: { full: 1 } }] },
+    fan: { n: 'A fan with a gift', d: 'Someone in a homemade T-shirt waves you over.', opts: [{ n: 'Take the scarf', d: '+35% HP for this tour, and heal 35%.', fx: { hp: 0.35, heal: 0.35 } }, { n: 'Take the lucky pick', d: '+15% critical hit chance, and critical hits deal 30% more, for this tour.', fx: { perk: { mod: { crit: 0.15, critDmg: 0.3 } } } }] },
+    amp: { n: 'A humming amp', d: 'An amp sits in the grass, plugged into nothing, buzzing anyway.', opts: [{ n: 'Plug in', d: '+50% Power for this tour, but 20% less HP.', fx: { vol: 0.5, hp: -0.2 } }, { n: 'Take it apart', d: 'Lose 15% HP. Pick 1 of 3 rare boons.', fx: { hurt: 0.15, pick: 'r' } }] },
+    crate: { n: 'A crate of old records', d: 'Dusty sleeves, some of them still sealed.', opts: [{ n: 'Dig deep', d: 'Lose 25% HP. Take two random boons and a random rare one.', fx: { hurt: 0.25, common: 2, rare: 1 } }, { n: 'Pick one out', d: 'Heal 15%. Pick 1 of 3 boons.', fx: { heal: 0.15, pick: 'c' } }] },
+    crowd: { n: 'A crowd wants a song', d: 'A little crowd has gathered and starts to chant.', opts: [{ n: 'Play for them', d: '+20% Power for this tour, and heal 30%.', fx: { vol: 0.2, heal: 0.3 } }, { n: 'Stage dive', d: 'Lose 20% HP. +12% Power and +12% Speed for this tour.', fx: { hurt: 0.2, vol: 0.12, perk: { mod: { tempo: 0.12 } } } }] },
+    crossroads: { n: 'A deal at the crossroads', d: 'A stranger in a long coat offers to tune your strings, for a price.', opts: [{ n: 'Shake on it', d: '+70% Power for this tour, but 35% less HP.', fx: { vol: 0.7, hp: -0.35 } }, { n: 'Walk on', d: 'Heal 20%.', fx: { heal: 0.2 } }] },
+    mirror: { n: 'A dressing-room mirror', d: 'The bulbs flicker. Your reflection seems to play a little better.', opts: [{ n: 'Look closer', d: 'A copy of one of your boons that add up, at random.', fx: { dupe: 1 } }, { n: 'Fix your hair', d: '+15% Speed for this tour.', fx: { perk: { mod: { tempo: 0.15 } } } }] },
+    roadie: { n: 'A roadie with spare gear', d: 'A roadie is packing up after a show and has kit to spare.', opts: [{ n: 'Borrow the kit', d: '+20 Guard, and each gig starts with a Shield of 25% HP, for this tour.', fx: { perk: { mod: { poise: 20 }, on: { start: [['shield', 'self', 0, { pct: 0.25 }]] } } } }, { n: 'Buy them lunch', d: 'Heal 50%.', fx: { heal: 0.5 } }] },
+    legend: { n: 'A retired legend', d: 'An old star sits on a bench, humming a song you half know.', opts: [{ n: 'Ask for lessons', d: '+15% Power and +15% Speed for this tour.', fx: { vol: 0.15, perk: { mod: { tempo: 0.15 } } } }, { n: 'Ask for a secret', d: 'Pick 1 of 3 rare boons.', fx: { pick: 'r' } }] },
+    well: { n: 'A wishing well', d: 'Coins glint at the bottom. Something down there hums back.', opts: [{ n: 'Toss in a note', d: 'Half the time, two random rare boons. Otherwise, lose 30% HP.', fx: { gamble: { p: 0.5, win: { rare: 2 }, lose: { hurt: 0.3 } } } }, { n: 'Drink', d: 'Heal 40%.', fx: { heal: 0.4 } }] },
+    storm: { n: 'A thunderstorm', d: 'Lightning keeps striking the same hill, right on the beat.', opts: [{ n: 'Play through it', d: '+30% Power and +10% Speed for this tour. Lose 35% HP.', fx: { vol: 0.3, perk: { mod: { tempo: 0.1 } }, hurt: 0.35 } }, { n: 'Shelter', d: 'Heal 25%.', fx: { heal: 0.25 } }] },
+    medic: { tour: 1, n: 'A tour medic', d: 'A medic with a big red bag has seen worse tours than yours.', opts: [{ n: 'Patch everyone up', d: 'Fallen bandmates get back up with 50% HP. Everyone heals 20%.', fx: { revive: 0.5, heal: 0.2 } }, { n: 'Vitamin shots', d: '+20% HP for the band for this tour, and heal 20%.', fx: { hp: 0.2, heal: 0.2 } }] },
+  };
+  // Apply a mystery's (or any road) effect through `on`, the mode's own hooks. Returns what came of it, for the screen.
+  H.roadFx = (fx, on, rnd) => {
+    const got = { boons: [] };
+    if (fx.gamble) { const w = rnd() < fx.gamble.p; got.gamble = w ? 'win' : 'lose'; const r = H.roadFx(w ? fx.gamble.win : fx.gamble.lose, on, rnd); got.boons = r.boons; return got; }
+    if (fx.vol || fx.hp) on.boost(fx.vol || 0, fx.hp || 0);
+    if (fx.perk) on.perk(fx.perk);
+    if (fx.revive) on.revive(fx.revive);
+    if (fx.hurt) on.hurt(fx.hurt);
+    if (fx.heal) on.heal(fx.heal);
+    if (fx.full) on.heal(1);
+    for (let i = 0; i < (fx.rare || 0); i++) { const id = on.boon('r'); if (id) got.boons.push(id); }
+    for (let i = 0; i < (fx.common || 0); i++) { const id = on.boon('c'); if (id) got.boons.push(id); }
+    if (fx.dupe) { const id = on.dupe(); if (id) got.boons.push(id); }
+    if (fx.pick) { on.pick(fx.pick); got.pick = true; }
+    return got;
   };
   H.EVENT_ORDER = Object.keys(H.EVENTS);
 
   /* the road: ten rows of up to three lanes; each stop links to the ones ahead of it in the same or a next-door lane */
-  H.soloMap = (seed) => {
-    const rnd = H.rng(seed * 7 + 3), nodes = [], rows = [];
-    H.SOLO.rows.forEach((kind, r) => {
+  // Stop rows offer three (sometimes two) of: campfire, jam session, mystery, Benefit show (an easy gig that heals) and Battle of the Bands (a rival band, a rare boon).
+  H.STOPS = { rest: 1, jam: 1, mystery: 1, benefit: 0.8, battle: 0.8 };
+  const pickStops = (n, rnd, no) => { const pool = Object.keys(H.STOPS).filter((t) => !(no || []).includes(t)), out = []; while (out.length < n && pool.length) { let r = rnd() * pool.reduce((a, t) => a + H.STOPS[t], 0), i = 0; while (r >= H.STOPS[pool[i]] && i < pool.length - 1) r -= H.STOPS[pool[i++]]; out.push(pool.splice(i, 1)[0]); } return out; };
+  H.roadMap = (seed, kinds, loudCh, opt) => {
+    opt = opt || {}; const rnd = H.rng(seed * 7 + 3), nodes = [], rows = [], restRows = opt.restRows || [];
+    kinds.forEach((kind, r) => {
       if (kind === 'b') { const b = { id: nodes.length, r, l: 1, type: 'boss', x: 0.5, dy: 0 }; nodes.push(b); rows.push([b]); return; }
       // stop rows sometimes have only two stops, so the road narrows and widens
       const lanes = kind === 's' && rnd() < 0.35 ? H.shuffle([0, 1, 2], rnd).slice(0, 2).sort() : [0, 1, 2];
       let types;
-      if (kind === 'g') { types = lanes.map(() => (r > 0 && rnd() < H.SOLO.loudCh ? 'loud' : 'gig')); if (!types.includes('gig')) types[Math.floor(rnd() * types.length)] = 'gig'; }
-      else { types = H.shuffle(['rest', 'jam', 'mystery'], rnd).slice(0, lanes.length); if (r === 7 && !types.includes('rest')) types[Math.floor(rnd() * types.length)] = 'rest'; }   // a chance to rest before the last gig
+      if (kind === 'g') { types = lanes.map(() => (r > 0 && rnd() < loudCh ? 'loud' : 'gig')); if (!types.includes('gig')) types[Math.floor(rnd() * types.length)] = 'gig'; }
+      else { types = pickStops(lanes.length, rnd, opt.no); if (restRows.includes(r) && !types.includes('rest')) types[Math.floor(rnd() * types.length)] = 'rest'; }   // a chance to rest before the last gig
       rows.push(lanes.map((l, i) => { const n = { id: nodes.length, r, l, type: types[i], x: 0.18 + l * 0.32 + (rnd() - 0.5) * 0.1, dy: Math.round((rnd() - 0.5) * 10) }; nodes.push(n); return n; }));
     });
     // roads: each stop leads on to one or two of the stops ahead in the same or a next-door lane; every stop can be reached; roads never cross
@@ -165,6 +209,7 @@
     rows[rows.length - 1][0].next = [];
     return nodes;
   };
+  H.soloMap = (seed) => H.roadMap(seed, H.SOLO.rows, H.SOLO.loudCh, { restRows: [7] });   // a campfire before the last gig
   const runOf = (S) => S.soloRun;
   H.soloNode = (run, id) => run.map[id];
   H.soloReach = (run) => (run.at == null ? run.map.filter((n) => n.r === 0) : run.map[run.at].next.map((id) => run.map[id]));
@@ -175,14 +220,14 @@
   H.soloPaidLeft = (S) => { H.refreshSolo(S); if (!H.GATES.solo) return 6; return Math.max(0, 5 - S.solo.gigs) + (S.solo.boss ? 0 : 1); };
   H.startSolo = (S, petId, rnd) => {
     const seed = 1 + Math.floor(rnd() * 1e9), r2 = H.rng(seed), region = H.REGION_ORDER[Math.floor(r2() * 10)];
-    S.soloRun = { seed, pet: petId, region, map: H.soloMap(seed), at: null, done: [], hp: 1, boons: [], extra: { vol: 0, hp: 0 }, gigs: 0, pending: null, log: [] };
+    S.soloRun = { seed, pet: petId, region, map: H.soloMap(seed), at: null, done: [], hp: 1, boons: [], extra: { vol: 0, hp: 0, perks: [] }, gigs: 0, pending: null, log: [] };
     H.refreshSolo(S); S.solo.tours++; return S.soloRun;
   };
   H.endSolo = (S) => { S.soloRun = null; };
   // the pet as it plays this tour: its usual self, plus boons and the tour's extras
   H.soloUnit = (S) => {
     const run = runOf(S), pet = H.petById(S, run.pet), u = H.buildPetUnit(pet, S.level, S);
-    u.perks = u.perks.concat(run.boons.map((id) => H.BOONS[id].perk)); if (run.extra.vol || run.extra.hp) u.perks.push({ mod: { vol: run.extra.vol, hp: run.extra.hp } });
+    u.perks = u.perks.concat(run.boons.map((id) => H.BOONS[id].perk)); if (run.extra.vol || run.extra.hp) u.perks.push({ mod: { vol: run.extra.vol, hp: run.extra.hp } }); u.perks = u.perks.concat(run.extra.perks || []);
     return u;
   };
   H.soloMaxHp = (S) => { const b = new H.Battle({ allies: [H.soloUnit(S)], enemies: [] }); return b.units[0].max; };
@@ -190,16 +235,18 @@
   H.soloK = (S, pet) => { const f = H.FORMS[pet.form], role = H.kitOf(pet.form).role; return H.SOLO.k * H.SOLO.tierK[f.tier] * (H.SOLO.roleK[role] || 1) * (H.SOLO_FORM[pet.form] || 1); };
   H.soloStage = (S, node) => {
     const run = runOf(S), pet = H.petById(S, run.pet), R = H.REGIONS[run.region], L = Math.max(1, S.level), rnd = H.rng(run.seed * 13 + node.id * 101), g = run.gigs + 1;
-    const k = H.soloK(S, pet) * (1 + H.SOLO.ramp * (g - 1));
+    const k = H.soloK(S, pet) * H.SOLO.curve[Math.min(H.SOLO.curve.length - 1, g - 1)];
     let enemies;
     if (node.type === 'boss') enemies = [{ id: R.boss, lvl: L, k: k * H.SOLO.bossK }];
+    else if (node.type === 'battle') enemies = H.rivalBand(H.SOLO.count[Math.min(4, g - 1)], L, k * H.SOLO.battleK, rnd);
+    else if (node.type === 'benefit') enemies = Array.from({ length: 2 }, () => ({ id: R.din[Math.floor(rnd() * R.din.length)], lvl: L, k: k * H.SOLO.benefitK }));
     else {
       const n = H.SOLO.count[Math.min(4, g - 1)], ids = [];
       for (let i = 0; i < n; i++) ids.push(R.din[Math.floor(rnd() * R.din.length)]);
       ids.sort((a, b) => (H.DIN_FRONT[a] || 0) - (H.DIN_FRONT[b] || 0));
       enemies = ids.map((id, i) => ({ id, lvl: L, k: node.type === 'loud' ? k * H.SOLO.loudK : k, loud: node.type === 'loud' && i === 0 }));
     }
-    return { n: g, region: run.region, boss: node.type === 'boss', elite: node.type === 'loud', level: L, enemies, solo: true, name: node.type === 'boss' ? 'Solo · boss' : 'Solo · gig ' + g };
+    return { n: g, region: run.region, boss: node.type === 'boss', elite: node.type === 'loud' || node.type === 'battle', kind: node.type, level: L, enemies, solo: true, name: node.type === 'boss' ? 'Solo · boss' : 'Solo · gig ' + g };
   };
   // The Din's extra growth curve stands in for a whole band's gear, stars and third pet. One pet alone does not get that,
   // so on the road it is taken out again (measured from level 14, where the numbers were tuned).
@@ -212,8 +259,9 @@
     const u = b.units[0]; u.hp = Math.max(1, Math.round(u.max * run.hp)); return b;
   };
   // three boons to choose from. src: 'gig' (mostly common), 'loud' (rare), 'jam' (one rare among them), or a rarity
-  H.boonOffer = (run, src, rnd) => {
-    const can = H.BOON_ORDER.filter((id) => H.BOONS[id].r === 'c' || !run.boons.includes(id)), commons = can.filter((id) => H.BOONS[id].r === 'c'), rares = can.filter((id) => H.BOONS[id].r === 'r');
+  H.boonOffer = (run, src, rnd, mode, have) => {
+    have = have || run.boons;
+    const can = H.BOON_ORDER.filter((id) => (mode === 'tour' || !H.BOONS[id].tour) && ((H.BOONS[id].r === 'c' && H.BOONS[id].stack) || !have.includes(id))), commons = can.filter((id) => H.BOONS[id].r === 'c'), rares = can.filter((id) => H.BOONS[id].r === 'r');
     const pick = (pool, taken) => { const p = pool.filter((x) => !taken.includes(x)); return p.length ? p[Math.floor(rnd() * p.length)] : null; };
     const out = [];
     for (let i = 0; i < 3; i++) {
@@ -223,27 +271,34 @@
     return H.shuffle(out, rnd);
   };
   // stepping onto a stop: what it asks of you next
+  H.isFight = (type) => type === 'gig' || type === 'loud' || type === 'boss' || type === 'benefit' || type === 'battle';
+  // a rival band: pets, grown about as far as the level suggests
+  H.rivalBand = (n, L, k, rnd) => { const tier = L >= 45 ? 2 : L >= 18 ? 1 : 0, forms = Object.keys(H.FORMS).filter((f) => H.FORMS[f].tier === tier); return Array.from({ length: n }, () => ({ id: forms[Math.floor(rnd() * forms.length)], lvl: L, pet: true, k })); };
   H.soloEnter = (S, id, rnd) => {
     const run = runOf(S), node = run.map[id]; if (!node || !H.soloReach(run).some((n) => n.id === id) || run.pending) return null;
     run.at = id; run.done.push(id);
-    if (node.type === 'gig' || node.type === 'loud' || node.type === 'boss') run.pending = { type: 'battle' };
+    if (H.isFight(node.type)) run.pending = { type: 'battle' };
     else if (node.type === 'rest') run.pending = { type: 'rest' };
-    else if (node.type === 'jam') run.pending = { type: 'boon', src: 'jam', opts: H.boonOffer(run, 'jam', rnd) };
-    else { const r2 = H.rng(run.seed * 31 + id), seen = run.log.filter((x) => x.ev).map((x) => x.ev), pool = H.EVENT_ORDER.filter((e) => !seen.includes(e)); run.pending = { type: 'event', ev: pool[Math.floor(r2() * pool.length)] || 'crowd' }; }
+    else if (node.type === 'jam') run.pending = { type: 'boon', src: 'jam', opts: H.boonOffer(run, 'jam', rnd, 'solo') };
+    else { const r2 = H.rng(run.seed * 31 + id), seen = run.log.filter((x) => x.ev).map((x) => x.ev), pool = H.EVENT_ORDER.filter((e) => !seen.includes(e) && !H.EVENTS[e].tour); run.pending = { type: 'event', ev: pool[Math.floor(r2() * pool.length)] || 'crowd' }; }
     return run.pending;
   };
   // after a gig: HP carries on, the day's notes are paid, and a boon is offered. A loss ends the tour.
   H.finishSolo = (S, win, battle, rnd) => {
-    H.refreshSolo(S); const run = runOf(S), node = run.map[run.at], P = S.solo, out = { solo: true, win, boss: node.type === 'boss', loud: node.type === 'loud', gig: run.gigs + (win && node.type !== 'boss' ? 1 : 0), notes: 0, xp: 0, ups: 0, item: null, pet: run.pet, boons: run.boons.slice(), region: run.region };
+    H.refreshSolo(S); const run = runOf(S), node = run.map[run.at], P = S.solo, side = node.type === 'benefit' || node.type === 'battle', out = { solo: true, win, boss: node.type === 'boss', loud: node.type === 'loud', kind: node.type, gig: run.gigs + (win && node.type !== 'boss' && !side ? 1 : 0), notes: 0, xp: 0, ups: 0, item: null, pet: run.pet, boons: run.boons.slice(), region: run.region };
     if (!win) { out.reached = run.gigs; out.total = run.earned || 0; P.best = Math.max(P.best, run.gigs); S.soloRun = null; return out; }
     if (battle) { const u = battle.units.find((v) => v.side === 0); run.hp = u && u.alive ? Math.max(0.01, u.hp / u.max) : 0.01; }
     if (out.boss) {
       if (!H.GATES.solo || !P.boss) { P.boss = 1; out.notes = H.SOLO.bossNotes; out.item = H.rollItem(S, rnd, 'elite'); }
       P.best = Math.max(P.best, 6); P.wins++; S.stats.soloWins = (S.stats.soloWins || 0) + 1; out.done = true; out.total = (run.earned || 0) + out.notes; S.soloRun = null;
+    } else if (side) {   // a Benefit show heals; Battle of the Bands pays an echo and a rare boon. Neither counts as one of the five gigs.
+      out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes;
+      if (node.type === 'benefit') { out.heal = H.SOLO.benefitHeal; run.hp = Math.min(1, run.hp + out.heal); run.pending = null; }
+      else { out.echo = H.addEchoes(S, 1); run.pending = { type: 'boon', src: 'r', opts: H.boonOffer(run, 'r', rnd, 'solo') }; }
     } else {
       run.gigs++; if (!H.GATES.solo || P.gigs < 5) { if (P.gigs < 5) P.gigs++; out.notes = H.SOLO.gigNotes; run.earned = (run.earned || 0) + out.notes; }
       P.best = Math.max(P.best, run.gigs);
-      run.pending = { type: 'boon', src: node.type === 'loud' ? 'loud' : 'gig', opts: H.boonOffer(run, node.type === 'loud' ? 'loud' : 'gig', rnd) };
+      run.pending = { type: 'boon', src: node.type === 'loud' ? 'loud' : 'gig', opts: H.boonOffer(run, node.type === 'loud' ? 'loud' : 'gig', rnd, 'solo') };
     }
     S.notes += out.notes; return out;
   };
@@ -258,13 +313,20 @@
   // a mystery's choice; returns what happened so the screen can say it (and a boon pick, if the choice leads to one)
   H.soloEvent = (S, i, rnd) => {
     const run = runOf(S); if (!run || !run.pending || run.pending.type !== 'event') return null;
-    const ev = run.pending.ev, o = H.EVENTS[ev].opts[i]; if (!o) return null; const fx = o.fx, f0 = H.soloMaxHp(S), got = { ev, opt: i };
-    if (fx.vol) run.extra.vol += fx.vol; if (fx.hp) run.extra.hp += fx.hp; if (fx.vol || fx.hp) keepHp(S, f0);
-    if (fx.hurt) run.hp = Math.max(0.01, run.hp - fx.hurt); if (fx.heal) run.hp = Math.min(1, run.hp + fx.heal);
-    run.log.push({ ev, opt: i }); run.pending = null;
-    const add = (rar) => { const o2 = H.boonOffer(run, rar, rnd); if (o2[0]) { const f1 = H.soloMaxHp(S); run.boons.push(o2[0]); keepHp(S, f1); got.boon = o2[0]; } };
-    if (fx.rare) add('r'); if (fx.common) add('c');
-    if (fx.pick) { run.pending = { type: 'boon', src: fx.pick, opts: H.boonOffer(run, fx.pick, rnd) }; got.pick = true; }
+    const ev = run.pending.ev, o = H.EVENTS[ev].opts[i]; if (!o) return null;
+    run.log.push({ ev, opt: i }); run.pending = null; if (!run.extra.perks) run.extra.perks = [];
+    const addBoon = (id) => { const f0 = H.soloMaxHp(S); run.boons.push(id); keepHp(S, f0); return id; };
+    const got = H.roadFx(o.fx, {
+      boost: (vol, hp) => { const f0 = H.soloMaxHp(S); run.extra.vol += vol; run.extra.hp += hp; keepHp(S, f0); },
+      perk: (p) => run.extra.perks.push(p),
+      revive: () => {},
+      hurt: (x) => (run.hp = Math.max(0.01, run.hp - x)),
+      heal: (x) => (run.hp = Math.min(1, run.hp + x)),
+      boon: (rar) => { const o2 = H.boonOffer(run, rar, rnd, 'solo'); return o2[0] ? addBoon(o2[0]) : null; },
+      dupe: () => { const have = run.boons.filter((id) => H.BOONS[id].stack); return have.length ? addBoon(have[Math.floor(rnd() * have.length)]) : null; },
+      pick: (rar) => (run.pending = { type: 'boon', src: rar, opts: H.boonOffer(run, rar, rnd, 'solo') }),
+    }, rnd);
+    got.ev = ev; got.opt = i; if (got.boons.length) got.boon = got.boons[0];
     return got;
   };
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
