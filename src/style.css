@@ -727,8 +727,8 @@ input.namein:focus { outline: calc(var(--u) * 1.5) solid var(--blue); outline-of
 .tgp.down canvas { filter: grayscale(1); opacity: 0.6; }
 .tgp .combo { position: absolute; top: calc(var(--u) * -4); right: calc(var(--u) * -2); padding: 0 calc(var(--u) * 2); border-radius: calc(var(--u) * 4); background: #ff6aa0; color: #fff; border: calc(var(--u) * 0.8) solid var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 5.6); }
 .legtrack .tp { width: calc(var(--u) * 11.5); height: calc(var(--u) * 11.5); font-size: calc(var(--u) * 5.6); } .legtrack .tp.boss { width: calc(var(--u) * 15); height: calc(var(--u) * 15); }
-.flyer.tour { grid-column: span 2; min-height: calc(var(--u) * 54); background: #1f4a6e !important; color: #fff; overflow: hidden; } .flyer.tour .fkick { color: #ffe58a; } .flyer.tour .fsub { color: #bfe8ff; } .flyer.tour .ftitle { font-size: calc(var(--u) * 12); }
-.flyer.tour .stripes { position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, rgba(255, 201, 40, 0.13) 0 calc(var(--u) * 4), transparent calc(var(--u) * 4) calc(var(--u) * 10)); pointer-events: none; }
+.flyer.tour { grid-column: span 2; min-height: calc(var(--u) * 54); background: #1f4a6e !important; color: #fff; } .flyer.tour .fkick { color: #ffe58a; } .flyer.tour .fsub { color: #bfe8ff; } .flyer.tour .ftitle { font-size: calc(var(--u) * 12); }
+.flyer.tour .stripes { position: absolute; inset: 0; border-radius: inherit; background: repeating-linear-gradient(-45deg, rgba(255, 201, 40, 0.13) 0 calc(var(--u) * 4), transparent calc(var(--u) * 4) calc(var(--u) * 10)); pointer-events: none; }
 .flyer.tour > :not(.stripes):not(.tack):not(.pip):not(.wrap) { position: relative; } .flyer.tour .frow { gap: calc(var(--u) * 4); text-align: left; }
 .gofoot .tgive { gap: calc(var(--u) * 1.5); } .gofoot .tgive .label { font-size: calc(var(--u) * 5.6); }
 .gofoot .tgp { flex-direction: row; justify-content: center; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 1) calc(var(--u) * 1.5) !important; min-height: calc(var(--u) * 20); }
