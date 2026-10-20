@@ -331,7 +331,7 @@
     if (won) UI.confetti(70, true);
     const hero = pet ? UI.sp(pet.form, won ? 2 : 1.5, { anim: false }) : null; if (hero) hero.classList.add(won ? 'cheer' : 'slump');
     add(w, add(el('div', 'logo small dropin'), tr(won ? 'Tour complete!' : 'Tour over')), hero,
-      add(el('div', 'panel col center endp risein'), txt('center', won ? tr('<b>{pet}</b> beat all five gigs and the boss.', { pet: pet ? H.FORMS[pet.form].n : tr('Your soloist') }) : tr('<b>{n} of 5</b> gigs won.', { n: out.reached || 0 })), (out.boons || []).length ? boons : null, loot, it ? txt('label center', tr('And the boss dropped')) : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', tr('<b>Level up!</b>')) : null),
+      add(el('div', 'panel col center endp risein'), txt('center', won ? tr('<b>{pet}</b> beat all five gigs and the boss.', { pet: pet ? H.FORMS[pet.form].n : tr('Your soloist') }) : tr('<b>{n} of 5</b> gigs won.', { n: out.reached || 0 })), (out.boons || []).length ? boons : null, loot, it ? txt('label center', tr('And the boss dropped')) : null, it ? UI.itemRow(it) : null, out.ups ? txt('center good', tr('<b>Level up!</b>')) : null, UI.statsBlock(out.stats)),
       key(won ? tr('Home') : tr('Try another tour'), () => (won ? UI.go('home') : UI.go('solo', { pet: out.pet })), 'go wide big'), key(won ? tr('Another tour') : tr('Home'), () => (won ? UI.go('solo', { pet: out.pet }) : UI.go('home')), 'wide soft'));
     root.appendChild(w);
   };

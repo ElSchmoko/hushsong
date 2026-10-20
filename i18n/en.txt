@@ -1531,6 +1531,10 @@
 0d68t5f	Tap to start	ui-battle	
 0jleco1	You win!	ui-battle	
 1jc3an7	Your band is out	ui-battle	
+069mlae	Damage dealt	ui-battle	
+0yg9m6m	Healing and Shields	ui-battle	
+04xwsfb	Damage taken	ui-battle	
+0rk2c9o	Battle stats	ui-battle	
 13ssvg2	Wave {wave} cleared!	ui-battle	
 1mh43qm	Weekly reward: wave {n}	ui-battle	
 1qc7mgd	Reward: wave {n}	ui-battle	

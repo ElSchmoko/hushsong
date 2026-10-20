@@ -160,7 +160,7 @@
     const band = add(el('div', 'tbandart big'), ...pets.map((p) => { const c = UI.sp(p.form, won ? 1.3 : 1.05, { anim: false }); c.classList.add(won ? 'cheer' : 'slump'); return c; }));
     add(w, add(el('div', 'logo small dropin'), tr(won ? 'World Tour complete!' : 'Tour over')), band,
       add(el('div', 'panel col center endp risein'), txt('center', won ? tr('Five legs, five bosses. The whole world sang along.') : tr('Out on leg <b>{leg}</b>, after <b>{gigs}</b> gigs of {n}.', { leg: (out.reached ? out.reached.leg : 0) + 1, gigs: out.reached ? out.reached.gigs : 0, n: T().gigs })), loot,
-        items.length ? txt('label center', tr('Loot from the bosses')) : null, ...items.map((it) => UI.itemRow(it))),
+        items.length ? txt('label center', tr('Loot from the bosses')) : null, ...items.map((it) => UI.itemRow(it)), UI.statsBlock(out.stats)),
       key(won ? tr('Home') : tr('Try another tour'), () => (won ? UI.go('home') : UI.go('tour')), 'go wide big'), key(won ? tr('Another tour') : tr('Home'), () => (won ? UI.go('tour') : UI.go('home')), 'wide soft'));
     root.appendChild(w);
   };

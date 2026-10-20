@@ -348,7 +348,8 @@
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
       const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
-      UI.save(); UI.result(out);
+      out.stats = H.battleStats(battle);
+      UI.save(); UI.result(out); UI.addStats(out.stats);
       // back on the result: a story, gift or boon still to come is shown; otherwise back to where the battle was started
       UI.cur.modalBack = () => { const m = document.getElementById('modal'), next = m.querySelector('.key.go') || m.querySelector('.key.gold');
         if ((out.story || out.giftShell || out.gift || solo || tour) && next) return next.click();
@@ -357,6 +358,28 @@
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
+  };
+
+  /* Battle stats: three icons on top (damage dealt, healing and Shields given, damage taken), then one row per pet, ranked by damage:
+     its face and a number over a bar in each column, bars scaled to the column's best. */
+  UI.statsBlock = (stats) => {
+    if (!stats || !stats.length) return null;
+    const rows = stats.map((s) => ({ sprite: s.sprite, name: s.name, alive: s.alive, v: [s.dealt, s.heal + s.shield, s.taken + s.blocked] })).sort((a, b) => b.v[0] - a.v[0]);
+    const max = [0, 1, 2].map((k) => Math.max(1, ...rows.map((r) => r.v[k]))), COLS = [['bn_quick', tr('Damage dealt'), 'dealt', 0.85], ['st_regen', tr('Healing and Shields'), 'heal', 1.45], ['st_shield', tr('Damage taken'), 'taken', 1.45]];
+    const blk = el('div', 'bstats'); blk.setAttribute('aria-label', tr('Battle stats'));
+    blk.appendChild(add(el('div', 'bsrow bshead'), el('span'), ...COLS.map(([icon, label, , sc]) => { const h = add(el('span', 'bsh'), UI.icon(icon, sc)); h.setAttribute('aria-label', label); h.title = label; return h; })));
+    for (const r of rows) {
+      const face = add(el('div', 'bsface'), UI.sp(r.sprite, 0.42, { anim: false })); face.setAttribute('aria-label', r.name);
+      blk.appendChild(add(el('div', 'bsrow' + (r.alive ? '' : ' down')), face, ...COLS.map(([, label, cls], k) => { const bar = el('div', 'sbar ' + cls), i = el('i'); i.style.width = Math.round((r.v[k] / max[k]) * 100) + '%'; bar.appendChild(i);
+        const c = add(el('div', 'scell'), el('b', '', UI.fmt(Math.round(r.v[k]))), bar); c.setAttribute('aria-label', label + ': ' + Math.round(r.v[k])); return c; })));
+    }
+    return blk;
+  };
+  // put the stats into the result sheet that is open, just above its buttons
+  UI.addStats = (stats) => {
+    const m = document.getElementById('modal'), sh = m && !m.hidden && m.querySelector('.sheet'), blk = UI.statsBlock(stats); if (!sh || !blk || sh.querySelector('.bstats')) return;
+    let at = null; for (let c = sh.lastElementChild; c && c.classList.contains('key'); c = c.previousElementSibling) at = c;
+    sh.insertBefore(blk, at);
   };
 
   // Encore: after a won wave, go on or stop; after a lost one, the run is over

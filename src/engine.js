@@ -73,6 +73,7 @@
       if (spec.kit.phrase) ab.push({ kind: 'phrase', def: spec.kit.phrase, cd: 0 });
       if (spec.kit.finale) ab.push({ kind: 'finale', def: spec.kit.finale, cd: 2 });
       const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0, giant: spec.giant || null };
+      u.stat = { dealt: 0, heal: 0, shield: 0, taken: 0, blocked: 0, kos: 0, crits: 0, top: 0 };   // for the battle stats after the fight
       const sh = spec.perks.find((p) => p.shift); if (sh) { u.shift = sh.shift; u.enrageAt = sh.enrage; }
       this.units.push(u);
     }
@@ -150,8 +151,8 @@
       this.emit({ t: 'turn', u: actor.uid });
       this.tickRules(); if (this.over) { this.acting = null; this.emit(this.sync()); return { events: this.ev, wait: null }; }
       if (actor.shift && actor.turns > 1 && (actor.turns - 1) % actor.shift === 0) { const i = H.FAMILY_ORDER.indexOf(actor.family); actor.family = H.FAMILY_ORDER[(i + 1 + Math.floor(this.rnd() * 3)) % 5]; this.emit({ t: 'shift', u: actor.uid, family: actor.family }); }
-      if (actor.st.poison) this.applyDamage(actor, actor.st.poison.val, { kind: 'poison' });
-      if (actor.alive && actor.st.regen) this.heal(null, actor, actor.st.regen.val);
+      if (actor.st.poison) this.applyDamage(actor, actor.st.poison.val, { kind: 'poison', by: this.units[actor.st.poison.by] });
+      if (actor.alive && actor.st.regen) this.heal(null, actor, actor.st.regen.val, false, false, this.units[actor.st.regen.by]);
       if (actor.alive) { this.bump(actor, 'turn'); this.fire(actor, 'turn'); }
       if (!actor.alive || this.over) { this.acting = null; this.checkOver(); this.emit(this.sync()); return { events: this.ev, wait: null }; }
       // a stun costs one turn; after that the unit shrugs off stuns until it has acted again, so nobody is ever locked out
@@ -398,7 +399,7 @@
         if (k === 'dmg') this.fxDmg(fx, c);
         else if (k === 'heal') { const o = fx[3] || {}, ts = this.targets(c, fx[1]); for (const t of ts) this.heal(c.src, t, o.pct ? t.max * o.pct : fx[2] * this.vol(c.src) * c.powMul); c.last = ts; }
         else if (k === 'st') { const o = fx[4] || {}, ts = this.targets(c, fx[1]); for (const t of ts) this.applySt(c.src, t, fx[2], fx[3], o); if (fx[1] !== 'same') c.last = ts; }
-        else if (k === 'shield') { const o = fx[3] || {}; for (const t of this.targets(c, fx[1])) this.addShield(t, o.pct ? c.src.max * o.pct : fx[2] * this.vol(c.src) * c.powMul); }
+        else if (k === 'shield') { const o = fx[3] || {}; for (const t of this.targets(c, fx[1])) this.addShield(t, o.pct ? c.src.max * o.pct : fx[2] * this.vol(c.src) * c.powMul, c.src); }
         else if (k === 'gauge') { for (const t of this.targets(c, fx[1])) this.pushGauge(t, fx[2]); }
         else if (k === 'cleanse') { for (const t of this.targets(c, fx[1])) this.strip(t, 0); }
         else if (k === 'dispel') { for (const t of this.targets(c, fx[1])) { this.strip(t, 1); if (t.shield) { t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); } } }
@@ -492,7 +493,9 @@
       if (this.rules.share && info.kind === 'hit' && !info.split) { const side = this.alive(tgt.side); if (side.length > 1) { for (const v of side) this.applyDamage(v, amt / side.length, Object.assign({}, info, { split: true, abs: v === tgt ? info.abs : 0 })); return; } }
       if (info.kind === 'poison' && tgt.shield > 0) { const a = Math.min(tgt.shield, amt); tgt.shield -= a; info.abs = a; amt -= a; }
       let stood = false; if (amt >= tgt.hp && tgt.hp > 1 && !tgt.once.stand && this.has(tgt, 'lastStand')) { tgt.once.stand = true; stood = true; amt = tgt.hp - 1; this.emit({ t: 'note', u: tgt.uid, txt: H.T('Hangs on!') }); }
-      const was = tgt.hp / tgt.max; tgt.hp = Math.max(0, tgt.hp - amt);
+      const was = tgt.hp / tgt.max, hp0 = tgt.hp; tgt.hp = Math.max(0, tgt.hp - amt);
+      { const real = hp0 - tgt.hp, abs = info.abs || 0, by = info.src || info.by; tgt.stat.taken += real; tgt.stat.blocked += abs;
+        if (by && by !== tgt && by.side !== tgt.side) { by.stat.dealt += real + abs; if (info.crit) by.stat.crits++; if (info.kind === 'hit') by.stat.top = Math.max(by.stat.top, real + abs); if (tgt.hp <= 0) by.stat.kos++; } }
       if (tgt.charging && amt + (info.abs || 0) > 0) { tgt.charging.taken += amt + (info.abs || 0); if (tgt.charging.taken >= tgt.max * H.CHARGE_BREAK && tgt.hp > 0) this.callOff(tgt); }
       this.emit({ t: 'dmg', src: info.src ? info.src.uid : -1, tgt: tgt.uid, amt, abs: info.abs || 0, crit: !!info.crit, adv: info.adv || 0, kind: info.kind, hp: tgt.hp, shield: tgt.shield });
       if (stood) this.fire(tgt, 'stand');
@@ -511,15 +514,15 @@
       if (tgt.enrageAt && !tgt.once.enrage && tgt.hp / tgt.max < tgt.enrageAt) { tgt.once.enrage = true; tgt.st.sup = { dur: 99, fresh: false }; this.emit({ t: 'st', u: tgt.uid, s: 'sup', dur: 99 }); this.emit({ t: 'note', u: tgt.uid, txt: H.T('Faster!') }); }
     }
     revive(u, pct) { u.alive = true; u.revived = true; u.hp = Math.max(1, Math.round(u.max * pct)); u.gauge = 0; u.st = {}; this.emit({ t: 'revive', u: u.uid, hp: u.hp }); }
-    heal(src, tgt, amt, quiet, echo) {
+    heal(src, tgt, amt, quiet, echo, by) {
       if (!tgt.alive) return; if (src) amt *= 1 + this.mod(src, 'heal'); amt = Math.round(amt); if (amt <= 0) return;
       const before = tgt.hp; tgt.hp = Math.min(tgt.max, tgt.hp + amt); const got = tgt.hp - before, over = amt - got;
-      if (got > 0) this.emit({ t: 'heal', tgt: tgt.uid, amt: got, hp: tgt.hp });
+      if (got > 0) { this.emit({ t: 'heal', tgt: tgt.uid, amt: got, hp: tgt.hp }); const who = src || by; if (who) who.stat.heal += got; }
       if (got > 0 && !echo && tgt.side === 0 && this.ensHarmony) for (const p of this.alive(0)) if (p !== tgt) this.heal(null, p, got * this.ensHarmony, true, true);
-      if (src && over > 0 && this.has(src, 'overheal')) this.addShield(tgt, over);
+      if (src && over > 0 && this.has(src, 'overheal')) this.addShield(tgt, over, src);
       if (src && src !== tgt && !quiet) { const hg = this.has(src, 'healGauge'); if (hg) tgt.gauge = Math.min(GMAX, tgt.gauge + hg * GMAX); }
     }
-    addShield(t, amt) { if (!t.alive) return; amt = Math.round(amt); if (amt <= 0) return; t.shield = Math.min(Math.round(t.max * 0.6), t.shield + amt); this.emit({ t: 'shield', u: t.uid, shield: t.shield, amt }); }
+    addShield(t, amt, src) { if (!t.alive) return; amt = Math.round(amt); if (amt <= 0) return; const s0 = t.shield; t.shield = Math.min(Math.round(t.max * 0.6), t.shield + amt); if (src) src.stat.shield += t.shield - s0; this.emit({ t: 'shield', u: t.uid, shield: t.shield, amt }); }
     // how many bad effects are on a unit
     badCount(t) { let n = 0; for (const s in t.st) if (!H.STATUS[s].buff) n++; return n; }
     // boss passives that soften some kinds of hits (all visible in the boss's passive text)
@@ -566,12 +569,14 @@
       if (s === 'poison') { val = o.rawVal != null ? o.rawVal : Math.max(1, Math.round((o.val || 0.3) * (src ? this.vol(src) : 10))); if (cur) val = Math.min(cur.val + val, val * 3); }
       else if (s === 'regen') { val = o.rawVal != null ? o.rawVal : Math.max(1, Math.round((o.val || 0.4) * (src ? this.vol(src) : 10))); if (cur) val = Math.max(cur.val, val); }
       else if (s === 'dodge') val = Math.max(o.val || 1, cur ? cur.val : 0);
-      tgt.st[s] = { dur: Math.max(dur, cur ? cur.dur : 0), val, fresh: tgt === this.acting };
+      tgt.st[s] = { dur: Math.max(dur, cur ? cur.dur : 0), val, fresh: tgt === this.acting, by: src ? src.uid : cur ? cur.by : null };
       this.emit({ t: 'st', u: tgt.uid, s, dur: tgt.st[s].dur }); return true;
     }
   }
   H.Battle = Battle;
   // Play a whole battle on auto (used by the balance sims).
+  // what each of the player's pets did in a battle: damage dealt, healing and Shields given, damage taken (and how much Shields soaked up)
+  H.battleStats = (b) => b.units.filter((u) => u.side === 0).map((u) => Object.assign({ name: u.name, sprite: u.spec.sprite, petId: u.petId, alive: u.alive }, u.stat));
   H.autoRun = (b) => { let n = 0; while (!b.over && n++ < 3000) b.next(true); return b.over === 'win'; };
 
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
