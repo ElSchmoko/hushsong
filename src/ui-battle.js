@@ -348,7 +348,8 @@
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
       const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
-      UI.save(); UI.result(out);
+      out.stats = H.battleStats(battle);
+      UI.save(); UI.result(out); UI.addStats(out.stats);
       // back on the result: a story, gift or boon still to come is shown; otherwise back to where the battle was started
       UI.cur.modalBack = () => { const m = document.getElementById('modal'), next = m.querySelector('.key.go') || m.querySelector('.key.gold');
         if ((out.story || out.giftShell || out.gift || solo || tour) && next) return next.click();
@@ -357,6 +358,37 @@
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
+  };
+
+  /* Battle stats: each pet's damage dealt, healing and Shields given, and damage taken (a lighter part for what Shields soaked up),
+     ranked by damage, bars scaled to the band's best. MVP, Medic and Wall badges when the band has more than one pet. */
+  UI.statsBlock = (stats) => {
+    if (!stats || !stats.length) return null;
+    const rows = stats.map((s) => Object.assign({}, s, { sup: s.heal + s.shield, hurt: s.taken + s.blocked })).sort((a, b) => b.dealt - a.dealt);
+    const top = (k) => Math.max(1, ...rows.map((r) => r[k])), mx = { dealt: top('dealt'), sup: top('sup'), hurt: top('hurt') };
+    const badge = {}, many = rows.length > 1;
+    if (many) { const by = (k) => rows.reduce((a, r) => (r[k] > a[k] ? r : a), rows[0]); const mvp = by('dealt'); badge[rows.indexOf(mvp)] = 'mvp';
+      const med = by('sup'); if (med.sup > 0 && med !== mvp) badge[rows.indexOf(med)] = 'medic';
+      const wall = by('hurt'); if (wall.hurt > 0 && !badge[rows.indexOf(wall)]) badge[rows.indexOf(wall)] = 'wall'; }
+    const NAMES = { mvp: tr('MVP'), medic: tr('Medic'), wall: tr('Wall') };
+    const bar = (cls, icon, v, max, extra, label) => { const m = el('div', 'sbar ' + cls), i = el('i'); i.style.width = Math.round((v / max) * 100) + '%'; m.appendChild(i);
+      if (extra) { const j = el('i', 'soft'); j.style.width = Math.round((extra / max) * 100) + '%'; m.appendChild(j); }
+      const c = add(el('div', 'scell'), add(el('div', 'srow'), UI.icon(icon, 0.5), el('b', '', UI.fmt(Math.round(v + (extra || 0))))), m); c.setAttribute('aria-label', label + ': ' + Math.round(v + (extra || 0))); return c; };
+    const box2 = add(el('div', 'bstats'), box('row between bshead', txt('label', tr('Battle stats')), txt('small dim', tr('Dealt · Healed & shielded · Taken'))));
+    rows.forEach((r, i) => {
+      const sub = [r.top ? tr('Top hit {n}', { n: UI.fmt(r.top) }) : null, r.crits ? (r.crits === 1 ? tr('1 crit') : tr('{n} crits', { n: r.crits })) : null, r.kos ? tr('{n} KO', { n: r.kos }) : null].filter(Boolean).join(' · ');
+      const who = add(el('div', 'bswho'), add(el('div', 'row'), el('b', 'bsname', ''), badge[i] ? el('span', 'bsbadge ' + badge[i], NAMES[badge[i]]) : null, r.alive ? null : el('span', 'bsout', tr('Out'))), sub ? txt('bssub', sub) : null);
+      who.querySelector('.bsname').textContent = r.name;
+      box2.appendChild(add(el('div', 'bsr' + (r.alive ? '' : ' down')), add(el('div', 'bsface'), UI.sp(r.sprite, 0.42, { anim: false })), add(el('div', 'grow col'), who, add(el('div', 'bsbars'),
+        bar('dealt', 'ic_sword', r.dealt, mx.dealt, 0, tr('Damage dealt')), bar('sup', 'st_regen', r.sup, mx.sup, 0, tr('Healing and Shields given')), bar('hurt', 'ic_bang', r.taken, mx.hurt, r.blocked, tr('Damage taken'))))));
+    });
+    return box2;
+  };
+  // put the stats into the result sheet that is open, just above its buttons
+  UI.addStats = (stats) => {
+    const m = document.getElementById('modal'), sh = m && !m.hidden && m.querySelector('.sheet'), blk = UI.statsBlock(stats); if (!sh || !blk || sh.querySelector('.bstats')) return;
+    let at = null; for (let c = sh.lastElementChild; c && c.classList.contains('key'); c = c.previousElementSibling) at = c;
+    sh.insertBefore(blk, at);
   };
 
   // Encore: after a won wave, go on or stop; after a lost one, the run is over

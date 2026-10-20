@@ -1101,6 +1101,7 @@
 192xyh5	Floor {n}	ui-battle ui-screens	
 1wsths9	Later	ui-battle ui-screens	
 1vkg66p	Your ensemble	ui-battle ui-screens	
+03scfen	Out	ui-battle ui-modes ui-screens ui-tour	
 0oes1nf	+{n} echoes	ui-battle ui-modes ui-screens ui-tour	{"one":"+{n} echo","other":"+{n} echoes"}
 0tyfhvo	End this run?	ui-battle ui-screens	
 10yh3fa	Rewards stay yours.	ui-battle ui-screens	
@@ -1114,7 +1115,6 @@
 1yikd80	Solo Tour	ui-modes ui-screens	
 1g2tab0	Gig {n} of 5	ui-modes ui-screens	
 0n3ydks	Pick one	ui-modes ui-screens ui-tour	
-03scfen	Out	ui-modes ui-screens ui-tour	
 0x4nga3	Onwards	ui-modes ui-screens	
 1nvt7jn	This week	ui-ranks ui-screens	
 1e9u2fw	Ranks	ui-ranks ui-screens	
@@ -1531,6 +1531,18 @@
 0d68t5f	Tap to start	ui-battle	
 0jleco1	You win!	ui-battle	
 1jc3an7	Your band is out	ui-battle	
+09i0yni	MVP	ui-battle	
+1mk8ix5	Medic	ui-battle	
+0blj585	Wall	ui-battle	
+0rk2c9o	Battle stats	ui-battle	
+1az4hmx	Dealt · Healed & shielded · Taken	ui-battle	
+0e6owth	Top hit {n}	ui-battle	
+0bo6brk	1 crit	ui-battle	
+1oplb26	{n} crits	ui-battle	
+1s6o8h7	{n} KO	ui-battle	
+069mlae	Damage dealt	ui-battle	
+00l40zr	Healing and Shields given	ui-battle	
+04xwsfb	Damage taken	ui-battle	
 13ssvg2	Wave {wave} cleared!	ui-battle	
 1mh43qm	Weekly reward: wave {n}	ui-battle	
 1qc7mgd	Reward: wave {n}	ui-battle	
