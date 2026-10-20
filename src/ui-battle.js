@@ -360,29 +360,20 @@
     return { leave: () => { dead = true; Au.music.din(0); Au.stopEnsemble(); } };
   };
 
-  /* Battle stats: each pet's damage dealt, healing and Shields given, and damage taken (a lighter part for what Shields soaked up),
-     ranked by damage, bars scaled to the band's best. MVP, Medic and Wall badges when the band has more than one pet. */
+  /* Battle stats: three icons on top (damage dealt, healing and Shields given, damage taken), then one row per pet, ranked by damage:
+     its face and a number over a bar in each column, bars scaled to the column's best. */
   UI.statsBlock = (stats) => {
     if (!stats || !stats.length) return null;
-    const rows = stats.map((s) => Object.assign({}, s, { sup: s.heal + s.shield, hurt: s.taken + s.blocked })).sort((a, b) => b.dealt - a.dealt);
-    const top = (k) => Math.max(1, ...rows.map((r) => r[k])), mx = { dealt: top('dealt'), sup: top('sup'), hurt: top('hurt') };
-    const badge = {}, many = rows.length > 1;
-    if (many) { const by = (k) => rows.reduce((a, r) => (r[k] > a[k] ? r : a), rows[0]); const mvp = by('dealt'); badge[rows.indexOf(mvp)] = 'mvp';
-      const med = by('sup'); if (med.sup > 0 && med !== mvp) badge[rows.indexOf(med)] = 'medic';
-      const wall = by('hurt'); if (wall.hurt > 0 && !badge[rows.indexOf(wall)]) badge[rows.indexOf(wall)] = 'wall'; }
-    const NAMES = { mvp: tr('MVP'), medic: tr('Medic'), wall: tr('Wall') };
-    const bar = (cls, icon, v, max, extra, label) => { const m = el('div', 'sbar ' + cls), i = el('i'); i.style.width = Math.round((v / max) * 100) + '%'; m.appendChild(i);
-      if (extra) { const j = el('i', 'soft'); j.style.width = Math.round((extra / max) * 100) + '%'; m.appendChild(j); }
-      const c = add(el('div', 'scell'), add(el('div', 'srow'), UI.icon(icon, 0.5), el('b', '', UI.fmt(Math.round(v + (extra || 0))))), m); c.setAttribute('aria-label', label + ': ' + Math.round(v + (extra || 0))); return c; };
-    const box2 = add(el('div', 'bstats'), box('row between bshead', txt('label', tr('Battle stats')), txt('small dim', tr('Dealt · Healed & shielded · Taken'))));
-    rows.forEach((r, i) => {
-      const sub = [r.top ? tr('Top hit {n}', { n: UI.fmt(r.top) }) : null, r.crits ? (r.crits === 1 ? tr('1 crit') : tr('{n} crits', { n: r.crits })) : null, r.kos ? tr('{n} KO', { n: r.kos }) : null].filter(Boolean).join(' · ');
-      const who = add(el('div', 'bswho'), add(el('div', 'row'), el('b', 'bsname', ''), badge[i] ? el('span', 'bsbadge ' + badge[i], NAMES[badge[i]]) : null, r.alive ? null : el('span', 'bsout', tr('Out'))), sub ? txt('bssub', sub) : null);
-      who.querySelector('.bsname').textContent = r.name;
-      box2.appendChild(add(el('div', 'bsr' + (r.alive ? '' : ' down')), add(el('div', 'bsface'), UI.sp(r.sprite, 0.42, { anim: false })), add(el('div', 'grow col'), who, add(el('div', 'bsbars'),
-        bar('dealt', 'ic_sword', r.dealt, mx.dealt, 0, tr('Damage dealt')), bar('sup', 'st_regen', r.sup, mx.sup, 0, tr('Healing and Shields given')), bar('hurt', 'ic_bang', r.taken, mx.hurt, r.blocked, tr('Damage taken'))))));
-    });
-    return box2;
+    const rows = stats.map((s) => ({ sprite: s.sprite, name: s.name, alive: s.alive, v: [s.dealt, s.heal + s.shield, s.taken + s.blocked] })).sort((a, b) => b.v[0] - a.v[0]);
+    const max = [0, 1, 2].map((k) => Math.max(1, ...rows.map((r) => r.v[k]))), COLS = [['bn_quick', tr('Damage dealt'), 'dealt', 0.85], ['st_regen', tr('Healing and Shields'), 'heal', 1.45], ['st_shield', tr('Damage taken'), 'taken', 1.45]];
+    const blk = el('div', 'bstats'); blk.setAttribute('aria-label', tr('Battle stats'));
+    blk.appendChild(add(el('div', 'bsrow bshead'), el('span'), ...COLS.map(([icon, label, , sc]) => { const h = add(el('span', 'bsh'), UI.icon(icon, sc)); h.setAttribute('aria-label', label); h.title = label; return h; })));
+    for (const r of rows) {
+      const face = add(el('div', 'bsface'), UI.sp(r.sprite, 0.42, { anim: false })); face.setAttribute('aria-label', r.name);
+      blk.appendChild(add(el('div', 'bsrow' + (r.alive ? '' : ' down')), face, ...COLS.map(([, label, cls], k) => { const bar = el('div', 'sbar ' + cls), i = el('i'); i.style.width = Math.round((r.v[k] / max[k]) * 100) + '%'; bar.appendChild(i);
+        const c = add(el('div', 'scell'), el('b', '', UI.fmt(Math.round(r.v[k]))), bar); c.setAttribute('aria-label', label + ': ' + Math.round(r.v[k])); return c; })));
+    }
+    return blk;
   };
   // put the stats into the result sheet that is open, just above its buttons
   UI.addStats = (stats) => {
