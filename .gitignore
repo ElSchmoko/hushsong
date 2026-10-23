@@ -3,3 +3,4 @@ shots/
 dist/
 *.log
 build/
+test/out/

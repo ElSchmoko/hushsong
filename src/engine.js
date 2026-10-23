@@ -73,7 +73,7 @@
       if (spec.kit.phrase) ab.push({ kind: 'phrase', def: spec.kit.phrase, cd: 0 });
       if (spec.kit.finale) ab.push({ kind: 'finale', def: spec.kit.finale, cd: 2 });
       const u = { uid: this.units.length, side, slot, spec, name: spec.name, family: spec.family, base: spec.base, perks: spec.perks.slice(), ab, hp: 1, max: 1, shield: 0, gauge: 0, st: {}, ramp: {}, once: {}, alive: true, turns: 0, boss: !!spec.boss, ccGuard: 0, giant: spec.giant || null };
-      u.stat = { dealt: 0, heal: 0, shield: 0, taken: 0, blocked: 0, kos: 0, crits: 0, top: 0 };   // for the battle stats after the fight
+      u.stat = { dealt: 0, heal: 0, shield: 0, taken: 0, blocked: 0, kos: 0, crits: 0, top: 0, buffs: 0, selfBuffs: 0, debuffs: 0, tbGive: 0, tbTake: 0 };   // for the battle stats after the fight
       const sh = spec.perks.find((p) => p.shift); if (sh) { u.shift = sh.shift; u.enrageAt = sh.enrage; }
       this.units.push(u);
     }
@@ -228,7 +228,7 @@
       m *= (x && x.sure) || o.critSure ? 1.5 + this.mod(src, 'critDmg') : 1 + Math.min(1, 0.05 + this.mod(src, 'crit') + (o.crit || 0)) * (0.5 + this.mod(src, 'critDmg'));
       let b = 0; const ex = this.has(src, 'execute');
       if (x) { if (x.fs) b += this.has(src, 'firstStrike') || 0; if (o.perFallen) b += o.perFallen * this.units.filter((v) => v.side === src.side && !v.alive).length; if (o.perLow) b += o.perLow * this.units.filter((v) => v.side === src.side && v !== src && (!v.alive || v.hp / v.max < 0.5)).length; } if (ex && tgt.hp / tgt.max < ex.below) b += ex.bonus;
-      if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh; if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max);
+      if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh; if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max); if (o.lone && this.alive(tgt.side).length === 1) b += o.lone;
       if (o.vs) for (const k in o.vs) if (tgt.st[k]) b += o.vs[k]; if (o.ifSelf) for (const k in o.ifSelf) if (src.st[k]) b += o.ifSelf[k]; if (o.perBad) b += o.perBad * this.badCount(tgt);
       for (const p of src.perks) if (p.vs) for (const k in p.vs) if (tgt.st[k]) b += p.vs[k];
       const lt = this.low(tgt), cap = this.has(tgt, 'cap'), E = m * (1 + b) * Math.max(0.2, 1 + this.mod(tgt, 'taken') - (lt ? lt.taken || 0 : 0)) * (tgt.st.offkey ? 1.25 : 1) * this.dmgMul() * this.guardK(tgt, x && x.c, x ? x.aoe : o.aoe);
@@ -400,7 +400,7 @@
         else if (k === 'heal') { const o = fx[3] || {}, ts = this.targets(c, fx[1]); for (const t of ts) this.heal(c.src, t, o.pct ? t.max * o.pct : fx[2] * this.vol(c.src) * c.powMul); c.last = ts; }
         else if (k === 'st') { const o = fx[4] || {}, ts = this.targets(c, fx[1]); for (const t of ts) this.applySt(c.src, t, fx[2], fx[3], o); if (fx[1] !== 'same') c.last = ts; }
         else if (k === 'shield') { const o = fx[3] || {}; for (const t of this.targets(c, fx[1])) this.addShield(t, o.pct ? c.src.max * o.pct : fx[2] * this.vol(c.src) * c.powMul, c.src); }
-        else if (k === 'gauge') { for (const t of this.targets(c, fx[1])) this.pushGauge(t, fx[2]); }
+        else if (k === 'gauge') { for (const t of this.targets(c, fx[1])) this.pushGauge(t, fx[2], false, c.src); }
         else if (k === 'cleanse') { for (const t of this.targets(c, fx[1])) this.strip(t, 0); }
         else if (k === 'dispel') { for (const t of this.targets(c, fx[1])) { this.strip(t, 1); if (t.shield) { t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); } } }
         else if (k === 'revive') { const d = this.units.find((v) => v.side === c.src.side && !v.alive && !v.revived); if (d) this.revive(d, fx[1]); }
@@ -447,6 +447,7 @@
       const ex = this.has(src, 'execute'); if (ex && tgt.hp / tgt.max < ex.below) b += ex.bonus;
       const lt = this.low(tgt);
       if (o.fresh && tgt.hp / tgt.max > 0.8) b += o.fresh;
+      if (o.lone && this.alive(tgt.side).length === 1) b += o.lone;
       if (o.exec) b += o.exec * (1 - tgt.hp / tgt.max);
       if (o.perFallen) b += o.perFallen * this.units.filter((v) => v.side === src.side && !v.alive).length;
       if (o.perLow) b += o.perLow * this.units.filter((v) => v.side === src.side && v !== src && (!v.alive || v.hp / v.max < 0.5)).length;
@@ -464,8 +465,8 @@
         if (o.st) for (const s of o.st) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
         if (!c.reactive) for (const p of src.perks) if (p.hitSt) for (const s of p.hitSt) this.applySt(src, tgt, s[0], s[1], { ch: s[2], val: s[3] });
         if (o.randSt && (o.randCh == null || this.rnd() < o.randCh)) { src.cyc = (src.cyc || 0) + 1; this.applySt(src, tgt, H.CYCLE[(src.cyc - 1) % 4], o.randSt, {}); }
-        if (o.push) this.pushGauge(tgt, -o.push);
-        const dp = this.has(src, 'debuffPush'); if (dp && Object.keys(tgt.st).some((s) => !H.STATUS[s].buff)) this.pushGauge(tgt, -dp, true);
+        if (o.push) this.pushGauge(tgt, -o.push, false, src);
+        const dp = this.has(src, 'debuffPush'); if (dp && Object.keys(tgt.st).some((s) => !H.STATUS[s].buff)) this.pushGauge(tgt, -dp, true, src);
       }
       if (src.alive) {
         if (o.drain && dealt > 0) this.heal(src, src, dealt * o.drain, true);
@@ -554,7 +555,7 @@
       if (foe && t.shield > 0) { t.shield = 0; this.emit({ t: 'shield', u: t.uid, shield: 0 }); any = true; }
       if (any) this.emit({ t: 'note', u: t.uid, txt: H.T('Flipped!') });
     }
-    pushGauge(t, frac, quiet) { if (!t.alive) return; t.gauge = Math.max(0, Math.min(GMAX, t.gauge + frac * GMAX)); if (!quiet) this.emit({ t: 'gauge', u: t.uid, d: frac }); }
+    pushGauge(t, frac, quiet, src) { if (!t.alive) return; if (src && src.stat) { if (frac > 0 && t !== src && t.side === src.side) src.stat.tbGive += frac; else if (frac < 0 && t.side !== src.side) src.stat.tbTake -= frac; } t.gauge = Math.max(0, Math.min(GMAX, t.gauge + frac * GMAX)); if (!quiet) this.emit({ t: 'gauge', u: t.uid, d: frac }); }
     strip(t, buffs) { for (const k of Object.keys(t.st)) if (!!H.STATUS[k].buff === !!buffs && t.st[k].dur < 90) { delete t.st[k]; this.emit({ t: 'stoff', u: t.uid, s: k }); } }
     applySt(src, tgt, s, dur, o) {
       o = o || {}; if (!tgt.alive) return false; if (o.ch != null && this.rnd() >= o.ch) return false;
@@ -570,6 +571,7 @@
       else if (s === 'regen') { val = o.rawVal != null ? o.rawVal : Math.max(1, Math.round((o.val || 0.4) * (src ? this.vol(src) : 10))); if (cur) val = Math.max(cur.val, val); }
       else if (s === 'dodge') val = Math.max(o.val || 1, cur ? cur.val : 0);
       tgt.st[s] = { dur: Math.max(dur, cur ? cur.dur : 0), val, fresh: tgt === this.acting, by: src ? src.uid : cur ? cur.by : null };
+      if (src && src.stat && dur < 90) { if (def.buff && tgt.side === src.side) { if (tgt === src) src.stat.selfBuffs += dur; else src.stat.buffs += dur; } else if (!def.buff && tgt.side !== src.side) src.stat.debuffs += dur; }
       this.emit({ t: 'st', u: tgt.uid, s, dur: tgt.st[s].dur }); return true;
     }
   }
