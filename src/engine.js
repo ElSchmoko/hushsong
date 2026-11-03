@@ -44,18 +44,18 @@
         u.gauge = Math.min(GMAX - 1, g * GMAX);
         if (u.shift) u.family = H.FAMILY_ORDER[Math.floor(this.rnd() * 5)];
       }
-      this.acting = '__start__'; this.ensemble = null; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble); for (const u of this.units) this.fire(u, 'start'); this.setupRules(); this.acting = null;
+      this.acting = '__start__'; this.ensemble = null; this.foeEnsemble = null; this.ensC = [0, 0]; this.ensH = [0, 0]; this.ensR = [0, 0]; if (o.ensemble && H.ENS[o.ensemble]) this.openWith(o.ensemble, 0); if (o.foeEnsemble && H.ENS[o.foeEnsemble]) this.openWith(o.foeEnsemble, 1); for (const u of this.units) this.fire(u, 'start'); this.setupRules(); this.acting = null;
       this.startEvents = this.ev; this.ev = [];
     }
-    // The team's ensemble plays its opening: one boon, set before anyone moves.
-    openWith(id) {
-      const K = H.ENS_K, mine = this.alive(0), foes = this.alive(1), avgVol = mine.reduce((a, u) => a + this.vol(u), 0) / Math.max(1, mine.length);
-      this.ensemble = id; this.emit({ t: 'ensemble', id });
+    // A band's ensemble plays its opening: one boon, set before anyone moves. side 1 is a rival band (Battle of the Bands).
+    openWith(id, side) {
+      side = side || 0; const K = H.ENS_K, mine = this.alive(side), foes = this.alive(1 - side), avgVol = mine.reduce((a, u) => a + this.vol(u), 0) / Math.max(1, mine.length);
+      if (side) this.foeEnsemble = id; else this.ensemble = id; this.emit({ t: 'ensemble', id, side });
       if (id === 'drumline') { mine.slice().sort((a, b) => this.tempo(b) - this.tempo(a)).forEach((u, i) => (u.gauge = GMAX - 1 - i)); for (const e of foes) { e.gauge = Math.min(e.gauge, GMAX * 0.12); this.applySt(null, e, 'sdown', K.slow); } }
-      else if (id === 'stringtrio') this.ensCrits = K.crits;
+      else if (id === 'stringtrio') this.ensC[side] = K.crits;
       else if (id === 'windtrio') for (const u of mine) u.tail = 1 + K.tail;
       else if (id === 'brassband') for (const u of mine) u.perks.push({ ramp: { on: 'turn', per: K.cres, max: K.cresMax } });
-      else if (id === 'choir') this.ensHarmony = K.harmony;
+      else if (id === 'choir') this.ensH[side] = K.harmony;
       else if (id === 'folk') for (const u of mine) this.applySt(null, u, 'sup', K.speed);
       else if (id === 'ragtime') for (const e of foes) this.applySt(null, e, 'pdown', K.weak);
       else if (id === 'rock') for (const u of mine) u.rockEncore = u.ab.some((a) => a.kind === 'finale') ? 'finale' : 'phrase';
@@ -65,7 +65,7 @@
       else if (id === 'chamber') for (const u of mine) u.ward = K.ward;
       else if (id === 'serenade') for (const u of mine) this.applySt(null, u, 'regen', K.regen, { rawVal: Math.max(1, Math.round(avgVol * K.regenVal)) });
       else if (id === 'opera') for (const e of foes.slice().sort((a, b) => b.hp - a.hp).slice(0, K.stunN)) this.applySt(null, e, 'stun', K.stun);
-      else if (id === 'hymn') this.ensRevive = K.hymn;
+      else if (id === 'hymn') this.ensR[side] = K.hymn;
     }
     _add(spec, side, slot) {
       const ab = [], nb = this.rules.noBasics;
@@ -144,6 +144,11 @@
       if (this.over || this.waiting != null) return { events: [], wait: this.waiting };
       this.ev = [];
       if (this.rules.lastCall && this.turn >= this.rules.lastCall) { this.over = 'lose'; this.emit({ t: 'note', u: this.alive(0)[0] ? this.alive(0)[0].uid : 0, txt: H.T('Lights out!') }); this.emit({ t: 'end', win: false, why: 'time' }); return { events: this.ev, wait: null }; }
+      // Battle of the Bands: after the last turn, the band with the larger share of its HP left wins (a tie goes to the defender)
+      if (this.rules.finish && this.turn >= this.rules.finish) {
+        const share = (side) => { const us = this.units.filter((x) => x.side === side); return us.reduce((a, x) => a + (x.alive ? Math.max(0, x.hp) : 0), 0) / Math.max(1, us.reduce((a, x) => a + x.max, 0)); };
+        const win = share(0) > share(1); this.over = win ? 'win' : 'lose'; this.emit({ t: 'end', win, why: 'time' }); return { events: this.ev, wait: null };
+      }
       let actor = null, bt = Infinity;
       for (const u of this.units) if (u.alive) { const t = (GMAX - u.gauge) / this.tempo(u); if (t < bt - 1e-9) { bt = t; actor = u; } }
       for (const u of this.units) if (u.alive) u.gauge = Math.min(GMAX, u.gauge + this.tempo(u) * bt);
@@ -333,7 +338,7 @@
       mul = mul || 1;
       const out = {}, put = (t, k, v) => { if (v > 0) (out[t.uid] = out[t.uid] || { dmg: 0, heal: 0 })[k] += v; };
       const foes = this.alive(1 - u.side), pals = this.alive(u.side), song = u.st.lifesong ? 0.3 : 0;
-      let first = !u.once.first, sure = u.side === 0 ? this.ensCrits || 0 : 0; const kind = (u.ab.find((a) => a.def === def) || {}).kind;
+      let first = !u.once.first, sure = this.ensC[u.side] || 0; const kind = (u.ab.find((a) => a.def === def) || {}).kind;
       // effects the move puts on before its later hits (Off-Key) are lent for the sum, then taken back
       const lent = [], lend = (t, s) => { if (!t.st[s]) { t.st[s] = { dur: 1 }; lent.push([t, s]); } };
       const walk = (list) => {
@@ -441,7 +446,7 @@
       let m = pow * this.vol(src); const adv = H.advantage(src.family, tgt.family);
       m *= adv > 0 ? 1.3 : adv < 0 ? 0.8 : 1;
       m *= 100 / (100 + this.poise(tgt) * (1 - Math.min(1, this.mod(src, 'pierce'))));
-      let crit = !!o.critSure || this.rnd() < 0.05 + this.mod(src, 'crit') + (o.crit || 0); if (src.side === 0 && this.ensCrits > 0) { this.ensCrits--; crit = true; } if (crit) m *= 1.5 + this.mod(src, 'critDmg');
+      let crit = !!o.critSure || this.rnd() < 0.05 + this.mod(src, 'crit') + (o.crit || 0); if (this.ensC[src.side] > 0) { this.ensC[src.side]--; crit = true; } if (crit) m *= 1.5 + this.mod(src, 'critDmg');
       let b = 0;
       const fs = this.has(src, 'firstStrike'); if (fs && !src.once.first) { src.once.first = true; b += fs; }
       const ex = this.has(src, 'execute'); if (ex && tgt.hp / tgt.max < ex.below) b += ex.bonus;
@@ -501,7 +506,7 @@
       if (stood) this.fire(tgt, 'stand');
       if (tgt.hp <= 0) {
         tgt.alive = false; tgt.st = {}; tgt.gauge = 0; tgt.shield = 0; this.emit({ t: 'fall', u: tgt.uid });
-        if (tgt.side === 0 && this.ensRevive) { const p = this.ensRevive; this.ensRevive = 0; this.revive(tgt, p); return; }
+        if (this.ensR[tgt.side]) { const p = this.ensR[tgt.side]; this.ensR[tgt.side] = 0; this.revive(tgt, p); return; }
         if (this.potato && this.potato.uid === tgt.uid) { const same = this.alive(tgt.side), pool = same.length ? same : this.alive(1 - tgt.side); if (pool.length) { this.potato.uid = pool[Math.floor(this.rnd() * pool.length)].uid; this.emit({ t: 'mark', u: this.potato.uid, m: 'potato' }); } }
         if (this.mic && this.mic[tgt.side] === tgt.uid) this.passMic(tgt.side);
         if (this.sideDead(0) || this.sideDead(1)) { this.checkOver(); return; }
@@ -518,7 +523,7 @@
       if (!tgt.alive) return; if (src) amt *= 1 + this.mod(src, 'heal'); amt = Math.round(amt); if (amt <= 0) return;
       const before = tgt.hp; tgt.hp = Math.min(tgt.max, tgt.hp + amt); const got = tgt.hp - before, over = amt - got;
       if (got > 0) { this.emit({ t: 'heal', tgt: tgt.uid, amt: got, hp: tgt.hp }); const who = src || by; if (who) who.stat.heal += got; }
-      if (got > 0 && !echo && tgt.side === 0 && this.ensHarmony) for (const p of this.alive(0)) if (p !== tgt) this.heal(null, p, got * this.ensHarmony, true, true);
+      if (got > 0 && !echo && this.ensH[tgt.side]) for (const p of this.alive(tgt.side)) if (p !== tgt) this.heal(null, p, got * this.ensH[tgt.side], true, true);
       if (src && over > 0 && this.has(src, 'overheal')) this.addShield(tgt, over, src);
       if (src && src !== tgt && !quiet) { const hg = this.has(src, 'healGauge'); if (hg) tgt.gauge = Math.min(GMAX, tgt.gauge + hg * GMAX); }
     }

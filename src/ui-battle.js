@@ -30,17 +30,19 @@
     // which kind of battle: an Encore wave, a Daily Gig, a Solo gig, a rehearsal, or a floor
     const srun = S.soloRun, solo = !!pr.solo && !!srun && !!srun.pending && srun.pending.type === 'battle', daily = !!pr.daily && H.dailyOpen(S), enc = !!pr.enc && !!S.encoreRun;
     const trun = S.tourRun, tour = !!pr.tour && !!trun && !!trun.pending && trun.pending.type === 'battle';
+    const pvp = !!pr.pvp && !!S.pvp && !!S.pvp.cur && H.pvpLocked(S);
+    if (pr.pvp && !pvp) return UI.go('bands');
     if (pr.solo && !solo) return UI.go(srun ? 'solomap' : 'solo');
     if (pr.tour && !tour) return UI.go(trun ? 'tourmap' : 'tour');
-    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily ? 0 : pr.n || S.stage, reh = !!pr.reh;
-    const st = enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
+    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily || pvp ? 0 : pr.n || S.stage, reh = !!pr.reh;
+    const st = pvp ? { region: 'hall', boss: false, level: H.pvpLevel(S) } : enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
     if (pr.enc && !enc) return UI.go('encore');
-    if (!solo && !tour && !H.teamPets(S).some(Boolean)) return UI.go('home');
+    if (!solo && !tour && !pvp && !H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
+    const battle = pvp ? H.startPvp(S) : enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
     if (daily) UI.save();
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
-    UI.music(st.boss ? 'boss' : 'battle', st.region, !!battle.ensemble && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
+    UI.music(st.boss ? 'boss' : 'battle', st.region, !!(battle.ensemble || battle.foeEnsemble) && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
 
     /* ----- layout: your pets down the left, enemies down the right, each with its own bars ----- */
     const k = A.k, FH = Math.max(190, Math.min(300, UI.Hh - 118)), HB = 15;
@@ -66,7 +68,7 @@
     };
     const V = battle.units.map((u) => Object.assign(place(u), { u, sz: sizeOf(u), ph: Math.random() * 6, ox: 0, oy: 0, hp: u.hp, lag: u.hp, max: u.max, shield: u.shield, gx: u.gauge, st: {}, alive: true, flash: 0, shake: 0, alpha: 1, family: u.family }));
     const floats = [], parts = [], tweens = [], shots = [], hits = []; let preview = null, previewKey = '';
-    let active = -1, speed = window.__hsSpeed || (S.settings.speed > 2 ? 2 : S.settings.speed || 1), auto = !!S.settings.auto, dead = false, paused = false, clock = 0, lastT = performance.now(), target = -1, waiting = null, sel = 0, shown = null, mine = false, note = '';
+    let active = -1, speed = window.__hsSpeed || (S.settings.speed > 2 ? 2 : S.settings.speed || 1), auto = pvp || !!S.settings.auto, dead = false, paused = false, clock = 0, lastT = performance.now(), target = -1, waiting = null, sel = 0, shown = null, mine = false, note = '';
     const tween = (o, p, to, dur) => { for (let i = tweens.length - 1; i >= 0; i--) if (tweens[i].o === o && tweens[i].p === p) tweens.splice(i, 1); tweens.push({ o, p, from: o[p], to, t: 0, dur: Math.max(1, dur / speed) }); };
     const wait = (ms) => new Promise((res) => { const t0 = performance.now(); const tick = () => { if (dead) return; if (paused) { setTimeout(tick, 60); return; } if (performance.now() - t0 >= ms / speed) res(); else setTimeout(tick, 16); }; tick(); });
     const float = (v, text, col, big) => { const now = performance.now(), k = v.u.uid, s0 = float.last[k]; let dy = 0; if (s0 && now - s0.t < 520 / speed) dy = s0.dy + (big ? 9 : 7); float.last[k] = { t: now, dy: dy > 22 ? 0 : dy }; floats.push({ x: v.x + v.sz / 2, y: v.y + v.bb.t + 10 - float.last[k].dy, text, col, big, t: 0 }); };
@@ -75,7 +77,8 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
+    const leave = () => (pvp ? UI.confirm(tr('Leave the match?'), tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); UI.pvpResult(out); })
+      : enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
       : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
       : tour ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes and loot stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishTour(S, false, null, rnd); UI.save(); UI.go('tourend', { out }); })
       : daily ? UI.confirm(tr('Leave the gig?'), tr('Try again any time.'), tr('Leave'), () => UI.go('daily'))
@@ -84,7 +87,7 @@
     const menu = () => { paused = true; UI.settings(key(tr('Leave battle'), leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', pvp ? tr('Battle of the Bands') : enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
     // the house rule in play, with what it is doing right now; a tap says it again
     let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
@@ -96,7 +99,7 @@
     // Auto and speed are switches: latched down and gold while on
     const autoB = key(tr('Auto'), () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
     const spd = key(speed + 'x', () => { speed = speed >= 2 ? 1 : 2; S.settings.speed = speed; spd.textContent = speed + 'x'; spd.setAttribute('aria-pressed', String(speed > 1)); UI.save(); }, 'tog sm');
-    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); spd.setAttribute('aria-label', tr('Speed'));
+    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); if (pvp) autoB.hidden = true; spd.setAttribute('aria-label', tr('Speed'));
     const useB = key(tr('Use'), () => fire(), 'go big');
     add(panel, box('phead', title, autoB, spd), meta, desc, box('prow', icons, useB), hint);
     add(wrap, fwrap, panel); root.appendChild(wrap);
@@ -308,6 +311,15 @@
         add(el('div', 'bossban'), el('div', 'bosskick', tr('Daily Gig · {venue}', { venue: st.venue })), el('div', 'bossnm', twist.n), el('div', 'twrule', twist.d)), el('div', 'bossskip', tr('Tap to start')));
       twistOv.addEventListener('click', () => { skipOpening = true; }); wrap.appendChild(twistOv);
     }
+    // Battle of the Bands: the two bands face off under the rival's name
+    if (pvp && !window.__hsSpeed) {
+      const R = S.pvp.cur.rival, row = (list, flip) => { const g = el('div', 'vsband' + (flip ? ' r' : '')); list.forEach((u, i) => { const c = UI.sp(u.spec.sprite, 1.05, { anim: false, flip }); c.style.setProperty('--d', i * 0.08 + 's'); g.appendChild(c); }); return g; };
+      twistOv = el('div', 'bossin twistin full bands' + (speed >= 2 ? ' fast' : ''));
+      add(twistOv, UI.bgEl('hall', W, UI.Hh, 0.5, 'sing'), el('div', 'bosstint night'), el('div', 'bossray'), row(allies, false), row(foes, true), el('div', 'vsbadge', tr('VS')),
+        add(el('div', 'bossban'), el('div', 'bosskick', tr('Battle of the Bands')), el('div', 'bossnm', ''), el('div', 'twrule', tr('Both bands play at level {n}', { n: st.level }))), el('div', 'bossskip', tr('Tap to start')));
+      twistOv.querySelector('.bossnm').textContent = R.name;   // another player's name: text, never markup
+      twistOv.addEventListener('click', () => { skipOpening = true; }); wrap.appendChild(twistOv);
+    }
     async function twistIn() {
       if (!twistOv) return; opening = true; skipOpening = false; const t0 = performance.now(); let stamped = false;
       while (!dead && !skipOpening && performance.now() - t0 < 4200 / (speed >= 2 ? 1.5 : 1)) { if (!stamped && performance.now() - t0 >= 450) { stamped = true; Au.sfx('stamp'); twistOv.classList.add('quake'); } await new Promise((res) => setTimeout(res, 30)); }
@@ -327,11 +339,11 @@
     async function run() {
       if (st.boss) await bossIn(); else await twistIn();
       if (dead) return; idle(twist ? twist.n : tr('Get ready')); await wait(450);
-      // the team's ensemble plays its opening; a tap skips it
-      const ens = battle.ensemble && H.ENS[battle.ensemble];
-      if (ens && !window.__hsSpeed) {
+      // each band's ensemble plays its opening (a rival band's too, in Battle of the Bands); a tap skips it
+      for (const [id, whose, cls] of [[battle.ensemble, H.T.k('Your ensemble'), 'ens'], [battle.foeEnsemble, H.T.k('Rival ensemble'), 'ens foe']]) {
+        const ens = id && H.ENS[id]; if (!ens || window.__hsSpeed) continue;
         const secs = Au.ensemble(ens.id, speed >= 2 ? 1.6 : 1, true); opening = true; skipOpening = false;
-        callout.textContent = ens.n; callout.className = 'callout on ens'; shown = null; note = ens.d(); title.textContent = ens.n; meta.textContent = tr('Your ensemble'); desc.textContent = ens.d(); hint.textContent = tr('Tap to skip');
+        callout.textContent = ens.n; callout.className = 'callout on ' + cls; shown = null; note = ens.d(); title.textContent = ens.n; meta.textContent = tr(whose); desc.textContent = ens.d(); hint.textContent = tr('Tap to skip');
         const t0 = performance.now(); while (!dead && !skipOpening && performance.now() - t0 < secs * 1000) await new Promise((res) => setTimeout(res, 60));
         opening = false; callout.classList.remove('on'); if (skipOpening) Au.stopEnsemble(); if (dead) return; idle(ens.n);
       }
@@ -346,18 +358,19 @@
           if (out) await play(out.events);
         }
       }
-      if (dead) return; idle(battle.over === 'win' ? tr('You win!') : tr('Your band is out')); await wait(200); finish();
+      if (dead) return; idle(battle.over === 'win' ? tr('You win!') : pvp ? tr('Your band lost') : tr('Your band is out')); await wait(200); finish();
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
-      const out = enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
+      const out = pvp ? H.finishPvp(S, win, battle) : enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
       out.stats = H.battleStats(battle);
       UI.save(); UI.result(out); UI.addStats(out.stats);
       // back on the result: a story, gift or boon still to come is shown; otherwise back to where the battle was started
       UI.cur.modalBack = () => { const m = document.getElementById('modal'), next = m.querySelector('.key.go') || m.querySelector('.key.gold');
         if ((out.story || out.giftShell || out.gift || solo || tour) && next) return next.click();
-        Au.sfx('back'); UI.go(enc ? 'encore' : daily ? 'daily' : reh ? 'rehearsal' : 'adventure', {}); };
+        Au.sfx('back'); UI.go(pvp ? 'bands' : enc ? 'encore' : daily ? 'daily' : reh ? 'rehearsal' : 'adventure', {}); };
+      if (pvp && H.Net) H.Net.sendPvp(S, UI.save);   // the result goes up now, or at the next chance when offline
       if (win && H.Net && (enc || (!solo && !tour && !daily && !reh && out.first))) H.Net.push(S, UI.save);   // a new best for the Ranks boards
     }
     Au.music.din(1); requestAnimationFrame(loop); run();
@@ -407,6 +420,7 @@
     UI.save(); UI.modal(...kids);
   };
   UI.result = (out) => {
+    if (out.pvp) return UI.pvpResult(out);
     if (out.encore) return UI.encoreResult(out);
     if (out.daily) return UI.dailyResult(out);
     if (out.solo) return UI.soloResult(out);

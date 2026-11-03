@@ -108,3 +108,59 @@
 1p9hkma	Neustart am Montag
 0n859tb	Wird eingestimmt…
 1kuxdf7	Noch niemand hier. Sei der Erste!
+02aafln	Bandcontest
+1eq1jd9	Gewinne 10 Bandcontests.
+050sjah	Riesentöter
+1vrj6t0	Besiege eine Band mit mindestens 100 Applaus mehr als du.
+0dip2y1	Publikumsliebling
+17l6uc2	Erreiche 1.200 Applaus.
+0zzpczz	Bands
+11m5tpw	Ab Level {unlock}: Leg eine Band fest und tritt online gegen die Bands anderer Spieler an. Die Kämpfe laufen von allein, beide Bands auf dem niedrigeren Level. {perDay} Duelle am Tag: Ein Sieg bringt {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel. Siege bringen dir Applaus in der Bands-Rangliste.
+0v2qwga	Dein Duell wartet
+0i4f1he	{"one": "Heute noch {n} Duell", "other": "Heute noch {n} Duelle"}
+1r2dpfn	{"one": "Heute noch {n} Bandduell", "other": "Heute noch {n} Bandduelle"}
+1g87aga	Online
+16dxzin	Zurück zum Bandcontest
+1w7kcrj	Duell verlassen?
+0vgq61w	Das zählt als Niederlage.
+09iuo7v	Beide Bands spielen auf Level {n}
+0v0c7fa	Ensemble des Gegners
+0g59p11	Deine Band hat verloren
+1f9rlp2	Duell {n}
+0ky5syq	Unter diesem Namen tritt deine Band gegen andere an, und er steht in den Ranglisten.
+0zzrqz2	Dein Gegner
+16cb4gy	Applaus
+1eskchc	Duell {n} von {perDay}
+0gu3fn9	Duell starten
+1p2k4c2	Die Bühne ist nicht erreichbar. Prüf deine Verbindung und versuch es noch einmal.
+0wrtqiy	Noch keine Bands auf der Bühne. Versuch es später noch einmal.
+1tt8as5	Das war's für heute.
+1hqjw8s	Deine Band gegen die eines anderen Spielers
+03t40ly	{perDay} Duelle am Tag. Ein Sieg bringt {win} Noten, eine Niederlage {loss}. Das fünfte Duell bringt dazu eine Muschel.
+1u01rav	Deine Bühnenband
+1lmu00y	Noch keine Band festgelegt
+1mdond4	Aktuelle Band festlegen
+0sc9ene	Diese Band festlegen
+1cnzj6r	Andere Spieler treten gegen sie an, und sie kämpft für dich.
+0phudqh	Festlegen
+1nmbd7d	Stell drei Tiere in deine Band, um sie festzulegen.
+1jvdpcs	Die Kämpfe laufen von allein. Beide Bands spielen auf dem niedrigeren der beiden Level.
+0tny8o1	Gegner suchen
+1aspn2v	Neue Duelle in {msToTomorrow}
+0z7kgqr	Bands-Rangliste
+1o3ulpn	Gegner
+0cqdktm	Gewonnen!
+0ueym13	Deine Band gewinnt!
+0x4igaj	Die Zeit war um, und deiner Band blieben mehr LP.
+1mohhri	Die Zeit war um, und dem Gegner blieben mehr LP.
+1tnncwa	<b>Alle {n} Duelle von heute gespielt:</b> eine Muschel für dich!
+05nxjry	Zurück zur Bühne
+0fikhco	Noten für einen Sieg
+1qf36lm	Sieg
+01ay9yp	Noten für eine Niederlage
+0zfuo37	Niederlage
+04zfntd	5 am Tag
+18a6x1q	Neu bei den Auftritten
+1f1rbzf	Leg deine Band fest und tritt gegen die Bands anderer Spieler an. Klettere mit Applaus in der neuen Bands-Rangliste.
+0yd4okf	Ab auf die Bühne
+14kttt9	Allzeit

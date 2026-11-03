@@ -108,3 +108,59 @@
 1p9hkma	Si azzera lunedì
 0n859tb	Ci accordiamo…
 1kuxdf7	Ancora nessuno. Sii il primo!
+02aafln	Battaglia delle band
+1eq1jd9	Vinci 10 battaglie delle band.
+050sjah	Ammazzagiganti
+1vrj6t0	Batti una band con almeno 100 Applausi più di te.
+0dip2y1	Beniamino del pubblico
+17l6uc2	Raggiungi 1.200 Applausi.
+0zzpczz	Band
+11m5tpw	Dal livello {unlock}: blocca una band e sfida le band di altri giocatori, online. Gli scontri si giocano da soli, entrambe le band al livello più basso. {perDay} sfide al giorno: una vittoria dà {win} note, una sconfitta {loss}, e la quinta sfida anche una conchiglia. Le vittorie alzano i tuoi Applausi nella classifica delle Band.
+0v2qwga	La tua sfida ti aspetta
+0i4f1he	{"one": "Ancora {n} sfida oggi", "other": "Ancora {n} sfide oggi"}
+1r2dpfn	{"one": "Ancora {n} battaglia tra band oggi", "other": "Ancora {n} battaglie tra band oggi"}
+1g87aga	Online
+16dxzin	Torna alla Battaglia delle band
+1w7kcrj	Lasciare la sfida?
+0vgq61w	Conta come una sconfitta.
+09iuo7v	Entrambe le band giocano al livello {n}
+0v0c7fa	Ensemble rivale
+0g59p11	La tua band ha perso
+1f9rlp2	Sfida {n}
+0ky5syq	La tua band sfida altri giocatori con questo nome, e appare nelle classifiche.
+0zzrqz2	Il tuo rivale
+16cb4gy	Applausi
+1eskchc	Sfida {n} di {perDay}
+0gu3fn9	Inizia la sfida
+1p2k4c2	Impossibile raggiungere il palco. Controlla la connessione e riprova.
+0wrtqiy	Ancora nessuna band sul palco. Riprova più tardi.
+1tt8as5	Per oggi è tutto.
+1hqjw8s	La tua band contro quella di un altro giocatore
+03t40ly	{perDay} sfide al giorno. Una vittoria dà {win} note, una sconfitta {loss}. La quinta sfida dà anche una conchiglia.
+1u01rav	La tua band sul palco
+1lmu00y	Ancora nessuna band bloccata
+1mdond4	Blocca la tua band attuale
+0sc9ene	Blocca questa band
+1cnzj6r	Altri giocatori la sfidano, e lei combatte per te.
+0phudqh	Blocca
+1nmbd7d	Metti tre cuccioli nella tua band per bloccarla.
+1jvdpcs	Gli scontri si giocano da soli. Entrambe le band giocano al più basso dei due livelli.
+0tny8o1	Trova un rivale
+1aspn2v	Nuove sfide tra {msToTomorrow}
+0z7kgqr	Classifica delle Band
+1o3ulpn	Rivale
+0cqdktm	Vinto!
+0ueym13	La tua band vince!
+0x4igaj	Il tempo è finito, e alla tua band restavano più PS.
+1mohhri	Il tempo è finito, e al rivale restavano più PS.
+1tnncwa	<b>Tutte le {n} sfide di oggi giocate:</b> una conchiglia per te!
+05nxjry	Torna sul palco
+0fikhco	Note per una vittoria
+1qf36lm	vittoria
+01ay9yp	Note per una sconfitta
+0zfuo37	sconfitta
+04zfntd	5 al giorno
+18a6x1q	Novità nei Concerti
+1f1rbzf	Blocca la tua band e sfida le band di altri giocatori. Scala la nuova classifica delle Band con gli Applausi.
+0yd4okf	Sali sul palco
+14kttt9	Di sempre

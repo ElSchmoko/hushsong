@@ -1,11 +1,12 @@
 /* Hushsong — online leaderboards, kept by Supabase (supabase/setup.sql). No DOM.
    Nothing leaves the device until the player picks a name on the Ranks screen. After that, each new best
    (Adventure floors cleared, Encore waves) is sent with the name and the band's forms, and nothing else.
+   Battle of the Bands also sends the locked band's copy (forms, stars, equipment) and the level with each match.
    Each save holds its own id and a secret that proves it, so the save code carries a player's place to another device. */
 (function (H) {
   'use strict';
   const BASE = 'https://ldiqtoqrzfcjdvrrvazg.supabase.co/rest/v1/rpc/', KEY = 'sb_publishable_jQL0W7aW87RfSSaPas2EQQ_aLo2qCcg';
-  const Net = (H.Net = { NAME_MAX: 16, BOARDS: ['floors', 'encore', 'encore_week'] });
+  const Net = (H.Net = { NAME_MAX: 16, BOARDS: ['floors', 'encore', 'encore_week', 'bands'] });
 
   const rand = (n) => { const a = new Uint8Array(n); (globalThis.crypto || {}).getRandomValues ? crypto.getRandomValues(a) : a.forEach((_, i) => (a[i] = Math.floor(Math.random() * 256))); return Array.from(a, (x) => x.toString(16).padStart(2, '0')).join(''); };
   const uuid = () => { const h = rand(16).split(''); h[12] = '4'; h[16] = '89ab'[parseInt(h[16], 16) & 3]; const s = h.join(''); return [s.slice(0, 8), s.slice(8, 12), s.slice(12, 16), s.slice(16, 20), s.slice(20)].join('-'); };
@@ -47,7 +48,33 @@
     })();
     return flight;
   };
-  Net.flush = (S, onSaved) => (Net.named(S) && S.net.dirty ? Net.push(S, onSaved) : Promise.resolve(true));
+  Net.flush = (S, onSaved) => Promise.all([Net.named(S) && S.net.dirty ? Net.push(S, onSaved) : Promise.resolve(true), Net.sendPvp(S, onSaved)]).then((r) => r[0]);
+
+  /* ----- Battle of the Bands (src/pvp.js) ----- */
+  // the server's Applause wins over the phone's own sum, unless a result is still waiting to go up
+  const takeApplause = (S, a) => { if (typeof a === 'number' && !S.pvp.unsent) { S.pvp.applause = a; S.stats.applause = Math.max(S.stats.applause || 0, a); } };
+  // Send the last match's result. A result made offline waits in the save and goes at the next chance, like a new best.
+  let pvpFlight = null;
+  Net.sendPvp = (S, onSaved) => {
+    if (!Net.named(S) || !S.pvp || !S.pvp.unsent) return Promise.resolve(true);
+    if (pvpFlight) return pvpFlight;
+    const u = S.pvp.unsent;
+    pvpFlight = call('hs_pvp_result', { p_id: S.net.id, p_secret: S.net.secret, p_token: u.token, p_win: !!u.win })
+      .then((r) => { if (S.pvp.unsent === u) S.pvp.unsent = null; takeApplause(S, r && r.applause); Net.cache = {}; if (onSaved) onSaved(); return true; })
+      .catch((e) => { Net.lastError = e; return false; })
+      .finally(() => { pvpFlight = null; });
+    return pvpFlight;
+  };
+  // Start a match: the band copy and level go up, a rival comes back. Resolves to { rival, token } or to a reason: 'offline', 'none', 'limit'.
+  Net.match = async (S, onSaved) => {
+    await Net.sendPvp(S, onSaved);
+    try {
+      const r = await call('hs_pvp_match', { p_id: S.net.id, p_secret: S.net.secret, p_band: H.bandCopy(S), p_level: S.level, p_last: S.pvp.unsent ? S.pvp.unsent.token : null, p_last_win: S.pvp.unsent ? !!S.pvp.unsent.win : null });
+      if (S.pvp.unsent) S.pvp.unsent = null; takeApplause(S, r && r.applause);
+      if (!r || !r.rival || !r.token) return 'none';
+      return r;
+    } catch (e) { Net.lastError = e; return e.code === 'P0001' && /limit/.test(e.message || '') ? 'limit' : 'offline'; }
+  };
 
   // Pick or change the name. Resolves to null when it went through, or to a reason: 'name', 'taken', 'offline'.
   Net.setName = async (S, name, onSaved) => {
