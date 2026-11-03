@@ -1073,6 +1073,8 @@
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
 0l8hqi2	Got it	ui-core ui-modes	
 16us7mj	Language	ui-core	
+0bgbw9r	Build {n}	ui-core	
+1vys80l	Test build	ui-core	
 0zmnv1z	Sound: on	ui-core	
 1j3s0cb	Sound: off	ui-core	
 0ohwdis	Music	ui-core	
