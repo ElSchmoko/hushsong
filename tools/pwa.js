@@ -2,7 +2,13 @@
 // docs/index.html is the same game as the Claude artifact, wrapped with an app manifest, icons and an offline cache.
 const fs = require('fs'), path = require('path'), crypto = require('crypto');
 const root = path.join(__dirname, '..'), out = path.join(root, 'docs'), icons = path.join(root, 'assets/icon/out');
-const page = fs.readFileSync(path.join(root, 'dist/hushsong.html'), 'utf8').replace('<title>Hushsong</title>\n', '');
+const raw = fs.readFileSync(path.join(root, 'dist/hushsong.html'), 'utf8').replace('<title>Hushsong</title>\n', '');
+// The app's build number goes up only when the game itself changes (compared before the number is written in), and the Menu shows it.
+const appDir = path.join(root, 'docs/app'), verFile = path.join(appDir, 'version.json');
+const src = crypto.createHash('sha256').update(raw).digest('hex');
+let prev = { build: 0, sha256: '' }; try { prev = JSON.parse(fs.readFileSync(verFile, 'utf8')); } catch (e) { /* first build */ }
+const build = prev.src === src ? prev.build : prev.build + 1;
+const page = raw.split('__HS_BUILD__').join(String(build));
 const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
 fs.mkdirSync(path.join(out, 'icons'), { recursive: true });
 const pngs = fs.readdirSync(icons).filter((f) => f.endsWith('.png'));
@@ -83,16 +89,15 @@ console.log('pwa', version, 'v' + pkg.version, (html.length / 1024).toFixed(0) +
 
 // The game as the Android app runs it (docs/app/): the same page without the web-app manifest or offline cache.
 // The app checks app/version.json on launch and downloads app/index.html when `build` is higher than its own.
-// `build` only goes up when the page changes, so rebuilding the same game never makes phones download it again.
+// `build` only goes up when the game changes, so rebuilding the same game never makes phones download it again.
 const appHtml = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hushsong</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <style>html{background:${INK};color-scheme:light;height:100%;overscroll-behavior:none}body{margin:0;height:100%;font:14px system-ui}[hidden]{display:none!important}</style>
 </head><body>${page}</body></html>`;
-const appDir = path.join(out, 'app'), verFile = path.join(appDir, 'version.json');
 fs.mkdirSync(appDir, { recursive: true });
+// sha256 is of the page as downloaded: the app checks it before it swaps the game
 const sha256 = crypto.createHash('sha256').update(appHtml).digest('hex');
-let prev = { build: 0, sha256: '' }; try { prev = JSON.parse(fs.readFileSync(verFile, 'utf8')); } catch (e) { /* first build */ }
-const ver = { build: prev.sha256 === sha256 ? prev.build : prev.build + 1, sha256, bytes: Buffer.byteLength(appHtml) };
+const ver = { build, sha256, bytes: Buffer.byteLength(appHtml), src };
 fs.writeFileSync(path.join(appDir, 'index.html'), appHtml);
 fs.writeFileSync(verFile, JSON.stringify(ver) + '\n');
 console.log('app build', ver.build, (ver.bytes / 1024).toFixed(0) + ' KB');

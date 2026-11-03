@@ -212,6 +212,9 @@
     UI.modal(UI.box('row center', UI.icon('ic_lang', 1.4), UI.txt('disp', tr('Language'))), list);
   };
   UI.langKey = (cls) => { const b = UI.key('', () => UI.langPicker(), cls || 'soft sm'); UI.add(b, UI.icon('ic_lang', 0.9), UI.el('span', '', UI.langName())); b.setAttribute('aria-label', tr('Language') + ': ' + UI.langName()); return b; };
+  // which build this is: tools/pwa.js writes the app's build number over the placeholder (a plain test build keeps it)
+  const BUILD = '__HS_BUILD__';
+  UI.buildText = () => (/^\d+$/.test(BUILD) ? tr('Build {n}', { n: BUILD }) : tr('Test build'));
   UI.settings = (extra) => {
     const S = UI.S, st = S.settings, apply = () => { Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound; Au.applyVol(); UI.save(); };
     const pct = (x) => Math.round(x * 100) + '%', vols = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1];
@@ -221,7 +224,8 @@
       extra ? null : UI.key(tr('Save code'), () => UI.saveCode(), 'wide soft'),
       UI.key(tr('Close'), UI.closeModal, 'wide'),
       // the one key that loses things sits apart, in red, and its question names what goes
-      extra ? null : UI.box('dangerzone', UI.key(tr('Start over'), () => UI.confirm(tr('Erase this game?'), tr('All {pets}, your way to floor {stage}, and every note, shell and echo are gone for good. A save code made first can bring them back.', { pets: tr('{n} pets', { n: S.pets.length }), stage: S.stage }), tr('Erase everything'), () => { UI.wipe(); UI.go('title'); }, 'danger'), 'wide danger sm')));
+      extra ? null : UI.box('dangerzone', UI.key(tr('Start over'), () => UI.confirm(tr('Erase this game?'), tr('All {pets}, your way to floor {stage}, and every note, shell and echo are gone for good. A save code made first can bring them back.', { pets: tr('{n} pets', { n: S.pets.length }), stage: S.stage }), tr('Erase everything'), () => { UI.wipe(); UI.go('title'); }, 'danger'), 'wide danger sm')),
+      UI.txt('dim small center', UI.buildText()));
   };
 
   /* a save you can carry: the whole game as one line of text */
