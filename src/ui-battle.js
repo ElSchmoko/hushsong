@@ -122,7 +122,7 @@
       });
       useB.disabled = !(mine && a && battle.ready(u, a)); useB.textContent = mine ? tr('Use') : '· · ·';
       hint.className = 'phint' + (mine && tipText ? ' tipc' : '');
-      hint.textContent = !mine ? u.side === 1 ? tr('Enemy turn') : auto ? tr('Auto battle is on') : '' : tipText || a && battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use this.')) : a && a.cd > 0 ? tr('Not ready yet. Pick another move.') : a && H.needsTarget(a.def) ? tr('Tap an enemy to use it, or press Use.') : tr('Press Use.');
+      hint.textContent = !mine ? u.side === 1 ? tr('Enemy turn') : auto ? tr('Auto battle is on') : '' : tipText || a && battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use this.')) : a && a.cd > 0 ? tr('Not ready yet. Pick another move.') : a && H.needsTarget(a.def) ? tr('Tap an enemy to aim, tap again or press Use.') : tr('Tap any enemy or press Use.');
     };
     let tipText = '';
     const fire = () => { if (waiting == null || !mine) return; const u = battle.units[battle.waiting], a = u.ab[sel]; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use that.')) : tr('That move is not ready yet.')); return; } Au.sfx('tap', sel * 2); mine = false; const w2 = waiting; waiting = null; w2({ ab: sel }); };
@@ -142,12 +142,16 @@
       const v = atPoint(e.clientX, e.clientY); if (!v || dead) return;
       if (v.u.side === 1 && waiting != null && mine) {
         const u = battle.units[battle.waiting], a = u.ab[sel];
+        // a tap on another enemy only aims at it (its HP bar then shows what the move would do); a tap on the aimed enemy uses the move.
+        // Moves that pick no target (they hit every enemy, or help the band) are used by a tap on any enemy.
         if (H.needsTarget(a.def)) {
           if (!battle.validTargets(u).includes(v.u)) { UI.toast(tr('It has to hit the one with Taunt.')); return; }
-          target = v.u.uid; if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use that.')) : tr('That move is not ready yet.')); return; } fire(); return;
+          if (target !== v.u.uid) { target = v.u.uid; Au.sfx('tap'); render(); return; }
         }
+        if (!battle.ready(u, a)) { UI.toast(battle.locked(u, a) ? (battle.lockWhy(u, a) === 'mute' ? tr('Muted: only its Basic move works this turn.') : tr('Only the pet with the mic can use that.')) : tr('That move is not ready yet.')); return; }
+        fire(); return;
       }
-      // a tap is only for aiming; the first stray tap of a battle says how to look closer
+      // any other tap does nothing; the first one in a battle says how to look closer
       if (!hintHold) { hintHold = true; UI.toast(tr('Press and hold to see its stats and moves.')); }
     });
     let hintHold = false;
@@ -243,7 +247,7 @@
     /* ----- your turn ----- */
     const askPlayer = (u) => new Promise((res) => {
       const vt = battle.validTargets(u); if (!vt.some((x) => x.uid === target)) { const best = vt.reduce((b, x) => { const sc = (y) => H.advantage(u.family, y.family) * 0.35 - y.hp / y.max; return sc(x) > sc(b) ? x : b; }, vt[0]); target = best ? best.uid : -1; }
-      tipText = ''; if (!daily && !solo && !tour && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = tr([H.T.k('Your turn! Tap the enemy to attack it.'), H.T.k('Tap a round icon to pick another move.'), H.T.k('Green arrow: your pet is strong against that enemy.'), H.T.k('The yellow line shows whose turn is coming.')][n - 1]); }
+      tipText = ''; if (!daily && !solo && !tour && !enc && !reh && n <= 4 && !S.flags['tip' + n]) { S.flags['tip' + n] = 1; tipText = tr([H.T.k('Your turn! Tap an enemy to aim, tap it again to attack.'), H.T.k('Tap a round icon to pick another move.'), H.T.k('Green arrow: your pet is strong against that enemy.'), H.T.k('The yellow line shows whose turn is coming.')][n - 1]); }
       sel = 0; shown = { u, idx: 0 }; mine = true; waiting = res; render();
     });
     const idle = (text) => { mine = false; if (text != null) { shown = null; note = text; } render(); };

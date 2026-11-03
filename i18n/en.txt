@@ -1496,13 +1496,13 @@
 05s2466	Muted: only its Basic move works this turn.	ui-battle	
 0o9tv84	Only the pet with the mic can use this.	ui-battle	
 1yv3h7m	Not ready yet. Pick another move.	ui-battle	
-0xt3jlr	Tap an enemy to use it, or press Use.	ui-battle	
-0bbedtn	Press Use.	ui-battle	
+1im6em1	Tap an enemy to aim, tap again or press Use.	ui-battle	
+1sp9pid	Tap any enemy or press Use.	ui-battle	
 1i1wq4v	Only the pet with the mic can use that.	ui-battle	
 1o29ocf	That move is not ready yet.	ui-battle	
 1k3jdut	It has to hit the one with Taunt.	ui-battle	
 0amsa7g	Press and hold to see its stats and moves.	ui-battle	
-19s7xp8	Your turn! Tap the enemy to attack it.	ui-battle	
+1trm7ux	Your turn! Tap an enemy to aim, tap it again to attack.	ui-battle	
 1xkyhxm	Tap a round icon to pick another move.	ui-battle	
 1xatr8w	Green arrow: your pet is strong against that enemy.	ui-battle	
 1fo7mmm	The yellow line shows whose turn is coming.	ui-battle	
