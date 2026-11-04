@@ -115,7 +115,6 @@
 0dip2y1	Publikumsliebling
 17l6uc2	Erreiche 1.200 Applaus.
 0zzpczz	Bands
-11m5tpw	Ab Level {unlock}: Leg eine Band fest und tritt online gegen die Bands anderer Spieler an. Die Kämpfe laufen von allein, beide Bands auf dem niedrigeren Level. {perDay} Duelle am Tag: Ein Sieg bringt {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel. Siege bringen dir Applaus in der Bands-Rangliste.
 0v2qwga	Dein Duell wartet
 0i4f1he	{"one": "Heute noch {n} Duell", "other": "Heute noch {n} Duelle"}
 1r2dpfn	{"one": "Heute noch {n} Bandduell", "other": "Heute noch {n} Bandduelle"}
@@ -144,7 +143,6 @@
 1cnzj6r	Andere Spieler treten gegen sie an, und sie kämpft für dich.
 0phudqh	Festlegen
 1nmbd7d	Stell drei Tiere in deine Band, um sie festzulegen.
-1jvdpcs	Die Kämpfe laufen von allein. Beide Bands spielen auf dem niedrigeren der beiden Level.
 0tny8o1	Gegner suchen
 1aspn2v	Neue Duelle in {msToTomorrow}
 0z7kgqr	Bands-Rangliste
@@ -164,3 +162,5 @@
 1f1rbzf	Leg deine Band fest und tritt gegen die Bands anderer Spieler an. Klettere mit Applaus in der neuen Bands-Rangliste.
 0yd4okf	Ab auf die Bühne
 14kttt9	Allzeit
+1wamic9	Du führst deine Band, oder schalte Auto ein. Die gegnerische Band spielt von allein. Beide Bands spielen auf dem niedrigeren der beiden Level.
+1yrvigp	Ab Level {unlock}: Leg eine Band fest und tritt online gegen die Bands anderer Spieler an. Du führst deine Band (oder schaltest Auto ein), die gegnerische Band spielt von allein, beide auf dem niedrigeren Level. {perDay} Duelle am Tag: Ein Sieg bringt {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel. Siege bringen dir Applaus in der Bands-Rangliste.

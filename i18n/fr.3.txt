@@ -115,7 +115,6 @@
 0dip2y1	Chouchou du public
 17l6uc2	Atteins 1 200 Applaudissements.
 0zzpczz	Groupes
-11m5tpw	Dès le niveau {unlock} : verrouille un groupe et affronte les groupes d'autres joueurs, en ligne. Les combats se jouent tout seuls, les deux groupes au niveau le plus bas. {perDay} matchs par jour : une victoire rapporte {win} notes, une défaite {loss}, et le cinquième match un coquillage en plus. Les victoires font monter tes Applaudissements au classement des Groupes.
 0v2qwga	Ton match t'attend
 0i4f1he	{"one": "Encore {n} match aujourd'hui", "other": "Encore {n} matchs aujourd'hui"}
 1r2dpfn	{"one": "Encore {n} bataille de groupes aujourd'hui", "other": "Encore {n} batailles de groupes aujourd'hui"}
@@ -144,7 +143,6 @@
 1cnzj6r	D'autres joueurs l'affrontent, et il se bat pour toi.
 0phudqh	Verrouiller
 1nmbd7d	Mets trois compagnons dans ton groupe pour le verrouiller.
-1jvdpcs	Les combats se jouent tout seuls. Les deux groupes jouent au plus bas des deux niveaux.
 0tny8o1	Trouver un rival
 1aspn2v	Nouveaux matchs dans {msToTomorrow}
 0z7kgqr	Classement des Groupes
@@ -164,3 +162,5 @@
 1f1rbzf	Verrouille ton groupe et affronte les groupes d'autres joueurs. Grimpe au nouveau classement des Groupes grâce aux Applaudissements.
 0yd4okf	Monte sur scène
 14kttt9	Tous les temps
+1wamic9	Tu mènes ton groupe, ou tu passes en Auto. Le groupe rival joue tout seul. Les deux groupes jouent au plus bas des deux niveaux.
+1yrvigp	Dès le niveau {unlock} : verrouille un groupe et affronte les groupes d'autres joueurs, en ligne. Tu mènes ton groupe (ou passes en Auto) pendant que le groupe rival joue tout seul, les deux au niveau le plus bas. {perDay} matchs par jour : une victoire rapporte {win} notes, une défaite {loss}, et le cinquième match un coquillage en plus. Les victoires font monter tes Applaudissements au classement des Groupes.
