@@ -1,10 +1,13 @@
-/* Hushsong — the Ranks screen: online boards for Adventure floors and Encore waves (kept by src/net.js). */
+/* Hushsong — the Ranks screen: online boards for Adventure floors, Encore waves and Battle of the Bands Applause (kept by src/net.js).
+   Two rows of tabs: the mode on top, and below it the period where a mode has more than one. */
 (function (H) {
   'use strict';
   const tr = (s, v) => H.T(s, v);
   const Au = H.Audio, UI = H.UI, Net = H.Net, el = UI.el, add = UI.add, box = UI.box, txt = UI.txt, key = UI.key;
   // the boards: id, tab name, what the number is
-  const BOARDS = [['floors', H.T.k('Floors'), H.T.k('Floors cleared')], ['encore', H.T.k('Encore'), H.T.k('Best wave')], ['encore_week', H.T.k('This week'), H.T.k('Best wave')]];
+  const BOARDS = [['floors', H.T.k('Floors'), H.T.k('Floors cleared')], ['encore', H.T.k('All time'), H.T.k('Best wave')], ['encore_week', H.T.k('This week'), H.T.k('Best wave')], ['bands', H.T.k('Bands'), H.T.k('Applause')]];
+  // the mode tabs, each with its boards (the first is where the tab opens)
+  const MODES = [['adv', H.T.k('Adventure'), ['floors']], ['enc', H.T.k('Encore'), ['encore', 'encore_week']], ['bands', H.T.k('Bands'), ['bands']]];
 
   // a name box: up to 16 letters, Enter submits
   const nameInput = (val, onEnter) => {
@@ -29,7 +32,7 @@
     const S = UI.S; UI.music('camp', H.stage(S.stage).region);
     let tab = BOARDS.some((b) => b[0] === pr.tab) ? pr.tab : 'floors', live = true, ask = 0;
     root.appendChild(UI.topbar(tr('Ranks'), () => UI.go(pr.from || 'home'), UI.wallet()));
-    const seg = el('div', 'seg three'); root.appendChild(seg);
+    const seg = el('div', 'seg three'), sub = el('div', 'seg two sub'); root.appendChild(seg); root.appendChild(sub);
     const body = el('div', 'scroll'), pad = el('div', 'pad ranks'), foot = el('div', 'gofoot rankfoot'); body.appendChild(pad); add(root, body, foot);
 
     // one player on a board
@@ -52,8 +55,12 @@
       add(foot, box('row', add(el('div', 'grow col'), who, txt('small', line)), me ? el('b', 'rkv', UI.fmt(me.v)) : null, key(tr('Rename'), () => UI.renameRanks(() => { Net.cache = {}; draw(); }), 'soft sm')));
     };
     const draw = async () => {
-      seg.innerHTML = '';
-      for (const [id, name] of BOARDS) { const b = el('button', id === tab ? 'on' : '', tr(name)); b.type = 'button'; b.setAttribute('aria-pressed', String(id === tab)); b.addEventListener('click', () => { if (tab === id) return; tab = id; UI.cur.params.tab = id; Au.sfx('tap'); draw(); }); seg.appendChild(b); }
+      seg.innerHTML = ''; sub.innerHTML = '';
+      const tabB = (row, on, name, go) => { const b = el('button', on ? 'on' : '', tr(name)); b.type = 'button'; b.setAttribute('aria-pressed', String(on)); b.addEventListener('click', () => { if (on) return; Au.sfx('tap'); go(); }); row.appendChild(b); };
+      const M = MODES.find((m) => m[2].includes(tab));
+      for (const [, name, boards] of MODES) tabB(seg, boards.includes(tab), name, () => { tab = boards[0]; UI.cur.params.tab = tab; draw(); });
+      sub.hidden = M[2].length < 2;
+      for (const id of M[2]) tabB(sub, id === tab, BOARDS.find((b) => b[0] === id)[1], () => { tab = id; UI.cur.params.tab = id; draw(); });
       const B = BOARDS.find((b) => b[0] === tab), n = ++ask;
       pad.innerHTML = ''; if (!Net.named(S)) pad.appendChild(join());
       const list = el('div', 'rklist'); add(pad, box('row between rkhead', txt('label', tr('Player')), txt('label', tr(B[2]))), list);

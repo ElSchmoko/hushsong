@@ -3,7 +3,7 @@ const { chromium } = require('/opt/npm-tools/node_modules/playwright');
 const path = require('path');
 const scenario = process.argv[2] || 'intro', VW = +(process.argv[3] || 390), VH = +(process.argv[4] || 760);
 (async () => {
-  const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args: ['--autoplay-policy=no-user-gesture-required'] });
+  const args = ['--autoplay-policy=no-user-gesture-required'], b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome', args }).catch(() => chromium.launch({ args }));
   const ctx = await b.newContext({ viewport: { width: VW, height: VH }, deviceScaleFactor: 2, hasTouch: true });
   const p = await ctx.newPage(); let n = 0; const errs = [];
   p.on('console', (m) => { if (m.type() === 'error') { errs.push(m.text()); console.log('console.error:', m.text()); } });

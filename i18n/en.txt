@@ -296,6 +296,12 @@
 1hzejfp	Clear wave 10 in Encore.	data	
 0kw590z	Standing Ovation	data	
 1dkx4s4	Clear wave 20 in Encore.	data	
+0jx2cpn	Opening Act	data	
+1eq1jd9	Win 10 Battles of the Bands.	data	
+050sjah	Giant Killer	data	
+1vrj6t0	Beat a band with at least 100 more Applause than you.	data	
+0dip2y1	Crowd Favourite	data	
+17l6uc2	Reach 1,200 Applause.	data	
 1do6rpz	Night Concert	data	
 0xygpvx	Sunset Stage	data	
 1ptwv93	Golden Hall	data	
@@ -789,7 +795,6 @@
 0zh5dqc	Its hits Poison for 2 turns.	data	
 13h5hic	Wrong Chord	data	
 1osujrv	Its hits have a 50% chance to make the target Off-Key for 2 turns.	data	
-0jx2cpn	Opening Act	data	
 1oin4ol	Goes first in each gig, and its first hit deals 40% more.	data	
 0x53ene	Spiky Riff	data	
 1sps3gb	Enemies that hit it take 25% of that damage back.	data	
@@ -987,7 +992,7 @@
 1h4s45e	Rival {pet}	engine ui-screens	
 0eujuva	Loud {din}	engine ui-screens	
 03alka9	Boom!	engine	
-0kui9jn	Lights out!	engine ui-modes	
+0kui9jn	Lights out!	engine ui-modes ui-pvp	
 0c1w867	Echo!	engine	
 0mq77hg	Encore!	engine ui-modes ui-tour	
 1qm2xxm	Again!	engine ui-modes	
@@ -1002,9 +1007,10 @@
 088ops5	Stolen!	engine	
 0m7hiye	Flipped!	engine	
 1lwo7a3	Shrugs it off	engine	
-0hn3zaj	Adventure	game ui-screens	
+0hn3zaj	Adventure	game ui-ranks ui-screens	
 03gtdjg	Rehearsal	game ui-battle ui-core ui-screens	
 13u5rhp	Encore	game ui-core ui-ranks ui-screens	
+0zzpczz	Bands	game ui-ranks	
 0siy9wx	Collection	game	
 03bpwir	Mirror {pet}	modes	
 0htre55	Giant {din}	modes	
@@ -1014,9 +1020,10 @@
 06xig19	Crit	ui-battle ui-core ui-screens	
 1l0xxoj	Close	ui-battle ui-core ui-modes ui-screens ui-tour	
 007q5wa	Menu	ui-battle ui-core ui-screens	
+02aafln	Battle of the Bands	ui-battle ui-core ui-modes ui-pvp ui-screens	
 0v0wv6e	Skill	ui-battle ui-core	
 1q4pntc	Special	ui-battle ui-core	
-0n0mxf2	Home	ui-battle ui-core ui-modes ui-tour	
+0n0mxf2	Home	ui-battle ui-core ui-modes ui-pvp ui-tour	
 04f76ga	Notes	ui-core ui-modes ui-screens ui-tour	
 0wto1r4	Echoes	ui-core ui-modes ui-screens ui-tour	
 04zpoy4	You found {n} echoes!	ui-core	
@@ -1029,7 +1036,7 @@
 0fkew5h	{label}, paid	ui-core	
 160umau	Band	ui-core ui-modes ui-screens	
 0excb6f	Pets	ui-core ui-screens	
-1jht0nq	Shells	ui-core ui-screens ui-tour	
+1jht0nq	Shells	ui-core ui-pvp ui-screens ui-tour	
 1jp3e8h	Bag	ui-core ui-screens	
 17o19ow	Open your shell here	ui-core	
 1npfg7x	Basic	ui-core	
@@ -1038,7 +1045,7 @@
 1cjrhja	any time	ui-core	
 0b9jhu9	new	ui-core	
 06qxefl	Something went wrong there. Back to Home.	ui-core	
-0ew9em3	Cancel	ui-core ui-ranks	
+0ew9em3	Cancel	ui-core ui-pvp ui-ranks	
 166o4fr	‹ Back	ui-core	
 1id7d20	How to play	ui-core	
 1602nqr	Win floors to go further. Every 10th floor is a <b>boss</b>. Shells hold random pets.	ui-core	
@@ -1069,9 +1076,10 @@
 0325btm	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.	ui-core	
 01gr3w3	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.	ui-core	
 10nkzyp	From level {unlock}: the whole band on a World Tour of five legs, each five gigs and a boss, every leg much tougher than the last. HP carries over; a pet that falls sits out until a campfire, a Benefit show or the next leg. Boons work on the whole band, and legs 1, 3 and 5 start with a Headliner: a big change with a price. Gigs pay notes, bosses an echo and equipment, the last boss a shell and a Legendary.	ui-core	
+11m5tpw	From level {unlock}: lock in a band and take on other players' bands, online. Fights play out on their own, both bands at the lower level. {perDay} matches a day: a win pays {win} notes, a loss {loss}, the fifth match a shell too. Wins raise your Applause on the Bands board.	ui-core	
 0orgbil	Records	ui-core ui-screens	
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
-0l8hqi2	Got it	ui-core ui-modes	
+0l8hqi2	Got it	ui-core ui-modes ui-pvp	
 16us7mj	Language	ui-core	
 0bgbw9r	Build {n}	ui-core	
 1vys80l	Test build	ui-core	
@@ -1101,7 +1109,7 @@
 0opsnl8	Boss {n}	ui-battle ui-screens	
 1dxyp09	Loud {n}	ui-battle ui-screens	
 192xyh5	Floor {n}	ui-battle ui-screens	
-1wsths9	Later	ui-battle ui-screens	
+1wsths9	Later	ui-battle ui-pvp ui-screens	
 1vkg66p	Your ensemble	ui-battle ui-screens	
 0oes1nf	+{n} echoes	ui-battle ui-modes ui-screens ui-tour	{"one":"+{n} echo","other":"+{n} echoes"}
 0tyfhvo	End this run?	ui-battle ui-screens	
@@ -1111,16 +1119,20 @@
 0kayn18	Open the shell	ui-battle ui-screens	
 1hzmxtu	Back	ui-battle ui-screens	
 1o2o6dp	Change the band	ui-battle ui-modes ui-screens ui-tour	
-03kusfv	Change your band	ui-modes ui-screens	
+03kusfv	Change your band	ui-modes ui-pvp ui-screens	
 0ovvjp1	Your band	ui-modes ui-screens ui-tour	
 1yikd80	Solo Tour	ui-modes ui-screens	
 1g2tab0	Gig {n} of 5	ui-modes ui-screens	
 0n3ydks	Pick one	ui-modes ui-screens ui-tour	
 03scfen	Out	ui-modes ui-screens ui-tour	
 0x4nga3	Onwards	ui-modes ui-screens	
+0h2yt8f	Lv {level}	ui-pvp ui-ranks ui-screens	
+1mf63c1	No ensemble	ui-pvp ui-screens	
+0v2qwga	Your match is waiting	ui-pvp ui-screens	
+0i4f1he	{n} matches left today	ui-pvp ui-screens	{"one":"{n} match left today","other":"{n} matches left today"}
+0azt7u3	Unlocks at Level {unlock}	ui-pvp ui-screens	
 1nvt7jn	This week	ui-ranks ui-screens	
 1e9u2fw	Ranks	ui-ranks ui-screens	
-0h2yt8f	Lv {level}	ui-ranks ui-screens	
 00fxhu9	Not evolved	ui-screens	
 18kfar1	Evolved once	ui-screens	
 1fvnaj8	Fully evolved	ui-screens	
@@ -1160,10 +1172,11 @@
 1xxqbrb	{n} rehearsals open	ui-screens	{"one":"{n} rehearsal open","other":"{n} rehearsals open"}
 1vzcv0c	Solo pays today	ui-screens	
 0otxor0	Solo pays every tour	ui-screens	
+1r2dpfn	{n} band battles left today	ui-screens	{"one":"{n} band battle left today","other":"{n} band battles left today"}
 1i8e16b	First gig at level {n}	ui-screens	
 1skvt3i	All played today	ui-screens	
-0azt7u3	Unlocks at Level {unlock}	ui-screens	
 0mbqao6	Won today	ui-screens	
+1g87aga	Online	ui-screens	
 1m0zof0	Wave {wave} next	ui-screens	
 0sssj9z	Best this week: {weekBest}	ui-screens	
 10k4v4a	Leg {leg} · gig {n} next	ui-screens	
@@ -1172,7 +1185,6 @@
 09hmetg	{n} bosses open	ui-screens	{"one":"{n} boss open","other":"{n} bosses open"}
 1qt0ibb	All played	ui-screens	
 1w35moz	Resets in {n} days	ui-screens	{"one":"Resets tomorrow","other":"Resets in {n} days"}
-1mf63c1	No ensemble	ui-screens	
 1s9gkj5	Earlier floor	ui-screens	
 06lywvr	Later floor	ui-screens	
 127oer9	Cleared · Foes Lv {n}	ui-screens	
@@ -1207,6 +1219,7 @@
 1rlp9ke	It takes <b>3 different families</b>, or <b>3 of the same</b>.	ui-screens	
 1q7gv3d	Possible: <b>{list}</b>	ui-screens	
 10ubeg8	All ensembles	ui-screens	
+16dxzin	Back to Battle of the Bands	ui-screens	
 1c5mvf7	To the adventure	ui-screens	
 02u5zbh	Ready? Head out	ui-screens	
 05o74q3	Who stands here?	ui-screens	
@@ -1304,11 +1317,11 @@
 0rfmv4f	Claim	ui-screens	
 1cnat5z	Win a rehearsal with each ensemble	ui-screens	
 0l8z7n2	<b>Level up!</b>	ui-battle ui-modes	
-15eua8j	Not this time	ui-battle ui-modes	
+15eua8j	Not this time	ui-battle ui-modes ui-pvp	
 0982hh6	Try again	ui-battle ui-modes ui-ranks	
-0xuoasm	{h} h {m} min	ui-modes	
-0z7rxr8	{m} min	ui-modes	
-1sawk0u	Today	ui-modes	
+0xuoasm	{h} h {m} min	ui-modes ui-pvp	
+0z7rxr8	{m} min	ui-modes ui-pvp	
+1sawk0u	Today	ui-modes ui-pvp	
 1yetfcu	Admit one	ui-modes	
 0i43ri6	Paid today	ui-modes	
 0wv5s44	Notes for tonight's win	ui-modes	
@@ -1364,7 +1377,6 @@
 1f5g7va	Mystery	ui-modes ui-tour	
 030xvgf	Start	ui-modes	
 1ua43j9	Benefit show	ui-modes	
-02aafln	Battle of the Bands	ui-modes	
 0rcomre	‹ Gigs	ui-modes	
 1y1z148	{din}'s stage	ui-modes	
 0suqviq	{stop}, you can go here	ui-modes	
@@ -1458,9 +1470,11 @@
 0j8axo0	of {max}	ui-battle	
 0xw1kwq	<b>Shield.</b> <span class="dim">Soaks the next {shield} damage.</span>	ui-battle	
 0fuwg7s	For {t}.	ui-battle	
+1w7kcrj	Leave the match?	ui-battle	
+0vgq61w	It counts as a loss.	ui-battle	
+1xf0sbk	Leave	ui-battle	
 03ojm4e	Leave this wave?	ui-battle	
 104x6pe	Your run ends here. Rewards stay yours.	ui-battle	
-1xf0sbk	Leave	ui-battle	
 0l14tjq	Leave this gig?	ui-battle	
 17mnxxq	Your tour ends here. Notes stay yours.	ui-battle	
 113qxrx	End the tour	ui-battle	
@@ -1528,10 +1542,13 @@
 0wdzx1i	Daily Gig · {n}	ui-battle	
 0ncefmr	Boss · floor {n}	ui-battle	
 0vh77hq	Tap to skip	ui-battle	
-0wqg7ri	VS	ui-battle	
+0wqg7ri	VS	ui-battle ui-pvp	
 01lmez5	Daily Gig · {venue}	ui-battle	
 0d68t5f	Tap to start	ui-battle	
+09iuo7v	Both bands play at level {n}	ui-battle ui-pvp	
+0v0c7fa	Rival ensemble	ui-battle	
 0jleco1	You win!	ui-battle	
+0g59p11	Your band lost	ui-battle	
 1jc3an7	Your band is out	ui-battle	
 069mlae	Damage dealt	ui-battle	
 0yg9m6m	Healing and Shields	ui-battle	
@@ -1575,24 +1592,62 @@
 03ywr4q	Show me	ui-battle	
 07hdxv7	You found equipment!	ui-battle	
 15xrlrb	Each pet wears two pieces. Put them on from its page.	ui-battle	
+1f9rlp2	Match {n}	ui-pvp	
+0g3lfb1	Your name	ui-pvp ui-ranks	
+01krowb	Join the boards	ui-pvp ui-ranks	
+0d85xjl	Pick a name of 1 to 16 letters.	ui-pvp ui-ranks	
+0jek9h7	Could not reach the boards. Check your connection and try again.	ui-pvp ui-ranks	
+1t0bya1	Put your name up	ui-pvp ui-ranks	
+0ky5syq	Your band plays other players under this name, and it shows on the boards.	ui-pvp	
+0zzrqz2	Your rival	ui-pvp	
+16cb4gy	Applause	ui-pvp ui-ranks	
+1eskchc	Match {n} of {perDay}	ui-pvp	
+0gu3fn9	Start the match	ui-pvp	
+0n859tb	Tuning in…	ui-pvp ui-ranks	
+1p2k4c2	Could not reach the stage. Check your connection and try again.	ui-pvp	
+0wrtqiy	No bands on stage yet. Try again later.	ui-pvp	
+1tt8as5	That is all for today.	ui-pvp	
+1hqjw8s	Your band against another player's	ui-pvp	
+03t40ly	{perDay} matches a day. A win pays {win} notes, a loss {loss}. The fifth match also pays a shell.	ui-pvp	
+1u01rav	Your stage band	ui-pvp	
+1lmu00y	No band locked in yet	ui-pvp	
+1mdond4	Lock in your current band	ui-pvp	
+0sc9ene	Lock in this band	ui-pvp	
+1cnzj6r	Other players fight it, and it fights for you.	ui-pvp	
+0phudqh	Lock in	ui-pvp	
+1nmbd7d	Put three pets in your band to lock it in.	ui-pvp	
+1jvdpcs	Fights play out on their own. Both bands play at the lower of the two levels.	ui-pvp	
+0tny8o1	Find a rival	ui-pvp	
+1aspn2v	New matches in {msToTomorrow}	ui-pvp	
+0z7kgqr	Bands board	ui-pvp	
+1o3ulpn	Rival	ui-pvp	
+0cqdktm	Won!	ui-pvp	
+0ueym13	Your band wins!	ui-pvp	
+0x4igaj	Time ran out, and your band had more HP left.	ui-pvp	
+1mohhri	Time ran out, and the rival had more HP left.	ui-pvp	
+1tnncwa	<b>All {n} matches played today:</b> a shell for you!	ui-pvp	
+05nxjry	Back to the stage	ui-pvp	
+0fikhco	Notes for a win	ui-pvp	
+1qf36lm	a win	ui-pvp	
+01ay9yp	Notes for a loss	ui-pvp	
+0zfuo37	a loss	ui-pvp	
+04zfntd	5 a day	ui-pvp	
+18a6x1q	New in Gigs	ui-pvp	
+1f1rbzf	Lock in your band and take on other players' bands. Climb the new Bands board on Applause.	ui-pvp	
+0yd4okf	Take the stage	ui-pvp	
 1k4gy16	Floors	ui-ranks	
 0t459ce	Floors cleared	ui-ranks	
+14kttt9	All time	ui-ranks	
 09nlntg	Best wave	ui-ranks	
-0g3lfb1	Your name	ui-ranks	
-0d85xjl	Pick a name of 1 to 16 letters.	ui-ranks	
-0jek9h7	Could not reach the boards. Check your connection and try again.	ui-ranks	
 0lewgh4	Save	ui-ranks	
 1x60xlj	Change your name	ui-ranks	
 12blyyl	It changes on every board.	ui-ranks	
-01krowb	Join the boards	ui-ranks	
-1t0bya1	Put your name up	ui-ranks	
 0eq3xj6	Your name, band and best results go online so others can see them. Nothing else leaves this device.	ui-ranks	
 1vkrx7g	You: <b>#{rank}</b>	ui-ranks	
 1iouwdz	Not on this board yet	ui-ranks	
 1jhzhtf	Rename	ui-ranks	
 07w3c4g	Player	ui-ranks	
 1p9hkma	Resets on Monday	ui-ranks	
-0n859tb	Tuning in…	ui-ranks	
 1kuxdf7	No one here yet. Be the first!	ui-ranks	
 0x8g9xp	Leg {leg} of {legs}	ui-tour	
 03f18fr	Gig {n} of {gigs}	ui-tour	

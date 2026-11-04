@@ -1,7 +1,7 @@
 /* Hushsong — rules outside of battle: the save, the team, shells, echoes, equipment, stages, rewards. No DOM. */
 (function (H) {
   'use strict';
-  H.newState = () => ({ v: 4, notes: 0, xp: 0, level: 1, stage: 1, pets: [], team: [null, null, null], shells: 1, opened: 0, bought: 0, echo: 0, petEcho: {}, items: [], flags: {}, reh: {}, records: {}, stats: {}, homeBg: null, ens: {}, nextId: 1, nextItem: 1, seen: {}, dinSeen: {},
+  H.newState = () => ({ v: 4, notes: 0, xp: 0, level: 1, stage: 1, pets: [], team: [null, null, null], shells: 1, opened: 0, bought: 0, echo: 0, petEcho: {}, items: [], flags: { newsBands: 1 }, reh: {}, records: {}, stats: {}, homeBg: null, ens: {}, nextId: 1, nextItem: 1, seen: {}, dinSeen: {},
     settings: { sound: 1, music: 0.7, sfx: 0.8, speed: 1, auto: 0 } });
   // Older saves keep their pets, level and progress.
   H.migrate = (S) => {
@@ -264,10 +264,14 @@
     { id: 'shells', cat: 'col', n: 'Shell Shock', d: 'Open 100 shells.', prog: (S) => [S.opened, 100], shells: 2 },
     { id: 'enc10', cat: 'enc', n: 'Curtain Call', d: 'Clear wave 10 in Encore.', prog: (S) => [S.stats.encore || 0, 10], shells: 1 },
     { id: 'enc20', cat: 'enc', n: 'Standing Ovation', d: 'Clear wave 20 in Encore.', prog: (S) => [S.stats.encore || 0, 20], shells: 2, bg: 'neon' },
+    // Battle of the Bands
+    { id: 'pvpwins', cat: 'pvp', n: 'Opening Act', d: 'Win 10 Battles of the Bands.', prog: (S) => [S.stats.pvpWins || 0, 10], shells: 1 },
+    { id: 'pvpgiant', cat: 'pvp', n: 'Giant Killer', d: 'Beat a band with at least 100 more Applause than you.', prog: (S) => [S.stats.pvpGiant ? 1 : 0, 1], shells: 1 },
+    { id: 'pvpcrowd', cat: 'pvp', n: 'Crowd Favourite', d: 'Reach 1,200 Applause.', prog: (S) => [Math.min(S.stats.applause || 0, 1200), 1200], shells: 2 },
   ];
   // one record per ensemble: win a rehearsal with it. These pay an echo each.
   for (const e of H.ENSEMBLES) H.RECORDS.push({ id: 'ens_' + e.id, cat: 'reh', ens: e.id, n: e.n, d: 'Win a rehearsal with the ' + e.n + '.', prog: (S) => [S.ens[e.id] && S.ens[e.id].reh ? 1 : 0, 1], echo: 1 });
-  H.RECORD_CATS = [['adv', H.T.k('Adventure')], ['reh', H.T.k('Rehearsal')], ['enc', H.T.k('Encore')], ['col', H.T.k('Collection')]];
+  H.RECORD_CATS = [['adv', H.T.k('Adventure')], ['reh', H.T.k('Rehearsal')], ['enc', H.T.k('Encore')], ['pvp', H.T.k('Bands')], ['col', H.T.k('Collection')]];
   H.SETS = { night: 'Night Concert', dusk: 'Sunset Stage', gold: 'Golden Hall', aurora: 'Northern Lights', spot: 'Spotlight', neon: 'Neon Encore' };
   H.recordState = (S, r) => { const [a, b] = r.prog(S); return S.records[r.id] ? 'claimed' : a >= b ? 'ready' : 'open'; };
   H.recordsReady = (S) => H.RECORDS.filter((r) => H.recordState(S, r) === 'ready').length;

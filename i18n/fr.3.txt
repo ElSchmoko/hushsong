@@ -108,3 +108,59 @@
 1p9hkma	Remise à zéro lundi
 0n859tb	On s'accorde…
 1kuxdf7	Personne pour l'instant. Sois le premier !
+02aafln	Bataille de groupes
+1eq1jd9	Gagne 10 batailles de groupes.
+050sjah	Tueur de géants
+1vrj6t0	Bats un groupe qui a au moins 100 Applaudissements de plus que toi.
+0dip2y1	Chouchou du public
+17l6uc2	Atteins 1 200 Applaudissements.
+0zzpczz	Groupes
+11m5tpw	Dès le niveau {unlock} : verrouille un groupe et affronte les groupes d'autres joueurs, en ligne. Les combats se jouent tout seuls, les deux groupes au niveau le plus bas. {perDay} matchs par jour : une victoire rapporte {win} notes, une défaite {loss}, et le cinquième match un coquillage en plus. Les victoires font monter tes Applaudissements au classement des Groupes.
+0v2qwga	Ton match t'attend
+0i4f1he	{"one": "Encore {n} match aujourd'hui", "other": "Encore {n} matchs aujourd'hui"}
+1r2dpfn	{"one": "Encore {n} bataille de groupes aujourd'hui", "other": "Encore {n} batailles de groupes aujourd'hui"}
+1g87aga	En ligne
+16dxzin	Retour à la Bataille de groupes
+1w7kcrj	Quitter le match ?
+0vgq61w	Ça compte comme une défaite.
+09iuo7v	Les deux groupes jouent au niveau {n}
+0v0c7fa	Ensemble rival
+0g59p11	Ton groupe a perdu
+1f9rlp2	Match {n}
+0ky5syq	Ton groupe affronte d'autres joueurs sous ce nom, et il apparaît dans les classements.
+0zzrqz2	Ton rival
+16cb4gy	Applaudissements
+1eskchc	Match {n} sur {perDay}
+0gu3fn9	Lancer le match
+1p2k4c2	Impossible d'atteindre la scène. Vérifie ta connexion et réessaie.
+0wrtqiy	Aucun groupe sur scène pour l'instant. Réessaie plus tard.
+1tt8as5	C'est tout pour aujourd'hui.
+1hqjw8s	Ton groupe contre celui d'un autre joueur
+03t40ly	{perDay} matchs par jour. Une victoire rapporte {win} notes, une défaite {loss}. Le cinquième match rapporte aussi un coquillage.
+1u01rav	Ton groupe sur scène
+1lmu00y	Aucun groupe verrouillé pour l'instant
+1mdond4	Verrouille ton groupe actuel
+0sc9ene	Verrouille ce groupe
+1cnzj6r	D'autres joueurs l'affrontent, et il se bat pour toi.
+0phudqh	Verrouiller
+1nmbd7d	Mets trois compagnons dans ton groupe pour le verrouiller.
+1jvdpcs	Les combats se jouent tout seuls. Les deux groupes jouent au plus bas des deux niveaux.
+0tny8o1	Trouver un rival
+1aspn2v	Nouveaux matchs dans {msToTomorrow}
+0z7kgqr	Classement des Groupes
+1o3ulpn	Rival
+0cqdktm	Gagné !
+0ueym13	Ton groupe gagne !
+0x4igaj	Le temps est écoulé, et il restait plus de PV à ton groupe.
+1mohhri	Le temps est écoulé, et il restait plus de PV au rival.
+1tnncwa	<b>Les {n} matchs du jour joués :</b> un coquillage pour toi !
+05nxjry	Retour sur scène
+0fikhco	Notes pour une victoire
+1qf36lm	victoire
+01ay9yp	Notes pour une défaite
+0zfuo37	défaite
+04zfntd	5 par jour
+18a6x1q	Nouveau dans Concerts
+1f1rbzf	Verrouille ton groupe et affronte les groupes d'autres joueurs. Grimpe au nouveau classement des Groupes grâce aux Applaudissements.
+0yd4okf	Monte sur scène
+14kttt9	Tous les temps

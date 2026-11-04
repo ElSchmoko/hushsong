@@ -765,3 +765,47 @@ input.namein:focus { outline: calc(var(--u) * 1.5) solid var(--blue); outline-of
 .scell { display: flex; flex-direction: column; gap: calc(var(--u) * 1.2); min-width: 0; } .scell b { font-family: var(--f-display); font-size: calc(var(--u) * 7.6); line-height: 1; }
 .sbar { height: calc(var(--u) * 3); border-radius: calc(var(--u) * 2); background: #e6e0ee; overflow: hidden; } .sbar i { display: block; height: 100%; border-radius: inherit; }
 .sbar.dealt i { background: #ff6b5e; } .sbar.heal i { background: #2ecb6e; } .sbar.taken i { background: #5aa8e0; }
+
+/* ---------- Battle of the Bands ---------- */
+/* the Gig Board flyer: a fight poster in red and gold */
+.flyer.bands { grid-column: span 2; min-height: calc(var(--u) * 56); background: #c73434 !important; color: #fff; overflow: hidden; }
+.flyer.bands .burst { position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 260); height: calc(var(--u) * 260); margin: calc(var(--u) * -130); background: repeating-conic-gradient(rgba(255, 201, 40, 0.22) 0 10deg, transparent 10deg 20deg); pointer-events: none; animation: bspin 40s linear infinite; }
+.flyer.bands > :not(.burst):not(.tack):not(.pip):not(.wrap) { position: relative; }
+.flyer.bands .frow { gap: calc(var(--u) * 4); text-align: left; } .flyer.bands .fkick { color: #ffe58a; } .flyer.bands .fsub { color: #ffe1da; }
+.flyer.bands .ftitle { font-size: calc(var(--u) * 11.5); -webkit-text-stroke: calc(var(--u) * 1.6) var(--ink); paint-order: stroke fill; color: #fff3c2; }
+.flyer.bands .dots i { background: rgba(255, 255, 255, 0.35); } .flyer.bands .dots i.got { background: #ffe58a; }
+/* the stage screen */
+.bandshero .bgc { filter: saturate(1.1); }
+.stagecard { align-items: center; padding: calc(var(--u) * 3) calc(var(--u) * 4) !important; }
+.stagecard .tfaces { justify-content: flex-start; }
+.applbox { flex: none; align-items: center; gap: 0 !important; padding: calc(var(--u) * 2) calc(var(--u) * 4); background: #fff6dc; border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 4); }
+.applbox .disp { font-size: calc(var(--u) * 12); line-height: 1; }
+.tstrip.lockin { margin: 0 !important; border-color: var(--coral) !important; box-shadow: 0 calc(var(--u) * 1.5) 0 var(--coral-d) !important; }
+/* the rival's card */
+.rivalcard { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 3) calc(var(--u) * 4); background: #c73434; color: #fff; border: calc(var(--u) * 1.2) solid var(--ink); border-radius: calc(var(--u) * 5); }
+.rivalcard .label { color: #ffe58a; } .rivalcard .small.dim { color: #ffe1da; }
+.rivalcard .rvname { font-family: var(--f-display); font-size: calc(var(--u) * 15); line-height: 1; -webkit-text-stroke: calc(var(--u) * 2) var(--ink); paint-order: stroke fill; color: #fff3c2; max-width: 100%; overflow-wrap: anywhere; text-align: center; }
+.rivalcard .rvmeta { gap: calc(var(--u) * 3); } .rivalcard .purse { background: #fff6dc; color: var(--ink); }
+.rivalcard.mine { background: var(--paper); color: var(--ink); padding-block: calc(var(--u) * 2); } .rivalcard.mine .small.dim { color: var(--dim); }
+.vsmini { align-self: center; margin: calc(var(--u) * -5) 0; position: relative; z-index: 1; font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 13); line-height: 1; color: #ffe58a; -webkit-text-stroke: calc(var(--u) * 2) var(--ink); paint-order: stroke fill; transform: rotate(-8deg); }
+/* the result */
+.applline { display: flex; align-items: center; justify-content: center; gap: calc(var(--u) * 2); }
+.applline b { font-family: var(--f-display); font-size: calc(var(--u) * 10); } .applline .good, .applline .bad { font-weight: 800; font-size: calc(var(--u) * 7.4); }
+.ticket .tfaces { flex: none; }
+/* the face-off before a match: your band on the left, the rival's on the right */
+.bossin.bands .vsband { position: absolute; top: 38%; display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * -4); transform: translateY(-50%); }
+.bossin.bands .vsband { left: 6%; } .bossin.bands .vsband.r { left: auto; right: 6%; }
+.bossin.bands .vsband canvas { animation: bandl calc(var(--k) * 0.5s) calc(var(--k) * 0.1s + var(--d, 0s)) cubic-bezier(0.2, 1.3, 0.4, 1) both; filter: drop-shadow(0 0 calc(var(--u) * 5) rgba(127, 224, 216, 0.7)); }
+.bossin.bands .vsband.r canvas { animation-name: bandr; filter: drop-shadow(0 0 calc(var(--u) * 5) rgba(255, 120, 90, 0.8)); }
+.bossin.bands .vsbadge { left: 50%; top: 38%; }
+.bossin.bands .bossray { top: 38%; }
+.bossin.full.bands .bossban { bottom: 16%; background: linear-gradient(90deg, rgba(199, 52, 52, 0), #c73434 18%, #c73434 82%, rgba(199, 52, 52, 0)); }
+.callout.ens.foe { color: #ffd0c8; }
+/* the news card */
+.newskick { color: var(--coral-d); font-weight: 800; }
+.newsart { position: relative; align-self: center; width: calc(var(--u) * 70); height: calc(var(--u) * 62); display: flex; align-items: center; justify-content: center; overflow: visible; }
+.newsart .rays { position: absolute; left: 50%; top: 50%; width: calc(var(--u) * 140); height: calc(var(--u) * 140); margin: calc(var(--u) * -70); border-radius: 50%; background: repeating-conic-gradient(rgba(255, 201, 40, 0.5) 0 11deg, transparent 11deg 22deg); -webkit-mask: radial-gradient(circle, #000 25%, transparent 68%); mask: radial-gradient(circle, #000 25%, transparent 68%); animation: bspin 18s linear infinite; }
+.newsart canvas { position: relative; animation: newsin 0.6s 0.1s cubic-bezier(0.2, 1.3, 0.4, 1) both; }
+.newslogo { color: #fff3c2; }
+.seg.two { grid-template-columns: 1fr 1fr; } .seg.sub { margin-top: calc(var(--u) * 2); padding: calc(var(--u) * 1); } .seg.sub button { min-height: calc(var(--u) * 13); font-size: calc(var(--u) * 6.6); } .seg[hidden] { display: none; }
+@keyframes bspin { to { transform: rotate(360deg); } } @keyframes bandl { from { transform: translateX(-160%); } } @keyframes bandr { from { transform: translateX(160%); } } @keyframes newsin { from { transform: scale(0.2) rotate(-20deg); opacity: 0; } }

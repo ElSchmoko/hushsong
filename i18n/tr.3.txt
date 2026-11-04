@@ -108,3 +108,59 @@
 1p9hkma	Pazartesi sıfırlanır
 0n859tb	Akort ediliyor…
 1kuxdf7	Burada henüz kimse yok. İlk sen ol!
+02aafln	Grupların Savaşı
+1eq1jd9	10 Grupların Savaşı kazan.
+050sjah	Dev Avcısı
+1vrj6t0	Senden en az 100 Alkış fazlası olan bir grubu yen.
+0dip2y1	Seyircinin Gözdesi
+17l6uc2	1.200 Alkışa ulaş.
+0zzpczz	Gruplar
+11m5tpw	Seviye {unlock}'ten itibaren: bir grubu sabitle ve çevrimiçi olarak başka oyuncuların gruplarıyla karşılaş. Dövüşler kendiliğinden oynanır, iki grup da düşük olan seviyede. Günde {perDay} maç: galibiyet {win} nota, mağlubiyet {loss} nota verir, beşinci maç ayrıca bir kabuk. Galibiyetler Gruplar sıralamasındaki Alkışını artırır.
+0v2qwga	Maçın seni bekliyor
+0i4f1he	Bugün {n} maç kaldı
+1r2dpfn	Bugün {n} grup savaşı kaldı
+1g87aga	Çevrimiçi
+16dxzin	Grupların Savaşı'na dön
+1w7kcrj	Maçtan çıkılsın mı?
+0vgq61w	Mağlubiyet sayılır.
+09iuo7v	İki grup da seviye {n}'de oynar
+0v0c7fa	Rakip topluluk
+0g59p11	Grubun kaybetti
+1f9rlp2	Maç {n}
+0ky5syq	Grubun diğer oyuncularla bu adla karşılaşır ve sıralamalarda görünür.
+0zzrqz2	Rakibin
+16cb4gy	Alkış
+1eskchc	{perDay} maçtan {n}.
+0gu3fn9	Maçı başlat
+1p2k4c2	Sahneye ulaşılamadı. Bağlantını kontrol edip tekrar dene.
+0wrtqiy	Sahnede henüz grup yok. Sonra tekrar dene.
+1tt8as5	Bugünlük bu kadar.
+1hqjw8s	Senin grubun, başka bir oyuncunun grubuna karşı
+03t40ly	Günde {perDay} maç. Galibiyet {win} nota, mağlubiyet {loss} nota verir. Beşinci maç ayrıca bir kabuk verir.
+1u01rav	Sahne grubun
+1lmu00y	Henüz sabitlenmiş grup yok
+1mdond4	Mevcut grubunu sabitle
+0sc9ene	Bu grubu sabitle
+1cnzj6r	Diğer oyuncular onunla dövüşür, o da senin için dövüşür.
+0phudqh	Sabitle
+1nmbd7d	Sabitlemek için grubuna üç dost koy.
+1jvdpcs	Dövüşler kendiliğinden oynanır. İki grup da iki seviyeden düşük olanda oynar.
+0tny8o1	Rakip bul
+1aspn2v	Yeni maçlar {msToTomorrow} sonra
+0z7kgqr	Gruplar sıralaması
+1o3ulpn	Rakip
+0cqdktm	Kazandın!
+0ueym13	Grubun kazandı!
+0x4igaj	Süre doldu ve grubunun daha fazla CP'si kalmıştı.
+1mohhri	Süre doldu ve rakibin daha fazla CP'si kalmıştı.
+1tnncwa	<b>Bugünkü {n} maçın hepsi oynandı:</b> sana bir kabuk!
+05nxjry	Sahneye dön
+0fikhco	Galibiyet notaları
+1qf36lm	galibiyet
+01ay9yp	Mağlubiyet notaları
+0zfuo37	mağlubiyet
+04zfntd	günde 5
+18a6x1q	Konserler'de yeni
+1f1rbzf	Grubunu sabitle ve diğer oyuncuların gruplarıyla karşılaş. Alkışla yeni Gruplar sıralamasında yüksel.
+0yd4okf	Sahneye çık
+14kttt9	Tüm zamanlar

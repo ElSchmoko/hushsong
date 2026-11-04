@@ -108,3 +108,59 @@
 1p9hkma	Reinicia na segunda
 0n859tb	Afinando…
 1kuxdf7	Ninguém aqui ainda. Seja o primeiro!
+02aafln	Batalha de bandas
+1eq1jd9	Vença 10 batalhas de bandas.
+050sjah	Mata-gigantes
+1vrj6t0	Vença uma banda com pelo menos 100 de Aplausos a mais que você.
+0dip2y1	Queridinho do público
+17l6uc2	Chegue a 1.200 de Aplausos.
+0zzpczz	Bandas
+11m5tpw	A partir do nível {unlock}: fixe uma banda e enfrente as bandas de outros jogadores, online. As lutas acontecem sozinhas, as duas bandas no nível mais baixo. {perDay} partidas por dia: uma vitória dá {win} notas, uma derrota {loss}, e a quinta partida também uma concha. Vitórias aumentam seus Aplausos no ranking de Bandas.
+0v2qwga	Sua partida está esperando
+0i4f1he	{"one": "Resta {n} partida hoje", "other": "Restam {n} partidas hoje"}
+1r2dpfn	{"one": "Resta {n} batalha de bandas hoje", "other": "Restam {n} batalhas de bandas hoje"}
+1g87aga	Online
+16dxzin	Voltar à Batalha de bandas
+1w7kcrj	Sair da partida?
+0vgq61w	Conta como derrota.
+09iuo7v	As duas bandas jogam no nível {n}
+0v0c7fa	Conjunto rival
+0g59p11	Sua banda perdeu
+1f9rlp2	Partida {n}
+0ky5syq	Sua banda enfrenta outros jogadores com este nome, e ele aparece nos rankings.
+0zzrqz2	Seu rival
+16cb4gy	Aplausos
+1eskchc	Partida {n} de {perDay}
+0gu3fn9	Começar a partida
+1p2k4c2	Não deu para chegar ao palco. Verifique sua conexão e tente de novo.
+0wrtqiy	Ainda não há bandas no palco. Tente mais tarde.
+1tt8as5	Por hoje é só.
+1hqjw8s	Sua banda contra a de outro jogador
+03t40ly	{perDay} partidas por dia. Uma vitória dá {win} notas, uma derrota {loss}. A quinta partida também dá uma concha.
+1u01rav	Sua banda no palco
+1lmu00y	Nenhuma banda fixada ainda
+1mdond4	Fixe sua banda atual
+0sc9ene	Fixe esta banda
+1cnzj6r	Outros jogadores a enfrentam, e ela luta por você.
+0phudqh	Fixar
+1nmbd7d	Coloque três bichinhos na sua banda para fixá-la.
+1jvdpcs	As lutas acontecem sozinhas. As duas bandas jogam no menor dos dois níveis.
+0tny8o1	Encontrar rival
+1aspn2v	Novas partidas em {msToTomorrow}
+0z7kgqr	Ranking de Bandas
+1o3ulpn	Rival
+0cqdktm	Venceu!
+0ueym13	Sua banda venceu!
+0x4igaj	O tempo acabou, e sua banda tinha mais PV.
+1mohhri	O tempo acabou, e o rival tinha mais PV.
+1tnncwa	<b>As {n} partidas de hoje jogadas:</b> uma concha para você!
+05nxjry	Voltar ao palco
+0fikhco	Notas por vitória
+1qf36lm	vitória
+01ay9yp	Notas por derrota
+0zfuo37	derrota
+04zfntd	5 por dia
+18a6x1q	Novo em Shows
+1f1rbzf	Fixe sua banda e enfrente as bandas de outros jogadores. Suba no novo ranking de Bandas com Aplausos.
+0yd4okf	Subir ao palco
+14kttt9	Geral
