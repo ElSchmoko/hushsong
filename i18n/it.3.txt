@@ -115,7 +115,6 @@
 0dip2y1	Beniamino del pubblico
 17l6uc2	Raggiungi 1.200 Applausi.
 0zzpczz	Band
-11m5tpw	Dal livello {unlock}: blocca una band e sfida le band di altri giocatori, online. Gli scontri si giocano da soli, entrambe le band al livello più basso. {perDay} sfide al giorno: una vittoria dà {win} note, una sconfitta {loss}, e la quinta sfida anche una conchiglia. Le vittorie alzano i tuoi Applausi nella classifica delle Band.
 0v2qwga	La tua sfida ti aspetta
 0i4f1he	{"one": "Ancora {n} sfida oggi", "other": "Ancora {n} sfide oggi"}
 1r2dpfn	{"one": "Ancora {n} battaglia tra band oggi", "other": "Ancora {n} battaglie tra band oggi"}
@@ -144,7 +143,6 @@
 1cnzj6r	Altri giocatori la sfidano, e lei combatte per te.
 0phudqh	Blocca
 1nmbd7d	Metti tre cuccioli nella tua band per bloccarla.
-1jvdpcs	Gli scontri si giocano da soli. Entrambe le band giocano al più basso dei due livelli.
 0tny8o1	Trova un rivale
 1aspn2v	Nuove sfide tra {msToTomorrow}
 0z7kgqr	Classifica delle Band
@@ -164,3 +162,5 @@
 1f1rbzf	Blocca la tua band e sfida le band di altri giocatori. Scala la nuova classifica delle Band con gli Applausi.
 0yd4okf	Sali sul palco
 14kttt9	Di sempre
+1wamic9	Guidi tu la tua band, oppure attiva Auto. La band rivale gioca da sola. Entrambe le band giocano al più basso dei due livelli.
+1yrvigp	Dal livello {unlock}: blocca una band e sfida le band di altri giocatori, online. Guidi tu la tua band (o attivi Auto) mentre la band rivale gioca da sola, entrambe al livello più basso. {perDay} sfide al giorno: una vittoria dà {win} note, una sconfitta {loss}, e la quinta sfida anche una conchiglia. Le vittorie alzano i tuoi Applausi nella classifica delle Band.

@@ -68,7 +68,7 @@
     };
     const V = battle.units.map((u) => Object.assign(place(u), { u, sz: sizeOf(u), ph: Math.random() * 6, ox: 0, oy: 0, hp: u.hp, lag: u.hp, max: u.max, shield: u.shield, gx: u.gauge, st: {}, alive: true, flash: 0, shake: 0, alpha: 1, family: u.family }));
     const floats = [], parts = [], tweens = [], shots = [], hits = []; let preview = null, previewKey = '';
-    let active = -1, speed = window.__hsSpeed || (S.settings.speed > 2 ? 2 : S.settings.speed || 1), auto = pvp || !!S.settings.auto, dead = false, paused = false, clock = 0, lastT = performance.now(), target = -1, waiting = null, sel = 0, shown = null, mine = false, note = '';
+    let active = -1, speed = window.__hsSpeed || (S.settings.speed > 2 ? 2 : S.settings.speed || 1), auto = !!S.settings.auto, dead = false, paused = false, clock = 0, lastT = performance.now(), target = -1, waiting = null, sel = 0, shown = null, mine = false, note = '';
     const tween = (o, p, to, dur) => { for (let i = tweens.length - 1; i >= 0; i--) if (tweens[i].o === o && tweens[i].p === p) tweens.splice(i, 1); tweens.push({ o, p, from: o[p], to, t: 0, dur: Math.max(1, dur / speed) }); };
     const wait = (ms) => new Promise((res) => { const t0 = performance.now(); const tick = () => { if (dead) return; if (paused) { setTimeout(tick, 60); return; } if (performance.now() - t0 >= ms / speed) res(); else setTimeout(tick, 16); }; tick(); });
     const float = (v, text, col, big) => { const now = performance.now(), k = v.u.uid, s0 = float.last[k]; let dy = 0; if (s0 && now - s0.t < 520 / speed) dy = s0.dy + (big ? 9 : 7); float.last[k] = { t: now, dy: dy > 22 ? 0 : dy }; floats.push({ x: v.x + v.sz / 2, y: v.y + v.bb.t + 10 - float.last[k].dy, text, col, big, t: 0 }); };
@@ -99,7 +99,7 @@
     // Auto and speed are switches: latched down and gold while on
     const autoB = key(tr('Auto'), () => { auto = !auto; S.settings.auto = auto ? 1 : 0; autoB.setAttribute('aria-pressed', String(auto)); UI.save(); if (auto && waiting != null) { const w2 = waiting; waiting = null; w2(null); } }, 'tog sm');
     const spd = key(speed + 'x', () => { speed = speed >= 2 ? 1 : 2; S.settings.speed = speed; spd.textContent = speed + 'x'; spd.setAttribute('aria-pressed', String(speed > 1)); UI.save(); }, 'tog sm');
-    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); if (pvp) autoB.hidden = true; spd.setAttribute('aria-label', tr('Speed'));
+    autoB.setAttribute('aria-pressed', String(auto)); spd.setAttribute('aria-pressed', String(speed > 1)); spd.setAttribute('aria-label', tr('Speed'));
     const useB = key(tr('Use'), () => fire(), 'go big');
     add(panel, box('phead', title, autoB, spd), meta, desc, box('prow', icons, useB), hint);
     add(wrap, fwrap, panel); root.appendChild(wrap);

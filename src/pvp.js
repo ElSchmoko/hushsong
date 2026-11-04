@@ -1,7 +1,7 @@
 /* Hushsong — Battle of the Bands: online PvP against other players' locked bands. No DOM.
    A player locks in a band; a copy of it (forms, stars, equipment) goes online with the next match. A match fetches one
    rival band near the player's level and Applause (src/net.js, supabase/setup.sql) and fights it here, on the phone,
-   auto on both sides. Both bands play at the lower of the two players' levels. Only the attacker's Applause moves.
+   the player steering their own band (or on Auto), the rival band always on its own. Both bands play at the lower of the two players' levels. Only the attacker's Applause moves.
    Five matches a day (local midnight, like the Daily Gig): a win pays 50 notes, a loss 20, the fifth match a shell. */
 (function (H) {
   'use strict';
@@ -45,7 +45,7 @@
     for (const g of c.g) perks.push(H.itemPerk({ type: g.t, rar: g.r, leg: g.l || undefined }));
     return { name: form.n, form: c.f, sprite: c.f, family: sp.family, role: kit.role, lvl: level, base: H.petStats({ form: c.f }, level), perks, kit };
   };
-  // a whole number from a match token, to seed its fight: the same token always plays the same fight
+  // a whole number from a match token, to seed its fight: a reopened match rolls the same dice
   H.seedOf = (s) => { let h = 2166136261; for (const ch of String(s)) { h ^= ch.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
 
   /* ----- Applause: the same sum the server makes, so the phone can show it at once, online or not ----- */

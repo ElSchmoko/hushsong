@@ -32,7 +32,7 @@ Nothing is sent until a player picks a name. After that, each new best goes up w
 ## Battle of the Bands
 
 Online PvP from level 15 (Gigs). A player locks in a band; each match fetches one rival band from another player near their level and Applause,
-and the fight runs on the phone, auto on both sides, both bands at the lower of the two levels. Five matches a day (local midnight): a win pays 50 notes,
+and the fight runs on the phone: the player steers their band (or uses Auto), the rival band plays on its own, both at the lower of the two levels. Five matches a day (local midnight): a win pays 50 notes,
 a loss 20, the fifth match a shell. Only the attacker's Applause moves; it is the Bands board on the Ranks screen.
 
 - `src/pvp.js` the rules, band copies and pay; `src/ui-pvp.js` the screens and the one-time news card; `src/net.js` the two calls

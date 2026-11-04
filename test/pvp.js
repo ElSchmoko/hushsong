@@ -1,6 +1,6 @@
 // Battle of the Bands, headless: node test/pvp.js [battles]
 // Random bands of random forms, stars and equipment fight each other through band copies, the way two players' bands meet:
-// no crashes, every fight ends by turn 60, both sides' ensembles work, the same token always plays the same fight,
+// no crashes, every fight ends by turn 60, both sides' ensembles work, the same token rolls the same dice (here on Auto),
 // and the match flow (open, finish, pay) adds up.
 require('../src/i18n.js'); require('../src/data.js'); require('../src/engine.js'); require('../src/game.js'); require('../src/modes.js'); require('../src/pvp.js');
 const H = globalThis.H, N = +process.argv[2] || 4000, rnd = H.rng(11), forms = Object.keys(H.FORMS);

@@ -115,7 +115,6 @@
 0dip2y1	Favorito del público
 17l6uc2	Llega a 1200 de Aplausos.
 0zzpczz	Bandas
-11m5tpw	Desde el nivel {unlock}: fija una banda y enfréntate a las bandas de otros jugadores, en línea. Las peleas se juegan solas, las dos bandas al nivel más bajo. {perDay} partidas al día: una victoria da {win} notas, una derrota {loss}, y la quinta partida además una concha. Las victorias suben tus Aplausos en la tabla de Bandas.
 0v2qwga	Tu partida te espera
 0i4f1he	{"one": "Queda {n} partida hoy", "other": "Quedan {n} partidas hoy"}
 1r2dpfn	{"one": "Queda {n} batalla de bandas hoy", "other": "Quedan {n} batallas de bandas hoy"}
@@ -144,7 +143,6 @@
 1cnzj6r	Otros jugadores se enfrentan a ella, y ella pelea por ti.
 0phudqh	Fijar
 1nmbd7d	Pon tres mascotas en tu banda para fijarla.
-1jvdpcs	Las peleas se juegan solas. Las dos bandas juegan al más bajo de los dos niveles.
 0tny8o1	Buscar rival
 1aspn2v	Nuevas partidas en {msToTomorrow}
 0z7kgqr	Tabla de Bandas
@@ -164,3 +162,5 @@
 1f1rbzf	Fija tu banda y enfréntate a las bandas de otros jugadores. Sube en la nueva tabla de Bandas con tus Aplausos.
 0yd4okf	Sube al escenario
 14kttt9	Siempre
+1wamic9	Tú diriges tu banda, o activa Auto. La banda rival juega sola. Las dos bandas juegan al más bajo de los dos niveles.
+1yrvigp	Desde el nivel {unlock}: fija una banda y enfréntate a las bandas de otros jugadores, en línea. Tú diriges tu banda (o activa Auto) mientras la banda rival juega sola, las dos al nivel más bajo. {perDay} partidas al día: una victoria da {win} notas, una derrota {loss}, y la quinta partida además una concha. Las victorias suben tus Aplausos en la tabla de Bandas.

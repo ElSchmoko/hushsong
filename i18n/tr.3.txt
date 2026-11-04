@@ -115,7 +115,6 @@
 0dip2y1	Seyircinin Gözdesi
 17l6uc2	1.200 Alkışa ulaş.
 0zzpczz	Gruplar
-11m5tpw	Seviye {unlock}'ten itibaren: bir grubu sabitle ve çevrimiçi olarak başka oyuncuların gruplarıyla karşılaş. Dövüşler kendiliğinden oynanır, iki grup da düşük olan seviyede. Günde {perDay} maç: galibiyet {win} nota, mağlubiyet {loss} nota verir, beşinci maç ayrıca bir kabuk. Galibiyetler Gruplar sıralamasındaki Alkışını artırır.
 0v2qwga	Maçın seni bekliyor
 0i4f1he	Bugün {n} maç kaldı
 1r2dpfn	Bugün {n} grup savaşı kaldı
@@ -144,7 +143,6 @@
 1cnzj6r	Diğer oyuncular onunla dövüşür, o da senin için dövüşür.
 0phudqh	Sabitle
 1nmbd7d	Sabitlemek için grubuna üç dost koy.
-1jvdpcs	Dövüşler kendiliğinden oynanır. İki grup da iki seviyeden düşük olanda oynar.
 0tny8o1	Rakip bul
 1aspn2v	Yeni maçlar {msToTomorrow} sonra
 0z7kgqr	Gruplar sıralaması
@@ -164,3 +162,5 @@
 1f1rbzf	Grubunu sabitle ve diğer oyuncuların gruplarıyla karşılaş. Alkışla yeni Gruplar sıralamasında yüksel.
 0yd4okf	Sahneye çık
 14kttt9	Tüm zamanlar
+1wamic9	Grubunu sen yönet ya da Oto'yu aç. Rakip grup kendiliğinden oynar. İki grup da iki seviyeden düşük olanda oynar.
+1yrvigp	Seviye {unlock}'ten itibaren: bir grubu sabitle ve çevrimiçi olarak başka oyuncuların gruplarıyla karşılaş. Grubunu sen yönetirsin (ya da Oto'yu açarsın), rakip grup kendiliğinden oynar, ikisi de düşük olan seviyede. Günde {perDay} maç: galibiyet {win} nota, mağlubiyet {loss} nota verir, beşinci maç ayrıca bir kabuk. Galibiyetler Gruplar sıralamasındaki Alkışını artırır.

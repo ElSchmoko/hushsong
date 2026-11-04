@@ -80,7 +80,7 @@
         lk.type = 'button'; lk.addEventListener('click', () => { if (H.lockPvpBand(S)) { Au.sfx('stamp'); UI.save(); draw(); } }); pad.appendChild(lk);
       } else if (team.length < 3 && band.length < 3) pad.appendChild(txt('small dim center', tr('Put three pets in your band to lock it in.')));
       pad.appendChild(key(tr('Change your band'), () => UI.go('team', { back: 'bands' }), 'wide soft sm'));
-      pad.appendChild(txt('small dim center', tr('Fights play out on their own. Both bands play at the lower of the two levels.')));
+      pad.appendChild(txt('small dim center', tr('You lead your band, or turn on Auto. The rival band plays on its own. Both bands play at the lower of the two levels.')));
       body.appendChild(pad); root.appendChild(body);
       // the big button: the waiting match, a new one, or tomorrow
       let go;

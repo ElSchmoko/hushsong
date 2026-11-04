@@ -25,8 +25,12 @@ S.bands = async ({ p, shot, tap, sleep, evalS, waitBattle }) => {
   await p.locator('.payline').click(); await sleep(300); await shot('pay-toast');
   await tap('Find a rival'); await sleep(900); await shot('rival');
   await tap('Start the match'); await sleep(1300); await shot('faceoff');
-  await sleep(3600); await p.mouse.click(200, 300); await sleep(1800); await shot('battle');
-  await evalS(() => { const b = [...document.querySelectorAll('.key.tog')].find((x) => x.textContent === '2x'); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); });
+  // the player steers their own band: wait for one of its turns, play a move by hand
+  await sleep(3600); await p.mouse.click(200, 300);
+  for (let i = 0; i < 80 && !(await evalS(() => { const u = document.querySelector('.bpanel .key.go'); return u && !u.disabled; })); i++) await sleep(250);
+  await shot('battle-your-turn'); await tap('Use'); await sleep(1200); await shot('battle-after-move');
+  // then the rest on Auto
+  await evalS(() => { for (const t of ['Auto', '1x']) { const b = [...document.querySelectorAll('.key.tog')].find((x) => x.textContent === t); if (b && b.getAttribute('aria-pressed') !== 'true') b.click(); } });
   await waitBattle(); await sleep(600); await shot('result');
   await tap('Back to the stage'); await sleep(500); await shot('stage-after');
   console.log('calls:', JSON.stringify(await evalS(() => window.__calls)), 'pvp:', JSON.stringify(await evalS(() => { const P = window.H.UI.S.pvp; return { played: P.played, applause: P.applause, unsent: P.unsent, cur: !!P.cur }; })));
