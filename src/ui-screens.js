@@ -158,7 +158,7 @@
     if (H.refreshRehearsals(S)) UI.save(); H.refreshEncore(S);
     const reh = S.stage > 10 ? H.rehearsals(S).filter((n) => !S.reh[n]).length : 0, day = H.dailyOpen(S) && !H.dailyStatus(S).won, solo = H.soloOpen(S) && H.soloPaidLeft(S) > 0, bands = H.pvpOpen(S) ? H.pvpLeft(S) : 0;
     const fresh = (H.dailyOpen(S) && !S.flags.seenDaily) || (H.soloOpen(S) && !S.flags.seenSolo) || (H.encoreOpen(S) && !S.flags.seenEnc) || (H.tourOpen(S) && !S.flags.seenTour) || (H.pvpOpen(S) && !S.flags.seenPvp);
-    const line = day ? tr('Daily Gig ready') : bands && S.pvp && S.pvp.cur ? tr('Your match is waiting') : S.tourRun ? tr('World Tour on the road') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? (H.GATES.solo ? tr('Solo pays today') : tr('Solo pays every tour')) : bands ? tr('{n} band battles left today', { n: bands }) : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
+    const line = day ? tr('Daily Gig ready') : bands && S.pvp && S.pvp.cur ? tr('Your match is waiting') : S.tourRun ? tr('World Tour on the road') : S.soloRun ? tr('Solo tour on the road') : S.encoreRun ? tr('Encore wave {n} next', { n: S.encoreRun.wave }) : reh ? tr('{n} rehearsals open', { n: reh }) : solo ? (H.GATES.solo ? tr('Solo pays today') : tr('Solo pays every tour')) : bands ? tr('{n} paid band battles left today', { n: bands }) : S.stage <= 10 && !H.dailyOpen(S) ? tr('First gig at level {n}', { n: H.DAILY.unlock }) : tr('All played today');
     return { line, pips: (day ? 1 : 0) + reh, fresh };
   };
 
@@ -181,7 +181,7 @@
     // Battle of the Bands: a fight poster, with today's matches
     const BL = H.pvpOpen(S) ? H.pvpLeft(S) : 0, played = H.pvpOpen(S) ? S.pvp.played : 0;
     pin('bands', H.pvpOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.PVP.unlock }), (f) => add(f, el('i', 'burst'), add(el('div', 'frow'), UI.icon('nd_battle', 2.3), add(el('div', 'grow'), txt('fkick', tr('Online')), el('b', 'ftitle', tr('Battle of the Bands')),
-      txt('fsub', H.pvpOpen(S) && S.pvp.cur ? tr('Your match is waiting') : BL ? tr('{n} matches left today', { n: BL }) : tr('All played today')))), add(el('div', 'dots'), ...Array.from({ length: H.PVP.perDay }, (_, i) => el('i', (i < played ? 'got' : '') + (i === H.PVP.perDay - 1 ? ' boss' : ''))))), 'bands', S.flags.seenPvp ? (S.pvp && S.pvp.cur ? '!' : 0) : '!', 1);
+      txt('fsub', H.pvpOpen(S) && S.pvp.cur ? tr('Your match is waiting') : BL ? tr('{n} paid matches left today', { n: BL }) : tr('Free play today')))), add(el('div', 'dots'), ...Array.from({ length: H.PVP.perDay }, (_, i) => el('i', (i < played ? 'got' : '') + (i === H.PVP.perDay - 1 ? ' boss' : ''))))), 'bands', S.flags.seenPvp ? (S.pvp && S.pvp.cur ? '!' : 0) : '!', 1);
     // Solo: a spotlight flyer with today's pay
     const P = (H.refreshSolo(S), S.solo), pays = H.GATES.solo ? [0, 1, 2, 3, 4].map((i) => i < P.gigs).concat([!!P.boss]) : [0, 1, 2, 3, 4].map((i) => !!S.soloRun && i < S.soloRun.gigs).concat([false]);
     pin('solo', H.soloOpen(S), tr('Unlocks at Level {unlock}', { unlock: H.SOLO.unlock }), (f) => add(f, el('i', 'spot'), txt('fkick', tr('Solo')), UI.icon('ic_solo', 2), el('b', 'ftitle', S.soloRun ? tr('Gig {n} of 5', { n: Math.min(5, S.soloRun.gigs + 1) }) : tr('Solo Tour')),

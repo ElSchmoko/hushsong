@@ -809,3 +809,4 @@ input.namein:focus { outline: calc(var(--u) * 1.5) solid var(--blue); outline-of
 .newslogo { color: #fff3c2; }
 .seg.two { grid-template-columns: 1fr 1fr; } .seg.sub { margin-top: calc(var(--u) * 2); padding: calc(var(--u) * 1); } .seg.sub button { min-height: calc(var(--u) * 13); font-size: calc(var(--u) * 6.6); } .seg[hidden] { display: none; }
 @keyframes bspin { to { transform: rotate(360deg); } } @keyframes bandl { from { transform: translateX(-160%); } } @keyframes bandr { from { transform: translateX(160%); } } @keyframes newsin { from { transform: scale(0.2) rotate(-20deg); opacity: 0; } }
+.freeline { padding: calc(var(--u) * 2) calc(var(--u) * 4); background: #fff6dc; border: calc(var(--u) * 1) dashed var(--ink); border-radius: calc(var(--u) * 4); }

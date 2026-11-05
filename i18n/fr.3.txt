@@ -116,8 +116,6 @@
 17l6uc2	Atteins 1 200 Applaudissements.
 0zzpczz	Groupes
 0v2qwga	Ton match t'attend
-0i4f1he	{"one": "Encore {n} match aujourd'hui", "other": "Encore {n} matchs aujourd'hui"}
-1r2dpfn	{"one": "Encore {n} bataille de groupes aujourd'hui", "other": "Encore {n} batailles de groupes aujourd'hui"}
 1g87aga	En ligne
 16dxzin	Retour à la Bataille de groupes
 1w7kcrj	Quitter le match ?
@@ -135,7 +133,6 @@
 0wrtqiy	Aucun groupe sur scène pour l'instant. Réessaie plus tard.
 1tt8as5	C'est tout pour aujourd'hui.
 1hqjw8s	Ton groupe contre celui d'un autre joueur
-03t40ly	{perDay} matchs par jour. Une victoire rapporte {win} notes, une défaite {loss}. Le cinquième match rapporte aussi un coquillage.
 1u01rav	Ton groupe sur scène
 1lmu00y	Aucun groupe verrouillé pour l'instant
 1mdond4	Verrouille ton groupe actuel
@@ -144,7 +141,6 @@
 0phudqh	Verrouiller
 1nmbd7d	Mets trois compagnons dans ton groupe pour le verrouiller.
 0tny8o1	Trouver un rival
-1aspn2v	Nouveaux matchs dans {msToTomorrow}
 0z7kgqr	Classement des Groupes
 1o3ulpn	Rival
 0cqdktm	Gagné !
@@ -163,4 +159,13 @@
 0yd4okf	Monte sur scène
 14kttt9	Tous les temps
 1wamic9	Tu mènes ton groupe, ou tu passes en Auto. Le groupe rival joue tout seul. Les deux groupes jouent au plus bas des deux niveaux.
-1yrvigp	Dès le niveau {unlock} : verrouille un groupe et affronte les groupes d'autres joueurs, en ligne. Tu mènes ton groupe (ou passes en Auto) pendant que le groupe rival joue tout seul, les deux au niveau le plus bas. {perDay} matchs par jour : une victoire rapporte {win} notes, une défaite {loss}, et le cinquième match un coquillage en plus. Les victoires font monter tes Applaudissements au classement des Groupes.
+0pr1xn9	Jeu libre · sans récompense
+0rfa18u	Jeu libre aujourd'hui
+0ss560m	Nouvelles récompenses dans {msToTomorrow}
+142t6ib	Les récompenses du jour sont versées. Continue pour le plaisir.
+1bkr900	Rejouer
+1dswrcl	Jouer pour le plaisir
+1e3el2a	{"one": "Encore {n} match payé aujourd'hui", "other": "Encore {n} matchs payés aujourd'hui"}
+0i87w0z	{"one": "Encore {n} bataille de groupes payée aujourd'hui", "other": "Encore {n} batailles de groupes payées aujourd'hui"}
+0b3b1xo	{perDay} matchs payés par jour. Une victoire rapporte {win} notes, une défaite {loss}, et le cinquième match aussi un coquillage. Ensuite, continue pour le plaisir.
+0gog4dp	Dès le niveau {unlock} : verrouille un groupe et affronte les groupes d'autres joueurs, en ligne. Tu mènes ton groupe (ou passes en Auto) pendant que le groupe rival joue tout seul, les deux au niveau le plus bas. Les {perDay} premiers matchs de chaque jour rapportent : une victoire {win} notes, une défaite {loss}, le cinquième match un coquillage en plus, et ils font bouger tes Applaudissements au classement des Groupes. Ensuite, continue pour le plaisir, sans récompense.

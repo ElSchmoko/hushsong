@@ -116,8 +116,6 @@
 17l6uc2	1.200 Alkışa ulaş.
 0zzpczz	Gruplar
 0v2qwga	Maçın seni bekliyor
-0i4f1he	Bugün {n} maç kaldı
-1r2dpfn	Bugün {n} grup savaşı kaldı
 1g87aga	Çevrimiçi
 16dxzin	Grupların Savaşı'na dön
 1w7kcrj	Maçtan çıkılsın mı?
@@ -135,7 +133,6 @@
 0wrtqiy	Sahnede henüz grup yok. Sonra tekrar dene.
 1tt8as5	Bugünlük bu kadar.
 1hqjw8s	Senin grubun, başka bir oyuncunun grubuna karşı
-03t40ly	Günde {perDay} maç. Galibiyet {win} nota, mağlubiyet {loss} nota verir. Beşinci maç ayrıca bir kabuk verir.
 1u01rav	Sahne grubun
 1lmu00y	Henüz sabitlenmiş grup yok
 1mdond4	Mevcut grubunu sabitle
@@ -144,7 +141,6 @@
 0phudqh	Sabitle
 1nmbd7d	Sabitlemek için grubuna üç dost koy.
 0tny8o1	Rakip bul
-1aspn2v	Yeni maçlar {msToTomorrow} sonra
 0z7kgqr	Gruplar sıralaması
 1o3ulpn	Rakip
 0cqdktm	Kazandın!
@@ -163,4 +159,13 @@
 0yd4okf	Sahneye çık
 14kttt9	Tüm zamanlar
 1wamic9	Grubunu sen yönet ya da Oto'yu aç. Rakip grup kendiliğinden oynar. İki grup da iki seviyeden düşük olanda oynar.
-1yrvigp	Seviye {unlock}'ten itibaren: bir grubu sabitle ve çevrimiçi olarak başka oyuncuların gruplarıyla karşılaş. Grubunu sen yönetirsin (ya da Oto'yu açarsın), rakip grup kendiliğinden oynar, ikisi de düşük olan seviyede. Günde {perDay} maç: galibiyet {win} nota, mağlubiyet {loss} nota verir, beşinci maç ayrıca bir kabuk. Galibiyetler Gruplar sıralamasındaki Alkışını artırır.
+0pr1xn9	Serbest oyun · ödül yok
+0rfa18u	Bugün serbest oyun
+0ss560m	Yeni ödüller {msToTomorrow} sonra
+142t6ib	Bugünün ödülleri ödendi. Eğlence için oynamaya devam et.
+1bkr900	Bir tane daha
+1dswrcl	Eğlence için oyna
+1e3el2a	Bugün {n} ödüllü maç kaldı
+0i87w0z	Bugün {n} ödüllü grup savaşı kaldı
+0b3b1xo	Günde {perDay} ödüllü maç. Galibiyet {win} nota, mağlubiyet {loss} nota verir, beşinci maç ayrıca bir kabuk. Sonrasında eğlence için oynamaya devam et.
+0gog4dp	Seviye {unlock}'ten itibaren: bir grubu sabitle ve çevrimiçi olarak başka oyuncuların gruplarıyla karşılaş. Grubunu sen yönetirsin (ya da Oto'yu açarsın), rakip grup kendiliğinden oynar, ikisi de düşük olan seviyede. Her günün ilk {perDay} maçı ödüllüdür: galibiyet {win} nota, mağlubiyet {loss} nota, beşinci maç ayrıca bir kabuk verir ve Gruplar sıralamasındaki Alkışını değiştirir. Sonrasında ödülsüz, eğlence için oynamaya devam et.

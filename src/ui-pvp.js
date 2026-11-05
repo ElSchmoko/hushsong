@@ -34,7 +34,7 @@
     const R = cur.rival, ens = H.copyEnsemble(R.band), mine = H.pvpBand(S);
     const card = add(el('div', 'rivalcard'), txt('label', tr('Your rival')), nameEl('rvname', R.name), box('row rvmeta', UI.purse('ic_trophy', R.applause, tr('Applause')), txt('small', tr('Lv {level}', { level: R.level }))),
       faces(R.band.map((c) => c.f), 0.66, true), txt('small dim', ens ? ens.n : tr('No ensemble')));
-    UI.modal(txt('label center', tr('Match {n} of {perDay}', { n: cur.n, perDay: P.perDay })), card, el('div', 'vsmini', tr('VS')),
+    UI.modal(txt('label center', cur.free ? tr('Free play · no rewards') : tr('Match {n} of {perDay}', { n: cur.n, perDay: P.perDay })), card, el('div', 'vsmini', tr('VS')),
       add(el('div', 'rivalcard mine'), faces(mine.map((p) => p.form), 0.5), txt('small dim', H.pvpEnsemble(S) ? H.pvpEnsemble(S).n : tr('No ensemble'))),
       txt('center chip', tr('Both bands play at level {n}', { n: H.pvpLevel(S) })),
       key(tr('Start the match'), () => { UI.closeModal(); UI.go('battle', { pvp: 1 }); }, 'go wide big'));
@@ -52,6 +52,16 @@
     if (r === 'limit') return UI.toast(tr('That is all for today.'));
     H.openPvpMatch(S, r); UI.save(); Au.sfx('stamp'); draw(); UI.pvpRival();
   };
+  // free play: a band you met, or one from the Bands board when online. Nothing is sent.
+  // the Bands board read for free play is kept for 10 minutes: one small read now and then, nothing sent
+  let freeBusy = false, freeRows = null, freeAt = 0;
+  UI.pvpFree = async (draw) => {
+    const S = UI.S; if (freeBusy || S.pvp.cur || !H.pvpLocked(S)) return; freeBusy = true;
+    if (!freeRows || Date.now() - freeAt > 600000) { try { freeRows = (await Net.board(S, 'bands')).top || []; freeAt = Date.now(); } catch (e) { freeRows = freeRows || []; } }
+    const rows = freeRows; freeBusy = false;
+    const pool = H.freeRivals(S, rows); if (!pool.length) return UI.toast(tr('No bands on stage yet. Try again later.'));
+    H.openFreeMatch(S, pool[Math.floor(Math.random() * pool.length)]); UI.save(); Au.sfx('stamp'); if (draw) draw(); UI.pvpRival();
+  };
 
   UI.screens.bands = (root) => {
     const S = UI.S; if (!H.pvpOpen(S)) return UI.go('gigs');
@@ -66,8 +76,9 @@
       const body = el('div', 'scroll'), pad = el('div', 'pad'), foot = el('div', 'gofoot');
       // today's five matches and what they pay
       const left = H.pvpLeft(S), pay = add(el('button', 'payline'), txt('label', tr('Today')), payTrack(S)); pay.type = 'button';
-      pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(tr('{perDay} matches a day. A win pays {win} notes, a loss {loss}. The fifth match also pays a shell.', { perDay: P.perDay, win: P.win, loss: P.loss })); });
+      pay.addEventListener('click', () => { Au.sfx('tap'); UI.toast(tr('{perDay} paid matches a day. A win pays {win} notes, a loss {loss}, and the fifth match also a shell. After that, play on for fun.', { perDay: P.perDay, win: P.win, loss: P.loss })); });
       pad.appendChild(pay);
+      if (!left) pad.appendChild(txt('small center freeline', tr('Today\'s rewards are paid. Play on for fun.') + ' ' + tr('New rewards in {msToTomorrow}', { msToTomorrow: countdown(H.msToTomorrow()) })));
       // your stage band and your Applause
       const band = H.pvpBand(S), ens = H.pvpEnsemble(S), team = H.teamPets(S).filter(Boolean);
       const card = add(el('div', 'tourcard stagecard'), add(el('div', 'grow col'), txt('label', tr('Your stage band')),
@@ -86,7 +97,7 @@
       let go;
       if (S.pvp.cur) go = key(tr('Your match is waiting'), () => UI.pvpRival(), 'go wide big');
       else if (left > 0) { go = key(tr('Find a rival'), () => findRival(go, draw), 'go wide big'); go.disabled = band.length !== 3; }
-      else { go = key(tr('New matches in {msToTomorrow}', { msToTomorrow: countdown(H.msToTomorrow()) }), () => {}, 'wide soft'); go.disabled = true; }
+      else { go = key(tr('Play for fun'), () => UI.pvpFree(draw), 'go wide big'); go.disabled = band.length !== 3; }
       add(foot, go, key(tr('Bands board'), () => UI.go('ranks', { tab: 'bands', from: 'bands' }), 'wide soft'));
       root.appendChild(foot);
     };
@@ -94,19 +105,20 @@
   };
 
   UI.pvpResult = (out) => {
-    const S = UI.S, kids = [], loot = box('loot'), R = out.rival;
-    loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
+    const S = UI.S, kids = [], loot = box('loot'), R = out.rival, free = !!out.free;
+    if (!free) loot.appendChild(UI.purse('ic_note', '+' + out.notes)); if (out.shells) loot.appendChild(UI.purse('ic_shell', '+' + out.shells));
     const ticket = add(el('div', 'ticket' + (out.win ? '' : ' lost')), faces(R.band.map((c) => c.f), 0.42, true), add(el('div', 'grow'), txt('label', tr('Rival')), nameEl('', R.name)));
-    if (out.win) { ticket.appendChild(UI.stamp(tr('Won!'))); UI.confetti(out.shells ? 50 : 30); }
+    if (out.win) { ticket.appendChild(UI.stamp(tr('Won!'))); UI.confetti(out.shells ? 50 : free ? 16 : 30); }
     const appl = add(el('div', 'applline'), UI.icon('ic_trophy', 0.9), el('b', '', UI.fmt(out.applause)), el('span', out.delta >= 0 ? 'good' : 'bad', (out.delta >= 0 ? '+' : '') + out.delta), txt('small dim', tr('Applause')));
     kids.push(txt('disp big center', out.win ? tr('Your band wins!') : out.why === 'time' ? tr('Lights out!') : tr('Not this time')));
     if (out.why === 'time') kids.push(txt('center dim', out.win ? tr('Time ran out, and your band had more HP left.') : tr('Time ran out, and the rival had more HP left.')));
-    kids.push(ticket, loot, appl);
+    kids.push(ticket); if (free) kids.push(txt('center chip', tr('Free play · no rewards'))); else kids.push(loot, appl);
     if (out.shells) kids.push(txt('center good', tr('<b>All {n} matches played today:</b> a shell for you!', { n: P.perDay })));
     const left = H.pvpLeft(S);
-    kids.push(txt('small dim center', left ? tr('{n} matches left today', { n: left }) : tr('New matches in {msToTomorrow}', { msToTomorrow: countdown(H.msToTomorrow()) })));
-    kids.push(key(tr('Back to the stage'), () => { UI.closeModal(); UI.go('bands'); }, 'go wide big'), key(tr('Home'), () => { UI.closeModal(); UI.go('home'); }, 'wide soft'));
-    Au.sfx('coin'); UI.modal(...kids);
+    kids.push(txt('small dim center', left ? tr('{n} paid matches left today', { n: left }) : tr('New rewards in {msToTomorrow}', { msToTomorrow: countdown(H.msToTomorrow()) })));
+    if (!left) kids.push(key(tr('Play another'), () => { UI.closeModal(); UI.go('bands'); UI.pvpFree(); }, 'go wide big'), key(tr('Back to the stage'), () => { UI.closeModal(); UI.go('bands'); }, 'wide soft'));
+    else kids.push(key(tr('Back to the stage'), () => { UI.closeModal(); UI.go('bands'); }, 'go wide big'), key(tr('Home'), () => { UI.closeModal(); UI.go('home'); }, 'wide soft'));
+    Au.sfx(free ? 'good' : 'coin'); UI.modal(...kids);
   };
 
   // Home, once: a new mode is in the game

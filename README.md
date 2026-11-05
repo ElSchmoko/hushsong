@@ -32,8 +32,10 @@ Nothing is sent until a player picks a name. After that, each new best goes up w
 ## Battle of the Bands
 
 Online PvP from level 15 (Gigs). A player locks in a band; each match fetches one rival band from another player near their level and Applause,
-and the fight runs on the phone: the player steers their band (or uses Auto), the rival band plays on its own, both at the lower of the two levels. Five matches a day (local midnight): a win pays 50 notes,
-a loss 20, the fifth match a shell. Only the attacker's Applause moves; it is the Bands board on the Ranks screen.
+and the fight runs on the phone: the player steers their band (or uses Auto), the rival band plays on its own, both at the lower of the two levels. The first five matches a day (local midnight) are paid:
+a win pays 50 notes, a loss 20, the fifth match a shell. Only those move Applause (the Bands board on the Ranks screen), and only the attacker's.
+After that the mode is free play: as many matches as you like, no rewards, all on the phone. Rivals come from bands met in paid matches
+(kept in the save) and from the Bands board, so free play sends nothing and needs no Supabase change.
 
 - `src/pvp.js` the rules, band copies and pay; `src/ui-pvp.js` the screens and the one-time news card; `src/net.js` the two calls
 - `supabase/setup.sql` adds the columns and `hs_pvp_match` / `hs_pvp_result` (run it again in the SQL Editor: it keeps existing scores)
