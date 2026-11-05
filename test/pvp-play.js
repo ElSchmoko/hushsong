@@ -39,6 +39,15 @@ S.bands = async ({ p, shot, tap, sleep, evalS, waitBattle }) => {
   await tap('Find a rival'); await sleep(700); await tap('Start the match'); await sleep(300);
   await evalS(() => { window.__hsSpeed = 8; }); await waitBattle(); await sleep(500); await shot('result-fifth');
   await evalS(() => { window.__hsSpeed = 0; window.H.UI.closeModal(); window.H.UI.go('bands'); }); await sleep(400); await shot('stage-done');
+  // free play after the five: no call to the stage, no rewards, nothing changes
+  const was = await evalS(() => { const S = window.H.UI.S; window.__calls.length = 0; return JSON.stringify([S.notes, S.shells, S.pvp.applause, S.pvp.played, S.stats.pvpWins || 0]); });
+  await tap('Play for fun'); await sleep(700); await shot('free-rival'); await tap('Start the match'); await sleep(300);
+  await evalS(() => { window.__hsSpeed = 8; }); await waitBattle(); await sleep(500); await shot('free-result');
+  await tap('Play another'); await sleep(900); await shot('free-again'); await tap('Start the match'); await sleep(300); await waitBattle(); await sleep(400);
+  await evalS(() => { window.__hsSpeed = 0; });
+  const now = await evalS(() => { const S = window.H.UI.S; return JSON.stringify([S.notes, S.shells, S.pvp.applause, S.pvp.played, S.stats.pvpWins || 0]); });
+  console.log('free play unchanged:', was === now, was, now, 'calls:', JSON.stringify(await evalS(() => window.__calls)));
+  await evalS(() => { window.H.UI.closeModal(); window.H.UI.go('bands'); }); await sleep(300);
   await evalS(() => window.H.UI.go('gigs')); await sleep(500); await shot('gigboard');
   await evalS(() => window.H.UI.go('ranks', { tab: 'bands' })); await sleep(700); await shot('ranks-bands');
   await evalS(() => window.H.UI.go('ranks', { tab: 'encore' })); await sleep(700); await shot('ranks-encore');

@@ -116,8 +116,6 @@
 17l6uc2	Erreiche 1.200 Applaus.
 0zzpczz	Bands
 0v2qwga	Dein Duell wartet
-0i4f1he	{"one": "Heute noch {n} Duell", "other": "Heute noch {n} Duelle"}
-1r2dpfn	{"one": "Heute noch {n} Bandduell", "other": "Heute noch {n} Bandduelle"}
 1g87aga	Online
 16dxzin	Zurück zum Bandcontest
 1w7kcrj	Duell verlassen?
@@ -135,7 +133,6 @@
 0wrtqiy	Noch keine Bands auf der Bühne. Versuch es später noch einmal.
 1tt8as5	Das war's für heute.
 1hqjw8s	Deine Band gegen die eines anderen Spielers
-03t40ly	{perDay} Duelle am Tag. Ein Sieg bringt {win} Noten, eine Niederlage {loss}. Das fünfte Duell bringt dazu eine Muschel.
 1u01rav	Deine Bühnenband
 1lmu00y	Noch keine Band festgelegt
 1mdond4	Aktuelle Band festlegen
@@ -144,7 +141,6 @@
 0phudqh	Festlegen
 1nmbd7d	Stell drei Tiere in deine Band, um sie festzulegen.
 0tny8o1	Gegner suchen
-1aspn2v	Neue Duelle in {msToTomorrow}
 0z7kgqr	Bands-Rangliste
 1o3ulpn	Gegner
 0cqdktm	Gewonnen!
@@ -163,4 +159,13 @@
 0yd4okf	Ab auf die Bühne
 14kttt9	Allzeit
 1wamic9	Du führst deine Band, oder schalte Auto ein. Die gegnerische Band spielt von allein. Beide Bands spielen auf dem niedrigeren der beiden Level.
-1yrvigp	Ab Level {unlock}: Leg eine Band fest und tritt online gegen die Bands anderer Spieler an. Du führst deine Band (oder schaltest Auto ein), die gegnerische Band spielt von allein, beide auf dem niedrigeren Level. {perDay} Duelle am Tag: Ein Sieg bringt {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel. Siege bringen dir Applaus in der Bands-Rangliste.
+0pr1xn9	Freies Spiel · ohne Belohnung
+0rfa18u	Heute freies Spiel
+0ss560m	Neue Belohnungen in {msToTomorrow}
+142t6ib	Die Belohnungen für heute sind ausgezahlt. Spiel einfach zum Spaß weiter.
+1bkr900	Noch eine Runde
+1dswrcl	Zum Spaß spielen
+1e3el2a	{"one": "Heute noch {n} bezahltes Duell", "other": "Heute noch {n} bezahlte Duelle"}
+0i87w0z	{"one": "Heute noch {n} bezahltes Bandduell", "other": "Heute noch {n} bezahlte Bandduelle"}
+0b3b1xo	{perDay} bezahlte Duelle am Tag. Ein Sieg bringt {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel. Danach spielst du einfach zum Spaß weiter.
+0gog4dp	Ab Level {unlock}: Leg eine Band fest und tritt online gegen die Bands anderer Spieler an. Du führst deine Band (oder schaltest Auto ein), die gegnerische Band spielt von allein, beide auf dem niedrigeren Level. Die ersten {perDay} Duelle jeden Tag bringen etwas: ein Sieg {win} Noten, eine Niederlage {loss}, das fünfte Duell dazu eine Muschel, und sie verändern deinen Applaus in der Bands-Rangliste. Danach spielst du zum Spaß weiter, ohne Belohnung.

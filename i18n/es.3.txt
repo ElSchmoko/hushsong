@@ -116,8 +116,6 @@
 17l6uc2	Llega a 1200 de Aplausos.
 0zzpczz	Bandas
 0v2qwga	Tu partida te espera
-0i4f1he	{"one": "Queda {n} partida hoy", "other": "Quedan {n} partidas hoy"}
-1r2dpfn	{"one": "Queda {n} batalla de bandas hoy", "other": "Quedan {n} batallas de bandas hoy"}
 1g87aga	En línea
 16dxzin	Volver a Batalla de bandas
 1w7kcrj	¿Dejar la partida?
@@ -135,7 +133,6 @@
 0wrtqiy	Aún no hay bandas en el escenario. Inténtalo más tarde.
 1tt8as5	Eso es todo por hoy.
 1hqjw8s	Tu banda contra la de otro jugador
-03t40ly	{perDay} partidas al día. Una victoria da {win} notas, una derrota {loss}. La quinta partida además da una concha.
 1u01rav	Tu banda en escena
 1lmu00y	Aún no has fijado ninguna banda
 1mdond4	Fija tu banda actual
@@ -144,7 +141,6 @@
 0phudqh	Fijar
 1nmbd7d	Pon tres mascotas en tu banda para fijarla.
 0tny8o1	Buscar rival
-1aspn2v	Nuevas partidas en {msToTomorrow}
 0z7kgqr	Tabla de Bandas
 1o3ulpn	Rival
 0cqdktm	¡Ganado!
@@ -163,4 +159,13 @@
 0yd4okf	Sube al escenario
 14kttt9	Siempre
 1wamic9	Tú diriges tu banda, o activa Auto. La banda rival juega sola. Las dos bandas juegan al más bajo de los dos niveles.
-1yrvigp	Desde el nivel {unlock}: fija una banda y enfréntate a las bandas de otros jugadores, en línea. Tú diriges tu banda (o activa Auto) mientras la banda rival juega sola, las dos al nivel más bajo. {perDay} partidas al día: una victoria da {win} notas, una derrota {loss}, y la quinta partida además una concha. Las victorias suben tus Aplausos en la tabla de Bandas.
+0pr1xn9	Juego libre · sin premios
+0rfa18u	Hoy, juego libre
+0ss560m	Nuevos premios en {msToTomorrow}
+142t6ib	Los premios de hoy ya están pagados. Sigue jugando por diversión.
+1bkr900	Jugar otra
+1dswrcl	Jugar por diversión
+1e3el2a	{"one": "Queda {n} partida pagada hoy", "other": "Quedan {n} partidas pagadas hoy"}
+0i87w0z	{"one": "Queda {n} batalla de bandas pagada hoy", "other": "Quedan {n} batallas de bandas pagadas hoy"}
+0b3b1xo	{perDay} partidas pagadas al día. Una victoria da {win} notas, una derrota {loss}, y la quinta partida además una concha. Después, sigue jugando por diversión.
+0gog4dp	Desde el nivel {unlock}: fija una banda y enfréntate a las bandas de otros jugadores, en línea. Tú diriges tu banda (o activa Auto) mientras la banda rival juega sola, las dos al nivel más bajo. Las primeras {perDay} partidas de cada día dan premios: una victoria {win} notas, una derrota {loss}, la quinta partida además una concha, y mueven tus Aplausos en la tabla de Bandas. Después, sigue jugando por diversión, sin premios.

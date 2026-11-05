@@ -116,8 +116,6 @@
 17l6uc2	Raggiungi 1.200 Applausi.
 0zzpczz	Band
 0v2qwga	La tua sfida ti aspetta
-0i4f1he	{"one": "Ancora {n} sfida oggi", "other": "Ancora {n} sfide oggi"}
-1r2dpfn	{"one": "Ancora {n} battaglia tra band oggi", "other": "Ancora {n} battaglie tra band oggi"}
 1g87aga	Online
 16dxzin	Torna alla Battaglia delle band
 1w7kcrj	Lasciare la sfida?
@@ -135,7 +133,6 @@
 0wrtqiy	Ancora nessuna band sul palco. Riprova più tardi.
 1tt8as5	Per oggi è tutto.
 1hqjw8s	La tua band contro quella di un altro giocatore
-03t40ly	{perDay} sfide al giorno. Una vittoria dà {win} note, una sconfitta {loss}. La quinta sfida dà anche una conchiglia.
 1u01rav	La tua band sul palco
 1lmu00y	Ancora nessuna band bloccata
 1mdond4	Blocca la tua band attuale
@@ -144,7 +141,6 @@
 0phudqh	Blocca
 1nmbd7d	Metti tre cuccioli nella tua band per bloccarla.
 0tny8o1	Trova un rivale
-1aspn2v	Nuove sfide tra {msToTomorrow}
 0z7kgqr	Classifica delle Band
 1o3ulpn	Rivale
 0cqdktm	Vinto!
@@ -163,4 +159,13 @@
 0yd4okf	Sali sul palco
 14kttt9	Di sempre
 1wamic9	Guidi tu la tua band, oppure attiva Auto. La band rivale gioca da sola. Entrambe le band giocano al più basso dei due livelli.
-1yrvigp	Dal livello {unlock}: blocca una band e sfida le band di altri giocatori, online. Guidi tu la tua band (o attivi Auto) mentre la band rivale gioca da sola, entrambe al livello più basso. {perDay} sfide al giorno: una vittoria dà {win} note, una sconfitta {loss}, e la quinta sfida anche una conchiglia. Le vittorie alzano i tuoi Applausi nella classifica delle Band.
+0pr1xn9	Gioco libero · senza premi
+0rfa18u	Oggi gioco libero
+0ss560m	Nuovi premi tra {msToTomorrow}
+142t6ib	I premi di oggi sono stati pagati. Continua a giocare per divertimento.
+1bkr900	Giocane un'altra
+1dswrcl	Gioca per divertimento
+1e3el2a	{"one": "Ancora {n} sfida pagata oggi", "other": "Ancora {n} sfide pagate oggi"}
+0i87w0z	{"one": "Ancora {n} battaglia tra band pagata oggi", "other": "Ancora {n} battaglie tra band pagate oggi"}
+0b3b1xo	{perDay} sfide pagate al giorno. Una vittoria dà {win} note, una sconfitta {loss}, e la quinta sfida anche una conchiglia. Poi continua per divertimento.
+0gog4dp	Dal livello {unlock}: blocca una band e sfida le band di altri giocatori, online. Guidi tu la tua band (o attivi Auto) mentre la band rivale gioca da sola, entrambe al livello più basso. Le prime {perDay} sfide di ogni giorno danno premi: una vittoria {win} note, una sconfitta {loss}, la quinta sfida anche una conchiglia, e muovono i tuoi Applausi nella classifica delle Band. Poi continua per divertimento, senza premi.

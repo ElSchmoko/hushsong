@@ -1076,7 +1076,7 @@
 0325btm	From level {unlock}: one pet tours a branching road of five gigs, stops and a boss. Boons last the tour, and some work together. Every gig win and boss win pays.	ui-core	
 01gr3w3	From level {unlock}: endless waves, each a little tougher. HP carries over and fallen pets sit out. Every wave cleared pays {notes} notes; milestone waves pay once a week.	ui-core	
 10nkzyp	From level {unlock}: the whole band on a World Tour of five legs, each five gigs and a boss, every leg much tougher than the last. HP carries over; a pet that falls sits out until a campfire, a Benefit show or the next leg. Boons work on the whole band, and legs 1, 3 and 5 start with a Headliner: a big change with a price. Gigs pay notes, bosses an echo and equipment, the last boss a shell and a Legendary.	ui-core	
-1yrvigp	From level {unlock}: lock in a band and take on other players' bands, online. You lead your band (or turn on Auto) while the rival band plays on its own, both at the lower level. {perDay} matches a day: a win pays {win} notes, a loss {loss}, the fifth match a shell too. Wins raise your Applause on the Bands board.	ui-core	
+0gog4dp	From level {unlock}: lock in a band and take on other players' bands, online. You lead your band (or turn on Auto) while the rival band plays on its own, both at the lower level. The first {perDay} matches each day pay: a win {win} notes, a loss {loss}, the fifth match a shell too, and they move your Applause on the Bands board. After that, play on for fun, with no rewards.	ui-core	
 0orgbil	Records	ui-core ui-screens	
 08hfti8	Hard goals that pay shells, echoes and Home backdrops.	ui-core	
 0l8hqi2	Got it	ui-core ui-modes ui-pvp	
@@ -1129,7 +1129,7 @@
 0h2yt8f	Lv {level}	ui-pvp ui-ranks ui-screens	
 1mf63c1	No ensemble	ui-pvp ui-screens	
 0v2qwga	Your match is waiting	ui-pvp ui-screens	
-0i4f1he	{n} matches left today	ui-pvp ui-screens	{"one":"{n} match left today","other":"{n} matches left today"}
+1e3el2a	{n} paid matches left today	ui-pvp ui-screens	{"one":"{n} paid match left today","other":"{n} paid matches left today"}
 0azt7u3	Unlocks at Level {unlock}	ui-pvp ui-screens	
 1nvt7jn	This week	ui-ranks ui-screens	
 1e9u2fw	Ranks	ui-ranks ui-screens	
@@ -1172,11 +1172,12 @@
 1xxqbrb	{n} rehearsals open	ui-screens	{"one":"{n} rehearsal open","other":"{n} rehearsals open"}
 1vzcv0c	Solo pays today	ui-screens	
 0otxor0	Solo pays every tour	ui-screens	
-1r2dpfn	{n} band battles left today	ui-screens	{"one":"{n} band battle left today","other":"{n} band battles left today"}
+0i87w0z	{n} paid band battles left today	ui-screens	{"one":"{n} paid band battle left today","other":"{n} paid band battles left today"}
 1i8e16b	First gig at level {n}	ui-screens	
 1skvt3i	All played today	ui-screens	
 0mbqao6	Won today	ui-screens	
 1g87aga	Online	ui-screens	
+0rfa18u	Free play today	ui-screens	
 1m0zof0	Wave {wave} next	ui-screens	
 0sssj9z	Best this week: {weekBest}	ui-screens	
 10k4v4a	Leg {leg} · gig {n} next	ui-screens	
@@ -1471,6 +1472,7 @@
 0xw1kwq	<b>Shield.</b> <span class="dim">Soaks the next {shield} damage.</span>	ui-battle	
 0fuwg7s	For {t}.	ui-battle	
 1w7kcrj	Leave the match?	ui-battle	
+0b3qhh2	Nothing is lost.	ui-battle	
 0vgq61w	It counts as a loss.	ui-battle	
 1xf0sbk	Leave	ui-battle	
 03ojm4e	Leave this wave?	ui-battle	
@@ -1482,7 +1484,6 @@
 0ax5053	Leave the gig?	ui-battle	
 1ymwhol	Try again any time.	ui-battle	
 0iou6h7	Leave this battle?	ui-battle	
-0b3qhh2	Nothing is lost.	ui-battle	
 0ssgire	Leave battle	ui-battle	
 1jmvu80	Solo · boss	ui-battle	
 0lrhoo2	Solo · gig {n}	ui-battle	
@@ -1601,6 +1602,7 @@
 0ky5syq	Your band plays other players under this name, and it shows on the boards.	ui-pvp	
 0zzrqz2	Your rival	ui-pvp	
 16cb4gy	Applause	ui-pvp ui-ranks	
+0pr1xn9	Free play · no rewards	ui-pvp	
 1eskchc	Match {n} of {perDay}	ui-pvp	
 0gu3fn9	Start the match	ui-pvp	
 0n859tb	Tuning in…	ui-pvp ui-ranks	
@@ -1608,7 +1610,9 @@
 0wrtqiy	No bands on stage yet. Try again later.	ui-pvp	
 1tt8as5	That is all for today.	ui-pvp	
 1hqjw8s	Your band against another player's	ui-pvp	
-03t40ly	{perDay} matches a day. A win pays {win} notes, a loss {loss}. The fifth match also pays a shell.	ui-pvp	
+0b3b1xo	{perDay} paid matches a day. A win pays {win} notes, a loss {loss}, and the fifth match also a shell. After that, play on for fun.	ui-pvp	
+142t6ib	Today's rewards are paid. Play on for fun.	ui-pvp	
+0ss560m	New rewards in {msToTomorrow}	ui-pvp	
 1u01rav	Your stage band	ui-pvp	
 1lmu00y	No band locked in yet	ui-pvp	
 1mdond4	Lock in your current band	ui-pvp	
@@ -1618,7 +1622,7 @@
 1nmbd7d	Put three pets in your band to lock it in.	ui-pvp	
 1wamic9	You lead your band, or turn on Auto. The rival band plays on its own. Both bands play at the lower of the two levels.	ui-pvp	
 0tny8o1	Find a rival	ui-pvp	
-1aspn2v	New matches in {msToTomorrow}	ui-pvp	
+1dswrcl	Play for fun	ui-pvp	
 0z7kgqr	Bands board	ui-pvp	
 1o3ulpn	Rival	ui-pvp	
 0cqdktm	Won!	ui-pvp	
@@ -1626,6 +1630,7 @@
 0x4igaj	Time ran out, and your band had more HP left.	ui-pvp	
 1mohhri	Time ran out, and the rival had more HP left.	ui-pvp	
 1tnncwa	<b>All {n} matches played today:</b> a shell for you!	ui-pvp	
+1bkr900	Play another	ui-pvp	
 05nxjry	Back to the stage	ui-pvp	
 0fikhco	Notes for a win	ui-pvp	
 1qf36lm	a win	ui-pvp	

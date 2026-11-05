@@ -50,3 +50,19 @@ console.log('turns:', Object.keys(hist).sort((a, b) => a - b).map((k) => `${k}+:
   const c = H.cleanCopy([{ f: 'nope', r: 3, g: [] }, { f: forms[0], r: 99, g: [{ t: 'nope', r: 'l' }, { t: Object.keys(H.ITEM_TYPES)[0], r: 'l', l: 'nope' }] }, null, 'x']);
   console.log('clean copy:', JSON.stringify(c));
 }
+// free play after the five paid matches: no notes, no shells, no Applause, no records, nothing to send
+{
+  const S = player(); const rivals = [];
+  for (let m = 0; m < 5; m++) { const band = H.bandCopy(player()); rivals.push(band); H.openPvpMatch(S, { token: 'p' + m, rival: { name: 'R' + (m % 3), level: 40, applause: 1300, band } }); H.finishPvp(S, true, null); }
+  const before = { notes: S.notes, shells: S.shells, applause: S.pvp.applause, wins: S.stats.pvpWins, games: S.stats.pvp, giant: S.stats.pvpGiant, unsent: JSON.stringify(S.pvp.unsent) };
+  const board = [{ name: 'Board', band: ['thud', 'twang', 'hum'], level: 50, v: 1200 }, { name: 'Me', band: ['thud'], level: 1, v: 1, me: true }, { name: 'R1', band: ['thud', 'twang', 'hum'], level: 9, v: 9 }];
+  const pool = H.freeRivals(S, board);
+  console.log(`free pool: ${pool.map((r) => r.name).join(', ')} (want R1, R0, R2, Board: newest first, one per name, never yourself)`);
+  let errs = 0, wins = 0;
+  for (let k = 0; k < 200; k++) {
+    H.openFreeMatch(S, pool[k % pool.length], rnd); const b = H.startPvp(S); H.autoRun(b); if (!b.over) errs++;
+    const out = H.finishPvp(S, b.over === 'win', b); if (!out.free || out.notes || out.shells || out.delta) errs++; if (out.win) wins++;
+  }
+  const after = { notes: S.notes, shells: S.shells, applause: S.pvp.applause, wins: S.stats.pvpWins, games: S.stats.pvp, giant: S.stats.pvpGiant, unsent: JSON.stringify(S.pvp.unsent) };
+  console.log(`free play: 200 matches, ${errs} errors, ${wins} wins · unchanged: ${JSON.stringify(before) === JSON.stringify(after)} · paid left ${H.pvpLeft(S)} · open match ${!!S.pvp.cur}`);
+}

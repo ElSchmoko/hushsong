@@ -77,7 +77,7 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (pvp ? UI.confirm(tr('Leave the match?'), tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); UI.pvpResult(out); })
+    const leave = () => (pvp ? UI.confirm(tr('Leave the match?'), S.pvp.cur.free ? tr('Nothing is lost.') : tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); if (!out.free) UI.pvpResult(out); })
       : enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
       : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
       : tour ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes and loot stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishTour(S, false, null, rnd); UI.save(); UI.go('tourend', { out }); })

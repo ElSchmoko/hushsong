@@ -2,11 +2,13 @@
    A player locks in a band; a copy of it (forms, stars, equipment) goes online with the next match. A match fetches one
    rival band near the player's level and Applause (src/net.js, supabase/setup.sql) and fights it here, on the phone,
    the player steering their own band (or on Auto), the rival band always on its own. Both bands play at the lower of the two players' levels. Only the attacker's Applause moves.
-   Five matches a day (local midnight, like the Daily Gig): a win pays 50 notes, a loss 20, the fifth match a shell. */
+   The first five matches a day (local midnight, like the Daily Gig) are paid: a win pays 50 notes, a loss 20, the fifth match a shell,
+   and only they move Applause and count for records. After that the mode is free play, all on the phone: rivals come from bands met
+   in paid matches (kept in the save) and from the Bands board, and nothing goes to the server. */
 (function (H) {
   'use strict';
   H.PVP = {
-    unlock: 15, perDay: 5, win: 50, loss: 20, dayShells: 1,
+    unlock: 15, perDay: 5, win: 50, loss: 20, dayShells: 1, poolMax: 20,   // poolMax: rival bands kept for free play
     start: 1000, elo: 32, giant: 100,                           // Applause: where everyone starts, how far one match can move it, the gap for Giant Killer
     restless: { from: 30, per: 0.06 }, finish: 60,               // long fights: hits land harder after turn 30; at turn 60 the larger share of HP left wins
   };
@@ -52,13 +54,29 @@
   H.applauseDelta = (mine, theirs, win) => Math.round(H.PVP.elo * ((win ? 1 : 0) - 1 / (1 + Math.pow(10, (theirs - mine) / 400))));
 
   /* ----- a match ----- */
+  const rivalOf = (r) => ({ name: String(r.name || '?').slice(0, 16), level: Math.max(1, +r.level || 1), applause: +r.applause || H.PVP.start, band: H.cleanCopy(r.band) });
   // a fetched rival becomes this save's open match; it counts toward today's five at once, so it cannot be dodged
   H.openPvpMatch = (S, res) => {
-    H.refreshPvp(S); const band = H.cleanCopy(res.rival.band);
+    H.refreshPvp(S); const rival = rivalOf(res.rival);
     S.pvp.played++;
-    S.pvp.cur = { token: res.token, seed: H.seedOf(res.token), n: S.pvp.played, rival: { name: String(res.rival.name || '?').slice(0, 16), level: Math.max(1, +res.rival.level || 1), applause: +res.rival.applause || H.PVP.start, band } };
+    S.pvp.cur = { token: res.token, seed: H.seedOf(res.token), n: S.pvp.played, rival };
+    // kept for free play, newest first, one per name
+    if (rival.band.length) S.pvp.pool = [rival].concat((S.pvp.pool || []).filter((r) => r.name !== rival.name)).slice(0, H.PVP.poolMax);
     return S.pvp.cur;
   };
+  /* ----- free play: after the five paid matches, as many more as you like, no rewards, nothing sent ----- */
+  // who can turn up: bands met in paid matches, and bands from the Bands board (rows: { name, band: [forms], level, v, me }).
+  // A board row holds only the forms, so those bands come without stars or equipment.
+  H.freeRivals = (S, boardRows) => {
+    const out = (S.pvp.pool || []).slice(), seen = new Set(out.map((r) => r.name)), me = S.net && S.net.name;
+    for (const r of boardRows || []) {
+      if (r.me || r.name === me || seen.has(r.name)) continue;
+      const band = H.cleanCopy((r.band || []).map((f) => ({ f, r: 0, g: [] })));
+      if (band.length === 3) { out.push(rivalOf({ name: r.name, level: r.level, applause: r.v, band })); seen.add(r.name); }
+    }
+    return out.filter((r) => r.band.length);
+  };
+  H.openFreeMatch = (S, rival, rnd) => { H.refreshPvp(S); S.pvp.cur = { free: true, seed: Math.floor((rnd || Math.random)() * 4294967296), n: 0, rival }; return S.pvp.cur; };
   H.pvpLevel = (S) => Math.max(1, Math.min(S.level, S.pvp.cur ? S.pvp.cur.rival.level : S.level));
   H.startPvp = (S) => {
     const cur = S.pvp.cur, L = H.pvpLevel(S), mine = H.pvpBand(S), ens = H.pvpEnsemble(S), foeEns = H.copyEnsemble(cur.rival.band);
@@ -68,9 +86,11 @@
   // the match is over (or given up): pay at once, keep the result to send
   H.finishPvp = (S, win, battle) => {
     const cur = S.pvp.cur; if (!cur) return null;
+    const why = battle && battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
+    if (cur.free) { S.pvp.cur = null; return { pvp: true, free: true, win, rival: cur.rival, notes: 0, shells: 0, delta: 0, applause: S.pvp.applause, n: 0, why }; }
     const P = H.PVP, before = S.pvp.applause, delta = H.applauseDelta(before, cur.rival.applause, win);
     const out = { pvp: true, win, rival: cur.rival, notes: win ? P.win : P.loss, shells: cur.n === P.perDay ? P.dayShells : 0, delta, applause: Math.max(0, before + delta), n: cur.n,
-      why: battle && battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null, records: [] };
+      why, records: [] };
     S.notes += out.notes; S.shells += out.shells;
     S.pvp.applause = out.applause; S.pvp.unsent = { token: cur.token, win: win ? 1 : 0 }; S.pvp.cur = null;
     const st = S.stats; st.pvp = (st.pvp || 0) + 1; if (win) st.pvpWins = (st.pvpWins || 0) + 1;

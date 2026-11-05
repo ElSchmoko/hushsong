@@ -23,7 +23,7 @@
     '+{n} levels!': { one: 'Level up!', other: '+{n} levels!' }, 'You cleared <b>{n}</b> waves.': { one: 'You cleared <b>{n}</b> wave.', other: 'You cleared <b>{n}</b> waves.' },
     'Open another ({n} left)': { other: 'Open another ({n} left)' }, '{n} shells to open': { one: '{n} shell to open', other: '{n} shells to open' },
     '+{n} echoes': { one: '+{n} echo', other: '+{n} echoes' }, '+{n} {pet} echoes': { one: '+{n} {pet} echo', other: '+{n} {pet} echoes' },
-    '{n} matches left today': { one: '{n} match left today', other: '{n} matches left today' }, '{n} band battles left today': { one: '{n} band battle left today', other: '{n} band battles left today' },
+    '{n} paid matches left today': { one: '{n} paid match left today', other: '{n} paid matches left today' }, '{n} paid band battles left today': { one: '{n} paid band battle left today', other: '{n} paid band battles left today' },
   };
   H.T_EN = EN;
   let rules = new Intl.PluralRules('en'), rulesOrd = null;
