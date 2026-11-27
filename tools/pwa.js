@@ -63,7 +63,10 @@ const manifest = {
 
 // The whole game is one page, so the cache is small: the page, the manifest and the icons.
 // Opening the app online fetches the newest page first (so updates arrive on the next launch); offline it plays from the cache.
-const files = ['./', 'index.html', 'manifest.webmanifest', ...pngs.map((f) => 'icons/' + f)];
+// three.js, for the Roads preview's 3D map: kept next to the page and cached, so the map works offline too
+const three = path.join(root, 'node_modules/three/build/three.min.js');
+if (fs.existsSync(three)) { fs.mkdirSync(path.join(out, 'lib'), { recursive: true }); fs.copyFileSync(three, path.join(out, 'lib/three.min.js')); }
+const files = ['./', 'index.html', 'manifest.webmanifest', ...pngs.map((f) => 'icons/' + f), ...(fs.existsSync(path.join(out, 'lib/three.min.js')) ? ['lib/three.min.js'] : [])];
 const sw = `// Hushsong offline cache, version ${version}
 const CACHE = 'hushsong-${version}', FILES = ${JSON.stringify(files)};
 self.addEventListener('install', (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)).then(() => self.skipWaiting())); });

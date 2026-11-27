@@ -31,15 +31,17 @@
     const srun = S.soloRun, solo = !!pr.solo && !!srun && !!srun.pending && srun.pending.type === 'battle', daily = !!pr.daily && H.dailyOpen(S), enc = !!pr.enc && !!S.encoreRun;
     const trun = S.tourRun, tour = !!pr.tour && !!trun && !!trun.pending && trun.pending.type === 'battle';
     const pvp = !!pr.pvp && !!S.pvp && !!S.pvp.cur && H.pvpLocked(S);
+    const roads = !!pr.roads && !!H.Roads && !!H.Roads.S && !!H.Roads.S.fight, rfight = roads ? H.Roads.S.fight : null;   // the Roads preview: its own band and its own save
+    if (pr.roads && !roads) return UI.go('roads');
     if (pr.pvp && !pvp) return UI.go('bands');
     if (pr.solo && !solo) return UI.go(srun ? 'solomap' : 'solo');
     if (pr.tour && !tour) return UI.go(trun ? 'tourmap' : 'tour');
-    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily || pvp ? 0 : pr.n || S.stage, reh = !!pr.reh;
-    const st = pvp ? { region: 'hall', boss: false, level: H.pvpLevel(S) } : enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
+    const n = roads ? 999 : enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily || pvp ? 0 : pr.n || S.stage, reh = !!pr.reh;
+    const st = roads ? H.Roads.stage() : pvp ? { region: 'hall', boss: false, level: H.pvpLevel(S) } : enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
     if (pr.enc && !enc) return UI.go('encore');
-    if (!solo && !tour && !pvp && !H.teamPets(S).some(Boolean)) return UI.go('home');
+    if (!roads && !solo && !tour && !pvp && !H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = pvp ? H.startPvp(S) : enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
+    const battle = roads ? H.Roads.startBattle(rnd) : pvp ? H.startPvp(S) : enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
     if (daily) UI.save();
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
     UI.music(st.boss ? 'boss' : 'battle', st.region, !!(battle.ensemble || battle.foeEnsemble) && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
@@ -77,7 +79,8 @@
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (pvp ? UI.confirm(tr('Leave the match?'), S.pvp.cur.free ? tr('Nothing is lost.') : tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); if (!out.free) UI.pvpResult(out); })
+    const leave = () => (roads ? UI.confirm(tr('Run away?'), tr('Nothing is lost. The Din stay where they are.'), tr('Run'), () => { dead = true; H.Roads.S.fight = null; H.Roads.save(); UI.go(rfight.kind === 'chapel' ? 'roadschapel' : 'roads', {}); })
+      : pvp ? UI.confirm(tr('Leave the match?'), S.pvp.cur.free ? tr('Nothing is lost.') : tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); if (!out.free) UI.pvpResult(out); })
       : enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
       : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
       : tour ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes and loot stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishTour(S, false, null, rnd); UI.save(); UI.go('tourend', { out }); })
@@ -87,7 +90,7 @@
     const menu = () => { paused = true; UI.settings(key(tr('Leave battle'), leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', pvp ? tr('Battle of the Bands') : enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', roads ? (rfight.kind === 'chapel' ? tr('Drowned Chapel') : rfight.boss ? tr('The Lily Pad') : tr('Reed Marsh')) : pvp ? tr('Battle of the Bands') : enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
     // the house rule in play, with what it is doing right now; a tap says it again
     let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
@@ -160,7 +163,7 @@
     let hintHold = false;
 
     /* ----- drawing (all in layout units; the canvas is scaled up to the screen's real pixels) ----- */
-    const singing = enc || reh || daily || solo || tour || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
+    const singing = roads ? !!st.sing : enc || reh || daily || solo || tour || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
@@ -294,7 +297,7 @@
     // the boss's entrance is a screen of its own: the region dims, the boss stamps down under its name, then the battle opens
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
-      const name = boss.name, mode = !enc && !reh && !daily && !solo && !tour && H.floorHushed(S, n) ? 'hush' : 'sing';
+      const name = boss.name, mode = roads ? (st.sing ? 'sing' : 'hush') : !enc && !reh && !daily && !solo && !tour && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : '') + (solo ? ' vs' : '') + (daily ? ' giant' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
         add(el('div', 'bossban'), el('div', 'bosskick', enc ? tr('Encore · wave {n}', { n }) : solo ? tr('Solo tour · the last stop') : tour ? tr('World Tour · leg {n} of {legs}', { n: st.leg + 1, legs: H.TOUR.legs }) : daily ? tr('Daily Gig · {n}', { n: twist.n }) : reh ? tr('Rehearsal') : tr('Boss · floor {n}', { n })), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', tr('Tap to skip')));
@@ -362,6 +365,7 @@
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
+      if (roads) { const out = H.Roads.finishBattle(win, battle, rnd); out.stats = H.battleStats(battle); UI.go(out.kind === 'chapel' && (win || !out.back) ? 'roadschapel' : 'roads', { res: out }); return; }
       const out = pvp ? H.finishPvp(S, win, battle) : enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
       out.stats = H.battleStats(battle);

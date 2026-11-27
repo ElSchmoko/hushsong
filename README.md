@@ -51,3 +51,14 @@ After that the mode is free play: as many matches as you like, no rewards, all o
 - `supabase/` the database setup for the leaderboards
 - `test/` headless simulations and scripted screenshot playthroughs
 - `docs/` the built web app, served by GitHub Pages
+
+## Roads (preview)
+
+Hushsong Roads is an early look at an open-world mode, behind the **Preview** button on Home. It is a fresh start with its own save
+(`hushsong.roads.v1`); it never reads or changes the main game's save.
+
+- One region, Reed Marsh, on a 3D hex map (three.js r128, loaded only when the preview opens: `docs/lib/three.min.js`, else a CDN).
+- Five places to capture, a boss stage (Muffle), a side-scrolling dungeon (the Drowned Chapel), secrets, a smith and a shell merchant.
+- Wild pets fight beside the Din and may join after a win; the chance is always shown. Pets level on their own; the player levels and spends talent points.
+- `src/roads-data.js` what is in the region, `src/roads-world.js` the terrain, `src/roads.js` the rules; `src/ui-roads*.js` the map, story, band and chapel screens.
+- `node test/roads.js 4` plays the whole region headless with each starter and reports how it went.
