@@ -138,6 +138,8 @@
     const trio = el('button', 'trio'); trio.type = 'button'; trio.setAttribute('aria-label', tr('Your band')); const big = hh > 200 ? 1.75 : hh > 150 ? 1.5 : 1.25;
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
     trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio);
+    // the Roads preview: a fresh start of its own, on a 3D map
+    const pv = el('button', 'rankb prevb'); pv.type = 'button'; add(pv, UI.icon('ic_tour', 1.1), el('span', '', tr('Preview'))); pv.setAttribute('aria-label', tr('Preview: Hushsong Roads')); pv.addEventListener('click', () => { Au.sfx('tap'); UI.go('roadsintro', {}); }); hero.appendChild(pv);
     const rk = el('button', 'rankb'); rk.type = 'button'; add(rk, UI.icon('ic_trophy', 1.1), el('span', '', tr('Ranks'))); rk.addEventListener('click', () => { Au.sfx('tap'); UI.go('ranks', {}); }); hero.appendChild(rk);
     root.appendChild(hero);
     const modes = el('div', 'modes');

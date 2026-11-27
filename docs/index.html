@@ -841,6 +841,85 @@ input.namein:focus { outline: calc(var(--u) * 1.5) solid var(--blue); outline-of
 @keyframes bspin { to { transform: rotate(360deg); } } @keyframes bandl { from { transform: translateX(-160%); } } @keyframes bandr { from { transform: translateX(160%); } } @keyframes newsin { from { transform: scale(0.2) rotate(-20deg); opacity: 0; } }
 .freeline { padding: calc(var(--u) * 2) calc(var(--u) * 4); background: #fff6dc; border: calc(var(--u) * 1) dashed var(--ink); border-radius: calc(var(--u) * 4); }
 
+/* ---------- Hushsong Roads (preview) ---------- */
+.hero > .prevb { right: auto; left: calc(var(--u) * 4); background: #fff3c2 !important; }
+.rd-root { background: #f2eef8; }
+.rd-map { position: absolute; inset: 0; } .rd-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
+.rd-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.rd-lab { position: absolute; left: 0; top: 0; white-space: nowrap; padding: calc(var(--u) * 0.3) calc(var(--u) * 3.5) calc(var(--u) * 0.6); background: var(--paper); border: calc(var(--u) * 1) solid var(--ink); border-radius: 999px; box-shadow: 0 calc(var(--u) * 1) 0 var(--ink); font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 5.6); line-height: 1.25; opacity: 0; }
+.rd-lab.open { background: var(--go); color: #fff; } .rd-lab.dun { background: var(--ink); color: #fff; } .rd-lab.boss { background: #ffcfe0; }
+.rd-top { position: absolute; top: calc(var(--u) * 3); left: calc(var(--u) * 3); right: calc(var(--u) * 3); display: flex; align-items: center; gap: calc(var(--u) * 2); z-index: 2; }
+.rd-top .purse { height: calc(var(--u) * 13); } .rd-top .disp { font-size: calc(var(--u) * 10); color: #fff; -webkit-text-stroke: calc(var(--u) * 1.6) var(--ink); paint-order: stroke fill; }
+.rd-lv { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--u) * 0.6); min-width: calc(var(--u) * 30); padding: calc(var(--u) * 1) calc(var(--u) * 3) calc(var(--u) * 1.6); background: var(--paper) !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); box-shadow: 0 calc(var(--u) * 1) 0 var(--ink); }
+.rd-lv b { font-family: var(--f-display); font-size: calc(var(--u) * 6.4); line-height: 1; text-align: center; } .rd-lv .meter { height: calc(var(--u) * 3.4); border-width: calc(var(--u) * 0.6); }
+.rd-lv .pip, .rd-dk .pip { position: absolute; top: calc(var(--u) * -3); right: calc(var(--u) * -3); min-width: calc(var(--u) * 9); height: calc(var(--u) * 9); padding: 0 calc(var(--u) * 1.5); border-radius: 999px; background: var(--coral); color: #fff; border: calc(var(--u) * 0.8) solid var(--ink); font-size: calc(var(--u) * 5.4); font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.rd-quest { position: absolute; top: calc(var(--u) * 20); left: calc(var(--u) * 3); right: calc(var(--u) * 3); z-index: 2; display: flex; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 2) calc(var(--u) * 3.5); background: #fff8dd !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); box-shadow: 0 calc(var(--u) * 1.2) 0 var(--ink); text-align: left; }
+.rd-quest b, .rd-qnext b { display: block; font-family: var(--f-display); font-size: calc(var(--u) * 6.6); line-height: 1.1; } .rd-quest span, .rd-qnext span { font-size: calc(var(--u) * 5.8); color: var(--dim); }
+.rd-card { position: absolute; left: calc(var(--u) * 3); right: calc(var(--u) * 3); bottom: calc(var(--u) * 27); z-index: 2; padding: calc(var(--u) * 3) calc(var(--u) * 4) calc(var(--u) * 3.5); background: var(--paper); border: var(--b) solid var(--ink); border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 1.8) 0 var(--ink); display: flex; flex-direction: column; gap: calc(var(--u) * 1); }
+.rd-ct { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 9); line-height: 1.05; } .rd-cs { font-size: calc(var(--u) * 5.8); color: var(--dim); } .rd-ch { font-size: calc(var(--u) * 6.2); line-height: 1.3; }
+.rd-ca { display: flex; gap: calc(var(--u) * 2); margin-top: calc(var(--u) * 1.5); } .rd-ca .key { flex: 1; min-height: calc(var(--u) * 19); }
+.rd-dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 2) calc(var(--u) * 3) calc(var(--u) * 3); background: var(--ink); }
+.rd-dk { position: relative; flex: 1; display: flex !important; flex-direction: column; align-items: center; justify-content: center; min-height: calc(var(--u) * 20); border-radius: calc(var(--u) * 5); color: #d9d2ea !important; font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 5.2); }
+.rd-dk:active { background: #4a3d6a !important; }
+.rd-wait { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--u) * 4); text-align: center; padding: calc(var(--u) * 10); }
+.rd-flash { position: absolute; inset: 0; z-index: 20; background: #fff; pointer-events: none; animation: rdflash 0.52s ease-out forwards; }
+@keyframes rdflash { 0% { opacity: 0; } 45% { opacity: 1; } 100% { opacity: 0; } }
+.rd-pxp { display: flex; flex-direction: column; gap: calc(var(--u) * 1.5); }
+.rd-pxr { display: flex; align-items: center; gap: calc(var(--u) * 2); } .rd-pxr b { font-size: calc(var(--u) * 6); } .rd-pxr .meter { height: calc(var(--u) * 4); } .chip.up { background: #c8f5d8; }
+.rd-lvup { gap: calc(var(--u) * 2); padding: calc(var(--u) * 2) calc(var(--u) * 3); background: #fff3c2; border-radius: calc(var(--u) * 4); }
+.rd-join { position: relative; display: flex; justify-content: center; height: calc(var(--u) * 90); }
+.rd-join canvas { position: absolute; transition: opacity 0.6s, transform 0.6s cubic-bezier(.3,1.6,.5,1); } .rd-join .rd-greyp { opacity: 1; }
+.rd-join canvas:first-child { opacity: 0; } .rd-join.ok canvas:first-child { opacity: 1; transform: scale(1.08); } .rd-join.ok .rd-greyp { opacity: 0; } .rd-join.no .rd-greyp { opacity: 0; transform: translateX(calc(var(--u) * 40)) scale(0.6); }
+.rd-odds { display: flex; flex-direction: column; gap: calc(var(--u) * 0.8); font-size: calc(var(--u) * 6); padding: calc(var(--u) * 2) calc(var(--u) * 3); background: #f4f1fa; border-radius: calc(var(--u) * 4); }
+.rd-verdict { min-height: calc(var(--u) * 12); font-size: calc(var(--u) * 9) !important; }
+.rd-talk { display: flex; align-items: flex-end; gap: calc(var(--u) * 3); } .rd-talk b { font-family: var(--f-display); font-size: calc(var(--u) * 7.4); } .rd-talk .grow > div { background: #fff8dd; border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5) calc(var(--u) * 5) calc(var(--u) * 5) calc(var(--u) * 1); padding: calc(var(--u) * 2.5) calc(var(--u) * 3.5); font-size: calc(var(--u) * 6.4); line-height: 1.35; }
+.rd-qnext { display: flex; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 2) calc(var(--u) * 3.5); border: calc(var(--u) * 1) dashed var(--ink); border-radius: calc(var(--u) * 5); }
+.rd-hold { display: flex; align-items: center; gap: calc(var(--u) * 2); padding: calc(var(--u) * 2) calc(var(--u) * 3); background: #e9fbef; border-radius: calc(var(--u) * 4); }
+.rd-brow { gap: calc(var(--u) * 2.5); } .rd-brow b { font-size: calc(var(--u) * 6.4); } .rd-brow .key { min-width: calc(var(--u) * 30); }
+.rd-tree { display: flex; flex-direction: column; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 2.5); border: calc(var(--u) * 1) solid var(--line); border-radius: calc(var(--u) * 5); }
+.rd-th b { font-family: var(--f-display); font-size: calc(var(--u) * 8); margin-right: calc(var(--u) * 2); }
+.rd-tal { display: flex !important; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 2) calc(var(--u) * 3) !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 4); background: #f4f1fa !important; text-align: left; }
+.rd-tal b { font-size: calc(var(--u) * 6.4); } .rd-tal.can { background: #fff3c2 !important; box-shadow: 0 calc(var(--u) * 1) 0 var(--ink); } .rd-tal.has { background: #c8f5d8 !important; } .rd-tal:disabled { opacity: 1; } .rd-tal:disabled:not(.has) { color: var(--dim); }
+.rd-book { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: calc(var(--u) * 2); }
+.rd-bk { display: flex; flex-direction: column; align-items: center; text-align: center; padding: calc(var(--u) * 1.5); border-radius: calc(var(--u) * 4); background: #f4f1fa; } .rd-bk b { font-size: calc(var(--u) * 5.6); } .rd-bk span { font-size: calc(var(--u) * 4.8) !important; color: var(--dim); } .rd-bk.s3 { background: #e9fbef; }
+/* the story player */
+.rd-story { background: #2b2140; } .rd-stage { position: absolute; inset: 0; overflow: hidden; }
+.rd-bg { position: absolute; left: 0; top: 0; } .rd-bg.ripple { animation: rdripple 1.4s ease-out both; } .rd-stage .rd-bg:not(.ripple):not(:first-child) { animation: rdfade 0.8s ease-out both; }
+@keyframes rdripple { from { clip-path: circle(0% at 55% 62%); } to { clip-path: circle(140% at 55% 62%); } } @keyframes rdfade { from { opacity: 0; } to { opacity: 1; } }
+.rd-cast { position: absolute; left: 0; right: 0; bottom: 34%; height: 40%; pointer-events: none; }
+.rd-actor { position: absolute; bottom: 0; transform: translateX(-50%); }
+.act-drift { animation: rddrift 4s ease-in-out infinite; } .act-walk { animation: rdwalk 1.1s ease-out both; } .act-idle canvas, .act-hop canvas { animation: bob 1.6s ease-in-out infinite; transform-origin: 50% 90%; }
+.act-hop { animation: rdhop 0.7s ease-in-out infinite alternate; } .act-hum { animation: rdhum 1.2s ease-in-out infinite; } .act-crack { animation: rdcrack 1.4s ease-in both; } .act-pop { animation: rdpop 0.9s cubic-bezier(.3,1.7,.5,1) both; }
+@keyframes rddrift { 0%,100% { transform: translate(-50%, 0); opacity: 0.85; } 50% { transform: translate(-46%, calc(var(--u) * -4)); opacity: 1; } }
+@keyframes rdwalk { from { transform: translate(-50%, 0); left: -20% !important; opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
+@keyframes rdhop { from { transform: translate(-50%, 0); } to { transform: translate(-50%, calc(var(--u) * -6)); } }
+@keyframes rdhum { 0%,100% { transform: translate(-50%, 0) scale(1); filter: drop-shadow(0 0 0 #ffc928); } 50% { transform: translate(-50%, 0) scale(1.06); filter: drop-shadow(0 0 calc(var(--u) * 6) #ffc928); } }
+@keyframes rdcrack { 0% { transform: translate(-50%, 0); } 20%,40%,60% { transform: translate(-53%, 0) rotate(-4deg); } 30%,50%,70% { transform: translate(-47%, 0) rotate(4deg); } 85% { transform: translate(-50%, 0) scale(1.15); filter: brightness(1.6) drop-shadow(0 0 calc(var(--u) * 10) #fff6c0); } 100% { transform: translate(-50%, 0) scale(1.15); filter: brightness(2.4) drop-shadow(0 0 calc(var(--u) * 16) #fff); opacity: 0.2; } }
+@keyframes rdpop { from { transform: translate(-50%, 0) scale(0.2); filter: brightness(2.5); } to { transform: translate(-50%, 0) scale(1); filter: none; } }
+.rd-line { position: absolute; left: calc(var(--u) * 4); right: calc(var(--u) * 4); bottom: calc(var(--u) * 5); padding: calc(var(--u) * 4) calc(var(--u) * 5); background: var(--paper); border: var(--b) solid var(--ink); border-radius: calc(var(--u) * 8); box-shadow: 0 calc(var(--u) * 2) 0 var(--ink); display: flex; flex-direction: column; gap: calc(var(--u) * 3); }
+.rd-who { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 7); color: #c4448a; } .rd-say { font-size: calc(var(--u) * 7.2); line-height: 1.4; min-height: calc(var(--u) * 30); } .rd-say.head { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 12); line-height: 1.1; min-height: 0; }
+.rd-skip { position: absolute; top: calc(var(--u) * 4); right: calc(var(--u) * 4); z-index: 3; }
+.rd-pick { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: calc(var(--u) * 2.5); }
+.rd-pc { display: flex !important; flex-direction: column; align-items: center; gap: calc(var(--u) * 1.2); padding: calc(var(--u) * 2.5) calc(var(--u) * 2) calc(var(--u) * 3) !important; text-align: center; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); background: #f4f1fa !important; }
+.rd-pc b { font-family: var(--f-display); font-size: calc(var(--u) * 8); line-height: 1; } .rd-pc .small { font-size: calc(var(--u) * 5) !important; line-height: 1.3; } .rd-pc.on { background: #fff3c2 !important; box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); transform: translateY(calc(var(--u) * -1)); }
+/* the band */
+.rd-slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--u) * 2.5); }
+.rd-slot { display: flex !important; flex-direction: column; align-items: center; justify-content: flex-end; min-height: calc(var(--u) * 70); padding: calc(var(--u) * 2) !important; background: var(--paper) !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 6); box-shadow: 0 calc(var(--u) * 1.5) 0 var(--ink); }
+.rd-slot b { font-family: var(--f-display); font-size: calc(var(--u) * 7); }
+.rd-plist { display: flex; flex-direction: column; gap: calc(var(--u) * 2); }
+.rd-prow { display: flex !important; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 1.5) calc(var(--u) * 3) !important; background: var(--paper) !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); text-align: left; }
+.rd-prow b { font-family: var(--f-display); font-size: calc(var(--u) * 7); } .rd-prow .meter { width: calc(var(--u) * 26); height: calc(var(--u) * 4); } .rd-prow.inb { background: #fff3c2 !important; }
+.rd-phead { display: flex; align-items: center; gap: calc(var(--u) * 3); } .rd-phead .meter { height: calc(var(--u) * 4); margin-top: calc(var(--u) * 1.5); }
+.rd-gslot { display: flex !important; align-items: center; gap: calc(var(--u) * 2); min-height: calc(var(--u) * 18); padding: calc(var(--u) * 1) calc(var(--u) * 2) !important; border: calc(var(--u) * 1) dashed var(--ink) !important; border-radius: calc(var(--u) * 5); } .rd-gslot .item { flex: 1; border: 0; }
+/* the chapel */
+.rd-chapel { background: #2b2a48; } .rd-ccv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; } .rd-chapel .rd-card { bottom: calc(var(--u) * 4); }
+.rd-rooms { position: absolute; top: calc(var(--u) * 20); left: 0; right: 0; display: flex; justify-content: center; gap: calc(var(--u) * 2.5); z-index: 2; } .rd-rooms i { width: calc(var(--u) * 6); height: calc(var(--u) * 6); border-radius: 50%; background: #4a4a78; border: calc(var(--u) * 0.8) solid #d9d2ea; } .rd-rooms i.done { background: var(--gold); }
+/* the door into the preview */
+.rd-intro { background: var(--sun); } .rd-introc { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: calc(var(--u) * 3.5); padding: calc(var(--u) * 8); text-align: center; background: linear-gradient(rgba(255,246,220,0) 30%, rgba(255,246,220,.92) 62%); }
+.rd-title { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 21); line-height: 0.95; color: #fff; -webkit-text-stroke: calc(var(--u) * 3) var(--ink); paint-order: stroke fill; }
+.rd-blurb { font-size: calc(var(--u) * 6.8); line-height: 1.4; max-width: calc(var(--u) * 160); }
+@media (prefers-reduced-motion: reduce) { .rd-actor, .rd-bg.ripple, .rd-flash { animation: none !important; } }
+
 </style>
 <div id="app"><div id="game"><div id="screen"></div><div id="modal" hidden></div><div id="toast" hidden></div></div></div>
 <script>
@@ -3623,6 +3702,623 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
 })(typeof window !== 'undefined' ? window.H : globalThis.H);
 
+/* ---- roads-data.js ---- */
+/* Hushsong Roads (preview) — what is in Reed Marsh: places, Din, wild pets, quests, talents, buildings, the chapel and the story. No DOM.
+   Plain data only; the rules that use it live in roads.js. */
+(function (H) {
+  'use strict';
+  const R = (H.ROADS = {});
+
+  // the four starters, one per class
+  R.STARTERS = [['thud', 'rhythm'], ['twang', 'lead'], ['hum', 'harmony'], ['howl', 'bass']];
+  R.START_LV = 3;
+
+  /* ---------- places: where they go on the map, and what they are ---------- */
+  // fit: what ground the place wants (roads-world.js). cap: a place you capture. lv: how strong its Din are.
+  R.PLACES = [
+    { id: 'hush', at: [-14, 13], fit: 'meadow', cap: 1, n: 'Hushwick', kind: 'Village', venue: 'The Tin Cup', art: 'rd_hush', lv: [1, 3], din: ['racket', 'hiss'], keeper: 'racket', yield: 2, bonus: { xp: 0.03 }, smith: 1,
+      story: ['Hushwick wakes up', 'The Tin Cup\'s door swings open and somebody inside starts to whistle. It is out of tune. Nobody minds.'] },
+    { id: 'mill', at: [4, 16], fit: 'river', cap: 1, n: 'Old Mill', kind: 'Mill', venue: 'The Wheelhouse', art: 'rd_mill', lv: [3, 5], din: ['clatter', 'croak', 'racket'], keeper: 'clatter', yield: 3, bonus: { tempo: 0.02 },
+      story: ['The wheel turns', 'The millwheel creaks round for the first time in years. Creak, splash, creak, splash. It is almost a waltz.'] },
+    { id: 'frog', at: [-20, 2], fit: 'shore', cap: 1, n: 'Frogmore', kind: 'Pond hamlet', venue: 'The Lily Bench', art: 'rd_frog', lv: [4, 6], din: ['croak', 'drip', 'hiss'], keeper: 'croak', yield: 2, bonus: { join: 0.03 },
+      story: ['The frogs remember', 'One frog croaks. Another answers, a third higher. By evening the whole pond is singing in rounds.'] },
+    { id: 'lantern', at: [0, -9], fit: 'hills', cap: 1, n: 'Lantern Hill', kind: 'Watch hill', venue: 'The Lamp Room', art: 'rd_lantern', lv: [5, 7], din: ['rustle', 'crackle', 'gibber'], keeper: 'gibber', yield: 2, bonus: { poise: 2 },
+      story: ['A light on the hill', 'The old lantern flickers on. From up here you can see every road in the marsh, and every one of them hums.'] },
+    { id: 'reed', at: [14, 3], fit: 'flat', cap: 1, n: 'Reedwick', kind: 'Town', venue: 'The Reed Organ', art: 'rd_reed', lv: [6, 8], din: ['gibber', 'whine', 'buzz'], keeper: 'whine', yield: 3, bonus: { hp: 0.03 }, merchant: 1,
+      story: ['Market day', 'Reedwick opens its stalls again. A merchant with a shell under his coat waves you over. He says it is very rare. He says that a lot.'] },
+    { id: 'lily', at: [-2, 5], fit: 'shore', n: 'The Lily Pad', kind: 'Boss stage', art: 'rd_lily', boss: 'muffle', adds: ['hiss', 'croak'], lv: [11, 10], stage: 1 },
+    { id: 'chapel', at: [-6, 24], fit: 'peak', n: 'Drowned Chapel', kind: 'Dungeon', art: 'rd_chapel', dungeon: 1 },
+    { id: 'page1', at: [-24, 10], fit: 'woods', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Three Drums' },
+    { id: 'page2', at: [10, -12], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Brass Parade' },
+    { id: 'page3', at: [18, 18], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Marsh Waltz' },
+    { id: 'glade', at: [-8, -14], fit: 'woods', n: 'A quiet glade', kind: 'Secret', art: 'rd_glade', secret: 'pet', pet: 'jangle', lv: 7 },
+  ];
+  R.LINKS = [['hush', 'lily'], ['lily', 'mill'], ['lily', 'frog'], ['lily', 'lantern'], ['lily', 'reed'], ['hush', 'chapel'], ['mill', 'reed']];
+  R.CAPS = R.PLACES.filter((p) => p.cap).map((p) => p.id);
+
+  /* ---------- wild pets: which ground they like ---------- */
+  // Each patrol may hold a wild pet, taken from the pets of the ground it stands on.
+  R.WILD = { shore: ['yelp'], meadow: ['peep', 'clack'], woods: ['squeak', 'tock'], hills: ['plink'] };
+  R.SONGBOOK = ['peep', 'clack', 'yelp', 'squeak', 'tock', 'plink', 'doo', 'jangle'];   // the pets that live in Reed Marsh
+  R.WILD_CHANCE = 0.45;
+  // join chance, in parts of 1: shown on screen before and after every fight
+  R.JOIN = { base: 0.15, dinFirst: 0.15, same: 0.2, perMeet: 0.05, meetMax: 0.25 };
+
+  /* ---------- growing ---------- */
+  R.petNeed = (lv) => 50 + 30 * lv;
+  R.playerNeed = (lv) => 80 + 60 * lv;
+  R.MAX_PET = 30; R.MAX_PLAYER = 20;
+  R.EVO_LV = [0, 10, 25];   // pet level a pet needs before each evolution (and the echoes it costs, as in Hushsong)
+  R.dinXp = (lv) => 6 + 3 * lv;
+  R.dinNotes = (lv) => 3 + 2 * lv;
+
+  /* ---------- gear: upgraded at the smith in Hushwick ---------- */
+  R.UPGRADE = { c: { to: 'r', notes: 40 }, r: { to: 'e', notes: 160 }, e: { to: 'l', notes: 600, echo: 3 } };
+  R.DROP = 0.08;
+  R.SHELL_PRICE = 900; R.SHELL_STEP = 0.5;
+
+  /* ---------- buildings: one tap each, three per captured place ---------- */
+  R.BUILDS = {
+    windmill: { n: 'Windmill', d: '+3 notes for every battle you win.', cost: 60, art: 'rd_windmill', notes: 3 },
+    bandstand: { n: 'Bandstand', d: '+3% XP for every pet, every battle.', cost: 100, art: 'rd_bandstand', xp: 0.03 },
+    herbs: { n: 'Herb Garden', d: '+3% HP for the band.', cost: 150, art: 'rd_herbs', hp: 0.03 },
+  };
+  R.BUILD_ORDER = ['windmill', 'bandstand', 'herbs'];
+
+  /* ---------- talents: three trees, one point per player level ---------- */
+  R.TREES = [
+    { id: 'lead', n: 'Bandleader', d: 'Battles and pets', talents: [
+      { id: 'warmup', n: 'Warm-Up', d: 'Pets outside the band get half the XP of every battle.' },
+      { id: 'kind', n: 'Kind Words', d: '+5% join chance for wild pets.' },
+      { id: 'opener', n: 'Opening Act', d: 'Your band\'s first turns come sooner.', need: 2 } ] },
+    { id: 'way', n: 'Wayfarer', d: 'The map', talents: [
+      { id: 'feet', n: 'Light Feet', d: 'The band walks 30% faster.' },
+      { id: 'ears', n: 'Keen Ears', d: 'Secrets show up from twice as far away.' },
+      { id: 'nose', n: 'Treasure Nose', d: 'Chests in dungeons hold twice the notes.', need: 2 } ] },
+    { id: 'patron', n: 'Patron', d: 'Holdings', talents: [
+      { id: 'neighbour', n: 'Good Neighbour', d: 'Holdings pay 50% more notes.' },
+      { id: 'hands', n: 'Spare Hands', d: 'Buildings cost 25% less.' },
+      { id: 'crier', n: 'Town Crier', d: '+1 Guard and +2% HP for the band for every place you hold.', need: 2 } ] },
+  ];
+
+  /* ---------- the Drowned Chapel: a side-scrolling run ---------- */
+  // rooms in order. fight: Din in the way. chest: a reward. pet: a wild pet alone. boss: the end.
+  R.CHAPEL = {
+    n: 'Drowned Chapel', lv: 5,
+    rooms: [
+      { t: 'fight', din: ['drip', 'squeal'], lv: 5 },
+      { t: 'chest', notes: 40 },
+      { t: 'fight', din: ['squeal', 'gibber', 'drip'], lv: 5 },
+      { t: 'pet', pet: 'doo', lv: 6 },
+      { t: 'fight', din: ['drip', 'drip'], lv: 6, loud: 1 },
+      { t: 'chest', notes: 60, item: 'r' },
+      { t: 'boss', boss: 'rumble', adds: ['drip'], lv: 7 },
+    ],
+    reward: { echo: 2 },
+  };
+
+  /* ---------- quests: the first hours, one thing at a time ---------- */
+  // goal: what the tracker says. fence: how far from Hushwick the band may go (tiles), until the quest is done.
+  R.QUESTS = [
+    { id: 'walk', n: 'First steps', goal: 'Walk to the bend in the road', fence: 5, xp: 30, notes: 20,
+      talk: 'Walk with me to the bend in the road. Tap the land and your band goes there.' },
+    { id: 'fight', n: 'Something in the reeds', goal: 'Beat the Din by the road', fence: 5, xp: 40, notes: 20,
+      talk: 'See that Racket? Din eat songs. Go and give it one it cannot swallow.' },
+    { id: 'friend', n: 'A friend in the noise', goal: 'Win the fight with the wild pet', fence: 5, xp: 40, notes: 20,
+      talk: 'That grey little thing with the Din is a pet, stuck under the noise. Win, and it may join you. This one will.' },
+    { id: 'wake', n: 'Wake Hushwick', goal: 'Clear the Din around Hushwick, then beat its keeper', fence: 5, xp: 100, notes: 40, echo: 1,
+      talk: 'Hushwick has two Din groups on its doorstep and a Loud one sitting on the well. Clear the doorstep first.' },
+    { id: 'talent', n: 'A little wiser', goal: 'Pick your first talent', xp: 0, notes: 20,
+      talk: 'You grew a little on the way. Every level gives you a talent point. Spend it on something you like.' },
+    { id: 'build', n: 'Something to build', goal: 'Build a windmill in Hushwick', xp: 40, notes: 0,
+      talk: 'Places you free pay you a little after every battle you win. Build them up and they pay more.' },
+    { id: 'smith', n: 'The smith', goal: 'Upgrade a piece of gear at The Tin Cup', xp: 40, notes: 0, gift: 'sticks',
+      talk: 'Take these old drumsticks. The smith at The Tin Cup can make them better, for a few notes.' },
+    { id: 'chapel', n: 'The Drowned Chapel', goal: 'Reach the end of the Drowned Chapel', xp: 120, notes: 60,
+      talk: 'South of here the old chapel sank into the marsh. Something still sings down there. Go and look.' },
+    { id: 'marsh', n: 'Free Reed Marsh', goal: 'Capture every place', xp: 200, notes: 100,
+      talk: 'Four more places to wake. When all five sing, The Lily Pad opens. Muffle waits there.' },
+    { id: 'boss', n: 'The Lily Pad', goal: 'Beat Muffle at The Lily Pad', xp: 300, notes: 200,
+      talk: 'This is it. Muffle sat on this marsh for years. Bring your best three.' },
+    { id: 'done', n: 'Reed Marsh sings', goal: 'The road to Bell Foundry opens in a later preview', end: 1,
+      talk: 'Listen to that. Reed Marsh sings again. Bell Foundry is next, when the road opens.' },
+  ];
+  R.TUTORIAL = {
+    fight: { din: ['racket'], lv: 1 },
+    friend: { din: ['hiss'], lv: 1, pet: 'peep', petLv: 1 },
+  };
+
+  /* ---------- story scenes: what the story screen plays ---------- */
+  // bg: a Hushsong backdrop; mode: grey (no music), hush, sing. Each beat: who is on stage, and the line under it.
+  R.TILLY = { n: 'Tilly', sprite: 'warble' };
+  R.SCENES = {
+    prologue: [
+      { bg: 'fen', mode: 'grey', cast: [['racket', 0.22, 'drift'], ['hiss', 0.78, 'drift']], line: 'The world went quiet. The Din came, and they ate every song in Reed Marsh.' },
+      { bg: 'fen', mode: 'grey', cast: [['warble', 0.5, 'walk']], who: 'Tilly', line: 'Oh! A traveller. Nobody has come down this road in years. I am Tilly. I used to play the dances here.' },
+      { bg: 'fen', mode: 'grey', cast: [['warble', 0.3, 'idle'], ['shell', 0.66, 'hum']], who: 'Tilly', line: 'I kept this shell all that time. Listen. It still hums. I think it has been waiting for you.' },
+      { bg: 'fen', mode: 'grey', cast: [['shell', 0.5, 'crack']], line: 'The shell cracks. Something inside is ready to sing.', pick: 1 },
+      { bg: 'fen', mode: 'hush', cast: [['warble', 0.26, 'hop'], ['$starter', 0.66, 'pop']], who: 'Tilly', line: 'There it is, a song! Hushwick needs waking, and now you have a band. A band of one, for now.' },
+    ],
+    capture: [
+      { bg: 'fen', mode: 'hush', cast: [['$band', 0.5, 'hop']], line: '$story0', ripple: 1 },
+      { bg: 'fen', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: '$story1' },
+    ],
+    chapel: [
+      { bg: 'caves', mode: 'hush', cast: [['doo', 0.5, 'hum']], line: 'Deep in the chapel, a little songbook kept singing all alone. It flutters over to your band.' },
+      { bg: 'caves', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: 'The chapel bells ring under the water. Up above, the whole marsh hears them.' },
+    ],
+    bossopen: [
+      { bg: 'fen', mode: 'hush', cast: [['muffle', 0.5, 'drift']], line: 'Every place in Reed Marsh sings. Out on the lake, The Lily Pad shakes off its fog. Muffle is waiting.' },
+    ],
+    finale: [
+      { bg: 'fen', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: 'Muffle is gone. The reeds rustle, the frogs sing in rounds, and the mill keeps time.', ripple: 1 },
+      { bg: 'fen', mode: 'sing', cast: [['warble', 0.3, 'hop'], ['$lead', 0.68, 'hop']], who: 'Tilly', line: 'You did it. Reed Marsh sings again. The road to Bell Foundry is still full of noise, but it will not be for long.' },
+    ],
+  };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
+/* ---- roads-world.js ---- */
+/* Hushsong Roads (preview) — the world: terrain, regions, rivers and roads, on a hex map. No DOM.
+   Reed Marsh is the region you can play; the others sit at the edges, still silent and closed. */
+(function (H) {
+  const W = (H.RW = {});
+  'use strict';
+  // ---------- noise ----------
+  const hash = (x, y) => { let h = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263)) | 0; h = Math.imul(h ^ (h >>> 13), 1274126177); return ((h ^ (h >>> 16)) >>> 0) / 4294967296; };
+  const sm = (t) => t * t * (3 - 2 * t), sat = (t) => (t < 0 ? 0 : t > 1 ? 1 : t);
+  function vnoise(x, y) {
+    const xi = Math.floor(x), yi = Math.floor(y), xf = sm(x - xi), yf = sm(y - yi);
+    const a = hash(xi, yi), b = hash(xi + 1, yi), c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+    return a + (b - a) * xf + (c - a) * yf + (a - b - c + d) * xf * yf;
+  }
+  const fbm = (x, y) => vnoise(x, y) * 0.55 + vnoise(x * 2.1 + 5.2, y * 2.1 + 1.3) * 0.28 + vnoise(x * 4.3 + 9.1, y * 4.3 + 7.7) * 0.17;
+  Object.assign(W, { hash, sm, sat, vnoise, fbm });
+
+  // ---------- hexes (pointy top, circumradius 1) ----------
+  const SQ3 = Math.sqrt(3), RAD = 27;
+  const hexToXZ = (q, r) => [SQ3 * (q + r / 2), 1.5 * r];
+  function xzToHex(x, z) {
+    const q = (SQ3 / 3) * x - z / 3, r = (2 / 3) * z;
+    let rx = Math.round(q), rz = Math.round(r); const ry = Math.round(-q - r);
+    const dx = Math.abs(rx - q), dz = Math.abs(rz - r), dy = Math.abs(ry - (-q - r));
+    if (dx > dy && dx > dz) rx = -ry - rz; else if (dy <= dz) rz = -rx - ry;
+    return [rx, rz];
+  }
+  const key = (q, r) => q + ',' + r;
+  const NB = [[1, 0], [1, -1], [0, -1], [-1, 0], [-1, 1], [0, 1]];
+  const hexDist = (a, b) => (Math.abs(a.q - b.q) + Math.abs(a.r - b.r) + Math.abs(a.q + a.r - b.q - b.r)) / 2;
+  Object.assign(W, { SQ3, RAD, hexToXZ, xzToHex, key, NB, hexDist });
+
+  // ---------- regions ----------
+  W.REG = {
+    marsh: { n: 'Reed Marsh', at: [-1, 3], spread: 260, bias: -0.035, amp: 0.85, music: [0, 4, 7, 11],
+      pal: { water: '#5ccfe0', shore: '#ead58c', low: '#9ede6a', forest: '#5cc472', hill: '#b6d66a', mount: '#a3a08a', wall: '#7c6c4c', tree: '#3fae62', tree2: '#7fd86a', grass: '#6fc456', rock: '#b8b4a0' } },
+    works: { n: 'Bell Foundry', at: [27, -9], spread: 60, bias: 0.0, amp: 1.0, music: [0, 3, 7, 10], closed: true,
+      pal: { water: '#62bfe0', shore: '#f5dc9c', low: '#ffd06e', forest: '#f0a24e', hill: '#f2b05a', mount: '#b0786a', wall: '#9a5a40', tree: '#e0783e', tree2: '#ffb050', grass: '#e8b24e', rock: '#c49a86' } },
+    ridge: { n: 'Snowy Ridge', at: [-10, -27], spread: 70, bias: 0.11, amp: 1.25, music: [0, 5, 7, 12], closed: true,
+      pal: { water: '#7ad4f0', shore: '#e4ecdc', low: '#bdeccd', forest: '#7fd0ae', hill: '#a6cfc0', mount: '#9aa6cc', wall: '#6e7898', tree: '#3d9a86', tree2: '#5cbca0', grass: '#8fd4ae', rock: '#b4bcd8' } },
+    dunes: { n: 'Windy Dunes', at: [18, 27], spread: 60, bias: 0.035, amp: 0.55, music: [0, 2, 7, 9], closed: true,
+      pal: { water: '#4fd6d0', shore: '#fbe6a8', low: '#f7d488', forest: '#e6c070', hill: '#f2b874', mount: '#e08a5a', wall: '#b0603e', tree: '#4fb36a', tree2: '#8fd07a', grass: '#d8b860', rock: '#d89a6e' } },
+  };
+  W.REG_ORDER = ['marsh', 'works', 'ridge', 'dunes'];
+  W.KIND = [
+    { n: 'Water', d: 'Too deep to wade.' },
+    { n: 'Shore', d: 'Soft ground by the water.' },
+    { n: 'Meadow', d: 'Easy walking.' },
+    { n: 'Woods', d: 'Easy walking, under the trees.' },
+    { n: 'Hills', d: 'Rolling ground. A good lookout.' },
+    { n: 'Mountains', d: 'Too steep to cross.' },
+  ];
+  W.KIND_DUNES = [{ n: 'Oasis' }, { n: 'Sand' }, { n: 'Dunes' }, { n: 'Scrub' }, { n: 'Red rocks' }, { n: 'Mesa', d: 'Sheer cliffs. No way up.' }];
+  const SEA = 0.445, T = [SEA, 0.47, 0.545, 0.6, 0.655];
+  W.SEA = SEA; W.T = T;
+
+  function regionW(x, z) {
+    const out = {}; let sum = 0;
+    for (const id of W.REG_ORDER) {
+      const [ax, az] = W.REG[id].at, d = Math.hypot(x - ax, z - az) + (vnoise(x * 0.18 + 3, z * 0.18 + 8) - 0.5) * 7;
+      const w = Math.exp(-(d * d) / W.REG[id].spread); out[id] = w; sum += w;
+    }
+    for (const id in out) out[id] /= sum || 1;
+    return out;
+  }
+  W.regionW = regionW;
+  W.regionAt = (x, z) => { const w = regionW(x, z); let best = 'marsh'; for (const id in w) if (w[id] > w[best]) best = id; return best; };
+  // elevation: noise scaled per region, a region bias, and an island edge that sinks into the sea
+  const E2 = (x, z) => {
+    const w = regionW(x, z); let bias = 0, amp = 0;
+    for (const id in w) { bias += w[id] * W.REG[id].bias; amp += w[id] * W.REG[id].amp; }
+    const rr = Math.hypot(x, z * 1.05) / (RAD * 1.5) + (vnoise(x * 0.12 + 7, z * 0.12 + 2) - 0.5) * 0.18;
+    const edge = sm(sat((rr - 0.76) / 0.24));
+    const n = fbm(x * 0.085 + 31, z * 0.085 + 17) + (vnoise(x * 0.04, z * 0.04) - 0.5) * 0.25 - 0.5;
+    return { e: 0.53 + n * amp + bias - edge * 0.45, w };
+  };
+  W.E = (x, z) => E2(x, z).e;
+  W.kindE = (e) => (e < T[0] ? 0 : e < T[1] ? 1 : e < T[2] ? 2 : e < T[3] ? 3 : e < T[4] ? 4 : 5);
+
+  // ---------- 3D height ----------
+  const ridge = (x, z) => { const r = 1 - Math.abs(fbm(x * 0.21 + 11.3, z * 0.21 + 3.7) * 2 - 1); return r * r * r; };
+  W.H = (x, z) => {
+    const { e, w } = E2(x, z);
+    let h = Math.max(0.02, 0.2 + (e - SEA) * 2.4);
+    // gentle swell everywhere on land, rolling hills where the ground rises
+    const land = sm(sat((e - T[0]) / 0.05));
+    h += land * (vnoise(x * 0.55 + 3, z * 0.55 + 9) - 0.5) * 0.12;
+    const hilly = sm(sat((e - 0.535) / 0.09)) * (1 - sm(sat((e - (T[4] + 0.01)) / 0.03)));
+    const bumps = vnoise(x * 0.75 + 13, z * 0.75 + 41), b2 = vnoise(x * 1.6 + 2, z * 1.6 + 5);
+    h += hilly * (bumps * bumps * 1.2 + b2 * 0.2) * (1 - w.dunes * 0.6);
+    // mountains: connected ranges
+    const m = sm(sat((e - (T[3] + 0.015)) / 0.07));
+    if (m > 0) { const r = ridge(x, z); h += m * (0.12 + 1.55 * r) * (1 - w.dunes * 0.55) + m * m * 0.4 * r * (1 - w.dunes); }
+    // desert: long dune ridges on the sand, flat-topped mesas where the rock rises
+    if (w.dunes > 0.05) {
+      const dir = (x * 0.8 + z * 0.6 + (vnoise(x * 0.25, z * 0.25) - 0.5) * 2.5) / 2.6, f = dir - Math.floor(dir), dune = f < 0.72 ? sm(f / 0.72) : sm((1 - f) / 0.28);
+      h += sm(sat((w.dunes - 0.25) / 0.4)) * land * (1 - hilly * 0.5) * (dune * (0.22 + vnoise(x * 0.3 + 4, z * 0.3) * 0.22) + Math.sin(dir * 26 + z) * 0.012);
+      if (m > 0) { const step = 0.55, q = Math.floor(h / step) * step + sm(sat(((h % step) / step - 0.82) / 0.18)) * step; h += w.dunes * sm(sat(m * 3)) * (q - h); }
+    }
+    h += (vnoise(x * 1.7 + 5, z * 1.7 + 1) - 0.5) * 0.04 * (1 + m);
+    // rivers cut a bed through the land
+    if (W.riverD) { const d = W.riverD(x, z); if (d < 0.6) h -= (1 - sm(sat((d - 0.08) / 0.5))) * Math.min(0.22, h * 0.5); }
+    return h;
+  };
+  W.STEP = [0, 0.1, 0.2, 0.28, 0.48, 0.7];
+
+  // ---------- build the world ----------
+  W.build = () => {
+    const tiles = new Map(), list = [];
+    for (let q = -RAD; q <= RAD; q++) for (let r = Math.max(-RAD, -q - RAD); r <= Math.min(RAD, -q + RAD); r++) {
+      const [x, z] = hexToXZ(q, r), e = W.E(x, z), kind = W.kindE(e);
+      const t = { q, r, x, z, e, kind, reg: W.regionAt(x, z), song: 0, songT: 0, road: [], river: [], rseg: [], seed: hash(q * 13 + 7, r * 29 + 3) };
+      tiles.set(key(q, r), t); list.push(t);
+    }
+    W.tiles = tiles; W.list = list;
+    W.at = (q, r) => tiles.get(key(q, r));
+    W.walk = (t) => !!t && t.kind >= 1 && t.kind <= 4;
+    const nbs = (t) => NB.map(([a, b]) => W.at(t.q + a, t.r + b)).filter(Boolean);
+
+    // rivers: from high ground, always downhill, until they reach water
+    const used = new Set();
+    const sources = list.filter((t) => t.kind === 4 && t.reg !== 'dunes' && nbs(t).some((n) => n.kind === 5)).sort((a, b) => hash(a.q * 7, a.r * 3) - hash(b.q * 7, b.r * 3));
+    W.rivers = [];
+    for (const s of sources) {
+      if (W.rivers.length >= 5) break;
+      if (W.rivers.some((rv) => rv.some((t) => hexDist(t, s) < 5))) continue;
+      const path = [s]; let cur = s, ok = false;
+      for (let i = 0; i < 40; i++) {
+        const next = nbs(cur).filter((n) => n.kind !== 5 && !path.includes(n)).sort((a, b) => a.e - b.e)[0];
+        if (!next || next.e > cur.e + 0.01) break;
+        path.push(next); cur = next;
+        if (next.kind === 0 || used.has(next)) { ok = true; break; }
+      }
+      if (!ok || path.length < 6) continue;
+      W.rivers.push(path);
+      for (let i = 0; i < path.length - 1; i++) { path[i].river.push(path[i + 1]); path[i + 1].river.push(path[i]); used.add(path[i]); }
+    }
+    // each tile keeps the river segments near it, so height lookups stay cheap
+    for (const t of list) for (const n of t.river) {
+      if (key(t.q, t.r) > key(n.q, n.r)) continue;
+      const seg = [t.x, t.z, n.x, n.z];
+      for (const u of [t, n, ...nbs(t), ...nbs(n)]) if (!u.rseg.includes(seg)) u.rseg.push(seg);
+    }
+    W.riverD = (x, z) => {
+      const t = W.at(...xzToHex(x, z)); if (!t || !t.rseg.length) return 9;
+      let d = 9;
+      for (const [ax, az, bx, bz] of t.rseg) { const vx = bx - ax, vz = bz - az, l2 = vx * vx + vz * vz, k = sat(((x - ax) * vx + (z - az) * vz) / l2); d = Math.min(d, Math.hypot(x - ax - vx * k, z - az - vz * k)); }
+      return d;
+    };
+
+    for (const t of list) t.closed = !!W.REG[t.reg].closed;
+    W.walk = (t) => !!t && t.kind >= 1 && t.kind <= 4 && !t.closed;
+    W.near = (x, z, ok) => { let best = null, bd = 1e9; for (const t of list) if (W.walk(t) && !t.river.length && !t.poi && (!ok || ok(t))) { const d = Math.hypot(t.x - x, t.z - z); if (d < bd) { bd = d; best = t; } } return best; };
+    W.nbs = nbs;
+  };
+  // Places go where they fit: each spec names a spot and what kind of ground it wants. Roads then join them up.
+  W.place = (specs, links) => {
+    W.POI = [];
+    for (const s of specs) { const t = W.near(s.at[0], s.at[1], W.FIT[s.fit] || null); if (!t) continue; const p = Object.assign({}, s, { t, q: t.q, r: t.r }); t.poi = p; W.POI.push(p); }
+    W.poi = (id) => W.POI.find((p) => p.id === id);
+    const roadCost = (t) => (t.kind === 4 ? 3 : t.kind === 3 ? 1.6 : 1) + (t.river.length ? 4 : 0);
+    const link = (a, b) => { const p = W.path(a, b, roadCost); if (!p) return false; let prev = a; for (const t of p) { if (!prev.road.includes(t)) { prev.road.push(t); t.road.push(prev); } prev = t; } return true; };
+    W.roadsOk = links.map(([a, b]) => link(W.poi(a).t, W.poi(b).t));
+    // every tile belongs to the nearest place you can capture: that is its patch of land
+    const owners = W.POI.filter((p) => p.cap);
+    for (const t of W.list) { let best = null, bd = 1e9; for (const p of owners) { const d = Math.hypot(t.x - p.t.x, t.z - p.t.z); if (d < bd) { bd = d; best = p; } } t.owner = !t.closed && best ? best.id : null; }
+  };
+  const byNb = (f) => (t) => W.nbs(t).some(f);
+  W.FIT = {
+    flat: (t) => t.kind >= 2 && t.kind <= 3,
+    meadow: (t) => t.kind === 2,
+    woods: (t) => t.kind === 3,
+    hills: (t) => t.kind === 4,
+    shore: (t) => t.kind <= 2 && byNb((n) => n.kind === 0)(t),
+    river: (t) => t.kind >= 2 && t.kind <= 3 && byNb((n) => n.river.length > 0)(t),
+    peak: (t) => t.kind === 4 && byNb((n) => n.kind === 5)(t),
+  };
+
+  // ---------- paths ----------
+  W.path = (a, b, cost, ok) => {
+    if (!a || !b || !W.walk(b) || (ok && !ok(b))) return null;
+    cost = cost || (() => 1);
+    const open = [[0, a]], g = new Map([[a, 0]]), from = new Map();
+    let n = 0;
+    while (open.length && n++ < 9000) {
+      let bi = 0; for (let i = 1; i < open.length; i++) if (open[i][0] < open[bi][0]) bi = i;
+      const cur = open.splice(bi, 1)[0][1];
+      if (cur === b) { const out = []; let c = b; while (c !== a) { out.push(c); c = from.get(c); } return out.reverse(); }
+      for (const [dq, dr] of NB) {
+        const nb = W.at(cur.q + dq, cur.r + dr); if (!W.walk(nb) || (ok && !ok(nb))) continue;
+        const ng = g.get(cur) + cost(nb) * (nb.road.length ? 0.7 : 1);
+        if (ng < (g.has(nb) ? g.get(nb) : Infinity)) { g.set(nb, ng); from.set(nb, cur); open.push([ng + hexDist(nb, b), nb]); }
+      }
+    }
+    return null;
+  };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
+/* ---- roads.js ---- */
+/* Hushsong Roads (preview) — the rules: the save, the band, battles on the map, pets joining, places, holdings, gear, talents, quests.
+   No DOM. A fresh start of its own: it never reads or changes the main game's save. */
+(function (H) {
+  'use strict';
+  const R = H.ROADS, W = H.RW, Rd = (H.Roads = {});
+  const KEY = 'hushsong.roads.v1';
+
+  /* ---------- the save ---------- */
+  Rd.fresh = () => ({ v: 1, started: 0, pets: [], band: [null, null, null], nextId: 1, items: [], nextItem: 1, notes: 0, echo: 0, petEcho: {}, seen: {}, shells: 0, bought: 0,
+    plv: 1, pxp: 0, talents: {}, quest: 0, caps: {}, builds: {}, book: {}, meets: {}, groups: {}, gen: 1, hum: {}, found: {}, pos: null, lastVenue: 'hush',
+    chapel: { room: 0, cleared: 0, runs: 0 }, fight: null, flags: {}, wins: 0, boss: 0 });
+  Rd.load = () => {
+    let S = null; try { S = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { S = null; }
+    if (!S || S.v !== 1) S = Rd.fresh();
+    const d = Rd.fresh(); for (const k in d) if (S[k] == null) S[k] = d[k];
+    Rd.S = S; Rd.world(); return S;
+  };
+  let saveT = 0;
+  Rd.save = () => { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(Rd.S)); } catch (e) { /* storage unavailable */ } }, 100); };
+  Rd.wipe = () => { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } Rd.S = Rd.fresh(); Rd.world(); return Rd.S; };
+
+  /* ---------- the world: built once, then the patrols are laid out on it ---------- */
+  let built = false;
+  Rd.world = () => {
+    if (built) return; built = true;
+    W.build(); W.place(R.PLACES, R.LINKS);
+    // every place you can capture: two guards on its doorstep, and patrols across its land
+    Rd.GROUPS = [];
+    const taken = new Set(W.POI.map((p) => p.t));
+    const pick = (cands, n, seed, minGap) => { const out = []; const sorted = cands.slice().sort((a, b) => W.hash(a.q * 7 + seed, a.r * 13) - W.hash(b.q * 7 + seed, b.r * 13)); for (const t of sorted) { if (out.length >= n) break; if (taken.has(t) || out.some((o) => W.hexDist(o, t) < minGap) || Rd.GROUPS.some((g) => W.hexDist(g.home, t) < minGap)) continue; out.push(t); taken.add(t); } return out; };
+    for (const P of R.PLACES.filter((p) => p.cap)) {
+      const place = W.poi(P.id), land = W.list.filter((t) => W.walk(t) && t.owner === P.id);
+      pick(land.filter((t) => { const d = W.hexDist(t, place.t); return d >= 2 && d <= 3; }), 2, 11, 2).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_g' + i, place: P.id, guard: 1, home: t, lv: P.lv[1] }));
+      pick(land.filter((t) => W.hexDist(t, place.t) >= (P.id === 'hush' ? 3 : 4) && (P.id !== 'hush' || W.hexDist(t, place.t) <= 5)), P.id === 'hush' ? 3 : 4, 29, 3).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_p' + i, place: P.id, home: t, lv: P.lv[0] + (i % (P.lv[1] - P.lv[0] + 1)) }));
+    }
+    // the two tutorial fights, on the road out of Hushwick
+    const hush = W.poi('hush').t, bend = W.list.filter((t) => t.road.length && W.walk(t) && W.hexDist(t, hush) === 3 && !taken.has(t))[0] || W.near(hush.x + 4, hush.z, (t) => W.hexDist(t, hush) === 3);
+    Rd.BEND = bend; taken.add(bend);
+    const tut = (id, near, cfg) => { const t = W.list.filter((u) => W.walk(u) && !taken.has(u) && !u.road.length && W.hexDist(u, near) <= 2 && W.hexDist(u, near) >= 1 && W.hexDist(u, hush) <= 5 && W.hexDist(u, hush) >= 2).sort((a, b) => W.hexDist(b, hush) - W.hexDist(a, hush))[0]; taken.add(t); Rd.GROUPS.push({ id, place: 'hush', tut: 1, home: t, lv: cfg.lv, fixed: cfg }); };
+    tut('tut1', bend, R.TUTORIAL.fight); tut('tut2', bend, R.TUTORIAL.friend);
+  };
+  Rd.group = (id) => Rd.GROUPS.find((g) => g.id === id);
+  Rd.place = (id) => R.PLACES.find((p) => p.id === id);
+  Rd.poiT = (id) => W.poi(id).t;
+
+  /* What a patrol holds right now: a few Din and maybe a wild pet. It changes each time patrols come back (after a rest). */
+  const groundOf = (t) => (W.nbs(t).some((n) => n.kind === 0) || t.kind === 1 ? 'shore' : t.kind === 3 ? 'woods' : t.kind === 4 ? 'hills' : 'meadow');
+  Rd.foes = (g) => {
+    const S = Rd.S, gen = (S.groups[g.id] && S.groups[g.id].gen) || 1;
+    if (g.fixed) { const f = g.fixed; return { din: f.din.map((id) => ({ id, lvl: f.lv })), pet: f.pet ? { sp: f.pet, lvl: f.petLv } : null }; }
+    const rnd = H.rng(W.hash(g.home.q * 31 + gen * 7, g.home.r * 17 + gen) * 1e9), P = Rd.place(g.place), n = g.guard ? 2 + (g.lv >= 4 ? 1 : 0) : g.lv <= 2 ? 1 + Math.floor(rnd() * 2) : 2 + Math.floor(rnd() * 2);
+    const din = Array.from({ length: n }, () => ({ id: P.din[Math.floor(rnd() * P.din.length)], lvl: Math.max(1, g.lv - (rnd() < 0.4 ? 1 : 0)) }));
+    let pet = null; if (!g.guard && rnd() < R.WILD_CHANCE) { const pool = R.WILD[groundOf(g.home)]; pet = { sp: pool[Math.floor(rnd() * pool.length)], lvl: g.lv }; }
+    return { din, pet };
+  };
+  // A patrol is out on the map unless it was beaten since the last rest. Guards stay beaten; tutorial fights only show during their quest.
+  Rd.groupLive = (g) => {
+    const S = Rd.S, st = S.groups[g.id];
+    if (g.tut) { const q = Rd.quest(); return !(st && st.beaten) && q && (g.id === 'tut1' ? q.id === 'fight' : q.id === 'friend'); }
+    if (S.quest < 3) return false;   // the first three quests: only their own fights are out
+    if (g.guard && S.caps[g.place]) return false;
+    if (Rd.fenced() && W.hexDist(g.home, Rd.poiT('hush')) > Rd.quest().fence) return false;
+    return !(st && st.beaten);
+  };
+  Rd.liveGroups = () => Rd.GROUPS.filter(Rd.groupLive);
+
+  /* ---------- pets ---------- */
+  Rd.pet = (id) => Rd.S.pets.find((p) => p.id === id) || null;
+  Rd.bandPets = () => Rd.S.band.map((id) => (id ? Rd.pet(id) : null));
+  Rd.species = (p) => H.FORMS[p.form].sp;
+  Rd.owns = (sp) => Rd.S.pets.some((p) => Rd.species(p) === sp);
+  Rd.addPet = (sp, lvl) => {
+    const S = Rd.S, pet = { id: S.nextId++, form: sp, t1: false, t2: false, rank: 0, gear: [null, null], lvl: lvl || 1, xp: 0 };
+    S.pets.push(pet); S.seen[sp] = 1; S.book[sp] = 3; const i = S.band.indexOf(null); if (i >= 0) S.band[i] = pet.id; return pet;
+  };
+  Rd.setBand = (slot, petId) => { const S = Rd.S, was = S.band.indexOf(petId); if (was >= 0) S.band[was] = S.band[slot]; S.band[slot] = petId; };
+  const petLevelUp = (pet, xp) => { let ups = 0; pet.xp += xp; while (pet.lvl < R.MAX_PET && pet.xp >= R.petNeed(pet.lvl)) { pet.xp -= R.petNeed(pet.lvl); pet.lvl++; ups++; } if (pet.lvl >= R.MAX_PET) pet.xp = 0; return ups; };
+  Rd.gainPlayer = (xp) => { const S = Rd.S; let ups = 0; S.pxp += xp; while (S.plv < R.MAX_PLAYER && S.pxp >= R.playerNeed(S.plv)) { S.pxp -= R.playerNeed(S.plv); S.plv++; ups++; } return ups; };
+
+  /* ---------- holdings, buildings and talents: what they add up to ---------- */
+  Rd.has = (t) => !!Rd.S.talents[t];
+  Rd.capCount = () => R.CAPS.filter((id) => Rd.S.caps[id]).length;
+  Rd.bonus = () => {
+    const S = Rd.S, b = { xp: 0, hp: 0, poise: 0, tempo: 0, join: 0, notes: 0 };
+    for (const id of R.CAPS) if (S.caps[id]) {
+      const P = Rd.place(id); for (const k in P.bonus) b[k] += P.bonus[k];
+      b.notes += P.yield; for (const bid of S.builds[id] || []) { const B = R.BUILDS[bid]; b.notes += B.notes || 0; b.xp += B.xp || 0; b.hp += B.hp || 0; }
+    }
+    if (Rd.has('neighbour')) b.notes = Math.round(b.notes * 1.5);
+    if (Rd.has('kind')) b.join += 0.05;
+    if (Rd.has('crier')) { b.poise += Rd.capCount(); b.hp += 0.02 * Rd.capCount(); }
+    if (S.boss) b.hp += 0.05;   // the region's song, once Muffle is gone
+    return b;
+  };
+  Rd.buildCost = (bid) => Math.round(R.BUILDS[bid].cost * (Rd.has('hands') ? 0.75 : 1));
+  Rd.build = (placeId, bid) => {
+    const S = Rd.S, have = (S.builds[placeId] = S.builds[placeId] || []), c = Rd.buildCost(bid);
+    if (!S.caps[placeId] || have.includes(bid) || S.notes < c) return false;
+    S.notes -= c; have.push(bid); Rd.check('build'); return true;
+  };
+  Rd.points = () => Rd.S.plv - 1 - Object.keys(Rd.S.talents).length;
+  Rd.treePoints = (tree) => tree.talents.filter((t) => Rd.has(t.id)).length;
+  Rd.canTalent = (tree, t) => !Rd.has(t.id) && Rd.points() > 0 && Rd.treePoints(tree) >= (t.need || 0);
+  Rd.takeTalent = (tree, t) => { if (!Rd.canTalent(tree, t)) return false; Rd.S.talents[t.id] = 1; Rd.check('talent'); return true; };
+
+  /* ---------- join chances ---------- */
+  Rd.joinChance = (sp, dinFirst) => {
+    const S = Rd.S, J = R.JOIN, bandHas = Rd.bandPets().some((p) => p && Rd.species(p) === sp);
+    const parts = [['Base', J.base]];
+    if (dinFirst) parts.push(['Din beaten first', J.dinFirst]);
+    if (bandHas) parts.push(['Same pet in your band', J.same]);
+    const m = Math.min(J.meetMax, (S.meets[sp] || 0) * J.perMeet); if (m) parts.push(['Met before', m]);
+    const b = Rd.bonus().join; if (b) parts.push(['Holdings and talents', b]);
+    return { parts, total: Math.min(1, parts.reduce((a, p) => a + p[1], 0)) };
+  };
+
+  /* ---------- battles ---------- */
+  // fight: what is about to be fought. kind: group, keeper, boss, chapel, glade.
+  Rd.fightGroup = (g) => { const f = Rd.foes(g); Rd.S.fight = { kind: 'group', id: g.id, din: f.din, pet: f.pet }; Rd.save(); };
+  Rd.fightKeeper = (placeId) => { const P = Rd.place(placeId); Rd.S.fight = { kind: 'keeper', id: placeId, din: [{ id: P.keeper, lvl: P.lv[1], loud: 1 }, { id: P.din[0], lvl: P.lv[0] }] }; Rd.save(); };
+  Rd.fightBoss = () => { const P = Rd.place('lily'); Rd.S.fight = { kind: 'boss', id: 'lily', boss: 1, din: [{ id: P.boss, lvl: P.lv[0] }].concat(P.adds.map((a) => ({ id: a, lvl: P.lv[1] }))) }; Rd.save(); };
+  Rd.fightGlade = () => { const P = Rd.place('glade'); Rd.S.fight = { kind: 'glade', id: 'glade', din: [], pet: { sp: P.pet, lvl: P.lv, sure: !Rd.owns(P.pet) } }; Rd.save(); };
+  Rd.fightRoom = (i) => { const rm = R.CHAPEL.rooms[i]; Rd.S.fight = rm.t === 'boss' ? { kind: 'chapel', room: i, boss: 1, din: [{ id: rm.boss, lvl: rm.lv }].concat(rm.adds.map((a) => ({ id: a, lvl: rm.lv - 1 }))) }
+    : rm.t === 'pet' ? { kind: 'chapel', room: i, din: [], pet: { sp: rm.pet, lvl: rm.lv, sure: !Rd.owns(rm.pet) } }
+      : { kind: 'chapel', room: i, din: rm.din.map((id, k) => ({ id, lvl: rm.lv, loud: rm.loud && k === 0 })) }; Rd.save(); };
+  Rd.stage = () => {
+    const S = Rd.S, f = S.fight, t = S.pos && W.at(S.pos.q, S.pos.r), sing = !!(S.boss || (t && t.owner && S.caps[t.owner]) || (f && f.kind === 'chapel' && S.chapel.cleared));
+    return { region: f && f.kind === 'chapel' ? 'caves' : 'fen', boss: !!(f && f.boss), level: f ? Math.max(...f.din.map((d) => d.lvl), f.pet ? f.pet.lvl : 1) : 1, sing };
+  };
+  Rd.startBattle = (rnd) => {
+    const S = Rd.S, f = S.fight, b = Rd.bonus(), pets = Rd.bandPets();
+    const allies = pets.map((p) => { if (!p) return null; const u = H.buildPetUnit(p, p.lvl, S); u.perks = u.perks.concat([{ mod: { hp: b.hp, poise: b.poise, tempo: b.tempo } }]); if (Rd.has('opener')) u.perks.push({ startGauge: 0.3 }); return u; });
+    const enemies = f.din.map((d) => H.buildDinUnit(d.id, d.lvl, d.loud));
+    if (f.pet) { const u = H.buildRivalUnit(f.pet.sp, f.pet.lvl, 0.85); u.name = H.T('Wild {pet}', { pet: H.FORMS[f.pet.sp].n }); u.wild = f.pet.sp; enemies.push(u); S.book[f.pet.sp] = Math.max(S.book[f.pet.sp] || 0, 2); }
+    const live = pets.filter(Boolean), ens = live.length === 3 ? H.ensembleOf(live.map((p) => H.SPECIES[Rd.species(p)].family)) : null;
+    const battle = new H.Battle({ allies, enemies, rng: rnd, ensemble: ens ? ens.id : null });
+    // note who falls in which order: a wild pet is easier to win over once its Din are beaten
+    battle.fallOrder = []; const emit = battle.emit.bind(battle); battle.emit = (e) => { if (e.t === 'fall') battle.fallOrder.push(e.u); return emit(e); };
+    return battle;
+  };
+  // The result of a fight. Returns everything the result sheet shows.
+  Rd.finishBattle = (win, battle, rnd) => {
+    const S = Rd.S, f = S.fight, out = { win, kind: f.kind, room: f.room, notes: 0, pxp: 0, pets: [], item: null, wild: null, capture: null, boss: false };
+    rnd = rnd || Math.random; S.fight = null;
+    if (!win) { out.back = S.lastVenue; if (f.kind === 'chapel') S.chapel.room = 0; Rd.save(); return out; }
+    S.wins++;
+    const b = Rd.bonus(), mult = (d) => (d.loud ? 1.5 : 1) * (H.DIN[d.id] && H.DIN[d.id].boss ? 3 : 1);
+    let xp = 0; for (const d of f.din) { xp += R.dinXp(d.lvl) * mult(d); out.notes += Math.round(R.dinNotes(d.lvl) * mult(d)); }
+    if (f.pet) xp += R.dinXp(f.pet.lvl);
+    xp = Math.round(xp * (1 + b.xp)); out.notes += b.notes; out.holdNotes = b.notes;
+    const inBand = Rd.bandPets().filter(Boolean);
+    for (const p of S.pets) { const g = inBand.includes(p) ? xp : Rd.has('warmup') ? Math.round(xp / 2) : 0; if (!g) continue; const ups = petLevelUp(p, g); out.pets.push({ id: p.id, xp: g, ups, band: inBand.includes(p) }); }
+    S.notes += out.notes;
+    out.pxp = Math.round(f.din.reduce((a, d) => a + d.lvl * 3 * mult(d), 0) + (f.pet ? f.pet.lvl * 3 : 0)); out.pups = Rd.gainPlayer(out.pxp);
+    if (rnd() < R.DROP) out.item = Rd.addItem(rnd() < 0.8 ? 'c' : 'r', rnd);
+    // a wild pet: maybe it joins
+    if (f.pet) {
+      const sp = f.pet.sp, wildU = battle && battle.units.find((u) => u.wild), din = battle ? battle.units.filter((u) => u.side === 1 && !u.wild) : [];
+      const order = battle ? battle.fallOrder : [], dinFirst = !!wildU && din.length > 0 && din.every((u) => order.indexOf(u.uid) >= 0 && order.indexOf(u.uid) < order.indexOf(wildU.uid));
+      const tutorial = f.kind === 'group' && f.id === 'tut2';
+      const ch = Rd.joinChance(sp, dinFirst), sure = tutorial || f.pet.sure, joined = sure || rnd() < ch.total;
+      out.wild = { sp, lvl: f.pet.lvl, chance: sure ? 1 : ch.total, parts: ch.parts, joined, sure };
+      if (joined) { if (Rd.owns(sp)) { S.petEcho[sp] = (S.petEcho[sp] || 0) + 1; out.wild.dup = true; S.book[sp] = 3; } else out.wild.pet = Rd.addPet(sp, f.pet.lvl).id; S.meets[sp] = 0; }
+      else S.meets[sp] = (S.meets[sp] || 0) + 1;
+    }
+    // what the fight was for
+    if (f.kind === 'group') { const st = (S.groups[f.id] = S.groups[f.id] || { gen: S.gen }); st.beaten = 1; }
+    if (f.kind === 'keeper') { S.caps[f.id] = 1; out.capture = f.id; S.lastVenue = f.id; out.pups += Rd.gainPlayer(80); out.pxp += 80; }
+    if (f.kind === 'boss') { S.boss = 1; out.boss = true; S.shells += 1; out.shell = 1; S.echo += 3; out.echo = 3; }
+    if (f.kind === 'glade') { S.found.glade = 1; }
+    if (f.kind === 'chapel') { S.chapel.room = f.room + 1; out.chapelNext = S.chapel.room; }
+    Rd.check('battle', out); Rd.save(); return out;
+  };
+
+  /* ---------- the chapel ---------- */
+  Rd.chapelStart = () => { Rd.S.chapel.room = 0; Rd.save(); };
+  Rd.chapelChest = (i, rnd) => {
+    const S = Rd.S, rm = R.CHAPEL.rooms[i], first = !S.chapel.cleared, out = { notes: Math.round(rm.notes * (first ? 1 : 0.5) * (Rd.has('nose') ? 2 : 1)) };
+    S.notes += out.notes; if (rm.item && first) out.item = Rd.addItem(rm.item, rnd || Math.random); S.chapel.room = i + 1; Rd.save(); return out;
+  };
+  Rd.chapelDone = () => {
+    const S = Rd.S, first = !S.chapel.cleared, out = { first, echo: 0 };
+    if (first) { S.chapel.cleared = 1; S.echo += R.CHAPEL.reward.echo; out.echo = R.CHAPEL.reward.echo; }
+    S.chapel.runs++; S.chapel.room = 0; Rd.check('chapel'); Rd.save(); return out;
+  };
+
+  /* ---------- gear ---------- */
+  Rd.addItem = (rar, rnd) => { const S = Rd.S, keys = Object.keys(H.ITEM_TYPES), it = { id: S.nextItem++, rar, type: keys[Math.floor((rnd || Math.random)() * keys.length)] }; S.items.push(it); return it; };
+  Rd.itemOwner = (id) => Rd.S.pets.find((p) => p.gear.includes(id)) || null;
+  Rd.upgradeCost = (it) => R.UPGRADE[it.rar] || null;
+  Rd.canUpgrade = (it) => { const c = Rd.upgradeCost(it), S = Rd.S; return !!c && S.notes >= c.notes && S.echo >= (c.echo || 0) && (it.rar !== 'e' || H.freeLegends(S, it.type).length > 0); };
+  Rd.upgrade = (it, rnd) => {
+    if (!Rd.canUpgrade(it)) return false; const S = Rd.S, c = Rd.upgradeCost(it); S.notes -= c.notes; S.echo -= c.echo || 0;
+    it.rar = c.to; if (it.rar === 'l') { const free = H.freeLegends(S, it.type); it.leg = free[Math.floor((rnd || Math.random)() * free.length)]; }
+    Rd.check('upgrade'); return true;
+  };
+  Rd.equip = (pet, slot, id) => { for (const p of Rd.S.pets) p.gear = p.gear.map((g) => (g === id ? null : g)); pet.gear[slot] = id; };
+
+  /* ---------- evolving: a pet needs the level and the echoes ---------- */
+  Rd.evoCheck = (pet, formId) => {
+    const f = H.FORMS[formId], need = R.EVO_LV[f.tier] || 99;
+    if (pet.lvl < need) return { ok: false, why: H.T('Needs level {n}', { n: need }) };
+    return H.evoCheck(Rd.S, pet, formId);
+  };
+  Rd.evolve = (pet, formId) => Rd.evoCheck(pet, formId).ok && H.evolve(Rd.S, pet, formId);
+
+  /* ---------- shells ---------- */
+  Rd.shellPrice = () => Math.round(R.SHELL_PRICE * (1 + R.SHELL_STEP * Rd.S.bought));
+  Rd.buyShell = () => { const S = Rd.S, c = Rd.shellPrice(); if (S.notes < c) return false; S.notes -= c; S.bought++; S.shells++; return true; };
+  Rd.openShell = (rnd) => {
+    const S = Rd.S; if (S.shells <= 0) return null; S.shells--;
+    const sp = H.SPECIES_ORDER[Math.floor((rnd || Math.random)() * H.SPECIES_ORDER.length)];
+    if (Rd.owns(sp)) { S.petEcho[sp] = (S.petEcho[sp] || 0) + H.ECHO_DUP; return { sp, dup: true }; }
+    const lead = Rd.S.pets.reduce((m, p) => Math.max(m, p.lvl), 1); return { sp, pet: Rd.addPet(sp, Math.max(1, lead - 2)) };
+  };
+  Rd.chooseStarter = (sp) => { const S = Rd.S; if (S.pets.length) return null; S.started = 1; const p = Rd.addPet(sp, R.START_LV); S.pos = { q: Rd.poiT('hush').q, r: Rd.poiT('hush').r }; Rd.save(); return p; };
+
+  /* ---------- the map: walking, secrets, resting ---------- */
+  Rd.fenced = () => { const q = Rd.quest(); return !!(q && q.fence); };
+  Rd.allowed = (t) => W.walk(t) && (!Rd.fenced() || W.hexDist(t, Rd.poiT('hush')) <= Rd.quest().fence);
+  Rd.enter = (t) => {
+    const S = Rd.S, out = { found: [] }; S.pos = { q: t.q, r: t.r };
+    for (const u of W.nbs(t).concat([t])) S.hum[W.key(u.q, u.r)] = 1;
+    const reach = Rd.has('ears') ? 4 : 2;
+    for (const P of R.PLACES.filter((p) => p.secret)) { const pt = Rd.poiT(P.id); if (!S.found[P.id + '_seen'] && W.hexDist(pt, t) <= reach) { S.found[P.id + '_seen'] = 1; out.found.push(P.id); } }
+    // book: wild pets the band walks past are seen
+    for (const g of Rd.liveGroups()) if (W.hexDist(g.home, t) <= 3) { const f = Rd.foes(g); if (f.pet && !S.book[f.pet.sp]) S.book[f.pet.sp] = 1; }
+    if (Rd.quest() && Rd.quest().id === 'walk' && W.hexDist(t, Rd.BEND) <= 1) Rd.check('walk');
+    Rd.save(); return out;
+  };
+  Rd.takePage = (id) => { const S = Rd.S; if (S.found[id]) return null; S.found[id] = 1; S.echo += 1; S.notes += 30; const ups = Rd.gainPlayer(30); Rd.save(); return { echo: 1, notes: 30, pxp: 30, ups }; };
+  Rd.rest = (placeId) => {
+    const S = Rd.S; S.lastVenue = placeId; S.gen++;
+    for (const g of Rd.GROUPS) if (!g.guard && !g.tut && S.groups[g.id]) S.groups[g.id] = { gen: S.gen, beaten: 0 };
+    Rd.save();
+  };
+  Rd.guardsLeft = (placeId) => Rd.GROUPS.filter((g) => g.place === placeId && g.guard && !(Rd.S.groups[g.id] && Rd.S.groups[g.id].beaten)).length;
+  Rd.bossOpen = () => Rd.capCount() === R.CAPS.length;
+
+  /* ---------- the songbook ---------- */
+  Rd.bookDone = () => R.SONGBOOK.every((sp) => Rd.S.book[sp] === 3);
+  Rd.claimBook = () => { const S = Rd.S; if (!Rd.bookDone() || S.flags.book) return false; S.flags.book = 1; S.shells++; Rd.save(); return true; };
+
+  /* ---------- quests ---------- */
+  Rd.quest = () => R.QUESTS[Rd.S.quest] || null;
+  // Something happened: does it finish the current quest? Returns the finished quest (and pays it), or null.
+  Rd.done = [];
+  Rd.check = (ev) => {
+    const S = Rd.S, q = Rd.quest(); if (!q || q.end) return null;
+    const ok = { walk: ev === 'walk', fight: S.groups.tut1 && S.groups.tut1.beaten, friend: S.groups.tut2 && S.groups.tut2.beaten, wake: S.caps.hush, talent: Object.keys(S.talents).length > 0,
+      build: (S.builds.hush || []).includes('windmill'), smith: ev === 'upgrade' || S.flags.upgraded, chapel: S.chapel.cleared, marsh: Rd.bossOpen(), boss: S.boss }[q.id];
+    if (ev === 'upgrade') S.flags.upgraded = 1;
+    if (!ok) return null;
+    S.quest++; S.notes += q.notes || 0; S.echo += q.echo || 0; const ups = Rd.gainPlayer(q.xp || 0);
+    const next = Rd.quest(); if (next && next.gift && !S.flags['gift_' + next.id]) { S.flags['gift_' + next.id] = 1; const it = { id: S.nextItem++, rar: 'c', type: next.gift }; S.items.push(it); }
+    Rd.done.push({ q, ups }); Rd.save();
+    // quests can finish one after another (a talent picked early, say)
+    Rd.check('');
+    return q;
+  };
+  Rd.takeDone = () => { const d = Rd.done; Rd.done = []; return d; };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
 /* ---- art-core.js ---- */
 /* Hushsong — art engine. Everything is drawn in code as flat vector shapes, then given a dark ink outline and a white sticker edge. */
 (function (H) {
@@ -4981,6 +5677,107 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
 })(window.H);
 
+/* ---- roads-art.js ---- */
+/* Hushsong Roads (preview) — map pieces in the sticker-ink style: the places of Reed Marsh, buildings, the wagon, a torn page. */
+(function (H) {
+  'use strict';
+  const A = H.Art, INK = A.INK, D = (key, size, fn) => A.def(key, { size }, fn);
+  const roof = (g, x, y, w, h, col) => g.o(`M${x - 6} ${y} L${x + w / 2} ${y - h} L${x + w + 6} ${y} Z`, col, 6);
+  const win = (g, x, y, lit) => g.o(`M${x} ${y} h14 v12 h-14 z`, lit ? '#ffe9a8' : '#5a5270', 4);
+
+  // Hushwick: a cottage and The Tin Cup, with a tin mug on its sign
+  D('rd_hush', 52, (g) => {
+    g.o('M6 184 V122 H70 V184 Z', '#f6d48a', 6); roof(g, 6, 124, 64, 42, '#e8b04a'); g.o('M28 184 V154 H48 V184', '#7a4a6a', 5); win(g, 14, 134, 1);
+    g.o('M82 186 V104 H192 V186 Z', '#f2a65a', 6); roof(g, 82, 106, 110, 56, '#c4644a'); g.o('M120 186 V146 Q137 132 154 146 V186 Z', '#7a3e2a', 5);
+    win(g, 92, 120, 1); win(g, 166, 120, 1);
+    g.s('M168 96 V58', INK, 6); g.s('M168 66 H194', INK, 6); g.o('M174 72 h16 v22 q0 8 -8 8 q-8 0 -8 -8 z', '#c9d2e0', 5);
+  });
+  // Old Mill: a wooden mill with a big wheel in the water
+  D('rd_mill', 52, (g) => {
+    g.o('M40 186 V96 H150 V186 Z', '#d89a62', 6); roof(g, 40, 98, 110, 50, '#9a5a40'); g.o('M80 186 V150 H108 V186', '#5a3a2a', 5); win(g, 56, 116, 1); win(g, 118, 116, 0);
+    g.oc(160, 150, 34, '#a8724a', 6); g.oc(160, 150, 12, '#7a5236', 5);
+    for (let i = 0; i < 8; i++) { const a = (i / 8) * 6.283; g.s(`M${160 + Math.cos(a) * 12} ${150 + Math.sin(a) * 12} L${160 + Math.cos(a) * 34} ${150 + Math.sin(a) * 34}`, INK, 5); }
+    g.o('M110 192 Q156 176 198 192 Z', '#5ccfe0', 5);
+  });
+  // Frogmore: round reed huts on a pond, lily pads around
+  D('rd_frog', 50, (g) => {
+    g.o('M4 178 Q100 150 204 178 Q206 196 100 198 Q2 196 4 178 Z', '#5ccfe0', 6);
+    for (const [x, w, c] of [[30, 64, '#e8c47a'], [108, 78, '#f2d28a']]) { g.o(`M${x} 176 V128 Q${x + w / 2} 96 ${x + w} 128 V176 Z`, c, 6); g.o(`M${x - 6} 132 Q${x + w / 2} 60 ${x + w + 6} 132 Q${x + w / 2} 112 ${x - 6} 132 Z`, '#9ab84a', 6); g.o(`M${x + w / 2 - 10} 176 V152 Q${x + w / 2} 142 ${x + w / 2 + 10} 152 V176`, '#5a3a2a', 4); }
+    g.e(178, 178, 18, 7, '#5cc472'); g.e(16, 186, 12, 5, '#5cc472'); g.c(182, 170, 5, '#ff8fb8');
+  });
+  // Lantern Hill: a stone tower with a big lantern on top
+  D('rd_lantern', 52, (g) => {
+    g.o('M10 194 Q100 120 196 194 Z', '#b6d66a', 6);
+    g.o('M78 172 V82 H128 V172 Z', '#c4beb0', 6); g.s('M78 112 H128 M78 142 H128', INK, 4); g.o('M94 172 V148 Q103 138 112 148 V172', '#5a3a2a', 4);
+    g.o('M70 84 H136 V72 H70 Z', '#8a8476', 5); g.o('M84 72 V40 H122 V72 Z', '#ffe9a8', 6); g.s('M96 40 V72 M110 40 V72', INK, 3); g.o('M78 42 L103 16 L128 42 Z', '#c4644a', 6);
+    g.c(103, 56, 8, '#ffc928');
+  });
+  // Reedwick: stilt huts and a reed organ hall
+  D('rd_reed', 54, (g) => {
+    g.r(14, 112, 8, 52, 3, '#8a5a3a').r(52, 112, 8, 52, 3, '#8a5a3a');
+    g.o('M8 116 h60 v-34 h-60 z', '#f6d48a', 6).o('M0 88 L38 52 L76 88 Z', '#e8b04a', 6);
+    g.o('M84 186 V110 H196 V186 Z', '#a8d878', 6);
+    for (const [x, h] of [[98, 50], [118, 74], [138, 92], [158, 74], [178, 50]]) g.o(`M${x - 8} 112 V${112 - h} Q${x} ${102 - h} ${x + 8} ${112 - h} V112 Z`, '#8fc85a', 5);
+    g.o('M118 186 V150 Q140 130 162 150 V186 Z', '#5a3a2a', 5); g.s('M84 128 H196', INK, 4);
+  });
+  // The Lily Pad: a great pink flower stage on a lily pad
+  D('rd_lily', 64, (g) => {
+    g.o('M2 170 Q100 136 198 170 Q200 196 100 198 Q0 196 2 170 Z', '#5cc472', 6); g.s('M100 150 L106 190', INK, 4);
+    g.o('M40 166 Q100 150 160 166 V176 Q100 166 40 176 Z', '#ffcfe0', 5);
+    for (const [cx, rot] of [[60, -0.5], [140, 0.5], [100, 0]]) g.push(cx, 150, 1, rot * 30).o('M0 0 Q-26 -50 0 -96 Q26 -50 0 0 Z', '#ff8fb8', 6).pop();
+    g.push(100, 152, 1, 0).o('M0 0 Q-16 -40 0 -76 Q16 -40 0 0 Z', '#ffb4d2', 5).pop();
+    g.c(100, 134, 10, '#ffc928');
+  });
+  // Drowned Chapel: a stone chapel half sunk in water, its bell still in the tower
+  D('rd_chapel', 54, (g) => {
+    g.o('M40 182 V104 H150 V182 Z', '#a8b0c8', 6); g.o('M30 106 L95 56 L160 106 Z', '#7a8098', 6);
+    g.o('M130 108 V40 H168 V108 Z', '#a8b0c8', 6); g.o('M124 42 L149 8 L174 42 Z', '#7a8098', 6); g.o('M140 82 V62 Q149 52 158 62 V82 Z', '#2b2140', 4); g.c(149, 72, 6, '#ffc928');
+    g.o('M78 182 V140 Q95 118 112 140 V182 Z', '#2b2140', 5); g.o('M54 124 Q62 112 70 124 V140 H54 Z', '#8fd4ff', 4);
+    g.o('M0 168 Q100 150 200 168 V196 H0 Z', '#5ccfe0', 6); g.s('M24 178 h24 M120 182 h30', '#ffffff', 4);
+  });
+  // A quiet glade: a ring of flowers around a stump, with a glint
+  D('rd_glade', 40, (g) => {
+    g.o('M30 170 Q100 140 170 170 Q170 190 100 192 Q30 190 30 170 Z', '#8ed46a', 6);
+    g.o('M84 168 V140 H116 V168 Z', '#a8724a', 5); g.e(100, 140, 16, 6, '#e8c47a');
+    for (const [x, y, c] of [[48, 170, '#ff6aa0'], [70, 158, '#ffc928'], [130, 158, '#b48cff'], [152, 170, '#ffffff'], [100, 184, '#ff6aa0']]) g.oc(x, y, 8, c, 4);
+    g.o('M100 70 l8 22 l22 8 l-22 8 l-8 22 l-8 -22 l-22 -8 l22 -8 z', '#ffc928', 4);
+  });
+  // buildings next to a captured place
+  D('rd_windmill', 30, (g) => {
+    g.o('M70 190 L84 90 H116 L130 190 Z', '#f6e3b4', 6); g.o('M84 92 L100 70 L116 92 Z', '#c4644a', 5);
+    for (let i = 0; i < 4; i++) g.push(100, 84, 1, i * 90 + 20).o('M-6 0 L-10 -70 H10 L6 0 Z', '#ffffff', 5).pop();
+    g.oc(100, 84, 7, '#8a5a3a', 4);
+  });
+  D('rd_bandstand', 30, (g) => {
+    g.o('M30 180 H170 V164 H30 Z', '#c4644a', 6); for (const x of [44, 100, 156]) g.r(x - 4, 96, 8, 70, 2, '#f6e3b4');
+    g.o('M20 100 Q100 40 180 100 Z', '#ff6b5e', 6); g.s('M44 100 V166 M100 100 V166 M156 100 V166', INK, 3); g.c(100, 56, 6, '#ffc928');
+  });
+  D('rd_herbs', 26, (g) => {
+    g.o('M30 186 H170 V150 H30 Z', '#a8724a', 6);
+    for (const [x, c] of [[56, '#5cc472'], [100, '#8ed46a'], [144, '#5cc472']]) { g.o(`M${x} 150 Q${x - 22} 110 ${x} 90 Q${x + 22} 110 ${x} 150 Z`, c, 5); g.c(x, 104, 6, x === 100 ? '#ff6aa0' : '#ffc928'); }
+  });
+  // the band's wagon
+  D('rd_wagon', 40, (g) => {
+    g.o('M24 150 V118 H176 V150 Z', '#c47a3c', 6);
+    g.o('M30 120 Q30 40 100 40 Q170 40 170 120 Z', '#fff6dc', 6);
+    for (const x of [62, 100, 138]) g.s(`M${x} 44 Q${x + (x - 100) * 0.2} 80 ${x} 120`, '#ff6b5e', 9);
+    g.s('M176 136 L206 150', INK, 6);
+    for (const x of [58, 142]) { g.oc(x, 160, 24, '#8a5a3a', 6); g.c(x, 160, 7, INK); }
+    g.o('M84 40 v-14 h32 v14 z', '#ff9234', 5);
+  });
+  // a torn page of a song, with a glint
+  D('rd_page', 28, (g) => {
+    g.o('M40 40 L160 30 L170 150 L120 162 L130 140 L96 168 L50 170 Z', '#fff6dc', 6);
+    for (const y of [70, 88, 106, 124]) g.s(`M56 ${y + 4} L156 ${y - 4}`, '#b8b0cc', 4);
+    g.c(84, 92, 9, INK).s('M92 92 V58', INK, 5).c(124, 84, 9, INK).s('M132 84 V52', INK, 5).s('M92 58 L132 50', INK, 7);
+    g.o('M168 16 l7 18 l18 7 l-18 7 l-7 18 l-7 -18 l-18 -7 l18 -7 z', '#ffc928', 4);
+  });
+  // where the quest points: a gold marker
+  D('rd_mark', 22, (g) => {
+    g.o('M100 190 Q40 110 40 80 A60 60 0 1 1 160 80 Q160 110 100 190 Z', '#ffc928', 7); g.oc(100, 80, 24, '#ffffff', 6);
+  });
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
 /* ---- songs.js ---- */
 /* Hushsong — the fifteen ensemble openings. Notes: "C4:2" is note:length in steps, "-" a rest, "+" joins a chord; div is steps per beat.
    Drums: k kick, s snare, h hat, t/m/T toms, B/b taiko, d/D hand drum, p slap, x shaker, c stick click, C crash. */
@@ -5616,7 +6413,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
   UI.langKey = (cls) => { const b = UI.key('', () => UI.langPicker(), cls || 'soft sm'); UI.add(b, UI.icon('ic_lang', 0.9), UI.el('span', '', UI.langName())); b.setAttribute('aria-label', tr('Language') + ': ' + UI.langName()); return b; };
   // which build this is: tools/pwa.js writes the app's build number over the placeholder (a plain test build keeps it)
-  const BUILD = '38';
+  const BUILD = '39';
   UI.buildText = () => (/^\d+$/.test(BUILD) ? tr('Build {n}', { n: BUILD }) : tr('Test build'));
   UI.settings = (extra) => {
     const S = UI.S, st = S.settings, apply = () => { Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound; Au.applyVol(); UI.save(); };
@@ -5810,6 +6607,8 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const trio = el('button', 'trio'); trio.type = 'button'; trio.setAttribute('aria-label', tr('Your band')); const big = hh > 200 ? 1.75 : hh > 150 ? 1.5 : 1.25;
     const team = H.teamPets(S).filter(Boolean); team.forEach((p, i) => trio.appendChild(UI.sp(p.form, team.length === 1 || i === 1 ? big : big * 0.74)));
     trio.addEventListener('click', () => { Au.sfx('tap'); UI.go('team', {}); }); hero.appendChild(trio);
+    // the Roads preview: a fresh start of its own, on a 3D map
+    const pv = el('button', 'rankb prevb'); pv.type = 'button'; add(pv, UI.icon('ic_tour', 1.1), el('span', '', tr('Preview'))); pv.setAttribute('aria-label', tr('Preview: Hushsong Roads')); pv.addEventListener('click', () => { Au.sfx('tap'); UI.go('roadsintro', {}); }); hero.appendChild(pv);
     const rk = el('button', 'rankb'); rk.type = 'button'; add(rk, UI.icon('ic_trophy', 1.1), el('span', '', tr('Ranks'))); rk.addEventListener('click', () => { Au.sfx('tap'); UI.go('ranks', {}); }); hero.appendChild(rk);
     root.appendChild(hero);
     const modes = el('div', 'modes');
@@ -7044,15 +7843,17 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const srun = S.soloRun, solo = !!pr.solo && !!srun && !!srun.pending && srun.pending.type === 'battle', daily = !!pr.daily && H.dailyOpen(S), enc = !!pr.enc && !!S.encoreRun;
     const trun = S.tourRun, tour = !!pr.tour && !!trun && !!trun.pending && trun.pending.type === 'battle';
     const pvp = !!pr.pvp && !!S.pvp && !!S.pvp.cur && H.pvpLocked(S);
+    const roads = !!pr.roads && !!H.Roads && !!H.Roads.S && !!H.Roads.S.fight, rfight = roads ? H.Roads.S.fight : null;   // the Roads preview: its own band and its own save
+    if (pr.roads && !roads) return UI.go('roads');
     if (pr.pvp && !pvp) return UI.go('bands');
     if (pr.solo && !solo) return UI.go(srun ? 'solomap' : 'solo');
     if (pr.tour && !tour) return UI.go(trun ? 'tourmap' : 'tour');
-    const n = enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily || pvp ? 0 : pr.n || S.stage, reh = !!pr.reh;
-    const st = pvp ? { region: 'hall', boss: false, level: H.pvpLevel(S) } : enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
+    const n = roads ? 999 : enc ? S.encoreRun.wave : solo ? srun.gigs + 1 : tour ? trun.gigs + 1 : daily || pvp ? 0 : pr.n || S.stage, reh = !!pr.reh;
+    const st = roads ? H.Roads.stage() : pvp ? { region: 'hall', boss: false, level: H.pvpLevel(S) } : enc ? H.encoreStage(S, n) : solo ? H.soloStage(S, srun.map[srun.at]) : tour ? H.tourStage(S, trun.map[trun.at]) : daily ? H.dailyStage(S) : reh ? H.rehearsalStage(S, n) : H.stage(n);
     if (pr.enc && !enc) return UI.go('encore');
-    if (!solo && !tour && !pvp && !H.teamPets(S).some(Boolean)) return UI.go('home');
+    if (!roads && !solo && !tour && !pvp && !H.teamPets(S).some(Boolean)) return UI.go('home');
     if (S.flags.coach === 'go') delete S.flags.coach;
-    const battle = pvp ? H.startPvp(S) : enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
+    const battle = roads ? H.Roads.startBattle(rnd) : pvp ? H.startPvp(S) : enc ? H.startEncore(S, rnd) : solo ? H.startSoloBattle(S, rnd) : tour ? H.startTourBattle(S, rnd) : daily ? H.startDaily(S, rnd) : H.startStage(S, n, rnd, reh), twist = daily ? H.TWISTS[st.twist] : null;
     if (daily) UI.save();
     // with an ensemble, the battle theme waits and comes in on the opening's last beat
     UI.music(st.boss ? 'boss' : 'battle', st.region, !!(battle.ensemble || battle.foeEnsemble) && !window.__hsSpeed); if (st.boss) Au.sfx('boss');
@@ -7090,7 +7891,8 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
 
     /* ----- DOM ----- */
     const wrap = el('div', 'battle');
-    const leave = () => (pvp ? UI.confirm(tr('Leave the match?'), S.pvp.cur.free ? tr('Nothing is lost.') : tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); if (!out.free) UI.pvpResult(out); })
+    const leave = () => (roads ? UI.confirm(tr('Run away?'), tr('Nothing is lost. The Din stay where they are.'), tr('Run'), () => { dead = true; H.Roads.S.fight = null; H.Roads.save(); UI.go(rfight.kind === 'chapel' ? 'roadschapel' : 'roads', {}); })
+      : pvp ? UI.confirm(tr('Leave the match?'), S.pvp.cur.free ? tr('Nothing is lost.') : tr('It counts as a loss.'), tr('Leave'), () => { dead = true; const out = H.finishPvp(S, false, null); UI.save(); if (H.Net) H.Net.sendPvp(S, UI.save); UI.go('bands'); if (!out.free) UI.pvpResult(out); })
       : enc ? UI.confirm(tr('Leave this wave?'), tr('Your run ends here. Rewards stay yours.'), tr('Leave'), () => { H.endEncore(S); UI.save(); UI.go('encore'); })
       : solo ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishSolo(S, false, null, rnd); UI.save(); UI.go('soloend', { out }); })
       : tour ? UI.confirm(tr('Leave this gig?'), tr('Your tour ends here. Notes and loot stay yours.'), tr('End the tour'), () => { dead = true; const out = H.finishTour(S, false, null, rnd); UI.save(); UI.go('tourend', { out }); })
@@ -7100,7 +7902,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const menu = () => { paused = true; UI.settings(key(tr('Leave battle'), leave, 'wide soft')); const m = document.getElementById('modal'); const obs = new MutationObserver(() => { if (m.hidden) { obs.disconnect(); paused = false; } }); obs.observe(m, { attributes: true }); };
     const field = A.make(W * k, FH * k); field.className = 'full'; const fctx = field.getContext('2d'); fctx.scale((W * k) / W, field.height / FH);
     const fwrap = el('div', 'field'), callout = el('div', 'callout');
-    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', pvp ? tr('Battle of the Bands') : enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
+    const pill = el('button', 'stagepill'); pill.type = 'button'; pill.setAttribute('aria-label', tr('Menu')); add(pill, el('span', '', roads ? (rfight.kind === 'chapel' ? tr('Drowned Chapel') : rfight.boss ? tr('The Lily Pad') : tr('Reed Marsh')) : pvp ? tr('Battle of the Bands') : enc ? tr('Wave {n}', { n }) : solo ? st.boss ? tr('Solo · boss') : tr('Solo · gig {n}', { n }) : tour ? st.boss ? tr('Leg {leg} · boss', { leg: st.leg + 1 }) : tr('Leg {leg} · gig {n}', { leg: st.leg + 1, n }) : daily ? twist.n : reh ? tr('Rehearsal {n}', { n }) : st.boss ? tr('Boss {n}', { n }) : st.elite ? tr('Loud {n}', { n }) : tr('Floor {n}', { n })), UI.icon('ic_gear')); pill.addEventListener('click', () => { Au.sfx('tap'); menu(); });
     add(fwrap, field, callout, pill);
     // the house rule in play, with what it is doing right now; a tap says it again
     let tw = battle.twState(); const rule = el('button', 'rulechip'); rule.type = 'button';
@@ -7173,7 +7975,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     let hintHold = false;
 
     /* ----- drawing (all in layout units; the canvas is scaled up to the screen's real pixels) ----- */
-    const singing = enc || reh || daily || solo || tour || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
+    const singing = roads ? !!st.sing : enc || reh || daily || solo || tour || !H.floorHushed(S, n), bg = A.bgMode(st.region, W, FH, 0.2, singing ? 'sing' : 'hush');
     // where the region sings again, a few faint notes drift up through the sky behind the fight
     const NCOL = ['#ffc928', '#ff9a8a', '#7fe0d8', '#b8e88a', '#d8b0ff'], drift = singing ? [0, 1, 2, 3, 4].map((i) => ({ x: 14 + i * ((W - 28) / 4) + (rnd() - 0.5) * 16, ph: i / 5 + rnd() * 0.1, sp: 0.07 + rnd() * 0.03, c: NCOL[i] })) : [];
     const driftNotes = () => { for (const d of drift) { const t = (clock * d.sp + d.ph) % 1, y = FH * (0.42 - t * 0.38), x = d.x + Math.sin((clock + d.ph * 9) * 1.3) * 4; fctx.globalAlpha = Math.sin(t * Math.PI) * 0.45; fctx.save(); fctx.translate(x, y); fctx.scale(0.5, 0.5); fctx.lineCap = 'round'; fctx.strokeStyle = d.c; fctx.lineWidth = 2; fctx.beginPath(); fctx.moveTo(0, 6); fctx.lineTo(0, -6); fctx.lineTo(7, -8); fctx.lineTo(7, 4); fctx.stroke(); fctx.fillStyle = d.c; fctx.beginPath(); fctx.arc(-2.5, 6.5, 2.6, 0, 6.2832); fctx.moveTo(7.1, 4.5); fctx.arc(4.5, 4.5, 2.6, 0, 6.2832); fctx.fill(); fctx.restore(); } fctx.globalAlpha = 1; };
@@ -7307,7 +8109,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     // the boss's entrance is a screen of its own: the region dims, the boss stamps down under its name, then the battle opens
     let bossOv = null;
     if (st.boss && boss && !window.__hsSpeed) {
-      const name = boss.name, mode = !enc && !reh && !daily && !solo && !tour && H.floorHushed(S, n) ? 'hush' : 'sing';
+      const name = boss.name, mode = roads ? (st.sing ? 'sing' : 'hush') : !enc && !reh && !daily && !solo && !tour && H.floorHushed(S, n) ? 'hush' : 'sing';
       bossOv = el('div', 'bossin full' + (speed >= 2 ? ' fast' : '') + (solo ? ' vs' : '') + (daily ? ' giant' : ''));
       add(bossOv, UI.bgEl(st.region, W, UI.Hh, 0.5, mode), el('div', 'bosstint'), el('div', 'bossray'), add(el('div', 'bossspr'), UI.sp(boss.spec.sprite, 1.7, { anim: false, flip: true }), el('div', 'bossdust')),
         add(el('div', 'bossban'), el('div', 'bosskick', enc ? tr('Encore · wave {n}', { n }) : solo ? tr('Solo tour · the last stop') : tour ? tr('World Tour · leg {n} of {legs}', { n: st.leg + 1, legs: H.TOUR.legs }) : daily ? tr('Daily Gig · {n}', { n: twist.n }) : reh ? tr('Rehearsal') : tr('Boss · floor {n}', { n })), el('div', 'bossnm', name), el('div', 'bossrg', H.REGIONS[st.region].n)), el('div', 'bossskip', tr('Tap to skip')));
@@ -7375,6 +8177,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     }
     function finish() {
       const win = battle.over === 'win'; Au.music.din(0); Au.sfx(win ? 'win' : 'lose');
+      if (roads) { const out = H.Roads.finishBattle(win, battle, rnd); out.stats = H.battleStats(battle); UI.go(out.kind === 'chapel' && (win || !out.back) ? 'roadschapel' : 'roads', { res: out }); return; }
       const out = pvp ? H.finishPvp(S, win, battle) : enc ? H.finishEncore(S, win, battle) : solo ? H.finishSolo(S, win, battle, rnd) : tour ? H.finishTour(S, win, battle, rnd) : daily ? H.finishDaily(S, win, battle) : reh ? H.finishRehearsal(S, n, win, rnd, battle) : H.finishStage(S, n, win, rnd, battle);
       if (daily && !win) out.why = battle.ev.some((e) => e.t === 'end' && e.why === 'time') ? 'time' : null;
       out.stats = H.battleStats(battle);
@@ -7505,6 +8308,992 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
       UI.key(tr('Show me'), () => { S.flags.coach = 'gear'; UI.go('team', {}); }, 'go wide big'));
   };
 })(window.H);
+
+/* ---- ui-roads-map.js ---- */
+/* Hushsong Roads (preview) — the 3D map. One continuous toon landscape cut into hexes, with ink contours, rivers, woods, grass,
+   cloud shadows, low mist and drifting motes. Land grows out of the mist as it comes on screen.
+   One map for the whole session: the screen lends it a box to draw in and takes it back when it leaves.
+   three.js is loaded the first time the map is needed (lib/three.min.js next to the game, else from a CDN). */
+(function (H) {
+  'use strict';
+  const M = (H.RoadsMap = { ready: false });
+  const W = H.RW, A = H.Art;
+  const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  M.load = (done, fail) => {
+    if (window.THREE) { if (!M.ready) build(); return done(); }
+    const add = (src, next) => { const s = document.createElement('script'); s.src = src; s.onload = () => { build(); done(); }; s.onerror = next; document.head.appendChild(s); };
+    add('lib/three.min.js', () => add(CDN, fail));
+  };
+
+  /* ---------- colour: a silent tile is greyed, a singing one in full colour ---------- */
+  const HUSH = [201, 195, 216];
+  const rgb = (h) => [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)];
+  const greyOf = (c) => { const l = c[0] * 0.3 + c[1] * 0.55 + c[2] * 0.15; return [0, 1, 2].map((i) => l * 0.62 + HUSH[i] * 0.38); };
+  M.greyOf = greyOf;
+  const greyCache = new Map();
+  M.sprite = (key, grey, px) => {
+    const src = A.sprite(key, '', px); if (!grey) return src;
+    const ck = key + '|' + px; if (greyCache.has(ck)) return greyCache.get(ck);
+    const c = A.make(src.width, src.height), x = c.getContext('2d'); x.drawImage(src, 0, 0);
+    const im = x.getImageData(0, 0, c.width, c.height), d = im.data;
+    for (let i = 0; i < d.length; i += 4) { const g = greyOf([d[i], d[i + 1], d[i + 2]]); d[i] = g[0]; d[i + 1] = g[1]; d[i + 2] = g[2]; }
+    x.putImageData(im, 0, 0); greyCache.set(ck, c); return c;
+  };
+
+  let T, renderer, scene, sprScene, camera, sun, mist, landMat, waterMat, riverMat, tileGroup, edgeMat, edgeScene, edgeCam, depthRT, depthOnly, uT, uMist, P, motes, moteGeo, moteMat, mPos, mSeed, shadowGeo, shadowMat;
+  const SEA_Y = 0.1, DEPTH = 2.6, INK = 0x2b2140;
+
+  /* ---------- the band on the map ---------- */
+  const G = (M.G = { zoom: 1, follow: true, cam: { x: 0, z: 0 }, fx: [], dots: [], now: 0, band: null, onStep: null, onArrive: null, onTap: null, sprites: () => [], marker: null });
+  const lerp = (a, b, t) => a + (b - a) * t;
+  M.placeBand = (t) => {
+    G.band = { from: t, to: null, prog: 0, path: [], x: t.x, z: t.z, trail: [], face: 1, intent: null };
+    for (let i = 0; i < 60; i++) G.band.trail.push({ x: t.x - i * 0.04, z: t.z, face: 1 });
+    G.cam.x = t.x; G.cam.z = t.z;
+  };
+  M.here = () => (G.band ? G.band.to || G.band.from : null);
+  M.travel = (path, intent) => { const b = G.band; b.path = path.slice(); b.intent = intent || null; G.dots = path.slice(); G.follow = true; };
+  M.stop = () => { if (G.band) { G.band.path = []; G.dots = []; } };
+  M.moving = () => !!(G.band && (G.band.to || G.band.path.length));
+  M.speed = 2.4;
+
+  /* ---------- tile songs: shown colour follows the save, and a capture sends a ripple out ---------- */
+  M.songOf = () => 0;   // set by the screen: what colour a tile should have now (0..1)
+  M.ripple = (from, ids) => { for (const t of W.list) if (ids(t)) t.delay = G.now + 0.4 + Math.hypot(t.x - from.x, t.z - from.z) * 0.07; };
+  M.puff = (x, z, n, col) => { for (let i = 0; i < (n || 8); i++) { const a = Math.random() * 6.28, sp = 0.6 + Math.random(); G.fx.push({ k: 'puff', x, z, y: 0.4, vx: Math.cos(a) * sp, vz: Math.sin(a) * sp * 0.6, vy: 0.6 + Math.random(), life: 0, max: 0.6 + Math.random() * 0.3, col: col || '#ffffff' }); } };
+  M.notes = (x, z, n) => { for (let i = 0; i < (n || 5); i++) G.fx.push({ k: 'note', x: x + (Math.random() - 0.5) * 1.2, z: z + (Math.random() - 0.5) * 0.6, y: 0.6, vx: (Math.random() - 0.5) * 0.4, vz: 0, vy: 0.9 + Math.random() * 0.5, life: -i * 0.15, max: 1.6, col: ['#ff6aa0', '#2ecb6e', '#4aa8f0', '#ffc928', '#ff9234'][i % 5] }); };
+
+  /* ---------- building the scene, once ---------- */
+  function build() {
+    if (M.ready) return; M.ready = true; T = window.THREE;
+    renderer = new T.WebGLRenderer({ antialias: true }); renderer.autoClear = false;
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = T.PCFShadowMap; renderer.shadowMap.autoUpdate = false;
+    M.canvas = renderer.domElement; M.canvas.className = 'rd-canvas';
+    scene = new T.Scene(); sprScene = new T.Scene(); mist = new T.Color('#f2eef8');
+    scene.background = mist; scene.fog = new T.Fog(mist, 16, 30);
+    camera = new T.PerspectiveCamera(36, 1, 0.5, 140);
+    scene.add(new T.HemisphereLight(0xffffff, 0xc4bce0, 0.62));
+    sun = new T.DirectionalLight(0xfff3e0, 0.52);
+    sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.bias = -0.0008; sun.shadow.normalBias = 0.03;
+    scene.add(sun); scene.add(sun.target);
+    const grad = new T.DataTexture(new Uint8Array([168, 168, 168, 255, 220, 220, 220, 255, 255, 255, 255, 255]), 3, 1, T.RGBAFormat);
+    grad.minFilter = grad.magFilter = T.NearestFilter; grad.needsUpdate = true;
+    uT = { value: 0 }; uMist = { value: mist.clone() };
+    const NOISE = 'float hn(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\nfloat vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3.0 - 2.0 * f); return mix(mix(hn(i), hn(i + vec2(1.0, 0.0)), f.x), mix(hn(i + vec2(0.0, 1.0)), hn(i + vec2(1.0, 1.0)), f.x), f.y); }';
+    const make = (grid, opt) => {
+      const mat = new T.MeshToonMaterial({ vertexColors: true, gradientMap: grad });
+      mat.onBeforeCompile = (sh) => {
+        sh.uniforms.uT = uT; sh.uniforms.uMist = uMist;
+        sh.vertexShader = sh.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vWP; uniform float uT;' + (opt.sway ? '\nattribute float sway;' : ''))
+          .replace('#include <begin_vertex>', '#include <begin_vertex>\n' +
+            (opt.sway ? '{ vec4 w0 = modelMatrix * vec4(transformed, 1.0); transformed.x += sin(uT * 1.7 + w0.x * 0.8 + w0.z * 0.5) * 0.028 * sway; transformed.z += cos(uT * 1.3 + w0.z * 0.7) * 0.018 * sway; }' : '') +
+            (opt.wave ? '{ vec4 w = modelMatrix * vec4(transformed, 1.0); transformed.y += sin(w.x * 1.1 + uT * 1.3) * 0.02 + sin(w.z * 1.4 - uT * 1.1 + w.x * 0.4) * 0.015; }' : ''))
+          .replace('#include <project_vertex>', '#include <project_vertex>\nvWP = (modelMatrix * vec4(transformed, 1.0)).xyz;');
+        sh.fragmentShader = sh.fragmentShader.replace('#include <common>', '#include <common>\nvarying vec3 vWP; uniform float uT; uniform vec3 uMist;\nfloat hexd(vec2 p){ p = abs(p); return max(p.x, dot(p, vec2(0.5, 0.8660254))); }\n' + NOISE)
+          .replace('#include <color_fragment>', `#include <color_fragment>
+            { vec2 r = vec2(1.7320508, 3.0), h = r * 0.5; vec2 a = mod(vWP.xz, r) - h, b = mod(vWP.xz - h, r) - h; vec2 g = dot(a, a) < dot(b, b) ? a : b;
+              float e = 1.0 - smoothstep(0.0, 0.035, abs(hexd(g) - 0.8660254)); diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.17, 0.13, 0.25), e * ${grid}); }
+            { float c = vn(vWP.xz * 0.07 + uT * vec2(0.05, 0.02)) * 0.65 + vn(vWP.xz * 0.17 - uT * vec2(0.03, 0.04)) * 0.35; diffuseColor.rgb *= 1.0 - smoothstep(0.52, 0.7, c) * 0.12; }` +
+            (opt.wave ? '\n{ float n = sin(vWP.x * 3.1 + uT * 1.7) * sin(vWP.z * 2.3 - uT * 1.3); diffuseColor.rgb = mix(diffuseColor.rgb, vec3(1.0), smoothstep(0.82, 0.95, n) * 0.45); }' : ''))
+          .replace('#include <fog_fragment>', `{ float mh = 1.0 - smoothstep(0.05, 0.32, vWP.y), mn = vn(vWP.xz * 0.11 + vec2(uT * 0.05, uT * 0.01)) * 0.7 + vn(vWP.xz * 0.31 - uT * 0.04) * 0.3;
+              gl_FragColor.rgb = mix(gl_FragColor.rgb, uMist, mh * 0.32 * smoothstep(0.45, 0.85, mn)); }
+            #include <fog_fragment>`);
+      };
+      return mat;
+    };
+    landMat = make(0.1, { sway: true }); waterMat = make(0.05, { wave: true }); riverMat = make(0, { wave: true });
+    tileGroup = new T.Group(); scene.add(tileGroup);
+    // low-poly pieces, built once
+    const M4 = new T.Matrix4(), Qn = new T.Quaternion(), Eu = new T.Euler(), Vs = new T.Vector3(), Vp = new T.Vector3();
+    const flat = (geo) => { const g = geo.index ? geo.toNonIndexed() : geo; g.computeVertexNormals(); return g; };
+    const merge = (parts) => {
+      const pos = [], nor = [];
+      for (const [geo, x, y, z, rx, ry, rz, s, sy] of parts) { const g = flat(geo.clone()); Eu.set(rx || 0, ry || 0, rz || 0); Qn.setFromEuler(Eu); M4.compose(Vp.set(x || 0, y || 0, z || 0), Qn, Vs.set(s || 1, (s || 1) * (sy || 1), s || 1)); g.applyMatrix4(M4); pos.push(...g.attributes.position.array); nor.push(...g.attributes.normal.array); }
+      const out = new T.BufferGeometry(); out.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); out.setAttribute('normal', new T.Float32BufferAttribute(nor, 3)); return out;
+    };
+    P = {
+      trunk: merge([[new T.CylinderGeometry(0.035, 0.05, 0.32, 5), 0, 0.16, 0]]),
+      blob: merge([[new T.IcosahedronGeometry(0.25, 0), 0, 0.5, 0], [new T.IcosahedronGeometry(0.17, 0), 0.13, 0.62, 0.06]]),
+      pine: merge([[new T.ConeGeometry(0.23, 0.46, 7), 0, 0.36, 0], [new T.ConeGeometry(0.18, 0.4, 7), 0, 0.58, 0], [new T.ConeGeometry(0.12, 0.3, 7), 0, 0.78, 0]]),
+      snowtip: merge([[new T.ConeGeometry(0.075, 0.13, 7), 0, 0.9, 0]]),
+      bush: merge([[new T.IcosahedronGeometry(0.14, 0), 0, 0.08, 0, 0, 0, 0, 1, 0.7], [new T.IcosahedronGeometry(0.1, 0), 0.1, 0.06, 0.04, 0, 0, 0, 1, 0.7]]),
+      cactus: merge([[new T.CylinderGeometry(0.055, 0.065, 0.5, 6), 0, 0.25, 0], [new T.CylinderGeometry(0.035, 0.035, 0.18, 5), 0.12, 0.36, 0], [new T.CylinderGeometry(0.035, 0.035, 0.1, 5), 0.075, 0.27, 0, 0, 0, Math.PI / 2]]),
+      rock: merge([[new T.DodecahedronGeometry(0.12, 0), 0, 0.05, 0, 0.3, 0.6, 0, 1, 0.65]]),
+      tuft: merge([[new T.ConeGeometry(0.02, 0.16, 3), 0, 0.08, 0, 0, 0, 0.25], [new T.ConeGeometry(0.02, 0.2, 3), 0.04, 0.1, 0.02, 0.1, 0, -0.1], [new T.ConeGeometry(0.02, 0.14, 3), -0.03, 0.07, 0.03, -0.2, 0, -0.3]]),
+      flower: merge([[new T.IcosahedronGeometry(0.035, 0), 0, 0.12, 0], [new T.IcosahedronGeometry(0.03, 0), 0.07, 0.09, 0.04]]),
+      reed: merge([[new T.ConeGeometry(0.02, 0.36, 3), 0, 0.18, 0], [new T.ConeGeometry(0.02, 0.3, 3), 0.06, 0.15, 0.03, 0, 0, -0.15], [new T.ConeGeometry(0.02, 0.32, 3), -0.05, 0.16, -0.02, 0, 0, 0.15]]),
+      cat: merge([[new T.CylinderGeometry(0.03, 0.03, 0.08, 5), 0, 0.37, 0], [new T.CylinderGeometry(0.028, 0.028, 0.07, 5), 0.085, 0.31, 0.03]]),
+      lily: merge([[new T.CylinderGeometry(0.11, 0.11, 0.015, 8), 0, 0, 0]]),
+      plank: merge([[new T.BoxGeometry(0.34, 0.05, 0.86), 0, 0, 0], [new T.BoxGeometry(0.03, 0.12, 0.86), 0.16, 0.08, 0], [new T.BoxGeometry(0.03, 0.12, 0.86), -0.16, 0.08, 0]]),
+    };
+    // drifting motes
+    const MOTES = 150; mPos = new Float32Array(MOTES * 3); mSeed = Array.from({ length: MOTES }, () => [Math.random(), Math.random(), Math.random()]);
+    moteGeo = new T.BufferGeometry(); moteGeo.setAttribute('position', new T.BufferAttribute(mPos, 3));
+    const dc = A.make(32, 32), dx = dc.getContext('2d'), dg = dx.createRadialGradient(16, 16, 0, 16, 16, 16); dg.addColorStop(0, 'rgba(255,255,255,1)'); dg.addColorStop(0.5, 'rgba(255,255,255,.6)'); dg.addColorStop(1, 'rgba(255,255,255,0)'); dx.fillStyle = dg; dx.fillRect(0, 0, 32, 32);
+    moteMat = new T.PointsMaterial({ size: 0.11, map: new T.CanvasTexture(dc), transparent: true, depthWrite: false, opacity: 0.75, color: 0xfff6c0 });
+    motes = new T.Points(moteGeo, moteMat); motes.layers.set(1); motes.frustumCulled = false; scene.add(motes);
+    // ink contours
+    depthRT = new T.WebGLRenderTarget(1, 1); depthRT.depthTexture = new T.DepthTexture(1, 1); depthRT.depthTexture.type = T.UnsignedIntType;
+    depthOnly = new T.MeshBasicMaterial({ colorWrite: false });
+    edgeMat = new T.ShaderMaterial({
+      transparent: true, depthTest: false, depthWrite: false,
+      uniforms: { tDepth: { value: depthRT.depthTexture }, px: { value: new T.Vector2() }, cNear: { value: camera.near }, cFar: { value: camera.far }, ink: { value: new T.Color(INK) }, fogNear: { value: 16 }, fogFar: { value: 30 }, thr: { value: 0.0065 } },
+      vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }',
+      fragmentShader: `#include <packing>
+        uniform sampler2D tDepth; uniform vec2 px; uniform float cNear, cFar, fogNear, fogFar, thr; uniform vec3 ink; varying vec2 vUv;
+        float iz(vec2 uv){ return -1.0 / perspectiveDepthToViewZ(texture2D(tDepth, uv).x, cNear, cFar); }
+        void main(){
+          float c = iz(vUv), l = iz(vUv - vec2(px.x, 0.0)), r = iz(vUv + vec2(px.x, 0.0)), d = iz(vUv - vec2(0.0, px.y)), u = iz(vUv + vec2(0.0, px.y));
+          float lap = max(abs(l + r - 2.0 * c), abs(d + u - 2.0 * c)) / c;
+          gl_FragColor = vec4(ink, smoothstep(thr, thr * 2.0, lap) * (1.0 - smoothstep(fogNear, fogFar, 1.0 / c)) * 0.8);
+        }`,
+    });
+    edgeScene = new T.Scene(); edgeCam = new T.OrthographicCamera(-1, 1, 1, -1, 0, 1); edgeScene.add(new T.Mesh(new T.PlaneGeometry(2, 2), edgeMat));
+    shadowGeo = new T.CircleGeometry(0.5, 20).rotateX(-Math.PI / 2); shadowMat = new T.MeshBasicMaterial({ color: INK, transparent: true, opacity: 0.18, depthWrite: false });
+    camera.layers.enable(1);
+    bindInput(M.canvas);
+  }
+
+  /* ---------- a tile: land, small plants and water, each its own mesh ---------- */
+  const CORN = [0, 1, 2, 3, 4, 5].map((k) => [Math.cos(Math.PI / 6 + (k * Math.PI) / 3), Math.sin(Math.PI / 6 + (k * Math.PI) / 3)]);
+  const KEY = ['water', 'shore', 'low', 'forest', 'hill', 'mount'];
+  const segD = (px, pz, bx, bz) => { const l2 = bx * bx + bz * bz, k = Math.max(0, Math.min(1, (px * bx + pz * bz) / l2)); return Math.hypot(px - bx * k, pz - bz * k); };
+  const rnd = (t, i) => W.hash(t.q * 41 + i * 7, t.r * 23 - i * 3);
+  const mixHex = (a, b, k) => { const x = rgb(a), y = rgb(b); return [0, 1, 2].map((i) => x[i] + (y[i] - x[i]) * k); };
+  function vcol(t, y, ny, wx, wz) {
+    const pal = W.REG[t.reg].pal, snow = t.reg === 'ridge' ? 1.5 : t.reg === 'dunes' ? 9 : 1.95;
+    if (y > snow + (W.vnoise(wx * 3, wz * 3) - 0.5) * 0.25 && ny > 0.3) return rgb('#ffffff');
+    if (ny < 0.62 || y > 0.95) return rgb(y > 0.55 ? pal.mount : pal.wall);
+    if (y < 0.16) return rgb(pal.shore);
+    const base = pal[KEY[Math.min(4, t.kind)]], n = W.vnoise(wx * 0.9 + 7, wz * 0.9 + 3), n2 = W.vnoise(wx * 2.6, wz * 2.6);
+    const c = mixHex(base, pal.grass, t.kind <= 3 ? Math.max(0, n - 0.45) * 1.2 : 0), k = 0.94 + n2 * 0.1;
+    return c.map((v) => v * k);
+  }
+  class Bucket {
+    constructor() { this.pos = []; this.nor = []; this.col = []; this.sw = []; }
+    tri(a, b, c, rgbOf, outward) {
+      const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+      let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+      const mx = (a[0] + b[0] + c[0]) / 3, mz = (a[2] + b[2] + c[2]) / 3;
+      if (outward ? nx * mx + nz * mz < 0 : ny < 0) { [b, c] = [c, b]; nx = -nx; ny = -ny; nz = -nz; }
+      const l = Math.hypot(nx, ny, nz) || 1; nx /= l; ny /= l; nz /= l;
+      const c0 = typeof rgbOf === 'function' ? rgbOf((a[1] + b[1] + c[1]) / 3, ny, mx, mz) : rgbOf, lit = 0.8 + 0.2 * Math.max(0, nx * -0.55 + ny * 0.75 + nz * 0.36);
+      for (const p of [a, b, c]) { this.pos.push(p[0], p[1], p[2]); this.nor.push(nx, ny, nz); this.col.push(c0[0] * lit, c0[1] * lit, c0[2] * lit); this.sw.push(0); }
+    }
+    put(geo, x, y, z, s, ry, c3, sway, sy) {
+      const p = geo.attributes.position.array, n = geo.attributes.normal.array, c = Math.cos(ry || 0), sn = Math.sin(ry || 0), h = s * (sy || 1);
+      for (let i = 0; i < p.length; i += 3) {
+        const lx = p[i] * s, ly = p[i + 1] * h, lz = p[i + 2] * s;
+        this.pos.push(x + lx * c - lz * sn, y + ly, z + lx * sn + lz * c); this.nor.push(n[i] * c - n[i + 2] * sn, n[i + 1], n[i] * sn + n[i + 2] * c);
+        this.col.push(c3[0], c3[1], c3[2]); this.sw.push(sway ? Math.max(0, p[i + 1]) * sway : 0);
+      }
+    }
+    mesh(mat, t) {
+      if (!this.pos.length) return null;
+      const g = new T.BufferGeometry();
+      g.setAttribute('position', new T.Float32BufferAttribute(this.pos, 3)); g.setAttribute('normal', new T.Float32BufferAttribute(this.nor, 3));
+      g.setAttribute('color', new T.Float32BufferAttribute(new Float32Array(this.col.length), 3)); g.setAttribute('sway', new T.Float32BufferAttribute(this.sw, 1));
+      g.computeBoundingSphere();
+      const grey = new Float32Array(this.col.length);
+      for (let i = 0; i < this.col.length; i += 3) { const gg = greyOf([this.col[i], this.col[i + 1], this.col[i + 2]]); grey[i] = gg[0]; grey[i + 1] = gg[1]; grey[i + 2] = gg[2]; }
+      const m = new T.Mesh(g, mat); m.userData = { t, base: new Float32Array(this.col), grey }; return m;
+    }
+  }
+  function buildTile(t) {
+    const water = t.kind === 0, N = water ? 3 : t.kind >= 4 ? 7 : 5, pal = W.REG[t.reg].pal, reg = t.reg;
+    const land = new Bucket(), det = new Bucket(), wat = new Bucket();
+    const Y = (x, z) => (water ? SEA_Y : Math.max(SEA_Y + 0.02, W.H(t.x + x, t.z + z)));
+    const top = water ? rgb(pal.water) : (y, ny, x, z) => vcol(t, y, ny, t.x + x, t.z + z);
+    const side = rgb(water ? pal.water : pal.wall), dest = water ? wat : land;
+    for (let k = 0; k < 6; k++) {
+      const B = CORN[k], C = CORN[(k + 1) % 6], Pt = [];
+      for (let i = 0; i <= N; i++) { Pt.push([]); for (let j = 0; j <= N - i; j++) { const x = (B[0] * i) / N + (C[0] * j) / N, z = (B[1] * i) / N + (C[1] * j) / N; Pt[i].push([x, Y(x, z), z]); } }
+      for (let i = 0; i < N; i++) for (let j = 0; j < N - i; j++) { dest.tri(Pt[i][j], Pt[i + 1][j], Pt[i][j + 1], top); if (i + j < N - 1) dest.tri(Pt[i + 1][j], Pt[i + 1][j + 1], Pt[i][j + 1], top); }
+      for (let s = 0; s < N; s++) { const a = Pt[N - s][s], b = Pt[N - s - 1][s + 1], dep = water ? SEA_Y - 0.12 : -DEPTH; dest.tri(a, b, [b[0], dep, b[2]], side, true); dest.tri(a, [b[0], dep, b[2]], [a[0], dep, a[2]], side, true); }
+    }
+    const clear = (x, z, r) => { if (t.poi && Math.hypot(x, z) < 0.6) return false; for (const n of t.road) if (segD(x, z, (n.x - t.x) / 2, (n.z - t.z) / 2) < r) return false; return W.riverD(t.x + x, t.z + z) > r + 0.12; };
+    const spots = (n, seed, rad) => { const out = []; for (let i = 0; i < n * 3 && out.length < n; i++) { const a = rnd(t, seed + i) * 6.283, r = Math.sqrt(rnd(t, seed + 50 + i)) * (rad || 0.8), x = Math.cos(a) * r, z = Math.sin(a) * r; if (clear(x, z, 0.2)) out.push([x, z, rnd(t, seed + 90 + i)]); } return out; };
+    const shade = (hex, k) => rgb(hex).map((v) => v * (0.9 + k * 0.2));
+    if (!water) {
+      const nTree = t.kind === 3 ? (reg === 'dunes' ? 3 : 9) : t.kind === 2 ? (rnd(t, 2) > 0.72 ? 1 : 0) : t.kind === 4 ? (rnd(t, 2) > 0.45 ? 2 : 0) : 0;
+      for (const [x, z, k] of spots(nTree, 10, 0.82)) {
+        const y0 = Y(x, z); if (y0 > 1.15) continue;
+        const s = 0.7 + k * 0.55, ry = k * 6.28;
+        if (reg === 'ridge') { land.put(P.trunk, x, y0, z, s, ry, rgb('#7a5236'), 0.3); land.put(P.pine, x, y0, z, s, ry, shade(pal.tree, k), 0.9); land.put(P.snowtip, x, y0, z, s, ry, rgb('#ffffff'), 0.9); }
+        else if (reg === 'dunes') { if (k > 0.5) land.put(P.cactus, x, y0, z, s * 0.9, ry, shade('#4fae6a', k), 0); else det.put(P.bush, x, y0, z, s * 1.2, ry, shade('#b8b060', k), 0.6); }
+        else { const autumn = ['#e0783e', '#ffb050', '#e8503a', '#ffd060', '#c4a040'], c = reg === 'works' ? autumn[Math.floor(k * 4.99)] : k > 0.5 ? pal.tree : pal.tree2; land.put(P.trunk, x, y0, z, s, ry, rgb('#7a5236'), 0.3); land.put(P.blob, x, y0, z, s * (reg === 'marsh' && k > 0.7 ? 1.2 : 1), ry, shade(c, k), 0.8, reg === 'marsh' && k > 0.7 ? 0.8 : 1); }
+      }
+      if (t.kind === 3 && reg !== 'dunes') for (const [x, z, k] of spots(4, 200, 0.85)) det.put(P.bush, x, Y(x, z), z, 0.8 + k * 0.5, k * 6, shade(pal.tree2, k * 0.6), 0.5);
+      const nTuft = t.kind === 2 ? 8 : t.kind === 4 ? 5 : t.kind === 1 ? 3 : t.kind === 3 ? 2 : 0;
+      for (const [x, z, k] of spots(nTuft, 300, 0.9)) det.put(P.tuft, x, Y(x, z), z, 0.9 + k * 0.6, k * 6.28, shade(reg === 'dunes' ? '#c8a858' : pal.grass, k * 0.5 - 0.15), 1.6);
+      if (t.kind === 2 && reg !== 'dunes') { const fl = ['#ff6aa0', '#ffffff', '#ffc928', '#b48cff']; for (const [x, z, k] of spots(3, 400, 0.85)) det.put(P.flower, x, Y(x, z), z, 1, k * 6, rgb(fl[Math.floor(k * 3.99)]), 1.2); }
+      const nRock = t.kind === 4 ? 3 : t.kind === 5 ? 2 : reg === 'dunes' ? 2 : rnd(t, 5) > 0.7 ? 1 : 0;
+      for (const [x, z, k] of spots(nRock, 500, 0.8)) land.put(P.rock, x, Y(x, z), z, 0.7 + k * 1.1, k * 6, shade(pal.rock, k), 0);
+      if (reg === 'marsh' && t.kind <= 2) for (const [x, z, k] of spots(3, 600, 0.85)) { const y0 = Y(x, z); det.put(P.reed, x, y0, z, 0.9 + k * 0.4, k * 6, shade('#4f9a4a', k), 1.4); det.put(P.cat, x, y0, z, 0.9 + k * 0.4, k * 6, rgb('#8a5a3a'), 1.4); }
+      for (const n of t.road) {
+        const ex = (n.x - t.x) / 2, ez = (n.z - t.z) / 2, L = Math.hypot(ex, ez), px = -ez / L, pz = ex / L, S = 6;
+        for (const [w, lift, hex] of [[0.17, 0.03, '#c9a467'], [0.11, 0.045, '#f8e6b8']]) {
+          const c3 = rgb(hex), pt = (k, sd) => { const x = (ex * k) / S - (ex / L) * (k === 0 ? w : 0) + px * w * sd, z = (ez * k) / S - (ez / L) * (k === 0 ? w : 0) + pz * w * sd; return [x, Y(x, z) + lift, z]; };
+          for (let k = 0; k < S; k++) { const a = pt(k, -1), b = pt(k, 1), c = pt(k + 1, 1), d = pt(k + 1, -1); land.tri(a, b, c, c3); land.tri(a, c, d, c3); }
+        }
+      }
+      if (t.river.length) {
+        const wc = rgb(pal.water).map((v) => Math.min(255, v * 1.05)), WY = (x, z) => Y(x, z) + 0.075;
+        for (const n of t.river) {
+          const ex = (n.x - t.x) / 2, ez = (n.z - t.z) / 2, L = Math.hypot(ex, ez), px = -ez / L, pz = ex / L, S = 6, w = 0.2;
+          const pt = (k, sd) => { const x = (ex * k) / S + px * w * sd, z = (ez * k) / S + pz * w * sd; return [x, WY(x, z), z]; };
+          for (let k = 0; k < S; k++) { const a = pt(k, -1), b = pt(k, 1), c = pt(k + 1, 1), d = pt(k + 1, -1); wat.tri(a, b, c, wc); wat.tri(a, c, d, wc); }
+        }
+        const ring = Array.from({ length: 9 }, (_, i) => { const a = (i / 8) * 6.283, x = Math.cos(a) * 0.2, z = Math.sin(a) * 0.2; return [x, WY(x, z), z]; });
+        for (let i = 0; i < 8; i++) wat.tri([0, WY(0, 0), 0], ring[i], ring[i + 1], wc);
+        if (t.road.length) { const n = t.road[0], ang = Math.atan2(n.x - t.x, n.z - t.z); land.put(P.plank, 0, Y(0, 0) + 0.2, 0, 1, ang, rgb('#a8724a'), 0); }
+      }
+    } else if (reg === 'marsh') for (const [x, z, k] of spots(3, 800, 0.8)) det.put(P.lily, x, SEA_Y + 0.03, z, 0.8 + k * 0.6, k * 6, shade('#5cc472', k), 0);
+    const grp = new T.Group(); grp.position.set(t.x, 0, t.z); grp.userData.t = t;
+    const lm = land.mesh(landMat, t), dm = det.mesh(landMat, t), wm = wat.mesh(t.river.length && !water ? riverMat : waterMat, t);
+    if (lm) { lm.castShadow = true; lm.receiveShadow = true; grp.add(lm); }
+    if (dm) { dm.receiveShadow = true; dm.layers.set(1); grp.add(dm); }
+    if (wm) { wm.receiveShadow = true; grp.add(wm); }
+    grp.userData.parts = grp.children.slice(); grp.userData.song = -1;
+    recolour(grp, t.song || 0);
+    return grp;
+  }
+  function recolour(grp, song) {
+    const k = 0.3 + 0.7 * song;
+    for (const m of grp.userData.parts) { const c = m.geometry.attributes.color.array, b = m.userData.base, g = m.userData.grey; for (let i = 0; i < c.length; i++) c[i] = (g[i] + (b[i] - g[i]) * k) / 255; m.geometry.attributes.color.needsUpdate = true; }
+    grp.userData.song = song;
+  }
+
+  /* ---------- sprites: Hushsong's own sticker art, facing the camera ---------- */
+  const texCache = new Map();
+  const tex = (key, grey) => { const ck = key + (grey ? '|g' : ''); if (texCache.has(ck)) return texCache.get(ck); const tx = new T.CanvasTexture(M.sprite(key, grey, 256)); tx.anisotropy = 4; texCache.set(ck, tx); return tx; };
+  const fxTex = new Map();
+  const fxT = (k, col) => {
+    const ck = k + col; if (fxTex.has(ck)) return fxTex.get(ck);
+    const c = A.make(64, 64), x = c.getContext('2d'); x.lineWidth = 6; x.strokeStyle = '#2b2140'; x.fillStyle = col;
+    if (k === 'note') { x.beginPath(); x.ellipse(24, 46, 12, 9, -0.4, 0, 6.29); x.fill(); x.stroke(); x.beginPath(); x.moveTo(35, 44); x.lineTo(35, 10); x.lineTo(50, 20); x.stroke(); }
+    else { x.beginPath(); x.arc(32, 32, 22, 0, 6.29); x.fill(); x.stroke(); }
+    const t = new T.CanvasTexture(c); fxTex.set(ck, t); return t;
+  };
+  const pool = [], shadows = [];
+  const sprite = (i) => {
+    if (!pool[i]) { const s = new T.Sprite(new T.SpriteMaterial({ transparent: true, depthWrite: false, fog: false })); s.center.set(0.5, 0.15); sprScene.add(s); pool[i] = s; }
+    const s = pool[i]; s.visible = true; s.userData = {}; s.renderOrder = 0; s.material.depthTest = true; return s;
+  };
+  const shadow = (i) => { if (!shadows[i]) { const m = new T.Mesh(shadowGeo, shadowMat); m.layers.set(1); scene.add(m); shadows[i] = m; } shadows[i].visible = true; return shadows[i]; };
+
+  /* ---------- attach to a screen, and the loop ---------- */
+  let box = null, Wd = 1, Ht = 1, raf = 0, last = 0, first = true;
+  M.attach = (el) => {
+    box = el; el.appendChild(M.canvas); first = true;
+    for (const t of W.list) { t.b3 = null; if (t.song == null) t.song = M.songOf(t); }
+    tileGroup.clear(); resize(); last = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(loop);
+  };
+  M.detach = () => { cancelAnimationFrame(raf); raf = 0; if (M.canvas && M.canvas.parentNode) M.canvas.parentNode.removeChild(M.canvas); box = null; };
+  const resize = () => {
+    if (!box) return; const r = box.getBoundingClientRect(); Wd = Math.max(1, r.width); Ht = Math.max(1, r.height); const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    renderer.setPixelRatio(dpr); renderer.setSize(Wd, Ht, false); camera.aspect = Wd / Ht; camera.updateProjectionMatrix();
+    depthRT.setSize(Math.round(Wd * dpr), Math.round(Ht * dpr)); edgeMat.uniforms.px.value.set(1 / (Wd * dpr), 1 / (Ht * dpr));
+  };
+  window.addEventListener('resize', () => setTimeout(resize, 50));
+
+  const PITCH = 0.94, look = { x: 0, z: 0 };
+  let D = 15;
+  const placeCamera = () => {
+    const s2 = Math.max(22, Math.min(Wd, Ht * 0.78) / 11.5) * G.zoom, span = Wd / s2;
+    D = Math.max(8, Math.min(34, (span * 0.95) / (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect)));
+    look.x = G.cam.x; look.z = G.cam.z;
+    camera.position.set(G.cam.x, 0.3 + D * Math.sin(PITCH), G.cam.z + D * Math.cos(PITCH)); camera.lookAt(G.cam.x, 0.3, G.cam.z); camera.updateMatrixWorld();
+    scene.fog.near = D * 0.95; scene.fog.far = D * 1.6; edgeMat.uniforms.fogNear.value = scene.fog.near; edgeMat.uniforms.fogFar.value = scene.fog.far;
+    sun.position.set(G.cam.x - 11, 11, G.cam.z + 6); sun.target.position.set(G.cam.x, 0, G.cam.z - D * 0.2); sun.target.updateMatrixWorld();
+    const sc = sun.shadow.camera, b = D * 0.9; if (sc.right !== b) { sc.left = -b; sc.right = b; sc.top = b; sc.bottom = -b; sc.near = 1; sc.far = 60; sc.updateProjectionMatrix(); }
+  };
+  // land grows out of the mist: a smooth rise, never more than a few new tiles built in one frame
+  const RISE = 0.85, ease = (x) => 1 - Math.pow(1 - x, 3);
+  const popOf = (t) => (t && t.b3 != null ? W.sat((G.now - t.b3) / RISE) : 0);
+  const riseOf = (t) => -(1 - ease(popOf(t))) * 1.4;
+  M.popOf = popOf;
+  const groundY = (x, z) => { const t = W.at(...W.xzToHex(x, z)); return !t || t.kind === 0 ? SEA_Y : Math.max(SEA_Y + 0.02, W.H(x, z)); };
+  M.groundY = groundY;
+  let v3 = null, lastCam = null;
+
+  function tick(dt) {
+    G.now += dt; uT.value += dt;
+    const b = G.band;
+    if (b) {
+      let rem = dt * M.speed;
+      while (rem > 0) {
+        if (!b.to) { if (!b.path.length) break; b.to = b.path.shift(); b.prog = 0; G.dots = b.path.slice(); }
+        const len = Math.hypot(b.to.x - b.from.x, b.to.z - b.from.z) || 1, step = Math.min(rem, (1 - b.prog) * len);
+        b.prog += step / len; rem -= step;
+        if (b.prog >= 0.999) { b.from = b.to; b.to = null; b.prog = 0; const stop = G.onStep && G.onStep(b.from); if (stop) { b.path = []; G.dots = []; break; } if (!b.path.length) { G.dots = []; const it = b.intent; b.intent = null; if (G.onArrive) G.onArrive(b.from, it); break; } }
+      }
+      const f = b.from, t = b.to || b.from, nx = lerp(f.x, t.x, b.prog), nz = lerp(f.z, t.z, b.prog);
+      if (Math.abs(nx - b.x) > 0.001) b.face = nx > b.x ? 1 : -1;
+      b.x = nx; b.z = nz;
+      const tr = b.trail[0]; if (Math.hypot(tr.x - b.x, tr.z - b.z) > 0.04) b.trail.unshift({ x: b.x, z: b.z, face: b.face }); if (b.trail.length > 80) b.trail.pop();
+      if (G.follow) { const k = 1 - Math.exp(-dt * 4); G.cam.x += (b.x - G.cam.x) * k; G.cam.z += (b.z - G.cam.z) * k; }
+    }
+    for (const t of W.list) { const target = M.songOf(t); if (t.song == null) t.song = target; if (t.song < target && G.now >= (t.delay || 0)) t.song = Math.min(target, t.song + dt * 1.6); else if (t.song > target) t.song = target; }
+    for (const p of G.fx) { p.life += dt; if (p.life < 0) continue; p.x += p.vx * dt; p.z += p.vz * dt; p.y += p.vy * dt; p.vy -= (p.k === 'puff' ? 1.2 : 0) * dt; }
+    G.fx = G.fx.filter((p) => p.life < p.max);
+  }
+  M.at = (dist) => { const b = G.band; let acc = 0; for (let i = 1; i < b.trail.length; i++) { const p = b.trail[i - 1], q = b.trail[i], l = Math.hypot(p.x - q.x, p.z - q.z); if (acc + l >= dist) { const k = (dist - acc) / l; return { x: lerp(p.x, q.x, k), z: lerp(p.z, q.z, k), face: p.face || 1 }; } acc += l; } return b.trail[b.trail.length - 1]; };
+
+  function render() {
+    if (!v3) { v3 = new T.Vector3(); lastCam = new T.Vector3(1e9, 0, 0); }
+    placeCamera();
+    const now = G.now, R = D * 1.9; let rising = false, builds = 0;
+    const want = [];
+    for (const t of W.list) {
+      if (Math.abs(t.x - G.cam.x) > R || Math.abs(t.z - G.cam.z) > R) { if (t.m3 && t.m3.parent) tileGroup.remove(t.m3); t.b3 = null; continue; }
+      v3.set(t.x, t.kind ? Math.min(1.2, W.STEP[t.kind] * 2) : SEA_Y, t.z).project(camera);
+      const on = v3.z < 1 && v3.x > -1.15 && v3.x < 1.15 && v3.y > -1.28 && v3.y < 1.15;
+      if (on) {
+        t.off = 0;
+        if (!t.m3) { want.push([Math.hypot(v3.x, v3.y), t]); continue; }
+        if (!t.m3.parent) tileGroup.add(t.m3);
+        if (t.b3 == null) t.b3 = now + (first ? Math.hypot(v3.x, v3.y) * 0.5 : W.hash(t.q, t.r) * 0.18);
+      } else if (t.m3 && t.m3.parent) { t.off = (t.off || 0) + 1 / 60; if (t.off > 1.2) { tileGroup.remove(t.m3); t.b3 = null; } }
+      if (t.m3 && t.m3.parent) {
+        const p = popOf(t); if (p < 1) rising = true;
+        const e = ease(p); t.m3.position.y = riseOf(t); t.m3.scale.y = 0.35 + 0.65 * e; t.m3.visible = p > 0;
+        if (Math.abs(t.m3.userData.song - t.song) > 0.02 || (t.m3.userData.song !== t.song && t.song === M.songOf(t))) recolour(t.m3, t.song);
+      }
+    }
+    // build the nearest missing tiles first, a few per frame, so the frame rate stays smooth
+    want.sort((a, b) => a[0] - b[0]);
+    for (const [, t] of want) { if (builds >= (first ? 400 : 5)) break; t.m3 = buildTile(t); builds++; }
+    if (want.length > builds) rising = true;
+    first = false;
+    // motes
+    const here = M.here(), reg = here ? here.reg : 'marsh';
+    for (let i = 0; i < mPos.length / 3; i++) { const s = mSeed[i], span = R * 0.7; mPos[i * 3] = G.cam.x + (((s[0] * span + now * 0.08 * (0.6 + s[2]) + Math.sin(now * 0.7 + i) * 0.1) % span) + span) % span - span / 2; mPos[i * 3 + 1] = ((((s[1] * 2.6 + now * 0.15 * (0.5 + s[2])) % 2.6) + 2.6) % 2.6) + 0.15; mPos[i * 3 + 2] = G.cam.z + ((((s[2] * span + Math.cos(now * 0.5 + i) * 0.2) % span) + span) % span - span / 2) * 0.8; }
+    moteGeo.attributes.position.needsUpdate = true; moteMat.color.set(reg === 'marsh' ? '#fff6c0' : '#ffffff');
+    // sprites
+    let si = 0, sh = 0;
+    for (const sp of G.sprites()) {
+      const tt = sp.tile || W.at(...W.xzToHex(sp.x, sp.z)), a = popOf(tt) * (sp.alpha == null ? 1 : sp.alpha);
+      if (a <= 0.02) continue;
+      const y = groundY(sp.x, sp.z) + riseOf(tt), w = sp.size * 1.5 * (sp.scale || 1);
+      const put = (grey, op, nudge) => { const s = sprite(si++); s.material.map = tex(sp.key, grey); s.material.opacity = op; s.position.set(sp.x, y + (sp.hop || 0), sp.z + nudge); s.scale.set(sp.flip ? -w : w, w, 1); s.userData.sp = sp; };
+      if (sp.band) { put(false, a * 0.35, 0); pool[si - 1].material.depthTest = false; pool[si - 1].renderOrder = -1; }
+      if (sp.song != null) { put(true, a, 0); if (sp.song > 0.01) put(false, a * sp.song, 0.01); } else put(!!sp.grey, a, 0);
+      if (!sp.noShadow) { const m = shadow(sh++); m.position.set(sp.x, y + 0.02, sp.z); m.scale.set(w * 0.62, 1, w * 0.3); }
+    }
+    for (const t of G.dots) { if (popOf(t) < 1) continue; const s = sprite(si++); s.material.map = fxT('dot', '#ffffff'); s.material.opacity = 1; const r = 0.2 + Math.sin(now * 6 - t.x) * 0.03; s.position.set(t.x, groundY(t.x, t.z) + 0.12, t.z); s.scale.set(r, r, 1); }
+    for (const p of G.fx) { if (p.life < 0) continue; const k = p.life / p.max, s = sprite(si++); s.material.map = fxT(p.k, p.col); s.material.opacity = 1 - k * k; s.position.set(p.x, groundY(p.x, p.z) + p.y, p.z); const r = p.k === 'puff' ? 0.25 + k * 0.35 : 0.4; s.scale.set(r, r, 1); }
+    for (let i = 0; i < pool.length; i++) { if (i >= si) pool[i].visible = false; else pool[i].center.set(0.5, pool[i].userData.sp ? 0.15 : 0.5); }
+    for (let i = sh; i < shadows.length; i++) shadows[i].visible = false;
+    // shadows are redrawn only when the view or the land has moved
+    if (rising || lastCam.distanceToSquared(camera.position) > 0.01) { renderer.shadowMap.needsUpdate = true; lastCam.copy(camera.position); }
+    renderer.setRenderTarget(depthRT); renderer.setClearColor(mist, 1); renderer.clear();
+    camera.layers.set(0); scene.overrideMaterial = depthOnly; renderer.render(scene, camera); scene.overrideMaterial = null; camera.layers.enableAll();
+    renderer.setRenderTarget(null); renderer.clear();
+    renderer.render(scene, camera); renderer.render(edgeScene, edgeCam); renderer.render(sprScene, camera);
+  }
+  function loop(ms) {
+    if (!box) return; const dt = Math.min(0.05, (ms - last) / 1000); last = ms;
+    if (!box.isConnected) { M.detach(); return; }
+    const r = box.getBoundingClientRect(); if (Math.abs(r.width - Wd) > 1 || Math.abs(r.height - Ht) > 1) resize();
+    tick(dt); render(); if (M.onFrame) M.onFrame(dt);
+    raf = requestAnimationFrame(loop);
+  }
+
+  /* ---------- picking, projection, input ---------- */
+  let ray = null, ndc = null, plane = null, hitP = null;
+  const aim = (px, py) => { if (!ray) { ray = new T.Raycaster(); ray.layers.enableAll(); ndc = new T.Vector2(); plane = new T.Plane(new T.Vector3(0, 1, 0), -0.3); hitP = new T.Vector3(); } ray.camera = camera; ndc.set((px / Wd) * 2 - 1, -(py / Ht) * 2 + 1); ray.setFromCamera(ndc, camera); };
+  const local = (e) => { const r = M.canvas.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+  M.ground = (px, py) => { aim(px, py); return ray.ray.intersectPlane(plane, hitP) ? [hitP.x, hitP.z] : null; };
+  M.pick = (px, py) => {
+    aim(px, py);
+    const sps = pool.filter((s) => s.visible && s.userData.sp && s.userData.sp.pick);
+    const hs = ray.intersectObjects(sps, false);
+    if (hs.length) return { s: hs[0].object.userData.sp, t: null };
+    const ht = ray.intersectObjects(tileGroup.children, true);
+    if (ht.length) return { t: W.at(...W.xzToHex(ht[0].point.x, ht[0].point.z)) || null, s: null };
+    return { t: null, s: null };
+  };
+  // where a tile shows on screen, in pixels of the map box (null if behind the camera)
+  M.project = (t, hgt) => { if (!v3) return null; const p = popOf(t); if (p <= 0) return null; v3.set(t.x, groundY(t.x, t.z) + riseOf(t) + (hgt || 0), t.z).project(camera); if (v3.z > 1) return null; return { x: (v3.x * 0.5 + 0.5) * Wd, y: (-v3.y * 0.5 + 0.5) * Ht, a: Math.min(1, p * 2) }; };
+  function bindInput(el) {
+    const pts = new Map(); let down = null, pinch = 0;
+    el.addEventListener('pointerdown', (e) => { el.setPointerCapture(e.pointerId); const p = local(e); pts.set(e.pointerId, p); if (pts.size === 1) down = { x: p[0], y: p[1], t: performance.now(), moved: false, last: p }; else { if (down) down.moved = true; pinch = 0; } });
+    el.addEventListener('pointermove', (e) => {
+      if (!pts.has(e.pointerId)) return; const p = local(e); pts.set(e.pointerId, p);
+      if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * (d / pinch))); pinch = d; return; }
+      if (!down) return;
+      if (!down.moved && Math.hypot(p[0] - down.x, p[1] - down.y) > 8) { down.moved = true; G.follow = false; }
+      if (down.moved) { const g0 = M.ground(down.last[0], down.last[1]), g1 = M.ground(p[0], p[1]); if (g0 && g1) { G.cam.x += g0[0] - g1[0]; G.cam.z += g0[1] - g1[1]; } down.last = p; }
+    });
+    const up = (e) => { pts.delete(e.pointerId); if (down && !down.moved && pts.size === 0 && performance.now() - down.t < 500 && G.onTap) { const p = local(e), hit = M.pick(p[0], p[1]); G.onTap(hit.t, hit.s); } if (pts.size === 0) down = null; pinch = 0; };
+    el.addEventListener('pointerup', up); el.addEventListener('pointercancel', (e) => { pts.delete(e.pointerId); down = null; pinch = 0; });
+    el.addEventListener('wheel', (e) => { e.preventDefault(); G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * Math.exp(-e.deltaY * 0.0012))); }, { passive: false });
+  }
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
+/* ---- ui-roads.js ---- */
+/* Hushsong Roads (preview) — the map screen: the 3D map with the quest tracker, the card at the bottom, venues, results and pets joining. */
+(function (H) {
+  'use strict';
+  const UI = H.UI, A = H.Art, Au = H.Audio, el = UI.el, add = UI.add, box = UI.box, txt = UI.txt, key = UI.key, tr = (s, v) => H.T(s, v);
+  const R = H.ROADS, Rd = H.Roads, W = H.RW, M = H.RoadsMap;
+  const RU = (UI.Roads = {});
+  const qIndex = (id) => R.QUESTS.findIndex((q) => q.id === id);
+  const placeName = (P) => tr(P.n);
+  const petName = (sp) => H.FORMS[sp].n;
+
+  /* ---------- what the map shows ---------- */
+  const songOf = (t) => { const S = Rd.S; if (t.closed || !t.kind && !t.owner) return S.boss && !t.closed ? 1 : 0; if (S.boss) return 1; if (t.owner && S.caps[t.owner]) return 1; return S.hum[W.key(t.q, t.r)] ? 0.5 : 0; };
+  const target = () => {
+    const S = Rd.S, q = Rd.quest(); if (!q) return null;
+    if (q.id === 'walk') return Rd.BEND;
+    if (q.id === 'fight') return Rd.group('tut1').home;
+    if (q.id === 'friend') return Rd.group('tut2').home;
+    if (q.id === 'wake') { const g = Rd.GROUPS.find((x) => x.place === 'hush' && x.guard && Rd.groupLive(x)); return g ? g.home : Rd.poiT('hush'); }
+    if (q.id === 'build' || q.id === 'smith') return Rd.poiT('hush');
+    if (q.id === 'chapel') return Rd.poiT('chapel');
+    if (q.id === 'marsh') { const here = M.here(); const left = R.CAPS.filter((id) => !S.caps[id]).map((id) => Rd.poiT(id)); return left.sort((a, b) => W.hexDist(a, here) - W.hexDist(b, here))[0] || null; }
+    if (q.id === 'boss') return Rd.poiT('lily');
+    return null;
+  };
+  const sprites = () => {
+    const S = Rd.S, G = M.G, out = [], now = G.now, b = G.band;
+    if (b) {
+      const moving = !!b.to;
+      [['rd_wagon', 1.75, 1.3]].concat(Rd.bandPets().filter(Boolean).reverse().map((p, i, arr) => [p.form, (arr.length - 1 - i) * 0.56, 1])).forEach(([k, dist, size], i) => {
+        const p = dist ? M.at(dist) : { x: b.x, z: b.z, face: b.face };
+        out.push({ key: k, x: p.x, z: p.z, size, hop: moving && k !== 'rd_wagon' ? Math.abs(Math.sin(now * 9 + i * 1.3)) * 0.12 : 0, flip: (p.face || 1) < 0 && k === 'rd_wagon', band: true });
+      });
+    }
+    for (const g of Rd.liveGroups()) {
+      const f = Rd.foes(g), t = g.home, hop = Math.abs(Math.sin(now * 3 + t.q)) * 0.05;
+      out.push({ key: f.din[0].id, x: t.x, z: t.z, size: g.guard ? 1.15 : 1.05, hop, pick: { group: g }, flip: true });
+      if (f.pet) out.push({ key: f.pet.sp, x: t.x + 0.5, z: t.z + 0.2, size: 0.75, hop: hop * 0.5, grey: true, pick: { group: g } });
+    }
+    for (const P of R.PLACES) {
+      const t = Rd.poiT(P.id);
+      if (P.cap || P.stage || P.dungeon) out.push({ key: P.art, x: t.x, z: t.z - 0.4, tile: t, size: P.stage ? 2.4 : 2.2, song: P.dungeon ? (S.chapel.cleared ? 1 : 0) : t.song, pick: { place: P } });
+      if (P.cap && !S.caps[P.id] && S.quest >= qIndex('wake')) out.push({ key: P.keeper, x: t.x + 1.05, z: t.z + 0.1, tile: t, size: 1.15, hop: Math.abs(Math.sin(now * 2)) * 0.04, pick: { place: P }, flip: true });
+      if (P.stage && Rd.bossOpen() && !S.boss) out.push({ key: P.boss, x: t.x + 1.1, z: t.z + 0.15, tile: t, size: 1.3, hop: Math.abs(Math.sin(now * 1.5)) * 0.05, pick: { place: P }, flip: true });
+      if (P.cap && S.caps[P.id]) (S.builds[P.id] || []).forEach((bid, i) => { const o = [[-1.15, 0.35], [1.15, 0.45], [0.1, 1.0]][i]; out.push({ key: R.BUILDS[bid].art, x: t.x + o[0], z: t.z + o[1], tile: t, size: 0.9, song: t.song }); });
+      if (P.secret && S.found[P.id + '_seen'] && !S.found[P.id]) {
+        if (P.secret === 'page') out.push({ key: 'rd_page', x: t.x, z: t.z, tile: t, size: 0.65, hop: 0.15 + Math.sin(now * 3) * 0.06, pick: { place: P } });
+        else { out.push({ key: 'rd_glade', x: t.x, z: t.z - 0.2, tile: t, size: 1.3, pick: { place: P } }); out.push({ key: P.pet, x: t.x + 0.55, z: t.z + 0.2, tile: t, size: 0.8, grey: true, hop: Math.abs(Math.sin(now * 2.2)) * 0.06, pick: { place: P } }); }
+      }
+    }
+    const ht = Rd.poiT('hush'); out.push({ key: R.TILLY.sprite, x: ht.x - 1.0, z: ht.z + 0.55, tile: ht, size: 0.85, hop: Math.abs(Math.sin(now * 1.4)) * 0.03, pick: { tilly: 1 } });
+    const tg = target(); if (tg) out.push({ key: 'rd_mark', x: tg.x, z: tg.z, tile: tg, size: 0.62, hop: 1.5 + Math.sin(now * 3) * 0.12, noShadow: true });
+    return out;
+  };
+
+  /* ---------- the screen ---------- */
+  let card = null, labels = [], tracker = null, chipEls = null;
+  UI.screens.roads = (root, pr) => {
+    if (!Rd.S) Rd.load();
+    const S = Rd.S;
+    if (!S.started || !S.pets.length) return UI.go('roadsstory', { scene: 'prologue' });
+    root.classList.add('rd-root');
+    if (!M.ready) {
+      add(root, box('rd-wait', UI.sp('rd_wagon', 1.6), txt('disp', tr('Raising the map…'))));
+      M.load(() => { if (UI.cur && UI.cur.name === 'roads') UI.go('roads', pr); }, () => { root.innerHTML = ''; add(root, box('rd-wait', txt('disp', tr('The map needs the internet the first time.')), key(tr('‹ Home'), () => UI.go('home'), 'soft'))); });
+      return {};
+    }
+    UI.music('camp', 'fen');
+    const mapBox = el('div', 'rd-map'), labelBox = el('div', 'rd-labels'); add(root, mapBox, labelBox);
+    // top: home, player level, purses
+    const top = el('div', 'rd-top'); chipEls = {};
+    const home = key(tr('‹ Home'), () => { Au.sfx('back'); UI.go('home'); }, 'soft sm backk');
+    const lv = el('button', 'rd-lv'); lv.type = 'button'; chipEls.lv = lv; lv.addEventListener('click', () => { Au.sfx('tap'); RU.talents(); });
+    chipEls.notes = UI.purse('ic_note', S.notes, tr('Notes')); chipEls.echo = UI.purse('ic_echo', S.echo, tr('Echoes'));
+    add(top, home, lv, el('span', 'grow'), chipEls.notes, chipEls.echo); root.appendChild(top);
+    tracker = el('button', 'rd-quest'); tracker.type = 'button'; tracker.addEventListener('click', () => { const t = target(); if (t) { M.G.cam.x = t.x; M.G.cam.z = t.z; M.G.follow = false; Au.sfx('tap'); } }); root.appendChild(tracker);
+    // bottom: the card and the dock
+    card = el('div', 'rd-card'); root.appendChild(card);
+    const dock = el('div', 'rd-dock'), dk = (icon, label, fn, pip) => { const b = el('button', 'rd-dk'); b.type = 'button'; add(b, UI.icon(icon, 1.05), el('span', '', label)); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); fn(); }); return b; };
+    add(dock, dk('ic_team', tr('Band'), () => UI.go('roadsband', {})), dk('ic_star', tr('Talents'), () => RU.talents(), Rd.points() || 0), dk('ic_record', tr('Songbook'), () => RU.book(), Rd.bookDone() && !S.flags.book ? '!' : 0), dk('ic_shell', tr('Shells'), () => RU.shells(), S.shells || 0), dk('ic_home', tr('Band'), () => { M.G.follow = true; }));
+    dock.lastChild.querySelector('span').textContent = tr('Centre'); root.appendChild(dock);
+    // place names over the map
+    labels = R.PLACES.filter((P) => P.cap || P.stage || P.dungeon).map((P) => { const l = el('div', 'rd-lab' + (P.dungeon ? ' dun' : P.stage ? ' boss' : '')); l.textContent = placeName(P); labelBox.appendChild(l); return { P, l }; });
+
+    M.songOf = songOf; M.G.sprites = sprites; M.speed = Rd.has('feet') ? 3.1 : 2.4;
+    const here = S.pos ? W.at(S.pos.q, S.pos.r) : Rd.poiT('hush');
+    if (!M.G.band || M.here() !== here) M.placeBand(here);
+    M.G.onTap = onTap; M.G.onStep = onStep; M.G.onArrive = onArrive; M.onFrame = frame;
+    M.attach(mapBox);
+    refresh(); idle();
+    // after a battle: the result, then whatever it set going
+    if (pr.res) setTimeout(() => RU.result(pr.res), 60); else setTimeout(nextUp, 300);
+    return { leave: () => { M.detach(); M.onFrame = null; } };
+  };
+  const refresh = () => {
+    const S = Rd.S; if (!chipEls) return;
+    chipEls.lv.innerHTML = ''; add(chipEls.lv, el('b', '', tr('Lv {n}', { n: S.plv })), UI.meter(S.plv >= R.MAX_PLAYER ? 1 : S.pxp / R.playerNeed(S.plv))); if (Rd.points()) chipEls.lv.appendChild(el('span', 'pip', String(Rd.points())));
+    chipEls.notes.querySelector('.pn').textContent = UI.fmt(S.notes); chipEls.echo.querySelector('.pn').textContent = UI.fmt(S.echo);
+    const q = Rd.quest(); tracker.innerHTML = '';
+    if (q) { let goal = tr(q.goal); if (q.id === 'marsh') goal += ' · ' + Rd.capCount() + '/' + R.CAPS.length; if (q.id === 'wake') goal += ' · ' + (2 - Rd.guardsLeft('hush')) + '/2'; add(tracker, UI.icon('ic_bang', 0.8), add(el('div', 'grow'), el('b', '', tr(q.n)), el('span', '', goal))); }
+    tracker.hidden = !q;
+  };
+  RU.refresh = refresh;
+  const frame = () => {
+    for (const { P, l } of labels) {
+      const p = M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
+      if (!p) { l.style.opacity = 0; continue; }
+      l.style.opacity = p.a * W.sat((p.y - 60) / 30); l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-100%)`;
+      l.classList.toggle('open', !!(Rd.S.caps[P.id] || (P.stage && Rd.S.boss)));
+    }
+  };
+
+  /* ---------- the card at the bottom ---------- */
+  const setCard = (title, sub, hint, acts) => {
+    if (!card) return; card.innerHTML = '';
+    add(card, el('div', 'rd-ct', title), sub ? el('div', 'rd-cs', sub) : null, hint ? el('div', 'rd-ch', hint) : null);
+    if (acts && acts.length) card.appendChild(add(el('div', 'rd-ca'), ...acts.map(([label, fn, cls]) => key(label, fn, cls || 'go'))));
+  };
+  RU.setCard = setCard;
+  const kindName = (t) => tr((t.reg === 'dunes' ? W.KIND_DUNES : W.KIND)[t.kind].n);
+  const quietName = (t) => (t.song > 0.9 ? tr('singing') : t.song > 0.3 ? tr('humming') : tr('silent'));
+  const areaName = (t) => (t.owner ? tr('{place} lands', { place: placeName(Rd.place(t.owner)) }) : tr(W.REG[t.reg].n));
+  const idle = () => { const t = M.here(); if (!t) return; setCard(tr('Your band'), areaName(t) + ' · ' + kindName(t).toLowerCase() + ' · ' + quietName(t), tr('Tap the land to travel. Drag to look around, pinch to zoom.')); };
+  RU.idle = idle;
+
+  /* ---------- moving and tapping ---------- */
+  const go = (t, intent) => {
+    const here = M.here(), path = t === here ? [] : W.path(here, t, null, Rd.allowed);
+    if (!path) { UI.toast(tr('No way through from here.')); return false; }
+    if (!path.length) { onArrive(here, intent); return true; }
+    M.travel(path, intent); return true;
+  };
+  const nextTo = (t) => { const here = M.here(); if (W.hexDist(here, t) <= 1) return here; let best = null, bl = 1e9; for (const n of W.nbs(t)) { if (!Rd.allowed(n)) continue; const p = W.path(here, n, null, Rd.allowed); if (p && p.length < bl) { bl = p.length; best = n; } } return best; };
+  const onTap = (t, s) => {
+    if (s && s.pick) { if (s.pick.group) return tapGroup(s.pick.group); if (s.pick.place) return tapPlace(s.pick.place); if (s.pick.tilly) return RU.talk(); }
+    if (!t) return;
+    const g = Rd.liveGroups().find((x) => x.home === t); if (g) return tapGroup(g);
+    if (t.poi && (t.poi.cap || t.poi.stage || t.poi.dungeon || (t.poi.secret && Rd.S.found[t.poi.id + '_seen'] && !Rd.S.found[t.poi.id]))) return tapPlace(Rd.place(t.poi.id));
+    if (!Rd.allowed(t)) {
+      if (t.closed) return setCard(tr(W.REG[t.reg].n), tr('Closed · thick noise'), tr('This land is still deep in noise. Its road opens in a later preview.'));
+      if (W.walk(t)) return setCard(tr('Not yet'), areaName(t), tr('Tilly wants you near Hushwick until it is awake.'));
+      return setCard(kindName(t), areaName(t) + ' · ' + quietName(t), tr((t.reg === 'dunes' ? W.KIND_DUNES : W.KIND)[t.kind].d || W.KIND[t.kind].d));
+    }
+    if (go(t, null)) setCard(tr('On the road'), areaName(t) + ' · ' + kindName(t).toLowerCase(), tr('Tap the land to travel.'));
+  };
+  const tapGroup = (g) => {
+    const here = M.here();
+    if (W.hexDist(here, g.home) <= 1 && !M.moving()) return fightCard(g);
+    const n = nextTo(g.home); if (!n) return UI.toast(tr('No way through from here.'));
+    const f = Rd.foes(g); setCard(dinNames(f), tr('Din · level {n}', { n: g.lv }), tr('On the way…')); go(n, { group: g });
+  };
+  const tapPlace = (P) => {
+    const t = Rd.poiT(P.id);
+    if (P.secret && !Rd.allowed(t)) return setCard(tr(P.n), tr('Secret'), tr('Not yet.'));
+    if (M.here() === t && !M.moving()) return onArrive(t, { place: P });
+    setCard(placeName(P), tr(P.kind), tr('On the way…')); go(t, { place: P });
+  };
+  const dinNames = (f) => H.T.list(f.din.map((d) => H.DIN[d.id].n).concat(f.pet ? [tr('Wild {pet}', { pet: petName(f.pet.sp) })] : []));
+  const onStep = (t) => {
+    const out = Rd.enter(t); refresh();
+    for (const id of out.found) { const P = Rd.place(id); UI.toast(P.secret === 'page' ? tr('Something glints nearby.') : tr('You hear a quiet tune nearby.')); Au.sfx('star'); }
+    const P = t.poi && Rd.place(t.poi.id);
+    if (P && P.secret === 'page' && Rd.S.found[P.id + '_seen'] && !Rd.S.found[P.id]) { takePage(P); return true; }
+    // Din next to the road stop the band
+    const intent = M.G.band.intent, near = Rd.liveGroups().find((g) => W.hexDist(g.home, t) <= 1);
+    if (near && !(intent && intent.group === near && M.G.band.path.length)) { M.G.band.intent = null; fightCard(near, !(intent && intent.group === near)); return true; }
+    if (Rd.done.length) { setTimeout(nextUp, 200); return true; }
+    return false;
+  };
+  const onArrive = (t, intent) => {
+    if (intent && intent.group) { if (Rd.groupLive(intent.group)) fightCard(intent.group); else idle(); return; }
+    if (intent && intent.place) return placeCard(intent.place);
+    idle();
+  };
+
+  /* ---------- fights ---------- */
+  const toBattle = () => { UI.flashOut(() => UI.go('battle', { roads: 1 })); };
+  UI.flashOut = (fn) => { const f = el('div', 'rd-flash'); document.getElementById('game').appendChild(f); Au.sfx('boss'); setTimeout(() => { fn(); setTimeout(() => f.remove(), 260); }, 260); };
+  const bandReady = () => { if (Rd.bandPets().some(Boolean)) return true; UI.toast(tr('Put a pet in your band first.')); return false; };
+  const fightCard = (g, ambush) => {
+    const f = Rd.foes(g), hint = f.pet ? tr('A wild {pet} is stuck under the noise. Win, and it may join you ({p} now).', { pet: petName(f.pet.sp), p: Math.round(Rd.joinChance(f.pet.sp, false).total * 100) + '%' }) : g.guard ? tr('It guards {place}.', { place: placeName(Rd.place(g.place)) }) : tr('Din eat songs. Give them one they cannot swallow.');
+    setCard(dinNames(f), (ambush ? tr('They block the road') + ' · ' : '') + tr('level {n}', { n: g.lv }), hint, [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGroup(g); toBattle(); }, 'coral']]);
+  };
+  const placeCard = (P) => {
+    const S = Rd.S, t = Rd.poiT(P.id);
+    if (P.cap) {
+      if (S.caps[P.id]) return setCard(tr(P.venue), placeName(P) + ' · ' + tr('yours'), tr('Rest, build, and see what is on offer.'), [[tr('Enter'), () => RU.venue(P), 'gold']]);
+      if (S.quest < qIndex('wake')) return setCard(placeName(P), tr(P.kind) + ' · ' + tr('silent'), tr('Tilly is waiting by the well.'), [[tr('Talk to Tilly'), () => RU.talk(), 'go']]);
+      const left = Rd.guardsLeft(P.id);
+      if (left) return setCard(placeName(P), tr(P.kind) + ' · ' + tr('silent'), tr('{n} Din groups guard the way in. Beat them first.', { n: left }));
+      const kd = H.DIN[P.keeper];
+      return setCard(tr('Loud {din}', { din: kd.n }), tr('Keeper of {place} · level {n}', { place: placeName(P), n: P.lv[1] }), tr('Win, and {place} is yours.', { place: placeName(P) }), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightKeeper(P.id); toBattle(); }, 'coral']]);
+    }
+    if (P.stage) {
+      if (S.boss) return setCard(placeName(P), tr('Boss stage · singing'), tr('Muffle is gone. The frogs have taken the stage.'));
+      if (!Rd.bossOpen()) return setCard(placeName(P), tr('Boss stage · closed'), tr('A wall of fog. It lifts when every place in Reed Marsh is yours ({n}/{m}).', { n: Rd.capCount(), m: R.CAPS.length }));
+      return setCard(H.DIN[P.boss].n, tr('Boss · level {n}', { n: P.lv[0] }), tr('Muffle has sat on this marsh for years. Bring your best three.'), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightBoss(); toBattle(); }, 'coral']]);
+    }
+    if (P.dungeon) {
+      if (S.quest < qIndex('wake') + 1) return setCard(placeName(P), tr('Dungeon · closed'), tr('Water fills the doorway. Come back once Hushwick is awake.'));
+      return setCard(placeName(P), tr('Dungeon') + (S.chapel.cleared ? ' · ' + tr('cleared') : ''), tr('A side-scrolling run: Din in the dark, a chest or two, and something that still sings at the end.'), [[tr('Go in'), () => { if (!bandReady()) return; UI.flashOut(() => UI.go('roadschapel', {})); }, 'gold']]);
+    }
+    if (P.secret === 'pet') {
+      if (S.found.glade) return setCard(tr(P.n), tr('Secret · found'), tr('Just a stump and some flowers now.'));
+      return setCard(tr('Wild {pet}', { pet: petName(P.pet) }), tr('Secret · level {n}', { n: P.lv }), tr('A {pet} plays alone in the glade, all grey. Win it over.', { pet: petName(P.pet) }), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGlade(); toBattle(); }, 'coral']]);
+    }
+    if (P.secret === 'page') return takePage(P);
+    return idle();
+  };
+  const takePage = (P) => {
+    const r = Rd.takePage(P.id); if (!r) return idle(); refresh(); Au.sfx('win');
+    const t = Rd.poiT(P.id); M.notes(t.x, t.z, 6);
+    UI.modal(UI.sp('rd_page', 1.6), txt('disp', tr('A lost page')), txt('dim', tr('A torn page of "{song}". The rest of it is somewhere out there.', { song: tr(P.song) })),
+      box('row wrap center', UI.notes(r.notes), UI.echoes(r.echo), el('span', 'chip', tr('+{n} XP', { n: r.pxp }))), key(tr('Nice'), () => { UI.closeModal(); idle(); nextUp(); }, 'go wide'));
+  };
+
+  /* ---------- after a battle ---------- */
+  RU.result = (out, done) => {
+    const S = Rd.S, kids = [];
+    if (!out.win) {
+      kids.push(txt('disp big', tr('Your band is out')), txt('dim', tr('They limp back to {venue}. Nothing is lost. Level up a little and try again.', { venue: tr(Rd.place(out.back).venue || Rd.place(out.back).n) })));
+      kids.push(key(tr('OK'), () => { UI.closeModal(); idle(); }, 'go wide big'));
+      const t = Rd.poiT(out.back); Rd.S.pos = { q: t.q, r: t.r }; M.placeBand(t); Rd.save();
+      return UI.modal(...kids);
+    }
+    kids.push(txt('disp big', out.boss ? tr('Muffle is gone!') : out.capture ? tr('{place} is yours!', { place: placeName(Rd.place(out.capture)) }) : tr('You win!')));
+    const rew = box('row wrap center', UI.notes(out.notes), el('span', 'chip', tr('+{n} XP', { n: out.pxp })));
+    if (out.echo) rew.appendChild(UI.echoes(out.echo)); if (out.shell) rew.appendChild(UI.purse('ic_shell', 1, tr('Shells')));
+    kids.push(rew);
+    if (out.holdNotes) kids.push(txt('small dim center', tr('{n} of those notes came from your holdings.', { n: out.holdNotes })));
+    if (out.pups) kids.push(box('rd-lvup row', UI.icon('ic_star', 0.9), txt('small', tr('<b>Player level {n}!</b> A talent point to spend.', { n: S.plv }))));
+    const pets = el('div', 'rd-pxp'); for (const r of out.pets.filter((x) => x.band)) { const p = Rd.pet(r.id); if (!p) continue; pets.appendChild(add(el('div', 'rd-pxr'), UI.sp(p.form, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', H.FORMS[p.form].n + ' · ' + tr('Lv {n}', { n: p.lvl })), UI.meter(p.xp / R.petNeed(p.lvl))), r.ups ? el('span', 'chip up', tr('Level up!')) : el('span', 'dim small', '+' + r.xp))); }
+    kids.push(pets);
+    if (out.item) kids.push(UI.itemRow(out.item));
+    const after = () => {
+      UI.closeModal(); refresh();
+      if (done) return done();
+      if (out.capture) return capture(out.capture);
+      if (out.boss) return UI.go('roadsstory', { scene: 'finale' });
+      idle(); nextUp();
+    };
+    if (out.wild) {
+      kids.push(key(tr('Continue'), () => joinScene(out.wild, after), 'go wide big'));
+    } else kids.push(key(tr('Continue'), after, 'go wide big'));
+    UI.modal(...kids);
+    UI.cur.modalBack = () => { const k = document.querySelector('#modal .key.go'); if (k) k.click(); };
+  };
+  // a wild pet makes up its mind: grey, then the chance rolls, then colour (or it slips away)
+  const joinScene = (w, after) => {
+    const sp = el('div', 'rd-join'), img = UI.sp(w.sp, 1.8), grey = UI.sp(w.sp, 1.8); grey.classList.add('rd-greyp'); { const gx = grey.getContext('2d'); gx.clearRect(0, 0, grey.width, grey.height); gx.drawImage(M.sprite(w.sp, true, grey.width), 0, 0); } add(sp, img, grey);
+    const lines = el('div', 'rd-odds'); for (const [label, v] of w.sure ? [[w.sure && w.parts ? 'First meeting' : 'First meeting', 1]] : w.parts) lines.appendChild(box('row', el('span', 'grow', tr(label)), el('b', '', '+' + Math.round(v * 100) + '%')));
+    const tot = txt('disp center', tr('{p} chance', { p: Math.round(w.chance * 100) + '%' }));
+    const verdict = txt('disp big center rd-verdict', '');
+    const btn = key(tr('Continue'), () => after(), 'go wide big'); btn.style.visibility = 'hidden';
+    UI.modal(txt('disp center', tr('Wild {pet}', { pet: petName(w.sp) })), sp, lines, tot, verdict, btn);
+    setTimeout(() => {
+      if (w.joined) { sp.classList.add('ok'); Au.sfx('win'); verdict.innerHTML = w.dup ? tr('It sings along! +1 echo for {pet}.', { pet: petName(w.sp) }) : tr('{pet} joins your band!', { pet: petName(w.sp) }); UI.confetti(30); }
+      else { sp.classList.add('no'); Au.sfx('lose'); verdict.innerHTML = tr('It slipped away. Next time it will trust you a little more.'); }
+      btn.style.visibility = 'visible';
+    }, 1500);
+  };
+  // a capture: the colour ripples out from the place, then its story
+  const capture = (id) => {
+    const t = Rd.poiT(id); M.G.follow = false; M.G.cam.x = t.x; M.G.cam.z = t.z;
+    M.ripple(t, (u) => u.owner === id); M.notes(t.x, t.z, 10); M.puff(t.x + 1, t.z, 10, '#d9d2ea'); Au.sfx('win'); setCard(placeName(Rd.place(id)), tr('Waking up…'), '');
+    setTimeout(() => UI.go('roadsstory', { scene: 'capture', place: id }), 2600);
+  };
+
+  /* ---------- quests: finished ones are paid and the next one is told ---------- */
+  const nextUp = () => {
+    if (!UI.cur || UI.cur.name !== 'roads' || !document.getElementById('modal').hidden) return;
+    const done = Rd.takeDone(); refresh();
+    if (done.length) {
+      const d = done[0]; Rd.done = done.slice(1);
+      Au.sfx('win');
+      const rew = box('row wrap center'); if (d.q.notes) rew.appendChild(UI.notes(d.q.notes)); if (d.q.echo) rew.appendChild(UI.echoes(d.q.echo)); if (d.q.xp) rew.appendChild(el('span', 'chip', tr('+{n} XP', { n: d.q.xp })));
+      return UI.modal(txt('label center', tr('Quest done')), txt('disp big center', tr(d.q.n)), rew, d.ups ? txt('small center', tr('<b>Player level {n}!</b> A talent point to spend.', { n: Rd.S.plv })) : null,
+        key(tr('Continue'), () => { UI.closeModal(); nextUp(); }, 'go wide big'));
+    }
+    const q = Rd.quest(); if (q && !Rd.S.flags['talk_' + q.id]) RU.talk();
+    if (q && q.id === 'marsh' && Rd.bossOpen() && !Rd.S.flags.bossopen) { Rd.S.flags.bossopen = 1; Rd.save(); return UI.go('roadsstory', { scene: 'bossopen' }); }
+  };
+  RU.nextUp = nextUp;
+  RU.talk = () => {
+    const q = Rd.quest(); if (!q) return; Rd.S.flags['talk_' + q.id] = 1; Rd.save();
+    const extra = q.gift && Rd.S.flags['gift_' + q.id] ? UI.itemRow(Rd.S.items.find((x) => x.type === q.gift) || Rd.S.items[0]) : null;
+    UI.modal(add(el('div', 'rd-talk'), UI.sp(R.TILLY.sprite, 1.3), add(el('div', 'grow'), el('b', '', tr(R.TILLY.n)), el('div', '', tr(q.talk)))), extra,
+      add(el('div', 'rd-qnext'), UI.icon('ic_bang', 0.8), add(el('div', 'grow'), el('b', '', tr(q.n)), el('span', '', tr(q.goal)))),
+      key(q.id === 'talent' ? tr('Pick a talent') : tr('On my way'), () => { UI.closeModal(); if (q.id === 'talent') RU.talents(); }, 'go wide big'));
+  };
+
+  /* ---------- venue: rest, build, the smith, the merchant ---------- */
+  RU.venue = (P) => {
+    const S = Rd.S, kids = [txt('label', placeName(P)), txt('disp big', tr(P.venue))];
+    const bonusText = { xp: (v) => tr('+{p} XP per battle', { p: Math.round(v * 100) + '%' }), tempo: (v) => tr('+{p} Speed', { p: Math.round(v * 100) + '%' }), join: (v) => tr('+{p} join chance', { p: Math.round(v * 100) + '%' }), poise: (v) => tr('+{n} Guard', { n: v }), hp: (v) => tr('+{p} HP', { p: Math.round(v * 100) + '%' }) };
+    const bk = Object.keys(P.bonus)[0];
+    kids.push(box('rd-hold', UI.icon('ic_note', 0.9), txt('small grow', tr('Pays <b>{n} notes</b> after every battle you win. Gives the band <b>{b}</b>.', { n: P.yield, b: bonusText[bk](P.bonus[bk]) }))));
+    kids.push(key(tr('Rest here'), () => { Rd.rest(P.id); UI.closeModal(); UI.toast(tr('Rested. The Din creep back onto the roads.')); Au.sfx('heal'); refresh(); }, 'soft wide'));
+    kids.push(txt('label', tr('Build')));
+    for (const bid of R.BUILD_ORDER) {
+      const B = R.BUILDS[bid], have = (S.builds[P.id] || []).includes(bid), c = Rd.buildCost(bid);
+      const b = key(have ? tr('Built') : String(c), () => { if (Rd.build(P.id, bid)) { Au.sfx('buy'); UI.closeModal(); RU.venue(P); refresh(); nextLater(); } }, have ? 'soft sm' : 'gold sm'); b.disabled = have || S.notes < c; if (!have) b.prepend(UI.icon('ic_note', 0.7));
+      kids.push(box('rd-brow row', UI.sp(B.art, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', tr(B.n)), el('div', 'small dim', tr(B.d))), b));
+    }
+    if (P.smith) { kids.push(txt('label', tr('The smith'))); kids.push(key(tr('Upgrade gear'), () => { UI.closeModal(); RU.smith(); }, 'blue wide')); }
+    if (P.merchant) { kids.push(txt('label', tr('Shell merchant'))); const c = Rd.shellPrice(), b = key(tr('Buy a shell'), () => { if (Rd.buyShell()) { Au.sfx('buy'); UI.closeModal(); refresh(); RU.shells(); } }, 'gold wide'); b.appendChild(UI.purse('ic_note', c)); b.disabled = S.notes < c; kids.push(b, txt('small dim', tr('"Very rare," he says. The price goes up each time.'))); }
+    kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
+    UI.modal(...kids);
+  };
+  const nextLater = () => setTimeout(() => { if (document.getElementById('modal').hidden) nextUp(); }, 400);
+  RU.smith = () => {
+    const S = Rd.S, kids = [txt('disp big', tr('The smith')), txt('dim small', tr('Better gear for notes. The last step to Legendary needs echoes too.'))];
+    if (!S.items.length) kids.push(txt('dim', tr('You have no gear yet. Din sometimes drop some.')));
+    for (const it of S.items.slice().sort((a, b) => H.RARITY_ORDER.indexOf(b.rar) - H.RARITY_ORDER.indexOf(a.rar))) {
+      const c = Rd.upgradeCost(it), b = c ? key('', () => { if (Rd.upgrade(it)) { Au.sfx('stamp'); RU.smith(); refresh(); nextLater(); } }, 'gold sm') : el('span', 'chip', tr('Best'));
+      if (c) { b.appendChild(UI.purse('ic_note', c.notes)); if (c.echo) b.appendChild(UI.purse('ic_echo', c.echo)); b.disabled = !Rd.canUpgrade(it); }
+      const owner = Rd.itemOwner(it.id); kids.push(add(UI.itemRow(it, 'div', owner ? UI.sp(owner.form, 0.36, { anim: false }) : null), b));
+    }
+    kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
+    UI.modal(...kids);
+  };
+  RU.shells = () => {
+    const S = Rd.S;
+    if (!S.shells) return UI.modal(UI.sp('shell', 1.4), txt('disp', tr('No shells')), txt('dim', tr('Shells are rare. Bosses, some quests, the Songbook and one merchant in Reedwick have them.')), key(tr('Close'), UI.closeModal, 'soft wide'));
+    UI.modal(UI.sp('shell', 1.6), txt('disp', tr('{n} shells', { n: S.shells })), txt('dim', tr('Any pet at all could be inside.')), key(tr('Open one'), () => {
+      const r = Rd.openShell(); refresh(); UI.closeModal(); Au.sfx('win'); UI.confetti(30);
+      UI.modal(UI.sp(r.sp, 1.8), txt('disp center', r.dup ? tr('{pet} again', { pet: petName(r.sp) }) : tr('{pet} joins your band!', { pet: petName(r.sp) })), txt('dim center', r.dup ? tr('It turns into an echo for {pet}.', { pet: petName(r.sp) }) : tr('Find it in your band.')), key(tr('Nice'), () => { UI.closeModal(); if (Rd.S.shells) RU.shells(); }, 'go wide'));
+    }, 'gold wide big'), key(tr('Close'), UI.closeModal, 'soft wide'));
+  };
+
+  /* ---------- talents ---------- */
+  RU.talents = () => {
+    const pts = Rd.points(), kids = [txt('disp big', tr('Talents')), txt('dim small', pts ? tr('<b>{n} points</b> to spend. One more every player level.', { n: pts }) : tr('One point every player level.'))];
+    for (const tree of R.TREES) {
+      const col = add(el('div', 'rd-tree'), add(el('div', 'rd-th'), el('b', '', tr(tree.n)), el('span', 'dim small', tr(tree.d))));
+      for (const t of tree.talents) {
+        const has = Rd.has(t.id), can = Rd.canTalent(tree, t), b = el('button', 'rd-tal' + (has ? ' has' : can ? ' can' : '')); b.type = 'button';
+        add(b, UI.icon(has ? 'ic_check' : can ? 'ic_plus' : 'ic_lock', 0.75), add(el('div', 'grow'), el('b', '', tr(t.n)), el('div', 'small', tr(t.d)), t.need && !has ? el('div', 'small dim', tr('Needs {n} talents in this tree', { n: t.need })) : null));
+        b.disabled = !can; b.addEventListener('click', () => { if (Rd.takeTalent(tree, t)) { Au.sfx('stamp'); M.speed = Rd.has('feet') ? 3.1 : 2.4; RU.talents(); refresh(); nextLater(); } });
+        col.appendChild(b);
+      }
+      kids.push(col);
+    }
+    kids.push(txt('small dim center', tr('More talents in each tree come with later previews.')));
+    kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
+    UI.modal(...kids);
+  };
+
+  /* ---------- the songbook ---------- */
+  RU.book = () => {
+    const S = Rd.S, grid = el('div', 'rd-book');
+    for (const sp of R.SONGBOOK) {
+      const st = S.book[sp] || 0, c = el('div', 'rd-bk s' + st);
+      add(c, UI.sp(sp, 0.7, { anim: false, variant: st === 0 ? 'sil' : '' }), el('b', '', st ? petName(sp) : '???'), el('span', 'small', [tr('Not seen'), tr('Seen'), tr('Met'), tr('In your band')][st]));
+      grid.appendChild(c);
+    }
+    const n = R.SONGBOOK.filter((sp) => S.book[sp] === 3).length, kids = [txt('disp big', tr('Songbook')), txt('dim small', tr('The pets of Reed Marsh. Find them all for a shell. {n} of {m} so far.', { n, m: R.SONGBOOK.length })), grid];
+    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { Rd.claimBook(); refresh(); UI.closeModal(); RU.shells(); }, 'gold wide big'));
+    kids.push(key(tr('Close'), UI.closeModal, 'soft wide'));
+    UI.modal(...kids);
+  };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
+
+/* ---- ui-roads-scenes.js ---- */
+/* Hushsong Roads (preview) — the story player, the band screen and the side-scrolling Drowned Chapel. */
+(function (H) {
+  'use strict';
+  const UI = H.UI, A = H.Art, Au = H.Audio, el = UI.el, add = UI.add, box = UI.box, txt = UI.txt, key = UI.key, tr = (s, v) => H.T(s, v);
+  const R = H.ROADS, Rd = H.Roads, RU = UI.Roads;
+
+  /* ---------- the story player: a backdrop, a cast that moves, and a line under it ---------- */
+  UI.screens.roadsstory = (root, pr) => {
+    if (!Rd.S) Rd.load();
+    const scene = R.SCENES[pr.scene] || R.SCENES.prologue, P = pr.place ? Rd.place(pr.place) : null;
+    root.classList.add('rd-story'); UI.music(pr.scene === 'prologue' ? 'silent' : 'camp', pr.scene === 'chapel' ? 'caves' : 'fen');
+    const stage = el('div', 'rd-stage'), cast = el('div', 'rd-cast'), panel = el('div', 'rd-line'), who = el('div', 'rd-who'), line = el('div', 'rd-say'), next = key(tr('Next'), () => go(i + 1), 'go wide');
+    add(panel, who, line, next); add(root, stage, cast, panel);
+    const skip = key(tr('Skip'), () => finish(), 'soft sm rd-skip'); if (pr.scene !== 'prologue' || Rd.S.pets.length) root.appendChild(skip);
+    let i = -1, bgKey = '', typer = 0;
+    const expand = (k) => { const band = Rd.bandPets().filter(Boolean).map((p) => p.form); return k === '$band' ? (band.length ? band : ['hum']) : k === '$starter' || k === '$lead' ? [band[0] || 'hum'] : [k]; };
+    const say = (s) => { clearInterval(typer); line.textContent = ''; let k = 0; typer = setInterval(() => { k += 2; line.textContent = s.slice(0, k); if (k >= s.length) clearInterval(typer); }, window.__hsSpeed ? 1 : 22); };
+    const go = (k) => {
+      if (k >= scene.length) return finish();
+      i = k; const b = scene[k];
+      // the backdrop: a new one fades in over the old (a ripple of colour when the music comes back)
+      const bk = b.bg + '|' + b.mode;
+      if (bk !== bgKey) { if (!bgKey && b.ripple) { const g0 = UI.bgEl(b.bg, UI.W, UI.Hh, 0.5, 'grey'); g0.classList.add('rd-bg'); stage.appendChild(g0); } const c = UI.bgEl(b.bg, UI.W, UI.Hh, 0.5, b.mode); c.classList.add('rd-bg'); if (b.ripple || (bgKey && b.mode !== 'grey')) c.classList.add('ripple'); stage.appendChild(c); bgKey = bk; const old = stage.querySelectorAll('.rd-bg'); if (old.length > 3) old[0].remove(); }
+      cast.innerHTML = '';
+      for (const [k0, x, act] of b.cast) {
+        const keys = expand(k0);
+        keys.forEach((kk, j) => { const big = kk === 'shell' ? 1.5 : H.DIN[kk] && H.DIN[kk].boss ? 1.6 : 1.5, s = UI.sp(kk, big, { anim: false }), wrap = add(el('div', 'rd-actor act-' + act), s); wrap.style.left = (x + (j - (keys.length - 1) / 2) * 0.24) * 100 + '%'; wrap.style.animationDelay = j * 0.12 + 's'; cast.appendChild(wrap); });
+      }
+      if (b.ripple) { Au.sfx('level'); UI.confetti(24); }
+      if (b.cast.some((c) => c[2] === 'crack')) setTimeout(() => Au.sfx('crack'), 500);
+      who.textContent = b.who ? tr(b.who) : ''; who.hidden = !b.who;
+      let s = b.line; if (P && s === '$story0') s = P.story[0]; if (P && s === '$story1') s = P.story[1];
+      line.classList.toggle('head', !!P && b.line === '$story0');
+      say(tr(s));
+      next.hidden = !!b.pick; if (b.pick) setTimeout(picker, 1400);
+    };
+    const finish = () => { clearInterval(typer); if (pr.scene === 'prologue' && !Rd.S.pets.length) return picker(); UI.go('roads', {}); };
+    // choosing a starter: four cards, one per class
+    const picker = () => {
+      let sel = null; const grid = el('div', 'rd-pick'), ok = key(tr('Choose'), () => { if (!sel) return; Rd.chooseStarter(sel); UI.closeModal(); Au.sfx('evolve'); go(i + 1); }, 'go wide big'); ok.disabled = true;
+      for (const [sp, role] of R.STARTERS) {
+        const c = el('button', 'rd-pc'); c.type = 'button';
+        add(c, UI.sp(sp, 1, { anim: false }), el('b', '', H.FORMS[sp].n), UI.roleChip(role), el('div', 'small dim', H.SPECIES[sp].lore.split('. ')[0] + '.'));
+        c.addEventListener('click', () => { sel = sp; grid.querySelectorAll('.rd-pc').forEach((x) => x.classList.toggle('on', x === c)); ok.disabled = false; ok.textContent = tr('Choose {pet}', { pet: H.FORMS[sp].n }); Au.sfx('tap'); });
+        grid.appendChild(c);
+      }
+      UI.modal(txt('disp center', tr('Who is in the shell?')), txt('dim small center', tr('One pet for each class. The rest you will meet on the road.')), grid, ok);
+      UI.cur.modalBack = () => {};
+    };
+    go(0);
+    return { leave: () => clearInterval(typer) };
+  };
+
+  /* ---------- the band: three in the band, everyone else waiting ---------- */
+  UI.screens.roadsband = (root) => {
+    if (!Rd.S) Rd.load(); const S = Rd.S;
+    root.appendChild(UI.topbar(tr('Your band'), () => UI.go('roads', {})));
+    const sc = el('div', 'scroll pad'); root.appendChild(sc);
+    const slots = el('div', 'rd-slots');
+    S.band.forEach((id, k) => {
+      const p = id && Rd.pet(id), b = el('button', 'rd-slot'); b.type = 'button';
+      if (p) add(b, UI.sp(p.form, 1.1), el('b', '', H.FORMS[p.form].n), el('span', 'small', tr('Lv {n}', { n: p.lvl }))); else add(b, UI.icon('ic_plus', 1.2), el('span', 'small dim', tr('Empty')));
+      b.addEventListener('click', () => { Au.sfx('tap'); p ? petSheet(p) : pickFor(k); }); slots.appendChild(b);
+    });
+    add(sc, txt('label', tr('In the band')), slots, txt('label', tr('All pets ({n})', { n: S.pets.length })));
+    const list = el('div', 'rd-plist');
+    for (const p of S.pets.slice().sort((a, b) => b.lvl - a.lvl)) {
+      const b = el('button', 'rd-prow' + (S.band.includes(p.id) ? ' inb' : '')); b.type = 'button';
+      add(b, UI.sp(p.form, 0.6, { anim: false }), add(el('div', 'grow'), el('b', '', H.FORMS[p.form].n), box('row', UI.famChip(H.SPECIES[Rd.species(p)].family), el('span', 'small', tr('Lv {n}', { n: p.lvl })))), UI.meter(p.xp / R.petNeed(p.lvl)));
+      b.addEventListener('click', () => { Au.sfx('tap'); petSheet(p); }); list.appendChild(b);
+    }
+    sc.appendChild(list);
+    if (Rd.has('warmup')) sc.appendChild(txt('small dim center', tr('Warm-Up: pets outside the band get half the XP.'))); else sc.appendChild(txt('small dim center', tr('Only pets in the band get XP from battles.')));
+    const pickFor = (k) => {
+      const kids = [txt('disp', tr('Who goes in?'))];
+      for (const p of S.pets.filter((x) => !S.band.includes(x.id))) { const b = el('button', 'rd-prow'); b.type = 'button'; add(b, UI.sp(p.form, 0.6, { anim: false }), add(el('div', 'grow'), el('b', '', H.FORMS[p.form].n), el('span', 'small', tr('Lv {n}', { n: p.lvl })))); b.addEventListener('click', () => { Rd.setBand(k, p.id); Rd.save(); UI.closeModal(); UI.redraw(); }); kids.push(b); }
+      if (kids.length === 1) kids.push(txt('dim', tr('Everyone is already in the band.')));
+      kids.push(key(tr('Close'), UI.closeModal, 'soft wide')); UI.modal(...kids);
+    };
+    const petSheet = (p) => {
+      const kit = H.kitOf(p.form), st = H.petStats(p, p.lvl), m = { hp: 0, vol: 0, poise: 0, tempo: 0 }; for (const pk of H.petPerks(p, S)) if (pk.mod) for (const k in m) if (pk.mod[k]) m[k] += pk.mod[k];
+      const kids = [add(el('div', 'rd-phead'), UI.sp(p.form, 1.3), add(el('div', 'grow col'), txt('disp', H.FORMS[p.form].n), box('row wrap', UI.famChip(H.SPECIES[Rd.species(p)].family), UI.roleChip(kit.role), el('span', 'chip', tr('Lv {n}', { n: p.lvl }))), UI.meter(p.xp / R.petNeed(p.lvl))))];
+      kids.push(el('div', 'stats', UI.statsHTML([[Math.round(st.hp * (1 + m.hp)), H.T.k('HP')], [Math.round(st.vol * (1 + m.vol)), H.T.k('Power')], [Math.round(st.poise + m.poise), H.T.k('Guard')], [Math.round(st.tempo * (1 + m.tempo)), H.T.k('Speed')]])));
+      for (const [kind, ab] of [['beat', kit.beat], ['phrase', kit.phrase], ['finale', kit.finale]]) if (ab) kids.push(UI.moveCard(kind, ab));
+      if (kit.passive) kids.push(UI.moveCard('passive', kit.passive));
+      kids.push(txt('label', tr('Gear')));
+      [0, 1].forEach((slot) => {
+        const id = p.gear[slot], it = id && S.items.find((x) => x.id === id), b = el('button', 'rd-gslot'); b.type = 'button';
+        if (it) b.appendChild(UI.itemRow(it)); else add(b, UI.icon('ic_plus', 0.9), el('span', 'dim', tr('Empty slot')));
+        b.addEventListener('click', () => gearFor(p, slot)); kids.push(b);
+      });
+      const ch = H.childrenOf(p.form);
+      if (ch.length) { kids.push(txt('label', tr('Evolve'))); for (const f of ch) { const c = Rd.evoCheck(p, f), b = key('', () => { if (Rd.evolve(p, f)) { Au.sfx('evolve'); UI.confetti(30); Rd.save(); UI.closeModal(); UI.redraw(); } }, c.ok ? 'gold wide' : 'soft wide'); add(b, UI.sp(f, 0.5, { anim: false }), el('span', 'grow', H.FORMS[f].n + ' · ' + H.ROLES[H.kitOf(f).role].n), el('span', 'small', c.ok ? tr('{n} echoes', { n: c.cost }) : c.why || '')); b.disabled = !c.ok; kids.push(b); } }
+      const inBand = S.band.indexOf(p.id);
+      if (inBand < 0) kids.push(box('row', ...[0, 1, 2].map((k) => key(tr('Slot {n}', { n: k + 1 }), () => { Rd.setBand(k, p.id); Rd.save(); UI.closeModal(); UI.redraw(); }, 'go grow'))));
+      else if (S.band.filter(Boolean).length > 1) kids.push(key(tr('Take out of the band'), () => { S.band[inBand] = null; Rd.save(); UI.closeModal(); UI.redraw(); }, 'soft wide'));
+      kids.push(key(tr('Close'), UI.closeModal, 'soft wide')); UI.modal(...kids);
+    };
+    const gearFor = (p, slot) => {
+      const kids = [txt('disp', tr('Gear for {pet}', { pet: H.FORMS[p.form].n }))];
+      if (p.gear[slot]) kids.push(key(tr('Take it off'), () => { p.gear[slot] = null; Rd.save(); UI.closeModal(); petSheet(p); }, 'soft wide'));
+      const spare = S.items.filter((it) => !Rd.itemOwner(it.id));
+      for (const it of spare) { const b = UI.itemRow(it, 'button'); b.addEventListener('click', () => { Rd.equip(p, slot, it.id); Rd.save(); UI.closeModal(); petSheet(p); }); kids.push(b); }
+      if (!spare.length) kids.push(txt('dim', tr('No spare gear. Din sometimes drop some, and chests hold more.')));
+      kids.push(key(tr('Back'), () => { UI.closeModal(); petSheet(p); }, 'soft wide')); UI.modal(...kids);
+    };
+    return {};
+  };
+
+  /* ---------- the Drowned Chapel: a side-scrolling run ---------- */
+  const ROOM = 150, LEAD = 70;   // layout units between rooms, and how far before a room the band stops
+  UI.screens.roadschapel = (root, pr) => {
+    if (!Rd.S) Rd.load(); const S = Rd.S, C = R.CHAPEL;
+    root.classList.add('rd-chapel'); UI.music('camp', 'caves');
+    const cv = el('canvas', 'rd-ccv'), hud = el('div', 'rd-top'), info = el('div', 'rd-card');
+    add(hud, key(tr('‹ Leave'), () => UI.confirm(tr('Leave the chapel?'), tr('You start from the door next time.'), tr('Leave'), () => { Rd.chapelStart(); UI.go('roads', {}); }), 'soft sm backk'), el('div', 'disp grow', tr(C.n)));
+    const dots = el('div', 'rd-rooms'); C.rooms.forEach((rm, k) => dots.appendChild(el('i', k < S.chapel.room ? 'done' : '')));
+    add(root, cv, hud, dots, info);
+    const x = cv.getContext('2d'); let Wu = UI.W, Hu = UI.Hh, k = 1;
+    const fit = () => { const r = root.getBoundingClientRect(); k = Math.min(3, window.devicePixelRatio || 1) * (r.width / Wu); cv.width = Math.round(Wu * k); cv.height = Math.round(Hu * k); };
+    fit();
+    let room = S.chapel.room, bandX = room * ROOM - LEAD - 40, goal = room * ROOM - LEAD, t0 = performance.now(), raf = 0, waiting = false, shown = -1, opened = {};
+    const floorY = Hu * 0.72;
+    const spr = (key0, X, Y, size, flip, grey) => { const c = grey ? H.RoadsMap.sprite(key0, true, Math.round(size * k * 1.2)) : A.sprite(key0, '', Math.round(size * k * 1.2)); x.save(); x.translate(X, Y); if (flip) x.scale(-1, 1); x.drawImage(c, -size / 2, -size * 0.85, size, size); x.restore(); };
+    const draw = (now) => {
+      const cam = bandX - Wu * 0.3; x.setTransform(k, 0, 0, k, 0, 0);
+      // stone, far to near, each layer moving at its own speed
+      const g = x.createLinearGradient(0, 0, 0, Hu); g.addColorStop(0, '#2b2a48'); g.addColorStop(0.7, '#3d3e66'); g.addColorStop(1, '#262540'); x.fillStyle = g; x.fillRect(0, 0, Wu, Hu);
+      const par = (f) => -cam * f;
+      const top = Math.max(60, floorY - Hu * 0.62), ah = floorY - 30 - top;
+      // the vaulted ceiling and the far wall with its coloured windows
+      x.fillStyle = '#25243f'; for (let i = -1; i < 7; i++) { const X = ((i * 90 + par(0.2)) % 630 + 630) % 630 - 90; x.beginPath(); x.moveTo(X, 0); x.quadraticCurveTo(X + 45, top * 0.9, X + 90, 0); x.lineTo(X + 90, 0); x.fill(); }
+      for (let i = -1; i < 8; i++) { const X = ((i * 70 + par(0.3)) % 560 + 560) % 560 - 70; x.fillStyle = '#34345a'; x.beginPath(); x.moveTo(X, floorY - 30); x.lineTo(X, top + 40); x.quadraticCurveTo(X + 30, top, X + 60, top + 40); x.lineTo(X + 60, floorY - 30); x.fill();
+        x.fillStyle = (i % 3) ? '#5a72b8' : '#b86aa0'; x.globalAlpha = 0.35 + 0.1 * Math.sin(now / 900 + i); x.beginPath(); x.moveTo(X + 14, floorY - 30 - ah * 0.3); x.lineTo(X + 14, top + 52); x.quadraticCurveTo(X + 30, top + 26, X + 46, top + 52); x.lineTo(X + 46, floorY - 30 - ah * 0.3); x.fill(); x.globalAlpha = 1;
+        x.strokeStyle = 'rgba(255,255,255,.12)'; x.lineWidth = 1; x.beginPath(); x.moveTo(X + 30, top + 30); x.lineTo(X + 30, floorY - 30 - ah * 0.3); x.stroke(); }
+      // light falling through the windows
+      x.fillStyle = 'rgba(180,200,255,.06)'; for (let i = 0; i < 4; i++) { const X = ((i * 140 + par(0.3) + 20) % 560 + 560) % 560 - 70; x.beginPath(); x.moveTo(X, top + 40); x.lineTo(X + 40, top + 40); x.lineTo(X + 90, floorY + 20); x.lineTo(X + 20, floorY + 20); x.fill(); }
+      for (let i = -1; i < 6; i++) { const X = ((i * 110 + par(0.65)) % 660 + 660) % 660 - 110; x.fillStyle = '#4a4a78'; x.fillRect(X, 0, 22, floorY); x.fillStyle = '#5a5a8a'; x.fillRect(X - 4, top - 6, 30, 10); x.fillRect(X - 4, floorY - 12, 30, 12); x.strokeStyle = '#2b2140'; x.lineWidth = 1.2; x.strokeRect(X, -2, 22, floorY + 2);
+        x.strokeStyle = '#7a7aa8'; x.beginPath(); for (let y = 8; y < top - 10; y += 7) { x.moveTo(X + 11, y); x.lineTo(X + 11 + (y % 14 ? 2 : -2), y + 6); } x.stroke(); }
+      x.fillStyle = '#5c5a7a'; x.fillRect(0, floorY, Wu, Hu - floorY); x.fillStyle = '#4a7aa8'; x.globalAlpha = 0.55; x.fillRect(0, floorY + 8, Wu, Hu - floorY); x.globalAlpha = 1;
+      x.strokeStyle = 'rgba(255,255,255,.35)'; x.lineWidth = 1; for (let i = 0; i < 9; i++) { const X = ((i * 47 + par(1) + now / 40) % 420 + 420) % 420 - 30; x.beginPath(); x.moveTo(X, floorY + 18 + (i % 3) * 9); x.lineTo(X + 14, floorY + 18 + (i % 3) * 9); x.stroke(); }
+      x.strokeStyle = '#2b2140'; x.lineWidth = 1.5; x.beginPath(); x.moveTo(0, floorY); x.lineTo(Wu, floorY); x.stroke();
+      // the rooms ahead: Din, chests, a pet, the boss
+      C.rooms.forEach((rm, i) => {
+        if (i < room) return; const X = i * ROOM - cam, done = i < room; if (X < -60 || X > Wu + 60 || done) return;
+        if (rm.t === 'fight') rm.din.forEach((d, j) => spr(d, X + j * 26, floorY + 4 + (j % 2) * 6, 44, true));
+        if (rm.t === 'chest') spr(opened[i] ? 'nd_rest' : 'ev_crate', X, floorY + 4, 36);
+        if (rm.t === 'pet') spr(rm.pet, X, floorY + 2, 42, true, true);
+        if (rm.t === 'boss') { spr(rm.boss, X + 10, floorY + 6, 80, true); rm.adds.forEach((d, j) => spr(d, X - 34 - j * 24, floorY + 4, 40, true)); }
+      });
+      // candles that flicker in the foreground
+      for (let i = -1; i < 5; i++) { const X = ((i * 130 + par(1.25)) % 650 + 650) % 650 - 60, fl = 3 + Math.sin(now / 120 + i * 3) * 1.2; x.fillStyle = '#e8e0c8'; x.fillRect(X, floorY + 26, 5, 16); x.fillStyle = '#ffc928'; x.beginPath(); x.ellipse(X + 2.5, floorY + 24 - fl / 2, 2.4, fl, 0, 0, 6.29); x.fill(); x.fillStyle = 'rgba(255,201,40,.12)'; x.beginPath(); x.arc(X + 2.5, floorY + 22, 18, 0, 6.29); x.fill(); }
+      // the band, walking right
+      const walking = bandX < goal - 0.5; const band = Rd.bandPets().filter(Boolean);
+      band.forEach((p, j) => spr(p.form, bandX - cam - j * 30, floorY + 4 - (walking ? Math.abs(Math.sin(now / 90 + j)) * 4 : 0), 44, false));
+    };
+    const loop = (now) => {
+      const dt = Math.min(0.05, (now - t0) / 1000); t0 = now;
+      if (bandX < goal) bandX = Math.min(goal, bandX + dt * 70); else if (!waiting) arrive();
+      draw(now); raf = requestAnimationFrame(loop);
+    };
+    const setInfo = (title, hint, acts) => { info.innerHTML = ''; add(info, el('div', 'rd-ct', title), hint ? el('div', 'rd-ch', hint) : null); if (acts) info.appendChild(add(el('div', 'rd-ca'), ...acts.map(([l, f, c]) => key(l, f, c || 'go')))); };
+    const fight = () => { Rd.fightRoom(room); UI.flashOut(() => UI.go('battle', { roads: 1 })); };
+    const advance = () => { room++; S.chapel.room = room; Rd.save(); dots.querySelectorAll('i').forEach((d, j) => d.classList.toggle('done', j < room)); goal = room * ROOM - LEAD; waiting = false; if (room >= C.rooms.length) goal = room * ROOM; };
+    const arrive = () => {
+      waiting = true; if (shown === room) return; shown = room;
+      if (room >= C.rooms.length) { const out = Rd.chapelDone(); if (out.first) return UI.go('roadsstory', { scene: 'chapel' }); UI.toast(tr('Out into the daylight.')); return UI.go('roads', {}); }
+      const rm = C.rooms[room];
+      if (rm.t === 'fight') setInfo(H.T.list(rm.din.map((d) => H.DIN[d].n)), tr('Din in the dark, level {n}.', { n: rm.lv }), [[tr('Fight'), fight, 'coral']]);
+      if (rm.t === 'chest') setInfo(tr('An old chest'), tr('It is wet, but it opens.'), [[tr('Open'), () => { const r = Rd.chapelChest(room); opened[room] = 1; Au.sfx('coin'); UI.modal(UI.sp('ev_crate', 1.3), txt('disp center', tr('Inside')), box('row wrap center', UI.notes(r.notes)), r.item ? UI.itemRow(r.item) : null, key(tr('Take it'), () => { UI.closeModal(); room = S.chapel.room - 1; advance(); }, 'go wide')); }, 'gold']]);
+      if (rm.t === 'pet') setInfo(tr('Wild {pet}', { pet: H.FORMS[rm.pet].n }), Rd.owns(rm.pet) ? tr('Another {pet}, singing to itself.', { pet: H.FORMS[rm.pet].n }) : tr('A little songbook sings to itself, all grey. Win it over and it comes along.'), [[tr('Fight'), fight, 'coral']]);
+      if (rm.t === 'boss') setInfo(H.DIN[rm.boss].n, tr('The noise at the bottom of the chapel. Level {n}.', { n: rm.lv }), [[tr('Fight'), fight, 'coral']]);
+    };
+    // back from a battle: the result first, then onwards
+    if (pr.res) { const out = pr.res; room = S.chapel.room; bandX = (room - 1) * ROOM - LEAD; goal = bandX; waiting = true; shown = room - 1; setTimeout(() => RU.result(out, () => { UI.closeModal(); goal = room * ROOM - LEAD; waiting = false; shown = -1; if (room >= C.rooms.length) goal = room * ROOM; }), 60); }
+    else setInfo(tr(C.n), tr('The band wades in.'));
+    raf = requestAnimationFrame(loop);
+    const onR = () => fit(); window.addEventListener('resize', onR);
+    return { leave: () => { cancelAnimationFrame(raf); window.removeEventListener('resize', onR); } };
+  };
+
+  /* ---------- the door into the preview ---------- */
+  UI.screens.roadsintro = (root) => {
+    if (!Rd.S) Rd.load(); const S = Rd.S; UI.music('camp', 'fen');
+    root.classList.add('rd-intro');
+    const bg = UI.bgEl('fen', UI.W, UI.Hh, 0.5, 'hush'); bg.classList.add('rd-bg'); root.appendChild(bg);
+    const col = el('div', 'rd-introc');
+    add(col, el('span', 'tag', tr('Preview')), txt('rd-title', tr('Hushsong Roads')),
+      txt('rd-blurb', tr('Take a band across Reed Marsh on a 3D map. Befriend wild pets, free five places from the Din, and face Muffle.')),
+      txt('small rd-blurb dim', tr('A fresh start with its own save. Your pets and items stay safe in the main game.')));
+    const band = el('div', 'parade'); for (const sp of S.pets.length ? Rd.bandPets().filter(Boolean).map((p) => p.form) : ['thud', 'twang', 'hum', 'howl']) band.appendChild(UI.sp(sp, 1.1)); col.appendChild(band);
+    col.appendChild(key(S.started && S.pets.length ? tr('Continue') : tr('Begin'), () => { Au.sfx('tap', 4); UI.go(S.started && S.pets.length ? 'roads' : 'roadsstory', { scene: 'prologue' }); }, 'go wide big'));
+    if (S.started) col.appendChild(key(tr('Start over'), () => UI.confirm(tr('Start over?'), tr('Your preview progress goes. The main game is not touched.'), tr('Start over'), () => { Rd.wipe(); H.RoadsMap.G.band = null; for (const t of H.RW.list) { t.song = null; } UI.redraw(); }, 'coral'), 'soft wide'));
+    col.appendChild(key(tr('‹ Home'), () => UI.go('home'), 'soft wide backk'));
+    root.appendChild(col);
+    return {};
+  };
+})(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
 
 (function () { const start = () => window.H.UI.boot(); const hot = window.claude && window.claude.hot; if (hot && hot.ready) hot.ready(start); else start(); })();
 </script>
