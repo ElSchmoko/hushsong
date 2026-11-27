@@ -289,7 +289,7 @@
   let D = 15;
   const placeCamera = () => {
     const s2 = Math.max(22, Math.min(Wd, Ht * 0.78) / 11.5) * G.zoom, span = Wd / s2;
-    D = Math.max(8, Math.min(34, (span * 0.95) / (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect)));
+    D = Math.max(8, Math.min(90, (span * 0.95) / (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect)));
     look.x = G.cam.x; look.z = G.cam.z;
     camera.position.set(G.cam.x, 0.3 + D * Math.sin(PITCH), G.cam.z + D * Math.cos(PITCH)); camera.lookAt(G.cam.x, 0.3, G.cam.z); camera.updateMatrixWorld();
     scene.fog.near = D * 0.95; scene.fog.far = D * 1.6; edgeMat.uniforms.fogNear.value = scene.fog.near; edgeMat.uniforms.fogFar.value = scene.fog.far;
@@ -297,9 +297,9 @@
     const sc = sun.shadow.camera, b = D * 0.9; if (sc.right !== b) { sc.left = -b; sc.right = b; sc.top = b; sc.bottom = -b; sc.near = 1; sc.far = 60; sc.updateProjectionMatrix(); }
   };
   // land grows out of the mist: a smooth rise, never more than a few new tiles built in one frame
-  const RISE = 0.85, ease = (x) => 1 - Math.pow(1 - x, 3);
-  const popOf = (t) => (t && t.b3 != null ? W.sat((G.now - t.b3) / RISE) : 0);
-  const riseOf = (t) => -(1 - ease(popOf(t))) * 1.4;
+  const RISE = 1.4, SINK = 1.6, ease = (x) => x * x * (3 - 2 * x);
+  const popOf = (t) => (t && t.b3 != null ? Math.min(W.sat((G.now - t.b3) / RISE), t.sink != null ? 1 - W.sat((G.now - t.sink) / SINK) : 1) : 0);
+  const riseOf = (t) => -(1 - ease(popOf(t))) * 1.1;
   M.popOf = popOf;
   const groundY = (x, z) => { const t = W.at(...W.xzToHex(x, z)); return !t || t.kind === 0 ? SEA_Y : Math.max(SEA_Y + 0.02, W.H(x, z)); };
   M.groundY = groundY;
@@ -331,27 +331,27 @@
   function render() {
     if (!v3) { v3 = new T.Vector3(); lastCam = new T.Vector3(1e9, 0, 0); }
     placeCamera();
-    const now = G.now, R = D * 1.9; let rising = false, builds = 0;
+    const now = G.now, R = D * 2.2; let rising = false, builds = 0;
     const want = [];
     for (const t of W.list) {
       if (Math.abs(t.x - G.cam.x) > R || Math.abs(t.z - G.cam.z) > R) { if (t.m3 && t.m3.parent) tileGroup.remove(t.m3); t.b3 = null; continue; }
       v3.set(t.x, t.kind ? Math.min(1.2, W.STEP[t.kind] * 2) : SEA_Y, t.z).project(camera);
-      const on = v3.z < 1 && v3.x > -1.15 && v3.x < 1.15 && v3.y > -1.28 && v3.y < 1.15;
+      const on = v3.z < 1 && v3.x > -1.3 && v3.x < 1.3 && v3.y > -1.45 && v3.y < 1.3;
       if (on) {
-        t.off = 0;
+        t.off = 0; if (t.sink != null) { t.b3 = now - RISE * popOf(t); t.sink = null; }
         if (!t.m3) { want.push([Math.hypot(v3.x, v3.y), t]); continue; }
         if (!t.m3.parent) tileGroup.add(t.m3);
         if (t.b3 == null) t.b3 = now + (first ? Math.hypot(v3.x, v3.y) * 0.5 : W.hash(t.q, t.r) * 0.18);
-      } else if (t.m3 && t.m3.parent) { t.off = (t.off || 0) + 1 / 60; if (t.off > 1.2) { tileGroup.remove(t.m3); t.b3 = null; } }
+      } else if (t.m3 && t.m3.parent) { t.off = (t.off || 0) + 1 / 60; if (t.off > 12 && t.sink == null) t.sink = now; if (t.sink != null && now - t.sink > SINK) { tileGroup.remove(t.m3); t.b3 = null; t.sink = null; } }
       if (t.m3 && t.m3.parent) {
         const p = popOf(t); if (p < 1) rising = true;
-        const e = ease(p); t.m3.position.y = riseOf(t); t.m3.scale.y = 0.35 + 0.65 * e; t.m3.visible = p > 0;
+        const e = ease(p); t.m3.position.y = riseOf(t); t.m3.scale.y = 0.2 + 0.8 * e; t.m3.visible = p > 0;
         if (Math.abs(t.m3.userData.song - t.song) > 0.02 || (t.m3.userData.song !== t.song && t.song === M.songOf(t))) recolour(t.m3, t.song);
       }
     }
     // build the nearest missing tiles first, a few per frame, so the frame rate stays smooth
     want.sort((a, b) => a[0] - b[0]);
-    for (const [, t] of want) { if (builds >= (first ? 400 : 5)) break; t.m3 = buildTile(t); builds++; }
+    for (const [, t] of want) { if (builds >= (first ? 400 : G.zoom < 0.6 ? 30 : 6)) break; t.m3 = buildTile(t); builds++; }
     if (want.length > builds) rising = true;
     first = false;
     // motes
@@ -409,13 +409,13 @@
     el.addEventListener('pointerdown', (e) => { el.setPointerCapture(e.pointerId); const p = local(e); pts.set(e.pointerId, p); if (pts.size === 1) down = { x: p[0], y: p[1], t: performance.now(), moved: false, last: p }; else { if (down) down.moved = true; pinch = 0; } });
     el.addEventListener('pointermove', (e) => {
       if (!pts.has(e.pointerId)) return; const p = local(e); pts.set(e.pointerId, p);
-      if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * (d / pinch))); pinch = d; return; }
+      if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) G.zoom = Math.max(0.22, Math.min(1.8, G.zoom * (d / pinch))); pinch = d; return; }
       if (!down) return;
       if (!down.moved && Math.hypot(p[0] - down.x, p[1] - down.y) > 8) { down.moved = true; G.follow = false; }
       if (down.moved) { const g0 = M.ground(down.last[0], down.last[1]), g1 = M.ground(p[0], p[1]); if (g0 && g1) { G.cam.x += g0[0] - g1[0]; G.cam.z += g0[1] - g1[1]; } down.last = p; }
     });
     const up = (e) => { pts.delete(e.pointerId); if (down && !down.moved && pts.size === 0 && performance.now() - down.t < 500 && G.onTap) { const p = local(e), hit = M.pick(p[0], p[1]); G.onTap(hit.t, hit.s); } if (pts.size === 0) down = null; pinch = 0; };
     el.addEventListener('pointerup', up); el.addEventListener('pointercancel', (e) => { pts.delete(e.pointerId); down = null; pinch = 0; });
-    el.addEventListener('wheel', (e) => { e.preventDefault(); G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * Math.exp(-e.deltaY * 0.0012))); }, { passive: false });
+    el.addEventListener('wheel', (e) => { e.preventDefault(); G.zoom = Math.max(0.22, Math.min(1.8, G.zoom * Math.exp(-e.deltaY * 0.0012))); }, { passive: false });
   }
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));

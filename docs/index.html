@@ -853,12 +853,17 @@ input.namein:focus { outline: calc(var(--u) * 1.5) solid var(--blue); outline-of
 .rd-lv { position: relative; display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--u) * 0.6); min-width: calc(var(--u) * 30); padding: calc(var(--u) * 1) calc(var(--u) * 3) calc(var(--u) * 1.6); background: var(--paper) !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); box-shadow: 0 calc(var(--u) * 1) 0 var(--ink); }
 .rd-lv b { font-family: var(--f-display); font-size: calc(var(--u) * 6.4); line-height: 1; text-align: center; } .rd-lv .meter { height: calc(var(--u) * 3.4); border-width: calc(var(--u) * 0.6); }
 .rd-lv .pip, .rd-dk .pip { position: absolute; top: calc(var(--u) * -3); right: calc(var(--u) * -3); min-width: calc(var(--u) * 9); height: calc(var(--u) * 9); padding: 0 calc(var(--u) * 1.5); border-radius: 999px; background: var(--coral); color: #fff; border: calc(var(--u) * 0.8) solid var(--ink); font-size: calc(var(--u) * 5.4); font-weight: 800; display: flex; align-items: center; justify-content: center; }
-.rd-quest { position: absolute; top: calc(var(--u) * 20); left: calc(var(--u) * 3); right: calc(var(--u) * 3); z-index: 2; display: flex; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 2) calc(var(--u) * 3.5); background: #fff8dd !important; border: calc(var(--u) * 1) solid var(--ink) !important; border-radius: calc(var(--u) * 5); box-shadow: 0 calc(var(--u) * 1.2) 0 var(--ink); text-align: left; }
+.rd-quest { position: absolute; top: calc(var(--u) * 22); left: calc(var(--u) * 3); right: calc(var(--u) * 3); z-index: 2; display: flex; align-items: center; gap: calc(var(--u) * 2.5); padding: calc(var(--u) * 1) calc(var(--u) * 1.5); background: none !important; text-align: left; text-shadow: 0 0 calc(var(--u) * 2) #fff, 0 0 calc(var(--u) * 2) #fff, 0 0 calc(var(--u) * 1) #fff; }
+.rd-quest span { color: var(--ink) !important; }
 .rd-quest b, .rd-qnext b { display: block; font-family: var(--f-display); font-size: calc(var(--u) * 6.6); line-height: 1.1; } .rd-quest span, .rd-qnext span { font-size: calc(var(--u) * 5.8); color: var(--dim); }
+.rd-bottom { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; pointer-events: none; } .rd-bottom > * { pointer-events: auto; }
+.rd-bottom .rd-card { position: relative; left: auto; right: auto; bottom: auto; margin: 0 calc(var(--u) * 3) calc(var(--u) * 3); }
+.rd-centre { position: absolute; right: calc(var(--u) * 4); top: calc(var(--u) * 46); z-index: 2; width: calc(var(--u) * 20); height: calc(var(--u) * 20); display: flex !important; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,.45) !important; border: calc(var(--u) * 0.8) solid rgba(43,33,64,.5) !important; }
+.rd-reg { position: absolute; left: 0; top: 0; display: flex; flex-direction: column; align-items: center; padding: calc(var(--u) * 1.5) calc(var(--u) * 4); background: rgba(255,255,255,.88); border: calc(var(--u) * 1) solid var(--ink); border-radius: calc(var(--u) * 5); opacity: 0; transition: opacity .3s; white-space: nowrap; } .rd-reg b { font-family: var(--f-display); font-size: calc(var(--u) * 9); } .rd-reg span { font-size: calc(var(--u) * 5.4); color: var(--dim); } .rd-reg.closed { background: rgba(220,214,232,.88); }
 .rd-card { position: absolute; left: calc(var(--u) * 3); right: calc(var(--u) * 3); bottom: calc(var(--u) * 27); z-index: 2; padding: calc(var(--u) * 3) calc(var(--u) * 4) calc(var(--u) * 3.5); background: var(--paper); border: var(--b) solid var(--ink); border-radius: calc(var(--u) * 7); box-shadow: 0 calc(var(--u) * 1.8) 0 var(--ink); display: flex; flex-direction: column; gap: calc(var(--u) * 1); }
 .rd-ct { font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 9); line-height: 1.05; } .rd-cs { font-size: calc(var(--u) * 5.8); color: var(--dim); } .rd-ch { font-size: calc(var(--u) * 6.2); line-height: 1.3; }
 .rd-ca { display: flex; gap: calc(var(--u) * 2); margin-top: calc(var(--u) * 1.5); } .rd-ca .key { flex: 1; min-height: calc(var(--u) * 19); }
-.rd-dock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 2) calc(var(--u) * 3) calc(var(--u) * 3); background: var(--ink); }
+.rd-dock { position: relative; display: flex; gap: calc(var(--u) * 1.5); padding: calc(var(--u) * 2) calc(var(--u) * 3) calc(var(--u) * 3); background: var(--ink); }
 .rd-dk { position: relative; flex: 1; display: flex !important; flex-direction: column; align-items: center; justify-content: center; min-height: calc(var(--u) * 20); border-radius: calc(var(--u) * 5); color: #d9d2ea !important; font-family: var(--f-display); font-weight: 800; font-size: calc(var(--u) * 5.2); }
 .rd-dk:active { background: #4a3d6a !important; }
 .rd-wait { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--u) * 4); text-align: center; padding: calc(var(--u) * 10); }
@@ -3746,7 +3751,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
 
   /* ---------- growing ---------- */
   R.petNeed = (lv) => 50 + 30 * lv;
-  R.playerNeed = (lv) => 80 + 60 * lv;
+  R.playerNeed = (lv) => 120 + 100 * lv;
   R.MAX_PET = 30; R.MAX_PLAYER = 20;
   R.EVO_LV = [0, 10, 25];   // pet level a pet needs before each evolution (and the echoes it costs, as in Hushsong)
   R.dinXp = (lv) => 6 + 3 * lv;
@@ -4089,7 +4094,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     for (const P of R.PLACES.filter((p) => p.cap)) {
       const place = W.poi(P.id), land = W.list.filter((t) => W.walk(t) && t.owner === P.id);
       pick(land.filter((t) => { const d = W.hexDist(t, place.t); return d >= 2 && d <= 3; }), 2, 11, 2).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_g' + i, place: P.id, guard: 1, home: t, lv: P.lv[1] }));
-      pick(land.filter((t) => W.hexDist(t, place.t) >= (P.id === 'hush' ? 3 : 4) && (P.id !== 'hush' || W.hexDist(t, place.t) <= 5)), P.id === 'hush' ? 3 : 4, 29, 3).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_p' + i, place: P.id, home: t, lv: P.lv[0] + (i % (P.lv[1] - P.lv[0] + 1)) }));
+      pick(land.filter((t) => W.hexDist(t, place.t) >= (P.id === 'hush' ? 3 : 4) && (P.id !== 'hush' || W.hexDist(t, place.t) <= 5)), P.id === 'hush' ? 4 : 7, 29, 2).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_p' + i, place: P.id, home: t, lv: P.lv[0] + (i % (P.lv[1] - P.lv[0] + 1)), spare: i >= (P.id === 'hush' ? 2 : 3) }));
     }
     // the two tutorial fights, on the road out of Hushwick
     const hush = W.poi('hush').t, bend = W.list.filter((t) => t.road.length && W.walk(t) && W.hexDist(t, hush) === 3 && !taken.has(t))[0] || W.near(hush.x + 4, hush.z, (t) => W.hexDist(t, hush) === 3);
@@ -4108,8 +4113,8 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     if (g.fixed) { const f = g.fixed; return { din: f.din.map((id) => ({ id, lvl: f.lv })), pet: f.pet ? { sp: f.pet, lvl: f.petLv } : null }; }
     const rnd = H.rng(W.hash(g.home.q * 31 + gen * 7, g.home.r * 17 + gen) * 1e9), P = Rd.place(g.place), n = g.guard ? 2 + (g.lv >= 4 ? 1 : 0) : g.lv <= 2 ? 1 + Math.floor(rnd() * 2) : 2 + Math.floor(rnd() * 2);
     const din = Array.from({ length: n }, () => ({ id: P.din[Math.floor(rnd() * P.din.length)], lvl: Math.max(1, g.lv - (rnd() < 0.4 ? 1 : 0)) }));
-    let pet = null; if (!g.guard && rnd() < R.WILD_CHANCE) { const pool = R.WILD[groundOf(g.home)]; pet = { sp: pool[Math.floor(rnd() * pool.length)], lvl: g.lv }; }
-    return { din, pet };
+    const have = S.pets.length; if (have < 3 && rnd() > 0.1) din.length = Math.min(din.length, Math.max(1, have));
+    return { din, pet: null };
   };
   // A patrol is out on the map unless it was beaten since the last rest. Guards stay beaten; tutorial fights only show during their quest.
   Rd.groupLive = (g) => {
@@ -4118,6 +4123,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     if (S.quest < 3) return false;   // the first three quests: only their own fights are out
     if (g.guard && S.caps[g.place]) return false;
     if (Rd.fenced() && W.hexDist(g.home, Rd.poiT('hush')) > Rd.quest().fence) return false;
+    if (g.spare && !(st && st.on)) return false;
     return !(st && st.beaten);
   };
   Rd.liveGroups = () => Rd.GROUPS.filter(Rd.groupLive);
@@ -4174,7 +4180,8 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
 
   /* ---------- battles ---------- */
   // fight: what is about to be fought. kind: group, keeper, boss, chapel, glade.
-  Rd.fightGroup = (g) => { const f = Rd.foes(g); Rd.S.fight = { kind: 'group', id: g.id, din: f.din, pet: f.pet }; Rd.save(); };
+  // A wild pet is never shown on the map: it may turn up with the Din when the fight starts.
+  Rd.fightGroup = (g) => { const f = Rd.foes(g); let pet = f.pet; if (!pet && !g.guard && !g.fixed && Math.random() < R.WILD_CHANCE) { const pool = R.WILD[groundOf(g.home)]; pet = { sp: pool[Math.floor(Math.random() * pool.length)], lvl: g.lv }; if (Rd.S.pets.length < 3 && f.din.length > 1) f.din.pop(); } Rd.S.fight = { kind: 'group', id: g.id, din: f.din, pet }; Rd.save(); };
   Rd.fightKeeper = (placeId) => { const P = Rd.place(placeId); Rd.S.fight = { kind: 'keeper', id: placeId, din: [{ id: P.keeper, lvl: P.lv[1], loud: 1 }, { id: P.din[0], lvl: P.lv[0] }] }; Rd.save(); };
   Rd.fightBoss = () => { const P = Rd.place('lily'); Rd.S.fight = { kind: 'boss', id: 'lily', boss: 1, din: [{ id: P.boss, lvl: P.lv[0] }].concat(P.adds.map((a) => ({ id: a, lvl: P.lv[1] }))) }; Rd.save(); };
   Rd.fightGlade = () => { const P = Rd.place('glade'); Rd.S.fight = { kind: 'glade', id: 'glade', din: [], pet: { sp: P.pet, lvl: P.lv, sure: !Rd.owns(P.pet) } }; Rd.save(); };
@@ -4193,7 +4200,9 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const live = pets.filter(Boolean), ens = live.length === 3 ? H.ensembleOf(live.map((p) => H.SPECIES[Rd.species(p)].family)) : null;
     const battle = new H.Battle({ allies, enemies, rng: rnd, ensemble: ens ? ens.id : null });
     // note who falls in which order: a wild pet is easier to win over once its Din are beaten
-    battle.fallOrder = []; const emit = battle.emit.bind(battle); battle.emit = (e) => { if (e.t === 'fall') battle.fallOrder.push(e.u); return emit(e); };
+    battle.fallOrder = []; const emit = battle.emit.bind(battle);
+    battle.emit = (e) => { emit(e); if (e.t !== 'fall') return; battle.fallOrder.push(e.u); const foes = battle.units.filter((u) => u.side === 1);
+      if (foes.some((u) => u.wild && u.alive) && foes.every((u) => u.wild || !u.alive)) for (const u of foes) if (u.wild && u.alive) { u.alive = false; u.hp = 0; u.calmed = true; battle.calmed = true; emit({ t: 'fall', u: u.uid }); } };
     return battle;
   };
   // The result of a fight. Returns everything the result sheet shows.
@@ -4209,12 +4218,12 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const inBand = Rd.bandPets().filter(Boolean);
     for (const p of S.pets) { const g = inBand.includes(p) ? xp : Rd.has('warmup') ? Math.round(xp / 2) : 0; if (!g) continue; const ups = petLevelUp(p, g); out.pets.push({ id: p.id, xp: g, ups, band: inBand.includes(p) }); }
     S.notes += out.notes;
-    out.pxp = Math.round(f.din.reduce((a, d) => a + d.lvl * 3 * mult(d), 0) + (f.pet ? f.pet.lvl * 3 : 0)); out.pups = Rd.gainPlayer(out.pxp);
+    out.pxp = Math.round(f.din.reduce((a, d) => a + d.lvl * 1.5 * mult(d), 0) + (f.pet ? f.pet.lvl * 1.5 : 0)); out.pups = Rd.gainPlayer(out.pxp);
     if (rnd() < R.DROP) out.item = Rd.addItem(rnd() < 0.8 ? 'c' : 'r', rnd);
     // a wild pet: maybe it joins
     if (f.pet) {
       const sp = f.pet.sp, wildU = battle && battle.units.find((u) => u.wild), din = battle ? battle.units.filter((u) => u.side === 1 && !u.wild) : [];
-      const order = battle ? battle.fallOrder : [], dinFirst = !!wildU && din.length > 0 && din.every((u) => order.indexOf(u.uid) >= 0 && order.indexOf(u.uid) < order.indexOf(wildU.uid));
+      const dinFirst = !!(battle && battle.calmed);
       const tutorial = f.kind === 'group' && f.id === 'tut2';
       const ch = Rd.joinChance(sp, dinFirst), sure = tutorial || f.pet.sure, joined = sure || rnd() < ch.total;
       out.wild = { sp, lvl: f.pet.lvl, chance: sure ? 1 : ch.total, parts: ch.parts, joined, sure };
@@ -4222,9 +4231,10 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
       else S.meets[sp] = (S.meets[sp] || 0) + 1;
     }
     // what the fight was for
-    if (f.kind === 'group') { const st = (S.groups[f.id] = S.groups[f.id] || { gen: S.gen }); st.beaten = 1; }
-    if (f.kind === 'keeper') { S.caps[f.id] = 1; out.capture = f.id; S.lastVenue = f.id; out.pups += Rd.gainPlayer(80); out.pxp += 80; }
-    if (f.kind === 'boss') { S.boss = 1; out.boss = true; S.shells += 1; out.shell = 1; S.echo += 3; out.echo = 3; }
+    if (f.kind === 'group') { const st = (S.groups[f.id] = S.groups[f.id] || { gen: S.gen }); st.beaten = 1; const g0 = Rd.group(f.id);
+      if (g0 && !g0.guard && !g0.tut) { const here = S.pos && W.at(S.pos.q, S.pos.r), opts = Rd.GROUPS.filter((g) => !g.guard && !g.tut && g !== g0 && !Rd.groupLive(g) && (!here || W.hexDist(g.home, here) >= 3)); const n = opts[Math.floor(rnd() * opts.length)]; if (n) S.groups[n.id] = { gen: ++S.gen, beaten: 0, on: 1 }; } }
+    if (f.kind === 'keeper') { S.caps[f.id] = 1; out.capture = f.id; S.lastVenue = f.id; out.pups += Rd.gainPlayer(50); out.pxp += 50; }
+    if (f.kind === 'boss') { S.boss = 1; out.boss = true; S.shells += 1; out.shellOpen = Rd.openShell(rnd); S.echo += 3; out.echo = 3; }
     if (f.kind === 'glade') { S.found.glade = 1; }
     if (f.kind === 'chapel') { S.chapel.room = f.room + 1; out.chapelNext = S.chapel.room; }
     Rd.check('battle', out); Rd.save(); return out;
@@ -4264,7 +4274,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
 
   /* ---------- shells ---------- */
   Rd.shellPrice = () => Math.round(R.SHELL_PRICE * (1 + R.SHELL_STEP * Rd.S.bought));
-  Rd.buyShell = () => { const S = Rd.S, c = Rd.shellPrice(); if (S.notes < c) return false; S.notes -= c; S.bought++; S.shells++; return true; };
+  Rd.buyShell = () => { const S = Rd.S, c = Rd.shellPrice(); if (S.notes < c) return null; S.notes -= c; S.bought++; S.shells++; const r = Rd.openShell(); Rd.save(); return r; };
   Rd.openShell = (rnd) => {
     const S = Rd.S; if (S.shells <= 0) return null; S.shells--;
     const sp = H.SPECIES_ORDER[Math.floor((rnd || Math.random)() * H.SPECIES_ORDER.length)];
@@ -4289,7 +4299,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   Rd.takePage = (id) => { const S = Rd.S; if (S.found[id]) return null; S.found[id] = 1; S.echo += 1; S.notes += 30; const ups = Rd.gainPlayer(30); Rd.save(); return { echo: 1, notes: 30, pxp: 30, ups }; };
   Rd.rest = (placeId) => {
     const S = Rd.S; S.lastVenue = placeId; S.gen++;
-    for (const g of Rd.GROUPS) if (!g.guard && !g.tut && S.groups[g.id]) S.groups[g.id] = { gen: S.gen, beaten: 0 };
+    for (const g of Rd.GROUPS) if (!g.guard && !g.tut && S.groups[g.id] && S.groups[g.id].beaten) S.groups[g.id] = { gen: S.gen, beaten: 0, on: g.spare ? 0 : 1 };
     Rd.save();
   };
   Rd.guardsLeft = (placeId) => Rd.GROUPS.filter((g) => g.place === placeId && g.guard && !(Rd.S.groups[g.id] && Rd.S.groups[g.id].beaten)).length;
@@ -4297,7 +4307,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
 
   /* ---------- the songbook ---------- */
   Rd.bookDone = () => R.SONGBOOK.every((sp) => Rd.S.book[sp] === 3);
-  Rd.claimBook = () => { const S = Rd.S; if (!Rd.bookDone() || S.flags.book) return false; S.flags.book = 1; S.shells++; Rd.save(); return true; };
+  Rd.claimBook = () => { const S = Rd.S; if (!Rd.bookDone() || S.flags.book) return false; S.flags.book = 1; S.shells++; const r = Rd.openShell(); Rd.save(); return r; };
 
   /* ---------- quests ---------- */
   Rd.quest = () => R.QUESTS[Rd.S.quest] || null;
@@ -6413,7 +6423,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
   UI.langKey = (cls) => { const b = UI.key('', () => UI.langPicker(), cls || 'soft sm'); UI.add(b, UI.icon('ic_lang', 0.9), UI.el('span', '', UI.langName())); b.setAttribute('aria-label', tr('Language') + ': ' + UI.langName()); return b; };
   // which build this is: tools/pwa.js writes the app's build number over the placeholder (a plain test build keeps it)
-  const BUILD = '39';
+  const BUILD = '40';
   UI.buildText = () => (/^\d+$/.test(BUILD) ? tr('Build {n}', { n: BUILD }) : tr('Test build'));
   UI.settings = (extra) => {
     const S = UI.S, st = S.settings, apply = () => { Au.vol.music = st.music; Au.vol.sfx = st.sfx; Au.vol.sound = st.sound; Au.applyVol(); UI.save(); };
@@ -8601,7 +8611,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   let D = 15;
   const placeCamera = () => {
     const s2 = Math.max(22, Math.min(Wd, Ht * 0.78) / 11.5) * G.zoom, span = Wd / s2;
-    D = Math.max(8, Math.min(34, (span * 0.95) / (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect)));
+    D = Math.max(8, Math.min(90, (span * 0.95) / (2 * Math.tan((camera.fov * Math.PI) / 360) * camera.aspect)));
     look.x = G.cam.x; look.z = G.cam.z;
     camera.position.set(G.cam.x, 0.3 + D * Math.sin(PITCH), G.cam.z + D * Math.cos(PITCH)); camera.lookAt(G.cam.x, 0.3, G.cam.z); camera.updateMatrixWorld();
     scene.fog.near = D * 0.95; scene.fog.far = D * 1.6; edgeMat.uniforms.fogNear.value = scene.fog.near; edgeMat.uniforms.fogFar.value = scene.fog.far;
@@ -8609,9 +8619,9 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const sc = sun.shadow.camera, b = D * 0.9; if (sc.right !== b) { sc.left = -b; sc.right = b; sc.top = b; sc.bottom = -b; sc.near = 1; sc.far = 60; sc.updateProjectionMatrix(); }
   };
   // land grows out of the mist: a smooth rise, never more than a few new tiles built in one frame
-  const RISE = 0.85, ease = (x) => 1 - Math.pow(1 - x, 3);
-  const popOf = (t) => (t && t.b3 != null ? W.sat((G.now - t.b3) / RISE) : 0);
-  const riseOf = (t) => -(1 - ease(popOf(t))) * 1.4;
+  const RISE = 1.4, SINK = 1.6, ease = (x) => x * x * (3 - 2 * x);
+  const popOf = (t) => (t && t.b3 != null ? Math.min(W.sat((G.now - t.b3) / RISE), t.sink != null ? 1 - W.sat((G.now - t.sink) / SINK) : 1) : 0);
+  const riseOf = (t) => -(1 - ease(popOf(t))) * 1.1;
   M.popOf = popOf;
   const groundY = (x, z) => { const t = W.at(...W.xzToHex(x, z)); return !t || t.kind === 0 ? SEA_Y : Math.max(SEA_Y + 0.02, W.H(x, z)); };
   M.groundY = groundY;
@@ -8643,27 +8653,27 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   function render() {
     if (!v3) { v3 = new T.Vector3(); lastCam = new T.Vector3(1e9, 0, 0); }
     placeCamera();
-    const now = G.now, R = D * 1.9; let rising = false, builds = 0;
+    const now = G.now, R = D * 2.2; let rising = false, builds = 0;
     const want = [];
     for (const t of W.list) {
       if (Math.abs(t.x - G.cam.x) > R || Math.abs(t.z - G.cam.z) > R) { if (t.m3 && t.m3.parent) tileGroup.remove(t.m3); t.b3 = null; continue; }
       v3.set(t.x, t.kind ? Math.min(1.2, W.STEP[t.kind] * 2) : SEA_Y, t.z).project(camera);
-      const on = v3.z < 1 && v3.x > -1.15 && v3.x < 1.15 && v3.y > -1.28 && v3.y < 1.15;
+      const on = v3.z < 1 && v3.x > -1.3 && v3.x < 1.3 && v3.y > -1.45 && v3.y < 1.3;
       if (on) {
-        t.off = 0;
+        t.off = 0; if (t.sink != null) { t.b3 = now - RISE * popOf(t); t.sink = null; }
         if (!t.m3) { want.push([Math.hypot(v3.x, v3.y), t]); continue; }
         if (!t.m3.parent) tileGroup.add(t.m3);
         if (t.b3 == null) t.b3 = now + (first ? Math.hypot(v3.x, v3.y) * 0.5 : W.hash(t.q, t.r) * 0.18);
-      } else if (t.m3 && t.m3.parent) { t.off = (t.off || 0) + 1 / 60; if (t.off > 1.2) { tileGroup.remove(t.m3); t.b3 = null; } }
+      } else if (t.m3 && t.m3.parent) { t.off = (t.off || 0) + 1 / 60; if (t.off > 12 && t.sink == null) t.sink = now; if (t.sink != null && now - t.sink > SINK) { tileGroup.remove(t.m3); t.b3 = null; t.sink = null; } }
       if (t.m3 && t.m3.parent) {
         const p = popOf(t); if (p < 1) rising = true;
-        const e = ease(p); t.m3.position.y = riseOf(t); t.m3.scale.y = 0.35 + 0.65 * e; t.m3.visible = p > 0;
+        const e = ease(p); t.m3.position.y = riseOf(t); t.m3.scale.y = 0.2 + 0.8 * e; t.m3.visible = p > 0;
         if (Math.abs(t.m3.userData.song - t.song) > 0.02 || (t.m3.userData.song !== t.song && t.song === M.songOf(t))) recolour(t.m3, t.song);
       }
     }
     // build the nearest missing tiles first, a few per frame, so the frame rate stays smooth
     want.sort((a, b) => a[0] - b[0]);
-    for (const [, t] of want) { if (builds >= (first ? 400 : 5)) break; t.m3 = buildTile(t); builds++; }
+    for (const [, t] of want) { if (builds >= (first ? 400 : G.zoom < 0.6 ? 30 : 6)) break; t.m3 = buildTile(t); builds++; }
     if (want.length > builds) rising = true;
     first = false;
     // motes
@@ -8721,14 +8731,14 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     el.addEventListener('pointerdown', (e) => { el.setPointerCapture(e.pointerId); const p = local(e); pts.set(e.pointerId, p); if (pts.size === 1) down = { x: p[0], y: p[1], t: performance.now(), moved: false, last: p }; else { if (down) down.moved = true; pinch = 0; } });
     el.addEventListener('pointermove', (e) => {
       if (!pts.has(e.pointerId)) return; const p = local(e); pts.set(e.pointerId, p);
-      if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * (d / pinch))); pinch = d; return; }
+      if (pts.size === 2) { const [a, b] = [...pts.values()], d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (pinch) G.zoom = Math.max(0.22, Math.min(1.8, G.zoom * (d / pinch))); pinch = d; return; }
       if (!down) return;
       if (!down.moved && Math.hypot(p[0] - down.x, p[1] - down.y) > 8) { down.moved = true; G.follow = false; }
       if (down.moved) { const g0 = M.ground(down.last[0], down.last[1]), g1 = M.ground(p[0], p[1]); if (g0 && g1) { G.cam.x += g0[0] - g1[0]; G.cam.z += g0[1] - g1[1]; } down.last = p; }
     });
     const up = (e) => { pts.delete(e.pointerId); if (down && !down.moved && pts.size === 0 && performance.now() - down.t < 500 && G.onTap) { const p = local(e), hit = M.pick(p[0], p[1]); G.onTap(hit.t, hit.s); } if (pts.size === 0) down = null; pinch = 0; };
     el.addEventListener('pointerup', up); el.addEventListener('pointercancel', (e) => { pts.delete(e.pointerId); down = null; pinch = 0; });
-    el.addEventListener('wheel', (e) => { e.preventDefault(); G.zoom = Math.max(0.6, Math.min(1.8, G.zoom * Math.exp(-e.deltaY * 0.0012))); }, { passive: false });
+    el.addEventListener('wheel', (e) => { e.preventDefault(); G.zoom = Math.max(0.22, Math.min(1.8, G.zoom * Math.exp(-e.deltaY * 0.0012))); }, { passive: false });
   }
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
 
@@ -8761,7 +8771,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     const S = Rd.S, G = M.G, out = [], now = G.now, b = G.band;
     if (b) {
       const moving = !!b.to;
-      [['rd_wagon', 1.75, 1.3]].concat(Rd.bandPets().filter(Boolean).reverse().map((p, i, arr) => [p.form, (arr.length - 1 - i) * 0.56, 1])).forEach(([k, dist, size], i) => {
+      Rd.bandPets().filter(Boolean).reverse().map((p, i, arr) => [p.form, (arr.length - 1 - i) * 0.56, 1]).forEach(([k, dist, size], i) => {
         const p = dist ? M.at(dist) : { x: b.x, z: b.z, face: b.face };
         out.push({ key: k, x: p.x, z: p.z, size, hop: moving && k !== 'rd_wagon' ? Math.abs(Math.sin(now * 9 + i * 1.3)) * 0.12 : 0, flip: (p.face || 1) < 0 && k === 'rd_wagon', band: true });
       });
@@ -8769,7 +8779,6 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     for (const g of Rd.liveGroups()) {
       const f = Rd.foes(g), t = g.home, hop = Math.abs(Math.sin(now * 3 + t.q)) * 0.05;
       out.push({ key: f.din[0].id, x: t.x, z: t.z, size: g.guard ? 1.15 : 1.05, hop, pick: { group: g }, flip: true });
-      if (f.pet) out.push({ key: f.pet.sp, x: t.x + 0.5, z: t.z + 0.2, size: 0.75, hop: hop * 0.5, grey: true, pick: { group: g } });
     }
     for (const P of R.PLACES) {
       const t = Rd.poiT(P.id);
@@ -8788,7 +8797,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
 
   /* ---------- the screen ---------- */
-  let card = null, labels = [], tracker = null, chipEls = null;
+  let card = null, labels = [], tracker = null, chipEls = null, regionLabels = [];
   UI.screens.roads = (root, pr) => {
     if (!Rd.S) Rd.load();
     const S = Rd.S;
@@ -8809,10 +8818,12 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     add(top, home, lv, el('span', 'grow'), chipEls.notes, chipEls.echo); root.appendChild(top);
     tracker = el('button', 'rd-quest'); tracker.type = 'button'; tracker.addEventListener('click', () => { const t = target(); if (t) { M.G.cam.x = t.x; M.G.cam.z = t.z; M.G.follow = false; Au.sfx('tap'); } }); root.appendChild(tracker);
     // bottom: the card and the dock
-    card = el('div', 'rd-card'); root.appendChild(card);
+    card = el('div', 'rd-card'); const bottom = el('div', 'rd-bottom'); root.appendChild(bottom); bottom.appendChild(card);
+    const ctr = el('button', 'rd-centre'); ctr.type = 'button'; ctr.setAttribute('aria-label', tr('Back to the band')); ctr.appendChild(UI.icon('ic_home', 1)); ctr.addEventListener('click', () => { Au.sfx('tap'); M.G.follow = true; M.G.zoom = Math.max(M.G.zoom, 0.8); }); root.appendChild(ctr);
     const dock = el('div', 'rd-dock'), dk = (icon, label, fn, pip) => { const b = el('button', 'rd-dk'); b.type = 'button'; add(b, UI.icon(icon, 1.05), el('span', '', label)); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); fn(); }); return b; };
-    add(dock, dk('ic_team', tr('Band'), () => UI.go('roadsband', {})), dk('ic_star', tr('Talents'), () => RU.talents(), Rd.points() || 0), dk('ic_record', tr('Songbook'), () => RU.book(), Rd.bookDone() && !S.flags.book ? '!' : 0), dk('ic_shell', tr('Shells'), () => RU.shells(), S.shells || 0), dk('ic_home', tr('Band'), () => { M.G.follow = true; }));
-    dock.lastChild.querySelector('span').textContent = tr('Centre'); root.appendChild(dock);
+    add(dock, dk('ic_team', tr('Band'), () => UI.go('roadsband', {})), dk('ic_star', tr('Talents'), () => RU.talents(), Rd.points() || 0), dk('ic_record', tr('Songbook'), () => RU.book(), Rd.bookDone() && !S.flags.book ? '!' : 0));
+    bottom.appendChild(dock);
+    regionLabels = W.REG_ORDER.map((id) => { const R0 = W.REG[id], l = el('div', 'rd-reg' + (R0.closed ? ' closed' : '')); labelBox.appendChild(l); const t = W.list.filter((u) => u.reg === id && u.kind).sort((a, b) => Math.hypot(a.x - R0.at[0], a.z - R0.at[1]) - Math.hypot(b.x - R0.at[0], b.z - R0.at[1]))[0]; return { id, l, t }; });
     // place names over the map
     labels = R.PLACES.filter((P) => P.cap || P.stage || P.dungeon).map((P) => { const l = el('div', 'rd-lab' + (P.dungeon ? ' dun' : P.stage ? ' boss' : '')); l.textContent = placeName(P); labelBox.appendChild(l); return { P, l }; });
 
@@ -8836,8 +8847,11 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   };
   RU.refresh = refresh;
   const frame = () => {
+    const far = M.G.zoom < 0.55;
+    for (const { id, l, t } of regionLabels) { const p = far && t && M.project(t, 1); if (!p) { l.style.opacity = 0; continue; } l.style.opacity = p.a; l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-50%)`; const R0 = W.REG[id], land = W.list.filter((u) => u.reg === id && u.kind && !u.closed);
+      l.innerHTML = `<b>${tr(R0.n)}</b><span>${R0.closed ? tr('Closed · later preview') : tr('{n}/{m} places · {s} sings', { n: Rd.capCount(), m: R.CAPS.length, s: Math.round((land.reduce((a, u) => a + (u.song || 0), 0) / Math.max(1, land.length)) * 100) + '%' })}</span>`; }
     for (const { P, l } of labels) {
-      const p = M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
+      const p = !far && M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
       if (!p) { l.style.opacity = 0; continue; }
       l.style.opacity = p.a * W.sat((p.y - 60) / 30); l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-100%)`;
       l.classList.toggle('open', !!(Rd.S.caps[P.id] || (P.stage && Rd.S.boss)));
@@ -8912,7 +8926,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
   UI.flashOut = (fn) => { const f = el('div', 'rd-flash'); document.getElementById('game').appendChild(f); Au.sfx('boss'); setTimeout(() => { fn(); setTimeout(() => f.remove(), 260); }, 260); };
   const bandReady = () => { if (Rd.bandPets().some(Boolean)) return true; UI.toast(tr('Put a pet in your band first.')); return false; };
   const fightCard = (g, ambush) => {
-    const f = Rd.foes(g), hint = f.pet ? tr('A wild {pet} is stuck under the noise. Win, and it may join you ({p} now).', { pet: petName(f.pet.sp), p: Math.round(Rd.joinChance(f.pet.sp, false).total * 100) + '%' }) : g.guard ? tr('It guards {place}.', { place: placeName(Rd.place(g.place)) }) : tr('Din eat songs. Give them one they cannot swallow.');
+    const f = Rd.foes(g), hint = g.guard ? tr('It guards {place}.', { place: placeName(Rd.place(g.place)) }) : tr('Din eat songs. Sometimes a wild pet is stuck with them: beat the Din first and it stops fighting.');
     setCard(dinNames(f), (ambush ? tr('They block the road') + ' · ' : '') + tr('level {n}', { n: g.lv }), hint, [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGroup(g); toBattle(); }, 'coral']]);
   };
   const placeCard = (P) => {
@@ -8959,13 +8973,14 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     }
     kids.push(txt('disp big', out.boss ? tr('Muffle is gone!') : out.capture ? tr('{place} is yours!', { place: placeName(Rd.place(out.capture)) }) : tr('You win!')));
     const rew = box('row wrap center', UI.notes(out.notes), el('span', 'chip', tr('+{n} XP', { n: out.pxp })));
-    if (out.echo) rew.appendChild(UI.echoes(out.echo)); if (out.shell) rew.appendChild(UI.purse('ic_shell', 1, tr('Shells')));
+    if (out.echo) rew.appendChild(UI.echoes(out.echo));
     kids.push(rew);
     if (out.holdNotes) kids.push(txt('small dim center', tr('{n} of those notes came from your holdings.', { n: out.holdNotes })));
     if (out.pups) kids.push(box('rd-lvup row', UI.icon('ic_star', 0.9), txt('small', tr('<b>Player level {n}!</b> A talent point to spend.', { n: S.plv }))));
     const pets = el('div', 'rd-pxp'); for (const r of out.pets.filter((x) => x.band)) { const p = Rd.pet(r.id); if (!p) continue; pets.appendChild(add(el('div', 'rd-pxr'), UI.sp(p.form, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', H.FORMS[p.form].n + ' · ' + tr('Lv {n}', { n: p.lvl })), UI.meter(p.xp / R.petNeed(p.lvl))), r.ups ? el('span', 'chip up', tr('Level up!')) : el('span', 'dim small', '+' + r.xp))); }
     kids.push(pets);
     if (out.item) kids.push(UI.itemRow(out.item));
+    if (out.shellOpen) kids.push(box('rd-lvup row', UI.sp(out.shellOpen.sp, 0.6, { anim: false }), txt('small', out.shellOpen.dup ? tr('<b>A shell!</b> {pet} again: +1 echo for it.', { pet: petName(out.shellOpen.sp) }) : tr('<b>A shell!</b> {pet} joins your band.', { pet: petName(out.shellOpen.sp) }))));
     const after = () => {
       UI.closeModal(); refresh();
       if (done) return done();
@@ -9037,7 +9052,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
       kids.push(box('rd-brow row', UI.sp(B.art, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', tr(B.n)), el('div', 'small dim', tr(B.d))), b));
     }
     if (P.smith) { kids.push(txt('label', tr('The smith'))); kids.push(key(tr('Upgrade gear'), () => { UI.closeModal(); RU.smith(); }, 'blue wide')); }
-    if (P.merchant) { kids.push(txt('label', tr('Shell merchant'))); const c = Rd.shellPrice(), b = key(tr('Buy a shell'), () => { if (Rd.buyShell()) { Au.sfx('buy'); UI.closeModal(); refresh(); RU.shells(); } }, 'gold wide'); b.appendChild(UI.purse('ic_note', c)); b.disabled = S.notes < c; kids.push(b, txt('small dim', tr('"Very rare," he says. The price goes up each time.'))); }
+    if (P.merchant) { kids.push(txt('label', tr('Shell merchant'))); const c = Rd.shellPrice(), b = key(tr('Buy a shell'), () => { const r = Rd.buyShell(); if (r) { Au.sfx('buy'); UI.closeModal(); refresh(); RU.reveal(r); } }, 'gold wide'); b.appendChild(UI.purse('ic_note', c)); b.disabled = S.notes < c; kids.push(b, txt('small dim', tr('"Very rare," he says. The price goes up each time.'))); }
     kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
     UI.modal(...kids);
   };
@@ -9053,6 +9068,8 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
     kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
     UI.modal(...kids);
   };
+  // a shell opens the moment you get it
+  RU.reveal = (r) => { Au.sfx('win'); UI.confetti(30); UI.modal(UI.sp(r.sp, 1.8), txt('disp center', r.dup ? tr('{pet} again', { pet: petName(r.sp) }) : tr('{pet} joins your band!', { pet: petName(r.sp) })), txt('dim center', r.dup ? tr('It turns into an echo for {pet}.', { pet: petName(r.sp) }) : tr('Find it in your band.')), key(tr('Nice'), UI.closeModal, 'go wide')); };
   RU.shells = () => {
     const S = Rd.S;
     if (!S.shells) return UI.modal(UI.sp('shell', 1.4), txt('disp', tr('No shells')), txt('dim', tr('Shells are rare. Bosses, some quests, the Songbook and one merchant in Reedwick have them.')), key(tr('Close'), UI.closeModal, 'soft wide'));
@@ -9089,7 +9106,7 @@ H.FONTS = {"tr":[["Baloo 2",800,"d09GMgABAAAAAAVgAA8AAAAACegAAAUGAAGzMwAAAAAAAAA
       grid.appendChild(c);
     }
     const n = R.SONGBOOK.filter((sp) => S.book[sp] === 3).length, kids = [txt('disp big', tr('Songbook')), txt('dim small', tr('The pets of Reed Marsh. Find them all for a shell. {n} of {m} so far.', { n, m: R.SONGBOOK.length })), grid];
-    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { Rd.claimBook(); refresh(); UI.closeModal(); RU.shells(); }, 'gold wide big'));
+    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { const r = Rd.claimBook(); refresh(); UI.closeModal(); if (r) RU.reveal(r); }, 'gold wide big'));
     kids.push(key(tr('Close'), UI.closeModal, 'soft wide'));
     UI.modal(...kids);
   };

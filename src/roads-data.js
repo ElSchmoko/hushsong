@@ -41,7 +41,7 @@
 
   /* ---------- growing ---------- */
   R.petNeed = (lv) => 50 + 30 * lv;
-  R.playerNeed = (lv) => 80 + 60 * lv;
+  R.playerNeed = (lv) => 120 + 100 * lv;
   R.MAX_PET = 30; R.MAX_PLAYER = 20;
   R.EVO_LV = [0, 10, 25];   // pet level a pet needs before each evolution (and the echoes it costs, as in Hushsong)
   R.dinXp = (lv) => 6 + 3 * lv;

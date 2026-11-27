@@ -26,7 +26,7 @@
     const S = Rd.S, G = M.G, out = [], now = G.now, b = G.band;
     if (b) {
       const moving = !!b.to;
-      [['rd_wagon', 1.75, 1.3]].concat(Rd.bandPets().filter(Boolean).reverse().map((p, i, arr) => [p.form, (arr.length - 1 - i) * 0.56, 1])).forEach(([k, dist, size], i) => {
+      Rd.bandPets().filter(Boolean).reverse().map((p, i, arr) => [p.form, (arr.length - 1 - i) * 0.56, 1]).forEach(([k, dist, size], i) => {
         const p = dist ? M.at(dist) : { x: b.x, z: b.z, face: b.face };
         out.push({ key: k, x: p.x, z: p.z, size, hop: moving && k !== 'rd_wagon' ? Math.abs(Math.sin(now * 9 + i * 1.3)) * 0.12 : 0, flip: (p.face || 1) < 0 && k === 'rd_wagon', band: true });
       });
@@ -34,7 +34,6 @@
     for (const g of Rd.liveGroups()) {
       const f = Rd.foes(g), t = g.home, hop = Math.abs(Math.sin(now * 3 + t.q)) * 0.05;
       out.push({ key: f.din[0].id, x: t.x, z: t.z, size: g.guard ? 1.15 : 1.05, hop, pick: { group: g }, flip: true });
-      if (f.pet) out.push({ key: f.pet.sp, x: t.x + 0.5, z: t.z + 0.2, size: 0.75, hop: hop * 0.5, grey: true, pick: { group: g } });
     }
     for (const P of R.PLACES) {
       const t = Rd.poiT(P.id);
@@ -53,7 +52,7 @@
   };
 
   /* ---------- the screen ---------- */
-  let card = null, labels = [], tracker = null, chipEls = null;
+  let card = null, labels = [], tracker = null, chipEls = null, regionLabels = [];
   UI.screens.roads = (root, pr) => {
     if (!Rd.S) Rd.load();
     const S = Rd.S;
@@ -74,10 +73,12 @@
     add(top, home, lv, el('span', 'grow'), chipEls.notes, chipEls.echo); root.appendChild(top);
     tracker = el('button', 'rd-quest'); tracker.type = 'button'; tracker.addEventListener('click', () => { const t = target(); if (t) { M.G.cam.x = t.x; M.G.cam.z = t.z; M.G.follow = false; Au.sfx('tap'); } }); root.appendChild(tracker);
     // bottom: the card and the dock
-    card = el('div', 'rd-card'); root.appendChild(card);
+    card = el('div', 'rd-card'); const bottom = el('div', 'rd-bottom'); root.appendChild(bottom); bottom.appendChild(card);
+    const ctr = el('button', 'rd-centre'); ctr.type = 'button'; ctr.setAttribute('aria-label', tr('Back to the band')); ctr.appendChild(UI.icon('ic_home', 1)); ctr.addEventListener('click', () => { Au.sfx('tap'); M.G.follow = true; M.G.zoom = Math.max(M.G.zoom, 0.8); }); root.appendChild(ctr);
     const dock = el('div', 'rd-dock'), dk = (icon, label, fn, pip) => { const b = el('button', 'rd-dk'); b.type = 'button'; add(b, UI.icon(icon, 1.05), el('span', '', label)); if (pip) b.appendChild(el('span', 'pip', String(pip))); b.addEventListener('click', () => { Au.sfx('tap'); fn(); }); return b; };
-    add(dock, dk('ic_team', tr('Band'), () => UI.go('roadsband', {})), dk('ic_star', tr('Talents'), () => RU.talents(), Rd.points() || 0), dk('ic_record', tr('Songbook'), () => RU.book(), Rd.bookDone() && !S.flags.book ? '!' : 0), dk('ic_shell', tr('Shells'), () => RU.shells(), S.shells || 0), dk('ic_home', tr('Band'), () => { M.G.follow = true; }));
-    dock.lastChild.querySelector('span').textContent = tr('Centre'); root.appendChild(dock);
+    add(dock, dk('ic_team', tr('Band'), () => UI.go('roadsband', {})), dk('ic_star', tr('Talents'), () => RU.talents(), Rd.points() || 0), dk('ic_record', tr('Songbook'), () => RU.book(), Rd.bookDone() && !S.flags.book ? '!' : 0));
+    bottom.appendChild(dock);
+    regionLabels = W.REG_ORDER.map((id) => { const R0 = W.REG[id], l = el('div', 'rd-reg' + (R0.closed ? ' closed' : '')); labelBox.appendChild(l); const t = W.list.filter((u) => u.reg === id && u.kind).sort((a, b) => Math.hypot(a.x - R0.at[0], a.z - R0.at[1]) - Math.hypot(b.x - R0.at[0], b.z - R0.at[1]))[0]; return { id, l, t }; });
     // place names over the map
     labels = R.PLACES.filter((P) => P.cap || P.stage || P.dungeon).map((P) => { const l = el('div', 'rd-lab' + (P.dungeon ? ' dun' : P.stage ? ' boss' : '')); l.textContent = placeName(P); labelBox.appendChild(l); return { P, l }; });
 
@@ -101,8 +102,11 @@
   };
   RU.refresh = refresh;
   const frame = () => {
+    const far = M.G.zoom < 0.55;
+    for (const { id, l, t } of regionLabels) { const p = far && t && M.project(t, 1); if (!p) { l.style.opacity = 0; continue; } l.style.opacity = p.a; l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-50%)`; const R0 = W.REG[id], land = W.list.filter((u) => u.reg === id && u.kind && !u.closed);
+      l.innerHTML = `<b>${tr(R0.n)}</b><span>${R0.closed ? tr('Closed · later preview') : tr('{n}/{m} places · {s} sings', { n: Rd.capCount(), m: R.CAPS.length, s: Math.round((land.reduce((a, u) => a + (u.song || 0), 0) / Math.max(1, land.length)) * 100) + '%' })}</span>`; }
     for (const { P, l } of labels) {
-      const p = M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
+      const p = !far && M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
       if (!p) { l.style.opacity = 0; continue; }
       l.style.opacity = p.a * W.sat((p.y - 60) / 30); l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-100%)`;
       l.classList.toggle('open', !!(Rd.S.caps[P.id] || (P.stage && Rd.S.boss)));
@@ -177,7 +181,7 @@
   UI.flashOut = (fn) => { const f = el('div', 'rd-flash'); document.getElementById('game').appendChild(f); Au.sfx('boss'); setTimeout(() => { fn(); setTimeout(() => f.remove(), 260); }, 260); };
   const bandReady = () => { if (Rd.bandPets().some(Boolean)) return true; UI.toast(tr('Put a pet in your band first.')); return false; };
   const fightCard = (g, ambush) => {
-    const f = Rd.foes(g), hint = f.pet ? tr('A wild {pet} is stuck under the noise. Win, and it may join you ({p} now).', { pet: petName(f.pet.sp), p: Math.round(Rd.joinChance(f.pet.sp, false).total * 100) + '%' }) : g.guard ? tr('It guards {place}.', { place: placeName(Rd.place(g.place)) }) : tr('Din eat songs. Give them one they cannot swallow.');
+    const f = Rd.foes(g), hint = g.guard ? tr('It guards {place}.', { place: placeName(Rd.place(g.place)) }) : tr('Din eat songs. Sometimes a wild pet is stuck with them: beat the Din first and it stops fighting.');
     setCard(dinNames(f), (ambush ? tr('They block the road') + ' · ' : '') + tr('level {n}', { n: g.lv }), hint, [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGroup(g); toBattle(); }, 'coral']]);
   };
   const placeCard = (P) => {
@@ -224,13 +228,14 @@
     }
     kids.push(txt('disp big', out.boss ? tr('Muffle is gone!') : out.capture ? tr('{place} is yours!', { place: placeName(Rd.place(out.capture)) }) : tr('You win!')));
     const rew = box('row wrap center', UI.notes(out.notes), el('span', 'chip', tr('+{n} XP', { n: out.pxp })));
-    if (out.echo) rew.appendChild(UI.echoes(out.echo)); if (out.shell) rew.appendChild(UI.purse('ic_shell', 1, tr('Shells')));
+    if (out.echo) rew.appendChild(UI.echoes(out.echo));
     kids.push(rew);
     if (out.holdNotes) kids.push(txt('small dim center', tr('{n} of those notes came from your holdings.', { n: out.holdNotes })));
     if (out.pups) kids.push(box('rd-lvup row', UI.icon('ic_star', 0.9), txt('small', tr('<b>Player level {n}!</b> A talent point to spend.', { n: S.plv }))));
     const pets = el('div', 'rd-pxp'); for (const r of out.pets.filter((x) => x.band)) { const p = Rd.pet(r.id); if (!p) continue; pets.appendChild(add(el('div', 'rd-pxr'), UI.sp(p.form, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', H.FORMS[p.form].n + ' · ' + tr('Lv {n}', { n: p.lvl })), UI.meter(p.xp / R.petNeed(p.lvl))), r.ups ? el('span', 'chip up', tr('Level up!')) : el('span', 'dim small', '+' + r.xp))); }
     kids.push(pets);
     if (out.item) kids.push(UI.itemRow(out.item));
+    if (out.shellOpen) kids.push(box('rd-lvup row', UI.sp(out.shellOpen.sp, 0.6, { anim: false }), txt('small', out.shellOpen.dup ? tr('<b>A shell!</b> {pet} again: +1 echo for it.', { pet: petName(out.shellOpen.sp) }) : tr('<b>A shell!</b> {pet} joins your band.', { pet: petName(out.shellOpen.sp) }))));
     const after = () => {
       UI.closeModal(); refresh();
       if (done) return done();
@@ -302,7 +307,7 @@
       kids.push(box('rd-brow row', UI.sp(B.art, 0.5, { anim: false }), add(el('div', 'grow'), el('b', '', tr(B.n)), el('div', 'small dim', tr(B.d))), b));
     }
     if (P.smith) { kids.push(txt('label', tr('The smith'))); kids.push(key(tr('Upgrade gear'), () => { UI.closeModal(); RU.smith(); }, 'blue wide')); }
-    if (P.merchant) { kids.push(txt('label', tr('Shell merchant'))); const c = Rd.shellPrice(), b = key(tr('Buy a shell'), () => { if (Rd.buyShell()) { Au.sfx('buy'); UI.closeModal(); refresh(); RU.shells(); } }, 'gold wide'); b.appendChild(UI.purse('ic_note', c)); b.disabled = S.notes < c; kids.push(b, txt('small dim', tr('"Very rare," he says. The price goes up each time.'))); }
+    if (P.merchant) { kids.push(txt('label', tr('Shell merchant'))); const c = Rd.shellPrice(), b = key(tr('Buy a shell'), () => { const r = Rd.buyShell(); if (r) { Au.sfx('buy'); UI.closeModal(); refresh(); RU.reveal(r); } }, 'gold wide'); b.appendChild(UI.purse('ic_note', c)); b.disabled = S.notes < c; kids.push(b, txt('small dim', tr('"Very rare," he says. The price goes up each time.'))); }
     kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
     UI.modal(...kids);
   };
@@ -318,6 +323,8 @@
     kids.push(key(tr('Close'), () => { UI.closeModal(); nextUp(); }, 'soft wide'));
     UI.modal(...kids);
   };
+  // a shell opens the moment you get it
+  RU.reveal = (r) => { Au.sfx('win'); UI.confetti(30); UI.modal(UI.sp(r.sp, 1.8), txt('disp center', r.dup ? tr('{pet} again', { pet: petName(r.sp) }) : tr('{pet} joins your band!', { pet: petName(r.sp) })), txt('dim center', r.dup ? tr('It turns into an echo for {pet}.', { pet: petName(r.sp) }) : tr('Find it in your band.')), key(tr('Nice'), UI.closeModal, 'go wide')); };
   RU.shells = () => {
     const S = Rd.S;
     if (!S.shells) return UI.modal(UI.sp('shell', 1.4), txt('disp', tr('No shells')), txt('dim', tr('Shells are rare. Bosses, some quests, the Songbook and one merchant in Reedwick have them.')), key(tr('Close'), UI.closeModal, 'soft wide'));
@@ -354,7 +361,7 @@
       grid.appendChild(c);
     }
     const n = R.SONGBOOK.filter((sp) => S.book[sp] === 3).length, kids = [txt('disp big', tr('Songbook')), txt('dim small', tr('The pets of Reed Marsh. Find them all for a shell. {n} of {m} so far.', { n, m: R.SONGBOOK.length })), grid];
-    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { Rd.claimBook(); refresh(); UI.closeModal(); RU.shells(); }, 'gold wide big'));
+    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { const r = Rd.claimBook(); refresh(); UI.closeModal(); if (r) RU.reveal(r); }, 'gold wide big'));
     kids.push(key(tr('Close'), UI.closeModal, 'soft wide'));
     UI.modal(...kids);
   };
