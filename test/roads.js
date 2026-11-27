@@ -40,8 +40,17 @@ function play(seed, starter) {
   for (const id of ['mill', 'frog', 'lantern', 'reed']) { for (const g of Rd.GROUPS.filter((g) => g.place === id && g.guard)) tryHard(() => Rd.fightGroup(g), g.id); tryHard(() => Rd.fightKeeper(id), 'keeper ' + id); mark('capture ' + id); grind(3); }
   tryHard(() => Rd.fightGlade(), 'glade');
   tryHard(() => Rd.fightBoss(), 'boss'); mark('boss (quest ' + (Rd.quest() && Rd.quest().id) + ')');
-  return { log, battles, losses, book: R.SONGBOOK.filter((sp) => S.book[sp] === 3).length };
+  // the next two regions: grind on their land, take each place, then the boss
+  for (const reg of ['works', 'dunes']) {
+    if (!Rd.regOpen(reg)) throw new Error(reg + ' did not open');
+    const caps = Rd.capsOf(reg); grind(4);
+    for (const id of caps) { for (const g of Rd.GROUPS.filter((g) => g.place === id && g.guard)) tryHard(() => Rd.fightGroup(g), g.id); tryHard(() => Rd.fightKeeper(id), 'keeper ' + id); S.pos = { q: Rd.poiT(id).q, r: Rd.poiT(id).r }; mark('capture ' + id + ' (quest ' + Rd.quest().id + ')'); grind(3); }
+    const gl = R.PLACES.find((p) => p.reg === reg && p.secret === 'pet'); tryHard(() => Rd.fightGlade(gl.id), gl.id);
+    tryHard(() => Rd.fightBoss(R.REGIONS[reg].stage), 'boss ' + reg); mark('boss ' + reg + ' (quest ' + (Rd.quest() && Rd.quest().id) + ')');
+  }
+  for (const reg in R.BOOKS) Rd.claimBook(reg);
+  return { log, battles, losses, book: Object.values(R.BOOKS).flat().filter((sp) => S.book[sp] === 3).length };
 }
 const runs = +process.argv[2] || 4;
-for (let i = 0; i < runs; i++) { const st = R.STARTERS[i % 4][0]; try { const r = play(100 + i, st); console.log(`\n== ${st}: ${r.battles} battles, ${r.losses} lost, songbook ${r.book}/${R.SONGBOOK.length}`); r.log.forEach((l) => console.log('  ' + l)); } catch (e) { console.log(`\n== ${st}: ${e.stack.split('\n').slice(0, 3).join(' | ')}`); } }
+for (let i = 0; i < runs; i++) { const st = R.STARTERS[i % 4][0]; try { const r = play(100 + i, st); console.log(`\n== ${st}: ${r.battles} battles, ${r.losses} lost, songbook ${r.book}/${Object.values(R.BOOKS).flat().length}`); r.log.forEach((l) => console.log('  ' + l)); } catch (e) { console.log(`\n== ${st}: ${e.stack.split('\n').slice(0, 3).join(' | ')}`); } }
 if (process.env.DBG) { Rd.wipe(); Rd.load(); Rd.chooseStarter('twang'); Rd.S.quest = 3; console.log('allowed patrols in wake', Rd.liveGroups().filter((g) => !g.guard && !g.tut && Rd.allowed(g.home)).map((g) => g.id + ' lv' + g.lv)); }

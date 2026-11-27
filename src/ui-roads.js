@@ -9,7 +9,7 @@
   const petName = (sp) => H.FORMS[sp].n;
 
   /* ---------- what the map shows ---------- */
-  const songOf = (t) => { const S = Rd.S; if (t.closed || !t.kind && !t.owner) return S.boss && !t.closed ? 1 : 0; if (S.boss) return 1; if (t.owner && S.caps[t.owner]) return 1; return S.hum[W.key(t.q, t.r)] ? 0.5 : 0; };
+  const songOf = (t) => { const S = Rd.S, bd = S.bosses[t.reg]; if (t.closed || !t.kind && !t.owner) return bd && !t.closed ? 1 : 0; if (bd) return 1; if (t.owner && S.caps[t.owner]) return 1; return S.hum[W.key(t.q, t.r)] ? 0.5 : 0; };
   const target = () => {
     const S = Rd.S, q = Rd.quest(); if (!q) return null;
     if (q.id === 'walk') return Rd.BEND;
@@ -18,8 +18,9 @@
     if (q.id === 'wake') { const g = Rd.GROUPS.find((x) => x.place === 'hush' && x.guard && Rd.groupLive(x)); return g ? g.home : Rd.poiT('hush'); }
     if (q.id === 'build' || q.id === 'smith') return Rd.poiT('hush');
     if (q.id === 'chapel') return Rd.poiT('chapel');
-    if (q.id === 'marsh') { const here = M.here(); const left = R.CAPS.filter((id) => !S.caps[id]).map((id) => Rd.poiT(id)); return left.sort((a, b) => W.hexDist(a, here) - W.hexDist(b, here))[0] || null; }
-    if (q.id === 'boss') return Rd.poiT('lily');
+    if (q.cap) return Rd.poiT(q.cap);
+    if (q.boss) return Rd.poiT(R.REGIONS[q.boss].stage);
+    if (q.all) { const here = M.here(); const left = Rd.capsOf(q.all).filter((id) => !S.caps[id]).map((id) => Rd.poiT(id)); return left.sort((a, b) => W.hexDist(a, here) - W.hexDist(b, here))[0] || null; }
     return null;
   };
   const sprites = () => {
@@ -39,7 +40,7 @@
       const t = Rd.poiT(P.id);
       if (P.cap || P.stage || P.dungeon) out.push({ key: P.art, x: t.x, z: t.z - 0.4, tile: t, size: P.stage ? 2.4 : 2.2, song: P.dungeon ? (S.chapel.cleared ? 1 : 0) : t.song, pick: { place: P } });
       if (P.cap && !S.caps[P.id] && S.quest >= qIndex('wake')) out.push({ key: P.keeper, x: t.x + 1.05, z: t.z + 0.1, tile: t, size: 1.15, hop: Math.abs(Math.sin(now * 2)) * 0.04, pick: { place: P }, flip: true });
-      if (P.stage && Rd.bossOpen() && !S.boss) out.push({ key: P.boss, x: t.x + 1.1, z: t.z + 0.15, tile: t, size: 1.3, hop: Math.abs(Math.sin(now * 1.5)) * 0.05, pick: { place: P }, flip: true });
+      if (P.stage && Rd.bossOpen(P.reg) && !Rd.bossDone(P.reg)) out.push({ key: P.boss, x: t.x + 1.1, z: t.z + 0.15, tile: t, size: 1.3, hop: Math.abs(Math.sin(now * 1.5)) * 0.05, pick: { place: P }, flip: true });
       if (P.cap && S.caps[P.id]) (S.builds[P.id] || []).forEach((bid, i) => { const o = [[-1.15, 0.35], [1.15, 0.45], [0.1, 1.0]][i]; out.push({ key: R.BUILDS[bid].art, x: t.x + o[0], z: t.z + o[1], tile: t, size: 0.9, song: t.song }); });
       if (P.secret && S.found[P.id + '_seen'] && !S.found[P.id]) {
         if (P.secret === 'page') out.push({ key: 'rd_page', x: t.x, z: t.z, tile: t, size: 0.65, hop: 0.15 + Math.sin(now * 3) * 0.06, pick: { place: P } });
@@ -63,7 +64,7 @@
       M.load(() => { if (UI.cur && UI.cur.name === 'roads') UI.go('roads', pr); }, () => { root.innerHTML = ''; add(root, box('rd-wait', txt('disp', tr('The map needs the internet the first time.')), key(tr('‹ Home'), () => UI.go('home'), 'soft'))); });
       return {};
     }
-    UI.music('camp', 'fen');
+    UI.music('camp', R.REGIONS[Rd.hereReg()].bg);
     const mapBox = el('div', 'rd-map'), labelBox = el('div', 'rd-labels'); add(root, mapBox, labelBox);
     // top: home, player level, purses
     const top = el('div', 'rd-top'); chipEls = {};
@@ -97,19 +98,20 @@
     chipEls.lv.innerHTML = ''; add(chipEls.lv, el('b', '', tr('Lv {n}', { n: S.plv })), UI.meter(S.plv >= R.MAX_PLAYER ? 1 : S.pxp / R.playerNeed(S.plv))); if (Rd.points()) chipEls.lv.appendChild(el('span', 'pip', String(Rd.points())));
     chipEls.notes.querySelector('.pn').textContent = UI.fmt(S.notes); chipEls.echo.querySelector('.pn').textContent = UI.fmt(S.echo);
     const q = Rd.quest(); tracker.innerHTML = '';
-    if (q) { let goal = tr(q.goal); if (q.id === 'marsh') goal += ' · ' + Rd.capCount() + '/' + R.CAPS.length; if (q.id === 'wake') goal += ' · ' + (2 - Rd.guardsLeft('hush')) + '/2'; add(tracker, UI.icon('ic_bang', 0.8), add(el('div', 'grow'), el('b', '', tr(q.n)), el('span', '', goal))); }
+    if (q) { let goal = tr(q.goal); if (q.all) goal += ' · ' + Rd.capCount(q.all) + '/' + Rd.capTotal(q.all); if (q.id === 'wake') goal += ' · ' + (2 - Rd.guardsLeft('hush')) + '/2'; add(tracker, UI.icon('ic_bang', 0.8), add(el('div', 'grow'), el('b', '', tr(q.n)), el('span', '', goal))); }
     tracker.hidden = !q;
   };
   RU.refresh = refresh;
   const frame = () => {
     const far = M.G.zoom < 0.55;
     for (const { id, l, t } of regionLabels) { const p = far && t && M.project(t, 1); if (!p) { l.style.opacity = 0; continue; } l.style.opacity = p.a; l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-50%)`; const R0 = W.REG[id], land = W.list.filter((u) => u.reg === id && u.kind && !u.closed);
-      l.innerHTML = `<b>${tr(R0.n)}</b><span>${R0.closed ? tr('Closed · later preview') : tr('{n}/{m} places · {s} sings', { n: Rd.capCount(), m: R.CAPS.length, s: Math.round((land.reduce((a, u) => a + (u.song || 0), 0) / Math.max(1, land.length)) * 100) + '%' })}</span>`; }
+      const shut = !Rd.regOpen(id); l.classList.toggle('closed', shut);
+      l.innerHTML = `<b>${tr(R0.n)}</b><span>${shut ? (R.REGIONS[id] ? tr('Closed · beat the boss before it') : tr('Closed · later preview')) : tr('{n}/{m} places · {s} sings', { n: Rd.capCount(id), m: Rd.capTotal(id), s: Math.round((land.reduce((a, u) => a + (u.song || 0), 0) / Math.max(1, land.length)) * 100) + '%' })}</span>`; }
     for (const { P, l } of labels) {
       const p = !far && M.project(Rd.poiT(P.id), P.stage ? 2.7 : 2.4);
       if (!p) { l.style.opacity = 0; continue; }
       l.style.opacity = p.a * W.sat((p.y - 60) / 30); l.style.transform = `translate(${p.x}px,${p.y}px) translate(-50%,-100%)`;
-      l.classList.toggle('open', !!(Rd.S.caps[P.id] || (P.stage && Rd.S.boss)));
+      l.classList.toggle('open', !!(Rd.S.caps[P.id] || (P.stage && Rd.bossDone(P.reg))));
     }
   };
 
@@ -140,7 +142,7 @@
     const g = Rd.liveGroups().find((x) => x.home === t); if (g) return tapGroup(g);
     if (t.poi && (t.poi.cap || t.poi.stage || t.poi.dungeon || (t.poi.secret && Rd.S.found[t.poi.id + '_seen'] && !Rd.S.found[t.poi.id]))) return tapPlace(Rd.place(t.poi.id));
     if (!Rd.allowed(t)) {
-      if (t.closed) return setCard(tr(W.REG[t.reg].n), tr('Closed · thick noise'), tr('This land is still deep in noise. Its road opens in a later preview.'));
+      if (t.closed) return closedCard(t);
       if (W.walk(t)) return setCard(tr('Not yet'), areaName(t), tr('Tilly wants you near Hushwick until it is awake.'));
       return setCard(kindName(t), areaName(t) + ' · ' + quietName(t), tr((t.reg === 'dunes' ? W.KIND_DUNES : W.KIND)[t.kind].d || W.KIND[t.kind].d));
     }
@@ -152,7 +154,9 @@
     const n = nextTo(g.home); if (!n) return UI.toast(tr('No way through from here.'));
     const f = Rd.foes(g); setCard(dinNames(f), tr('Din · level {n}', { n: g.lv }), tr('On the way…')); go(n, { group: g });
   };
-  const tapPlace = (P) => {
+  const closedCard = (t) => { const prev = Object.keys(R.REGIONS).find((k) => R.REGIONS[k].opens === t.reg);
+    return setCard(tr(W.REG[t.reg].n), tr('Closed · thick noise'), prev ? tr('This land is still deep in noise. It thins once {reg} sings and its boss is beaten.', { reg: tr(W.REG[prev].n) }) : tr('This land is still deep in noise. Its road opens in a later preview.')); };
+  const tapPlace = (P) => { if (Rd.poiT(P.id).closed) return closedCard(Rd.poiT(P.id));
     const t = Rd.poiT(P.id);
     if (P.secret && !Rd.allowed(t)) return setCard(tr(P.n), tr('Secret'), tr('Not yet.'));
     if (M.here() === t && !M.moving()) return onArrive(t, { place: P });
@@ -195,17 +199,17 @@
       return setCard(tr('Loud {din}', { din: kd.n }), tr('Keeper of {place} · level {n}', { place: placeName(P), n: P.lv[1] }), tr('Win, and {place} is yours.', { place: placeName(P) }), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightKeeper(P.id); toBattle(); }, 'coral']]);
     }
     if (P.stage) {
-      if (S.boss) return setCard(placeName(P), tr('Boss stage · singing'), tr('Muffle is gone. The frogs have taken the stage.'));
-      if (!Rd.bossOpen()) return setCard(placeName(P), tr('Boss stage · closed'), tr('A wall of fog. It lifts when every place in Reed Marsh is yours ({n}/{m}).', { n: Rd.capCount(), m: R.CAPS.length }));
-      return setCard(H.DIN[P.boss].n, tr('Boss · level {n}', { n: P.lv[0] }), tr('Muffle has sat on this marsh for years. Bring your best three.'), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightBoss(); toBattle(); }, 'coral']]);
+      if (Rd.bossDone(P.reg)) return setCard(placeName(P), tr('Boss stage · singing'), tr(P.doneD));
+      if (!Rd.bossOpen(P.reg)) return setCard(placeName(P), tr('Boss stage · closed'), tr('A wall of fog. It lifts when every place in {reg} is yours ({n}/{m}).', { reg: tr(W.REG[P.reg].n), n: Rd.capCount(P.reg), m: Rd.capTotal(P.reg) }));
+      return setCard(H.DIN[P.boss].n, tr('Boss · level {n}', { n: P.lv[0] }), tr(P.bossD), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightBoss(P.id); toBattle(); }, 'coral']]);
     }
     if (P.dungeon) {
       if (S.quest < qIndex('wake') + 1) return setCard(placeName(P), tr('Dungeon · closed'), tr('Water fills the doorway. Come back once Hushwick is awake.'));
       return setCard(placeName(P), tr('Dungeon') + (S.chapel.cleared ? ' · ' + tr('cleared') : ''), tr('A side-scrolling run: Din in the dark, a chest or two, and something that still sings at the end.'), [[tr('Go in'), () => { if (!bandReady()) return; UI.flashOut(() => UI.go('roadschapel', {})); }, 'gold']]);
     }
     if (P.secret === 'pet') {
-      if (S.found.glade) return setCard(tr(P.n), tr('Secret · found'), tr('Just a stump and some flowers now.'));
-      return setCard(tr('Wild {pet}', { pet: petName(P.pet) }), tr('Secret · level {n}', { n: P.lv }), tr('A {pet} plays alone in the glade, all grey. Win it over.', { pet: petName(P.pet) }), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGlade(); toBattle(); }, 'coral']]);
+      if (S.found[P.id]) return setCard(tr(P.n), tr('Secret · found'), tr('Just a stump and some flowers now.'));
+      return setCard(tr('Wild {pet}', { pet: petName(P.pet) }), tr('Secret · level {n}', { n: P.lv }), tr('A {pet} plays alone in the glade, all grey. Win it over.', { pet: petName(P.pet) }), [[tr('Fight'), () => { if (!bandReady()) return; Rd.fightGlade(P.id); toBattle(); }, 'coral']]);
     }
     if (P.secret === 'page') return takePage(P);
     return idle();
@@ -240,7 +244,7 @@
       UI.closeModal(); refresh();
       if (done) return done();
       if (out.capture) return capture(out.capture);
-      if (out.boss) return UI.go('roadsstory', { scene: 'finale' });
+      if (out.boss) return UI.go('roadsstory', { scene: out.bossReg === 'marsh' ? 'finale' : 'finale_' + out.bossReg });
       idle(); nextUp();
     };
     if (out.wild) {
@@ -282,7 +286,8 @@
         key(tr('Continue'), () => { UI.closeModal(); nextUp(); }, 'go wide big'));
     }
     const q = Rd.quest(); if (q && !Rd.S.flags['talk_' + q.id]) RU.talk();
-    if (q && q.id === 'marsh' && Rd.bossOpen() && !Rd.S.flags.bossopen) { Rd.S.flags.bossopen = 1; Rd.save(); return UI.go('roadsstory', { scene: 'bossopen' }); }
+    const bf = q && q.all && (q.all === 'marsh' ? 'bossopen' : 'bossopen_' + q.all);
+    if (bf && Rd.bossOpen(q.all) && !Rd.S.flags[bf]) { Rd.S.flags[bf] = 1; Rd.save(); return UI.go('roadsstory', { scene: bf }); }
   };
   RU.nextUp = nextUp;
   RU.talk = () => {
@@ -354,14 +359,18 @@
 
   /* ---------- the songbook ---------- */
   RU.book = () => {
-    const S = Rd.S, grid = el('div', 'rd-book');
-    for (const sp of R.SONGBOOK) {
-      const st = S.book[sp] || 0, c = el('div', 'rd-bk s' + st);
-      add(c, UI.sp(sp, 0.7, { anim: false, variant: st === 0 ? 'sil' : '' }), el('b', '', st ? petName(sp) : '???'), el('span', 'small', [tr('Not seen'), tr('Seen'), tr('Met'), tr('In your band')][st]));
-      grid.appendChild(c);
+    const S = Rd.S, kids = [txt('disp big', tr('Songbook')), txt('dim small', tr('The pets of each region. Find them all for a shell.'))];
+    for (const reg of Object.keys(R.BOOKS)) {
+      if (!Rd.regOpen(reg)) continue;
+      const list = R.BOOKS[reg], grid = el('div', 'rd-book'), n = list.filter((sp) => S.book[sp] === 3).length;
+      for (const sp of list) {
+        const st = S.book[sp] || 0, c = el('div', 'rd-bk s' + st);
+        add(c, UI.sp(sp, 0.7, { anim: false, variant: st === 0 ? 'sil' : '' }), el('b', '', st ? petName(sp) : '???'), el('span', 'small', [tr('Not seen'), tr('Seen'), tr('Met'), tr('In your band')][st]));
+        grid.appendChild(c);
+      }
+      kids.push(txt('label', tr(W.REG[reg].n) + ' · ' + n + '/' + list.length), grid);
+      if (Rd.bookDone(reg) && !S.flags[Rd.bookFlag(reg)]) kids.push(key(tr('Claim a shell'), () => { const r = Rd.claimBook(reg); refresh(); UI.closeModal(); if (r) RU.reveal(r); }, 'gold wide big'));
     }
-    const n = R.SONGBOOK.filter((sp) => S.book[sp] === 3).length, kids = [txt('disp big', tr('Songbook')), txt('dim small', tr('The pets of Reed Marsh. Find them all for a shell. {n} of {m} so far.', { n, m: R.SONGBOOK.length })), grid];
-    if (Rd.bookDone() && !S.flags.book) kids.push(key(tr('Claim a shell'), () => { const r = Rd.claimBook(); refresh(); UI.closeModal(); if (r) RU.reveal(r); }, 'gold wide big'));
     kids.push(key(tr('Close'), UI.closeModal, 'soft wide'));
     UI.modal(...kids);
   };

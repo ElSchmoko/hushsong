@@ -15,7 +15,7 @@
   Object.assign(W, { hash, sm, sat, vnoise, fbm });
 
   // ---------- hexes (pointy top, circumradius 1) ----------
-  const SQ3 = Math.sqrt(3), RAD = 27;
+  const SQ3 = Math.sqrt(3), RAD = 35;
   const hexToXZ = (q, r) => [SQ3 * (q + r / 2), 1.5 * r];
   function xzToHex(x, z) {
     const q = (SQ3 / 3) * x - z / 3, r = (2 / 3) * z;
@@ -33,11 +33,11 @@
   W.REG = {
     marsh: { n: 'Reed Marsh', at: [-1, 3], spread: 260, bias: -0.035, amp: 0.85, music: [0, 4, 7, 11],
       pal: { water: '#5ccfe0', shore: '#ead58c', low: '#9ede6a', forest: '#5cc472', hill: '#b6d66a', mount: '#a3a08a', wall: '#7c6c4c', tree: '#3fae62', tree2: '#7fd86a', grass: '#6fc456', rock: '#b8b4a0' } },
-    works: { n: 'Bell Foundry', at: [27, -9], spread: 60, bias: 0.0, amp: 1.0, music: [0, 3, 7, 10], closed: true,
+    works: { n: 'Bell Foundry', at: [36, -12], spread: 150, bias: 0.0, amp: 1.0, music: [0, 3, 7, 10], closed: true,
       pal: { water: '#62bfe0', shore: '#f5dc9c', low: '#ffd06e', forest: '#f0a24e', hill: '#f2b05a', mount: '#b0786a', wall: '#9a5a40', tree: '#e0783e', tree2: '#ffb050', grass: '#e8b24e', rock: '#c49a86' } },
-    ridge: { n: 'Snowy Ridge', at: [-10, -27], spread: 70, bias: 0.11, amp: 1.25, music: [0, 5, 7, 12], closed: true,
+    ridge: { n: 'Snowy Ridge', at: [-13, -37], spread: 150, bias: 0.11, amp: 1.25, music: [0, 5, 7, 12], closed: true,
       pal: { water: '#7ad4f0', shore: '#e4ecdc', low: '#bdeccd', forest: '#7fd0ae', hill: '#a6cfc0', mount: '#9aa6cc', wall: '#6e7898', tree: '#3d9a86', tree2: '#5cbca0', grass: '#8fd4ae', rock: '#b4bcd8' } },
-    dunes: { n: 'Windy Dunes', at: [18, 27], spread: 60, bias: 0.035, amp: 0.55, music: [0, 2, 7, 9], closed: true,
+    dunes: { n: 'Windy Dunes', at: [22, 34], spread: 150, bias: 0.035, amp: 0.55, music: [0, 2, 7, 9], closed: true,
       pal: { water: '#4fd6d0', shore: '#fbe6a8', low: '#f7d488', forest: '#e6c070', hill: '#f2b874', mount: '#e08a5a', wall: '#b0603e', tree: '#4fb36a', tree2: '#8fd07a', grass: '#d8b860', rock: '#d89a6e' } },
   };
   W.REG_ORDER = ['marsh', 'works', 'ridge', 'dunes'];
@@ -155,15 +155,19 @@
   // Places go where they fit: each spec names a spot and what kind of ground it wants. Roads then join them up.
   W.place = (specs, links) => {
     W.POI = [];
-    for (const s of specs) { const t = W.near(s.at[0], s.at[1], W.FIT[s.fit] || null); if (!t) continue; const p = Object.assign({}, s, { t, q: t.q, r: t.r }); t.poi = p; W.POI.push(p); }
+    // places and roads are laid out over closed land too: it opens later
+    for (const t of W.list) t.closed = false;
+    for (const s of specs) { const fit = W.FIT[s.fit], reg = s.reg || 'marsh', t = W.near(s.at[0], s.at[1], (u) => u.reg === reg && (!fit || fit(u))); if (!t) continue; const p = Object.assign({}, s, { t, q: t.q, r: t.r }); t.poi = p; W.POI.push(p); }
     W.poi = (id) => W.POI.find((p) => p.id === id);
     const roadCost = (t) => (t.kind === 4 ? 3 : t.kind === 3 ? 1.6 : 1) + (t.river.length ? 4 : 0);
     const link = (a, b) => { const p = W.path(a, b, roadCost); if (!p) return false; let prev = a; for (const t of p) { if (!prev.road.includes(t)) { prev.road.push(t); t.road.push(prev); } prev = t; } return true; };
     W.roadsOk = links.map(([a, b]) => link(W.poi(a).t, W.poi(b).t));
     // every tile belongs to the nearest place you can capture: that is its patch of land
     const owners = W.POI.filter((p) => p.cap);
-    for (const t of W.list) { let best = null, bd = 1e9; for (const p of owners) { const d = Math.hypot(t.x - p.t.x, t.z - p.t.z); if (d < bd) { bd = d; best = p; } } t.owner = !t.closed && best ? best.id : null; }
+    for (const t of W.list) { let best = null, bd = 1e9; for (const p of owners) { if (p.t.reg !== t.reg) continue; const d = Math.hypot(t.x - p.t.x, t.z - p.t.z); if (d < bd) { bd = d; best = p; } } t.owner = best ? best.id : null; }
   };
+  // which closed regions are open now (the game opens them one boss at a time)
+  W.setOpen = (open) => { for (const t of W.list) t.closed = !!W.REG[t.reg].closed && !open[t.reg]; };
   const byNb = (f) => (t) => W.nbs(t).some(f);
   W.FIT = {
     flat: (t) => t.kind >= 2 && t.kind <= 3,
