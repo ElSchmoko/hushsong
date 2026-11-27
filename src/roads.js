@@ -8,16 +8,18 @@
   /* ---------- the save ---------- */
   Rd.fresh = () => ({ v: 1, started: 0, pets: [], band: [null, null, null], nextId: 1, items: [], nextItem: 1, notes: 0, echo: 0, petEcho: {}, seen: {}, shells: 0, bought: 0,
     plv: 1, pxp: 0, talents: {}, quest: 0, caps: {}, builds: {}, book: {}, meets: {}, groups: {}, gen: 1, hum: {}, found: {}, pos: null, lastVenue: 'hush',
-    chapel: { room: 0, cleared: 0, runs: 0 }, fight: null, flags: {}, wins: 0, boss: 0 });
+    chapel: { room: 0, cleared: 0, runs: 0 }, fight: null, flags: {}, wins: 0, boss: 0, bosses: {}, open: {} });
   Rd.load = () => {
     let S = null; try { S = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { S = null; }
     if (!S || S.v !== 1) S = Rd.fresh();
     const d = Rd.fresh(); for (const k in d) if (S[k] == null) S[k] = d[k];
-    Rd.S = S; Rd.world(); return S;
+    // saves from before the new regions: Muffle beaten means the foundry is open
+    if (S.boss && !S.bosses.marsh) { S.bosses.marsh = 1; S.open.works = 1; const i = R.QUESTS.findIndex((q) => q.id === 'done'); if (S.quest >= i) S.quest = R.QUESTS.findIndex((q) => q.id === 'east'); }
+    Rd.S = S; Rd.world(); W.setOpen(S.open); return S;
   };
   let saveT = 0;
   Rd.save = () => { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(Rd.S)); } catch (e) { /* storage unavailable */ } }, 100); };
-  Rd.wipe = () => { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } Rd.S = Rd.fresh(); Rd.world(); return Rd.S; };
+  Rd.wipe = () => { try { localStorage.removeItem(KEY); } catch (e) { /* ignore */ } Rd.S = Rd.fresh(); Rd.world(); W.setOpen({}); return Rd.S; };
 
   /* ---------- the world: built once, then the patrols are laid out on it ---------- */
   let built = false;
@@ -31,7 +33,7 @@
     for (const P of R.PLACES.filter((p) => p.cap)) {
       const place = W.poi(P.id), land = W.list.filter((t) => W.walk(t) && t.owner === P.id);
       pick(land.filter((t) => { const d = W.hexDist(t, place.t); return d >= 2 && d <= 3; }), 2, 11, 2).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_g' + i, place: P.id, guard: 1, home: t, lv: P.lv[1] }));
-      pick(land.filter((t) => W.hexDist(t, place.t) >= (P.id === 'hush' ? 3 : 4) && (P.id !== 'hush' || W.hexDist(t, place.t) <= 5)), P.id === 'hush' ? 3 : 4, 29, 3).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_p' + i, place: P.id, home: t, lv: P.lv[0] + (i % (P.lv[1] - P.lv[0] + 1)) }));
+      pick(land.filter((t) => W.hexDist(t, place.t) >= (P.id === 'hush' ? 3 : 4) && (P.id !== 'hush' || W.hexDist(t, place.t) <= 5)), P.id === 'hush' ? 4 : 7, 29, 2).forEach((t, i) => Rd.GROUPS.push({ id: P.id + '_p' + i, place: P.id, home: t, lv: P.lv[0] + (i % (P.lv[1] - P.lv[0] + 1)), spare: i >= (P.id === 'hush' ? 2 : 3) }));
     }
     // the two tutorial fights, on the road out of Hushwick
     const hush = W.poi('hush').t, bend = W.list.filter((t) => t.road.length && W.walk(t) && W.hexDist(t, hush) === 3 && !taken.has(t))[0] || W.near(hush.x + 4, hush.z, (t) => W.hexDist(t, hush) === 3);
@@ -42,6 +44,10 @@
   Rd.group = (id) => Rd.GROUPS.find((g) => g.id === id);
   Rd.place = (id) => R.PLACES.find((p) => p.id === id);
   Rd.poiT = (id) => W.poi(id).t;
+  Rd.regOpen = (reg) => !W.REG[reg].closed || !!Rd.S.open[reg];
+  Rd.bossDone = (reg) => !!Rd.S.bosses[reg];
+  Rd.hereReg = () => { const S = Rd.S, t = S.pos && W.at(S.pos.q, S.pos.r); return t ? t.reg : 'marsh'; };
+  Rd.curReg = () => { const q = Rd.quest(); return (q && (q.all || q.boss || (q.cap && Rd.place(q.cap).reg))) || Rd.hereReg(); };
 
   /* What a patrol holds right now: a few Din and maybe a wild pet. It changes each time patrols come back (after a rest). */
   const groundOf = (t) => (W.nbs(t).some((n) => n.kind === 0) || t.kind === 1 ? 'shore' : t.kind === 3 ? 'woods' : t.kind === 4 ? 'hills' : 'meadow');
@@ -50,16 +56,17 @@
     if (g.fixed) { const f = g.fixed; return { din: f.din.map((id) => ({ id, lvl: f.lv })), pet: f.pet ? { sp: f.pet, lvl: f.petLv } : null }; }
     const rnd = H.rng(W.hash(g.home.q * 31 + gen * 7, g.home.r * 17 + gen) * 1e9), P = Rd.place(g.place), n = g.guard ? 2 + (g.lv >= 4 ? 1 : 0) : g.lv <= 2 ? 1 + Math.floor(rnd() * 2) : 2 + Math.floor(rnd() * 2);
     const din = Array.from({ length: n }, () => ({ id: P.din[Math.floor(rnd() * P.din.length)], lvl: Math.max(1, g.lv - (rnd() < 0.4 ? 1 : 0)) }));
-    let pet = null; if (!g.guard && rnd() < R.WILD_CHANCE) { const pool = R.WILD[groundOf(g.home)]; pet = { sp: pool[Math.floor(rnd() * pool.length)], lvl: g.lv }; }
-    return { din, pet };
+    const have = S.pets.length; if (have < 3 && rnd() > 0.1) din.length = Math.min(din.length, Math.max(1, have));
+    return { din, pet: null };
   };
   // A patrol is out on the map unless it was beaten since the last rest. Guards stay beaten; tutorial fights only show during their quest.
   Rd.groupLive = (g) => {
     const S = Rd.S, st = S.groups[g.id];
     if (g.tut) { const q = Rd.quest(); return !(st && st.beaten) && q && (g.id === 'tut1' ? q.id === 'fight' : q.id === 'friend'); }
-    if (S.quest < 3) return false;   // the first three quests: only their own fights are out
+    if (S.quest < 3 || g.home.closed) return false;   // the first three quests: only their own fights are out
     if (g.guard && S.caps[g.place]) return false;
     if (Rd.fenced() && W.hexDist(g.home, Rd.poiT('hush')) > Rd.quest().fence) return false;
+    if (g.spare && !(st && st.on)) return false;
     return !(st && st.beaten);
   };
   Rd.liveGroups = () => Rd.GROUPS.filter(Rd.groupLive);
@@ -79,7 +86,10 @@
 
   /* ---------- holdings, buildings and talents: what they add up to ---------- */
   Rd.has = (t) => !!Rd.S.talents[t];
-  Rd.capCount = () => R.CAPS.filter((id) => Rd.S.caps[id]).length;
+  Rd.capsOf = (reg) => R.PLACES.filter((p) => p.cap && p.reg === reg).map((p) => p.id);
+  Rd.capCount = (reg) => Rd.capsOf(reg || Rd.curReg()).filter((id) => Rd.S.caps[id]).length;
+  Rd.capTotal = (reg) => Rd.capsOf(reg || Rd.curReg()).length;
+  Rd.capAll = () => R.CAPS.filter((id) => Rd.S.caps[id]).length;
   Rd.bonus = () => {
     const S = Rd.S, b = { xp: 0, hp: 0, poise: 0, tempo: 0, join: 0, notes: 0 };
     for (const id of R.CAPS) if (S.caps[id]) {
@@ -88,8 +98,8 @@
     }
     if (Rd.has('neighbour')) b.notes = Math.round(b.notes * 1.5);
     if (Rd.has('kind')) b.join += 0.05;
-    if (Rd.has('crier')) { b.poise += Rd.capCount(); b.hp += 0.02 * Rd.capCount(); }
-    if (S.boss) b.hp += 0.05;   // the region's song, once Muffle is gone
+    if (Rd.has('crier')) { b.poise += Rd.capAll(); b.hp += 0.02 * Rd.capAll(); }
+    b.hp += 0.05 * Object.keys(S.bosses).length;   // each region's song, once its boss is gone
     return b;
   };
   Rd.buildCost = (bid) => Math.round(R.BUILDS[bid].cost * (Rd.has('hands') ? 0.75 : 1));
@@ -116,16 +126,17 @@
 
   /* ---------- battles ---------- */
   // fight: what is about to be fought. kind: group, keeper, boss, chapel, glade.
-  Rd.fightGroup = (g) => { const f = Rd.foes(g); Rd.S.fight = { kind: 'group', id: g.id, din: f.din, pet: f.pet }; Rd.save(); };
+  // A wild pet is never shown on the map: it may turn up with the Din when the fight starts.
+  Rd.fightGroup = (g) => { const f = Rd.foes(g); let pet = f.pet; if (!pet && !g.guard && !g.fixed && Math.random() < R.WILD_CHANCE) { const pool = R.WILD[g.home.reg][groundOf(g.home)]; pet = { sp: pool[Math.floor(Math.random() * pool.length)], lvl: g.lv }; if (Rd.S.pets.length < 3 && f.din.length > 1) f.din.pop(); } Rd.S.fight = { kind: 'group', id: g.id, din: f.din, pet }; Rd.save(); };
   Rd.fightKeeper = (placeId) => { const P = Rd.place(placeId); Rd.S.fight = { kind: 'keeper', id: placeId, din: [{ id: P.keeper, lvl: P.lv[1], loud: 1 }, { id: P.din[0], lvl: P.lv[0] }] }; Rd.save(); };
-  Rd.fightBoss = () => { const P = Rd.place('lily'); Rd.S.fight = { kind: 'boss', id: 'lily', boss: 1, din: [{ id: P.boss, lvl: P.lv[0] }].concat(P.adds.map((a) => ({ id: a, lvl: P.lv[1] }))) }; Rd.save(); };
-  Rd.fightGlade = () => { const P = Rd.place('glade'); Rd.S.fight = { kind: 'glade', id: 'glade', din: [], pet: { sp: P.pet, lvl: P.lv, sure: !Rd.owns(P.pet) } }; Rd.save(); };
+  Rd.fightBoss = (id) => { const P = Rd.place(id || 'lily'); Rd.S.fight = { kind: 'boss', id: P.id, boss: 1, din: [{ id: P.boss, lvl: P.lv[0] }].concat(P.adds.map((a) => ({ id: a, lvl: P.lv[1] }))) }; Rd.save(); };
+  Rd.fightGlade = (id) => { const P = Rd.place(id || 'glade'); Rd.S.fight = { kind: 'glade', id: P.id, din: [], pet: { sp: P.pet, lvl: P.lv, sure: !Rd.owns(P.pet) } }; Rd.save(); };
   Rd.fightRoom = (i) => { const rm = R.CHAPEL.rooms[i]; Rd.S.fight = rm.t === 'boss' ? { kind: 'chapel', room: i, boss: 1, din: [{ id: rm.boss, lvl: rm.lv }].concat(rm.adds.map((a) => ({ id: a, lvl: rm.lv - 1 }))) }
     : rm.t === 'pet' ? { kind: 'chapel', room: i, din: [], pet: { sp: rm.pet, lvl: rm.lv, sure: !Rd.owns(rm.pet) } }
       : { kind: 'chapel', room: i, din: rm.din.map((id, k) => ({ id, lvl: rm.lv, loud: rm.loud && k === 0 })) }; Rd.save(); };
   Rd.stage = () => {
-    const S = Rd.S, f = S.fight, t = S.pos && W.at(S.pos.q, S.pos.r), sing = !!(S.boss || (t && t.owner && S.caps[t.owner]) || (f && f.kind === 'chapel' && S.chapel.cleared));
-    return { region: f && f.kind === 'chapel' ? 'caves' : 'fen', boss: !!(f && f.boss), level: f ? Math.max(...f.din.map((d) => d.lvl), f.pet ? f.pet.lvl : 1) : 1, sing };
+    const S = Rd.S, f = S.fight, t = S.pos && W.at(S.pos.q, S.pos.r), reg = t ? t.reg : 'marsh', sing = !!(S.bosses[reg] || (t && t.owner && S.caps[t.owner]) || (f && f.kind === 'chapel' && S.chapel.cleared));
+    return { region: f && f.kind === 'chapel' ? 'caves' : R.REGIONS[reg].bg, boss: !!(f && f.boss), level: f ? Math.max(...f.din.map((d) => d.lvl), f.pet ? f.pet.lvl : 1) : 1, sing };
   };
   Rd.startBattle = (rnd) => {
     const S = Rd.S, f = S.fight, b = Rd.bonus(), pets = Rd.bandPets();
@@ -135,7 +146,9 @@
     const live = pets.filter(Boolean), ens = live.length === 3 ? H.ensembleOf(live.map((p) => H.SPECIES[Rd.species(p)].family)) : null;
     const battle = new H.Battle({ allies, enemies, rng: rnd, ensemble: ens ? ens.id : null });
     // note who falls in which order: a wild pet is easier to win over once its Din are beaten
-    battle.fallOrder = []; const emit = battle.emit.bind(battle); battle.emit = (e) => { if (e.t === 'fall') battle.fallOrder.push(e.u); return emit(e); };
+    battle.fallOrder = []; const emit = battle.emit.bind(battle);
+    battle.emit = (e) => { emit(e); if (e.t !== 'fall') return; battle.fallOrder.push(e.u); const foes = battle.units.filter((u) => u.side === 1);
+      if (foes.some((u) => u.wild && u.alive) && foes.every((u) => u.wild || !u.alive)) for (const u of foes) if (u.wild && u.alive) { u.alive = false; u.hp = 0; u.calmed = true; battle.calmed = true; emit({ t: 'fall', u: u.uid }); } };
     return battle;
   };
   // The result of a fight. Returns everything the result sheet shows.
@@ -151,12 +164,12 @@
     const inBand = Rd.bandPets().filter(Boolean);
     for (const p of S.pets) { const g = inBand.includes(p) ? xp : Rd.has('warmup') ? Math.round(xp / 2) : 0; if (!g) continue; const ups = petLevelUp(p, g); out.pets.push({ id: p.id, xp: g, ups, band: inBand.includes(p) }); }
     S.notes += out.notes;
-    out.pxp = Math.round(f.din.reduce((a, d) => a + d.lvl * 3 * mult(d), 0) + (f.pet ? f.pet.lvl * 3 : 0)); out.pups = Rd.gainPlayer(out.pxp);
+    out.pxp = Math.round(f.din.reduce((a, d) => a + d.lvl * 1.5 * mult(d), 0) + (f.pet ? f.pet.lvl * 1.5 : 0)); out.pups = Rd.gainPlayer(out.pxp);
     if (rnd() < R.DROP) out.item = Rd.addItem(rnd() < 0.8 ? 'c' : 'r', rnd);
     // a wild pet: maybe it joins
     if (f.pet) {
       const sp = f.pet.sp, wildU = battle && battle.units.find((u) => u.wild), din = battle ? battle.units.filter((u) => u.side === 1 && !u.wild) : [];
-      const order = battle ? battle.fallOrder : [], dinFirst = !!wildU && din.length > 0 && din.every((u) => order.indexOf(u.uid) >= 0 && order.indexOf(u.uid) < order.indexOf(wildU.uid));
+      const dinFirst = !!(battle && battle.calmed);
       const tutorial = f.kind === 'group' && f.id === 'tut2';
       const ch = Rd.joinChance(sp, dinFirst), sure = tutorial || f.pet.sure, joined = sure || rnd() < ch.total;
       out.wild = { sp, lvl: f.pet.lvl, chance: sure ? 1 : ch.total, parts: ch.parts, joined, sure };
@@ -164,10 +177,11 @@
       else S.meets[sp] = (S.meets[sp] || 0) + 1;
     }
     // what the fight was for
-    if (f.kind === 'group') { const st = (S.groups[f.id] = S.groups[f.id] || { gen: S.gen }); st.beaten = 1; }
-    if (f.kind === 'keeper') { S.caps[f.id] = 1; out.capture = f.id; S.lastVenue = f.id; out.pups += Rd.gainPlayer(80); out.pxp += 80; }
-    if (f.kind === 'boss') { S.boss = 1; out.boss = true; S.shells += 1; out.shell = 1; S.echo += 3; out.echo = 3; }
-    if (f.kind === 'glade') { S.found.glade = 1; }
+    if (f.kind === 'group') { const st = (S.groups[f.id] = S.groups[f.id] || { gen: S.gen }); st.beaten = 1; const g0 = Rd.group(f.id);
+      if (g0 && !g0.guard && !g0.tut) { const here = S.pos && W.at(S.pos.q, S.pos.r), opts = Rd.GROUPS.filter((g) => !g.guard && !g.tut && g !== g0 && !g.home.closed && g.home.reg === g0.home.reg && !Rd.groupLive(g) && (!here || W.hexDist(g.home, here) >= 3)); const n = opts[Math.floor(rnd() * opts.length)]; if (n) S.groups[n.id] = { gen: ++S.gen, beaten: 0, on: 1 }; } }
+    if (f.kind === 'keeper') { S.caps[f.id] = 1; out.capture = f.id; S.lastVenue = f.id; out.pups += Rd.gainPlayer(50); out.pxp += 50; }
+    if (f.kind === 'boss') { const reg = Rd.place(f.id).reg, nx = R.REGIONS[reg].opens; S.bosses[reg] = 1; if (reg === 'marsh') S.boss = 1; if (nx) { S.open[nx] = 1; W.setOpen(S.open); out.opens = nx; } out.boss = true; out.bossReg = reg; S.shells += 1; out.shellOpen = Rd.openShell(rnd); S.echo += 3; out.echo = 3; }
+    if (f.kind === 'glade') { S.found[f.id] = 1; }
     if (f.kind === 'chapel') { S.chapel.room = f.room + 1; out.chapelNext = S.chapel.room; }
     Rd.check('battle', out); Rd.save(); return out;
   };
@@ -206,7 +220,7 @@
 
   /* ---------- shells ---------- */
   Rd.shellPrice = () => Math.round(R.SHELL_PRICE * (1 + R.SHELL_STEP * Rd.S.bought));
-  Rd.buyShell = () => { const S = Rd.S, c = Rd.shellPrice(); if (S.notes < c) return false; S.notes -= c; S.bought++; S.shells++; return true; };
+  Rd.buyShell = () => { const S = Rd.S, c = Rd.shellPrice(); if (S.notes < c) return null; S.notes -= c; S.bought++; S.shells++; const r = Rd.openShell(); Rd.save(); return r; };
   Rd.openShell = (rnd) => {
     const S = Rd.S; if (S.shells <= 0) return null; S.shells--;
     const sp = H.SPECIES_ORDER[Math.floor((rnd || Math.random)() * H.SPECIES_ORDER.length)];
@@ -231,15 +245,16 @@
   Rd.takePage = (id) => { const S = Rd.S; if (S.found[id]) return null; S.found[id] = 1; S.echo += 1; S.notes += 30; const ups = Rd.gainPlayer(30); Rd.save(); return { echo: 1, notes: 30, pxp: 30, ups }; };
   Rd.rest = (placeId) => {
     const S = Rd.S; S.lastVenue = placeId; S.gen++;
-    for (const g of Rd.GROUPS) if (!g.guard && !g.tut && S.groups[g.id]) S.groups[g.id] = { gen: S.gen, beaten: 0 };
+    for (const g of Rd.GROUPS) if (!g.guard && !g.tut && S.groups[g.id] && S.groups[g.id].beaten) S.groups[g.id] = { gen: S.gen, beaten: 0, on: g.spare ? 0 : 1 };
     Rd.save();
   };
   Rd.guardsLeft = (placeId) => Rd.GROUPS.filter((g) => g.place === placeId && g.guard && !(Rd.S.groups[g.id] && Rd.S.groups[g.id].beaten)).length;
-  Rd.bossOpen = () => Rd.capCount() === R.CAPS.length;
+  Rd.bossOpen = (reg) => { reg = reg || Rd.curReg(); return Rd.capCount(reg) === Rd.capTotal(reg); };
 
   /* ---------- the songbook ---------- */
-  Rd.bookDone = () => R.SONGBOOK.every((sp) => Rd.S.book[sp] === 3);
-  Rd.claimBook = () => { const S = Rd.S; if (!Rd.bookDone() || S.flags.book) return false; S.flags.book = 1; S.shells++; Rd.save(); return true; };
+  Rd.bookFlag = (reg) => (reg && reg !== 'marsh' ? 'book_' + reg : 'book');
+  Rd.bookDone = (reg) => R.BOOKS[reg || 'marsh'].every((sp) => Rd.S.book[sp] === 3);
+  Rd.claimBook = (reg) => { const S = Rd.S, fl = Rd.bookFlag(reg); if (!Rd.bookDone(reg) || S.flags[fl]) return false; S.flags[fl] = 1; S.shells++; const r = Rd.openShell(); Rd.save(); return r; };
 
   /* ---------- quests ---------- */
   Rd.quest = () => R.QUESTS[Rd.S.quest] || null;
@@ -248,7 +263,7 @@
   Rd.check = (ev) => {
     const S = Rd.S, q = Rd.quest(); if (!q || q.end) return null;
     const ok = { walk: ev === 'walk', fight: S.groups.tut1 && S.groups.tut1.beaten, friend: S.groups.tut2 && S.groups.tut2.beaten, wake: S.caps.hush, talent: Object.keys(S.talents).length > 0,
-      build: (S.builds.hush || []).includes('windmill'), smith: ev === 'upgrade' || S.flags.upgraded, chapel: S.chapel.cleared, marsh: Rd.bossOpen(), boss: S.boss }[q.id];
+      build: (S.builds.hush || []).includes('windmill'), smith: ev === 'upgrade' || S.flags.upgraded, chapel: S.chapel.cleared }[q.id] || (q.all && Rd.bossOpen(q.all)) || (q.boss && Rd.bossDone(q.boss)) || (q.cap && S.caps[q.cap]);
     if (ev === 'upgrade') S.flags.upgraded = 1;
     if (!ok) return null;
     S.quest++; S.notes += q.notes || 0; S.echo += q.echo || 0; const ups = Rd.gainPlayer(q.xp || 0);

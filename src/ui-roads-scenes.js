@@ -17,7 +17,7 @@
     const say = (s) => { clearInterval(typer); line.textContent = ''; let k = 0; typer = setInterval(() => { k += 2; line.textContent = s.slice(0, k); if (k >= s.length) clearInterval(typer); }, window.__hsSpeed ? 1 : 22); };
     const go = (k) => {
       if (k >= scene.length) return finish();
-      i = k; const b = scene[k];
+      i = k; const b0 = scene[k], b = b0.bg === '$reg' ? Object.assign({}, b0, { bg: R.REGIONS[P ? P.reg : 'marsh'].bg }) : b0;
       // the backdrop: a new one fades in over the old (a ripple of colour when the music comes back)
       const bk = b.bg + '|' + b.mode;
       if (bk !== bgKey) { if (!bgKey && b.ripple) { const g0 = UI.bgEl(b.bg, UI.W, UI.Hh, 0.5, 'grey'); g0.classList.add('rd-bg'); stage.appendChild(g0); } const c = UI.bgEl(b.bg, UI.W, UI.Hh, 0.5, b.mode); c.classList.add('rd-bg'); if (b.ripple || (bgKey && b.mode !== 'grey')) c.classList.add('ripple'); stage.appendChild(c); bgKey = bk; const old = stage.querySelectorAll('.rd-bg'); if (old.length > 3) old[0].remove(); }

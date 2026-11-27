@@ -27,21 +27,66 @@
     { id: 'page2', at: [10, -12], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Brass Parade' },
     { id: 'page3', at: [18, 18], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Marsh Waltz' },
     { id: 'glade', at: [-8, -14], fit: 'woods', n: 'A quiet glade', kind: 'Secret', art: 'rd_glade', secret: 'pet', pet: 'jangle', lv: 7 },
+
+    // Bell Foundry: the second region, east of Reedwick. Opens once Muffle is beaten.
+    { id: 'w_cinder', reg: 'works', at: [24, -5], fit: 'flat', cap: 1, n: 'Cinderford', kind: 'Town', venue: 'The Bellows', art: 'rd_reed', lv: [12, 14], din: ['clank', 'racket', 'bash'], keeper: 'clank', yield: 4, bonus: { xp: 0.03 }, smith: 1,
+      story: ['The bellows breathe', 'The big bellows in the square wheeze, then puff, then puff in time. Somebody starts hammering along.'] },
+    { id: 'w_kiln', reg: 'works', at: [35, -2], fit: 'hills', cap: 1, n: 'Kiln Rise', kind: 'Watch hill', venue: 'The Warm Step', art: 'rd_lantern', lv: [13, 15], din: ['beep', 'tick', 'clank'], keeper: 'tick', yield: 3, bonus: { poise: 3 },
+      story: ['The kilns glow', 'One by one the kilns on the rise light up. Each one rings a little as it warms, like a glass tapped with a spoon.'] },
+    { id: 'w_bell', reg: 'works', at: [41, -15], fit: 'flat', cap: 1, n: 'Bellwright', kind: 'Workshop town', venue: 'The Clapper', art: 'rd_mill', lv: [14, 16], din: ['bash', 'whine', 'clatter'], keeper: 'bash', yield: 4, bonus: { tempo: 0.02 }, merchant: 1,
+      story: ['Every bell at once', 'Hundreds of half-made bells hang in the workshops. A breeze goes through, and all of them answer.'] },
+    { id: 'w_ash', reg: 'works', at: [30, -26], fit: 'woods', cap: 1, n: 'Ashwood', kind: 'Hamlet', venue: 'The Soot Owl', art: 'rd_frog', lv: [15, 17], din: ['clatter', 'creak', 'tick'], keeper: 'creak', yield: 3, bonus: { join: 0.03 },
+      story: ['Birds in the ash', 'The grey trees shake off their soot. Underneath, the leaves are green, and full of birds that had forgotten how to sing.'] },
+    { id: 'w_forge', reg: 'works', at: [21, -18], fit: 'hills', cap: 1, n: 'Old Forge', kind: 'Forge', venue: 'The Anvil Arms', art: 'rd_hush', lv: [16, 18], din: ['racket', 'beep', 'bash'], keeper: 'beep', yield: 3, bonus: { hp: 0.03 },
+      story: ['Hammer and tongs', 'The old smith picks up her hammer for the first time in years. Clang, clang-clang. It sounds a lot like a drum solo.'] },
+    { id: 'w_anvil', reg: 'works', at: [33, -14], fit: 'flat', n: 'The Great Anvil', kind: 'Boss stage', art: 'rd_bandstand', boss: 'shush', adds: ['whine', 'bash'], lv: [20, 18], stage: 1,
+      bossD: 'Shush keeps the whole foundry quiet with one finger to its lips. Bring your best three.', doneD: 'Shush is gone. The smiths use the anvil as a stage now.' },
+    { id: 'w_page', reg: 'works', at: [44, -4], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Anvil Chorus' },
+    { id: 'w_glade', reg: 'works', at: [27, -34], fit: 'woods', n: 'A cold furnace', kind: 'Secret', art: 'rd_glade', secret: 'pet', pet: 'thrum', lv: 16 },
+
+    // Windy Dunes: the third region, south of the Old Mill. Opens once Shush is beaten.
+    { id: 'd_well', reg: 'dunes', at: [13, 24], fit: 'shore', cap: 1, n: 'Palm Well', kind: 'Oasis town', venue: 'The Cool Cup', art: 'rd_frog', lv: [19, 21], din: ['rustle', 'whoosh', 'squawk'], keeper: 'squawk', yield: 4, bonus: { hp: 0.03 }, smith: 1,
+      story: ['Water music', 'The well fills up. A bucket drops, splash, and the palms start swaying like they are at a dance.'] },
+    { id: 'd_tents', reg: 'dunes', at: [26, 25], fit: 'flat', cap: 1, n: 'Tent Market', kind: 'Market', venue: 'The Striped Tent', art: 'rd_reed', lv: [20, 22], din: ['whine', 'peck', 'rustle'], keeper: 'peck', yield: 4, bonus: { xp: 0.03 }, merchant: 1,
+      story: ['The tents go up', 'Canvas snaps open in the wind. Traders call out prices, and every one of them sings it.'] },
+    { id: 'd_mesa', reg: 'dunes', at: [34, 36], fit: 'hills', cap: 1, n: 'Red Mesa', kind: 'Watch hill', venue: 'The Echo Ledge', art: 'rd_lantern', lv: [21, 23], din: ['crackle', 'whoosh', 'squeal'], keeper: 'crackle', yield: 3, bonus: { poise: 3 },
+      story: ['Echoes', 'Shout from the top of the mesa and the cliffs shout back, three times, in harmony.'] },
+    { id: 'd_pipe', reg: 'dunes', at: [7, 35], fit: 'flat', cap: 1, n: 'Windpipe', kind: 'Hamlet', venue: 'The Whistle', art: 'rd_mill', lv: [22, 24], din: ['whoosh', 'squawk', 'crackle'], keeper: 'whoosh', yield: 3, bonus: { tempo: 0.02 },
+      story: ['The wind finds a tune', 'Wind blows through the old clay pipes on the roofs. For years it only moaned. Today it plays a lullaby.'] },
+    { id: 'd_stair', reg: 'dunes', at: [20, 41], fit: 'flat', cap: 1, n: 'Sunken Stair', kind: 'Ruin', venue: 'The Low Step', art: 'rd_hush', lv: [23, 25], din: ['squeal', 'peck', 'rustle'], keeper: 'squeal', yield: 3, bonus: { join: 0.03 },
+      story: ['Steps out of the sand', 'The wind clears the sand off an old stair. Each step rings a different note as you climb it.'] },
+    { id: 'd_stage', reg: 'dunes', at: [22, 33], fit: 'flat', n: 'The Sand Stage', kind: 'Boss stage', art: 'rd_bandstand', boss: 'gale', adds: ['rustle', 'whoosh'], lv: [27, 25], stage: 1,
+      bossD: 'Gale blows every song in the dunes away before it can finish. Bring your best three.', doneD: 'Gale has blown itself out. The wind just carries the tunes now.' },
+    { id: 'd_page', reg: 'dunes', at: [37, 21], fit: 'flat', n: 'A torn page', kind: 'Secret', art: 'rd_page', secret: 'page', song: 'Desert Song' },
+    { id: 'd_glade', reg: 'dunes', at: [2, 27], fit: 'woods', n: 'A shady hollow', kind: 'Secret', art: 'rd_glade', secret: 'pet', pet: 'huff', lv: 23 },
   ];
-  R.LINKS = [['hush', 'lily'], ['lily', 'mill'], ['lily', 'frog'], ['lily', 'lantern'], ['lily', 'reed'], ['hush', 'chapel'], ['mill', 'reed']];
+  for (const p of R.PLACES) p.reg = p.reg || 'marsh';
+  R.PLACES.find((p) => p.id === 'lily').bossD = 'Muffle has sat on this marsh for years. Bring your best three.';
+  R.PLACES.find((p) => p.id === 'lily').doneD = 'Muffle is gone. The frogs have taken the stage.';
+  // the regions in order: each boss opens the next one
+  R.REGIONS = { marsh: { stage: 'lily', opens: 'works', bg: 'fen' }, works: { stage: 'w_anvil', opens: 'dunes', bg: 'works' }, dunes: { stage: 'd_stage', bg: 'dunes' } };
+  R.LINKS = [['hush', 'lily'], ['lily', 'mill'], ['lily', 'frog'], ['lily', 'lantern'], ['lily', 'reed'], ['hush', 'chapel'], ['mill', 'reed'],
+    ['reed', 'w_cinder'], ['w_cinder', 'w_anvil'], ['w_anvil', 'w_kiln'], ['w_anvil', 'w_bell'], ['w_anvil', 'w_ash'], ['w_cinder', 'w_forge'], ['w_forge', 'w_ash'],
+    ['mill', 'd_well'], ['d_well', 'd_stage'], ['d_stage', 'd_tents'], ['d_stage', 'd_stair'], ['d_tents', 'd_mesa'], ['d_stair', 'd_pipe'], ['d_well', 'd_pipe']];
   R.CAPS = R.PLACES.filter((p) => p.cap).map((p) => p.id);
 
   /* ---------- wild pets: which ground they like ---------- */
   // Each patrol may hold a wild pet, taken from the pets of the ground it stands on.
-  R.WILD = { shore: ['yelp'], meadow: ['peep', 'clack'], woods: ['squeak', 'tock'], hills: ['plink'] };
-  R.SONGBOOK = ['peep', 'clack', 'yelp', 'squeak', 'tock', 'plink', 'doo', 'jangle'];   // the pets that live in Reed Marsh
+  R.WILD = {
+    marsh: { shore: ['yelp'], meadow: ['peep', 'clack'], woods: ['squeak', 'tock'], hills: ['plink'] },
+    works: { shore: ['wah'], meadow: ['clang', 'tink'], woods: ['bong', 'oompah'], hills: ['blare'] },
+    dunes: { shore: ['chatter'], meadow: ['skirl', 'bop'], woods: ['screech'], hills: ['warble'] },
+  };
+  // the pets that live in each region: find them all for a shell
+  R.BOOKS = { marsh: ['peep', 'clack', 'yelp', 'squeak', 'tock', 'plink', 'doo', 'jangle'], works: ['clang', 'tink', 'bong', 'oompah', 'blare', 'wah', 'thrum'], dunes: ['skirl', 'bop', 'chatter', 'screech', 'warble', 'huff'] };
+  R.SONGBOOK = R.BOOKS.marsh;
   R.WILD_CHANCE = 0.45;
   // join chance, in parts of 1: shown on screen before and after every fight
   R.JOIN = { base: 0.15, dinFirst: 0.15, same: 0.2, perMeet: 0.05, meetMax: 0.25 };
 
   /* ---------- growing ---------- */
   R.petNeed = (lv) => 50 + 30 * lv;
-  R.playerNeed = (lv) => 80 + 60 * lv;
+  R.playerNeed = (lv) => 120 + 100 * lv;
   R.MAX_PET = 30; R.MAX_PLAYER = 20;
   R.EVO_LV = [0, 10, 25];   // pet level a pet needs before each evolution (and the echoes it costs, as in Hushsong)
   R.dinXp = (lv) => 6 + 3 * lv;
@@ -111,12 +156,24 @@
       talk: 'Take these old drumsticks. The smith at The Tin Cup can make them better, for a few notes.' },
     { id: 'chapel', n: 'The Drowned Chapel', goal: 'Reach the end of the Drowned Chapel', xp: 120, notes: 60,
       talk: 'South of here the old chapel sank into the marsh. Something still sings down there. Go and look.' },
-    { id: 'marsh', n: 'Free Reed Marsh', goal: 'Capture every place', xp: 200, notes: 100,
+    { id: 'marsh', all: 'marsh', n: 'Free Reed Marsh', goal: 'Capture every place', xp: 200, notes: 100,
       talk: 'Four more places to wake. When all five sing, The Lily Pad opens. Muffle waits there.' },
-    { id: 'boss', n: 'The Lily Pad', goal: 'Beat Muffle at The Lily Pad', xp: 300, notes: 200,
+    { id: 'boss', boss: 'marsh', n: 'The Lily Pad', goal: 'Beat Muffle at The Lily Pad', xp: 300, notes: 200,
       talk: 'This is it. Muffle sat on this marsh for years. Bring your best three.' },
-    { id: 'done', n: 'Reed Marsh sings', goal: 'The road to Bell Foundry opens in a later preview', end: 1,
-      talk: 'Listen to that. Reed Marsh sings again. Bell Foundry is next, when the road opens.' },
+    { id: 'east', cap: 'w_cinder', n: 'The road east', goal: 'Follow the road past Reedwick and wake Cinderford', xp: 150, notes: 80,
+      talk: 'Hear that clanging to the east? The road to Bell Foundry is open. The Din there are tougher, so take your time on the way.' },
+    { id: 'works', all: 'works', n: 'Free Bell Foundry', goal: 'Capture every place in Bell Foundry', xp: 300, notes: 150,
+      talk: 'Five places in the foundry. Wake them all and The Great Anvil opens. Keep an ear out for new pets in the ash woods.' },
+    { id: 'boss2', boss: 'works', n: 'The Great Anvil', goal: 'Beat Shush at The Great Anvil', xp: 400, notes: 300,
+      talk: 'Shush is up on the anvil. It hates noise more than anything. Let us be very, very loud.' },
+    { id: 'south', cap: 'd_well', n: 'The road south', goal: 'Follow the road past the Old Mill and wake Palm Well', xp: 200, notes: 100,
+      talk: 'The wind turned. South of the mill, the road to Windy Dunes is clear. Bring water.' },
+    { id: 'dunes', all: 'dunes', n: 'Free Windy Dunes', goal: 'Capture every place in Windy Dunes', xp: 400, notes: 200,
+      talk: 'Five places hide in the sand. Wake them all and The Sand Stage rises.' },
+    { id: 'boss3', boss: 'dunes', n: 'The Sand Stage', goal: 'Beat Gale at The Sand Stage', xp: 500, notes: 400,
+      talk: 'Gale is the loudest thing we have met. Hold on to your hats.' },
+    { id: 'done', n: 'Three regions sing', goal: 'More roads open in a later preview', end: 1,
+      talk: 'Marsh, foundry and dunes, all singing. The Snowy Ridge is still deep in noise. That road opens in a later preview.' },
   ];
   R.TUTORIAL = {
     fight: { din: ['racket'], lv: 1 },
@@ -135,8 +192,8 @@
       { bg: 'fen', mode: 'hush', cast: [['warble', 0.26, 'hop'], ['$starter', 0.66, 'pop']], who: 'Tilly', line: 'There it is, a song! Hushwick needs waking, and now you have a band. A band of one, for now.' },
     ],
     capture: [
-      { bg: 'fen', mode: 'hush', cast: [['$band', 0.5, 'hop']], line: '$story0', ripple: 1 },
-      { bg: 'fen', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: '$story1' },
+      { bg: '$reg', mode: 'hush', cast: [['$band', 0.5, 'hop']], line: '$story0', ripple: 1 },
+      { bg: '$reg', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: '$story1' },
     ],
     chapel: [
       { bg: 'caves', mode: 'hush', cast: [['doo', 0.5, 'hum']], line: 'Deep in the chapel, a little songbook kept singing all alone. It flutters over to your band.' },
@@ -147,7 +204,21 @@
     ],
     finale: [
       { bg: 'fen', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: 'Muffle is gone. The reeds rustle, the frogs sing in rounds, and the mill keeps time.', ripple: 1 },
-      { bg: 'fen', mode: 'sing', cast: [['warble', 0.3, 'hop'], ['$lead', 0.68, 'hop']], who: 'Tilly', line: 'You did it. Reed Marsh sings again. The road to Bell Foundry is still full of noise, but it will not be for long.' },
+      { bg: 'fen', mode: 'sing', cast: [['warble', 0.3, 'hop'], ['$lead', 0.68, 'hop']], who: 'Tilly', line: 'You did it. Reed Marsh sings again. Listen, east of Reedwick. The noise on the road to Bell Foundry is thinning.' },
+    ],
+    bossopen_works: [
+      { bg: 'works', mode: 'hush', cast: [['shush', 0.5, 'drift']], line: 'Every place in Bell Foundry rings. On The Great Anvil, Shush raises one finger to its lips.' },
+    ],
+    finale_works: [
+      { bg: 'works', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: 'Shush is gone. Every bell in the foundry rings at once, and nobody tells them to stop.', ripple: 1 },
+      { bg: 'works', mode: 'sing', cast: [['warble', 0.3, 'hop'], ['$lead', 0.68, 'hop']], who: 'Tilly', line: 'Feel that warm wind from the south? The road past the Old Mill is open. Windy Dunes is next.' },
+    ],
+    bossopen_dunes: [
+      { bg: 'dunes', mode: 'hush', cast: [['gale', 0.5, 'drift']], line: 'Every place in Windy Dunes sings. The sand slides away from The Sand Stage. Gale howls on top of it.' },
+    ],
+    finale_dunes: [
+      { bg: 'dunes', mode: 'sing', cast: [['$band', 0.5, 'hop']], line: 'Gale blows itself out. The wind goes on, softer now, and it carries every song across the sand.', ripple: 1 },
+      { bg: 'dunes', mode: 'sing', cast: [['warble', 0.3, 'hop'], ['$lead', 0.68, 'hop']], who: 'Tilly', line: 'Three regions singing! The Snowy Ridge is still lost in noise. That road opens in a later preview.' },
     ],
   };
 })(typeof window !== 'undefined' ? (window.H = window.H || {}) : (globalThis.H = globalThis.H || {}));
